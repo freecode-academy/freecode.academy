@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react-hooks", "cypress"],
+  "plugins": ["@typescript-eslint", "react-hooks", "deprecate", "cypress"],
   "extends": [
     "plugin:cypress/recommended",
     "eslint:recommended",
@@ -19,7 +19,7 @@
   },
   "overrides": [
     {
-      "files": ["*.{ts,tsx}"],
+      "files": ["src/**/*.{ts,tsx}"],
       "rules": {
         // Deny use require
         "no-restricted-modules": [
@@ -32,11 +32,13 @@
     }
   ],
   "rules": {
+    "cypress/no-unnecessary-waiting": "off",
     "react-hooks/rules-of-hooks": "error", // Проверяем правила хуков
     "react-hooks/exhaustive-deps": "error", // Проверяем зависимости эффекта
     "react/react-in-jsx-scope": 0,
     "react/display-name": 0,
     "react/prop-types": 0,
+    "react/no-unescaped-entities": 0,
     "react/jsx-no-bind": "error", // Запрещаем стрелочные функции
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-member-accessibility": 0,
@@ -45,6 +47,8 @@
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/camelcase": 0,
+    "@typescript-eslint/no-empty-interface": 0,
     "@typescript-eslint/no-unused-vars": [
       2,
       {

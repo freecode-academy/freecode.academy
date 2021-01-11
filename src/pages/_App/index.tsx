@@ -1,25 +1,148 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import NextApp, { AppContext } from 'next/app'
+import { useRouter } from 'next/router'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
 import theme from 'src/theme'
-import { useApollo, initializeApollo } from 'src/lib/apolloClient'
+import GlobalStyle from 'src/theme/GlobalStyle'
 import {
   NextPageContextCustom,
-  AppProps,
   MainApp,
-  AppInitialPropsCustom,
+  AppInitialProps,
+  PageProps,
 } from './interfaces'
-import { NextSeo, NextSeoProps } from 'next-seo'
+
+import {
+  useApollo,
+  initializeApollo,
+  getSubscriptionClient,
+} from 'src/lib/apolloClient'
+
+import Context, { PrismaCmsContext } from '@prisma-cms/context'
+import URI from 'urijs'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { muiTheme } from './MUI/theme'
+
+import Auth from 'src/components/Auth'
+import WithUser from './WithUser'
+import { AuthFormResponse } from '../../components/Auth/forms/interfaces'
+
+import moment from 'moment'
 import Page404 from '../_Error/404'
 import ErrorPage from '../_Error'
+import { NextSeo, NextSeoProps } from 'next-seo'
+import Head from 'next/head'
+// import Pagination from '../../components/Pagination'
+import UserLink from '../../uikit/Link/User'
+import ProjectLink from '../../uikit/Link/Project'
+import Link from '../../uikit/Link'
+import { LayoutStyled } from './styles'
+// import Editor from '../../uikit/Editor'
+
+// TODO: Проработать локализацию
+moment.locale('ru')
 
 const withWs = true
 
-const App: MainApp<AppProps> = ({ Component, pageProps }) => {
-  const apolloClient = useApollo(pageProps.initialApolloState, true)
+const App: MainApp = (props) => {
+  const { Component, pageProps } = props
 
-  const { statusCode } = pageProps
+  // eslint-disable-next-line no-console
+  // console.log('App props', props);
+
+  const apolloClient = useApollo(pageProps.initialApolloState, withWs)
+
+  const { statusCode, layout } = pageProps
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (global.document) {
+      const muiSsrStyles = global.document.querySelector('#server-side-jss')
+
+      if (muiSsrStyles) {
+        muiSsrStyles.remove()
+      }
+    }
+  }, [])
+
+  const [authOpen, setOpened] = useState(false)
+
+  /**
+   * Сбрасываем кеш аполло-клиента на авторизацию и деавторизацию
+   */
+  const resetConnection = useCallback(
+    async (token: string | null) => {
+      if (token) {
+        global.localStorage.setItem('token', token)
+      } else {
+        global.localStorage.removeItem('token')
+      }
+
+      /**
+       * Переподключаем веб-сокет
+       */
+      const subscriptionClient = getSubscriptionClient()
+
+      subscriptionClient?.close(false, false)
+
+      await apolloClient.resetStore().catch(console.error)
+    },
+    [apolloClient]
+  )
+
+  const loginComplete = useCallback(
+    async (data: AuthFormResponse) => {
+      const { token } = data
+      await resetConnection(token)
+    },
+    [resetConnection]
+  )
+
+  const loginCanceled = useCallback(() => {
+    setOpened(false)
+  }, [setOpened])
+
+  const logout = useCallback(async () => {
+    await resetConnection(null)
+  }, [resetConnection])
+
+  /**
+   * Открываем форму для авторизации
+   */
+  const openLoginForm = useCallback(() => {
+    setOpened(true)
+  }, [setOpened])
+
+  const contextValue = useMemo(() => {
+    const context: PrismaCmsContext = {
+      uri: new URI(),
+      client: apolloClient,
+      router,
+      logout,
+      openLoginForm,
+      lang: 'ru',
+      theme: muiTheme,
+      localStorage: global.localStorage,
+      apiClientResetStore: async function () {
+        if (!apolloClient['queryManager'].fetchCancelFns.size) {
+          return apolloClient.resetStore().catch(console.error)
+        }
+      },
+
+      /**
+       * @prisma-cms/front-editor
+       */
+      // Pagination,
+      UserLink,
+      // Editor,
+      ProjectLink,
+      Link,
+    }
+
+    return context
+  }, [apolloClient, logout, openLoginForm, router])
 
   const content = useMemo(() => {
     const meta: NextSeoProps = {}
@@ -27,7 +150,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
     let content = null
 
     /**
-     * If got error code, show error page instead
+     * Если получили серверную ошибку, выводим страницу ошибки
      */
     if (statusCode && statusCode !== 200) {
       switch (statusCode) {
@@ -35,17 +158,14 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
           meta.noindex = true
           meta.nofollow = true
 
-          content = <Page404 {...pageProps} />
+          content = <Page404 />
 
           break
 
         default:
-          content = <ErrorPage statusCode={statusCode} {...pageProps} />
+          content = <ErrorPage statusCode={statusCode} />
       }
     } else {
-      /**
-       * If OK, show page Component
-       */
       content = <Component {...pageProps} />
     }
 
@@ -59,23 +179,61 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <ApolloProvider client={apolloClient}>{content}</ApolloProvider>
-      </ThemeProvider>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+      </Head>
+      <MuiThemeProvider
+        theme={muiTheme}
+        // For SSR only
+        sheetsManager={
+          typeof global.window === 'undefined' ? new Map() : undefined
+        }
+      >
+        <GlobalStyle />
+        <ThemeProvider theme={theme}>
+          <ApolloProvider client={apolloClient}>
+            <Context.Provider value={contextValue}>
+              <LayoutStyled {...layout}>
+                <WithUser context={contextValue}>
+                  <Auth
+                    open={authOpen}
+                    useMetamask={true}
+                    loginComplete={loginComplete}
+                    loginCanceled={loginCanceled}
+                    showRegForm={true}
+                  />
+                  <div id="wrapper">
+                    <div id="content">{content}</div>
+                  </div>
+                </WithUser>
+              </LayoutStyled>
+            </Context.Provider>
+          </ApolloProvider>
+        </ThemeProvider>
+      </MuiThemeProvider>
     </>
   )
 }
 
-/**
- * This method calls both of back and front side.
- * Usefull for check access or/and data.
- * Add getInitialProps to page Component
- * and return {statusCode: 404} or {statusCode: 403} for example.
- */
 App.getInitialProps = async (appContext: AppContext) => {
   /**
-   * Initialize apollo-client and path into page props for collect
-   * all data in cache.
+   * В родном контексте неправильная типизация
+   */
+  // const req = appContext.ctx.req as Request;
+
+  // const lang = req.acceptsLanguages('ru', 'en');
+
+  // if (lang) {
+  //   moment.locale(lang);
+  // }
+
+  /**
+   * Для того, чтобы в итоге можно было собрать общий аполло-стейт
+   * с приложения и далее выполняемый страниц и документа,
+   * передаем аполло-клиент далее в контекст приложения.
    */
   const apolloClient = initializeApollo(undefined, withWs)
 
@@ -91,30 +249,30 @@ App.getInitialProps = async (appContext: AppContext) => {
   }
 
   /**
-   * Call final _App.getInitialProps, _Document.getInitialProps() and page.getInitialProps()
+   * Здесь вызывается page.getInitialProps() и далее _document.getInitialProps()
+   * Все собирается в конечный appProps
    */
-  const appProps = await NextApp.getInitialProps(newAppContext)
 
-  const { pageProps, ...otherProps } = appProps
+  const { pageProps, ...otherProps } = await NextApp.getInitialProps(
+    newAppContext
+  )
 
-  const newProps: AppInitialPropsCustom = {
+  const { statusCode } = pageProps as PageProps
+
+  /**
+   * Если выполняется на серверной стороне
+   */
+  if (statusCode && newAppContext.ctx.res) {
+    newAppContext.ctx.res.statusCode = statusCode
+  }
+
+  const newProps: AppInitialProps = {
     ...otherProps,
     pageProps: {
       ...pageProps,
+      statusCode,
       initialApolloState: apolloClient.cache.extract(),
     },
-  }
-
-  /**
-   * Got server statusCode
-   */
-  const { statusCode } = newProps.pageProps
-
-  /**
-   * If server-side, add response http code
-   */
-  if (statusCode && statusCode !== 200 && newAppContext.ctx.res) {
-    newAppContext.ctx.res.statusCode = statusCode
   }
 
   return newProps

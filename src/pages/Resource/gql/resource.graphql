@@ -1,0 +1,5 @@
+query resource($where: ResourceWhereUniqueInput!) {
+  object: resource(where: $where) {
+    ...resource_
+  }
+}

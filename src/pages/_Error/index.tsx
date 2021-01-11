@@ -1,9 +1,8 @@
 import React from 'react'
 import { NextSeo } from 'next-seo'
 import NextError from 'next/error'
-import { PageProps } from 'src/pages/_App/interfaces'
 
-export default class ErrorPage extends NextError<PageProps> {
+export default class ErrorPage extends NextError {
   render() {
     return (
       <div>

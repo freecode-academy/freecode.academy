@@ -1,0 +1,41 @@
+query me {
+  user: me {
+    ...MeUser
+  }
+}
+
+fragment MeUser on User {
+  ...UserNoNesting
+  CodeChallengeCompletions {
+    ...MeUserCodeChallengeCompletion
+  }
+  EthAccounts {
+    id
+    address
+    balance(convert: ether)
+  }
+  Timers(first: 1, where: { stopedAt: null }) {
+    ...MeUserTimer
+  }
+}
+
+fragment MeUserTimer on Timer {
+  id
+  createdAt
+  stopedAt
+  Task {
+    id
+    name
+    status
+    TaskProjects {
+      id
+      createdAt
+      updatedAt
+      Project {
+        id
+        type
+        name
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+query codeChallenge($where: CodeChallengeWhereUniqueInput!) {
+  codeChallenge(where: $where) {
+    ...codeChallenge_
+  }
+}

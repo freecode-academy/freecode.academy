@@ -5,6 +5,7 @@
 **/coverage/*
 **/.storybook/*
 **/storybook-static/*
+/.vscode
 /packages
 /public
 /shared

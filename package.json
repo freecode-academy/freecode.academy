@@ -4,6 +4,10 @@
   "author": "@Fi1osof",
   "license": "MIT",
   "version": "1.6.0",
+  "private": true,
+  "workspaces": [
+    "packages/@prisma-cms/component"
+  ],
   "scripts": {
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",

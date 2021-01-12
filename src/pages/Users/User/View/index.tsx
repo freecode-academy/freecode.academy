@@ -136,29 +136,29 @@ const UserView: React.FC<UserViewProps> = (props) => {
     if (data) {
       const isDirty = Object.keys(data).length
 
+      buttons.push(
+        <IconButton
+          key="ResetIcon"
+          onClick={reset}
+          disabled={inRequest}
+          title="Отменить изменения"
+        >
+          <ResetIcon />
+        </IconButton>
+      )
+
       isDirty &&
         buttons.push(
           <IconButton
-            key="ResetIcon"
-            onClick={reset}
+            key="SaveIcon"
+            type="submit"
             disabled={inRequest}
-            title="Отменить изменения"
+            color="secondary"
+            title="Сохранить пользователя"
           >
-            <ResetIcon />
+            <SaveIcon />
           </IconButton>
         )
-
-      buttons.push(
-        <IconButton
-          key="SaveIcon"
-          type="submit"
-          disabled={inRequest}
-          color={isDirty ? 'secondary' : undefined}
-          title="Сохранить пользователя"
-        >
-          <SaveIcon />
-        </IconButton>
-      )
     } else {
       buttons.push(
         <IconButton
@@ -174,41 +174,6 @@ const UserView: React.FC<UserViewProps> = (props) => {
     return buttons
   }, [user?.id, isCurrentUser, data, reset, inRequest, startEdit])
 
-  const title = useMemo(() => {
-    if (data) {
-      return (
-        <Grid container spacing={16}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              name="username"
-              value={userEdited?.username || ''}
-              onChange={onChange}
-              fullWidth
-              label="Имя пользователя"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <TextField
-              name="fullname"
-              value={userEdited?.fullname || ''}
-              onChange={onChange}
-              fullWidth
-              label="ФИО"
-            />
-          </Grid>
-        </Grid>
-      )
-    }
-    // else
-
-    return (
-      <Typography variant="title">
-        {userEdited?.fullname || userEdited?.username}
-      </Typography>
-    )
-  }, [data, onChange, userEdited?.fullname, userEdited?.username])
-
   const password = useMemo(() => {
     if (!data) {
       return null
@@ -221,9 +186,43 @@ const UserView: React.FC<UserViewProps> = (props) => {
         onChange={onChange}
         label="Новый пароль"
         type="password"
+        fullWidth
       />
     )
   }, [data, onChange, userEdited?.password])
+
+  const email = useMemo(() => {
+    if (!data) {
+      return null
+    }
+
+    return (
+      <TextField
+        name="email"
+        value={userEdited?.email || ''}
+        onChange={onChange}
+        label="Емейл"
+        type="email"
+        fullWidth
+      />
+    )
+  }, [data, onChange, userEdited?.email])
+
+  const fullname = useMemo(() => {
+    if (!data) {
+      return null
+    }
+
+    return (
+      <TextField
+        name="fullname"
+        value={userEdited?.fullname || ''}
+        onChange={onChange}
+        label="ФИО"
+        fullWidth
+      />
+    )
+  }, [data, onChange, userEdited?.fullname])
 
   /**
    * Обработчик на загрузку картинки
@@ -268,7 +267,9 @@ const UserView: React.FC<UserViewProps> = (props) => {
             <Grid item xs={12}>
               <Grid container spacing={16} alignItems="center">
                 <Grid item xs>
-                  {title}
+                  <Typography variant="title">
+                    {userEdited?.fullname || userEdited?.username}
+                  </Typography>
                 </Grid>
 
                 <Grid item>{buttons}</Grid>
@@ -279,8 +280,20 @@ const UserView: React.FC<UserViewProps> = (props) => {
               {avatar}
             </Grid>
 
+            {fullname ? (
+              <Grid item xs={12} md={4}>
+                {fullname}
+              </Grid>
+            ) : null}
+
+            {email ? (
+              <Grid item xs={12} md={4}>
+                {email}
+              </Grid>
+            ) : null}
+
             {password ? (
-              <Grid item xs={12}>
+              <Grid item xs={12} md={4}>
                 {password}
               </Grid>
             ) : null}
@@ -294,7 +307,18 @@ const UserView: React.FC<UserViewProps> = (props) => {
         </UserViewStyled>
       </form>
     )
-  }, [avatar, buttons, notifications, password, save, title, user])
+  }, [
+    avatar,
+    buttons,
+    email,
+    fullname,
+    notifications,
+    password,
+    save,
+    user,
+    userEdited?.fullname,
+    userEdited?.username,
+  ])
 }
 
 export default UserView

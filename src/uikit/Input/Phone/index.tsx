@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 
-import NumberFormatProto from 'react-number-format'
+import NumberFormatProto, { NumberFormatValues } from 'react-number-format'
 import TextField from 'material-ui/TextField'
 
 import { PhoneFieldProps } from './interfaces'
@@ -38,21 +38,21 @@ class PhoneField extends Component<PhoneFieldProps> {
     return value ? value.replace(/^\+/, '').replace(/[^0-9]/g, '') : ''
   }
 
-  onValueChange = (values: Record<string, any>) => {
+  onValueChange = (values: NumberFormatValues) => {
     const {
-      // name,
+      name,
       onChange,
       // value,
       // ...other
     } = this.props
 
-    const { value } = values
+    const { formattedValue } = values
 
     onChange &&
       onChange({
         target: {
           name,
-          value,
+          value: formattedValue,
         },
       })
   }

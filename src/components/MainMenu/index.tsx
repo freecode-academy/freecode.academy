@@ -143,7 +143,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                 color="inherit"
                 className={classes.flex}
               >
-                <Link href="/">PrismaCMS</Link>
+                <Link href="/">FreeCode.Academy</Link>
               </Typography>
             </Grid>
 

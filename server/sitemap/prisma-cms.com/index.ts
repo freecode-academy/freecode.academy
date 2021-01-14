@@ -75,7 +75,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
 
     xml
       .startElement('sitemapindex')
-      .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
+      .writeAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
     /**
      * Формируем ссылки на разделы
      */

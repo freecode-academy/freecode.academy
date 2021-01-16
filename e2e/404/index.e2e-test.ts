@@ -11,7 +11,7 @@ describe('404 page', () => {
 
   describe('Load 404 page', () => {
     it('Check content', () => {
-      cy.contains('#__next > h2', '404 - Page Not Found')
+      cy.contains('#content > h2', 'Страница не найдена')
     })
   })
 })

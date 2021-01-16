@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Link from 'next/link'
 
-import Typography from 'material-ui/Typography'
+// import Typography from 'material-ui/Typography'
 
 import { withStyles } from 'material-ui/styles'
 
@@ -19,26 +19,34 @@ export class UiLink<P extends UiLinkProps> extends Component<P> {
   render() {
     const {
       className,
-      textClassName,
+      // textClassName,
       classes,
       children,
       href,
-      color,
-      variant,
+      // color,
+      // variant,
       ...other
     } = this.props
+
+    // return (
+    //   <Link href={href}>
+    //     <a className={[classes?.root, className].join(' ')} {...other}>
+    //       <Typography
+    //         component="span"
+    //         className={[classes?.text, textClassName].join(' ')}
+    //         color={color}
+    //         variant={variant}
+    //       >
+    //         {children || ''}
+    //       </Typography>
+    //     </a>
+    //   </Link>
+    // )
 
     return (
       <Link href={href}>
         <a className={[classes?.root, className].join(' ')} {...other}>
-          <Typography
-            component="span"
-            className={[classes?.text, textClassName].join(' ')}
-            color={color}
-            variant={variant}
-          >
-            {children || ''}
-          </Typography>
+          {children}
         </a>
       </Link>
     )

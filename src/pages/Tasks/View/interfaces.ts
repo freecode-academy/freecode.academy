@@ -1,19 +1,19 @@
-import { ObjectsListViewProps } from 'src/components/view/List/interfaces'
+import { PaginationProps } from 'src/components/Pagination'
 import {
   TasksConnectionTaskFragment,
-  TasksConnectionQueryVariables,
+  // TasksConnectionQueryVariables,
 } from 'src/modules/gql/generated'
 
-export interface TasksViewProps extends ObjectsListViewProps {
-  createTimerProcessor: (data: any) => Promise<any>
-  updateTimerProcessor: (data: any) => Promise<any>
+export interface TasksViewProps extends PaginationProps {
+  // createTimerProcessor: (data: any) => Promise<any>
+  // updateTimerProcessor: (data: any) => Promise<any>
 
-  createTaskProcessor: (data: any) => Promise<any>
-  updateTaskProcessor: (data: any) => Promise<any>
+  // createTaskProcessor: (data: any) => Promise<any>
+  // updateTaskProcessor: (data: any) => Promise<any>
 
-  deleteTaskReaction: (data: any) => Promise<any>
+  // deleteTaskReaction: (data: any) => Promise<any>
 
-  classes?: any
+  // classes?: any
 
   filters?: any
 
@@ -22,9 +22,9 @@ export interface TasksViewProps extends ObjectsListViewProps {
   // data: TasksConnectionQuery | null
   objects: TasksConnectionTaskFragment[]
 
-  variables?: TasksConnectionQueryVariables
+  // variables?: TasksConnectionQueryVariables
 
-  showAll: boolean
+  // showAll: boolean
 
-  setShowAll(show: boolean): void
+  // setShowAll(show: boolean): void
 }

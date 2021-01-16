@@ -1,495 +1,228 @@
-import React, { Fragment } from 'react'
-// import PropTypes from 'prop-types'
+/* eslint-disable no-console */
+import React, { useCallback, useContext, useMemo } from 'react'
+import Editor from '@prisma-cms/editor'
+import moment from 'moment'
+import UserLink, { UikitUserLinkAvatarSize } from 'src/uikit/Link/User'
 
-import EditableView from 'apollo-cms/dist/DataView/Object/Editable'
-
-import withStyles from 'material-ui/styles/withStyles'
 import IconButton from 'material-ui/IconButton'
 import StartIcon from 'material-ui-icons/PlayArrow'
 import StopIcon from 'material-ui-icons/Stop'
 
-import Typography from 'material-ui/Typography'
-
-// import Grid from '@prisma-cms/front/lib/modules/ui/Grid'
-
-import moment from 'moment'
-
-// import { UserLink, TaskLink, Editor, ProjectLink } from '@modxclub/ui'
-
-// import TimersListView from '../../../Timers/View/List'
-import TimersListView from 'src/pages/Timers/View/List'
-
-// import { createTaskProcessor, updateTaskProcessor } from '../../query'
-
-// import {
-//   createTimerProcessor,
-//   updateTimerProcessor,
-// } from '../../../Timers/query'
-// import { graphql, compose } from '@apollo/client'
-import Grid from 'src/uikit/Grid'
-import { TaskViewProps } from './interfaces'
-// import { Task } from 'src/modules/gql/generated'
+import {
+  GridTableAttributeStyled,
+  GridTableItemStyled,
+  GridTableAttributesContainerStyled,
+} from 'src/components/GridTable/styles'
+import TaskStatus from '../../TaskStatus'
+import { TasksViewTaskProps } from './interfaces'
+import UikitUserLink from 'src/uikit/Link/User'
+import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
+import {
+  useCreateTimerProcessorMutation,
+  useUpdateTimerProcessorMutation,
+} from 'src/modules/gql/generated'
+import useProcessorMutation from 'src/hooks/useProcessorMutation'
 import TaskLink from 'src/uikit/Link/Task'
-import ProjectLink from 'src/uikit/Link/Project'
-import UserLink from 'src/uikit/Link/User'
-import { UikitUserLinkAvatarSize } from 'src/uikit/Link/User/interfaces'
 
-import Editor from '@prisma-cms/editor'
+const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
+  const context = useContext(PrismaContext) as PrismaCmsContext
 
-// export {
-//   UserLink,
-//   TaskLink,
-//   Editor,
-//   ProjectLink,
-//   updateTaskProcessor,
-//   createTimerProcessor,
-//   updateTimerProcessor,
-// }
+  /**
+   * Обновление таймера
+   */
+  const [updateTimerProcessor] = useUpdateTimerProcessorMutation()
 
-export const styles = () => {
-  return {
-    root: {},
-  }
-}
+  /**
+   * Запуск таймера
+   */
 
-export class TaskView<
-  P extends TaskViewProps = TaskViewProps
-> extends EditableView<P> {
-  // static propTypes = {
-  //   ...EditableView.propTypes,
-  //   classes: PropTypes.object.isRequired,
-  //   showDetails: PropTypes.bool.isRequired,
-  // }
+  const [createTimerProcessor, { loading }] = useCreateTimerProcessorMutation()
 
-  static defaultProps = {
-    ...EditableView.defaultProps,
-    showDetails: false,
-  }
+  const {
+    mutation: createMutation,
+    snakbar: createMutationSnakbar,
+    // } = useProcessorMutation<CreateTimerProcessorMutationOptions>({
+  } = useProcessorMutation({
+    processor: createTimerProcessor,
+    loading,
+  })
 
-  // static contextTypes = {
-  //   ...EditableView.contextTypes,
-  //   openLoginForm: PropTypes.func.isRequired,
-  // };
-
-  // canEdit() {
-  //   const { user: currentUser } = this.context
-
-  //   const { id: currentUserId, sudo } = currentUser || {}
-
-  //   const { id, CreatedBy } = this.getObjectWithMutations() || {}
-
-  //   const { id: createdById } = CreatedBy || {}
-
-  //   return (
-  //     !id || (createdById && createdById === currentUserId) || sudo === true
-  //   )
-  // }
-
-  // save() {
-  //   const { user: currentUser, openLoginForm } = this.context
-
-  //   if (!currentUser) {
-  //     return openLoginForm()
-  //   }
-
-  //   return super.save()
-  // }
-
-  // async saveObject(data: Task) {
-  //   const { mutate: _mutate, createTask, updateTask } = this.props
-
-  //   let mutate = _mutate || undefined
-
-  //   if (!mutate) {
-  //     const { id } = this.getObjectWithMutations() || {}
-
-  //     if (id && updateTask) {
-  //       mutate = updateTask
-  //     } else if (!id && createTask) {
-  //       mutate = createTask
-  //     }
-  //   }
-
-  //   if (!mutate) {
-  //     throw new Error('Mutate not defined')
-  //   }
-
-  //   const mutation = this.getMutation(data)
-
-  //   const result = await mutate(mutation)
-  //     // .then((r) => r)
-  //     .catch((e) => {
-  //       // throw (e);
-  //       return e
-  //     })
-
-  //   return result
-  // }
-
-  getCacheKey() {
-    const { id } = this.getObject() ?? {}
-
-    return `task_${id || 'new_task'}`
-  }
-
-  // getObjectWithMutations(): Task {
-  //   return super.getObjectWithMutations()
-  // }
-
-  onClickUpdateTimer = (target: any) => {
-    const timerId = target.attributes.role.value
-
-    return this.mutate({
-      // mutation: updateTimerProcessor,
-      mutation: async () => {
-        console.error('updateTimerProcessor required')
-      },
-      variables: {
-        data: {
-          stopedAt: new Date(),
-        },
-        where: {
-          id: timerId,
-        },
-      },
-    })
-  }
-
-  onClickCreateTimer = (target: any) => {
-    const taskId = target.attributes.role.value
-
-    return this.mutate({
-      // mutation: createTimerProcessor,
-      mutation: async () => {
-        console.error('createTimerProcessor required')
-      },
+  const onClickCreateTimer = useCallback(() => {
+    createMutation({
       variables: {
         data: {
           Task: {
             connect: {
-              id: taskId,
+              id: object.id,
             },
           },
         },
       },
     })
-  }
+  }, [createMutation, object.id])
 
-  getButtons() {
-    const buttons = super.getButtons() || []
+  const {
+    mutation: updateMutation,
+    snakbar: updateMutationSnakbar,
+  } = useProcessorMutation({
+    processor: updateTimerProcessor,
+    loading,
+  })
 
-    const { classes } = this.props
+  const onClickUpdateTimer = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      const timerId = event.currentTarget.value
 
-    const { id: taskId, Timers = [] } = this.getObjectWithMutations() ?? {}
+      updateMutation({
+        variables: {
+          data: {
+            stopedAt: new Date(),
+          },
+          where: {
+            id: timerId,
+          },
+        },
+      })
+    },
+    [updateMutation]
+  )
 
-    const { user: currentUser } = this.context
+  const buttons = useMemo(() => {
+    const buttons: JSX.Element[] = []
 
-    const activeTimers =
-      (Timers && Timers.filter((n) => n.stopedAt === null)) || []
+    if (object) {
+      const { id: taskId, Timers } = object
 
-    // buttons.push(<IconButton
-    //   key="start"
-    //   onClick={() => createTimer({
-    //     variables: {
-    //       data: {
-    //         Task: {
-    //           connect: {
-    //             id: taskId,
-    //           },
-    //         },
-    //       },
-    //     },
-    //   })}
-    //   className={classes.button}
-    // >
-    //   <StartIcon />
-    // </IconButton>);
+      const { user: currentUser } = context
 
-    const { id: currentUserId } = currentUser || {}
+      const activeTimers = Timers
+        ? Timers.filter((n) => n.stopedAt === null)
+        : []
 
-    const activeTimer = activeTimers.find(
-      (n) => n.CreatedBy?.id === currentUserId
-    )
+      if (currentUser) {
+        const { id: currentUserId } = currentUser
 
-    if (activeTimer) {
-      const { id: timerId } = activeTimer
-
-      Array.isArray(buttons) &&
-        buttons.push(
-          <IconButton
-            key="stop"
-            role={timerId}
-            onClick={this.onClickUpdateTimer}
-            className={classes?.button}
-          >
-            <StopIcon />
-          </IconButton>
+        const activeTimer = activeTimers.find(
+          (n) => n.CreatedBy?.id === currentUserId
         )
-    } else {
-      Array.isArray(buttons) &&
-        buttons.push(
-          <IconButton
-            key="start"
-            role={taskId}
-            onClick={this.onClickCreateTimer}
-            className={classes?.button}
-          >
-            <StartIcon />
-          </IconButton>
-        )
+
+        if (activeTimer) {
+          const { id: timerId } = activeTimer
+
+          buttons.push(
+            <IconButton
+              key="stop"
+              value={timerId}
+              onClick={onClickUpdateTimer}
+              disabled={loading}
+            >
+              <StopIcon />
+            </IconButton>
+          )
+        } else {
+          buttons.push(
+            <IconButton
+              key="start"
+              value={taskId}
+              onClick={onClickCreateTimer}
+              disabled={loading}
+            >
+              <StartIcon />
+            </IconButton>
+          )
+        }
+      }
     }
 
     return buttons
-  }
+  }, [context, loading, object, onClickCreateTimer, onClickUpdateTimer])
 
-  renderHeader(): React.ReactNode {
-    const { classes } = this.props
+  const timers = useMemo(() => {
+    const activeTimers = object.Timers?.filter((n) => n.stopedAt === null)
 
-    const object = this.getObjectWithMutations() ?? null
+    return activeTimers?.map((n) => {
+      const { id, CreatedBy } = n
 
-    const { id: taskId, CreatedBy, TaskProjects } = object ?? {}
-
-    // TODO: Ранее структура была на один проект, но сейчас возвращает несколько.
-    // Надо доработать для вывода нескольких проектов
-    const Project = TaskProjects?.length ? TaskProjects[0].Project : null
-
-    const inEditMode = this.inEditMode()
-
-    return (
-      <div className={classes?.header}>
-        <Grid container spacing={16}>
-          <Grid item xs>
-            <Grid container alignItems="center">
-              <Grid item xs={inEditMode}>
-                {inEditMode ? (
-                  this.getTextField({
-                    name: 'name',
-                    fullWidth: true,
-                    label: 'Название задачи',
-                  })
-                ) : taskId ? (
-                  <Fragment>
-                    {object ? <TaskLink object={object} /> : null}{' '}
-                    {Project ? (
-                      <span>
-                        {' '}
-                        (<ProjectLink object={Project} />)
-                      </span>
-                    ) : null}
-                  </Fragment>
-                ) : null}
-              </Grid>
-
-              <Grid item>{this.getButtons()}</Grid>
-
-              <Grid item xs={!inEditMode}></Grid>
-
-              <Grid item>
-                {CreatedBy ? <UserLink user={CreatedBy} /> : null}
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </div>
-    )
-  }
-
-  renderActiveTimers() {
-    const { Timers } = this.getObjectWithMutations() ?? {}
-
-    const activeTimers =
-      (Timers && Timers.filter((n) => n.stopedAt === null)) || []
-
-    const collaborators: JSX.Element[] = []
-
-    if (activeTimers.length) {
-      activeTimers.map((n) => {
-        const { id, CreatedBy } = n
-
-        collaborators.push(
-          <Grid key={id} item>
-            <UserLink user={CreatedBy} size={UikitUserLinkAvatarSize.small} />
-          </Grid>
-        )
-      })
-    }
-
-    return collaborators && collaborators.length ? (
-      <div>
-        <Typography>Сейчас над задачей работают:</Typography>
-
-        <Grid container spacing={8}>
-          {collaborators}
-        </Grid>
-      </div>
-    ) : null
-  }
-
-  onEditorChange = (content: any) => {
-    return this.updateObject({
-      content,
-    })
-  }
-
-  renderDefaultView() {
-    const { showDetails } = this.props
-
-    const task = this.getObjectWithMutations() ?? null
-
-    if (!task) {
-      return null
-    }
-
-    const {
-      id,
-      content,
-      Timers,
-      startDatePlaning,
-      endDatePlaning,
-      startDate,
-      endDate,
-    } = task
-
-    const inEditMode = this.inEditMode()
-
-    let details
-
-    if (showDetails) {
-      details = (
-        <Fragment>
-          {Timers && Timers.length ? (
-            <Grid item xs={12}>
-              <Typography variant="subheading">Таймеры в задаче</Typography>
-
-              <TimersListView timers={Timers} />
-            </Grid>
-          ) : null}
-        </Fragment>
+      return (
+        <UserLink
+          key={id}
+          user={CreatedBy}
+          size={UikitUserLinkAvatarSize.small}
+          showName={false}
+        />
       )
-    }
+    })
+  }, [object.Timers])
 
+  return useMemo(() => {
     return (
-      <Grid container spacing={8}>
-        {inEditMode || content ? (
-          <Grid item xs={12}>
-            <Typography variant="subheading">Описание задачи</Typography>
+      <>
+        <GridTableItemStyled {...other}>
+          <GridTableAttributeStyled className="buttons">
+            {buttons}
+          </GridTableAttributeStyled>
+
+          <GridTableAttributeStyled data-label="Статус" className="status">
+            <TaskStatus value={object.status} />
+          </GridTableAttributeStyled>
+
+          <GridTableAttributeStyled className="content" data-label="Описание">
+            <p>
+              Задача: <TaskLink object={object} />
+            </p>
 
             <Editor
-              editorKey={`task-${id}`}
-              value={content}
-              readOnly={!inEditMode}
-              onChange={this.onEditorChange}
+              // readOnly={!inEditMode}
+              // onChange={this.onEditorChange}
+              editorKey={`task-${object.id}`}
+              value={object.content}
             />
-          </Grid>
-        ) : null}
+          </GridTableAttributeStyled>
 
-        {inEditMode || startDatePlaning ? (
-          <Grid item xs={12}>
-            {this.getTextField({
-              name: 'startDatePlaning',
-              label: 'Планируемая дата начала',
-              type: 'date',
-              value:
-                (startDatePlaning &&
-                  moment(startDatePlaning).format('YYYY-MM-DD')) ||
-                'дд.мм.гггг',
-              disabled: !inEditMode,
-            })}
-          </Grid>
-        ) : null}
+          <GridTableAttributesContainerStyled>
+            <GridTableAttributeStyled>
+              {object.createdAt ? moment(object.createdAt).format('lll') : null}
+            </GridTableAttributeStyled>
+            <GridTableAttributeStyled>
+              {object.startDatePlaning
+                ? moment(object.startDatePlaning).format('lll')
+                : null}
+            </GridTableAttributeStyled>
+            <GridTableAttributeStyled>
+              {object.endDatePlaning
+                ? moment(object.endDatePlaning).format('lll')
+                : null}
+            </GridTableAttributeStyled>
 
-        {inEditMode || endDatePlaning ? (
-          <Grid item xs={12}>
-            {this.getTextField({
-              name: 'endDatePlaning',
-              label: 'Планируемая дата завершения',
-              type: 'date',
-              value:
-                (endDatePlaning &&
-                  moment(endDatePlaning).format('YYYY-MM-DD')) ||
-                'дд.мм.гггг',
-              disabled: !inEditMode,
-            })}
-          </Grid>
-        ) : null}
+            <GridTableAttributeStyled>
+              {object.startDate ? moment(object.startDate).format('lll') : null}
+            </GridTableAttributeStyled>
+            <GridTableAttributeStyled>
+              {object.endDate ? moment(object.endDate).format('lll') : null}
+            </GridTableAttributeStyled>
+          </GridTableAttributesContainerStyled>
 
-        {inEditMode || startDate ? (
-          <Grid item xs={12}>
-            {this.getTextField({
-              name: 'startDate',
-              label: 'Дата начала',
-              type: 'date',
-              value:
-                (startDate && moment(startDate).format('YYYY-MM-DD')) ||
-                'дд.мм.гггг',
-              disabled: !inEditMode,
-            })}
-          </Grid>
-        ) : null}
+          <GridTableAttributeStyled data-label="Постановщик">
+            <UikitUserLink user={object.CreatedBy} />
+          </GridTableAttributeStyled>
 
-        {inEditMode || endDate ? (
-          <Grid item xs={12}>
-            {this.getTextField({
-              name: 'endDate',
-              label: 'Дата завершения',
-              type: 'date',
-              value:
-                (endDate && moment(endDate).format('YYYY-MM-DD')) ||
-                'дд.мм.гггг',
-              disabled: !inEditMode,
-            })}
-          </Grid>
-        ) : null}
+          <GridTableAttributeStyled data-label="Кто работает">
+            {timers}
+          </GridTableAttributeStyled>
+        </GridTableItemStyled>
 
-        {details}
-      </Grid>
+        {createMutationSnakbar}
+        {updateMutationSnakbar}
+      </>
     )
-  }
-
-  renderEditableView() {
-    return this.renderDefaultView()
-  }
-
-  renderResetButton() {
-    // const { id } = this.getObjectWithMutations() || {}
-
-    return this.getObjectWithMutations()?.id ? super.renderResetButton() : null
-  }
-
-  render() {
-    const object = this.getObjectWithMutations()
-
-    if (!object) {
-      return null
-    }
-
-    const { classes } = this.props
-
-    return <div className={classes?.root}>{super.render()}</div>
-  }
+  }, [
+    buttons,
+    createMutationSnakbar,
+    object,
+    other,
+    timers,
+    updateMutationSnakbar,
+  ])
 }
 
-// const processors = compose(
-//   graphql(createTaskProcessor, {
-//     name: 'createTask',
-//   }),
-//   graphql(updateTaskProcessor, {
-//     name: 'updateTask',
-//   })
-//   // graphql(createTimerProcessor, {
-//   //   name: "createTimer",
-//   // }),
-//   // graphql(updateTimerProcessor, {
-//   //   name: "updateTimer",
-//   // }),
-// )
-
-// export { processors }
-
-// export default processors(
-//   withStyles(styles)((props) => <TaskView {...props} />)
-// )
-
-export default withStyles(styles)((props: TaskViewProps) => (
-  <TaskView {...props} />
-))
+export default TasksViewTask

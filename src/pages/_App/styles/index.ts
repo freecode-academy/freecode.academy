@@ -12,6 +12,7 @@ export const LayoutStyled = styled.div<LayoutStyledProps>`
 
     &:hover {
       color: #111;
+      text-decoration: underline;
     }
   }
 
@@ -72,6 +73,15 @@ export const LayoutStyled = styled.div<LayoutStyledProps>`
             max-width: 1200px;
             width: 100%;
             margin: 0 auto;
+
+            /* 
+              Footer padding
+            */
+            &::after {
+              display: block;
+              content: '';
+              padding-bottom: 20px;
+            }
           }
         `
     }

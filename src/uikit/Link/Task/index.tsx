@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Typography from 'material-ui/Typography'
+// import Typography from 'material-ui/Typography'
 
 import Link from '../'
 
@@ -24,7 +24,8 @@ export class TaskLink extends Component<TaskLinkProps> {
 
     return (
       <Link href={`/tasks/${id}`} title={name} {...other}>
-        {children || <Typography component="span">{name}</Typography>}
+        {/* {children || <Typography component="span">{name}</Typography>} */}
+        {children || name}
       </Link>
     )
   }

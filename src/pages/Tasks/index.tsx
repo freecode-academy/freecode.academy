@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   TasksConnectionDocument,
   TasksConnectionQueryVariables,
@@ -82,59 +82,68 @@ const TasksPage: Page = () => {
     )
   }, [response.data?.objectsConnection.edges])
 
-  const { variables, loading } = response
+  const { variables } = response
 
-  const [showAll, setShowAll] = useState(false)
+  // const [showAll, setShowAll] = useState(false)
 
-  const createTimerProcessor = useCallback(async () => {
-    console.error('createTimerProcessor mutation required')
-  }, [])
+  // const createTimerProcessor = useCallback(async () => {
+  //   console.error('createTimerProcessor mutation required')
+  // }, [])
 
-  const updateTimerProcessor = useCallback(async () => {
-    console.error('updateTimerProcessor mutation required')
-  }, [])
+  // const updateTimerProcessor = useCallback(async () => {
+  //   console.error('updateTimerProcessor mutation required')
+  // }, [])
 
-  const createTaskProcessor = useCallback(async () => {
-    console.error('createTaskProcessor mutation required')
-  }, [])
+  // const createTaskProcessor = useCallback(async () => {
+  //   console.error('createTaskProcessor mutation required')
+  // }, [])
 
-  const updateTaskProcessor = useCallback(async () => {
-    console.error('updateTaskProcessor mutation required')
-  }, [])
+  // const updateTaskProcessor = useCallback(async () => {
+  //   console.error('updateTaskProcessor mutation required')
+  // }, [])
 
-  const deleteTaskReaction = useCallback(async () => {
-    console.error('deleteTaskReaction mutation required')
-  }, [])
+  // const deleteTaskReaction = useCallback(async () => {
+  //   console.error('deleteTaskReaction mutation required')
+  // }, [])
 
   const setFilters = useCallback((filters: any) => {
     console.error('setFilters impementation required', filters)
   }, [])
 
-  return (
-    <>
-      <Head>
-        <title>Задачи</title>
-        <meta name="description" content="Все задачи" />
-      </Head>
-      <View
-        // {...queryResult}
-        loading={loading}
-        // data={response || null}
-        objects={objects}
-        count={response.data?.objectsConnection.aggregate.count}
-        variables={variables}
-        page={page}
-        showAll={showAll}
-        setShowAll={setShowAll}
-        createTimerProcessor={createTimerProcessor}
-        updateTimerProcessor={updateTimerProcessor}
-        createTaskProcessor={createTaskProcessor}
-        updateTaskProcessor={updateTaskProcessor}
-        deleteTaskReaction={deleteTaskReaction}
-        setFilters={setFilters}
-      />
-    </>
-  )
+  return useMemo(() => {
+    return (
+      <>
+        <Head>
+          <title>Задачи</title>
+          <meta name="description" content="Все задачи" />
+        </Head>
+        <View
+          // {...queryResult}
+          // loading={loading}
+          // data={response || null}
+          objects={objects}
+          total={response.data?.objectsConnection.aggregate.count ?? 0}
+          limit={variables?.first}
+          // variables={variables}
+          page={page}
+          // showAll={showAll}
+          // setShowAll={setShowAll}
+          // createTimerProcessor={createTimerProcessor}
+          // updateTimerProcessor={updateTimerProcessor}
+          // createTaskProcessor={createTaskProcessor}
+          // updateTaskProcessor={updateTaskProcessor}
+          // deleteTaskReaction={deleteTaskReaction}
+          setFilters={setFilters}
+        />
+      </>
+    )
+  }, [
+    objects,
+    page,
+    response.data?.objectsConnection.aggregate.count,
+    setFilters,
+    variables?.first,
+  ])
 }
 
 TasksPage.getInitialProps = async (context) => {
@@ -154,9 +163,9 @@ TasksPage.getInitialProps = async (context) => {
   })
 
   return {
-    layout: {
-      variant: 'fullwidth',
-    },
+    // layout: {
+    //   variant: 'fullwidth',
+    // },
   }
 }
 

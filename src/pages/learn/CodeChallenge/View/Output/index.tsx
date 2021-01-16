@@ -10,7 +10,9 @@ const CodeChallengeOutputView: React.FC<CodeChallengeOutputViewProps> = ({
   }, [output])
 
   return (
-    <CodeChallengeOutputViewStyled>{content}</CodeChallengeOutputViewStyled>
+    <CodeChallengeOutputViewStyled role="test-result--output">
+      {content}
+    </CodeChallengeOutputViewStyled>
   )
 
   // return (

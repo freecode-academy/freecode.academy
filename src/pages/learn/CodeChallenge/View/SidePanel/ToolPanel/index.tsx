@@ -78,7 +78,7 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
 
     return (
       <ToolPanelStyled className={'tool-panel-group button-group'}>
-        <Button onClick={executeChallenge}>
+        <Button role="run-tests" onClick={executeChallenge}>
           {user && !codeChallengeCompletion
             ? 'Приступить к выполнению'
             : 'Запустить тесты'}{' '}

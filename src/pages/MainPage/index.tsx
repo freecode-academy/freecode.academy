@@ -23,8 +23,8 @@ const MainPage: Page = () => {
     () => (
       <>
         <NextSeo
-          title="PrismaCMS"
-          description="Бесплатный JavaScript-фреймворк на базе NextJS + GraphQL"
+          title="FreeCode.Academy"
+          description="Бесплатные онлайн курсы по JavaScript, React, NextJS и не только"
         />
 
         <MainPageView data={response.data} />

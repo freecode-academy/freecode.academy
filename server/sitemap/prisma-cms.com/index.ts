@@ -61,7 +61,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
     }
   }
 
-  renderRootSitemap(_req: Request, res: Response, uri: URI) {
+  async renderRootSitemap(_req: Request, res: Response, uri: URI) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const cleanUri = uri.clone().query(null)
@@ -75,7 +75,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
 
     xml
       .startElement('sitemapindex')
-      .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
+      .writeAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
     /**
      * Формируем ссылки на разделы
      */
@@ -83,37 +83,40 @@ export default class PrismaCmsComSitemap extends Sitemap {
       section: 'main',
     })
 
-    const usersUri = cleanUri.clone().query({
-      section: 'users',
-    })
+    // const usersUri = cleanUri.clone().query({
+    //   section: 'users',
+    // })
 
-    const resourcesUri = cleanUri.clone().query({
-      section: 'resources',
-    })
+    // const resourcesUri = cleanUri.clone().query({
+    //   section: 'resources',
+    // })
 
-    const tagsUri = cleanUri.clone().query({
-      section: 'tags',
-    })
+    // const tagsUri = cleanUri.clone().query({
+    //   section: 'tags',
+    // })
 
     xml
       .startElement('sitemap')
       .writeElement('loc', mainUri.toString())
       .endElement()
 
-    xml
-      .startElement('sitemap')
-      .writeElement('loc', usersUri.toString())
-      .endElement()
+    // xml
+    //   .startElement('sitemap')
+    //   .writeElement('loc', usersUri.toString())
+    //   .endElement()
+    await this.addUsersSitemaps(xml, uri)
 
-    xml
-      .startElement('sitemap')
-      .writeElement('loc', resourcesUri.toString())
-      .endElement()
+    // xml
+    //   .startElement('sitemap')
+    //   .writeElement('loc', resourcesUri.toString())
+    //   .endElement()
+    await this.addResourcesSitemaps(xml, uri)
 
-    xml
-      .startElement('sitemap')
-      .writeElement('loc', tagsUri.toString())
-      .endElement()
+    // xml
+    //   .startElement('sitemap')
+    //   .writeElement('loc', tagsUri.toString())
+    //   .endElement()
+    await this.addTagsSitemaps(xml, uri)
 
     xml.endDocument()
 
@@ -168,8 +171,56 @@ export default class PrismaCmsComSitemap extends Sitemap {
   /**
    * Пользователи
    */
+
+  async addUsersSitemaps(xml: any, uri: URI) {
+    const limit = 1000
+
+    const usersResult = await apolloClient.query<
+      SitemapUsersConnectionQuery,
+      SitemapUsersConnectionQueryVariables
+    >({
+      query: SitemapUsersConnectionDocument,
+      variables: {
+        first: limit,
+        where: {
+          active: true,
+          deleted: false,
+        },
+        orderBy: UserOrderByInput.UPDATEDAT_DESC,
+      },
+    })
+
+    const {
+      aggregate: { count: total },
+    } = usersResult.data.usersConnection
+
+    const pages = Math.ceil(total / limit)
+
+    let i = 0
+
+    while (pages > i) {
+      i++
+
+      const query: URI.QueryDataMap = {
+        section: 'users',
+        page: String(i),
+      }
+
+      const pageUri = uri.clone().query(query)
+
+      xml
+        .startElement('sitemap')
+        .writeElement('loc', pageUri.toString())
+        .endElement()
+    }
+  }
+
   async renderUsersSitemap(_req: Request, res: Response, uri: URI) {
     const page = this.getQueryPage(uri)
+
+    if (!page) {
+      throw new Error('page is empty')
+    }
 
     const limit = 1000
 
@@ -190,7 +241,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
     })
 
     const {
-      aggregate: { count: total },
+      // aggregate: { count: total },
       edges: usersEdges,
     } = usersResult.data.usersConnection
 
@@ -201,7 +252,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
      */
     // let total = totalUsers;
 
-    const pages = Math.ceil(total / limit)
+    // const pages = Math.ceil(total / limit)
 
     const xml = new XMLWriter()
 
@@ -224,29 +275,30 @@ export default class PrismaCmsComSitemap extends Sitemap {
           priority: 0.8,
         })
       })
-    } else {
-      xml
-        .startElement('sitemapindex')
-        .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
-
-      let i = 0
-
-      while (pages > i) {
-        i++
-
-        const query: URI.QueryDataMap = {
-          section: 'users',
-          page: String(i),
-        }
-
-        const pageUri = uri.clone().query(query)
-
-        xml
-          .startElement('sitemap')
-          .writeElement('loc', pageUri.toString())
-          .endElement()
-      }
     }
+    // else {
+    //   xml
+    //     .startElement('sitemapindex')
+    //     .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
+
+    //   let i = 0
+
+    //   while (pages > i) {
+    //     i++
+
+    //     const query: URI.QueryDataMap = {
+    //       section: 'users',
+    //       page: String(i),
+    //     }
+
+    //     const pageUri = uri.clone().query(query)
+
+    //     xml
+    //       .startElement('sitemap')
+    //       .writeElement('loc', pageUri.toString())
+    //       .endElement()
+    //   }
+    // }
 
     xml.endDocument()
 
@@ -264,8 +316,57 @@ export default class PrismaCmsComSitemap extends Sitemap {
   /**
    * Ресурсы
    */
+
+  async addResourcesSitemaps(xml: any, uri: URI) {
+    const limit = 1000
+
+    const resourcesResult = await apolloClient.query<
+      SitemapResourcesConnectionQuery,
+      SitemapResourcesConnectionQueryVariables
+    >({
+      query: SitemapResourcesConnectionDocument,
+      variables: {
+        first: limit,
+        where: {
+          published: true,
+          searchable: true,
+          deleted: false,
+        },
+        orderBy: ResourceOrderByInput.UPDATEDAT_DESC,
+      },
+    })
+
+    const {
+      aggregate: { count: total },
+    } = resourcesResult.data.resourcesConnection
+
+    const pages = Math.ceil(total / limit)
+
+    let i = 0
+
+    while (pages > i) {
+      i++
+
+      const query: URI.QueryDataMap = {
+        section: 'resources',
+        page: String(i),
+      }
+
+      const pageUri = uri.clone().query(query)
+
+      xml
+        .startElement('sitemap')
+        .writeElement('loc', pageUri.toString())
+        .endElement()
+    }
+  }
+
   async renderResourcesSitemap(_req: Request, res: Response, uri: URI) {
     const page = this.getQueryPage(uri)
+
+    if (!page) {
+      throw new Error('page is empty')
+    }
 
     uri = uri.query({
       section: 'resources',
@@ -291,13 +392,13 @@ export default class PrismaCmsComSitemap extends Sitemap {
     })
 
     const {
-      aggregate: { count: total },
+      // aggregate: { count: total },
       edges: edges,
     } = objectsResult.data.resourcesConnection
 
     const objects = edges.map((n) => n?.node)
 
-    const pages = Math.ceil(total / limit)
+    // const pages = Math.ceil(total / limit)
 
     const xml = new XMLWriter()
 
@@ -320,26 +421,27 @@ export default class PrismaCmsComSitemap extends Sitemap {
           priority: 0.9,
         })
       })
-    } else {
-      xml
-        .startElement('sitemapindex')
-        .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
-
-      let i = 0
-
-      while (pages > i) {
-        i++
-
-        const pageUri = uri.clone().addQuery({
-          page: i,
-        })
-
-        xml
-          .startElement('sitemap')
-          .writeElement('loc', pageUri.toString())
-          .endElement()
-      }
     }
+    // else {
+    //   xml
+    //     .startElement('sitemapindex')
+    //     .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
+
+    //   let i = 0
+
+    //   while (pages > i) {
+    //     i++
+
+    //     const pageUri = uri.clone().addQuery({
+    //       page: i,
+    //     })
+
+    //     xml
+    //       .startElement('sitemap')
+    //       .writeElement('loc', pageUri.toString())
+    //       .endElement()
+    //   }
+    // }
 
     xml.endDocument()
 
@@ -357,8 +459,55 @@ export default class PrismaCmsComSitemap extends Sitemap {
   /**
    * Теги
    */
+
+  async addTagsSitemaps(xml: any, uri: URI) {
+    const limit = 1000
+
+    const tagsResult = await apolloClient.query<
+      SitemapTagsConnectionQuery,
+      SitemapTagsConnectionQueryVariables
+    >({
+      query: SitemapTagsConnectionDocument,
+      variables: {
+        first: limit,
+        where: {
+          status_not: TagStatus.BLOCKED,
+        },
+        orderBy: TagOrderByInput.UPDATEDAT_DESC,
+      },
+    })
+
+    const {
+      aggregate: { count: total },
+    } = tagsResult.data.tagsConnection
+
+    const pages = Math.ceil(total / limit)
+
+    let i = 0
+
+    while (pages > i) {
+      i++
+
+      const query: URI.QueryDataMap = {
+        section: 'tags',
+        page: String(i),
+      }
+
+      const pageUri = uri.clone().query(query)
+
+      xml
+        .startElement('sitemap')
+        .writeElement('loc', pageUri.toString())
+        .endElement()
+    }
+  }
+
   async renderTagsSitemap(_req: Request, res: Response, uri: URI) {
     const page = this.getQueryPage(uri)
+
+    if (!page) {
+      throw new Error('page is empty')
+    }
 
     uri = uri.query({
       section: 'tags',
@@ -396,13 +545,13 @@ export default class PrismaCmsComSitemap extends Sitemap {
     })
 
     const {
-      aggregate: { count: total },
+      // aggregate: { count: total },
       edges: edges,
     } = objectsResult.data.tagsConnection
 
     const objects = edges.map((n) => n?.node)
 
-    const pages = Math.ceil(total / limit)
+    // const pages = Math.ceil(total / limit)
 
     const xml = new XMLWriter()
 
@@ -427,26 +576,27 @@ export default class PrismaCmsComSitemap extends Sitemap {
           priority: 0.9,
         })
       })
-    } else {
-      xml
-        .startElement('sitemapindex')
-        .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
-
-      let i = 0
-
-      while (pages > i) {
-        i++
-
-        const pageUri = uri.clone().addQuery({
-          page: i,
-        })
-
-        xml
-          .startElement('sitemap')
-          .writeElement('loc', pageUri.toString())
-          .endElement()
-      }
     }
+    // else {
+    //   xml
+    //     .startElement('sitemapindex')
+    //     .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
+
+    //   let i = 0
+
+    //   while (pages > i) {
+    //     i++
+
+    //     const pageUri = uri.clone().addQuery({
+    //       page: i,
+    //     })
+
+    //     xml
+    //       .startElement('sitemap')
+    //       .writeElement('loc', pageUri.toString())
+    //       .endElement()
+    //   }
+    // }
 
     xml.endDocument()
 

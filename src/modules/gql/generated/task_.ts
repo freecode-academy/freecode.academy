@@ -54,7 +54,7 @@ export const Task_FragmentDoc = gql`
   CreatedBy {
     ...UserNoNesting
   }
-  Timers(orderBy: createdAt_DESC) {
+  Timers(orderBy: createdAt_DESC, where: $timersWhere) {
     ...TimerNoNesting
     CreatedBy {
       ...UserNoNesting

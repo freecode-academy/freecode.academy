@@ -20,6 +20,7 @@ export type TasksConnectionQueryVariables = Types.Exact<{
   before?: Types.Maybe<Types.Scalars['String']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
   last?: Types.Maybe<Types.Scalars['Int']>;
+  timersWhere?: Types.Maybe<Types.TimerWhereInput>;
 }>;
 
 
@@ -30,7 +31,7 @@ export type TasksConnectionQuery = { __typename?: 'Query', objectsConnection: { 
 
 
 export const TasksConnectionDocument = gql`
-    query tasksConnection($where: TaskWhereInput, $orderBy: TaskOrderByInput = createdAt_DESC, $skip: Int, $after: String, $before: String, $first: Int = 10, $last: Int) {
+    query tasksConnection($where: TaskWhereInput, $orderBy: TaskOrderByInput = createdAt_DESC, $skip: Int, $after: String, $before: String, $first: Int = 10, $last: Int, $timersWhere: TimerWhereInput) {
   objectsConnection: tasksConnection(
     where: $where
     orderBy: $orderBy
@@ -71,6 +72,7 @@ export const TasksConnectionDocument = gql`
  *      before: // value for 'before'
  *      first: // value for 'first'
  *      last: // value for 'last'
+ *      timersWhere: // value for 'timersWhere'
  *   },
  * });
  */

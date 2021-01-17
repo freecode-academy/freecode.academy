@@ -10,11 +10,11 @@ import * as Types from './types';
 
 import { ProjectNoNestingFragment } from './ProjectNoNesting';
 import { UserNoNestingFragment } from './UserNoNesting';
-import { TaskNoNestingFragment } from './TaskNoNesting';
+import { Task_Fragment } from './task_';
 import { gql } from '@apollo/client';
 import { ProjectNoNestingFragmentDoc } from './ProjectNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
+import { Task_FragmentDoc } from './task_';
 export type Project_Fragment = (
   { __typename?: 'Project', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
@@ -23,19 +23,9 @@ export type Project_Fragment = (
       { __typename?: 'User' }
       & UserNoNestingFragment
     ) }>>, ProjectTasks?: Types.Maybe<Array<{ __typename?: 'ProjectTask', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, Task: (
-      { __typename?: 'Task', CreatedBy?: Types.Maybe<(
-        { __typename?: 'User' }
-        & UserNoNestingFragment
-        & UserNoNestingFragment
-      )>, Timers?: Types.Maybe<Array<{ __typename?: 'Timer', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, stopedAt?: Types.Maybe<globalThis.Date>, CreatedBy?: Types.Maybe<(
-          { __typename?: 'User' }
-          & UserNoNestingFragment
-        )> }>>, Parent?: Types.Maybe<(
-        { __typename?: 'Task' }
-        & TaskNoNestingFragment
-      )> }
-      & TaskNoNestingFragment
-    ) }>>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, uri: string, Image?: Types.Maybe<{ __typename?: 'File', id: string, path: string }> }> }
+      { __typename?: 'Task' }
+      & Task_Fragment
+    ) }>>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, uri: string, name: string, type?: Types.Maybe<Types.ResourceType>, Image?: Types.Maybe<{ __typename?: 'File', id: string, path: string }> }> }
   & ProjectNoNestingFragment
 );
 
@@ -51,36 +41,19 @@ export const Project_FragmentDoc = gql`
       ...UserNoNesting
     }
   }
-  ProjectTasks {
+  ProjectTasks(orderBy: createdAt_DESC) {
     id
     createdAt
     updatedAt
     Task {
-      ...TaskNoNesting
-      CreatedBy {
-        ...UserNoNesting
-        ...UserNoNesting
-      }
-      Timers(where: {stopedAt: null}) {
-        id
-        createdAt
-        updatedAt
-        stopedAt
-        CreatedBy {
-          ...UserNoNesting
-        }
-      }
-      CreatedBy {
-        ...UserNoNesting
-      }
-      Parent {
-        ...TaskNoNesting
-      }
+      ...task_
     }
   }
   Resource {
     id
     uri
+    name
+    type
     Image {
       id
       path
@@ -89,4 +62,4 @@ export const Project_FragmentDoc = gql`
 }
     ${ProjectNoNestingFragmentDoc}
 ${UserNoNestingFragmentDoc}
-${TaskNoNestingFragmentDoc}`;
+${Task_FragmentDoc}`;

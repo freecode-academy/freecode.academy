@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { PrismaCmsComponentError } from '@prisma-cms/component'
 import Snackbar from '@prisma-cms/component/dist/components/Snackbar'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
@@ -118,7 +117,7 @@ function useProcessorMutation<
         _id: new Date().getTime(),
       })
 
-      const newErrors = (errors || []).slice(0)
+      const newErrors = (store.errors || []).slice(0)
 
       newErrors.push(error)
 
@@ -133,19 +132,44 @@ function useProcessorMutation<
 
       return error
     },
-    [closeError, errorDelay, errors]
+    [closeError, errorDelay, store.errors]
   )
+
+  // const addError = useCallback(
+  //   (error: PrismaCmsComponentError) => {
+  //     // if (typeof error === 'string') {
+  //     //   _error = new Error(error)
+  //     // } else {
+  //     //   _error = error
+  //     // }
+
+  //     Object.assign(error, {
+  //       _id: new Date().getTime(),
+  //     })
+
+  //     const newErrors = (errors || []).slice(0)
+
+  //     newErrors.push(error)
+
+  //     if (errorDelay) {
+  //       setTimeout(() => closeError(error), errorDelay)
+  //     }
+
+  //     // console.log('addError error', error);
+  //     // console.log('addError newErrors', newErrors);
+
+  //     setErrors(newErrors)
+
+  //     return error
+  //   },
+  //   [closeError, errorDelay, errors]
+  // )
 
   const mutation = useCallback(
     async (options?: MutationOptions) => {
       if (loading) {
         return
       }
-
-      // setInRequest(true);
-
-      console.log('mutation options', options)
-      // console.log('mutation client', client);
 
       const result = await processor(options)
         // .then((r: FetchResult<{
@@ -161,8 +185,6 @@ function useProcessorMutation<
 
           return error
         })
-
-      console.log('useProcessorMutation result', result)
 
       let error: PrismaCmsComponentError | null = null
 
@@ -184,8 +206,12 @@ function useProcessorMutation<
           // ...other
         } = response || {}
 
-        responseErrors.map((n) => {
-          errors.push(new Error(n.message || 'Unhandled error'))
+        responseErrors.map(({ message, ...other }) => {
+          const error: PrismaCmsComponentError = new Error(
+            message || 'Unhandled error'
+          )
+          Object.assign(error, other)
+          errors.push(error)
         })
 
         if (typeof success === 'boolean') {
@@ -232,7 +258,7 @@ function useProcessorMutation<
     return errors.map((error, index) => {
       const { _id, message, open = true } = error
 
-      if (!message) {
+      if (!message || !_id) {
         return null
       }
 
@@ -253,6 +279,7 @@ function useProcessorMutation<
     errors,
     error,
     snakbar,
+    removeError,
     // inRequest,
   }
 }

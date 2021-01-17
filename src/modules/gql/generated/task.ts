@@ -9,27 +9,37 @@
 import * as Types from './types';
 
 import { Task_Fragment } from './task_';
+import { TimersConnectionTimerFragment } from './timersConnectionTimer';
 import { gql } from '@apollo/client';
 import { Task_FragmentDoc } from './task_';
+import { TimersConnectionTimerFragmentDoc } from './timersConnectionTimer';
 import * as Apollo from '@apollo/client';
 export type TaskQueryVariables = Types.Exact<{
   where: Types.TaskWhereUniqueInput;
+  timersWhere?: Types.Maybe<Types.TimerWhereInput>;
 }>;
 
 
 export type TaskQuery = { __typename?: 'Query', object?: Types.Maybe<(
-    { __typename?: 'Task' }
+    { __typename?: 'Task', Timers?: Types.Maybe<Array<(
+      { __typename?: 'Timer' }
+      & TimersConnectionTimerFragment
+    )>> }
     & Task_Fragment
   )> };
 
 
 export const TaskDocument = gql`
-    query task($where: TaskWhereUniqueInput!) {
+    query task($where: TaskWhereUniqueInput!, $timersWhere: TimerWhereInput) {
   object: task(where: $where) {
     ...task_
+    Timers(orderBy: createdAt_DESC, where: $timersWhere) {
+      ...timersConnectionTimer
+    }
   }
 }
-    ${Task_FragmentDoc}`;
+    ${Task_FragmentDoc}
+${TimersConnectionTimerFragmentDoc}`;
 
 /**
  * __useTaskQuery__
@@ -44,6 +54,7 @@ export const TaskDocument = gql`
  * const { data, loading, error } = useTaskQuery({
  *   variables: {
  *      where: // value for 'where'
+ *      timersWhere: // value for 'timersWhere'
  *   },
  * });
  */

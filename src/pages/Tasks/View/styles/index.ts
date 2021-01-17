@@ -6,7 +6,9 @@ import {
 } from 'src/components/GridTable/styles'
 import styled from 'styled-components'
 
-export const TasksViewStyled = styled(GridTableStyled)`
+export const TasksViewStyled = styled.section``
+
+export const TasksGridTableStyled = styled(GridTableStyled)`
   @media screen and (min-width: ${({ theme }) => `${theme.breakpoints.sm}px`}) {
     > ${GridTableItemStyled} {
       display: grid;

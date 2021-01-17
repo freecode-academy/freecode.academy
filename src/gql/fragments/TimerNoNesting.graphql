@@ -1,6 +1,0 @@
-fragment TimerNoNesting on Timer {
-  id
-  createdAt
-  updatedAt
-  stopedAt
-}

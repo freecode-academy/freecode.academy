@@ -17,7 +17,7 @@ export interface TasksViewProps extends PaginationProps {
 
   filters?: any
 
-  setFilters(filters: any): void
+  setFilters?: (filters: any) => void
 
   // data: TasksConnectionQuery | null
   objects: TasksConnectionTaskFragment[]

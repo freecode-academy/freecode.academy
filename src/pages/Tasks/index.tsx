@@ -18,6 +18,7 @@ const first = 12
 const defaultVariables: TasksConnectionQueryVariables = {
   where: {},
   first,
+  timersWhere: { stopedAt: null },
 }
 
 function getQueryParams(query: ParsedUrlQuery) {

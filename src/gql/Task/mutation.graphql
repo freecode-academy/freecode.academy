@@ -1,0 +1,30 @@
+mutation createTaskProcessor($data: TaskCreateInput!) {
+  response: createTaskProcessor(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...TaskNoNesting
+    }
+  }
+}
+
+mutation updateTaskProcessor(
+  $data: TaskUpdateInput!
+  $where: TaskWhereUniqueInput!
+) {
+  response: updateTaskProcessor(data: $data, where: $where) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...TaskNoNesting
+    }
+  }
+}

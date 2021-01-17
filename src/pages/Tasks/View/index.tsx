@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { TasksViewProps } from './interfaces'
-import { TasksViewStyled } from './styles'
+import { TasksGridTableStyled, TasksViewStyled } from './styles'
 import {
   GridTableAttributeStyled,
   GridTableItemStyled,
@@ -50,11 +50,13 @@ const TasksView: React.FC<TasksViewProps> = ({
     return (
       <>
         <TasksViewStyled {...other}>
-          {header}
-          {items}
-        </TasksViewStyled>
+          <TasksGridTableStyled>
+            {header}
+            {items}
+          </TasksGridTableStyled>
 
-        <Pagination limit={limit} page={page} total={total} />
+          <Pagination limit={limit} page={page} total={total} />
+        </TasksViewStyled>
       </>
     )
   }, [header, items, limit, other, page, total])

@@ -1,12 +1,7 @@
-/* eslint-disable no-console */
-import React, { useCallback, useContext, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import Editor from '@prisma-cms/editor'
 import moment from 'moment'
 import UserLink, { UikitUserLinkAvatarSize } from 'src/uikit/Link/User'
-
-import IconButton from 'material-ui/IconButton'
-import StartIcon from 'material-ui-icons/PlayArrow'
-import StopIcon from 'material-ui-icons/Stop'
 
 import {
   GridTableAttributeStyled,
@@ -16,126 +11,17 @@ import {
 import TaskStatus from '../../TaskStatus'
 import { TasksViewTaskProps } from './interfaces'
 import UikitUserLink from 'src/uikit/Link/User'
-import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
-import {
-  useCreateTimerProcessorMutation,
-  useUpdateTimerProcessorMutation,
-} from 'src/modules/gql/generated'
-import useProcessorMutation from 'src/hooks/useProcessorMutation'
+// import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import TaskLink from 'src/uikit/Link/Task'
+import ProjectLink from 'src/uikit/Link/Project'
+import TaskButtons from './TaskButtons'
 
 const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
-  const context = useContext(PrismaContext) as PrismaCmsContext
-
-  /**
-   * Обновление таймера
-   */
-  const [updateTimerProcessor] = useUpdateTimerProcessorMutation()
-
-  /**
-   * Запуск таймера
-   */
-
-  const [createTimerProcessor, { loading }] = useCreateTimerProcessorMutation()
-
-  const {
-    mutation: createMutation,
-    snakbar: createMutationSnakbar,
-    // } = useProcessorMutation<CreateTimerProcessorMutationOptions>({
-  } = useProcessorMutation({
-    processor: createTimerProcessor,
-    loading,
-  })
-
-  const onClickCreateTimer = useCallback(() => {
-    createMutation({
-      variables: {
-        data: {
-          Task: {
-            connect: {
-              id: object.id,
-            },
-          },
-        },
-      },
-    })
-  }, [createMutation, object.id])
-
-  const {
-    mutation: updateMutation,
-    snakbar: updateMutationSnakbar,
-  } = useProcessorMutation({
-    processor: updateTimerProcessor,
-    loading,
-  })
-
-  const onClickUpdateTimer = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      const timerId = event.currentTarget.value
-
-      updateMutation({
-        variables: {
-          data: {
-            stopedAt: new Date(),
-          },
-          where: {
-            id: timerId,
-          },
-        },
-      })
-    },
-    [updateMutation]
-  )
+  // const context = useContext(PrismaContext) as PrismaCmsContext
 
   const buttons = useMemo(() => {
-    const buttons: JSX.Element[] = []
-
-    if (object) {
-      const { id: taskId, Timers } = object
-
-      const { user: currentUser } = context
-
-      const activeTimers = Timers
-        ? Timers.filter((n) => n.stopedAt === null)
-        : []
-
-      if (currentUser) {
-        const { id: currentUserId } = currentUser
-
-        const activeTimer = activeTimers.find(
-          (n) => n.CreatedBy?.id === currentUserId
-        )
-
-        if (activeTimer) {
-          const { id: timerId } = activeTimer
-
-          buttons.push(
-            <IconButton
-              key="stop"
-              value={timerId}
-              onClick={onClickUpdateTimer}
-              disabled={loading}
-            >
-              <StopIcon />
-            </IconButton>
-          )
-        } else {
-          buttons.push(
-            <IconButton
-              key="start"
-              value={taskId}
-              onClick={onClickCreateTimer}
-              disabled={loading}
-            >
-              <StartIcon />
-            </IconButton>
-          )
-        }
-      }
-    }
-
-    return buttons
-  }, [context, loading, object, onClickCreateTimer, onClickUpdateTimer])
+    return <TaskButtons object={object} />
+  }, [object])
 
   const timers = useMemo(() => {
     const activeTimers = object.Timers?.filter((n) => n.stopedAt === null)
@@ -154,6 +40,24 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
     })
   }, [object.Timers])
 
+  const projects = useMemo(() => {
+    if (object.TaskProjects?.length) {
+      return (
+        <p>
+          Проект{object.TaskProjects?.length > 1 ? 'ы' : ''}:{' '}
+          {object.TaskProjects.map((n) => {
+            return <ProjectLink key={n.id} object={n.Project} />
+          }).reduce<React.ReactNode>(
+            (curr, next) => (curr ? [curr, ', ', next] : next),
+            null
+          )}
+        </p>
+      )
+    }
+
+    return null
+  }, [object.TaskProjects])
+
   return useMemo(() => {
     return (
       <>
@@ -170,6 +74,8 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
             <p>
               Задача: <TaskLink object={object} />
             </p>
+
+            {projects}
 
             <Editor
               // readOnly={!inEditMode}
@@ -210,19 +116,9 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
             {timers}
           </GridTableAttributeStyled>
         </GridTableItemStyled>
-
-        {createMutationSnakbar}
-        {updateMutationSnakbar}
       </>
     )
-  }, [
-    buttons,
-    createMutationSnakbar,
-    object,
-    other,
-    timers,
-    updateMutationSnakbar,
-  ])
+  }, [buttons, object, other, projects, timers])
 }
 
 export default TasksViewTask

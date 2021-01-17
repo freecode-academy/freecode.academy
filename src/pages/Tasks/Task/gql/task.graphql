@@ -1,50 +1,8 @@
-query task($where: TaskWhereUniqueInput!) {
+query task($where: TaskWhereUniqueInput!, $timersWhere: TimerWhereInput) {
   object: task(where: $where) {
     ...task_
-  }
-}
-
-fragment task_ on Task {
-  ...TaskNoNesting
-  CreatedBy {
-    ...UserNoNesting
-  }
-  Timers(orderBy: createdAt_DESC) {
-    ...TimerNoNesting
-    CreatedBy {
-      ...UserNoNesting
+    Timers(orderBy: createdAt_DESC, where: $timersWhere) {
+      ...timersConnectionTimer
     }
   }
-  TaskProjects {
-    id
-    createdAt
-    updatedAt
-    Project {
-      ...ProjectNoNesting
-      CreatedBy {
-        ...UserNoNesting
-      }
-      Resource {
-        id
-        name
-        uri
-      }
-    }
-  }
-  RelatedTo {
-    ...TaskNoNesting
-  }
-  Reactions {
-    ...TaskReactionNoNesting
-    CreatedBy {
-      ...UserNoNesting
-    }
-  }
-}
-
-fragment TaskReactionNoNesting on TaskReaction {
-  id
-  createdAt
-  updatedAt
-  type
 }

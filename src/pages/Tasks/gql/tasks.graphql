@@ -6,6 +6,7 @@ query tasksConnection(
   $before: String
   $first: Int = 10
   $last: Int
+  $timersWhere: TimerWhereInput
 ) {
   objectsConnection: tasksConnection(
     where: $where
@@ -25,104 +26,4 @@ query tasksConnection(
       }
     }
   }
-}
-
-fragment tasksConnectionTask on Task {
-  ...tasksConnectionTaskNoNesting
-  CreatedBy {
-    ...tasksConnectionUser
-  }
-  Timers(orderBy: createdAt_DESC) {
-    id
-    createdAt
-    updatedAt
-    stopedAt
-    CreatedBy {
-      ...tasksConnectionUser
-    }
-    Task {
-      id
-      createdAt
-      updatedAt
-      name
-      status
-    }
-  }
-  TaskProjects {
-    id
-    createdAt
-    updatedAt
-    Project {
-      id
-      name
-      domain
-      createdAt
-      updatedAt
-      description
-      url
-      sequence
-      content
-      contentText
-      status
-      public
-      oldID
-      CreatedBy {
-        ...tasksConnectionUser
-      }
-      Resource {
-        id
-        name
-        uri
-      }
-    }
-  }
-  RelatedTo {
-    ...tasksConnectionTaskNoNesting
-  }
-  Reactions {
-    id
-    createdAt
-    updatedAt
-    type
-    CreatedBy {
-      ...tasksConnectionUser
-    }
-  }
-}
-
-fragment tasksConnectionTaskNoNesting on Task {
-  id
-  createdAt
-  updatedAt
-  name
-  description
-  content
-  status
-  startDatePlaning
-  endDatePlaning
-  startDate
-  endDate
-}
-
-fragment tasksConnectionUser on User {
-  id
-  createdAt
-  updatedAt
-  username
-  email
-  phone
-  showEmail
-  showPhone
-  password
-  fullname
-  image
-  address
-  sudo
-  active
-  activated
-  deleted
-  hasEmail
-  hasPhone
-  marketplaceToken
-  hidden
 }

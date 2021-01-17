@@ -34,19 +34,25 @@ const TaskPage: Page = () => {
     onError: console.error,
   })
 
-  return (
-    <>
-      <Head>
-        <title>{response.data?.object?.name}</title>
-        <meta
-          name="description"
-          content={`Задача ${response.data?.object?.name}`}
-        />
-      </Head>
+  return useMemo(() => {
+    if (!response.data?.object) {
+      return null
+    }
 
-      <View object={response.data?.object} />
-    </>
-  )
+    return (
+      <>
+        <Head>
+          <title>{response.data?.object?.name}</title>
+          <meta
+            name="description"
+            content={`Задача ${response.data?.object?.name}`}
+          />
+        </Head>
+
+        <View object={response.data?.object} loading={response.loading} />
+      </>
+    )
+  }, [response.data?.object, response.loading])
 }
 
 TaskPage.getInitialProps = async (context) => {

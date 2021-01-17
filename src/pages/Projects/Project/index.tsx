@@ -1,10 +1,9 @@
-import Head from 'next/head'
 import React, { useMemo } from 'react'
 import {
-  useProjectQuery,
-  ProjectDocument,
-  ProjectQuery,
-  ResourceQueryVariables,
+  useProjectPageProjectsQuery,
+  ProjectPageProjectsDocument,
+  ProjectPageProjectsQuery,
+  ProjectPageProjectsQueryVariables,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -13,15 +12,36 @@ import { Page, NextPageContextCustom } from '../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
 
 const getProjectVariables = (router: NextRouter | NextPageContextCustom) => {
-  const uri = new URL(
-    router.asPath || '',
-    global.location?.origin || 'http://localhost'
-  )
+  const variables: ProjectPageProjectsQueryVariables = {}
 
-  const variables: ResourceQueryVariables = {
-    where: {
-      uri: uri.pathname,
-    },
+  const id = router.query.id
+
+  if (id && typeof id === 'string') {
+    variables.where = {
+      id,
+    }
+  } else {
+    const uri = new URL(
+      router.asPath || '',
+      global.location?.origin || 'http://localhost'
+    )
+
+    const pathname = uri.pathname
+
+    if (pathname && pathname !== '/') {
+      variables.where = {
+        Resource: {
+          OR: [
+            {
+              uri: pathname,
+            },
+            {
+              uri: pathname + '/',
+            },
+          ],
+        },
+      }
+    }
   }
 
   return variables
@@ -34,21 +54,21 @@ const ProjectPage: Page = () => {
     return getProjectVariables(router)
   }, [router])
 
-  const response = useProjectQuery({
+  const response = useProjectPageProjectsQuery({
+    skip: !variables?.where,
     variables,
     onError: console.error,
   })
+
+  const Project = response.data?.projects ? response.data?.projects[0] : null
+
+  if (!Project) {
+    return null
+  }
+
   return (
     <>
-      <Head>
-        <title>{response.data?.object?.name}</title>
-        <meta
-          name="description"
-          content={`Проект "${response.data?.object?.name}"`}
-        />
-      </Head>
-
-      <View object={response.data?.object?.Project} />
+      <View object={Project} />
     </>
   )
 }
@@ -56,18 +76,26 @@ const ProjectPage: Page = () => {
 ProjectPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
-  // TODO Fix private rooms access
-  const result = await apolloClient.query<ProjectQuery>({
-    query: ProjectDocument,
+  const variables = getProjectVariables(context)
 
-    /**
-     * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
-     * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
-     */
-    variables: getProjectVariables(context),
-  })
+  // TODO Fix private rooms access
+  const response = variables.where
+    ? await apolloClient.query<ProjectPageProjectsQuery>({
+        query: ProjectPageProjectsDocument,
+
+        /**
+         * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
+         * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
+         */
+        variables,
+      })
+    : null
+
+  const Project = response?.data?.projects ? response?.data?.projects[0] : null
+
   return {
-    statusCode: !result.data.object ? 404 : undefined,
+    // TODO Adde canonical redirect
+    statusCode: !Project ? 404 : undefined,
   }
 }
 

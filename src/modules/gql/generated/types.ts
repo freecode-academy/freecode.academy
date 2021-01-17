@@ -32146,6 +32146,10 @@ export interface PositionUpsertWithWhereUniqueWithoutUsersInput {
   where: PositionWhereUniqueInput;
 }
 
+export enum PrismaDatabase {
+  DEFAULT = 'default'
+}
+
 export interface ProjectCreateManyWithoutCreatedByInput {
   connect?: Maybe<Array<ProjectWhereUniqueInput>>;
 }

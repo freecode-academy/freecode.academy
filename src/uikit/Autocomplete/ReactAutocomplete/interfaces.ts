@@ -26,7 +26,8 @@ export type ReactAutocompleteProps = {
    *
    * Invoked when the user selects an item from the dropdown menu.
    */
-  onSelect: (value: string, item: AutocompleteItem | null) => void
+  // onSelect: <V extends any = any>(value: V, item: AutocompleteItem | null) => void
+  onSelect: (value: any, item: AutocompleteItem | null) => void
   /**
    * Arguments: `item: Any, value: String`
    *

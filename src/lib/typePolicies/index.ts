@@ -18,6 +18,10 @@ export const typePolicies: TypedTypePolicies = {
     fields: {
       createdAt: DateTime,
       updatedAt: DateTime,
+      startDate: DateTime,
+      startDatePlaning: DateTime,
+      endDate: DateTime,
+      endDatePlaning: DateTime,
     },
   },
   Timer: {

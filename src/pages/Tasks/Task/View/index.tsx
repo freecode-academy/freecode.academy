@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { TaskViewProps } from './interfaces'
 import { TaskViewStyled } from './styles'
 // import Link from 'next/link'
@@ -9,6 +9,10 @@ import TimersView from 'src/pages/Timers/View'
 import Grid from 'src/uikit/Grid'
 import TaskStatus from '../../TaskStatus'
 import TaskButtons from '../../View/Task/TaskButtons'
+import Editor from 'src/uikit/Editor'
+import UpdateTaskForm from './form/UpdateTask'
+import IconButton from 'material-ui/IconButton'
+import EditModeIcon from 'material-ui-icons/ModeEdit'
 
 const TaskView: React.FC<TaskViewProps> = ({
   object: task,
@@ -31,6 +35,37 @@ const TaskView: React.FC<TaskViewProps> = ({
     return <TaskButtons object={task} />
   }, [task])
 
+  const [opened, setOpened] = useState(false)
+
+  const startEdit = useCallback(() => {
+    setOpened(true)
+  }, [])
+
+  const onCancel = useCallback(() => {
+    setOpened(false)
+  }, [])
+
+  const form = useMemo(() => {
+    if (!opened) {
+      return null
+    }
+
+    return (
+      <UpdateTaskForm
+        task={task}
+        options={{
+          variables: {
+            where: {
+              id: task.id,
+            },
+            data: {},
+          },
+        }}
+        onCancel={onCancel}
+      />
+    )
+  }, [onCancel, opened, task])
+
   return useMemo(() => {
     return (
       <TaskViewStyled {...other}>
@@ -42,6 +77,13 @@ const TaskView: React.FC<TaskViewProps> = ({
             <TaskStatus value={task.status} />
           </Grid>
           <Grid item>{buttons}</Grid>
+          <Grid item>
+            {opened ? null : (
+              <IconButton title="Редактировать" onClick={startEdit}>
+                <EditModeIcon />
+              </IconButton>
+            )}
+          </Grid>
         </Grid>
 
         {task.TaskProjects?.map((n) => {
@@ -53,10 +95,30 @@ const TaskView: React.FC<TaskViewProps> = ({
           )
         })}
 
+        {task.content ? (
+          <>
+            <Typography variant="subheading">Описание задачи</Typography>
+            <Editor editorKey="task-editor" value={task.content} />
+          </>
+        ) : null}
+
+        {form}
+
         {timersList}
       </TaskViewStyled>
     )
-  }, [buttons, other, task.TaskProjects, task.name, task.status, timersList])
+  }, [
+    buttons,
+    form,
+    opened,
+    other,
+    startEdit,
+    task.TaskProjects,
+    task.content,
+    task.name,
+    task.status,
+    timersList,
+  ])
 }
 
 export default TaskView

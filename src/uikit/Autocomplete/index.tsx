@@ -252,7 +252,8 @@ export class Autocomplete extends React.PureComponent<AutocompleteProps> {
           // wrapperStyle={{ position: 'relative', display: 'inline-block' }}
           wrapperStyle={style}
           items={items}
-          getItemValue={(item: AutocompleteItem) => item.label}
+          // getItemValue={(item: AutocompleteItem) => item.label}
+          getItemValue={(item: AutocompleteItem) => item.value}
           // shouldItemRender={matchStateToTerm}
           // sortItems={sortStates}
           // onChange={(event, value) => this.setState({ value })}

@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
 import theme from 'src/theme'
-import GlobalStyle from 'src/theme/GlobalStyle'
 import {
   NextPageContextCustom,
   MainApp,
@@ -42,6 +41,7 @@ import { LayoutStyled } from './styles'
 
 // TODO: Проработать локализацию
 moment.locale('ru')
+import { GlobalStyle } from 'src/theme/GlobalStyle'
 
 const withWs = true
 

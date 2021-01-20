@@ -11,11 +11,8 @@ import {
   PageProps,
 } from './interfaces'
 
-import {
-  useApollo,
-  initializeApollo,
-  getSubscriptionClient,
-} from 'src/lib/apolloClient'
+import { useApollo, initializeApollo } from 'src/lib/apolloClient'
+import { getSubscriptionClient } from 'src/lib/apolloClient/createApolloClient'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import URI from 'urijs'
@@ -235,7 +232,10 @@ App.getInitialProps = async (appContext: AppContext) => {
    * с приложения и далее выполняемый страниц и документа,
    * передаем аполло-клиент далее в контекст приложения.
    */
-  const apolloClient = initializeApollo(undefined, withWs)
+  const apolloClient = initializeApollo({
+    withWs,
+    appContext,
+  })
 
   /**
    * Передаваемый далее в страницу контекст

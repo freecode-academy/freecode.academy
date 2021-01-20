@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { useCallback, useMemo } from 'react'
 import { CodeChallengeTest } from '../../interfaces'
 import ChallengeDescription from './ChallengeDescription'
@@ -29,6 +30,29 @@ const SidePanel: React.FC<SidePanelProps> = ({
   }, [])
 
   const title = object.localeTitle || object.name
+
+  const breadCrumbs = useMemo(() => {
+    const block = object.Block
+    const rootBlock = block.Parent
+
+    const parent = rootBlock ? (
+      <span>
+        <Link href={`/learn/sections/${rootBlock.id}`}>
+          <a title={rootBlock.name || ''}>{rootBlock.name}</a>
+        </Link>{' '}
+        /
+      </span>
+    ) : null
+
+    return (
+      <div>
+        {parent}{' '}
+        <Link href={`/learn/sections/${block.id}`}>
+          <a title={block.name || ''}>{block.name}</a>
+        </Link>
+      </div>
+    )
+  }, [object.Block])
 
   // const isChallengeCompleted = true
 
@@ -72,6 +96,9 @@ const SidePanel: React.FC<SidePanelProps> = ({
         <ChallengeTitle codeChallengeCompletion={codeChallengeCompletion}>
           {title}
         </ChallengeTitle>
+
+        {breadCrumbs}
+
         <ChallengeDescription
           description={description || ''}
           instructions={instructions || ''}
@@ -82,12 +109,13 @@ const SidePanel: React.FC<SidePanelProps> = ({
       </SidePanelStyled>
     )
   }, [
+    codeChallengeCompletion,
+    title,
+    breadCrumbs,
     description,
     instructions,
-    codeChallengeCompletion,
-    tests,
-    title,
     toolPanel,
+    tests,
   ])
 }
 

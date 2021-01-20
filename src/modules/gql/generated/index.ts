@@ -35,6 +35,7 @@ export * from './codeChallengeBlocks';
 export * from './codeChallengeBlocksBlock';
 export * from './codeChallengeCompletion';
 export * from './codeChallengeCompletion_';
+export * from './codeChallengeWithBlocks_';
 export * from './codeChallenge_';
 export * from './commentsConnection';
 export * from './commentsConnectionComment';

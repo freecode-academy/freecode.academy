@@ -13,6 +13,7 @@ import Editor from 'src/uikit/Editor'
 import UpdateTaskForm from './form/UpdateTask'
 import IconButton from 'material-ui/IconButton'
 import EditModeIcon from 'material-ui-icons/ModeEdit'
+import Link from 'next/link'
 
 const TaskView: React.FC<TaskViewProps> = ({
   object: task,
@@ -66,6 +67,40 @@ const TaskView: React.FC<TaskViewProps> = ({
     )
   }, [onCancel, opened, task])
 
+  const lesson = useMemo(() => {
+    if (task.CodeChallengeCompletion) {
+      const codeChallenge = task.CodeChallengeCompletion.CodeChallenge
+      const block = codeChallenge.Block
+      const rootBlock = block.Parent
+
+      const parent = rootBlock ? (
+        <span>
+          <Link href={`/learn/sections/${rootBlock.id}`}>
+            <a title={rootBlock.name || ''}>{rootBlock.name}</a>
+          </Link>{' '}
+          /
+        </span>
+      ) : null
+
+      return (
+        <div>
+          <p>
+            Урок: {parent}{' '}
+            <Link href={`/learn/sections/${block.id}`}>
+              <a title={block.name || ''}>{block.name}</a>
+            </Link>{' '}
+            /{' '}
+            <Link href={`/learn/exercises/${codeChallenge.id}`}>
+              <a title={codeChallenge.localeTitle || codeChallenge.name || ''}>
+                {codeChallenge.localeTitle || codeChallenge.name}
+              </a>
+            </Link>
+          </p>
+        </div>
+      )
+    }
+  }, [task.CodeChallengeCompletion])
+
   return useMemo(() => {
     return (
       <TaskViewStyled {...other}>
@@ -90,10 +125,14 @@ const TaskView: React.FC<TaskViewProps> = ({
           const project = n.Project
           return (
             <div key={project.id}>
-              Проект: <ProjectLink object={project} />
+              <p>
+                Проект: <ProjectLink object={project} />
+              </p>
             </div>
           )
         })}
+
+        {lesson}
 
         {task.content ? (
           <>
@@ -110,6 +149,7 @@ const TaskView: React.FC<TaskViewProps> = ({
   }, [
     buttons,
     form,
+    lesson,
     opened,
     other,
     startEdit,

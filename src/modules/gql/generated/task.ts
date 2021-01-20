@@ -10,9 +10,11 @@ import * as Types from './types';
 
 import { Task_Fragment } from './task_';
 import { TimersConnectionTimerFragment } from './timersConnectionTimer';
+import { CodeChallengeWithBlocks_Fragment } from './codeChallengeWithBlocks_';
 import { gql } from '@apollo/client';
 import { Task_FragmentDoc } from './task_';
 import { TimersConnectionTimerFragmentDoc } from './timersConnectionTimer';
+import { CodeChallengeWithBlocks_FragmentDoc } from './codeChallengeWithBlocks_';
 import * as Apollo from '@apollo/client';
 export type TaskQueryVariables = Types.Exact<{
   where: Types.TaskWhereUniqueInput;
@@ -24,7 +26,10 @@ export type TaskQuery = { __typename?: 'Query', object?: Types.Maybe<(
     { __typename?: 'Task', Timers?: Types.Maybe<Array<(
       { __typename?: 'Timer' }
       & TimersConnectionTimerFragment
-    )>> }
+    )>>, CodeChallengeCompletion?: Types.Maybe<{ __typename?: 'CodeChallengeCompletion', id: string, CodeChallenge: (
+        { __typename?: 'CodeChallenge' }
+        & CodeChallengeWithBlocks_Fragment
+      ) }> }
     & Task_Fragment
   )> };
 
@@ -36,10 +41,17 @@ export const TaskDocument = gql`
     Timers(orderBy: createdAt_DESC, where: $timersWhere) {
       ...timersConnectionTimer
     }
+    CodeChallengeCompletion {
+      id
+      CodeChallenge {
+        ...codeChallengeWithBlocks_
+      }
+    }
   }
 }
     ${Task_FragmentDoc}
-${TimersConnectionTimerFragmentDoc}`;
+${TimersConnectionTimerFragmentDoc}
+${CodeChallengeWithBlocks_FragmentDoc}`;
 
 /**
  * __useTaskQuery__

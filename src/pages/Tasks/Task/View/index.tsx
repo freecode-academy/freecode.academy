@@ -72,6 +72,7 @@ const TaskView: React.FC<TaskViewProps> = ({
         <Grid container spacing={8} alignItems="center">
           <Grid item xs>
             <Typography variant="title">{task.name}</Typography>
+            {moment(task.startDate).format('lll')}
           </Grid>
           <Grid item>
             <TaskStatus value={task.status} />

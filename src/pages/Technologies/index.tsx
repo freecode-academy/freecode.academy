@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import {
   TechnologiesConnectionDocument,
   TechnologiesConnectionQueryVariables,
   useTechnologiesConnectionQuery,
-  TechnologiesConnectionQuery,
   TechnologiesConnectionTechnologyFragment,
 } from 'src/modules/gql/generated'
 
@@ -50,27 +49,16 @@ const TechnologiesPage: Page = () => {
     }
   }, [query])
 
-  const queryResult = useTechnologiesConnectionQuery({
+  const response = useTechnologiesConnectionQuery({
     variables: queryVariables,
-    onCompleted: (data) => {
-      setResponse(data)
-    },
     onError: console.error,
   })
-
-  /**
-   * useState используем уже после выполнения запроса, так как на стороне setState не имеет эффекта,
-   * надо дефолтные данные сразу задать из полученного результата
-   */
-  const [response, setResponse] = useState<
-    TechnologiesConnectionQuery | null | undefined
-  >(queryResult.data)
 
   const objects = useMemo(() => {
     const objects: TechnologiesConnectionTechnologyFragment[] = []
 
     return (
-      response?.objectsConnection.edges.reduce((curr, next) => {
+      response.data?.objectsConnection.edges.reduce((curr, next) => {
         if (next?.node) {
           curr.push(next.node)
         }
@@ -78,9 +66,9 @@ const TechnologiesPage: Page = () => {
         return curr
       }, objects) ?? []
     )
-  }, [response?.objectsConnection.edges])
+  }, [response.data?.objectsConnection.edges])
 
-  const { variables, loading } = queryResult
+  const { variables, loading } = response
 
   return (
     <>
@@ -97,7 +85,7 @@ const TechnologiesPage: Page = () => {
         loading={loading}
         // data={response || null}
         objects={objects}
-        count={response?.objectsConnection.aggregate.count}
+        count={response.data?.objectsConnection.aggregate.count}
         variables={variables}
         page={page}
       />

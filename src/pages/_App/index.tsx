@@ -123,9 +123,9 @@ const App: MainApp = (props) => {
       theme: muiTheme,
       localStorage: global.localStorage,
       apiClientResetStore: async function () {
-        if (!apolloClient['queryManager'].fetchCancelFns.size) {
-          return apolloClient.resetStore().catch(console.error)
-        }
+        // if (!apolloClient['queryManager'].fetchCancelFns.size) {
+        // }
+        return apolloClient.resetStore().catch(console.error)
       },
 
       /**

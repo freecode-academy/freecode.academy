@@ -2,7 +2,7 @@ import React from 'react'
 import { CodeChallengeQuery } from 'src/modules/gql/generated'
 import { appRender } from 'src/tests/utils'
 import Page from '..'
-import { CodeChallengeContext } from '../Context'
+import { CodeChallengeViewProps } from '../View/interfaces'
 
 jest.mock('@apollo/client/react/hooks', () => {
   return {
@@ -16,7 +16,7 @@ jest.mock('@apollo/client/react/hooks', () => {
       switch (query.definitions[0].name.value) {
         case 'codeChallenge':
           {
-            const challenge: CodeChallengeContext['challenge'] = {
+            const challenge: CodeChallengeViewProps['object'] = {
               __typename: 'CodeChallenge',
               id: 'bd7123c9c441eddfaeb4bdef',
               CreatedBy: {
@@ -89,6 +89,14 @@ jest.mock('@apollo/client/react/hooks', () => {
               template: null,
               // time: '10 hours',
               rank: 0,
+              Block: {
+                id: 'dsfsdf',
+                name: 'root block',
+                Parent: {
+                  id: 'GFhfghfgjrt',
+                  name: 'block',
+                },
+              },
             }
 
             const response: CodeChallengeQuery = {

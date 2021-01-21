@@ -4,5 +4,11 @@ query task($where: TaskWhereUniqueInput!, $timersWhere: TimerWhereInput) {
     Timers(orderBy: createdAt_DESC, where: $timersWhere) {
       ...timersConnectionTimer
     }
+    CodeChallengeCompletion {
+      id
+      CodeChallenge {
+        ...codeChallengeWithBlocks_
+      }
+    }
   }
 }

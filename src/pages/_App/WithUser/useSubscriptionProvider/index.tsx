@@ -8,32 +8,38 @@ const useSubscriptionProvider = ({ client }: SubscriptionProviderProps) => {
     client.resetStore().catch(console.error)
   }, [client])
 
-  useEffect(
-    function () {
-      const nodes = [
-        'user',
-        'resource',
-        // "lesson",
-        'task',
-        'timer',
-        'comment',
-        'technology',
-        'userTechnology',
-        'career',
+  useEffect(() => {
+    /**
+     * Run on browser side only
+     */
+    if (typeof window === 'undefined') {
+      return
+    }
 
-        // TODO: Check maybe deprecated
-        'technologyLesson',
+    const nodes = [
+      'user',
+      'resource',
+      // "lesson",
+      'task',
+      'timer',
+      'comment',
+      'technology',
+      'userTechnology',
+      'career',
 
-        // TODO: Check maybe deprecated
-        'technologyLessonUser',
-      ]
+      // TODO: Check maybe deprecated
+      'technologyLesson',
 
-      const subscriptions: ZenObservable.Subscription[] = []
+      // TODO: Check maybe deprecated
+      'technologyLessonUser',
+    ]
 
-      nodes.forEach((n) => {
-        const subscription = client
-          .subscribe({
-            query: gql`
+    const subscriptions: ZenObservable.Subscription[] = []
+
+    nodes.forEach((n) => {
+      const subscription = client
+        .subscribe({
+          query: gql`
           subscription Resource {
             ${n} {
               mutation
@@ -43,30 +49,28 @@ const useSubscriptionProvider = ({ client }: SubscriptionProviderProps) => {
             }
           }
         `,
-          })
-          .subscribe({
-            next: () => {
-              resetStore()
-            },
-            error(error) {
-              console.error('subscribeCalls callback with error: ', n, error)
-            },
-          })
-
-        subscriptions.push(subscription)
-      })
-
-      return () => {
-        /**
-         * Unsubscribe all
-         */
-        subscriptions.map((n) => {
-          n.unsubscribe()
         })
-      }
-    },
-    [client, resetStore]
-  )
+        .subscribe({
+          next: () => {
+            resetStore()
+          },
+          error(error) {
+            console.error('subscribeCalls callback with error: ', n, error)
+          },
+        })
+
+      subscriptions.push(subscription)
+    })
+
+    return () => {
+      /**
+       * Unsubscribe all
+       */
+      subscriptions.map((n) => {
+        n.unsubscribe()
+      })
+    }
+  }, [client, resetStore])
 }
 
 export default useSubscriptionProvider

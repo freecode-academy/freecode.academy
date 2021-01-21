@@ -73,7 +73,24 @@ const TaskView: React.FC<TaskViewProps> = ({
         <Grid container spacing={8} alignItems="center">
           <Grid item xs>
             <Typography variant="title">{task.name}</Typography>
+            Планируемая дата начала:{' '}
+            {task.startDatePlaning
+              ? moment(task.startDatePlaning).format('lll')
+              : null}
+          </Grid>
+          <Grid item xs>
+            Дата начала:{' '}
             {task.startDate ? moment(task.startDate).format('lll') : null}
+          </Grid>
+          <Grid item xs>
+            Планируемая дата завершения:{' '}
+            {task.endDatePlaning
+              ? moment(task.endDatePlaning).format('lll')
+              : null}
+          </Grid>
+          <Grid item xs>
+            Дата завершения:{' '}
+            {task.endDate ? moment(task.endDate).format('lll') : null}
           </Grid>
           <Grid item>
             <TaskStatus value={task.status} />
@@ -121,6 +138,9 @@ const TaskView: React.FC<TaskViewProps> = ({
     task.startDate,
     task.status,
     timersList,
+    task.startDatePlaning,
+    task.endDatePlaning,
+    task.endDate,
   ])
 }
 

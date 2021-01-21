@@ -6,7 +6,7 @@ import { useMeQuery } from 'src/modules/gql/generated'
 
 import Header from 'src/components/MainMenu'
 import { WithUserProps } from './interfaces'
-import SubscriptionProvider from './SubscriptionProvider'
+import useSubscriptionProvider from './useSubscriptionProvider'
 
 const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
   const { client } = context
@@ -34,6 +34,8 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
 
   const user = data?.user
 
+  useSubscriptionProvider({ client })
+
   const header = useMemo(() => <Header user={user} />, [user])
 
   /**
@@ -60,11 +62,9 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
       {/* 
     TODO добавить подписку на объект пользователя
   */}
-      <SubscriptionProvider user={user} client={client}>
-        {header}
+      {header}
 
-        {children}
-      </SubscriptionProvider>
+      {children}
     </Context.Provider>
   )
 }

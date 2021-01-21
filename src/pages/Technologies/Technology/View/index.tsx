@@ -1,43 +1,83 @@
-import React from 'react'
+import React, { useContext, useMemo } from 'react'
 import { TechnologyViewProps } from './interfaces'
-import { TechnologyViewStyled } from './styles'
+import { TechnologyGridTableStyled, TechnologyViewStyled } from './styles'
 // import Link from 'next/link'
 import Typography from 'material-ui/Typography'
-import UikitUserLink from 'src/uikit/Link/User'
 import Grid from 'src/uikit/Grid'
+import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
+import ConnectUserTechnology from './ConnectUserTechnology'
+import { NextSeo } from 'next-seo'
+import {
+  GridTableAttributeStyled,
+  GridTableItemStyled,
+  GridTableAttributesContainerStyled,
+} from 'src/components/GridTable/styles'
+import UserTechnologyRow from './UserTechnologyRow'
 
-const TechnologyView: React.FC<TechnologyViewProps> = (props) => {
-  const technology = props.object
+const TechnologyView: React.FC<TechnologyViewProps> = ({
+  object: technology,
+}) => {
+  const context = useContext(PrismaContext) as PrismaCmsContext
 
-  if (!technology) {
-    return null
-  }
+  const header = useMemo(() => {
+    return (
+      <GridTableItemStyled>
+        <GridTableAttributeStyled />
 
-  return (
-    <TechnologyViewStyled>
-      <Typography variant="title">{technology.name}</Typography>
+        <GridTableAttributeStyled>Пользователь</GridTableAttributeStyled>
 
-      <div className="technology--used-by">
-        <Typography variant="subheading">Кто использует</Typography>
+        <GridTableAttributeStyled>Статус</GridTableAttributeStyled>
 
-        <Grid container spacing={8}>
-          {technology.UserTechnologies?.map((n) => {
-            const user = n.CreatedBy
+        <GridTableAttributesContainerStyled>
+          <GridTableAttributeStyled>Используется С</GridTableAttributeStyled>
+          <GridTableAttributeStyled>Используется До</GridTableAttributeStyled>
+        </GridTableAttributesContainerStyled>
+      </GridTableItemStyled>
+    )
+  }, [])
 
-            if (!user) {
-              return null
-            }
+  const items = technology.UserTechnologies?.map((n) => {
+    return <UserTechnologyRow key={n.id} object={n} user={context.user} />
+  })
 
-            return (
-              <Grid key={user.id} item xs={12}>
-                <UikitUserLink user={user} />
+  return useMemo(() => {
+    return (
+      <>
+        <NextSeo
+          title={technology.name || ''}
+          description={`Технология "${technology.name}"`}
+        />
+
+        <TechnologyViewStyled>
+          <Grid container spacing={8}>
+            <Grid item xs>
+              <Typography variant="title">{technology.name}</Typography>
+            </Grid>
+            <Grid item></Grid>
+          </Grid>
+
+          <div className="technology--used-by">
+            <Grid container spacing={8}>
+              <Grid item xs>
+                <Typography variant="subheading">Кто использует</Typography>
               </Grid>
-            )
-          })}
-        </Grid>
-      </div>
-    </TechnologyViewStyled>
-  )
+              <Grid item>
+                <ConnectUserTechnology
+                  technology={technology}
+                  user={context.user}
+                />
+              </Grid>
+            </Grid>
+
+            <TechnologyGridTableStyled>
+              {header}
+              {items}
+            </TechnologyGridTableStyled>
+          </div>
+        </TechnologyViewStyled>
+      </>
+    )
+  }, [technology, context.user, header, items])
 }
 
 export default TechnologyView

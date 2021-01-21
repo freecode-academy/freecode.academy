@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React, { useMemo } from 'react'
 import {
   useTechnologyQuery,
@@ -38,16 +37,17 @@ const TechnologyPage: Page = () => {
     onError: console.error,
   })
 
-  return (
-    <>
-      <Head>
-        <title>{response.data?.object?.name}</title>
-        <meta name="description" content={response.data?.object?.name || ''} />
-      </Head>
+  return useMemo(() => {
+    if (!response.data?.object) {
+      return null
+    }
 
-      <View object={response.data?.object} />
-    </>
-  )
+    return (
+      <>
+        <View object={response.data?.object} />
+      </>
+    )
+  }, [response.data?.object])
 }
 
 TechnologyPage.getInitialProps = async (context) => {

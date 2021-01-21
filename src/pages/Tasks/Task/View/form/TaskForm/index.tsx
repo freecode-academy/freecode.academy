@@ -53,32 +53,18 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const name = event.target.name as Name
-      const value = event.target.value
+      let value: Data[Name] = event.target.value
 
       if (!name) {
         return
       }
 
-      const newData: typeof variablesProp.data = {
-        ...data,
-      }
-
       switch (name) {
-        case 'name':
-          newData[name] = value
-
-          break
-
         case 'startDate':
         case 'startDatePlaning':
         case 'endDate':
         case 'endDatePlaning':
-          {
-            const date =
-              value && typeof value === 'string' ? new Date(value) : null
-
-            newData[name] = date
-          }
+          value = value && typeof value === 'string' ? new Date(value) : null
           break
 
         default:
@@ -87,7 +73,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
       setValue(name, value)
     },
-    [data, setValue, variablesProp]
+    [setValue]
   )
 
   const resetForm = useCallback(() => {
@@ -309,9 +295,11 @@ const TaskForm: React.FC<TaskFormProps> = ({
     )
   }, [getValue, onStatusChange, task?.id])
 
-  return useMemo(() => {
-    const content = data.content
+  // const content = useMemo(() => {
 
+  // }, []);
+
+  return useMemo(() => {
     return (
       <>
         <form onSubmit={onSubmit}>
@@ -331,7 +319,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
               <Editor
                 editorKey="task-editor"
                 onChange={onEditorChange}
-                value={content}
+                value={getValue('content')}
                 readOnly={false}
               />
             </Grid>
@@ -385,17 +373,17 @@ const TaskForm: React.FC<TaskFormProps> = ({
     )
   }, [
     onSubmit,
-    data.content,
-    endDate,
+    name,
+    status,
+    onEditorChange,
+    getValue,
+    startDatePlaning,
     endDatePlaning,
+    startDate,
+    endDate,
     mutationState.loading,
     mutationState.snakbar,
-    name,
     onCancel,
-    onEditorChange,
-    startDate,
-    startDatePlaning,
-    status,
   ])
 }
 

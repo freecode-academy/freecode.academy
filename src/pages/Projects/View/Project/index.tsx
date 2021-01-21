@@ -349,7 +349,7 @@ export class ProjectView<
           </CardContent>
         ) : null}
 
-        {this.renderTasks()}
+        {/* {this.renderTasks()} */}
 
         {/* {extras.length ? (
           <CardContent>

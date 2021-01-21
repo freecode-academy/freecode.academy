@@ -1,31 +1,26 @@
+import { MutationTuple, OperationVariables } from '@apollo/client'
 import { PrismaCmsComponentError } from '@prisma-cms/component'
 import Snackbar from '@prisma-cms/component/dist/components/Snackbar'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import { useCallback, useContext, useMemo, useState } from 'react'
-// import { CreateTimerProcessorMutationOptions } from "src/modules/gql/generated";
 import { Error as ResponseError } from 'src/modules/gql/generated'
-import { useProcessorMutationProps } from './interfaces'
 
 /**
  * Хук на обновление с обработчиком ошибок.
  * Работает только с процессорами.
  */
-// function useProcessorMutation<MutationOptions = any>(
 function useProcessorMutation<
-  P extends useProcessorMutationProps = useProcessorMutationProps
->(options: P) {
-  type MutationOptions = Parameters<P['processor']>[0]
+  TData extends Record<string, any> = Record<string, any>,
+  TVariables extends OperationVariables = OperationVariables
+>(mutationTuple: MutationTuple<TData, TVariables>) {
+  const errorDelay = 3000
 
-  // const [errors] = useState<Error[]>([]);
+  const processor = mutationTuple[0]
 
-  // console.log('options', options);
-
-  const { processor, errorDelay = 3000, loading } = options
+  const { loading } = mutationTuple[1]
 
   const context = useContext(PrismaContext) as PrismaCmsContext
   const apiClientResetStore = context.apiClientResetStore
-
-  // const client = context.client;
 
   /**
    * В этом хуке используются setTimeout с замыканиями, в которых
@@ -53,11 +48,6 @@ function useProcessorMutation<
     error,
     errors,
   })
-
-  /**
-   * Индикатор выполнения
-   */
-  // const [inRequest, setInRequest] = useState(false);
 
   /**
    * Удаляем ошибку из общего массива ошибок
@@ -107,12 +97,6 @@ function useProcessorMutation<
    */
   const addError = useCallback(
     (error: PrismaCmsComponentError) => {
-      // if (typeof error === 'string') {
-      //   _error = new Error(error)
-      // } else {
-      //   _error = error
-      // }
-
       Object.assign(error, {
         _id: new Date().getTime(),
       })
@@ -125,9 +109,6 @@ function useProcessorMutation<
         setTimeout(() => closeError(error), errorDelay)
       }
 
-      // console.log('addError error', error);
-      // console.log('addError newErrors', newErrors);
-
       setErrors(newErrors)
 
       return error
@@ -135,78 +116,40 @@ function useProcessorMutation<
     [closeError, errorDelay, store.errors]
   )
 
-  // const addError = useCallback(
-  //   (error: PrismaCmsComponentError) => {
-  //     // if (typeof error === 'string') {
-  //     //   _error = new Error(error)
-  //     // } else {
-  //     //   _error = error
-  //     // }
-
-  //     Object.assign(error, {
-  //       _id: new Date().getTime(),
-  //     })
-
-  //     const newErrors = (errors || []).slice(0)
-
-  //     newErrors.push(error)
-
-  //     if (errorDelay) {
-  //       setTimeout(() => closeError(error), errorDelay)
-  //     }
-
-  //     // console.log('addError error', error);
-  //     // console.log('addError newErrors', newErrors);
-
-  //     setErrors(newErrors)
-
-  //     return error
-  //   },
-  //   [closeError, errorDelay, errors]
-  // )
-
   const mutation = useCallback(
-    async (options?: MutationOptions) => {
+    async (options) => {
       if (loading) {
         return
       }
 
-      const result = await processor(options)
-        // .then((r: FetchResult<{
-        //   [key: string]: any;
-        // }, Record<string, any>, Record<string, any>>) => {
-
-        //   return r;
-        // })
-        .catch((error: PrismaCmsComponentError) => {
+      const result = await processor(options).catch(
+        (error: PrismaCmsComponentError) => {
           error.message =
             (error.message && error.message.replace(/^GraphQL error: */, '')) ||
             ''
 
           return error
-        })
+        }
+      )
 
       let error: PrismaCmsComponentError | null = null
 
       const errors: PrismaCmsComponentError[] = []
 
       if (result instanceof Error) {
-        // error = result.message;
         error = result
-        // throw(result);
       } else {
-        const response: Record<string, any> & {
-          errors: ResponseError[]
-        } = result.data?.response || {}
+        const response = result.data?.response
 
         const {
           success,
           message,
-          errors: responseErrors,
           // ...other
         } = response || {}
 
-        responseErrors.map(({ message, ...other }) => {
+        const responseErrors: ResponseError[] = response?.errors || []
+
+        responseErrors?.map(({ message, ...other }) => {
           const error: PrismaCmsComponentError = new Error(
             message || 'Unhandled error'
           )
@@ -221,10 +164,6 @@ function useProcessorMutation<
         }
       }
 
-      // this.setState({
-      //   errors,
-      // })
-
       setErrors(errors || [])
 
       if (error) {
@@ -234,27 +173,12 @@ function useProcessorMutation<
         apiClientResetStore()
       }
 
-      // setInRequest(false);
-
       return result
     },
     [addError, apiClientResetStore, loading, processor]
   )
 
-  // const close = useCallback(() => {
-  //   setError(null);
-  // }, []);
-
-  // const snakbar = <Snackbar
-  //   error={error || undefined}
-  //   message={error?.message || undefined}
-  //   opened={error?.open || false}
-  //   close={close}
-  // />
-
   const snakbar = useMemo(() => {
-    // const { notifications } = this.state
-
     return errors.map((error, index) => {
       const { _id, message, open = true } = error
 

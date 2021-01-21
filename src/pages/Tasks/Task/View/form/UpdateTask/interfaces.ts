@@ -9,4 +9,5 @@ export type UpdateTaskFormProps = {
     variables: NonNullable<UpdateTaskProcessorMutationOptions['variables']>
   }
   onCancel?: () => void
+  onSuccess?: () => void
 }

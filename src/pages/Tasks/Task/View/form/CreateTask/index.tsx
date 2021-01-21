@@ -19,10 +19,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ options }) => {
     setOpened(!opened)
   }, [opened])
 
-  const [
-    createTaskProcessor,
-    createTaskProcessorResult,
-  ] = useCreateTaskProcessorMutation({
+  const mutationTuple = useCreateTaskProcessorMutation({
     onCompleted: (data) => {
       if (data.response.success && data.response.data?.id) {
         // resetForm()
@@ -31,10 +28,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ options }) => {
     },
   })
 
-  const mutationState = useProcessorMutation({
-    processor: createTaskProcessor,
-    loading: createTaskProcessorResult.loading,
-  })
+  const mutationState = useProcessorMutation(mutationTuple)
 
   const form = useMemo(() => {
     if (!opened) {

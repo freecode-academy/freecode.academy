@@ -55,4 +55,12 @@ export const typePolicies: TypedTypePolicies = {
       updatedAt: DateTime,
     },
   },
+  UserTechnology: {
+    fields: {
+      createdAt: DateTime,
+      updatedAt: DateTime,
+      date_from: DateTime,
+      date_till: DateTime,
+    },
+  },
 }

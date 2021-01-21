@@ -16,22 +16,19 @@ const TaskButtons: React.FC<TaskButtonsProps> = ({ object }) => {
   /**
    * Обновление таймера
    */
-  const [updateTimerProcessor] = useUpdateTimerProcessorMutation()
+  const updateTimerMutationTuple = useUpdateTimerProcessorMutation()
 
   /**
    * Запуск таймера
    */
 
-  const [createTimerProcessor, { loading }] = useCreateTimerProcessorMutation()
+  const mutationTuple = useCreateTimerProcessorMutation()
 
   const {
     mutation: createMutation,
     snakbar: createMutationSnakbar,
-    // } = useProcessorMutation<CreateTimerProcessorMutationOptions>({
-  } = useProcessorMutation({
-    processor: createTimerProcessor,
     loading,
-  })
+  } = useProcessorMutation(mutationTuple)
 
   const onClickCreateTimer = useCallback(() => {
     createMutation({
@@ -50,10 +47,7 @@ const TaskButtons: React.FC<TaskButtonsProps> = ({ object }) => {
   const {
     mutation: updateMutation,
     snakbar: updateMutationSnakbar,
-  } = useProcessorMutation({
-    processor: updateTimerProcessor,
-    loading,
-  })
+  } = useProcessorMutation(updateTimerMutationTuple)
 
   const onClickUpdateTimer = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {

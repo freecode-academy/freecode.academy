@@ -16,19 +16,13 @@ fragment technology_ on Technology {
     ...UserNoNesting
   }
   UserTechnologies {
-    ...userTechnology
-    CreatedBy {
-      ...UserNoNesting
-    }
+    ...technology_UserTechnology
   }
 }
 
-fragment userTechnology on UserTechnology {
-  id
-  createdAt
-  updatedAt
-  components
-  date_from
-  date_till
-  status
+fragment technology_UserTechnology on UserTechnology {
+  ...UserTechnologyNoNesting
+  CreatedBy {
+    ...UserNoNesting
+  }
 }

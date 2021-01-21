@@ -11,24 +11,29 @@ import TaskForm from '../TaskForm'
 const UpdateTaskForm: React.FC<UpdateTaskFormProps> = ({
   options,
   task,
+  onSuccess,
   ...other
 }) => {
-  const [
-    updateTaskProcessor,
-    updateTaskProcessorResult,
-  ] = useUpdateTaskProcessorMutation({})
-
-  const mutationState = useProcessorMutation({
-    processor: updateTaskProcessor,
-    loading: updateTaskProcessorResult.loading,
+  const mutationTuple = useUpdateTaskProcessorMutation({
+    onCompleted: (data) => {
+      if (data.response.success) {
+        onSuccess && onSuccess()
+      }
+    },
   })
+
+  const mutationState = useProcessorMutation(mutationTuple)
 
   const form = useMemo(() => {
     return (
       <TaskForm
         variables={options.variables}
-        mutationState={mutationState}
         task={task}
+        // mutationState={{
+        //   error: mutationState.error,
+        //   mutation: mutationState.mutation,
+        // }}
+        mutationState={mutationState}
         {...other}
       />
     )

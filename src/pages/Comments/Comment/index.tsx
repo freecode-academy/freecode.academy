@@ -16,9 +16,6 @@ const CommentPage: Page = () => {
 
   const response = useResourceQuery({
     variables,
-    // onCompleted: (data) => {
-    //   // setResponse(data.object)
-    // },
     onError: console.error,
   })
 

@@ -48,29 +48,10 @@ const ResourcePage: Page = (props) => {
 
   const response = useResourceQuery({
     variables,
-    // onCompleted: (data) => {
-    //   // setResponse(data.object)
-    // },
     onError: console.error,
   })
 
   const object = response.data?.object
-
-  // const name = object?.name
-  // const longtitle = object?.longtitle
-  //   return <>
-  //     <NextSeo title={name} description={longtitle || name} />
-
-  // ResourcePage
-
-  //     <div>
-  //       ID: {object?.id}
-  //     </div>
-
-  //     <div>
-  //       Type: {object?.type}
-  //     </div>
-  //   </>;
 
   if (!object) {
     return null

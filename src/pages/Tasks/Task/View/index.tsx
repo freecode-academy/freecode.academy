@@ -13,6 +13,7 @@ import Editor from 'src/uikit/Editor'
 import UpdateTaskForm from './form/UpdateTask'
 import IconButton from 'material-ui/IconButton'
 import EditModeIcon from 'material-ui-icons/ModeEdit'
+import moment from 'moment'
 
 const TaskView: React.FC<TaskViewProps> = ({
   object: task,
@@ -72,7 +73,7 @@ const TaskView: React.FC<TaskViewProps> = ({
         <Grid container spacing={8} alignItems="center">
           <Grid item xs>
             <Typography variant="title">{task.name}</Typography>
-            {moment(task.startDate).format('lll')}
+            {task.startDate ? moment(task.startDate).format('lll') : null}
           </Grid>
           <Grid item>
             <TaskStatus value={task.status} />
@@ -117,6 +118,7 @@ const TaskView: React.FC<TaskViewProps> = ({
     task.TaskProjects,
     task.content,
     task.name,
+    task.startDate,
     task.status,
     timersList,
   ])

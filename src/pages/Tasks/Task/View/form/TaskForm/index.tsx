@@ -97,10 +97,12 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
   const errors = mutationState.errors
 
-  const createTask = useCallback(
+  const onSubmit = useCallback(
     (event: React.FormEvent) => {
       event.preventDefault()
-
+      /**
+       * Save task
+       */
       mutationState.mutation({
         variables: {
           ...variablesProp,
@@ -312,7 +314,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
     return (
       <>
-        <form onSubmit={createTask}>
+        <form onSubmit={onSubmit}>
           <Grid container spacing={8}>
             <Grid item xs={12}>
               <Grid container spacing={8} alignItems="baseline">
@@ -382,7 +384,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       </>
     )
   }, [
-    createTask,
+    onSubmit,
     data.content,
     endDate,
     endDatePlaning,

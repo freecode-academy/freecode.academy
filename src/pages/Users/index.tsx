@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import {
   UsersConnectionDocument,
   UsersConnectionQueryVariables,
   useUsersConnectionQuery,
-  UsersConnectionQuery,
   UsersConnectionUserFragment,
 } from 'src/modules/gql/generated'
 
@@ -50,29 +49,18 @@ const UsersPage: Page = () => {
     }
   }, [query])
 
-  const queryResult = useUsersConnectionQuery({
+  const response = useUsersConnectionQuery({
     variables: queryVariables,
-    onCompleted: (data) => {
-      setResponse(data)
-    },
     onError: console.error,
   })
 
-  /**
-   * useState используем уже после выполнения запроса, так как на стороне setState не имеет эффекта,
-   * надо дефолтные данные сразу задать из полученного результата
-   */
-  const [response, setResponse] = useState<
-    UsersConnectionQuery | null | undefined
-  >(queryResult.data)
-
-  const { variables, loading } = queryResult
+  const { variables, loading } = response
 
   const objects = useMemo(() => {
     const objects: UsersConnectionUserFragment[] = []
 
     return (
-      response?.objectsConnection.edges.reduce((curr, next) => {
+      response.data?.objectsConnection.edges.reduce((curr, next) => {
         if (next?.node) {
           curr.push(next.node)
         }
@@ -80,7 +68,7 @@ const UsersPage: Page = () => {
         return curr
       }, objects) ?? []
     )
-  }, [response?.objectsConnection.edges])
+  }, [response.data?.objectsConnection.edges])
 
   return (
     <>
@@ -93,7 +81,7 @@ const UsersPage: Page = () => {
         // {...queryResult}
         // data={response}
         objects={objects}
-        count={response?.objectsConnection.aggregate.count}
+        count={response.data?.objectsConnection.aggregate.count}
         variables={variables}
         page={page}
         loading={loading}

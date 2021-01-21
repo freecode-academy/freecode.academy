@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
 import theme from 'src/theme'
-import GlobalStyle from 'src/theme/GlobalStyle'
 import {
   NextPageContextCustom,
   MainApp,
@@ -12,11 +11,8 @@ import {
   PageProps,
 } from './interfaces'
 
-import {
-  useApollo,
-  initializeApollo,
-  getSubscriptionClient,
-} from 'src/lib/apolloClient'
+import { useApollo, initializeApollo } from 'src/lib/apolloClient'
+import { getSubscriptionClient } from 'src/lib/apolloClient/createApolloClient'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import URI from 'urijs'
@@ -42,6 +38,7 @@ import { LayoutStyled } from './styles'
 
 // TODO: Проработать локализацию
 moment.locale('ru')
+import { GlobalStyle } from 'src/theme/GlobalStyle'
 
 const withWs = true
 
@@ -126,9 +123,9 @@ const App: MainApp = (props) => {
       theme: muiTheme,
       localStorage: global.localStorage,
       apiClientResetStore: async function () {
-        if (!apolloClient['queryManager'].fetchCancelFns.size) {
-          return apolloClient.resetStore().catch(console.error)
-        }
+        // if (!apolloClient['queryManager'].fetchCancelFns.size) {
+        // }
+        return apolloClient.resetStore().catch(console.error)
       },
 
       /**
@@ -235,7 +232,10 @@ App.getInitialProps = async (appContext: AppContext) => {
    * с приложения и далее выполняемый страниц и документа,
    * передаем аполло-клиент далее в контекст приложения.
    */
-  const apolloClient = initializeApollo(undefined, withWs)
+  const apolloClient = initializeApollo({
+    withWs,
+    appContext,
+  })
 
   /**
    * Передаваемый далее в страницу контекст

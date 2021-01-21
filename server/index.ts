@@ -1,6 +1,6 @@
 import express from 'express'
 import next from 'next'
-import { createProxyMiddleware } from 'http-proxy-middleware'
+import { createProxyMiddleware, Options } from 'http-proxy-middleware'
 import { endpoint } from '../src/config'
 
 import Sitemap from './sitemap/prisma-cms.com'
@@ -12,7 +12,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const createProxy = (props: Record<string, any>) => {
+const createProxy = (props: Options) => {
   return createProxyMiddleware({
     target: endpoint,
     changeOrigin: true,
@@ -30,6 +30,13 @@ const createProxy = (props: Record<string, any>) => {
       res.end(
         'Something went wrong. And we are reporting a custom error message.'
       )
+    },
+    router: (req) => {
+      if (!req.headers.referer && req.headers.host) {
+        req.headers.referer = `http://${req.headers.host}`
+      }
+
+      return endpoint
     },
     ...props,
   })

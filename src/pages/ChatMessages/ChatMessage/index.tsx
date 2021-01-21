@@ -35,36 +35,8 @@ const ChatMessagePage: Page = () => {
 
   const response = useChatMessageQuery({
     variables: queryVariables,
-    // onCompleted: (data) => {
-    //   setResponse(data)
-    // },
     onError: console.error,
   })
-
-  // return "dsfdsf";
-  /**
-   * useState используем уже после выполнения запроса, так как на стороне setState не имеет эффекта,
-   * надо дефолтные данные сразу задать из полученного результата
-   */
-  // const [response, setResponse] = useState<
-  //   ChatMessageConnectionQuery | null | undefined
-  // >(queryResult.data)
-
-  // const objects = useMemo(() => {
-  //   const objects: ChatMessageConnectionChatMessageFragment[] = []
-
-  //   return (
-  //     response?.objectsConnection.edges.reduce((curr, next) => {
-  //       if (next?.node) {
-  //         curr.push(next.node)
-  //       }
-
-  //       return curr
-  //     }, objects) ?? []
-  //   )
-  // }, [response?.objectsConnection.edges])
-
-  // const { variables, loading } = queryResult
 
   return (
     <>
@@ -78,15 +50,7 @@ const ChatMessagePage: Page = () => {
         />
       </Head>
 
-      <View
-        // {...queryResult}
-        // loading={loading}
-        // // data={response || null}
-        // count={response?.objectsConnection.aggregate.count}
-        // variables={variables}
-        // page={page}
-        object={response.data?.object}
-      />
+      <View object={response.data?.object} />
     </>
   )
 }

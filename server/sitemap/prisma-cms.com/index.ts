@@ -27,7 +27,9 @@ import {
   TagStatus,
 } from '../../../src/modules/gql/generated'
 
-const apolloClient = initializeApollo(undefined, false)
+const apolloClient = initializeApollo({
+  withWs: false,
+})
 
 export default class PrismaCmsComSitemap extends Sitemap {
   /**

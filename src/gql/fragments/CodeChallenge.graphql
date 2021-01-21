@@ -32,3 +32,17 @@ fragment codeChallenge_ on CodeChallenge {
     ...resource_
   }
 }
+
+fragment codeChallengeWithBlocks_ on CodeChallenge {
+  id
+  name
+  localeTitle
+  Block {
+    id
+    name
+    Parent {
+      id
+      name
+    }
+  }
+}

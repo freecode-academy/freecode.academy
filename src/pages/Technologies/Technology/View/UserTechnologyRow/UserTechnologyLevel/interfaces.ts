@@ -1,4 +1,4 @@
-import { PrismaCmsComponentError } from 'packages/@prisma-cms/component/dist'
+import { PrismaCmsComponentError } from '@prisma-cms/component'
 import { UserTechnology } from 'src/modules/gql/generated'
 
 export type UserTechnologyLevelProps = {

@@ -21,6 +21,13 @@
     {
       "files": ["src/**/*.{ts,tsx}"],
       "rules": {
+        // Deny import /packages
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": ["packages/*"]
+          }
+        ],
         // Deny use require
         "no-restricted-modules": [
           "error",

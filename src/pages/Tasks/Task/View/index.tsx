@@ -108,34 +108,6 @@ const TaskView: React.FC<TaskViewProps> = ({
         <Grid container spacing={8} alignItems="center">
           <Grid item xs>
             <Typography variant="title">{task.name}</Typography>
-            <tbody>
-              <td>Планируемый запуск: </td>
-              <td>
-                {task.startDatePlaning
-                  ? moment(task.startDatePlaning)
-                      .subtract(10, 'days')
-                      .calendar()
-                  : null}
-              </td>
-              <td>Дата начала: </td>
-              <td>
-                {task.startDate
-                  ? moment(task.startDate).subtract(10, 'days').calendar()
-                  : null}
-              </td>
-              <td>Планируемое завершение: </td>
-              <td>
-                {task.endDatePlaning
-                  ? moment(task.endDatePlaning).subtract(10, 'days').calendar()
-                  : null}
-              </td>
-              <td>Дата завершения: </td>
-              <td>
-                {task.endDate
-                  ? moment(task.endDate).subtract(10, 'days').calendar()
-                  : null}
-              </td>
-            </tbody>
           </Grid>
 
           <Grid item>
@@ -161,6 +133,33 @@ const TaskView: React.FC<TaskViewProps> = ({
             </div>
           )
         })}
+
+        <tbody>
+          <td>Планируемый запуск: </td>
+          <td>
+            {task.startDatePlaning
+              ? moment(task.startDatePlaning).subtract(10, 'days').calendar()
+              : null}
+          </td>
+          <td>Дата начала: </td>
+          <td>
+            {task.startDate
+              ? moment(task.startDate).subtract(10, 'days').calendar()
+              : null}
+          </td>
+          <td>Планируемое завершение: </td>
+          <td>
+            {task.endDatePlaning
+              ? moment(task.endDatePlaning).subtract(10, 'days').calendar()
+              : null}
+          </td>
+          <td>Дата завершения: </td>
+          <td>
+            {task.endDate
+              ? moment(task.endDate).subtract(10, 'days').calendar()
+              : null}
+          </td>
+        </tbody>
 
         {lesson}
 

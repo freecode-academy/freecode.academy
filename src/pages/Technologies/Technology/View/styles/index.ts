@@ -15,10 +15,12 @@ export const TechnologyGridTableStyled = styled(GridTableStyled)`
     > ${GridTableItemStyled} {
       display: grid;
       /* grid-template-columns: 54px minmax(100px, 2fr) minmax(130px, 1fr) 100px; */
-      grid-template-columns: minmax(54px, min-content) minmax(130px, 1fr) minmax(
+      grid-template-columns:
+        minmax(54px, min-content) minmax(80px, 1fr) minmax(130px, 1fr) minmax(
           130px,
           1fr
-        ) minmax(130px, 1fr);
+        )
+        minmax(130px, 1fr);
     }
   }
 `

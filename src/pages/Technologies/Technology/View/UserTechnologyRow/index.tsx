@@ -8,6 +8,7 @@ import UikitUserLink from 'src/uikit/Link/User'
 import { UserTechnologyRowProps } from './interfaces'
 import moment from 'moment'
 import {
+  Scalars,
   UserTechnologyUpdateInput,
   useUpdateUserTechnologyProcessorMutation,
 } from 'src/modules/gql/generated'
@@ -73,7 +74,12 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
         return
       }
 
-      let value: DataNotNullable[Name] | string = event.target.value
+      let value:
+        | DataNotNullable[Name]
+        | Scalars['UserTechnologyLevel']
+        | string
+        | number
+        | undefined = event.target.value
 
       switch (name) {
         case 'date_from':
@@ -87,6 +93,21 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
           // value = event.target.value && typeof value === 'string' ? new Date(value) : null;
 
           break
+
+        case 'level':
+          if (!value) {
+            value = null
+          } else {
+            value = parseInt(value)
+
+            if (!value || value < 1 || value > 5) {
+              return
+            }
+          }
+
+          setValue(name, value as Scalars['UserTechnologyLevel'])
+
+          return
 
         case 'CreatedBy':
         case 'Technology':
@@ -237,6 +258,39 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     }
   }, [errors, getValue, inEditMode, onChange])
 
+  /**
+   * Уровень знания
+   */
+  const level = useMemo(() => {
+    const fieldName: Name = 'level'
+    const value = getValue(fieldName)
+
+    const title = value
+      ? ['Начальный', 'Ниже среднего', 'Средний', 'Уверенный', 'Эксперт'][
+          value - 1
+        ]
+      : null
+
+    if (inEditMode) {
+      const error = errors.find((n) => n.key === fieldName)
+
+      return (
+        <TextField
+          name={fieldName}
+          value={value || ''}
+          onChange={onChange}
+          error={!!error}
+          label="Уровень знания"
+          helperText={error?.message || title || 'Укажите от 1 до 5'}
+          type="number"
+          fullWidth
+        />
+      )
+    } else {
+      return title
+    }
+  }, [errors, getValue, inEditMode, onChange])
+
   return useMemo(() => {
     return (
       <>
@@ -248,6 +302,8 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
           <GridTableAttributeStyled>
             <UikitUserLink user={object.CreatedBy} />
           </GridTableAttributeStyled>
+
+          <GridTableAttributeStyled>{level}</GridTableAttributeStyled>
 
           <GridTableAttributeStyled>{object.status}</GridTableAttributeStyled>
 
@@ -263,6 +319,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     buttons,
     dateFrom,
     dateTill,
+    level,
     object.CreatedBy,
     object.status,
     onSubmit,

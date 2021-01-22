@@ -19,6 +19,8 @@ export type Scalars = {
   Float: number;
   DateTime: globalThis.Date;
   Json: globalThis.Record<string, any> | globalThis.Array<any>;
+  /** UserTechnologyLevel from 0 to 5 */
+  UserTechnologyLevel: 1|2|3|4|5|null;
   Long: number;
   /** The `Upload` scalar type represents a file upload. */
   Upload: globalThis.File;
@@ -12640,6 +12642,21 @@ export interface UserTechnologyWhereInput {
   status_in?: Maybe<Array<UserTechnologyStatus>>;
   /** All values that are not contained in given list. */
   status_not_in?: Maybe<Array<UserTechnologyStatus>>;
+  level?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  level_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  level_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  level_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  level_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  level_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  level_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  level_gte?: Maybe<Scalars['Int']>;
   CreatedBy?: Maybe<UserWhereInput>;
   Technology?: Maybe<TechnologyWhereInput>;
 }
@@ -12850,10 +12867,12 @@ export enum UserTechnologyOrderByInput {
   DATE_TILL_ASC = 'date_till_ASC',
   DATE_TILL_DESC = 'date_till_DESC',
   STATUS_ASC = 'status_ASC',
-  STATUS_DESC = 'status_DESC'
+  STATUS_DESC = 'status_DESC',
+  LEVEL_ASC = 'level_ASC',
+  LEVEL_DESC = 'level_DESC'
 }
 
-export interface UserTechnology extends Node {
+export interface UserTechnology {
   __typename?: 'UserTechnology';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
@@ -12864,7 +12883,10 @@ export interface UserTechnology extends Node {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  /** Уровень знания технологии */
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
 }
+
 
 export enum TechnologyLessonUserOrderByInput {
   ID_ASC = 'id_ASC',
@@ -15386,6 +15408,7 @@ export interface UserTechnologyCreateInput {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Technology: TechnologyCreateOneWithoutUserTechnologiesInput;
 }
@@ -15407,6 +15430,7 @@ export interface UserTechnologyUpdateInput {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Technology?: Maybe<TechnologyUpdateOneRequiredWithoutUserTechnologiesInput>;
 }
@@ -15823,6 +15847,21 @@ export interface UserTechnologyScalarWhereInput {
   status_in?: Maybe<Array<UserTechnologyStatus>>;
   /** All values that are not contained in given list. */
   status_not_in?: Maybe<Array<UserTechnologyStatus>>;
+  level?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  level_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  level_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  level_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  level_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  level_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  level_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  level_gte?: Maybe<Scalars['Int']>;
 }
 
 export interface UserTechnologyUpdateManyDataInput {
@@ -15830,6 +15869,7 @@ export interface UserTechnologyUpdateManyDataInput {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
 }
 
 export interface TechnologyLessonCommentCreateInput {
@@ -24264,6 +24304,7 @@ export interface UserTechnologyPreviousValues {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
 }
 
 export interface TechnologySubscriptionWhereInput {
@@ -39475,6 +39516,7 @@ export interface UserTechnologyCreateWithoutTechnologyInput {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
   CreatedBy?: Maybe<UserCreateOneInput>;
 }
 
@@ -39483,6 +39525,7 @@ export interface UserTechnologyUpdateManyMutationInput {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
 }
 
 export interface UserTechnologyUpdateWithoutTechnologyDataInput {
@@ -39490,6 +39533,7 @@ export interface UserTechnologyUpdateWithoutTechnologyDataInput {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
 }
 

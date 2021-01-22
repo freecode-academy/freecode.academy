@@ -899,7 +899,7 @@ export type TechnologyFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	UserTechnologies?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserTechnologyKeySpecifier = ('id' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'Technology' | 'components' | 'date_from' | 'date_till' | 'status' | UserTechnologyKeySpecifier)[];
+export type UserTechnologyKeySpecifier = ('id' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'Technology' | 'components' | 'date_from' | 'date_till' | 'status' | 'level' | UserTechnologyKeySpecifier)[];
 export type UserTechnologyFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -909,7 +909,8 @@ export type UserTechnologyFieldPolicy = {
 	components?: FieldPolicy<any> | FieldReadFunction<any>,
 	date_from?: FieldPolicy<any> | FieldReadFunction<any>,
 	date_till?: FieldPolicy<any> | FieldReadFunction<any>,
-	status?: FieldPolicy<any> | FieldReadFunction<any>
+	status?: FieldPolicy<any> | FieldReadFunction<any>,
+	level?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type TechnologyLessonUserKeySpecifier = ('id' | 'createdAt' | 'updatedAt' | 'Lesson' | 'CreatedBy' | 'status' | 'completedAt' | TechnologyLessonUserKeySpecifier)[];
 export type TechnologyLessonUserFieldPolicy = {
@@ -2573,7 +2574,7 @@ export type UserTechnologySubscriptionPayloadFieldPolicy = {
 	updatedFields?: FieldPolicy<any> | FieldReadFunction<any>,
 	previousValues?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserTechnologyPreviousValuesKeySpecifier = ('id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | UserTechnologyPreviousValuesKeySpecifier)[];
+export type UserTechnologyPreviousValuesKeySpecifier = ('id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'level' | UserTechnologyPreviousValuesKeySpecifier)[];
 export type UserTechnologyPreviousValuesFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -2581,7 +2582,8 @@ export type UserTechnologyPreviousValuesFieldPolicy = {
 	components?: FieldPolicy<any> | FieldReadFunction<any>,
 	date_from?: FieldPolicy<any> | FieldReadFunction<any>,
 	date_till?: FieldPolicy<any> | FieldReadFunction<any>,
-	status?: FieldPolicy<any> | FieldReadFunction<any>
+	status?: FieldPolicy<any> | FieldReadFunction<any>,
+	level?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type TechnologySubscriptionPayloadKeySpecifier = ('mutation' | 'node' | 'updatedFields' | 'previousValues' | TechnologySubscriptionPayloadKeySpecifier)[];
 export type TechnologySubscriptionPayloadFieldPolicy = {

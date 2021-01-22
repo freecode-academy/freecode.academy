@@ -10,4 +10,5 @@ fragment UserTechnologyNoNesting on UserTechnology {
   date_from
   date_till
   status
+  level
 }

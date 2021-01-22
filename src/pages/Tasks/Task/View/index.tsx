@@ -138,27 +138,19 @@ const TaskView: React.FC<TaskViewProps> = ({
           <td>Планируемый запуск: </td>
           <td>
             {task.startDatePlaning
-              ? moment(task.startDatePlaning).subtract(10, 'days').calendar()
+              ? moment(task.startDatePlaning).format('L')
               : null}
           </td>
           <td>Дата начала: </td>
-          <td>
-            {task.startDate
-              ? moment(task.startDate).subtract(10, 'days').calendar()
-              : null}
-          </td>
+          <td>{task.startDate ? moment(task.startDate).format('L') : null}</td>
           <td>Планируемое завершение: </td>
           <td>
             {task.endDatePlaning
-              ? moment(task.endDatePlaning).subtract(10, 'days').calendar()
+              ? moment(task.endDatePlaning).format('L')
               : null}
           </td>
           <td>Дата завершения: </td>
-          <td>
-            {task.endDate
-              ? moment(task.endDate).subtract(10, 'days').calendar()
-              : null}
-          </td>
+          <td>{task.endDate ? moment(task.endDate).format('L') : null}</td>
         </tbody>
 
         {lesson}

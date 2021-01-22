@@ -42,6 +42,21 @@ fragment task_ on Task {
   }
 }
 
+fragment TaskNoNesting on Task {
+  id
+  createdAt
+  updatedAt
+  name
+  description
+  content
+  status
+  startDatePlaning
+  endDatePlaning
+  startDate
+  endDate
+  needHelp
+}
+
 fragment TaskReactionNoNesting on TaskReaction {
   id
   createdAt
@@ -51,6 +66,25 @@ fragment TaskReactionNoNesting on TaskReaction {
 
 fragment tasksConnectionTask on Task {
   ...task_
+  ...taskTaskTechnologies
+}
+
+fragment taskTaskTechnologies on Task {
+  ...TaskNoNesting
+  CreatedBy {
+    ...UserNoNesting
+  }
+  TaskTechnologies {
+    ...taskTaskTechnology_
+  }
+}
+
+fragment taskTaskTechnology_ on TaskTechnology {
+  id
+  level
+  Technology {
+    ...TechnologyNoNesting
+  }
 }
 
 # fragment tasksConnectionTask on Task {

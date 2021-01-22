@@ -90,17 +90,3 @@ fragment projectsConnectionUser on User {
   marketplaceToken
   hidden
 }
-
-fragment TaskNoNesting on Task {
-  id
-  createdAt
-  updatedAt
-  name
-  description
-  content
-  status
-  startDatePlaning
-  endDatePlaning
-  startDate
-  endDate
-}

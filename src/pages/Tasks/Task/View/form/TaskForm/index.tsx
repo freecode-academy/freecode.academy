@@ -4,10 +4,12 @@ import Grid from 'src/uikit/Grid'
 import Button from 'material-ui/Button/Button'
 import Editor from 'src/uikit/Editor'
 import { PrismaCmsEditorRawContent } from '@prisma-cms/editor/dist'
-import { TextField, Typography } from 'material-ui'
+import TextField from 'material-ui/TextField'
+import Typography from 'material-ui/Typography'
 import { TaskFormProps } from './interfaces'
 import { TaskStatus } from 'src/modules/gql/generated'
 import Autocomplete from 'src/uikit/Autocomplete'
+import CheckBox from 'src/uikit/CheckBox'
 
 /**
  * Форма создания/редактирования задачи
@@ -295,9 +297,24 @@ const TaskForm: React.FC<TaskFormProps> = ({
     )
   }, [getValue, onStatusChange, task?.id])
 
-  // const content = useMemo(() => {
+  const onChangeNeedHelp = useCallback(
+    (_event, checked: boolean) => {
+      setValue('needHelp', checked)
+    },
+    [setValue]
+  )
 
-  // }, []);
+  const needHelp = useMemo(() => {
+    return (
+      <>
+        <CheckBox
+          label="Нужна помощь"
+          checked={!!data.needHelp}
+          onChange={onChangeNeedHelp}
+        />
+      </>
+    )
+  }, [data.needHelp, onChangeNeedHelp])
 
   return useMemo(() => {
     return (
@@ -310,12 +327,14 @@ const TaskForm: React.FC<TaskFormProps> = ({
                   {name}
                 </Grid>
 
+                <Grid item>{needHelp}</Grid>
+
                 <Grid item>{status}</Grid>
               </Grid>
             </Grid>
 
             <Grid item xs={12}>
-              <Typography variant="caption">Описание задачи</Typography>
+              <Typography variant="subheading">Описание задачи</Typography>
               <Editor
                 editorKey="task-editor"
                 onChange={onEditorChange}
@@ -374,6 +393,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
   }, [
     onSubmit,
     name,
+    needHelp,
     status,
     onEditorChange,
     getValue,

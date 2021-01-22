@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import Head from 'next/head'
 import React, { useCallback, useMemo } from 'react'
 import {
@@ -22,7 +23,7 @@ const defaultVariables: TasksConnectionQueryVariables = {
 }
 
 function getQueryParams(query: ParsedUrlQuery) {
-  const { page: queryPage, ...where } = query
+  const { page: queryPage, needHelp, ...where } = query
 
   let skip: number | undefined
 
@@ -31,6 +32,11 @@ function getQueryParams(query: ParsedUrlQuery) {
 
   if (page > 1) {
     skip = (page - 1) * first
+  }
+
+  if (needHelp && needHelp === 'true') {
+    // @ts-ignore
+    where.needHelp = true
   }
 
   return {

@@ -5,6 +5,16 @@ query technology($where: TechnologyWhereUniqueInput!) {
 }
 
 fragment technology_ on Technology {
+  ...TechnologyNoNesting
+  CreatedBy {
+    ...UserNoNesting
+  }
+  UserTechnologies {
+    ...technology_UserTechnology
+  }
+}
+
+fragment TechnologyNoNesting on Technology {
   id
   createdAt
   updatedAt
@@ -12,12 +22,6 @@ fragment technology_ on Technology {
   components
   contentText
   site_url
-  CreatedBy {
-    ...UserNoNesting
-  }
-  UserTechnologies {
-    ...technology_UserTechnology
-  }
 }
 
 fragment technology_UserTechnology on UserTechnology {

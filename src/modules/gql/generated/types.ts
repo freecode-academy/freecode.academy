@@ -19,8 +19,8 @@ export type Scalars = {
   Float: number;
   DateTime: globalThis.Date;
   Json: globalThis.Record<string, any> | globalThis.Array<any>;
-  /** UserTechnologyLevel from 0 to 5 */
-  UserTechnologyLevel: 1|2|3|4|5|null;
+  /** UserTechnologyLevel from 1 to 5 */
+  UserTechnologyLevel: 1 | 2 | 3 | 4 | 5 |null;
   Long: number;
   /** The `Upload` scalar type represents a file upload. */
   Upload: globalThis.File;
@@ -66,6 +66,7 @@ export interface Query {
   technologyLessonUsers: Array<Maybe<TechnologyLessonUser>>;
   userTechnologies: Array<Maybe<UserTechnology>>;
   tests: Array<Maybe<Test>>;
+  taskTechnologies: Array<Maybe<TaskTechnology>>;
   technologies: Array<Maybe<Technology>>;
   ethBlocks: Array<Maybe<EthBlock>>;
   teams: Array<Maybe<Team>>;
@@ -107,6 +108,7 @@ export interface Query {
   technologyLessonUser?: Maybe<TechnologyLessonUser>;
   userTechnology?: Maybe<UserTechnology>;
   test?: Maybe<Test>;
+  taskTechnology?: Maybe<TaskTechnology>;
   file?: Maybe<File>;
   technology?: Maybe<Technology>;
   ethBlock?: Maybe<EthBlock>;
@@ -150,6 +152,7 @@ export interface Query {
   technologyLessonUsersConnection: TechnologyLessonUserConnection;
   userTechnologiesConnection: UserTechnologyConnection;
   testsConnection: TestConnection;
+  taskTechnologiesConnection: TaskTechnologyConnection;
   technologiesConnection: TechnologyConnection;
   ethBlocksConnection: EthBlockConnection;
   teamsConnection: TeamConnection;
@@ -558,6 +561,17 @@ export type QueryTestsArgs = {
 };
 
 
+export type QueryTaskTechnologiesArgs = {
+  where?: Maybe<TaskTechnologyWhereInput>;
+  orderBy?: Maybe<TaskTechnologyOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
+
 export type QueryTechnologiesArgs = {
   where?: Maybe<TechnologyWhereInput>;
   orderBy?: Maybe<TechnologyOrderByInput>;
@@ -808,6 +822,11 @@ export type QueryUserTechnologyArgs = {
 
 export type QueryTestArgs = {
   where: TestWhereUniqueInput;
+};
+
+
+export type QueryTaskTechnologyArgs = {
+  where: TaskTechnologyWhereUniqueInput;
 };
 
 
@@ -1222,6 +1241,17 @@ export type QueryUserTechnologiesConnectionArgs = {
 export type QueryTestsConnectionArgs = {
   where?: Maybe<TestWhereInput>;
   orderBy?: Maybe<TestOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryTaskTechnologiesConnectionArgs = {
+  where?: Maybe<TaskTechnologyWhereInput>;
+  orderBy?: Maybe<TaskTechnologyOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -4611,6 +4641,9 @@ export interface TaskWhereInput {
   endDate_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   endDate_gte?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  needHelp_not?: Maybe<Scalars['Boolean']>;
   TaskProjects_every?: Maybe<ProjectTaskWhereInput>;
   TaskProjects_some?: Maybe<ProjectTaskWhereInput>;
   TaskProjects_none?: Maybe<ProjectTaskWhereInput>;
@@ -4636,6 +4669,9 @@ export interface TaskWhereInput {
   Reactions_none?: Maybe<TaskReactionWhereInput>;
   ChatRoom?: Maybe<ChatRoomWhereInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionWhereInput>;
+  TaskTechnologies_every?: Maybe<TaskTechnologyWhereInput>;
+  TaskTechnologies_some?: Maybe<TaskTechnologyWhereInput>;
+  TaskTechnologies_none?: Maybe<TaskTechnologyWhereInput>;
 }
 
 export enum TaskStatus {
@@ -6186,6 +6222,379 @@ export interface CodeChallengeBlockWhereInput {
   Challenges_every?: Maybe<CodeChallengeWhereInput>;
   Challenges_some?: Maybe<CodeChallengeWhereInput>;
   Challenges_none?: Maybe<CodeChallengeWhereInput>;
+}
+
+export interface TaskTechnologyWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<TaskTechnologyWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<TaskTechnologyWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<TaskTechnologyWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values less than the given value. */
+  id_lt?: Maybe<Scalars['ID']>;
+  /** All values less than or equal the given value. */
+  id_lte?: Maybe<Scalars['ID']>;
+  /** All values greater than the given value. */
+  id_gt?: Maybe<Scalars['ID']>;
+  /** All values greater than or equal the given value. */
+  id_gte?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  level?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  level_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  level_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  level_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  level_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  level_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  level_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  level_gte?: Maybe<Scalars['Int']>;
+  Task?: Maybe<TaskWhereInput>;
+  Technology?: Maybe<TechnologyWhereInput>;
+  CreatedBy?: Maybe<UserWhereInput>;
+}
+
+export interface TechnologyWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<TechnologyWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<TechnologyWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<TechnologyWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values less than the given value. */
+  id_lt?: Maybe<Scalars['ID']>;
+  /** All values less than or equal the given value. */
+  id_lte?: Maybe<Scalars['ID']>;
+  /** All values greater than the given value. */
+  id_gt?: Maybe<Scalars['ID']>;
+  /** All values greater than or equal the given value. */
+  id_gte?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values less than the given value. */
+  name_lt?: Maybe<Scalars['String']>;
+  /** All values less than or equal the given value. */
+  name_lte?: Maybe<Scalars['String']>;
+  /** All values greater than the given value. */
+  name_gt?: Maybe<Scalars['String']>;
+  /** All values greater than or equal the given value. */
+  name_gte?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string. */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  contentText?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  contentText_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  contentText_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  contentText_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values less than the given value. */
+  contentText_lt?: Maybe<Scalars['String']>;
+  /** All values less than or equal the given value. */
+  contentText_lte?: Maybe<Scalars['String']>;
+  /** All values greater than the given value. */
+  contentText_gt?: Maybe<Scalars['String']>;
+  /** All values greater than or equal the given value. */
+  contentText_gte?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  contentText_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  contentText_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  contentText_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  contentText_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  contentText_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string. */
+  contentText_not_ends_with?: Maybe<Scalars['String']>;
+  site_url?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  site_url_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  site_url_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  site_url_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values less than the given value. */
+  site_url_lt?: Maybe<Scalars['String']>;
+  /** All values less than or equal the given value. */
+  site_url_lte?: Maybe<Scalars['String']>;
+  /** All values greater than the given value. */
+  site_url_gt?: Maybe<Scalars['String']>;
+  /** All values greater than or equal the given value. */
+  site_url_gte?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  site_url_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  site_url_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  site_url_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  site_url_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  site_url_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string. */
+  site_url_not_ends_with?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<UserWhereInput>;
+  UserTechnologies_every?: Maybe<UserTechnologyWhereInput>;
+  UserTechnologies_some?: Maybe<UserTechnologyWhereInput>;
+  UserTechnologies_none?: Maybe<UserTechnologyWhereInput>;
+  TaskTechnologies_every?: Maybe<TaskTechnologyWhereInput>;
+  TaskTechnologies_some?: Maybe<TaskTechnologyWhereInput>;
+  TaskTechnologies_none?: Maybe<TaskTechnologyWhereInput>;
+}
+
+export interface UserTechnologyWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<UserTechnologyWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<UserTechnologyWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<UserTechnologyWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values less than the given value. */
+  id_lt?: Maybe<Scalars['ID']>;
+  /** All values less than or equal the given value. */
+  id_lte?: Maybe<Scalars['ID']>;
+  /** All values greater than the given value. */
+  id_gt?: Maybe<Scalars['ID']>;
+  /** All values greater than or equal the given value. */
+  id_gte?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  date_from_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  date_from_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  date_from_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  date_from_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  date_from_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  date_from_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  date_from_gte?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  date_till_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  date_till_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  date_till_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  date_till_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  date_till_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  date_till_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  date_till_gte?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<UserTechnologyStatus>;
+  /** All values that are not equal to given value. */
+  status_not?: Maybe<UserTechnologyStatus>;
+  /** All values that are contained in given list. */
+  status_in?: Maybe<Array<UserTechnologyStatus>>;
+  /** All values that are not contained in given list. */
+  status_not_in?: Maybe<Array<UserTechnologyStatus>>;
+  level?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  level_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  level_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  level_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  level_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  level_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  level_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  level_gte?: Maybe<Scalars['Int']>;
+  CreatedBy?: Maybe<UserWhereInput>;
+  Technology?: Maybe<TechnologyWhereInput>;
+}
+
+export enum UserTechnologyStatus {
+  /** Планирую изучать */
+  PLANTOSTUDY = 'PlanToStudy',
+  /** Отказался изучать */
+  REFUSEDTOSTUDY = 'RefusedToStudy',
+  /** Изучаю */
+  STUDY = 'Study',
+  /** Иногда использую */
+  RARELYUSE = 'RarelyUse',
+  /** Активно использую */
+  ACTIVEUSE = 'ActiveUse',
+  /** Больше не использую */
+  NOLONGERUSE = 'NoLongerUse'
 }
 
 export interface TeamWhereInput {
@@ -9739,6 +10148,8 @@ export interface Task extends Node {
   Reactions?: Maybe<Array<TaskReaction>>;
   ChatRoom?: Maybe<ChatRoom>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletion>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  TaskTechnologies?: Maybe<Array<TaskTechnology>>;
 }
 
 
@@ -9818,6 +10229,17 @@ export type TaskReactionsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
+
+export type TaskTaskTechnologiesArgs = {
+  where?: Maybe<TaskTechnologyWhereInput>;
+  orderBy?: Maybe<TaskTechnologyOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
 export enum TaskMemberOrderByInput {
   ID_ASC = 'id_ASC',
   ID_DESC = 'id_DESC',
@@ -9862,7 +10284,9 @@ export enum TaskOrderByInput {
   STARTDATE_ASC = 'startDate_ASC',
   STARTDATE_DESC = 'startDate_DESC',
   ENDDATE_ASC = 'endDate_ASC',
-  ENDDATE_DESC = 'endDate_DESC'
+  ENDDATE_DESC = 'endDate_DESC',
+  NEEDHELP_ASC = 'needHelp_ASC',
+  NEEDHELP_DESC = 'needHelp_DESC'
 }
 
 export enum TimerOrderByInput {
@@ -10267,6 +10691,100 @@ export enum CodeChallengeCompletionOrderByInput {
   SUCCESS_ASC = 'success_ASC',
   SUCCESS_DESC = 'success_DESC'
 }
+
+export enum TaskTechnologyOrderByInput {
+  ID_ASC = 'id_ASC',
+  ID_DESC = 'id_DESC',
+  CREATEDAT_ASC = 'createdAt_ASC',
+  CREATEDAT_DESC = 'createdAt_DESC',
+  UPDATEDAT_ASC = 'updatedAt_ASC',
+  UPDATEDAT_DESC = 'updatedAt_DESC',
+  LEVEL_ASC = 'level_ASC',
+  LEVEL_DESC = 'level_DESC'
+}
+
+export interface TaskTechnology extends Node {
+  __typename?: 'TaskTechnology';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  Task: Task;
+  Technology: Technology;
+  CreatedBy?: Maybe<User>;
+  /** Уровень знания технологии */
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
+}
+
+export interface Technology extends Node {
+  __typename?: 'Technology';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  name?: Maybe<Scalars['String']>;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  site_url?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<User>;
+  UserTechnologies?: Maybe<Array<UserTechnology>>;
+  TaskTechnologies?: Maybe<Array<TaskTechnology>>;
+}
+
+
+export type TechnologyUserTechnologiesArgs = {
+  where?: Maybe<UserTechnologyWhereInput>;
+  orderBy?: Maybe<UserTechnologyOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
+
+export type TechnologyTaskTechnologiesArgs = {
+  where?: Maybe<TaskTechnologyWhereInput>;
+  orderBy?: Maybe<TaskTechnologyOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
+export enum UserTechnologyOrderByInput {
+  ID_ASC = 'id_ASC',
+  ID_DESC = 'id_DESC',
+  CREATEDAT_ASC = 'createdAt_ASC',
+  CREATEDAT_DESC = 'createdAt_DESC',
+  UPDATEDAT_ASC = 'updatedAt_ASC',
+  UPDATEDAT_DESC = 'updatedAt_DESC',
+  COMPONENTS_ASC = 'components_ASC',
+  COMPONENTS_DESC = 'components_DESC',
+  DATE_FROM_ASC = 'date_from_ASC',
+  DATE_FROM_DESC = 'date_from_DESC',
+  DATE_TILL_ASC = 'date_till_ASC',
+  DATE_TILL_DESC = 'date_till_DESC',
+  STATUS_ASC = 'status_ASC',
+  STATUS_DESC = 'status_DESC',
+  LEVEL_ASC = 'level_ASC',
+  LEVEL_DESC = 'level_DESC'
+}
+
+export interface UserTechnology {
+  __typename?: 'UserTechnology';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  CreatedBy?: Maybe<User>;
+  Technology: Technology;
+  components?: Maybe<Scalars['Json']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<UserTechnologyStatus>;
+  /** Уровень знания технологии */
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
+}
+
 
 export interface Team extends Node {
   __typename?: 'Team';
@@ -12390,292 +12908,6 @@ export interface TechnologyLessonWhereInput {
   Comments_none?: Maybe<CommentWhereInput>;
 }
 
-export interface TechnologyWhereInput {
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<TechnologyWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<TechnologyWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<TechnologyWhereInput>>;
-  id?: Maybe<Scalars['ID']>;
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values less than the given value. */
-  id_lt?: Maybe<Scalars['ID']>;
-  /** All values less than or equal the given value. */
-  id_lte?: Maybe<Scalars['ID']>;
-  /** All values greater than the given value. */
-  id_gt?: Maybe<Scalars['ID']>;
-  /** All values greater than or equal the given value. */
-  id_gte?: Maybe<Scalars['ID']>;
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>;
-  /** All values not ending with the given string. */
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  name_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values less than the given value. */
-  name_lt?: Maybe<Scalars['String']>;
-  /** All values less than or equal the given value. */
-  name_lte?: Maybe<Scalars['String']>;
-  /** All values greater than the given value. */
-  name_gt?: Maybe<Scalars['String']>;
-  /** All values greater than or equal the given value. */
-  name_gte?: Maybe<Scalars['String']>;
-  /** All values containing the given string. */
-  name_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string. */
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  contentText?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  contentText_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  contentText_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  contentText_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values less than the given value. */
-  contentText_lt?: Maybe<Scalars['String']>;
-  /** All values less than or equal the given value. */
-  contentText_lte?: Maybe<Scalars['String']>;
-  /** All values greater than the given value. */
-  contentText_gt?: Maybe<Scalars['String']>;
-  /** All values greater than or equal the given value. */
-  contentText_gte?: Maybe<Scalars['String']>;
-  /** All values containing the given string. */
-  contentText_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  contentText_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  contentText_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  contentText_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  contentText_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string. */
-  contentText_not_ends_with?: Maybe<Scalars['String']>;
-  site_url?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  site_url_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  site_url_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  site_url_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values less than the given value. */
-  site_url_lt?: Maybe<Scalars['String']>;
-  /** All values less than or equal the given value. */
-  site_url_lte?: Maybe<Scalars['String']>;
-  /** All values greater than the given value. */
-  site_url_gt?: Maybe<Scalars['String']>;
-  /** All values greater than or equal the given value. */
-  site_url_gte?: Maybe<Scalars['String']>;
-  /** All values containing the given string. */
-  site_url_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  site_url_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  site_url_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  site_url_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  site_url_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string. */
-  site_url_not_ends_with?: Maybe<Scalars['String']>;
-  CreatedBy?: Maybe<UserWhereInput>;
-  UserTechnologies_every?: Maybe<UserTechnologyWhereInput>;
-  UserTechnologies_some?: Maybe<UserTechnologyWhereInput>;
-  UserTechnologies_none?: Maybe<UserTechnologyWhereInput>;
-}
-
-export interface UserTechnologyWhereInput {
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<UserTechnologyWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<UserTechnologyWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<UserTechnologyWhereInput>>;
-  id?: Maybe<Scalars['ID']>;
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values less than the given value. */
-  id_lt?: Maybe<Scalars['ID']>;
-  /** All values less than or equal the given value. */
-  id_lte?: Maybe<Scalars['ID']>;
-  /** All values greater than the given value. */
-  id_gt?: Maybe<Scalars['ID']>;
-  /** All values greater than or equal the given value. */
-  id_gte?: Maybe<Scalars['ID']>;
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>;
-  /** All values not ending with the given string. */
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  date_from?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  date_from_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  date_from_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  date_from_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  date_from_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  date_from_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  date_from_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  date_from_gte?: Maybe<Scalars['DateTime']>;
-  date_till?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  date_till_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  date_till_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  date_till_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  date_till_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  date_till_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  date_till_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  date_till_gte?: Maybe<Scalars['DateTime']>;
-  status?: Maybe<UserTechnologyStatus>;
-  /** All values that are not equal to given value. */
-  status_not?: Maybe<UserTechnologyStatus>;
-  /** All values that are contained in given list. */
-  status_in?: Maybe<Array<UserTechnologyStatus>>;
-  /** All values that are not contained in given list. */
-  status_not_in?: Maybe<Array<UserTechnologyStatus>>;
-  level?: Maybe<Scalars['Int']>;
-  /** All values that are not equal to given value. */
-  level_not?: Maybe<Scalars['Int']>;
-  /** All values that are contained in given list. */
-  level_in?: Maybe<Array<Scalars['Int']>>;
-  /** All values that are not contained in given list. */
-  level_not_in?: Maybe<Array<Scalars['Int']>>;
-  /** All values less than the given value. */
-  level_lt?: Maybe<Scalars['Int']>;
-  /** All values less than or equal the given value. */
-  level_lte?: Maybe<Scalars['Int']>;
-  /** All values greater than the given value. */
-  level_gt?: Maybe<Scalars['Int']>;
-  /** All values greater than or equal the given value. */
-  level_gte?: Maybe<Scalars['Int']>;
-  CreatedBy?: Maybe<UserWhereInput>;
-  Technology?: Maybe<TechnologyWhereInput>;
-}
-
-export enum UserTechnologyStatus {
-  /** Планирую изучать */
-  PLANTOSTUDY = 'PlanToStudy',
-  /** Отказался изучать */
-  REFUSEDTOSTUDY = 'RefusedToStudy',
-  /** Изучаю */
-  STUDY = 'Study',
-  /** Иногда использую */
-  RARELYUSE = 'RarelyUse',
-  /** Активно использую */
-  ACTIVEUSE = 'ActiveUse',
-  /** Больше не использую */
-  NOLONGERUSE = 'NoLongerUse'
-}
-
 export interface TechnologyLessonUserWhereInput {
   /** Logical AND on all given filters. */
   AND?: Maybe<Array<TechnologyLessonUserWhereInput>>;
@@ -12828,65 +13060,6 @@ export type TechnologyLessonCommentsArgs = {
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
 };
-
-export interface Technology extends Node {
-  __typename?: 'Technology';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  name?: Maybe<Scalars['String']>;
-  components?: Maybe<Scalars['Json']>;
-  contentText?: Maybe<Scalars['String']>;
-  site_url?: Maybe<Scalars['String']>;
-  CreatedBy?: Maybe<User>;
-  UserTechnologies?: Maybe<Array<UserTechnology>>;
-}
-
-
-export type TechnologyUserTechnologiesArgs = {
-  where?: Maybe<UserTechnologyWhereInput>;
-  orderBy?: Maybe<UserTechnologyOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-};
-
-export enum UserTechnologyOrderByInput {
-  ID_ASC = 'id_ASC',
-  ID_DESC = 'id_DESC',
-  CREATEDAT_ASC = 'createdAt_ASC',
-  CREATEDAT_DESC = 'createdAt_DESC',
-  UPDATEDAT_ASC = 'updatedAt_ASC',
-  UPDATEDAT_DESC = 'updatedAt_DESC',
-  COMPONENTS_ASC = 'components_ASC',
-  COMPONENTS_DESC = 'components_DESC',
-  DATE_FROM_ASC = 'date_from_ASC',
-  DATE_FROM_DESC = 'date_from_DESC',
-  DATE_TILL_ASC = 'date_till_ASC',
-  DATE_TILL_DESC = 'date_till_DESC',
-  STATUS_ASC = 'status_ASC',
-  STATUS_DESC = 'status_DESC',
-  LEVEL_ASC = 'level_ASC',
-  LEVEL_DESC = 'level_DESC'
-}
-
-export interface UserTechnology {
-  __typename?: 'UserTechnology';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  CreatedBy?: Maybe<User>;
-  Technology: Technology;
-  components?: Maybe<Scalars['Json']>;
-  date_from?: Maybe<Scalars['DateTime']>;
-  date_till?: Maybe<Scalars['DateTime']>;
-  status?: Maybe<UserTechnologyStatus>;
-  /** Уровень знания технологии */
-  level?: Maybe<Scalars['UserTechnologyLevel']>;
-}
-
 
 export enum TechnologyLessonUserOrderByInput {
   ID_ASC = 'id_ASC',
@@ -13292,6 +13465,10 @@ export interface UserTechnologyWhereUniqueInput {
 }
 
 export interface TestWhereUniqueInput {
+  id?: Maybe<Scalars['ID']>;
+}
+
+export interface TaskTechnologyWhereUniqueInput {
   id?: Maybe<Scalars['ID']>;
 }
 
@@ -14176,6 +14353,30 @@ export interface AggregateTest {
 }
 
 /** A connection to a list of items. */
+export interface TaskTechnologyConnection {
+  __typename?: 'TaskTechnologyConnection';
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: Array<Maybe<TaskTechnologyEdge>>;
+  aggregate: AggregateTaskTechnology;
+}
+
+/** An edge in a connection. */
+export interface TaskTechnologyEdge {
+  __typename?: 'TaskTechnologyEdge';
+  /** The item at the end of the edge. */
+  node: TaskTechnology;
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+}
+
+export interface AggregateTaskTechnology {
+  __typename?: 'AggregateTaskTechnology';
+  count: Scalars['Int'];
+}
+
+/** A connection to a list of items. */
 export interface TechnologyConnection {
   __typename?: 'TechnologyConnection';
   /** Information to aid in pagination. */
@@ -14427,6 +14628,8 @@ export interface Mutation {
   fccImportChallengs?: Maybe<Scalars['Json']>;
   createCareerProcessor: CareerResponse;
   updateCareerProcessor: CareerResponse;
+  createTaskTechnologyProcessor: TaskTechnologyResponse;
+  updateTaskTechnologyProcessor: TaskTechnologyResponse;
   createUserTechnologyProcessor: UserTechnologyResponse;
   updateUserTechnologyProcessor: UserTechnologyResponse;
   createTechnologyLessonProcessor: TechnologyLessonResponse;
@@ -14466,6 +14669,7 @@ export interface Mutation {
   deleteTechnologyLessonUser?: Maybe<TechnologyLessonUser>;
   deleteUserTechnology?: Maybe<UserTechnology>;
   deleteTest?: Maybe<Test>;
+  deleteTaskTechnology?: Maybe<TaskTechnology>;
   deleteFile?: Maybe<File>;
   deleteTechnology?: Maybe<Technology>;
   deleteTemplate?: Maybe<Template>;
@@ -14618,6 +14822,17 @@ export type MutationCreateCareerProcessorArgs = {
 export type MutationUpdateCareerProcessorArgs = {
   data: CareerUpdateInput;
   where: CareerWhereUniqueInput;
+};
+
+
+export type MutationCreateTaskTechnologyProcessorArgs = {
+  data: TaskTechnologyCreateInput;
+};
+
+
+export type MutationUpdateTaskTechnologyProcessorArgs = {
+  data: TaskTechnologyUpdateInput;
+  where: TaskTechnologyWhereUniqueInput;
 };
 
 
@@ -14823,6 +15038,11 @@ export type MutationDeleteUserTechnologyArgs = {
 
 export type MutationDeleteTestArgs = {
   where: TestWhereUniqueInput;
+};
+
+
+export type MutationDeleteTaskTechnologyArgs = {
+  where: TaskTechnologyWhereUniqueInput;
 };
 
 
@@ -15402,6 +15622,45 @@ export interface CareerUpdateInput {
   start_date?: Maybe<Scalars['DateTime']>;
 }
 
+export interface TaskTechnologyCreateInput {
+  id?: Maybe<Scalars['ID']>;
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
+  Task: TaskCreateOneWithoutTaskTechnologiesInput;
+  Technology: TechnologyCreateOneWithoutTaskTechnologiesInput;
+  CreatedBy?: Maybe<UserCreateOneInput>;
+}
+
+export interface TaskCreateOneWithoutTaskTechnologiesInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+}
+
+export interface TechnologyCreateOneWithoutTaskTechnologiesInput {
+  connect?: Maybe<TechnologyWhereUniqueInput>;
+}
+
+export interface TaskTechnologyResponse {
+  __typename?: 'TaskTechnologyResponse';
+  success: Scalars['Boolean'];
+  message?: Maybe<Scalars['String']>;
+  errors: Array<Error>;
+  data?: Maybe<TaskTechnology>;
+}
+
+export interface TaskTechnologyUpdateInput {
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
+  Task?: Maybe<TaskUpdateOneRequiredWithoutTaskTechnologiesInput>;
+  Technology?: Maybe<TechnologyUpdateOneRequiredWithoutTaskTechnologiesInput>;
+  CreatedBy?: Maybe<UserUpdateOneInput>;
+}
+
+export interface TaskUpdateOneRequiredWithoutTaskTechnologiesInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+}
+
+export interface TechnologyUpdateOneRequiredWithoutTaskTechnologiesInput {
+  connect?: Maybe<TechnologyWhereUniqueInput>;
+}
+
 export interface UserTechnologyCreateInput {
   id?: Maybe<Scalars['ID']>;
   components?: Maybe<Scalars['Json']>;
@@ -15710,10 +15969,15 @@ export interface TechnologyCreateInput {
   site_url?: Maybe<Scalars['String']>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutTechnologyInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTechnologyInput>;
 }
 
 export interface UserTechnologyCreateManyWithoutTechnologyInput {
   connect?: Maybe<Array<UserTechnologyWhereUniqueInput>>;
+}
+
+export interface TaskTechnologyCreateManyWithoutTechnologyInput {
+  connect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
 }
 
 export interface TechnologyResponse {
@@ -15731,6 +15995,7 @@ export interface TechnologyUpdateInput {
   site_url?: Maybe<Scalars['String']>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutTechnologyInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTechnologyInput>;
 }
 
 export interface UserTechnologyUpdateManyWithoutTechnologyInput {
@@ -15869,6 +16134,104 @@ export interface UserTechnologyUpdateManyDataInput {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
+}
+
+export interface TaskTechnologyUpdateManyWithoutTechnologyInput {
+  connect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  set?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  disconnect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  updateMany?: Maybe<Array<TaskTechnologyUpdateManyWithWhereNestedInput>>;
+  deleteMany?: Maybe<Array<TaskTechnologyScalarWhereInput>>;
+}
+
+export interface TaskTechnologyUpdateManyWithWhereNestedInput {
+  where: TaskTechnologyScalarWhereInput;
+  data: TaskTechnologyUpdateManyDataInput;
+}
+
+export interface TaskTechnologyScalarWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<TaskTechnologyScalarWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<TaskTechnologyScalarWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<TaskTechnologyScalarWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values less than the given value. */
+  id_lt?: Maybe<Scalars['ID']>;
+  /** All values less than or equal the given value. */
+  id_lte?: Maybe<Scalars['ID']>;
+  /** All values greater than the given value. */
+  id_gt?: Maybe<Scalars['ID']>;
+  /** All values greater than or equal the given value. */
+  id_gte?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  level?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  level_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  level_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  level_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  level_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  level_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  level_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  level_gte?: Maybe<Scalars['Int']>;
+}
+
+export interface TaskTechnologyUpdateManyDataInput {
   level?: Maybe<Scalars['Int']>;
 }
 
@@ -21501,6 +21864,7 @@ export interface TaskCreateInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -21512,6 +21876,7 @@ export interface TaskCreateInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
   /** Custom field. Connect Project */
   Project: ProjectCreateOneWithoutProjectTasksInput;
 }
@@ -21560,6 +21925,10 @@ export interface CodeChallengeCompletionCreateOneWithoutTaskInput {
   connect?: Maybe<CodeChallengeCompletionWhereUniqueInput>;
 }
 
+export interface TaskTechnologyCreateManyWithoutTaskInput {
+  connect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+}
+
 export interface ProjectCreateOneWithoutProjectTasksInput {
   connect?: Maybe<ProjectWhereUniqueInput>;
 }
@@ -21581,6 +21950,7 @@ export interface TaskUpdateInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -21592,6 +21962,7 @@ export interface TaskUpdateInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface ProjectTaskUpdateManyWithoutTaskInput {
@@ -21894,6 +22265,9 @@ export interface TaskScalarWhereInput {
   endDate_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   endDate_gte?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  needHelp_not?: Maybe<Scalars['Boolean']>;
 }
 
 export interface TaskUpdateManyDataInput {
@@ -21905,6 +22279,7 @@ export interface TaskUpdateManyDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
 }
 
 export interface TaskUpdateManyWithoutRelatedToInput {
@@ -22119,6 +22494,14 @@ export interface ChatRoomUpdateOneWithoutTaskInput {
 export interface CodeChallengeCompletionUpdateOneWithoutTaskInput {
   connect?: Maybe<CodeChallengeCompletionWhereUniqueInput>;
   disconnect?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskTechnologyUpdateManyWithoutTaskInput {
+  connect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  set?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  disconnect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  updateMany?: Maybe<Array<TaskTechnologyUpdateManyWithWhereNestedInput>>;
+  deleteMany?: Maybe<Array<TaskTechnologyScalarWhereInput>>;
 }
 
 export interface TaskReactionCreateInput {
@@ -23051,6 +23434,7 @@ export interface Subscription {
   career?: Maybe<CareerSubscriptionPayload>;
   technologyLessonUser?: Maybe<TechnologyLessonUserSubscriptionPayload>;
   userTechnology?: Maybe<UserTechnologySubscriptionPayload>;
+  taskTechnology?: Maybe<TaskTechnologySubscriptionPayload>;
   technology?: Maybe<TechnologySubscriptionPayload>;
   team?: Maybe<TeamSubscriptionPayload>;
   project?: Maybe<ProjectSubscriptionPayload>;
@@ -23211,6 +23595,11 @@ export type SubscriptionTechnologyLessonUserArgs = {
 
 export type SubscriptionUserTechnologyArgs = {
   where?: Maybe<UserTechnologySubscriptionWhereInput>;
+};
+
+
+export type SubscriptionTaskTechnologyArgs = {
+  where?: Maybe<TaskTechnologySubscriptionWhereInput>;
 };
 
 
@@ -23898,6 +24287,7 @@ export interface TaskPreviousValues {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
 }
 
 export interface TaskReactionSubscriptionWhereInput {
@@ -24304,6 +24694,40 @@ export interface UserTechnologyPreviousValues {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
+}
+
+export interface TaskTechnologySubscriptionWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<TaskTechnologySubscriptionWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<TaskTechnologySubscriptionWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<TaskTechnologySubscriptionWhereInput>>;
+  /** The subscription event gets dispatched when it's listed in mutation_in */
+  mutation_in?: Maybe<Array<MutationType>>;
+  /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
+  updatedFields_contains?: Maybe<Scalars['String']>;
+  /** The subscription event gets only dispatched when all of the field names included in this list have been updated */
+  updatedFields_contains_every?: Maybe<Array<Scalars['String']>>;
+  /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
+  updatedFields_contains_some?: Maybe<Array<Scalars['String']>>;
+  node?: Maybe<TaskTechnologyWhereInput>;
+}
+
+export interface TaskTechnologySubscriptionPayload {
+  __typename?: 'TaskTechnologySubscriptionPayload';
+  mutation: MutationType;
+  node?: Maybe<TaskTechnology>;
+  updatedFields?: Maybe<Array<Scalars['String']>>;
+  previousValues?: Maybe<TaskTechnologyPreviousValues>;
+}
+
+export interface TaskTechnologyPreviousValues {
+  __typename?: 'TaskTechnologyPreviousValues';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
   level?: Maybe<Scalars['Int']>;
 }
 
@@ -35864,6 +36288,7 @@ export interface TaskCreateWithoutChatRoomInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -35874,6 +36299,7 @@ export interface TaskCreateWithoutChatRoomInput {
   Timers?: Maybe<TimerCreateManyWithoutTaskInput>;
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutChildsInput {
@@ -35886,6 +36312,7 @@ export interface TaskCreateWithoutChildsInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -35896,6 +36323,7 @@ export interface TaskCreateWithoutChildsInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutCodeChallengeCompletionInput {
@@ -35908,6 +36336,7 @@ export interface TaskCreateWithoutCodeChallengeCompletionInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -35918,6 +36347,7 @@ export interface TaskCreateWithoutCodeChallengeCompletionInput {
   Timers?: Maybe<TimerCreateManyWithoutTaskInput>;
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutMembersInput {
@@ -35930,6 +36360,7 @@ export interface TaskCreateWithoutMembersInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
@@ -35940,6 +36371,7 @@ export interface TaskCreateWithoutMembersInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutParentInput {
@@ -35952,6 +36384,7 @@ export interface TaskCreateWithoutParentInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -35962,6 +36395,7 @@ export interface TaskCreateWithoutParentInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutReactionsInput {
@@ -35974,6 +36408,7 @@ export interface TaskCreateWithoutReactionsInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -35984,6 +36419,7 @@ export interface TaskCreateWithoutReactionsInput {
   Timers?: Maybe<TimerCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutRelatedFromInput {
@@ -35996,6 +36432,7 @@ export interface TaskCreateWithoutRelatedFromInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -36006,6 +36443,7 @@ export interface TaskCreateWithoutRelatedFromInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutRelatedToInput {
@@ -36018,6 +36456,7 @@ export interface TaskCreateWithoutRelatedToInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -36028,6 +36467,7 @@ export interface TaskCreateWithoutRelatedToInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutTaskProjectsInput {
@@ -36040,6 +36480,32 @@ export interface TaskCreateWithoutTaskProjectsInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  CreatedBy?: Maybe<UserCreateOneInput>;
+  Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
+  Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
+  Childs?: Maybe<TaskCreateManyWithoutParentInput>;
+  RelatedFrom?: Maybe<TaskCreateManyWithoutRelatedToInput>;
+  RelatedTo?: Maybe<TaskCreateManyWithoutRelatedFromInput>;
+  Timers?: Maybe<TimerCreateManyWithoutTaskInput>;
+  Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
+  ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
+  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+}
+
+export interface TaskCreateWithoutTaskTechnologiesInput {
+  id?: Maybe<Scalars['ID']>;
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  status?: Maybe<TaskStatus>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
@@ -36062,6 +36528,7 @@ export interface TaskCreateWithoutTimersInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserCreateOneInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
@@ -36072,6 +36539,7 @@ export interface TaskCreateWithoutTimersInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
 }
 
 /** A connection to a list of items. */
@@ -36270,6 +36738,54 @@ export interface TaskReactionUpsertWithWhereUniqueWithoutTaskInput {
   where: TaskReactionWhereUniqueInput;
 }
 
+export interface TaskTechnologyCreateWithoutTaskInput {
+  id?: Maybe<Scalars['ID']>;
+  level?: Maybe<Scalars['Int']>;
+  Technology: TechnologyCreateOneWithoutTaskTechnologiesInput;
+  CreatedBy?: Maybe<UserCreateOneInput>;
+}
+
+export interface TaskTechnologyCreateWithoutTechnologyInput {
+  id?: Maybe<Scalars['ID']>;
+  level?: Maybe<Scalars['Int']>;
+  Task: TaskCreateOneWithoutTaskTechnologiesInput;
+  CreatedBy?: Maybe<UserCreateOneInput>;
+}
+
+export interface TaskTechnologyUpdateManyMutationInput {
+  level?: Maybe<Scalars['Int']>;
+}
+
+export interface TaskTechnologyUpdateWithoutTaskDataInput {
+  level?: Maybe<Scalars['Int']>;
+  Technology?: Maybe<TechnologyUpdateOneRequiredWithoutTaskTechnologiesInput>;
+  CreatedBy?: Maybe<UserUpdateOneInput>;
+}
+
+export interface TaskTechnologyUpdateWithoutTechnologyDataInput {
+  level?: Maybe<Scalars['Int']>;
+  Task?: Maybe<TaskUpdateOneRequiredWithoutTaskTechnologiesInput>;
+  CreatedBy?: Maybe<UserUpdateOneInput>;
+}
+
+export interface TaskTechnologyUpdateWithWhereUniqueWithoutTaskInput {
+  where: TaskTechnologyWhereUniqueInput;
+  data: TaskTechnologyUpdateWithoutTaskDataInput;
+}
+
+export interface TaskTechnologyUpdateWithWhereUniqueWithoutTechnologyInput {
+  where: TaskTechnologyWhereUniqueInput;
+  data: TaskTechnologyUpdateWithoutTechnologyDataInput;
+}
+
+export interface TaskTechnologyUpsertWithWhereUniqueWithoutTaskInput {
+  where: TaskTechnologyWhereUniqueInput;
+}
+
+export interface TaskTechnologyUpsertWithWhereUniqueWithoutTechnologyInput {
+  where: TaskTechnologyWhereUniqueInput;
+}
+
 export interface TaskUpdateManyMutationInput {
   name?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
@@ -36279,6 +36795,7 @@ export interface TaskUpdateManyMutationInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
 }
 
 export interface TaskUpdateWithoutChatRoomDataInput {
@@ -36290,6 +36807,7 @@ export interface TaskUpdateWithoutChatRoomDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -36300,6 +36818,7 @@ export interface TaskUpdateWithoutChatRoomDataInput {
   Timers?: Maybe<TimerUpdateManyWithoutTaskInput>;
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutChildsDataInput {
@@ -36311,6 +36830,7 @@ export interface TaskUpdateWithoutChildsDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -36321,6 +36841,7 @@ export interface TaskUpdateWithoutChildsDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutCodeChallengeCompletionDataInput {
@@ -36332,6 +36853,7 @@ export interface TaskUpdateWithoutCodeChallengeCompletionDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -36342,6 +36864,7 @@ export interface TaskUpdateWithoutCodeChallengeCompletionDataInput {
   Timers?: Maybe<TimerUpdateManyWithoutTaskInput>;
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutMembersDataInput {
@@ -36353,6 +36876,7 @@ export interface TaskUpdateWithoutMembersDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
@@ -36363,6 +36887,7 @@ export interface TaskUpdateWithoutMembersDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutParentDataInput {
@@ -36374,6 +36899,7 @@ export interface TaskUpdateWithoutParentDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -36384,6 +36910,7 @@ export interface TaskUpdateWithoutParentDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutReactionsDataInput {
@@ -36395,6 +36922,7 @@ export interface TaskUpdateWithoutReactionsDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -36405,6 +36933,7 @@ export interface TaskUpdateWithoutReactionsDataInput {
   Timers?: Maybe<TimerUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutRelatedFromDataInput {
@@ -36416,6 +36945,7 @@ export interface TaskUpdateWithoutRelatedFromDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -36426,6 +36956,7 @@ export interface TaskUpdateWithoutRelatedFromDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutRelatedToDataInput {
@@ -36437,6 +36968,7 @@ export interface TaskUpdateWithoutRelatedToDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -36447,6 +36979,7 @@ export interface TaskUpdateWithoutRelatedToDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutTaskProjectsDataInput {
@@ -36458,6 +36991,31 @@ export interface TaskUpdateWithoutTaskProjectsDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  CreatedBy?: Maybe<UserUpdateOneInput>;
+  Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
+  Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
+  Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
+  RelatedFrom?: Maybe<TaskUpdateManyWithoutRelatedToInput>;
+  RelatedTo?: Maybe<TaskUpdateManyWithoutRelatedFromInput>;
+  Timers?: Maybe<TimerUpdateManyWithoutTaskInput>;
+  Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
+  ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
+  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+}
+
+export interface TaskUpdateWithoutTaskTechnologiesDataInput {
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  status?: Maybe<TaskStatus>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
@@ -36479,6 +37037,7 @@ export interface TaskUpdateWithoutTimersDataInput {
   endDatePlaning?: Maybe<Scalars['DateTime']>;
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
@@ -36489,6 +37048,7 @@ export interface TaskUpdateWithoutTimersDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithWhereUniqueWithoutParentInput {
@@ -36884,6 +37444,16 @@ export interface TeamUpsertWithWhereUniqueWithoutParentInput {
   where: TeamWhereUniqueInput;
 }
 
+export interface TechnologyCreateWithoutTaskTechnologiesInput {
+  id?: Maybe<Scalars['ID']>;
+  name?: Maybe<Scalars['String']>;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  site_url?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<UserCreateOneInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutTechnologyInput>;
+}
+
 export interface TechnologyCreateWithoutUserTechnologiesInput {
   id?: Maybe<Scalars['ID']>;
   name?: Maybe<Scalars['String']>;
@@ -36891,6 +37461,7 @@ export interface TechnologyCreateWithoutUserTechnologiesInput {
   contentText?: Maybe<Scalars['String']>;
   site_url?: Maybe<Scalars['String']>;
   CreatedBy?: Maybe<UserCreateOneInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTechnologyInput>;
 }
 
 export interface TechnologyLessonCreateWithoutCommentsInput {
@@ -36976,6 +37547,7 @@ export interface TechnologyUpdateDataInput {
   site_url?: Maybe<Scalars['String']>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutTechnologyInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTechnologyInput>;
 }
 
 export interface TechnologyUpdateManyMutationInput {
@@ -36985,12 +37557,22 @@ export interface TechnologyUpdateManyMutationInput {
   site_url?: Maybe<Scalars['String']>;
 }
 
+export interface TechnologyUpdateWithoutTaskTechnologiesDataInput {
+  name?: Maybe<Scalars['String']>;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  site_url?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<UserUpdateOneInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutTechnologyInput>;
+}
+
 export interface TechnologyUpdateWithoutUserTechnologiesDataInput {
   name?: Maybe<Scalars['String']>;
   components?: Maybe<Scalars['Json']>;
   contentText?: Maybe<Scalars['String']>;
   site_url?: Maybe<Scalars['String']>;
   CreatedBy?: Maybe<UserUpdateOneInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTechnologyInput>;
 }
 
 export interface TemplateCreateWithoutPrismaProjectInput {

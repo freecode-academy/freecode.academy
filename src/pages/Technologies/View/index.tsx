@@ -7,7 +7,7 @@ import { ColumnConfig } from 'apollo-cms/dist/DataView/List/Table'
 import { TechnologiesConnectionTechnologyFragment } from 'src/modules/gql/generated'
 import UserLink from 'src/uikit/Link/User'
 import Grid from 'src/uikit/Grid'
-import Link from 'next/link'
+import TechnologyLink from 'src/uikit/Link/Technology'
 
 class TechnologiesView<
   P extends TechnologiesViewProps = TechnologiesViewProps
@@ -30,11 +30,13 @@ class TechnologiesView<
             return null
           }
 
-          return (
-            <Link href={`/technologies/${record.id}`}>
-              <a title={value as string}>{value}</a>
-            </Link>
-          )
+          // return (
+          //   <Link href={`/technologies/${record.id}`}>
+          //     <a title={value as string}>{value}</a>
+          //   </Link>
+          // )
+
+          return <TechnologyLink object={record} />
         },
       },
       {

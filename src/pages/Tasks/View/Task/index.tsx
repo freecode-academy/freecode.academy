@@ -15,6 +15,8 @@ import UikitUserLink from 'src/uikit/Link/User'
 import TaskLink from 'src/uikit/Link/Task'
 import ProjectLink from 'src/uikit/Link/Project'
 import TaskButtons from './TaskButtons'
+import TechnologyLink from 'src/uikit/Link/Technology'
+import Typography from 'material-ui/Typography'
 
 const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
   // const context = useContext(PrismaContext) as PrismaCmsContext
@@ -58,6 +60,32 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
     return null
   }, [object.TaskProjects])
 
+  /**
+   * Требуемые технологии
+   */
+  const technologies = useMemo(() => {
+    if (!object.TaskTechnologies?.length) {
+      return null
+    }
+
+    const technologies = object.TaskTechnologies?.map((n) => (
+      <>
+        <TechnologyLink key={n.id} object={n.Technology} />{' '}
+        {n.level ? <span title={'Требуемый уровень'}>({n.level})</span> : null}
+      </>
+    )).reduce<React.ReactNode[]>(
+      (curr, next) => (curr.length ? [curr, ', ', next] : [next]),
+      []
+    )
+
+    return (
+      <div>
+        <Typography variant="subheading">Требуемые технологии</Typography>{' '}
+        {technologies}
+      </div>
+    )
+  }, [object.TaskTechnologies])
+
   return useMemo(() => {
     return (
       <>
@@ -72,7 +100,12 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
 
           <GridTableAttributeStyled className="content" data-label="Описание">
             <p>
-              Задача: <TaskLink object={object} />
+              Задача: <TaskLink object={object} />{' '}
+              {object.needHelp ? (
+                <Typography component="span" color="primary">
+                  Нужна помощь
+                </Typography>
+              ) : null}
             </p>
 
             {projects}
@@ -83,6 +116,8 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
               editorKey={`task-${object.id}`}
               value={object.content}
             />
+
+            {technologies}
           </GridTableAttributeStyled>
 
           <GridTableAttributesContainerStyled>
@@ -118,7 +153,7 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
         </GridTableItemStyled>
       </>
     )
-  }, [buttons, object, other, projects, timers])
+  }, [buttons, object, other, projects, technologies, timers])
 }
 
 export default TasksViewTask

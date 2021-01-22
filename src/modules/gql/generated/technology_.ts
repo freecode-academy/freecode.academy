@@ -8,28 +8,27 @@
 
 import * as Types from './types';
 
+import { TechnologyNoNestingFragment } from './TechnologyNoNesting';
 import { UserNoNestingFragment } from './UserNoNesting';
 import { Technology_UserTechnologyFragment } from './technology_UserTechnology';
 import { gql } from '@apollo/client';
+import { TechnologyNoNestingFragmentDoc } from './TechnologyNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { Technology_UserTechnologyFragmentDoc } from './technology_UserTechnology';
-export type Technology_Fragment = { __typename?: 'Technology', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, name?: Types.Maybe<string>, components?: Types.Maybe<globalThis.Record<string, any> | globalThis.Array<any>>, contentText?: Types.Maybe<string>, site_url?: Types.Maybe<string>, CreatedBy?: Types.Maybe<(
+export type Technology_Fragment = (
+  { __typename?: 'Technology', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
   )>, UserTechnologies?: Types.Maybe<Array<(
     { __typename?: 'UserTechnology' }
     & Technology_UserTechnologyFragment
-  )>> };
+  )>> }
+  & TechnologyNoNestingFragment
+);
 
 export const Technology_FragmentDoc = gql`
     fragment technology_ on Technology {
-  id
-  createdAt
-  updatedAt
-  name
-  components
-  contentText
-  site_url
+  ...TechnologyNoNesting
   CreatedBy {
     ...UserNoNesting
   }
@@ -37,5 +36,6 @@ export const Technology_FragmentDoc = gql`
     ...technology_UserTechnology
   }
 }
-    ${UserNoNestingFragmentDoc}
+    ${TechnologyNoNestingFragmentDoc}
+${UserNoNestingFragmentDoc}
 ${Technology_UserTechnologyFragmentDoc}`;

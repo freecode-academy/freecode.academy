@@ -1,0 +1,45 @@
+mutation createTaskTechnologyProcessor($data: TaskTechnologyCreateInput!) {
+  response: createTaskTechnologyProcessor(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...taskTechnology_
+    }
+  }
+}
+
+mutation updateTaskTechnologyProcessor(
+  $data: TaskTechnologyUpdateInput!
+  $where: TaskTechnologyWhereUniqueInput!
+) {
+  response: updateTaskTechnologyProcessor(data: $data, where: $where) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...taskTechnology_
+    }
+  }
+}
+
+fragment taskTechnology_ on TaskTechnology {
+  id
+  createdAt
+  level
+  Task {
+    ...TaskNoNesting
+  }
+  Technology {
+    ...TechnologyNoNesting
+  }
+  CreatedBy {
+    ...UserNoNesting
+  }
+}

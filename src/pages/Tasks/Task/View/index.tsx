@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { TaskViewProps } from './interfaces'
 import { TaskViewStyled } from './styles'
 // import Link from 'next/link'
@@ -15,12 +15,17 @@ import IconButton from 'material-ui/IconButton'
 import EditModeIcon from 'material-ui-icons/ModeEdit'
 import moment from 'moment'
 import Link from 'next/link'
+import TaskTaskTechnologies from './TaskTaskTechnologies'
+import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 
 const TaskView: React.FC<TaskViewProps> = ({
   object: task,
   loading,
   ...other
 }) => {
+  const context = useContext(PrismaContext) as PrismaCmsContext
+  const user = context.user
+
   const timersList = useMemo(() => {
     const timers = task.Timers || []
 
@@ -38,6 +43,8 @@ const TaskView: React.FC<TaskViewProps> = ({
   }, [task])
 
   const [opened, setOpened] = useState(false)
+
+  const inEditMode = opened
 
   const startEdit = useCallback(() => {
     setOpened(true)
@@ -103,6 +110,15 @@ const TaskView: React.FC<TaskViewProps> = ({
     }
   }, [task.CodeChallengeCompletion])
 
+  /**
+   * Список технологий, необходимых для выполнения задачи
+   */
+  const taskTechnologies = useMemo(() => {
+    return (
+      <TaskTaskTechnologies object={task} user={user} inEditMode={inEditMode} />
+    )
+  }, [inEditMode, task, user])
+
   return useMemo(() => {
     return (
       <TaskViewStyled {...other}>
@@ -163,6 +179,8 @@ const TaskView: React.FC<TaskViewProps> = ({
 
         {form}
 
+        {taskTechnologies}
+
         {timersList}
       </TaskViewStyled>
     )
@@ -182,6 +200,7 @@ const TaskView: React.FC<TaskViewProps> = ({
     task.startDatePlaning,
     task.endDatePlaning,
     task.endDate,
+    taskTechnologies,
   ])
 }
 

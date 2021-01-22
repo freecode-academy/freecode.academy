@@ -11,10 +11,12 @@ import * as Types from './types';
 import { Task_Fragment } from './task_';
 import { TimersConnectionTimerFragment } from './timersConnectionTimer';
 import { CodeChallengeWithBlocks_Fragment } from './codeChallengeWithBlocks_';
+import { TaskTaskTechnologiesFragment } from './taskTaskTechnologies';
 import { gql } from '@apollo/client';
 import { Task_FragmentDoc } from './task_';
 import { TimersConnectionTimerFragmentDoc } from './timersConnectionTimer';
 import { CodeChallengeWithBlocks_FragmentDoc } from './codeChallengeWithBlocks_';
+import { TaskTaskTechnologiesFragmentDoc } from './taskTaskTechnologies';
 import * as Apollo from '@apollo/client';
 export type TaskQueryVariables = Types.Exact<{
   where: Types.TaskWhereUniqueInput;
@@ -31,6 +33,7 @@ export type TaskQuery = { __typename?: 'Query', object?: Types.Maybe<(
         & CodeChallengeWithBlocks_Fragment
       ) }> }
     & Task_Fragment
+    & TaskTaskTechnologiesFragment
   )> };
 
 
@@ -47,11 +50,13 @@ export const TaskDocument = gql`
         ...codeChallengeWithBlocks_
       }
     }
+    ...taskTaskTechnologies
   }
 }
     ${Task_FragmentDoc}
 ${TimersConnectionTimerFragmentDoc}
-${CodeChallengeWithBlocks_FragmentDoc}`;
+${CodeChallengeWithBlocks_FragmentDoc}
+${TaskTaskTechnologiesFragmentDoc}`;
 
 /**
  * __useTaskQuery__

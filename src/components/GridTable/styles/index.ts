@@ -19,6 +19,11 @@ export const GridTableStyled = styled.ol`
 
   > ${GridTableItemStyled} {
     list-style: none;
+
+    &:first-child {
+      background-color: blanchedalmond;
+      border-top: 1px solid gray;
+    }
   }
 
   /* 1 Column Card Layout */
@@ -33,9 +38,9 @@ export const GridTableStyled = styled.ol`
       padding: 10px;
 
       /* Don't display the first item, since it is used to display the header for tabular layouts*/
-      &:first-child {
+      /* &:first-child {
         display: none;
-      }
+      } */
     }
   }
 
@@ -49,8 +54,8 @@ export const GridTableStyled = styled.ol`
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
       &:first-child {
-        background-color: blanchedalmond;
-        border-top: 1px solid gray;
+        /* background-color: blanchedalmond;
+        border-top: 1px solid gray; */
 
         /* Center header labels */
         ${GridTableAttributeStyled} {
@@ -75,9 +80,9 @@ export const GridTableStyled = styled.ol`
       border-right: 1px solid gray;
       border-bottom: 1px solid gray;
       padding: 2px;
-      overflow: hidden;
+      /* overflow: hidden;
       white-space: nowrap;
-      text-overflow: ellipsis;
+      text-overflow: ellipsis; */
     }
   }
 `

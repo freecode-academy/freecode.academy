@@ -1,5 +1,5 @@
 query technologiesConnection(
-  $first: Int = 10
+  $first: Int
   $skip: Int
   $where: TechnologyWhereInput
   $orderBy: TechnologyOrderByInput = createdAt_DESC

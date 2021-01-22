@@ -18,11 +18,11 @@ import SaveIcon from 'material-ui-icons/Save'
 import StartEditIcon from 'material-ui-icons/ModeEdit'
 import ResetIcon from 'material-ui-icons/Restore'
 import TextField from 'material-ui/TextField'
+import UserTechnologyLevel from './UserTechnologyLevel'
 
 const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
   object,
   user,
-  ...other
 }) => {
   const mutationTuple = useUpdateUserTechnologyProcessorMutation()
 
@@ -265,38 +265,54 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     const fieldName: Name = 'level'
     const value = getValue(fieldName)
 
-    const title = value
-      ? ['Начальный', 'Ниже среднего', 'Средний', 'Уверенный', 'Эксперт'][
-          value - 1
-        ]
-      : null
+    const error = errors.find((n) => n.key === fieldName)
 
-    if (inEditMode) {
-      const error = errors.find((n) => n.key === fieldName)
-
-      return (
-        <TextField
-          name={fieldName}
-          value={value || ''}
-          onChange={onChange}
-          error={!!error}
-          label="Уровень знания"
-          helperText={error?.message || title || 'Укажите от 1 до 5'}
-          type="number"
-          fullWidth
-        />
-      )
-    } else {
-      return title
-    }
+    return (
+      <UserTechnologyLevel
+        inEditMode={inEditMode}
+        error={error}
+        onChange={onChange}
+        value={value}
+      />
+    )
   }, [errors, getValue, inEditMode, onChange])
+
+  // const level = useMemo(() => {
+  //   const fieldName: Name = 'level'
+  //   const value = getValue(fieldName)
+
+  //   const title = value
+  //     ? ['Начальный', 'Ниже среднего', 'Средний', 'Уверенный', 'Эксперт'][
+  //         value - 1
+  //       ]
+  //     : null
+
+  //   if (inEditMode) {
+  //     const error = errors.find((n) => n.key === fieldName)
+
+  //     return (
+  //       <TextField
+  //         name={fieldName}
+  //         value={value || ''}
+  //         onChange={onChange}
+  //         error={!!error}
+  //         label="Уровень знания"
+  //         helperText={error?.message || title || 'Укажите от 1 до 5'}
+  //         type="number"
+  //         fullWidth
+  //       />
+  //     )
+  //   } else {
+  //     return title
+  //   }
+  // }, [errors, getValue, inEditMode, onChange])
 
   return useMemo(() => {
     return (
       <>
         {snakbar}
 
-        <GridTableItemStyled {...other} as="form" onSubmit={onSubmit}>
+        <GridTableItemStyled as="form" onSubmit={onSubmit}>
           <GridTableAttributeStyled>{buttons}</GridTableAttributeStyled>
 
           <GridTableAttributeStyled>
@@ -323,7 +339,6 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     object.CreatedBy,
     object.status,
     onSubmit,
-    other,
     snakbar,
   ])
 }

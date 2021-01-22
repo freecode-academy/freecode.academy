@@ -27,7 +27,7 @@ export type TechnologiesConnectionQuery = { __typename?: 'Query', objectsConnect
 
 
 export const TechnologiesConnectionDocument = gql`
-    query technologiesConnection($first: Int = 10, $skip: Int, $where: TechnologyWhereInput, $orderBy: TechnologyOrderByInput = createdAt_DESC) {
+    query technologiesConnection($first: Int, $skip: Int, $where: TechnologyWhereInput, $orderBy: TechnologyOrderByInput = createdAt_DESC) {
   objectsConnection: technologiesConnection(
     first: $first
     skip: $skip

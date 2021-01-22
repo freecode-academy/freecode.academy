@@ -25,6 +25,7 @@ const useSubscriptionProvider = ({ client }: SubscriptionProviderProps) => {
       'comment',
       'technology',
       'userTechnology',
+      'taskTechnology',
       'career',
 
       // TODO: Check maybe deprecated

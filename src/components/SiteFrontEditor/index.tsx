@@ -20,6 +20,7 @@ import ResourceContent, {
 // import TopicBlog from './components/Resource/Topic/TopicBlog'
 import Youtube from './components/Resource/Fields/Field/Youtube'
 import { SiteFrontEditorProps } from './interfaces'
+import Image from './components/Image'
 // import JoinUserTechnologyButton from './components/JoinUserTechnologyButton'
 // import ViewIcon from './components/ViewIcon'
 // import AcceptTechnologyLesson from './components/society/technologies/AcceptTechnologyLesson'
@@ -53,6 +54,7 @@ export const CustomComponents = [
   // FreeCodeCamp,
   // CodeChallenge,
   // CallRequestButtons,
+  Image,
 ] as FrontEditorProps['Components']
 
 const Components = CustomComponents.reduce((curr, next) => {

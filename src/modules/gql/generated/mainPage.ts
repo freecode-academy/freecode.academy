@@ -60,7 +60,7 @@ export const MainPageDocument = gql`
   tasksNeedHelp: tasksConnection(
     where: {needHelp: true, status_not_in: [Completed]}
     orderBy: createdAt_DESC
-    first: 2
+    first: 3
   ) {
     aggregate {
       count

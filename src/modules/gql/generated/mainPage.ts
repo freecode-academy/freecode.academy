@@ -11,12 +11,16 @@ import * as Types from './types';
 import { UserNoNestingFragment } from './UserNoNesting';
 import { MainPageCodeChallengeCompletionFragment } from './mainPageCodeChallengeCompletion';
 import { Resource_Fragment } from './resource_';
+import { TasksConnectionTaskFragment } from './tasksConnectionTask';
 import { gql } from '@apollo/client';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { MainPageCodeChallengeCompletionFragmentDoc } from './mainPageCodeChallengeCompletion';
 import { Resource_FragmentDoc } from './resource_';
+import { TasksConnectionTaskFragmentDoc } from './tasksConnectionTask';
 import * as Apollo from '@apollo/client';
-export type MainPageQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type MainPageQueryVariables = Types.Exact<{
+  timersWhere?: Types.Maybe<Types.TimerWhereInput>;
+}>;
 
 
 export type MainPageQuery = { __typename?: 'Query', students: Array<Types.Maybe<(
@@ -28,14 +32,17 @@ export type MainPageQuery = { __typename?: 'Query', students: Array<Types.Maybe<
   )>>, comments: Array<Types.Maybe<(
     { __typename?: 'Resource' }
     & Resource_Fragment
-  )>> };
+  )>>, tasksNeedHelp: { __typename?: 'TaskConnection', aggregate: { __typename?: 'AggregateTask', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TaskEdge', node: (
+        { __typename?: 'Task' }
+        & TasksConnectionTaskFragment
+      ) }>> } };
 
 
 export const MainPageDocument = gql`
-    query mainPage {
+    query mainPage($timersWhere: TimerWhereInput) {
   students: users(
     first: 4
-    orderBy: updatedAt_DESC
+    orderBy: createdAt_DESC
     where: {ProjectsCreated_some: {type: Education}}
   ) {
     ...UserNoNesting
@@ -50,10 +57,25 @@ export const MainPageDocument = gql`
   comments: resources(first: 5, orderBy: createdAt_DESC, where: {type: Comment}) {
     ...resource_
   }
+  tasksNeedHelp: tasksConnection(
+    where: {needHelp: true, status_not_in: [Completed]}
+    orderBy: createdAt_DESC
+    first: 2
+  ) {
+    aggregate {
+      count
+    }
+    edges {
+      node {
+        ...tasksConnectionTask
+      }
+    }
+  }
 }
     ${UserNoNestingFragmentDoc}
 ${MainPageCodeChallengeCompletionFragmentDoc}
-${Resource_FragmentDoc}`;
+${Resource_FragmentDoc}
+${TasksConnectionTaskFragmentDoc}`;
 
 /**
  * __useMainPageQuery__
@@ -67,6 +89,7 @@ ${Resource_FragmentDoc}`;
  * @example
  * const { data, loading, error } = useMainPageQuery({
  *   variables: {
+ *      timersWhere: // value for 'timersWhere'
  *   },
  * });
  */

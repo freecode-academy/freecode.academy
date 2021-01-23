@@ -5,6 +5,7 @@ import UikitUserLink from 'src/uikit/Link/User'
 import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
 import Grid from 'src/uikit/Grid'
+import Link from 'next/link'
 
 const MainPageStudents: React.FC<MainPageStudentsProps> = ({ objects }) => {
   return (
@@ -21,6 +22,12 @@ const MainPageStudents: React.FC<MainPageStudentsProps> = ({ objects }) => {
             </Grid>
           ))}
         </Grid>
+
+        <p>
+          <Link href="/people/students">
+            <a>Все ученики</a>
+          </Link>
+        </p>
       </Paper>
     </>
   )

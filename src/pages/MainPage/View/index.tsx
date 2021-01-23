@@ -3,13 +3,15 @@ import React, { useMemo } from 'react'
 import {
   MainPageCodeChallengeCompletionFragment,
   Resource_Fragment,
+  TasksConnectionTaskFragment,
   UserNoNestingFragment,
 } from 'src/modules/gql/generated'
 import MainPageCodeChallengeCompletions from './CodeChallengeCompletions'
 import MainPageComments from './Comments'
-import { MainPageProps } from './interfaces'
 import MainPageStudents from './Students'
+import { MainPageProps } from './interfaces'
 import { MainPageViewStyled } from './styles'
+import MainPageTasksNeedHelps from './TasksNeedHelp'
 
 const MainPageView: React.FC<MainPageProps> = (props) => {
   return useMemo(() => {
@@ -39,15 +41,28 @@ const MainPageView: React.FC<MainPageProps> = (props) => {
         return curr
       }, []) ?? []
 
+    const tasksNeedHelp =
+      props.data?.tasksNeedHelp.edges.reduce<TasksConnectionTaskFragment[]>(
+        (curr, next) => {
+          if (next?.node) {
+            curr.push(next.node)
+          }
+          return curr
+        },
+        []
+      ) ?? []
+
     return (
       <MainPageViewStyled>
         <Typography variant="title">
           Изучайте современный JavaScript с нами совершенно бесплатно!
         </Typography>
 
+        <MainPageCodeChallengeCompletions objects={completions} />
+
         <MainPageStudents objects={students} />
 
-        <MainPageCodeChallengeCompletions objects={completions} />
+        <MainPageTasksNeedHelps objects={tasksNeedHelp} />
 
         <MainPageComments objects={comments} />
       </MainPageViewStyled>
@@ -56,6 +71,7 @@ const MainPageView: React.FC<MainPageProps> = (props) => {
     props.data?.codeChallengeCompletions,
     props.data?.comments,
     props.data?.students,
+    props.data?.tasksNeedHelp.edges,
   ])
 }
 

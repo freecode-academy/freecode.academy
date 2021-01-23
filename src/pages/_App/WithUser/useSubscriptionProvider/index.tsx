@@ -5,7 +5,11 @@ import { SubscriptionProviderProps } from './interfaces'
 
 const useSubscriptionProvider = ({ client }: SubscriptionProviderProps) => {
   const resetStore = useCallback(() => {
-    client.resetStore().catch(console.error)
+    // TODO Эта проверка сильно снижает риск возникновения ошибки запроса,
+    // но из-за замыкания срабатывает раз в два. Надо будет перепроверить.
+    if (!client['queryManager'].fetchCancelFns.size) {
+      client.resetStore().catch(console.error)
+    }
   }, [client])
 
   useEffect(() => {

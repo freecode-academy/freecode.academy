@@ -19,6 +19,7 @@ import StartEditIcon from 'material-ui-icons/ModeEdit'
 import ResetIcon from 'material-ui-icons/Restore'
 import TextField from 'material-ui/TextField'
 import UserTechnologyLevel from './UserTechnologyLevel'
+import UserTechnologyStatusView from './UserTechnologyStatus'
 
 const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
   object,
@@ -277,6 +278,22 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     )
   }, [errors, getValue, inEditMode, onChange])
 
+  const status = useMemo(() => {
+    const fieldName: Name = 'status'
+    const value = getValue(fieldName)
+
+    const error = errors.find((n) => n.key === fieldName)
+
+    return (
+      <UserTechnologyStatusView
+        value={value}
+        setValue={setValue}
+        inEditMode={inEditMode}
+        error={error}
+      />
+    )
+  }, [errors, getValue, inEditMode, setValue])
+
   // const level = useMemo(() => {
   //   const fieldName: Name = 'level'
   //   const value = getValue(fieldName)
@@ -321,7 +338,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
 
           <GridTableAttributeStyled>{level}</GridTableAttributeStyled>
 
-          <GridTableAttributeStyled>{object.status}</GridTableAttributeStyled>
+          <GridTableAttributeStyled>{status}</GridTableAttributeStyled>
 
           <GridTableAttributesContainerStyled>
             <GridTableAttributeStyled>{dateFrom}</GridTableAttributeStyled>
@@ -337,9 +354,9 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     dateTill,
     level,
     object.CreatedBy,
-    object.status,
     onSubmit,
     snakbar,
+    status,
   ])
 }
 

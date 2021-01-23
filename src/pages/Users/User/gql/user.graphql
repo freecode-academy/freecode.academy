@@ -29,21 +29,27 @@ fragment user_ on User {
   NotificationTypes {
     ...NotificationTypeNoNesting
   }
-  Projects {
-    ...ProjectMemberNoNesting
-    Project {
-      ...ProjectNoNesting
-      Resource {
-        ...ResourceNoNesting
-      }
+  UserTechnologies {
+    ...technology_UserTechnology
+    Technology {
+      ...TechnologyNoNesting
     }
   }
-  ProjectsCreated {
-    ...ProjectNoNesting
-    Resource {
-      ...ResourceNoNesting
-    }
-  }
+  # Projects {
+  #   ...ProjectMemberNoNesting
+  #   Project {
+  #     ...ProjectNoNesting
+  #     Resource {
+  #       ...ResourceNoNesting
+  #     }
+  #   }
+  # }
+  # ProjectsCreated {
+  #   ...ProjectNoNesting
+  #   Resource {
+  #     ...ResourceNoNesting
+  #   }
+  # }
 }
 
 fragment EthAccountNoNesting on EthAccount {

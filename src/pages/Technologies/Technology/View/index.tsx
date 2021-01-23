@@ -13,6 +13,7 @@ import {
   GridTableAttributesContainerStyled,
 } from 'src/components/GridTable/styles'
 import UserTechnologyRow from './UserTechnologyRow'
+import SiteFrontEditor from 'src/components/SiteFrontEditor'
 
 const TechnologyView: React.FC<TechnologyViewProps> = ({
   object: technology,
@@ -41,6 +42,30 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
     return <UserTechnologyRow key={n.id} object={n} user={context.user} />
   })
 
+  const content = useMemo(() => {
+    const components = technology.components
+
+    if (!components || !Array.isArray(components)) {
+      return null
+    }
+
+    return (
+      <SiteFrontEditor
+        // object={undefined}
+        inEditMode={false}
+        itemsOnly
+        // onChangeState={onChangeState}
+        object={{
+          name: 'Section',
+          component: 'Section',
+          components,
+          props: {},
+        }}
+        className=""
+      />
+    )
+  }, [technology.components])
+
   return useMemo(() => {
     return (
       <>
@@ -55,6 +80,10 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
               <Typography variant="title">{technology.name}</Typography>
             </Grid>
             <Grid item></Grid>
+
+            <Grid item xs={12}>
+              {content}
+            </Grid>
           </Grid>
 
           <div className="technology--used-by">
@@ -78,7 +107,7 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
         </TechnologyViewStyled>
       </>
     )
-  }, [technology, context.user, header, items])
+  }, [technology, content, context.user, header, items])
 }
 
 export default TechnologyView

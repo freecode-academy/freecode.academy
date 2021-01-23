@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import Editor from 'src/uikit/Editor'
 import TechnologyLink from 'src/uikit/Link/Technology'
 
 import { TaskTechnologyRowProps } from './interfaces'
@@ -10,12 +9,6 @@ const TaskTechnologyRow: React.FC<TaskTechnologyRowProps> = ({ object }) => {
     return (
       <>
         <TechnologyLink object={object.Technology} />
-        <div>
-          <Editor
-            editorKey="technology-editor"
-            value={object.Technology.components}
-          />
-        </div>
       </>
     )
   }, [object.Technology])
@@ -34,29 +27,5 @@ const TaskTechnologyRow: React.FC<TaskTechnologyRowProps> = ({ object }) => {
     )
   }, [object.level, technology])
 }
-
-// const TaskTechnologyRow: React.FC<TaskTechnologyRowProps> = ({ object }) => {
-
-//   return useMemo(() => {
-
-//     return <>
-
-//       {/* {snakbar} */}
-
-//       <GridTableItemStyled
-//         as="form"
-//       >
-//         <GridTableAttributeStyled>{`buttons`}</GridTableAttributeStyled>
-//         <GridTableAttributeStyled>
-//           <TechnologyLink
-//             object={object.Technology}
-//           />
-//         </GridTableAttributeStyled>
-//         <GridTableAttributeStyled>{object.level}</GridTableAttributeStyled>
-
-//       </GridTableItemStyled>
-//     </>
-//   }, [object.Technology, object.level]);
-// }
 
 export default TaskTechnologyRow

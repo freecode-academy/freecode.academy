@@ -2161,6 +2161,9 @@ export interface UserWhereInput {
   Imports_some?: Maybe<ImportWhereInput>;
   Imports_none?: Maybe<ImportWhereInput>;
   Career?: Maybe<CareerWhereInput>;
+  UserTechnologies_every?: Maybe<UserTechnologyWhereInput>;
+  UserTechnologies_some?: Maybe<UserTechnologyWhereInput>;
+  UserTechnologies_none?: Maybe<UserTechnologyWhereInput>;
   showHidden?: Maybe<Scalars['Boolean']>;
 }
 
@@ -9274,6 +9277,7 @@ export interface User extends Node {
   Timers?: Maybe<Array<Timer>>;
   PrismaProjects?: Maybe<Array<Project>>;
   CodeChallengeCompletions?: Maybe<Array<CodeChallengeCompletion>>;
+  UserTechnologies?: Maybe<Array<UserTechnology>>;
   hasEmail: Scalars['Boolean'];
   hasPhone: Scalars['Boolean'];
   marketplaceToken?: Maybe<Scalars['String']>;
@@ -9490,6 +9494,17 @@ export type UserPrismaProjectsArgs = {
 export type UserCodeChallengeCompletionsArgs = {
   where?: Maybe<CodeChallengeCompletionWhereInput>;
   orderBy?: Maybe<CodeChallengeCompletionOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
+
+export type UserUserTechnologiesArgs = {
+  where?: Maybe<UserTechnologyWhereInput>;
+  orderBy?: Maybe<UserTechnologyOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -37987,6 +38002,10 @@ export interface UserCreateOneWithoutSettingsInput {
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
+export interface UserCreateOneWithoutUserTechnologiesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
 export interface UserCreateOneWithoutVotesInput {
   connect?: Maybe<UserWhereUniqueInput>;
 }
@@ -38046,6 +38065,7 @@ export interface UserCreateWithoutCareerInput {
   CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateManyWithoutCreatedByInput>;
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserGroupCreateManyWithoutUsersInput {
@@ -38058,6 +38078,10 @@ export interface WorldCreateManyWithoutCreatedByInput {
 
 export interface VoteCreateManyWithoutUserInput {
   connect?: Maybe<Array<VoteWhereUniqueInput>>;
+}
+
+export interface UserTechnologyCreateManyWithoutCreatedByInput {
+  connect?: Maybe<Array<UserTechnologyWhereUniqueInput>>;
 }
 
 export interface UserCreateWithoutCodeChallengeCompletionsInput {
@@ -38115,6 +38139,7 @@ export interface UserCreateWithoutCodeChallengeCompletionsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutCreatedByInput {
@@ -38172,6 +38197,7 @@ export interface UserCreateWithoutCreatedByInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutCreatedRoomsInput {
@@ -38229,6 +38255,7 @@ export interface UserCreateWithoutCreatedRoomsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutCreatedUsersInput {
@@ -38286,6 +38313,7 @@ export interface UserCreateWithoutCreatedUsersInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutEthAccountAuthedInput {
@@ -38343,6 +38371,7 @@ export interface UserCreateWithoutEthAccountAuthedInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutEthAccountsInput {
@@ -38400,6 +38429,7 @@ export interface UserCreateWithoutEthAccountsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutEthContractSourcesCreatedInput {
@@ -38457,6 +38487,7 @@ export interface UserCreateWithoutEthContractSourcesCreatedInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutFilesInput {
@@ -38514,6 +38545,7 @@ export interface UserCreateWithoutFilesInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutGroupsInput {
@@ -38571,6 +38603,7 @@ export interface UserCreateWithoutGroupsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutImportsInput {
@@ -38628,6 +38661,7 @@ export interface UserCreateWithoutImportsInput {
   CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateManyWithoutCreatedByInput>;
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutLettersCreatedInput {
@@ -38685,6 +38719,7 @@ export interface UserCreateWithoutLettersCreatedInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutLogedInsInput {
@@ -38742,6 +38777,7 @@ export interface UserCreateWithoutLogedInsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutMessagesInput {
@@ -38799,6 +38835,7 @@ export interface UserCreateWithoutMessagesInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutNoticesInput {
@@ -38856,6 +38893,7 @@ export interface UserCreateWithoutNoticesInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutNotificationTypesCreatedInput {
@@ -38913,6 +38951,7 @@ export interface UserCreateWithoutNotificationTypesCreatedInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutNotificationTypesInput {
@@ -38970,6 +39009,7 @@ export interface UserCreateWithoutNotificationTypesInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutPositionsCreatedInput {
@@ -39027,6 +39067,7 @@ export interface UserCreateWithoutPositionsCreatedInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutPositionsInput {
@@ -39084,6 +39125,7 @@ export interface UserCreateWithoutPositionsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutPrismaProjectsInput {
@@ -39141,6 +39183,7 @@ export interface UserCreateWithoutPrismaProjectsInput {
   CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateManyWithoutCreatedByInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutProjectsCreatedInput {
@@ -39198,6 +39241,7 @@ export interface UserCreateWithoutProjectsCreatedInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutProjectsInput {
@@ -39255,6 +39299,7 @@ export interface UserCreateWithoutProjectsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutReadedMessagesInput {
@@ -39312,6 +39357,7 @@ export interface UserCreateWithoutReadedMessagesInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutResourcesInput {
@@ -39369,6 +39415,7 @@ export interface UserCreateWithoutResourcesInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutResourceTagsInput {
@@ -39426,6 +39473,7 @@ export interface UserCreateWithoutResourceTagsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutRoomsInput {
@@ -39483,6 +39531,7 @@ export interface UserCreateWithoutRoomsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutSettingsInput {
@@ -39540,6 +39589,7 @@ export interface UserCreateWithoutSettingsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTagsInput {
@@ -39597,6 +39647,7 @@ export interface UserCreateWithoutTagsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTasksInput {
@@ -39654,6 +39705,7 @@ export interface UserCreateWithoutTasksInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTasksReactionsInput {
@@ -39711,6 +39763,7 @@ export interface UserCreateWithoutTasksReactionsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTeamsCreatedInput {
@@ -39768,6 +39821,7 @@ export interface UserCreateWithoutTeamsCreatedInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTeamsInput {
@@ -39825,6 +39879,7 @@ export interface UserCreateWithoutTeamsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTimersInput {
@@ -39873,6 +39928,65 @@ export interface UserCreateWithoutTimersInput {
   Projects?: Maybe<ProjectMemberCreateManyWithoutUserInput>;
   ProjectsCreated?: Maybe<ProjectCreateManyWithoutCreatedByInput>;
   Tasks?: Maybe<TaskMemberCreateManyWithoutUserInput>;
+  PositionsCreated?: Maybe<PositionCreateManyWithoutCreatedByInput>;
+  Positions?: Maybe<PositionCreateManyWithoutUsersInput>;
+  TasksReactions?: Maybe<TaskReactionCreateManyWithoutCreatedByInput>;
+  LettersCreated?: Maybe<LetterCreateManyWithoutUserInput>;
+  EthAccountAuthed?: Maybe<EthAccountCreateOneWithoutUserAuthedInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateManyWithoutCreatedByInput>;
+  PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
+  Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
+  Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+}
+
+export interface UserCreateWithoutUserTechnologiesInput {
+  id?: Maybe<Scalars['ID']>;
+  username?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  password?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  active?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  oldID?: Maybe<Scalars['Int']>;
+  Groups?: Maybe<UserGroupCreateManyWithoutUsersInput>;
+  CreatedUsers?: Maybe<UserCreateManyWithoutCreatedByInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutCreatedUsersInput>;
+  LogedIns?: Maybe<LogedInCreateManyWithoutUserInput>;
+  Files?: Maybe<FileCreateManyWithoutCreatedByInput>;
+  worlds?: Maybe<WorldCreateManyWithoutCreatedByInput>;
+  settings?: Maybe<SettingsCreateOneWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateManyWithoutCreatedByInput>;
+  Votes?: Maybe<VoteCreateManyWithoutUserInput>;
+  NotificationTypes?: Maybe<NotificationTypeCreateManyWithoutUsersInput>;
+  NotificationTypesCreated?: Maybe<NotificationTypeCreateManyWithoutCreatedByInput>;
+  Tags?: Maybe<TagCreateManyWithoutCreatedByInput>;
+  ResourceTags?: Maybe<ResourceTagCreateManyWithoutCreatedByInput>;
+  Rooms?: Maybe<ChatRoomCreateManyWithoutMembersInput>;
+  CreatedRooms?: Maybe<ChatRoomCreateManyWithoutCreatedByInput>;
+  Messages?: Maybe<ChatMessageCreateManyWithoutCreatedByInput>;
+  ReadedMessages?: Maybe<ChatMessageReadedCreateManyWithoutUserInput>;
+  Notices?: Maybe<NoticeCreateManyWithoutUserInput>;
+  EthContractSourcesCreated?: Maybe<EthContractSourceCreateManyWithoutCreatedByInput>;
+  EthAccounts?: Maybe<EthAccountCreateManyWithoutCreatedByInput>;
+  Teams?: Maybe<TeamMemberCreateManyWithoutUserInput>;
+  TeamsCreated?: Maybe<TeamCreateManyWithoutCreatedByInput>;
+  Projects?: Maybe<ProjectMemberCreateManyWithoutUserInput>;
+  ProjectsCreated?: Maybe<ProjectCreateManyWithoutCreatedByInput>;
+  Tasks?: Maybe<TaskMemberCreateManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateManyWithoutCreatedByInput>;
   PositionsCreated?: Maybe<PositionCreateManyWithoutCreatedByInput>;
   Positions?: Maybe<PositionCreateManyWithoutUsersInput>;
   TasksReactions?: Maybe<TaskReactionCreateManyWithoutCreatedByInput>;
@@ -39939,6 +40053,7 @@ export interface UserCreateWithoutVotesInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutWorldsInput {
@@ -39996,6 +40111,7 @@ export interface UserCreateWithoutWorldsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
 }
 
 /** A connection to a list of items. */
@@ -40092,6 +40208,16 @@ export interface UserGroupUpsertWithWhereUniqueWithoutUsersInput {
   where: UserGroupWhereUniqueInput;
 }
 
+export interface UserTechnologyCreateWithoutCreatedByInput {
+  id?: Maybe<Scalars['ID']>;
+  components?: Maybe<Scalars['Json']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
+  Technology: TechnologyCreateOneWithoutUserTechnologiesInput;
+}
+
 export interface UserTechnologyCreateWithoutTechnologyInput {
   id?: Maybe<Scalars['ID']>;
   components?: Maybe<Scalars['Json']>;
@@ -40099,7 +40225,7 @@ export interface UserTechnologyCreateWithoutTechnologyInput {
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
   level?: Maybe<Scalars['Int']>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutUserTechnologiesInput>;
 }
 
 export interface UserTechnologyUpdateManyMutationInput {
@@ -40110,18 +40236,49 @@ export interface UserTechnologyUpdateManyMutationInput {
   level?: Maybe<Scalars['Int']>;
 }
 
+export interface UserTechnologyUpdateManyWithoutCreatedByInput {
+  connect?: Maybe<Array<UserTechnologyWhereUniqueInput>>;
+  set?: Maybe<Array<UserTechnologyWhereUniqueInput>>;
+  disconnect?: Maybe<Array<UserTechnologyWhereUniqueInput>>;
+  updateMany?: Maybe<Array<UserTechnologyUpdateManyWithWhereNestedInput>>;
+  deleteMany?: Maybe<Array<UserTechnologyScalarWhereInput>>;
+}
+
+export interface UserTechnologyUpdateWithoutCreatedByDataInput {
+  components?: Maybe<Scalars['Json']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<UserTechnologyStatus>;
+  level?: Maybe<Scalars['Int']>;
+  Technology?: Maybe<TechnologyUpdateOneRequiredWithoutUserTechnologiesInput>;
+}
+
 export interface UserTechnologyUpdateWithoutTechnologyDataInput {
   components?: Maybe<Scalars['Json']>;
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   status?: Maybe<UserTechnologyStatus>;
   level?: Maybe<Scalars['Int']>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutUserTechnologiesInput>;
+}
+
+export interface UserUpdateOneWithoutUserTechnologiesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  disconnect?: Maybe<Scalars['Boolean']>;
+}
+
+export interface UserTechnologyUpdateWithWhereUniqueWithoutCreatedByInput {
+  where: UserTechnologyWhereUniqueInput;
+  data: UserTechnologyUpdateWithoutCreatedByDataInput;
 }
 
 export interface UserTechnologyUpdateWithWhereUniqueWithoutTechnologyInput {
   where: UserTechnologyWhereUniqueInput;
   data: UserTechnologyUpdateWithoutTechnologyDataInput;
+}
+
+export interface UserTechnologyUpsertWithWhereUniqueWithoutCreatedByInput {
+  where: UserTechnologyWhereUniqueInput;
 }
 
 export interface UserTechnologyUpsertWithWhereUniqueWithoutTechnologyInput {
@@ -40183,6 +40340,7 @@ export interface UserUpdateDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateManyWithoutCreatedByInput {
@@ -40505,6 +40663,7 @@ export interface UserUpdateWithoutCareerDataInput {
   CodeChallengeCompletions?: Maybe<CodeChallengeCompletionUpdateManyWithoutCreatedByInput>;
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutCodeChallengeCompletionsDataInput {
@@ -40561,6 +40720,7 @@ export interface UserUpdateWithoutCodeChallengeCompletionsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutCreatedByDataInput {
@@ -40617,6 +40777,7 @@ export interface UserUpdateWithoutCreatedByDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutCreatedRoomsDataInput {
@@ -40673,6 +40834,7 @@ export interface UserUpdateWithoutCreatedRoomsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutCreatedUsersDataInput {
@@ -40729,6 +40891,7 @@ export interface UserUpdateWithoutCreatedUsersDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutEthAccountAuthedDataInput {
@@ -40785,6 +40948,7 @@ export interface UserUpdateWithoutEthAccountAuthedDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutEthAccountsDataInput {
@@ -40841,6 +41005,7 @@ export interface UserUpdateWithoutEthAccountsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutEthContractSourcesCreatedDataInput {
@@ -40897,6 +41062,7 @@ export interface UserUpdateWithoutEthContractSourcesCreatedDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutFilesDataInput {
@@ -40953,6 +41119,7 @@ export interface UserUpdateWithoutFilesDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutGroupsDataInput {
@@ -41009,6 +41176,7 @@ export interface UserUpdateWithoutGroupsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutImportsDataInput {
@@ -41065,6 +41233,7 @@ export interface UserUpdateWithoutImportsDataInput {
   CodeChallengeCompletions?: Maybe<CodeChallengeCompletionUpdateManyWithoutCreatedByInput>;
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutLettersCreatedDataInput {
@@ -41121,6 +41290,7 @@ export interface UserUpdateWithoutLettersCreatedDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutLogedInsDataInput {
@@ -41177,6 +41347,7 @@ export interface UserUpdateWithoutLogedInsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutMessagesDataInput {
@@ -41233,6 +41404,7 @@ export interface UserUpdateWithoutMessagesDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutNoticesDataInput {
@@ -41289,6 +41461,7 @@ export interface UserUpdateWithoutNoticesDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutNotificationTypesCreatedDataInput {
@@ -41345,6 +41518,7 @@ export interface UserUpdateWithoutNotificationTypesCreatedDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutNotificationTypesDataInput {
@@ -41401,6 +41575,7 @@ export interface UserUpdateWithoutNotificationTypesDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutPositionsCreatedDataInput {
@@ -41457,6 +41632,7 @@ export interface UserUpdateWithoutPositionsCreatedDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutPositionsDataInput {
@@ -41513,6 +41689,7 @@ export interface UserUpdateWithoutPositionsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutPrismaProjectsDataInput {
@@ -41569,6 +41746,7 @@ export interface UserUpdateWithoutPrismaProjectsDataInput {
   CodeChallengeCompletions?: Maybe<CodeChallengeCompletionUpdateManyWithoutCreatedByInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutProjectsCreatedDataInput {
@@ -41625,6 +41803,7 @@ export interface UserUpdateWithoutProjectsCreatedDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutProjectsDataInput {
@@ -41681,6 +41860,7 @@ export interface UserUpdateWithoutProjectsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutReadedMessagesDataInput {
@@ -41737,6 +41917,7 @@ export interface UserUpdateWithoutReadedMessagesDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutResourcesDataInput {
@@ -41793,6 +41974,7 @@ export interface UserUpdateWithoutResourcesDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutResourceTagsDataInput {
@@ -41849,6 +42031,7 @@ export interface UserUpdateWithoutResourceTagsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutRoomsDataInput {
@@ -41905,6 +42088,7 @@ export interface UserUpdateWithoutRoomsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutSettingsDataInput {
@@ -41961,6 +42145,7 @@ export interface UserUpdateWithoutSettingsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTagsDataInput {
@@ -42017,6 +42202,7 @@ export interface UserUpdateWithoutTagsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTasksDataInput {
@@ -42073,6 +42259,7 @@ export interface UserUpdateWithoutTasksDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTasksReactionsDataInput {
@@ -42129,6 +42316,7 @@ export interface UserUpdateWithoutTasksReactionsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTeamsCreatedDataInput {
@@ -42185,6 +42373,7 @@ export interface UserUpdateWithoutTeamsCreatedDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTeamsDataInput {
@@ -42241,6 +42430,7 @@ export interface UserUpdateWithoutTeamsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTimersDataInput {
@@ -42288,6 +42478,64 @@ export interface UserUpdateWithoutTimersDataInput {
   Projects?: Maybe<ProjectMemberUpdateManyWithoutUserInput>;
   ProjectsCreated?: Maybe<ProjectUpdateManyWithoutCreatedByInput>;
   Tasks?: Maybe<TaskMemberUpdateManyWithoutUserInput>;
+  PositionsCreated?: Maybe<PositionUpdateManyWithoutCreatedByInput>;
+  Positions?: Maybe<PositionUpdateManyWithoutUsersInput>;
+  TasksReactions?: Maybe<TaskReactionUpdateManyWithoutCreatedByInput>;
+  LettersCreated?: Maybe<LetterUpdateManyWithoutUserInput>;
+  EthAccountAuthed?: Maybe<EthAccountUpdateOneWithoutUserAuthedInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionUpdateManyWithoutCreatedByInput>;
+  PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
+  Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
+  Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+}
+
+export interface UserUpdateWithoutUserTechnologiesDataInput {
+  username?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  password?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  active?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  oldID?: Maybe<Scalars['Int']>;
+  Groups?: Maybe<UserGroupUpdateManyWithoutUsersInput>;
+  CreatedUsers?: Maybe<UserUpdateManyWithoutCreatedByInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutCreatedUsersInput>;
+  LogedIns?: Maybe<LogedInUpdateManyWithoutUserInput>;
+  Files?: Maybe<FileUpdateManyWithoutCreatedByInput>;
+  worlds?: Maybe<WorldUpdateManyWithoutCreatedByInput>;
+  settings?: Maybe<SettingsUpdateOneWithoutUserInput>;
+  Resources?: Maybe<ResourceUpdateManyWithoutCreatedByInput>;
+  Votes?: Maybe<VoteUpdateManyWithoutUserInput>;
+  NotificationTypes?: Maybe<NotificationTypeUpdateManyWithoutUsersInput>;
+  NotificationTypesCreated?: Maybe<NotificationTypeUpdateManyWithoutCreatedByInput>;
+  Tags?: Maybe<TagUpdateManyWithoutCreatedByInput>;
+  ResourceTags?: Maybe<ResourceTagUpdateManyWithoutCreatedByInput>;
+  Rooms?: Maybe<ChatRoomUpdateManyWithoutMembersInput>;
+  CreatedRooms?: Maybe<ChatRoomUpdateManyWithoutCreatedByInput>;
+  Messages?: Maybe<ChatMessageUpdateManyWithoutCreatedByInput>;
+  ReadedMessages?: Maybe<ChatMessageReadedUpdateManyWithoutUserInput>;
+  Notices?: Maybe<NoticeUpdateManyWithoutUserInput>;
+  EthContractSourcesCreated?: Maybe<EthContractSourceUpdateManyWithoutCreatedByInput>;
+  EthAccounts?: Maybe<EthAccountUpdateManyWithoutCreatedByInput>;
+  Teams?: Maybe<TeamMemberUpdateManyWithoutUserInput>;
+  TeamsCreated?: Maybe<TeamUpdateManyWithoutCreatedByInput>;
+  Projects?: Maybe<ProjectMemberUpdateManyWithoutUserInput>;
+  ProjectsCreated?: Maybe<ProjectUpdateManyWithoutCreatedByInput>;
+  Tasks?: Maybe<TaskMemberUpdateManyWithoutUserInput>;
+  Timers?: Maybe<TimerUpdateManyWithoutCreatedByInput>;
   PositionsCreated?: Maybe<PositionUpdateManyWithoutCreatedByInput>;
   Positions?: Maybe<PositionUpdateManyWithoutUsersInput>;
   TasksReactions?: Maybe<TaskReactionUpdateManyWithoutCreatedByInput>;
@@ -42353,6 +42601,7 @@ export interface UserUpdateWithoutVotesDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutWorldsDataInput {
@@ -42409,6 +42658,7 @@ export interface UserUpdateWithoutWorldsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithWhereUniqueNestedInput {

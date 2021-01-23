@@ -17,6 +17,7 @@ import ResetIcon from 'material-ui-icons/Restore'
 import EditIcon from 'material-ui-icons/ModeEdit'
 import TextField from 'material-ui/TextField'
 import Uploader, { UploaderProps } from '@prisma-cms/uploader'
+import UserViewTechnologies from './Technologies'
 
 const UserView: React.FC<UserViewProps> = (props) => {
   const user = props.object
@@ -32,6 +33,10 @@ const UserView: React.FC<UserViewProps> = (props) => {
    */
 
   const [data, setData] = useState<UserUpdateInput | null>(null)
+
+  const inEditMode = useMemo(() => {
+    return data ? true : false
+  }, [data])
 
   const userEdited = useMemo(() => {
     return data && user
@@ -114,7 +119,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
    * Уведомления
    */
   const notifications = useMemo(() => {
-    if (!user?.NotificationTypes || !isCurrentUser) {
+    if (!user?.NotificationTypes || !isCurrentUser || !inEditMode) {
       return null
     }
 
@@ -124,7 +129,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
         userId={user.id}
       />
     )
-  }, [isCurrentUser, user?.NotificationTypes, user?.id])
+  }, [inEditMode, isCurrentUser, user.NotificationTypes, user.id])
 
   const buttons = useMemo(() => {
     if (!user?.id || !isCurrentUser) {
@@ -255,11 +260,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
     )
   }, [onUpload, userEdited, data])
 
-  return useMemo(() => {
-    if (!user) {
-      return null
-    }
-
+  const form = useMemo(() => {
     return (
       <form onSubmit={save}>
         <UserViewStyled>
@@ -315,10 +316,26 @@ const UserView: React.FC<UserViewProps> = (props) => {
     notifications,
     password,
     save,
-    user,
     userEdited?.fullname,
     userEdited?.username,
   ])
+
+  const technologies = useMemo(() => {
+    if (!user.UserTechnologies?.length) {
+      return null
+    }
+
+    return <UserViewTechnologies objects={user.UserTechnologies} />
+  }, [user.UserTechnologies])
+
+  return useMemo(() => {
+    return (
+      <>
+        {form}
+        {technologies}
+      </>
+    )
+  }, [form, technologies])
 }
 
 export default UserView

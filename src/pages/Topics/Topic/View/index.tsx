@@ -19,8 +19,8 @@ import { PrismaCmsEditorRawContent } from '@prisma-cms/editor'
 import CommentsView from './Comments'
 import Blog from './Blog'
 
-import RootPage from 'src/components/Root'
 import { EditorComponentProps } from '@prisma-cms/front-editor/dist/EditorComponent'
+import SiteFrontEditor from 'src/components/SiteFrontEditor'
 
 // const styles = {
 //   root: {
@@ -196,7 +196,7 @@ class TopicView extends EditableView<TopicViewProps> {
       )
     } else {
       output = (
-        <RootPage
+        <SiteFrontEditor
           // object={undefined}
           inEditMode={inEditMode}
           itemsOnly

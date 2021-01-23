@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React, { useMemo } from 'react'
 import {
   useUserQuery,
@@ -10,6 +9,7 @@ import View from './View'
 
 import { Page, NextPageContextCustom } from '../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 
 function getVariables(router: NextRouter | NextPageContextCustom) {
   return {
@@ -34,21 +34,20 @@ const UserPage: Page = () => {
     onError: console.error,
   })
 
+  const user = response.data?.object
+
+  if (!user) {
+    return null
+  }
+
   return (
     <>
-      <Head>
-        <title>
-          {response.data?.object?.fullname || response.data?.object?.username}
-        </title>
-        <meta
-          name="description"
-          content={`Страница пользователя ${
-            response.data?.object?.fullname || response.data?.object?.username
-          }`}
-        />
-      </Head>
+      <NextSeo
+        title={user.fullname || user.username || ''}
+        description={`Страница пользователя ${user.fullname || user.username}`}
+      />
 
-      <View object={response.data?.object} />
+      <View object={user} />
     </>
   )
 }

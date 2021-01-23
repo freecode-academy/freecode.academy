@@ -1,6 +1,4 @@
-query mainPage (
-  $timersWhere: TimerWhereInput
-){
+query mainPage($timersWhere: TimerWhereInput) {
   students: users(
     first: 4
     orderBy: createdAt_DESC
@@ -26,11 +24,8 @@ query mainPage (
   }
 
   # Задачи, требующие выполнения
-  tasksNeedHelp:  tasksConnection(
-    where: {
-      needHelp: true
-      status_not_in: [Completed]
-    }
+  tasksNeedHelp: tasksConnection(
+    where: { needHelp: true, status_not_in: [Completed] }
     orderBy: createdAt_DESC
     first: 2
   ) {
@@ -43,7 +38,6 @@ query mainPage (
       }
     }
   }
-
 }
 
 fragment mainPageCodeChallengeCompletion on CodeChallengeCompletion {

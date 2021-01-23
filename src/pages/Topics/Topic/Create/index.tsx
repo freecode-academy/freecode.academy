@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react'
 import { NextSeo } from 'next-seo'
 import dynamic from 'next/dynamic'
 import { Page } from 'src/pages/_App/interfaces'
-import { initEditorObject } from 'src/components/Root'
+import { initEditorObject } from 'src/components/SiteFrontEditor'
 import {
   CreateTopicProcessorMutation,
   useCreateTopicProcessorMutation,

@@ -19,7 +19,7 @@ const UserTechnologyLevel: React.FC<UserTechnologyLevelProps> = ({
         }
       }
 
-      onChangeProp(event)
+      onChangeProp && onChangeProp(event)
     },
     [onChangeProp]
   )

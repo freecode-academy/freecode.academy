@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 import React, { useMemo } from 'react'
 import { uid } from 'uid'
-import { initEditorObject } from 'src/components/Root'
+import { initEditorObject } from 'src/components/SiteFrontEditor'
 import {
   TopicCreateInput,
   useCreateTopicProcessorMutation,

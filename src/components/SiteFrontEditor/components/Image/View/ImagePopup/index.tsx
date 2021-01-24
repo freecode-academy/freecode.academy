@@ -1,6 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { ImagePopupProps } from './interfaces'
-import { ImagePopupImageStyled, ImagePopupStyled } from './styled'
+import {
+  ImagePopupImageStyled,
+  ImagePopupImageWrapperStyled,
+  ImagePopupStyled,
+} from './styled'
 import Dialog from 'material-ui/Dialog'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
@@ -47,11 +51,13 @@ const ImagePopup: React.FC<ImagePopupProps> = ({ path }) => {
             </Toolbar>
           </AppBar>
 
-          <ImagePopupImageStyled
-            src={`/images/resized/big/${path}`}
-            onClick={onClick}
-            role="popup"
-          />
+          <ImagePopupImageWrapperStyled>
+            <ImagePopupImageStyled
+              src={`/images/resized/origin/${path}`}
+              onClick={onClick}
+              role="popup"
+            />
+          </ImagePopupImageWrapperStyled>
         </Dialog>
 
         <ImagePopupImageStyled

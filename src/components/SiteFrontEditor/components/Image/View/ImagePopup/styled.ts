@@ -20,11 +20,15 @@ export const ImagePopupImageStyled = styled.img<ImagePopupImageStyledProps>`
 
       case 'popup':
         return css`
-          width: 100%;
-          max-width: 100%;
+          margin: 0 auto;
+          display: block;
         `
     }
   }}
+`
+
+export const ImagePopupImageWrapperStyled = styled.div`
+  overflow: auto;
 `
 
 export const ImagePopupStyled = styled.div``

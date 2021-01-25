@@ -1,10 +1,10 @@
-import { Maybe } from 'src/modules/gql/generated'
+import { Maybe, Resource } from 'src/modules/gql/generated'
 
 export interface TopicLinkProps {
   object?: {
     __typename?: 'Resource'
     id: string
-    name: string
+    name?: Resource['name']
     longtitle?: Maybe<string>
     uri: string
   }

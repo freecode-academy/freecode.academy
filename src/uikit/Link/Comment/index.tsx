@@ -7,6 +7,7 @@ import Link from '..'
 import Typography from 'material-ui/Typography'
 
 import { UikitCommentLinkProps } from './interfaces'
+import TaskLink from '../Task'
 
 export * from './interfaces'
 
@@ -18,7 +19,7 @@ export class UikitCommentLink extends Component<UikitCommentLinkProps> {
       return null
     }
 
-    const { uri, createdAt } = object
+    const { uri, createdAt, Task } = object
 
     const Topic = object.Topic || object.CommentTarget
 
@@ -42,7 +43,9 @@ export class UikitCommentLink extends Component<UikitCommentLinkProps> {
 
       // TODO Adde separated Component
       case 'target':
-        if (!Topic) {
+        if (Task) {
+          return <TaskLink object={Task} />
+        } else if (!Topic) {
           console.error('Topic is not defined')
         } else {
           const { uri: topicUri, name: topicName } = Topic
@@ -60,7 +63,7 @@ export class UikitCommentLink extends Component<UikitCommentLinkProps> {
     }
 
     return (
-      <Link href={url} title={title} {...other}>
+      <Link href={url} title={title || ''} {...other}>
         {children || (
           <Typography component="span" variant="caption" color="textSecondary">
             {content}

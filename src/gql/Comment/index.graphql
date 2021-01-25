@@ -27,6 +27,7 @@ fragment commentsConnectionComment on Resource {
   updatedAt
   type
   content
+  components
   uri
   CreatedBy {
     ...commentsConnectionCommentUser
@@ -36,6 +37,9 @@ fragment commentsConnectionComment on Resource {
     name
     uri
     type
+  }
+  Task {
+    ...TaskNoNesting
   }
 }
 

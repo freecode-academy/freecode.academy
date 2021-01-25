@@ -1,84 +1,83 @@
-import React from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import UikitComment from 'src/uikit/Comments/Comment'
-import { TopicCommentsProps, TopicCommentsState } from './interfaces'
+import { TopicCommentsProps } from './interfaces'
 
-const NewComment = UikitComment
-const UpdateComment = UikitComment
+const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
+  // constructor(props: TopicCommentsProps) {
+  //   super(props)
 
-// TODO Make React.FC
-class TopicComments extends React.PureComponent<
-  TopicCommentsProps,
-  TopicCommentsState
-> {
-  constructor(props: TopicCommentsProps) {
-    super(props)
+  //   this.state = {
+  //     ...this.state,
+  //     newCommentKey: new Date().toISOString(),
+  //   }
+  // }
 
-    this.state = {
-      ...this.state,
-      newCommentKey: new Date().toISOString(),
-    }
-  }
+  // onCommentSave = () => {
+  //   this.setState({
+  //     newCommentKey: new Date().toISOString(),
+  //   })
+  // }
 
-  onCommentSave = () => {
-    this.setState({
-      newCommentKey: new Date().toISOString(),
-    })
-  }
+  // render() {
 
-  render() {
-    const { topic } = this.props
+  const [newCommentKey, setNewCommentKey] = useState(new Date().toISOString())
 
-    if (!topic) {
-      return null
-    }
-    const { newCommentKey } = this.state
+  const { id: topicId, Comments } = topic
 
-    // const { commentData } = this.state
-
-    const { id: topicId, Comments } = topic
-
-    const comments =
+  /**
+   * Current comments
+   */
+  const comments = useMemo(() => {
+    return (
       (Comments &&
         Comments.map((n) => {
           const { id } = n
 
-          // TODO useMemo
-          return <UpdateComment key={id} object={n} />
+          return <UikitComment key={id} object={n} />
         })) ||
       null
+    )
+  }, [Comments])
 
+  const onCommentSave = useCallback(() => {
+    setNewCommentKey(new Date().toISOString())
+  }, [])
+
+  /**
+   * New comment
+   */
+  const newComment = useMemo(() => {
+    return topicId ? (
+      <UikitComment
+        key={newCommentKey}
+        cacheKey={`${topicId}_comment_new`}
+        object={undefined}
+        _dirty={{
+          topicID: topicId,
+          components: [
+            {
+              name: 'RichText',
+              component: 'RichText',
+              components: [],
+              props: {},
+            },
+          ],
+        }}
+        onSave={onCommentSave}
+      />
+    ) : null
+  }, [newCommentKey, onCommentSave, topicId])
+
+  return useMemo(() => {
     return (
       <div>
         {comments}
 
-        {/* {topicId && commentData ? ( */}
-        {topicId ? (
-          <NewComment
-            key={newCommentKey}
-            cacheKey={`${topicId}_comment_new`}
-            object={undefined}
-            _dirty={{
-              // content: {
-              //   blocks: [
-              //     {
-              //       text: '',
-              //       type: 'unstyled',
-              //       depth: 0,
-              //       inlineStyleRanges: [],
-              //       entityRanges: [],
-              //       data: {},
-              //     },
-              //   ],
-              //   entityMap: {},
-              // },
-              topicID: topicId,
-            }}
-            onSave={this.onCommentSave}
-          />
-        ) : null}
+        {newComment}
       </div>
     )
-  }
+  }, [comments, newComment])
+  // }
 }
 
 export default TopicComments

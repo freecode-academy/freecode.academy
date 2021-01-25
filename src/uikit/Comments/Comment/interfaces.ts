@@ -1,5 +1,12 @@
 import { EditableObjectProps } from 'apollo-cms/dist/DataView/Object/Editable'
-import { Resource, User } from 'src/modules/gql/generated'
+import {
+  CommentCreateInput,
+  CommentUpdateInput,
+  Maybe,
+  Resource,
+  TaskNoNestingFragment,
+  User,
+} from 'src/modules/gql/generated'
 import {
   UikitCommentLinkObject,
   UikitCommentLinkProps,
@@ -17,8 +24,11 @@ export interface UikitCommentObject extends UikitCommentLinkObject {
 
   // content: RawDraftContentState | null | undefined
   content?: Resource['content']
+  components?: Resource['components']
 
   CreatedBy?: UikitCommentObjectUser
+
+  Task?: Maybe<TaskNoNestingFragment>
 }
 
 export interface UikitCommentProps extends EditableObjectProps {
@@ -27,4 +37,6 @@ export interface UikitCommentProps extends EditableObjectProps {
   linkType?: UikitCommentLinkProps['linkType']
 
   className?: string
+
+  _dirty?: CommentCreateInput | CommentUpdateInput | null
 }

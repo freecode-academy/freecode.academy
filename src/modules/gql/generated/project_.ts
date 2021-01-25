@@ -25,7 +25,7 @@ export type Project_Fragment = (
     ) }>>, ProjectTasks?: Types.Maybe<Array<{ __typename?: 'ProjectTask', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, Task: (
       { __typename?: 'Task' }
       & Task_Fragment
-    ) }>>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, uri: string, name: string, type?: Types.Maybe<Types.ResourceType>, Image?: Types.Maybe<{ __typename?: 'File', id: string, path: string }> }> }
+    ) }>>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, uri: string, name?: Types.Maybe<string>, type?: Types.Maybe<Types.ResourceType>, Image?: Types.Maybe<{ __typename?: 'File', id: string, path: string }> }> }
   & ProjectNoNestingFragment
 );
 

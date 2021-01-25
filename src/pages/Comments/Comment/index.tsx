@@ -28,7 +28,7 @@ const CommentPage: Page = () => {
   return (
     <>
       <NextSeo
-        title={object.name}
+        title={object.name || ''}
         description={`Комментарий к топику "${object.Topic?.name}"`}
       />
 

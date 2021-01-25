@@ -16,6 +16,7 @@ query sitemapResourcesConnection(
     edges {
       node {
         id
+        type
         uri
         updatedAt
       }

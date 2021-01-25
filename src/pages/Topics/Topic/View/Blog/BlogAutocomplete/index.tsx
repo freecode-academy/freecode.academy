@@ -124,7 +124,7 @@ const BlogAutocomplete: React.FC<BlogAutocompleteProps> = (props) => {
           return {
             ...n,
             value: n.id,
-            label: n.name,
+            label: n.name || n.id,
           }
         })) ||
       []

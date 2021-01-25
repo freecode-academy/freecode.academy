@@ -44,7 +44,7 @@ class TagsView<
             value?.map((n) => (
               <Grid key={n.id} item>
                 <Link href={n.Resource.uri}>
-                  <a title={n.Resource.name}>{n.Resource.name}</a>
+                  <a title={n.Resource.name || ''}>{n.Resource.name}</a>
                 </Link>
               </Grid>
             )) ?? []

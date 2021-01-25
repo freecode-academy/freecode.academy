@@ -13,6 +13,7 @@ export default class Image extends EditorComponent {
 
     return (
       <ImageView
+        key="ImageView"
         inEditMode={editorInEditMode}
         updateComponentProperty={this.updateComponentProperty}
         path={this.props.props?.path}

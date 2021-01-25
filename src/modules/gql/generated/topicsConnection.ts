@@ -27,7 +27,7 @@ export type TopicsConnectionQuery = { __typename?: 'Query', objectsConnection: {
 
 
 export const TopicsConnectionDocument = gql`
-    query topicsConnection($first: Int = 10, $skip: Int, $where: ResourceWhereInput, $orderBy: ResourceOrderByInput = updatedAt_DESC) {
+    query topicsConnection($first: Int = 10, $skip: Int, $where: ResourceWhereInput, $orderBy: ResourceOrderByInput = createdAt_DESC) {
   objectsConnection: resourcesConnection(
     orderBy: $orderBy
     first: $first

@@ -9,12 +9,17 @@
 import * as Types from './types';
 
 import { CommentsConnectionCommentUserFragment } from './commentsConnectionCommentUser';
+import { TaskNoNestingFragment } from './TaskNoNesting';
 import { gql } from '@apollo/client';
 import { CommentsConnectionCommentUserFragmentDoc } from './commentsConnectionCommentUser';
-export type CommentsConnectionCommentFragment = { __typename?: 'Resource', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, type?: Types.Maybe<Types.ResourceType>, content?: Types.Maybe<globalThis.Record<string, any> | globalThis.Array<any>>, uri: string, CreatedBy: (
+import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
+export type CommentsConnectionCommentFragment = { __typename?: 'Resource', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, type?: Types.Maybe<Types.ResourceType>, content?: Types.Maybe<globalThis.Record<string, any> | globalThis.Array<any>>, components?: Types.Maybe<globalThis.Record<string, any> | globalThis.Array<any>>, uri: string, CreatedBy: (
     { __typename?: 'User' }
     & CommentsConnectionCommentUserFragment
-  ), Topic?: Types.Maybe<{ __typename?: 'Resource', id: string, name: string, uri: string, type?: Types.Maybe<Types.ResourceType> }> };
+  ), Topic?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, uri: string, type?: Types.Maybe<Types.ResourceType> }>, Task?: Types.Maybe<(
+    { __typename?: 'Task' }
+    & TaskNoNestingFragment
+  )> };
 
 export const CommentsConnectionCommentFragmentDoc = gql`
     fragment commentsConnectionComment on Resource {
@@ -23,6 +28,7 @@ export const CommentsConnectionCommentFragmentDoc = gql`
   updatedAt
   type
   content
+  components
   uri
   CreatedBy {
     ...commentsConnectionCommentUser
@@ -33,5 +39,9 @@ export const CommentsConnectionCommentFragmentDoc = gql`
     uri
     type
   }
+  Task {
+    ...TaskNoNesting
+  }
 }
-    ${CommentsConnectionCommentUserFragmentDoc}`;
+    ${CommentsConnectionCommentUserFragmentDoc}
+${TaskNoNestingFragmentDoc}`;

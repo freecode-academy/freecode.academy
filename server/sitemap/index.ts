@@ -175,6 +175,13 @@ export default class Sitemap {
   ) {
     const { url, updatedAt, changefreq, priority } = doc
 
+    /**
+     * Skip if url empty
+     */
+    if (!url) {
+      return
+    }
+
     const locUri = new URI(uri.origin()).path(url)
 
     xml.startElement('url').writeElement('loc', locUri.toString())

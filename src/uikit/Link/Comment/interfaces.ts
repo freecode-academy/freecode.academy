@@ -1,4 +1,4 @@
-import { Resource } from 'src/modules/gql/generated'
+import { Resource, TaskNoNestingFragment } from 'src/modules/gql/generated'
 
 export interface UikitCommentLinkObjectResource {
   __typename?: 'Resource'
@@ -19,6 +19,7 @@ export interface UikitCommentLinkObject extends UikitCommentLinkObjectResource {
         __typename?: 'Resource'
       })
     | null
+  Task?: TaskNoNestingFragment | null
 }
 
 export interface UikitCommentLinkProps {

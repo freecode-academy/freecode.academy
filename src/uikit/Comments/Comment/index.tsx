@@ -19,6 +19,8 @@ import {
   CreateCommentProcessorDocument,
   UpdateCommentProcessorDocument,
 } from 'src/modules/gql/generated'
+import SiteFrontEditor from 'src/components/SiteFrontEditor'
+import { EditorComponentProps } from '@prisma-cms/front-editor/dist'
 // import moment from 'moment';
 
 export * from './interfaces'
@@ -140,6 +142,11 @@ class UikitComment extends EditableView<UikitCommentProps> {
     })
   }
 
+  onChangeState = (data: EditorComponentProps['_dirty']) => {
+    this.updateObject(data)
+    return data
+  }
+
   renderDefaultView() {
     const comment = this.getObjectWithMutations()
 
@@ -147,25 +154,49 @@ class UikitComment extends EditableView<UikitCommentProps> {
       return null
     }
 
-    // TODO add custom scalar in API
-    const content = comment.content as
-      | PrismaCmsEditorRawContent
-      | null
-      | undefined
+    let editor: JSX.Element | undefined
 
-    const readOnly = !this.inEditMode()
+    const inEditMode = this.inEditMode()
 
-    const editor = (
-      <Editor
-        // className="topic-editor"
-        editorKey="comment"
-        value={content || undefined}
-        readOnly={readOnly}
-        // fullView={true}
-        // allow_edit={allow_edit}
-        onChange={this.onEditComment}
-      />
-    )
+    const components = comment.components
+
+    if (components) {
+      editor = (
+        <SiteFrontEditor
+          // object={undefined}
+          inEditMode={inEditMode}
+          itemsOnly
+          onChangeState={this.onChangeState}
+          object={{
+            name: 'Section',
+            component: 'Section',
+            components:
+              components && Array.isArray(components) ? components : [],
+            props: {},
+          }}
+        />
+      )
+    } else {
+      // TODO add custom scalar in API
+      const content = comment.content as
+        | PrismaCmsEditorRawContent
+        | null
+        | undefined
+
+      const readOnly = !inEditMode
+
+      editor = (
+        <Editor
+          // className="topic-editor"
+          editorKey="comment"
+          value={content || undefined}
+          readOnly={readOnly}
+          // fullView={true}
+          // allow_edit={allow_edit}
+          onChange={this.onEditComment}
+        />
+      )
+    }
 
     return (
       <Grid container>

@@ -33,7 +33,7 @@ export type Task_Fragment = (
       { __typename?: 'Project', CreatedBy?: Types.Maybe<(
         { __typename?: 'User' }
         & UserNoNestingFragment
-      )>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, name: string, uri: string }> }
+      )>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, uri: string }> }
       & ProjectNoNestingFragment
     ) }>>, RelatedTo?: Types.Maybe<Array<(
     { __typename?: 'Task' }

@@ -17,17 +17,14 @@ import moment from 'moment'
 import Link from 'next/link'
 import TaskTaskTechnologies from './TaskTaskTechnologies'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
+import Comments from './Comments'
 
-const TaskView: React.FC<TaskViewProps> = ({
-  object: task,
-  loading,
-  ...other
-}) => {
+const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
   const user = context.user
 
   const timersList = useMemo(() => {
-    const timers = task.Timers || []
+    const timers = object.Timers || []
 
     if (!timers.length) {
       return null
@@ -36,11 +33,11 @@ const TaskView: React.FC<TaskViewProps> = ({
     return (
       <TimersView count={timers.length} objects={timers} loading={loading} />
     )
-  }, [task.Timers, loading])
+  }, [object.Timers, loading])
 
   const buttons = useMemo(() => {
-    return <TaskButtons object={task} />
-  }, [task])
+    return <TaskButtons object={object} />
+  }, [object])
 
   const [opened, setOpened] = useState(false)
 
@@ -61,11 +58,11 @@ const TaskView: React.FC<TaskViewProps> = ({
 
     return (
       <UpdateTaskForm
-        task={task}
+        task={object}
         options={{
           variables: {
             where: {
-              id: task.id,
+              id: object.id,
             },
             data: {},
           },
@@ -74,11 +71,11 @@ const TaskView: React.FC<TaskViewProps> = ({
         onSuccess={onCancel}
       />
     )
-  }, [onCancel, opened, task])
+  }, [onCancel, opened, object])
 
   const lesson = useMemo(() => {
-    if (task.CodeChallengeCompletion) {
-      const codeChallenge = task.CodeChallengeCompletion.CodeChallenge
+    if (object.CodeChallengeCompletion) {
+      const codeChallenge = object.CodeChallengeCompletion.CodeChallenge
       const block = codeChallenge.Block
       const rootBlock = block.Parent
 
@@ -108,27 +105,38 @@ const TaskView: React.FC<TaskViewProps> = ({
         </div>
       )
     }
-  }, [task.CodeChallengeCompletion])
+  }, [object.CodeChallengeCompletion])
 
   /**
    * Список технологий, необходимых для выполнения задачи
    */
   const taskTechnologies = useMemo(() => {
     return (
-      <TaskTaskTechnologies object={task} user={user} inEditMode={inEditMode} />
+      <TaskTaskTechnologies
+        object={object}
+        user={user}
+        inEditMode={inEditMode}
+      />
     )
-  }, [inEditMode, task, user])
+  }, [inEditMode, object, user])
+
+  /**
+   * Комментарии
+   */
+  const comments = useMemo(() => {
+    return <Comments task={object} />
+  }, [object])
 
   return useMemo(() => {
     return (
       <TaskViewStyled {...other}>
         <Grid container spacing={8} alignItems="center">
           <Grid item xs>
-            <Typography variant="title">{task.name}</Typography>
+            <Typography variant="title">{object.name}</Typography>
           </Grid>
 
           <Grid item>
-            <TaskStatus value={task.status} />
+            <TaskStatus value={object.status} />
           </Grid>
           <Grid item>{buttons}</Grid>
           <Grid item>
@@ -140,7 +148,7 @@ const TaskView: React.FC<TaskViewProps> = ({
           </Grid>
         </Grid>
 
-        {task.TaskProjects?.map((n) => {
+        {object.TaskProjects?.map((n) => {
           const project = n.Project
           return (
             <div key={project.id}>
@@ -154,31 +162,33 @@ const TaskView: React.FC<TaskViewProps> = ({
           <tbody>
             <td>Планируемый запуск: </td>
             <td>
-              {task.startDatePlaning
-                ? moment(task.startDatePlaning).format('L')
+              {object.startDatePlaning
+                ? moment(object.startDatePlaning).format('L')
                 : null}
             </td>
             <td>Дата начала: </td>
             <td>
-              {task.startDate ? moment(task.startDate).format('L') : null}
+              {object.startDate ? moment(object.startDate).format('L') : null}
             </td>
             <td>Планируемое завершение: </td>
             <td>
-              {task.endDatePlaning
-                ? moment(task.endDatePlaning).format('L')
+              {object.endDatePlaning
+                ? moment(object.endDatePlaning).format('L')
                 : null}
             </td>
             <td>Дата завершения: </td>
-            <td>{task.endDate ? moment(task.endDate).format('L') : null}</td>
+            <td>
+              {object.endDate ? moment(object.endDate).format('L') : null}
+            </td>
           </tbody>
         </table>
 
         {lesson}
 
-        {task.content ? (
+        {object.content ? (
           <>
             <Typography variant="subheading">Описание задачи</Typography>
-            <Editor editorKey="task-editor" value={task.content} />
+            <Editor editorKey="object-editor" value={object.content} />
           </>
         ) : null}
 
@@ -187,25 +197,28 @@ const TaskView: React.FC<TaskViewProps> = ({
         {taskTechnologies}
 
         {timersList}
+
+        {comments}
       </TaskViewStyled>
     )
   }, [
-    buttons,
-    form,
-    lesson,
-    opened,
     other,
+    object.name,
+    object.status,
+    object.TaskProjects,
+    object.startDatePlaning,
+    object.startDate,
+    object.endDatePlaning,
+    object.endDate,
+    object.content,
+    buttons,
+    opened,
     startEdit,
-    task.TaskProjects,
-    task.content,
-    task.name,
-    task.startDate,
-    task.status,
-    timersList,
-    task.startDatePlaning,
-    task.endDatePlaning,
-    task.endDate,
+    lesson,
+    form,
     taskTechnologies,
+    timersList,
+    comments,
   ])
 }
 

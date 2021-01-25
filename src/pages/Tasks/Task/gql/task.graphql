@@ -11,5 +11,11 @@ query task($where: TaskWhereUniqueInput!, $timersWhere: TimerWhereInput) {
       }
     }
     ...taskTaskTechnologies
+    Comments(orderBy: createdAt_ASC) {
+      ...ResourceNoNesting
+      CreatedBy {
+        ...UserNoNesting
+      }
+    }
   }
 }

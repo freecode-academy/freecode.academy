@@ -1,4 +1,4 @@
-import { Maybe } from 'src/modules/gql/generated'
+import { Maybe, Resource } from 'src/modules/gql/generated'
 import { UiLinkProps } from '../interfaces'
 
 export interface BlogLinkProps {
@@ -6,7 +6,7 @@ export interface BlogLinkProps {
     __typename?: 'Resource'
     id: string
     uri: string
-    name: string
+    name?: Resource['name']
     longtitle?: Maybe<string>
   }
 

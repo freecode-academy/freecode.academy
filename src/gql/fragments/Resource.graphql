@@ -1,30 +1,15 @@
 fragment resource_ on Resource {
-  id
-  createdAt
-  updatedAt
-  type
-  name
-  longtitle
-  content
-  components
-  published
-  deleted
-  hidemenu
-  uri
-  isfolder
-  rating
-  positiveVotesCount
-  negativeVotesCount
-  neutralVotesCount
+  ...ResourceNoNesting
   CreatedBy {
     ...UserNoNesting
   }
-  Comments(orderBy: id_ASC) {
+  Comments(orderBy: createdAt_ASC) {
     id
     uri
     createdAt
     updatedAt
     content
+    components
     CreatedBy {
       ...UserNoNesting
     }
@@ -52,6 +37,36 @@ fragment resource_ on Resource {
     id
     name
   }
+  Task {
+    ...TaskNoNesting
+  }
+}
+
+fragment ResourceNoNesting on Resource {
+  id
+  createdAt
+  updatedAt
+  type
+  name
+  longtitle
+  content
+  components
+  contentText
+  published
+  deleted
+  hidemenu
+  searchable
+  uri
+  isfolder
+  rating
+  positiveVotesCount
+  negativeVotesCount
+  neutralVotesCount
+  oldID
+  commentOldID
+  class_key
+  template
+  mockUpdate
 }
 
 # fragment topic_ on Resource{

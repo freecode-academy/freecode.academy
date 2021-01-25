@@ -181,6 +181,8 @@ export default class PrismaCmsComSitemap extends Sitemap {
       SitemapUsersConnectionQuery,
       SitemapUsersConnectionQueryVariables
     >({
+      // TODO Судя по всему, fetchPolicy не спасает от кеша
+      fetchPolicy: 'network-only',
       query: SitemapUsersConnectionDocument,
       variables: {
         first: limit,
@@ -230,6 +232,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       SitemapUsersConnectionQuery,
       SitemapUsersConnectionQueryVariables
     >({
+      fetchPolicy: 'network-only',
       query: SitemapUsersConnectionDocument,
       variables: {
         first: limit,
@@ -326,6 +329,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       SitemapResourcesConnectionQuery,
       SitemapResourcesConnectionQueryVariables
     >({
+      fetchPolicy: 'network-only',
       query: SitemapResourcesConnectionDocument,
       variables: {
         first: limit,
@@ -380,6 +384,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       SitemapResourcesConnectionQuery,
       SitemapResourcesConnectionQueryVariables
     >({
+      fetchPolicy: 'network-only',
       query: SitemapResourcesConnectionDocument,
       variables: {
         first: limit,
@@ -469,6 +474,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       SitemapTagsConnectionQuery,
       SitemapTagsConnectionQueryVariables
     >({
+      fetchPolicy: 'network-only',
       query: SitemapTagsConnectionDocument,
       variables: {
         first: limit,
@@ -535,6 +541,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       SitemapTagsConnectionQuery,
       SitemapTagsConnectionQueryVariables
     >({
+      fetchPolicy: 'network-only',
       query: SitemapTagsConnectionDocument,
       variables: {
         first: limit,

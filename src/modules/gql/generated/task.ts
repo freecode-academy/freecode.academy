@@ -9,14 +9,18 @@
 import * as Types from './types';
 
 import { Task_Fragment } from './task_';
+import { UserNoNestingFragment } from './UserNoNesting';
 import { TimersConnectionTimerFragment } from './timersConnectionTimer';
 import { CodeChallengeWithBlocks_Fragment } from './codeChallengeWithBlocks_';
 import { TaskTaskTechnologiesFragment } from './taskTaskTechnologies';
+import { ResourceNoNestingFragment } from './ResourceNoNesting';
 import { gql } from '@apollo/client';
 import { Task_FragmentDoc } from './task_';
+import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { TimersConnectionTimerFragmentDoc } from './timersConnectionTimer';
 import { CodeChallengeWithBlocks_FragmentDoc } from './codeChallengeWithBlocks_';
 import { TaskTaskTechnologiesFragmentDoc } from './taskTaskTechnologies';
+import { ResourceNoNestingFragmentDoc } from './ResourceNoNesting';
 import * as Apollo from '@apollo/client';
 export type TaskQueryVariables = Types.Exact<{
   where: Types.TaskWhereUniqueInput;
@@ -31,7 +35,13 @@ export type TaskQuery = { __typename?: 'Query', object?: Types.Maybe<(
     )>>, CodeChallengeCompletion?: Types.Maybe<{ __typename?: 'CodeChallengeCompletion', id: string, CodeChallenge: (
         { __typename?: 'CodeChallenge' }
         & CodeChallengeWithBlocks_Fragment
-      ) }> }
+      ) }>, Comments?: Types.Maybe<Array<(
+      { __typename?: 'Resource', CreatedBy: (
+        { __typename?: 'User' }
+        & UserNoNestingFragment
+      ) }
+      & ResourceNoNestingFragment
+    )>> }
     & Task_Fragment
     & TaskTaskTechnologiesFragment
   )> };
@@ -51,12 +61,20 @@ export const TaskDocument = gql`
       }
     }
     ...taskTaskTechnologies
+    Comments(orderBy: createdAt_ASC) {
+      ...ResourceNoNesting
+      CreatedBy {
+        ...UserNoNesting
+      }
+    }
   }
 }
     ${Task_FragmentDoc}
 ${TimersConnectionTimerFragmentDoc}
 ${CodeChallengeWithBlocks_FragmentDoc}
-${TaskTaskTechnologiesFragmentDoc}`;
+${TaskTaskTechnologiesFragmentDoc}
+${ResourceNoNestingFragmentDoc}
+${UserNoNestingFragmentDoc}`;
 
 /**
  * __useTaskQuery__

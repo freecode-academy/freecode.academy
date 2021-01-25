@@ -2164,6 +2164,9 @@ export interface UserWhereInput {
   UserTechnologies_every?: Maybe<UserTechnologyWhereInput>;
   UserTechnologies_some?: Maybe<UserTechnologyWhereInput>;
   UserTechnologies_none?: Maybe<UserTechnologyWhereInput>;
+  TasksCreated_every?: Maybe<TaskWhereInput>;
+  TasksCreated_some?: Maybe<TaskWhereInput>;
+  TasksCreated_none?: Maybe<TaskWhereInput>;
   showHidden?: Maybe<Scalars['Boolean']>;
 }
 
@@ -3465,6 +3468,7 @@ export interface ResourceWhereInput {
   Service?: Maybe<ServiceWhereInput>;
   Team?: Maybe<TeamWhereInput>;
   Project?: Maybe<ProjectWhereInput>;
+  Task?: Maybe<TaskWhereInput>;
 }
 
 export enum ResourceType {
@@ -4675,6 +4679,9 @@ export interface TaskWhereInput {
   TaskTechnologies_every?: Maybe<TaskTechnologyWhereInput>;
   TaskTechnologies_some?: Maybe<TaskTechnologyWhereInput>;
   TaskTechnologies_none?: Maybe<TaskTechnologyWhereInput>;
+  Comments_every?: Maybe<ResourceWhereInput>;
+  Comments_some?: Maybe<ResourceWhereInput>;
+  Comments_none?: Maybe<ResourceWhereInput>;
 }
 
 export enum TaskStatus {
@@ -9278,6 +9285,7 @@ export interface User extends Node {
   PrismaProjects?: Maybe<Array<Project>>;
   CodeChallengeCompletions?: Maybe<Array<CodeChallengeCompletion>>;
   UserTechnologies?: Maybe<Array<UserTechnology>>;
+  TasksCreated?: Maybe<Array<Task>>;
   hasEmail: Scalars['Boolean'];
   hasPhone: Scalars['Boolean'];
   marketplaceToken?: Maybe<Scalars['String']>;
@@ -9513,6 +9521,17 @@ export type UserUserTechnologiesArgs = {
 };
 
 
+export type UserTasksCreatedArgs = {
+  where?: Maybe<TaskWhereInput>;
+  orderBy?: Maybe<TaskOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
+
 export type UserEthAccountAuthedArgs = {
   where?: Maybe<EthAccountWhereInput>;
 };
@@ -9690,7 +9709,7 @@ export interface Resource extends Node {
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   type?: Maybe<ResourceType>;
-  name: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
   longtitle?: Maybe<Scalars['String']>;
   content?: Maybe<Scalars['Json']>;
   components?: Maybe<Scalars['Json']>;
@@ -9726,6 +9745,7 @@ export interface Resource extends Node {
   mockUpdate?: Maybe<Scalars['DateTime']>;
   Galleries?: Maybe<Array<Gallery>>;
   CodeChallenge?: Maybe<CodeChallenge>;
+  Task?: Maybe<Task>;
 }
 
 
@@ -10165,6 +10185,7 @@ export interface Task extends Node {
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletion>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskTechnologies?: Maybe<Array<TaskTechnology>>;
+  Comments?: Maybe<Array<Resource>>;
 }
 
 
@@ -10248,6 +10269,17 @@ export type TaskReactionsArgs = {
 export type TaskTaskTechnologiesArgs = {
   where?: Maybe<TaskTechnologyWhereInput>;
   orderBy?: Maybe<TaskTechnologyOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
+
+export type TaskCommentsArgs = {
+  where?: Maybe<ResourceWhereInput>;
+  orderBy?: Maybe<ResourceOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -15529,8 +15561,14 @@ export interface TopicUpdateInput {
 
 export interface CommentCreateInput {
   text?: Maybe<Scalars['Json']>;
-  content: Scalars['Json'];
-  topicID: Scalars['ID'];
+  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<Scalars['Json']>;
+  topicID?: Maybe<Scalars['ID']>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
+}
+
+export interface TaskCreateOneWithoutCommentsInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
 }
 
 export interface CommentUpdateInput {
@@ -18348,6 +18386,7 @@ export interface ResourceCreateInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface UserCreateOneWithoutResourcesInput {
@@ -18450,6 +18489,7 @@ export interface ResourceUpdateInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface UserUpdateOneWithoutResourcesInput {
@@ -19218,6 +19258,11 @@ export interface TeamUpdateOneWithoutResourceInput {
 
 export interface ProjectUpdateOneWithoutResourceInput {
   connect?: Maybe<ProjectWhereUniqueInput>;
+  disconnect?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskUpdateOneWithoutCommentsInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
   disconnect?: Maybe<Scalars['Boolean']>;
 }
 
@@ -21881,7 +21926,7 @@ export interface TaskCreateInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -21892,12 +21937,17 @@ export interface TaskCreateInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
   /** Custom field. Connect Project */
   Project: ProjectCreateOneWithoutProjectTasksInput;
 }
 
 export interface ProjectTaskCreateManyWithoutTaskInput {
   connect?: Maybe<Array<ProjectTaskWhereUniqueInput>>;
+}
+
+export interface UserCreateOneWithoutTasksCreatedInput {
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
 export interface TaskMemberCreateManyWithoutTaskInput {
@@ -21944,6 +21994,10 @@ export interface TaskTechnologyCreateManyWithoutTaskInput {
   connect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
 }
 
+export interface ResourceCreateManyWithoutTaskInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+}
+
 export interface ProjectCreateOneWithoutProjectTasksInput {
   connect?: Maybe<ProjectWhereUniqueInput>;
 }
@@ -21967,7 +22021,7 @@ export interface TaskUpdateInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -21978,6 +22032,7 @@ export interface TaskUpdateInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface ProjectTaskUpdateManyWithoutTaskInput {
@@ -21985,6 +22040,11 @@ export interface ProjectTaskUpdateManyWithoutTaskInput {
   set?: Maybe<Array<ProjectTaskWhereUniqueInput>>;
   disconnect?: Maybe<Array<ProjectTaskWhereUniqueInput>>;
   deleteMany?: Maybe<Array<ProjectTaskScalarWhereInput>>;
+}
+
+export interface UserUpdateOneWithoutTasksCreatedInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  disconnect?: Maybe<Scalars['Boolean']>;
 }
 
 export interface TaskMemberUpdateManyWithoutTaskInput {
@@ -22517,6 +22577,14 @@ export interface TaskTechnologyUpdateManyWithoutTaskInput {
   disconnect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
   updateMany?: Maybe<Array<TaskTechnologyUpdateManyWithWhereNestedInput>>;
   deleteMany?: Maybe<Array<TaskTechnologyScalarWhereInput>>;
+}
+
+export interface ResourceUpdateManyWithoutTaskInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  set?: Maybe<Array<ResourceWhereUniqueInput>>;
+  disconnect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  updateMany?: Maybe<Array<ResourceUpdateManyWithWhereNestedInput>>;
+  deleteMany?: Maybe<Array<ResourceScalarWhereInput>>;
 }
 
 export interface TaskReactionCreateInput {
@@ -33771,6 +33839,7 @@ export interface ResourceCreateWithoutChildsInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutCodeChallengeInput {
@@ -33812,6 +33881,7 @@ export interface ResourceCreateWithoutCodeChallengeInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutCommentsInput {
@@ -33853,6 +33923,7 @@ export interface ResourceCreateWithoutCommentsInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutCreatedByInput {
@@ -33894,6 +33965,7 @@ export interface ResourceCreateWithoutCreatedByInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutEthAccountInput {
@@ -33935,6 +34007,7 @@ export interface ResourceCreateWithoutEthAccountInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutGalleriesInput {
@@ -33976,6 +34049,7 @@ export interface ResourceCreateWithoutGalleriesInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutImageInput {
@@ -34017,6 +34091,7 @@ export interface ResourceCreateWithoutImageInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutParentInput {
@@ -34058,6 +34133,7 @@ export interface ResourceCreateWithoutParentInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutPrismaProjectInput {
@@ -34099,6 +34175,7 @@ export interface ResourceCreateWithoutPrismaProjectInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutProjectInput {
@@ -34140,6 +34217,7 @@ export interface ResourceCreateWithoutProjectInput {
   Image?: Maybe<FileCreateOneWithoutImageResourceInput>;
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutServiceInput {
@@ -34181,6 +34259,7 @@ export interface ResourceCreateWithoutServiceInput {
   Image?: Maybe<FileCreateOneWithoutImageResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutTagsInput {
@@ -34214,6 +34293,49 @@ export interface ResourceCreateWithoutTagsInput {
   Topic?: Maybe<ResourceCreateOneWithoutCommentsInput>;
   Comments?: Maybe<ResourceCreateManyWithoutTopicInput>;
   Votes?: Maybe<VoteCreateManyWithoutResourceInput>;
+  Blog?: Maybe<ResourceCreateOneInput>;
+  CodeChallenge?: Maybe<CodeChallengeCreateOneWithoutTopicInput>;
+  Galleries?: Maybe<GalleryCreateManyWithoutResourceInput>;
+  EthAccount?: Maybe<EthAccountCreateOneWithoutResourcesInput>;
+  Image?: Maybe<FileCreateOneWithoutImageResourceInput>;
+  Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
+  Team?: Maybe<TeamCreateOneWithoutResourceInput>;
+  Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
+}
+
+export interface ResourceCreateWithoutTaskInput {
+  id?: Maybe<Scalars['ID']>;
+  code?: Maybe<Scalars['ID']>;
+  type?: Maybe<ResourceType>;
+  name?: Maybe<Scalars['String']>;
+  longtitle?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  published?: Maybe<Scalars['Boolean']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  uri?: Maybe<Scalars['String']>;
+  isfolder?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Float']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  components?: Maybe<Scalars['Json']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  class_key?: Maybe<Scalars['String']>;
+  template?: Maybe<Scalars['Int']>;
+  CreatedBy?: Maybe<UserCreateOneWithoutResourcesInput>;
+  Parent?: Maybe<ResourceCreateOneWithoutChildsInput>;
+  Childs?: Maybe<ResourceCreateManyWithoutParentInput>;
+  PrismaProject?: Maybe<ProjectCreateOneWithoutPrismaResourcesInput>;
+  Topic?: Maybe<ResourceCreateOneWithoutCommentsInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTopicInput>;
+  Votes?: Maybe<VoteCreateManyWithoutResourceInput>;
+  Tags?: Maybe<ResourceTagCreateManyWithoutResourceInput>;
   Blog?: Maybe<ResourceCreateOneInput>;
   CodeChallenge?: Maybe<CodeChallengeCreateOneWithoutTopicInput>;
   Galleries?: Maybe<GalleryCreateManyWithoutResourceInput>;
@@ -34263,6 +34385,7 @@ export interface ResourceCreateWithoutTeamInput {
   Image?: Maybe<FileCreateOneWithoutImageResourceInput>;
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutTopicInput {
@@ -34304,6 +34427,7 @@ export interface ResourceCreateWithoutTopicInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceCreateWithoutVotesInput {
@@ -34345,6 +34469,7 @@ export interface ResourceCreateWithoutVotesInput {
   Service?: Maybe<ServiceCreateOneWithoutResourceInput>;
   Team?: Maybe<TeamCreateOneWithoutResourceInput>;
   Project?: Maybe<ProjectCreateOneWithoutResourceInput>;
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
 }
 
 export interface ResourceTagCreateInput {
@@ -34549,6 +34674,7 @@ export interface ResourceUpdateDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateManyMutationInput {
@@ -34626,6 +34752,7 @@ export interface ResourceUpdateWithoutChildsDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutCodeChallengeDataInput {
@@ -34666,6 +34793,7 @@ export interface ResourceUpdateWithoutCodeChallengeDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutCommentsDataInput {
@@ -34706,6 +34834,7 @@ export interface ResourceUpdateWithoutCommentsDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutCreatedByDataInput {
@@ -34746,6 +34875,7 @@ export interface ResourceUpdateWithoutCreatedByDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutEthAccountDataInput {
@@ -34786,6 +34916,7 @@ export interface ResourceUpdateWithoutEthAccountDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutGalleriesDataInput {
@@ -34826,6 +34957,7 @@ export interface ResourceUpdateWithoutGalleriesDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutImageDataInput {
@@ -34866,6 +34998,7 @@ export interface ResourceUpdateWithoutImageDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutParentDataInput {
@@ -34906,6 +35039,7 @@ export interface ResourceUpdateWithoutParentDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutPrismaProjectDataInput {
@@ -34946,6 +35080,7 @@ export interface ResourceUpdateWithoutPrismaProjectDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutProjectDataInput {
@@ -34986,6 +35121,7 @@ export interface ResourceUpdateWithoutProjectDataInput {
   Image?: Maybe<FileUpdateOneWithoutImageResourceInput>;
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutServiceDataInput {
@@ -35026,6 +35162,7 @@ export interface ResourceUpdateWithoutServiceDataInput {
   Image?: Maybe<FileUpdateOneWithoutImageResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutTagsDataInput {
@@ -35058,6 +35195,48 @@ export interface ResourceUpdateWithoutTagsDataInput {
   Topic?: Maybe<ResourceUpdateOneWithoutCommentsInput>;
   Comments?: Maybe<ResourceUpdateManyWithoutTopicInput>;
   Votes?: Maybe<VoteUpdateManyWithoutResourceInput>;
+  Blog?: Maybe<ResourceUpdateOneInput>;
+  CodeChallenge?: Maybe<CodeChallengeUpdateOneWithoutTopicInput>;
+  Galleries?: Maybe<GalleryUpdateManyWithoutResourceInput>;
+  EthAccount?: Maybe<EthAccountUpdateOneWithoutResourcesInput>;
+  Image?: Maybe<FileUpdateOneWithoutImageResourceInput>;
+  Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
+  Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
+  Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
+}
+
+export interface ResourceUpdateWithoutTaskDataInput {
+  code?: Maybe<Scalars['ID']>;
+  type?: Maybe<ResourceType>;
+  name?: Maybe<Scalars['String']>;
+  longtitle?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  published?: Maybe<Scalars['Boolean']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  uri?: Maybe<Scalars['String']>;
+  isfolder?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Float']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  components?: Maybe<Scalars['Json']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  class_key?: Maybe<Scalars['String']>;
+  template?: Maybe<Scalars['Int']>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutResourcesInput>;
+  Parent?: Maybe<ResourceUpdateOneWithoutChildsInput>;
+  Childs?: Maybe<ResourceUpdateManyWithoutParentInput>;
+  PrismaProject?: Maybe<ProjectUpdateOneWithoutPrismaResourcesInput>;
+  Topic?: Maybe<ResourceUpdateOneWithoutCommentsInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTopicInput>;
+  Votes?: Maybe<VoteUpdateManyWithoutResourceInput>;
+  Tags?: Maybe<ResourceTagUpdateManyWithoutResourceInput>;
   Blog?: Maybe<ResourceUpdateOneInput>;
   CodeChallenge?: Maybe<CodeChallengeUpdateOneWithoutTopicInput>;
   Galleries?: Maybe<GalleryUpdateManyWithoutResourceInput>;
@@ -35106,6 +35285,7 @@ export interface ResourceUpdateWithoutTeamDataInput {
   Image?: Maybe<FileUpdateOneWithoutImageResourceInput>;
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutTopicDataInput {
@@ -35146,6 +35326,7 @@ export interface ResourceUpdateWithoutTopicDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithoutVotesDataInput {
@@ -35186,6 +35367,7 @@ export interface ResourceUpdateWithoutVotesDataInput {
   Service?: Maybe<ServiceUpdateOneWithoutResourceInput>;
   Team?: Maybe<TeamUpdateOneWithoutResourceInput>;
   Project?: Maybe<ProjectUpdateOneWithoutResourceInput>;
+  Task?: Maybe<TaskUpdateOneWithoutCommentsInput>;
 }
 
 export interface ResourceUpdateWithWhereUniqueWithoutCreatedByInput {
@@ -35208,6 +35390,11 @@ export interface ResourceUpdateWithWhereUniqueWithoutPrismaProjectInput {
   data: ResourceUpdateWithoutPrismaProjectDataInput;
 }
 
+export interface ResourceUpdateWithWhereUniqueWithoutTaskInput {
+  where: ResourceWhereUniqueInput;
+  data: ResourceUpdateWithoutTaskDataInput;
+}
+
 export interface ResourceUpdateWithWhereUniqueWithoutTopicInput {
   where: ResourceWhereUniqueInput;
   data: ResourceUpdateWithoutTopicDataInput;
@@ -35226,6 +35413,10 @@ export interface ResourceUpsertWithWhereUniqueWithoutParentInput {
 }
 
 export interface ResourceUpsertWithWhereUniqueWithoutPrismaProjectInput {
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceUpsertWithWhereUniqueWithoutTaskInput {
   where: ResourceWhereUniqueInput;
 }
 
@@ -36289,6 +36480,10 @@ export interface TagUpsertWithWhereUniqueWithoutCreatedByInput {
   where: TagWhereUniqueInput;
 }
 
+export interface TaskCreateManyWithoutCreatedByInput {
+  connect?: Maybe<Array<TaskWhereUniqueInput>>;
+}
+
 export interface TaskCreateOneWithoutMembersInput {
   connect?: Maybe<TaskWhereUniqueInput>;
 }
@@ -36305,7 +36500,7 @@ export interface TaskCreateWithoutChatRoomInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -36315,6 +36510,7 @@ export interface TaskCreateWithoutChatRoomInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutChildsInput {
@@ -36329,7 +36525,7 @@ export interface TaskCreateWithoutChildsInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   RelatedFrom?: Maybe<TaskCreateManyWithoutRelatedToInput>;
@@ -36339,6 +36535,7 @@ export interface TaskCreateWithoutChildsInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutCodeChallengeCompletionInput {
@@ -36353,7 +36550,7 @@ export interface TaskCreateWithoutCodeChallengeCompletionInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -36363,6 +36560,57 @@ export interface TaskCreateWithoutCodeChallengeCompletionInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
+}
+
+export interface TaskCreateWithoutCommentsInput {
+  id?: Maybe<Scalars['ID']>;
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  status?: Maybe<TaskStatus>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
+  Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
+  Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
+  Childs?: Maybe<TaskCreateManyWithoutParentInput>;
+  RelatedFrom?: Maybe<TaskCreateManyWithoutRelatedToInput>;
+  RelatedTo?: Maybe<TaskCreateManyWithoutRelatedFromInput>;
+  Timers?: Maybe<TimerCreateManyWithoutTaskInput>;
+  Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
+  ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
+  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+}
+
+export interface TaskCreateWithoutCreatedByInput {
+  id?: Maybe<Scalars['ID']>;
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  status?: Maybe<TaskStatus>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
+  Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
+  Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
+  Childs?: Maybe<TaskCreateManyWithoutParentInput>;
+  RelatedFrom?: Maybe<TaskCreateManyWithoutRelatedToInput>;
+  RelatedTo?: Maybe<TaskCreateManyWithoutRelatedFromInput>;
+  Timers?: Maybe<TimerCreateManyWithoutTaskInput>;
+  Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
+  ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
+  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutMembersInput {
@@ -36377,7 +36625,7 @@ export interface TaskCreateWithoutMembersInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
   RelatedFrom?: Maybe<TaskCreateManyWithoutRelatedToInput>;
@@ -36387,6 +36635,7 @@ export interface TaskCreateWithoutMembersInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutParentInput {
@@ -36401,7 +36650,7 @@ export interface TaskCreateWithoutParentInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
   RelatedFrom?: Maybe<TaskCreateManyWithoutRelatedToInput>;
@@ -36411,6 +36660,7 @@ export interface TaskCreateWithoutParentInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutReactionsInput {
@@ -36425,7 +36675,7 @@ export interface TaskCreateWithoutReactionsInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -36435,6 +36685,7 @@ export interface TaskCreateWithoutReactionsInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutRelatedFromInput {
@@ -36449,7 +36700,7 @@ export interface TaskCreateWithoutRelatedFromInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -36459,6 +36710,7 @@ export interface TaskCreateWithoutRelatedFromInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutRelatedToInput {
@@ -36473,7 +36725,7 @@ export interface TaskCreateWithoutRelatedToInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -36483,6 +36735,7 @@ export interface TaskCreateWithoutRelatedToInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutTaskProjectsInput {
@@ -36496,7 +36749,7 @@ export interface TaskCreateWithoutTaskProjectsInput {
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -36507,6 +36760,7 @@ export interface TaskCreateWithoutTaskProjectsInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutTaskTechnologiesInput {
@@ -36521,7 +36775,7 @@ export interface TaskCreateWithoutTaskTechnologiesInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -36531,6 +36785,7 @@ export interface TaskCreateWithoutTaskTechnologiesInput {
   Reactions?: Maybe<TaskReactionCreateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 export interface TaskCreateWithoutTimersInput {
@@ -36545,7 +36800,7 @@ export interface TaskCreateWithoutTimersInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskCreateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserCreateOneInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberCreateManyWithoutTaskInput>;
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Childs?: Maybe<TaskCreateManyWithoutParentInput>;
@@ -36555,6 +36810,7 @@ export interface TaskCreateWithoutTimersInput {
   ChatRoom?: Maybe<ChatRoomCreateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionCreateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyCreateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceCreateManyWithoutTaskInput>;
 }
 
 /** A connection to a list of items. */
@@ -36813,6 +37069,14 @@ export interface TaskUpdateManyMutationInput {
   needHelp?: Maybe<Scalars['Boolean']>;
 }
 
+export interface TaskUpdateManyWithoutCreatedByInput {
+  connect?: Maybe<Array<TaskWhereUniqueInput>>;
+  set?: Maybe<Array<TaskWhereUniqueInput>>;
+  disconnect?: Maybe<Array<TaskWhereUniqueInput>>;
+  updateMany?: Maybe<Array<TaskUpdateManyWithWhereNestedInput>>;
+  deleteMany?: Maybe<Array<TaskScalarWhereInput>>;
+}
+
 export interface TaskUpdateWithoutChatRoomDataInput {
   name?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
@@ -36824,7 +37088,7 @@ export interface TaskUpdateWithoutChatRoomDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -36834,6 +37098,7 @@ export interface TaskUpdateWithoutChatRoomDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutChildsDataInput {
@@ -36847,7 +37112,7 @@ export interface TaskUpdateWithoutChildsDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   RelatedFrom?: Maybe<TaskUpdateManyWithoutRelatedToInput>;
@@ -36857,6 +37122,7 @@ export interface TaskUpdateWithoutChildsDataInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutCodeChallengeCompletionDataInput {
@@ -36870,7 +37136,7 @@ export interface TaskUpdateWithoutCodeChallengeCompletionDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -36880,6 +37146,55 @@ export interface TaskUpdateWithoutCodeChallengeCompletionDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
+}
+
+export interface TaskUpdateWithoutCommentsDataInput {
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  status?: Maybe<TaskStatus>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
+  Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
+  Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
+  Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
+  RelatedFrom?: Maybe<TaskUpdateManyWithoutRelatedToInput>;
+  RelatedTo?: Maybe<TaskUpdateManyWithoutRelatedFromInput>;
+  Timers?: Maybe<TimerUpdateManyWithoutTaskInput>;
+  Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
+  ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
+  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+}
+
+export interface TaskUpdateWithoutCreatedByDataInput {
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  status?: Maybe<TaskStatus>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
+  Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
+  Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
+  Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
+  RelatedFrom?: Maybe<TaskUpdateManyWithoutRelatedToInput>;
+  RelatedTo?: Maybe<TaskUpdateManyWithoutRelatedFromInput>;
+  Timers?: Maybe<TimerUpdateManyWithoutTaskInput>;
+  Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
+  ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
+  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutMembersDataInput {
@@ -36893,7 +37208,7 @@ export interface TaskUpdateWithoutMembersDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
   RelatedFrom?: Maybe<TaskUpdateManyWithoutRelatedToInput>;
@@ -36903,6 +37218,7 @@ export interface TaskUpdateWithoutMembersDataInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutParentDataInput {
@@ -36916,7 +37232,7 @@ export interface TaskUpdateWithoutParentDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
   RelatedFrom?: Maybe<TaskUpdateManyWithoutRelatedToInput>;
@@ -36926,6 +37242,7 @@ export interface TaskUpdateWithoutParentDataInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutReactionsDataInput {
@@ -36939,7 +37256,7 @@ export interface TaskUpdateWithoutReactionsDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -36949,6 +37266,7 @@ export interface TaskUpdateWithoutReactionsDataInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutRelatedFromDataInput {
@@ -36962,7 +37280,7 @@ export interface TaskUpdateWithoutRelatedFromDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -36972,6 +37290,7 @@ export interface TaskUpdateWithoutRelatedFromDataInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutRelatedToDataInput {
@@ -36985,7 +37304,7 @@ export interface TaskUpdateWithoutRelatedToDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -36995,6 +37314,7 @@ export interface TaskUpdateWithoutRelatedToDataInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutTaskProjectsDataInput {
@@ -37007,7 +37327,7 @@ export interface TaskUpdateWithoutTaskProjectsDataInput {
   startDate?: Maybe<Scalars['DateTime']>;
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -37018,6 +37338,7 @@ export interface TaskUpdateWithoutTaskProjectsDataInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutTaskTechnologiesDataInput {
@@ -37031,7 +37352,7 @@ export interface TaskUpdateWithoutTaskTechnologiesDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -37041,6 +37362,7 @@ export interface TaskUpdateWithoutTaskTechnologiesDataInput {
   Reactions?: Maybe<TaskReactionUpdateManyWithoutTaskInput>;
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
 }
 
 export interface TaskUpdateWithoutTimersDataInput {
@@ -37054,7 +37376,7 @@ export interface TaskUpdateWithoutTimersDataInput {
   endDate?: Maybe<Scalars['DateTime']>;
   needHelp?: Maybe<Scalars['Boolean']>;
   TaskProjects?: Maybe<ProjectTaskUpdateManyWithoutTaskInput>;
-  CreatedBy?: Maybe<UserUpdateOneInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutTasksCreatedInput>;
   Members?: Maybe<TaskMemberUpdateManyWithoutTaskInput>;
   Parent?: Maybe<TaskUpdateOneWithoutChildsInput>;
   Childs?: Maybe<TaskUpdateManyWithoutParentInput>;
@@ -37064,6 +37386,12 @@ export interface TaskUpdateWithoutTimersDataInput {
   ChatRoom?: Maybe<ChatRoomUpdateOneWithoutTaskInput>;
   CodeChallengeCompletion?: Maybe<CodeChallengeCompletionUpdateOneWithoutTaskInput>;
   TaskTechnologies?: Maybe<TaskTechnologyUpdateManyWithoutTaskInput>;
+  Comments?: Maybe<ResourceUpdateManyWithoutTaskInput>;
+}
+
+export interface TaskUpdateWithWhereUniqueWithoutCreatedByInput {
+  where: TaskWhereUniqueInput;
+  data: TaskUpdateWithoutCreatedByDataInput;
 }
 
 export interface TaskUpdateWithWhereUniqueWithoutParentInput {
@@ -37079,6 +37407,10 @@ export interface TaskUpdateWithWhereUniqueWithoutRelatedFromInput {
 export interface TaskUpdateWithWhereUniqueWithoutRelatedToInput {
   where: TaskWhereUniqueInput;
   data: TaskUpdateWithoutRelatedToDataInput;
+}
+
+export interface TaskUpsertWithWhereUniqueWithoutCreatedByInput {
+  where: TaskWhereUniqueInput;
 }
 
 export interface TaskUpsertWithWhereUniqueWithoutParentInput {
@@ -38066,6 +38398,7 @@ export interface UserCreateWithoutCareerInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserGroupCreateManyWithoutUsersInput {
@@ -38140,6 +38473,7 @@ export interface UserCreateWithoutCodeChallengeCompletionsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutCreatedByInput {
@@ -38198,6 +38532,7 @@ export interface UserCreateWithoutCreatedByInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutCreatedRoomsInput {
@@ -38256,6 +38591,7 @@ export interface UserCreateWithoutCreatedRoomsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutCreatedUsersInput {
@@ -38314,6 +38650,7 @@ export interface UserCreateWithoutCreatedUsersInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutEthAccountAuthedInput {
@@ -38372,6 +38709,7 @@ export interface UserCreateWithoutEthAccountAuthedInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutEthAccountsInput {
@@ -38430,6 +38768,7 @@ export interface UserCreateWithoutEthAccountsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutEthContractSourcesCreatedInput {
@@ -38488,6 +38827,7 @@ export interface UserCreateWithoutEthContractSourcesCreatedInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutFilesInput {
@@ -38546,6 +38886,7 @@ export interface UserCreateWithoutFilesInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutGroupsInput {
@@ -38604,6 +38945,7 @@ export interface UserCreateWithoutGroupsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutImportsInput {
@@ -38662,6 +39004,7 @@ export interface UserCreateWithoutImportsInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutLettersCreatedInput {
@@ -38720,6 +39063,7 @@ export interface UserCreateWithoutLettersCreatedInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutLogedInsInput {
@@ -38778,6 +39122,7 @@ export interface UserCreateWithoutLogedInsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutMessagesInput {
@@ -38836,6 +39181,7 @@ export interface UserCreateWithoutMessagesInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutNoticesInput {
@@ -38894,6 +39240,7 @@ export interface UserCreateWithoutNoticesInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutNotificationTypesCreatedInput {
@@ -38952,6 +39299,7 @@ export interface UserCreateWithoutNotificationTypesCreatedInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutNotificationTypesInput {
@@ -39010,6 +39358,7 @@ export interface UserCreateWithoutNotificationTypesInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutPositionsCreatedInput {
@@ -39068,6 +39417,7 @@ export interface UserCreateWithoutPositionsCreatedInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutPositionsInput {
@@ -39126,6 +39476,7 @@ export interface UserCreateWithoutPositionsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutPrismaProjectsInput {
@@ -39184,6 +39535,7 @@ export interface UserCreateWithoutPrismaProjectsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutProjectsCreatedInput {
@@ -39242,6 +39594,7 @@ export interface UserCreateWithoutProjectsCreatedInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutProjectsInput {
@@ -39300,6 +39653,7 @@ export interface UserCreateWithoutProjectsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutReadedMessagesInput {
@@ -39358,6 +39712,7 @@ export interface UserCreateWithoutReadedMessagesInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutResourcesInput {
@@ -39416,6 +39771,7 @@ export interface UserCreateWithoutResourcesInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutResourceTagsInput {
@@ -39474,6 +39830,7 @@ export interface UserCreateWithoutResourceTagsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutRoomsInput {
@@ -39532,6 +39889,7 @@ export interface UserCreateWithoutRoomsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutSettingsInput {
@@ -39590,6 +39948,7 @@ export interface UserCreateWithoutSettingsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTagsInput {
@@ -39624,6 +39983,66 @@ export interface UserCreateWithoutTagsInput {
   Votes?: Maybe<VoteCreateManyWithoutUserInput>;
   NotificationTypes?: Maybe<NotificationTypeCreateManyWithoutUsersInput>;
   NotificationTypesCreated?: Maybe<NotificationTypeCreateManyWithoutCreatedByInput>;
+  ResourceTags?: Maybe<ResourceTagCreateManyWithoutCreatedByInput>;
+  Rooms?: Maybe<ChatRoomCreateManyWithoutMembersInput>;
+  CreatedRooms?: Maybe<ChatRoomCreateManyWithoutCreatedByInput>;
+  Messages?: Maybe<ChatMessageCreateManyWithoutCreatedByInput>;
+  ReadedMessages?: Maybe<ChatMessageReadedCreateManyWithoutUserInput>;
+  Notices?: Maybe<NoticeCreateManyWithoutUserInput>;
+  EthContractSourcesCreated?: Maybe<EthContractSourceCreateManyWithoutCreatedByInput>;
+  EthAccounts?: Maybe<EthAccountCreateManyWithoutCreatedByInput>;
+  Teams?: Maybe<TeamMemberCreateManyWithoutUserInput>;
+  TeamsCreated?: Maybe<TeamCreateManyWithoutCreatedByInput>;
+  Projects?: Maybe<ProjectMemberCreateManyWithoutUserInput>;
+  ProjectsCreated?: Maybe<ProjectCreateManyWithoutCreatedByInput>;
+  Tasks?: Maybe<TaskMemberCreateManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateManyWithoutCreatedByInput>;
+  PositionsCreated?: Maybe<PositionCreateManyWithoutCreatedByInput>;
+  Positions?: Maybe<PositionCreateManyWithoutUsersInput>;
+  TasksReactions?: Maybe<TaskReactionCreateManyWithoutCreatedByInput>;
+  LettersCreated?: Maybe<LetterCreateManyWithoutUserInput>;
+  EthAccountAuthed?: Maybe<EthAccountCreateOneWithoutUserAuthedInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateManyWithoutCreatedByInput>;
+  PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
+  Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
+  Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
+}
+
+export interface UserCreateWithoutTasksCreatedInput {
+  id?: Maybe<Scalars['ID']>;
+  username?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  password?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  active?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  oldID?: Maybe<Scalars['Int']>;
+  Groups?: Maybe<UserGroupCreateManyWithoutUsersInput>;
+  CreatedUsers?: Maybe<UserCreateManyWithoutCreatedByInput>;
+  CreatedBy?: Maybe<UserCreateOneWithoutCreatedUsersInput>;
+  LogedIns?: Maybe<LogedInCreateManyWithoutUserInput>;
+  Files?: Maybe<FileCreateManyWithoutCreatedByInput>;
+  worlds?: Maybe<WorldCreateManyWithoutCreatedByInput>;
+  settings?: Maybe<SettingsCreateOneWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateManyWithoutCreatedByInput>;
+  Votes?: Maybe<VoteCreateManyWithoutUserInput>;
+  NotificationTypes?: Maybe<NotificationTypeCreateManyWithoutUsersInput>;
+  NotificationTypesCreated?: Maybe<NotificationTypeCreateManyWithoutCreatedByInput>;
+  Tags?: Maybe<TagCreateManyWithoutCreatedByInput>;
   ResourceTags?: Maybe<ResourceTagCreateManyWithoutCreatedByInput>;
   Rooms?: Maybe<ChatRoomCreateManyWithoutMembersInput>;
   CreatedRooms?: Maybe<ChatRoomCreateManyWithoutCreatedByInput>;
@@ -39706,6 +40125,7 @@ export interface UserCreateWithoutTasksInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTasksReactionsInput {
@@ -39764,6 +40184,7 @@ export interface UserCreateWithoutTasksReactionsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTeamsCreatedInput {
@@ -39822,6 +40243,7 @@ export interface UserCreateWithoutTeamsCreatedInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTeamsInput {
@@ -39880,6 +40302,7 @@ export interface UserCreateWithoutTeamsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutTimersInput {
@@ -39938,6 +40361,7 @@ export interface UserCreateWithoutTimersInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutUserTechnologiesInput {
@@ -39996,6 +40420,7 @@ export interface UserCreateWithoutUserTechnologiesInput {
   PrismaProjects?: Maybe<ProjectCreateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutVotesInput {
@@ -40054,6 +40479,7 @@ export interface UserCreateWithoutVotesInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 export interface UserCreateWithoutWorldsInput {
@@ -40112,6 +40538,7 @@ export interface UserCreateWithoutWorldsInput {
   Imports?: Maybe<ImportCreateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerCreateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskCreateManyWithoutCreatedByInput>;
 }
 
 /** A connection to a list of items. */
@@ -40341,6 +40768,7 @@ export interface UserUpdateDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateManyWithoutCreatedByInput {
@@ -40664,6 +41092,7 @@ export interface UserUpdateWithoutCareerDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutCodeChallengeCompletionsDataInput {
@@ -40721,6 +41150,7 @@ export interface UserUpdateWithoutCodeChallengeCompletionsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutCreatedByDataInput {
@@ -40778,6 +41208,7 @@ export interface UserUpdateWithoutCreatedByDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutCreatedRoomsDataInput {
@@ -40835,6 +41266,7 @@ export interface UserUpdateWithoutCreatedRoomsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutCreatedUsersDataInput {
@@ -40892,6 +41324,7 @@ export interface UserUpdateWithoutCreatedUsersDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutEthAccountAuthedDataInput {
@@ -40949,6 +41382,7 @@ export interface UserUpdateWithoutEthAccountAuthedDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutEthAccountsDataInput {
@@ -41006,6 +41440,7 @@ export interface UserUpdateWithoutEthAccountsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutEthContractSourcesCreatedDataInput {
@@ -41063,6 +41498,7 @@ export interface UserUpdateWithoutEthContractSourcesCreatedDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutFilesDataInput {
@@ -41120,6 +41556,7 @@ export interface UserUpdateWithoutFilesDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutGroupsDataInput {
@@ -41177,6 +41614,7 @@ export interface UserUpdateWithoutGroupsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutImportsDataInput {
@@ -41234,6 +41672,7 @@ export interface UserUpdateWithoutImportsDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutLettersCreatedDataInput {
@@ -41291,6 +41730,7 @@ export interface UserUpdateWithoutLettersCreatedDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutLogedInsDataInput {
@@ -41348,6 +41788,7 @@ export interface UserUpdateWithoutLogedInsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutMessagesDataInput {
@@ -41405,6 +41846,7 @@ export interface UserUpdateWithoutMessagesDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutNoticesDataInput {
@@ -41462,6 +41904,7 @@ export interface UserUpdateWithoutNoticesDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutNotificationTypesCreatedDataInput {
@@ -41519,6 +41962,7 @@ export interface UserUpdateWithoutNotificationTypesCreatedDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutNotificationTypesDataInput {
@@ -41576,6 +42020,7 @@ export interface UserUpdateWithoutNotificationTypesDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutPositionsCreatedDataInput {
@@ -41633,6 +42078,7 @@ export interface UserUpdateWithoutPositionsCreatedDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutPositionsDataInput {
@@ -41690,6 +42136,7 @@ export interface UserUpdateWithoutPositionsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutPrismaProjectsDataInput {
@@ -41747,6 +42194,7 @@ export interface UserUpdateWithoutPrismaProjectsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutProjectsCreatedDataInput {
@@ -41804,6 +42252,7 @@ export interface UserUpdateWithoutProjectsCreatedDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutProjectsDataInput {
@@ -41861,6 +42310,7 @@ export interface UserUpdateWithoutProjectsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutReadedMessagesDataInput {
@@ -41918,6 +42368,7 @@ export interface UserUpdateWithoutReadedMessagesDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutResourcesDataInput {
@@ -41975,6 +42426,7 @@ export interface UserUpdateWithoutResourcesDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutResourceTagsDataInput {
@@ -42032,6 +42484,7 @@ export interface UserUpdateWithoutResourceTagsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutRoomsDataInput {
@@ -42089,6 +42542,7 @@ export interface UserUpdateWithoutRoomsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutSettingsDataInput {
@@ -42146,6 +42600,7 @@ export interface UserUpdateWithoutSettingsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTagsDataInput {
@@ -42179,6 +42634,65 @@ export interface UserUpdateWithoutTagsDataInput {
   Votes?: Maybe<VoteUpdateManyWithoutUserInput>;
   NotificationTypes?: Maybe<NotificationTypeUpdateManyWithoutUsersInput>;
   NotificationTypesCreated?: Maybe<NotificationTypeUpdateManyWithoutCreatedByInput>;
+  ResourceTags?: Maybe<ResourceTagUpdateManyWithoutCreatedByInput>;
+  Rooms?: Maybe<ChatRoomUpdateManyWithoutMembersInput>;
+  CreatedRooms?: Maybe<ChatRoomUpdateManyWithoutCreatedByInput>;
+  Messages?: Maybe<ChatMessageUpdateManyWithoutCreatedByInput>;
+  ReadedMessages?: Maybe<ChatMessageReadedUpdateManyWithoutUserInput>;
+  Notices?: Maybe<NoticeUpdateManyWithoutUserInput>;
+  EthContractSourcesCreated?: Maybe<EthContractSourceUpdateManyWithoutCreatedByInput>;
+  EthAccounts?: Maybe<EthAccountUpdateManyWithoutCreatedByInput>;
+  Teams?: Maybe<TeamMemberUpdateManyWithoutUserInput>;
+  TeamsCreated?: Maybe<TeamUpdateManyWithoutCreatedByInput>;
+  Projects?: Maybe<ProjectMemberUpdateManyWithoutUserInput>;
+  ProjectsCreated?: Maybe<ProjectUpdateManyWithoutCreatedByInput>;
+  Tasks?: Maybe<TaskMemberUpdateManyWithoutUserInput>;
+  Timers?: Maybe<TimerUpdateManyWithoutCreatedByInput>;
+  PositionsCreated?: Maybe<PositionUpdateManyWithoutCreatedByInput>;
+  Positions?: Maybe<PositionUpdateManyWithoutUsersInput>;
+  TasksReactions?: Maybe<TaskReactionUpdateManyWithoutCreatedByInput>;
+  LettersCreated?: Maybe<LetterUpdateManyWithoutUserInput>;
+  EthAccountAuthed?: Maybe<EthAccountUpdateOneWithoutUserAuthedInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionUpdateManyWithoutCreatedByInput>;
+  PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
+  Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
+  Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
+}
+
+export interface UserUpdateWithoutTasksCreatedDataInput {
+  username?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  password?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  active?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  oldID?: Maybe<Scalars['Int']>;
+  Groups?: Maybe<UserGroupUpdateManyWithoutUsersInput>;
+  CreatedUsers?: Maybe<UserUpdateManyWithoutCreatedByInput>;
+  CreatedBy?: Maybe<UserUpdateOneWithoutCreatedUsersInput>;
+  LogedIns?: Maybe<LogedInUpdateManyWithoutUserInput>;
+  Files?: Maybe<FileUpdateManyWithoutCreatedByInput>;
+  worlds?: Maybe<WorldUpdateManyWithoutCreatedByInput>;
+  settings?: Maybe<SettingsUpdateOneWithoutUserInput>;
+  Resources?: Maybe<ResourceUpdateManyWithoutCreatedByInput>;
+  Votes?: Maybe<VoteUpdateManyWithoutUserInput>;
+  NotificationTypes?: Maybe<NotificationTypeUpdateManyWithoutUsersInput>;
+  NotificationTypesCreated?: Maybe<NotificationTypeUpdateManyWithoutCreatedByInput>;
+  Tags?: Maybe<TagUpdateManyWithoutCreatedByInput>;
   ResourceTags?: Maybe<ResourceTagUpdateManyWithoutCreatedByInput>;
   Rooms?: Maybe<ChatRoomUpdateManyWithoutMembersInput>;
   CreatedRooms?: Maybe<ChatRoomUpdateManyWithoutCreatedByInput>;
@@ -42260,6 +42774,7 @@ export interface UserUpdateWithoutTasksDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTasksReactionsDataInput {
@@ -42317,6 +42832,7 @@ export interface UserUpdateWithoutTasksReactionsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTeamsCreatedDataInput {
@@ -42374,6 +42890,7 @@ export interface UserUpdateWithoutTeamsCreatedDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTeamsDataInput {
@@ -42431,6 +42948,7 @@ export interface UserUpdateWithoutTeamsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutTimersDataInput {
@@ -42488,6 +43006,7 @@ export interface UserUpdateWithoutTimersDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutUserTechnologiesDataInput {
@@ -42545,6 +43064,7 @@ export interface UserUpdateWithoutUserTechnologiesDataInput {
   PrismaProjects?: Maybe<ProjectUpdateManyWithoutPrismaUsersInput>;
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutVotesDataInput {
@@ -42602,6 +43122,7 @@ export interface UserUpdateWithoutVotesDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithoutWorldsDataInput {
@@ -42659,6 +43180,7 @@ export interface UserUpdateWithoutWorldsDataInput {
   Imports?: Maybe<ImportUpdateManyWithoutCreatedByInput>;
   Career?: Maybe<CareerUpdateOneWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyUpdateManyWithoutCreatedByInput>;
+  TasksCreated?: Maybe<TaskUpdateManyWithoutCreatedByInput>;
 }
 
 export interface UserUpdateWithWhereUniqueNestedInput {

@@ -32,7 +32,7 @@ const CommentPage: Page = () => {
         description={`Комментарий к топику "${object.Topic?.name}"`}
       />
 
-      <Comment object={object} />
+      <Comment linkType="target" object={object} />
     </>
   )
 }

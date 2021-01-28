@@ -160,26 +160,28 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
         })}
         <table>
           <tbody>
-            <td>Планируемый запуск: </td>
-            <td>
-              {object.startDatePlaning
-                ? moment(object.startDatePlaning).format('L')
-                : null}
-            </td>
-            <td>Дата начала: </td>
-            <td>
-              {object.startDate ? moment(object.startDate).format('L') : null}
-            </td>
-            <td>Планируемое завершение: </td>
-            <td>
-              {object.endDatePlaning
-                ? moment(object.endDatePlaning).format('L')
-                : null}
-            </td>
-            <td>Дата завершения: </td>
-            <td>
-              {object.endDate ? moment(object.endDate).format('L') : null}
-            </td>
+            <tr>
+              <td>Планируемый запуск: </td>
+              <td>
+                {object.startDatePlaning
+                  ? moment(object.startDatePlaning).format('L')
+                  : null}
+              </td>
+              <td>Дата начала: </td>
+              <td>
+                {object.startDate ? moment(object.startDate).format('L') : null}
+              </td>
+              <td>Планируемое завершение: </td>
+              <td>
+                {object.endDatePlaning
+                  ? moment(object.endDatePlaning).format('L')
+                  : null}
+              </td>
+              <td>Дата завершения: </td>
+              <td>
+                {object.endDate ? moment(object.endDate).format('L') : null}
+              </td>
+            </tr>
           </tbody>
         </table>
 

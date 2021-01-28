@@ -309,12 +309,12 @@ const TaskForm: React.FC<TaskFormProps> = ({
       <>
         <CheckBox
           label="Нужна помощь"
-          checked={!!data.needHelp}
+          checked={getValue('needHelp') || false}
           onChange={onChangeNeedHelp}
         />
       </>
     )
-  }, [data.needHelp, onChangeNeedHelp])
+  }, [getValue, onChangeNeedHelp])
 
   return useMemo(() => {
     return (

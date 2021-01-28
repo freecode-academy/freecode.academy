@@ -24,4 +24,8 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
+  .DraftEditor-root pre {
+    white-space: pre-wrap;
+  }
+
 `

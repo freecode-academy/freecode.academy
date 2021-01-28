@@ -15573,6 +15573,7 @@ export interface TaskCreateOneWithoutCommentsInput {
 
 export interface CommentUpdateInput {
   content?: Maybe<Scalars['Json']>;
+  components?: Maybe<Scalars['Json']>;
 }
 
 export interface TestCreateInput {

@@ -87,38 +87,34 @@ const TaskButtons: React.FC<TaskButtonsProps> = ({ object }) => {
         ? Timers.filter((n) => n.stopedAt === null)
         : []
 
-      if (currentUser) {
-        const { id: currentUserId } = currentUser
+      const activeTimer =
+        currentUser &&
+        activeTimers.find((n) => n.CreatedBy?.id === currentUser.id)
 
-        const activeTimer = activeTimers.find(
-          (n) => n.CreatedBy?.id === currentUserId
+      if (activeTimer) {
+        const { id: timerId } = activeTimer
+
+        buttons.push(
+          <IconButton
+            key="stop"
+            value={timerId}
+            onClick={onClickUpdateTimer}
+            disabled={loading}
+          >
+            <StopIcon />
+          </IconButton>
         )
-
-        if (activeTimer) {
-          const { id: timerId } = activeTimer
-
-          buttons.push(
-            <IconButton
-              key="stop"
-              value={timerId}
-              onClick={onClickUpdateTimer}
-              disabled={loading}
-            >
-              <StopIcon />
-            </IconButton>
-          )
-        } else {
-          buttons.push(
-            <IconButton
-              key="start"
-              value={taskId}
-              onClick={onClickCreateTimer}
-              disabled={loading}
-            >
-              <StartIcon />
-            </IconButton>
-          )
-        }
+      } else {
+        buttons.push(
+          <IconButton
+            key="start"
+            value={taskId}
+            onClick={onClickCreateTimer}
+            disabled={loading}
+          >
+            <StartIcon />
+          </IconButton>
+        )
       }
     }
 

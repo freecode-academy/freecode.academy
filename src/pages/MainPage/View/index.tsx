@@ -12,6 +12,7 @@ import MainPageStudents from './Students'
 import { MainPageProps } from './interfaces'
 import { MainPageViewStyled } from './styles'
 import MainPageTasksNeedHelps from './TasksNeedHelp'
+import Link from 'next/link'
 
 const MainPageView: React.FC<MainPageProps> = (props) => {
   return useMemo(() => {
@@ -54,8 +55,15 @@ const MainPageView: React.FC<MainPageProps> = (props) => {
 
     return (
       <MainPageViewStyled>
-        <Typography variant="title">
+        <Typography variant="title" paragraph>
           Изучайте современный JavaScript с нами совершенно бесплатно!
+        </Typography>
+        <Typography>
+          <Link href="/start/developers">
+            <a title="С чего начать программисту">
+              С чего начать программисту.
+            </a>
+          </Link>
         </Typography>
 
         <MainPageCodeChallengeCompletions objects={completions} />

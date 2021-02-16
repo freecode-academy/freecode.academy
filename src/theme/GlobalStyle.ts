@@ -28,4 +28,9 @@ export const GlobalStyle = createGlobalStyle`
     white-space: pre-wrap;
   }
 
+  p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
 `

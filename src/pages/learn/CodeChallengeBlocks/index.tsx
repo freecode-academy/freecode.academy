@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import Head from 'next/head'
 import {
   CodeChallengeBlocksDocument,
   CodeChallengeBlocksQuery,
@@ -10,6 +9,7 @@ import {
 import View from './View'
 
 import { Page } from '../../_App/interfaces'
+import { NextSeo } from 'next-seo'
 
 const CodeChallengeBlocksPage: Page = () => {
   const response = useCodeChallengeBlocksQuery({
@@ -32,10 +32,10 @@ const CodeChallengeBlocksPage: Page = () => {
 
   return (
     <>
-      <Head>
-        <title>Учебные разделы</title>
-        <meta name="description" content="Все учебные разделы" />
-      </Head>
+      <NextSeo
+        title="Тестовые задания по HTML, CSS, Javascript онлайн"
+        description="Бесплатные тестовые практически задания по HTML, CSS, Javascript онлайн"
+      />
 
       <View
         objects={objects}

@@ -79,12 +79,12 @@ A required file can not have both a src and a link: src = ${src}, link = ${link}
       }
       return ''
     })
-    .reduce((head, element) => head.concat(element))
+    .reduce<string[]>((head, element) => head.concat(element), [])
 
   const source = files.reduce(
     (source, file) => source.concat(file.contents, htmlCatch),
     ''
   )
 
-  return `<head>${head}</head>${createBody({ source })}`
+  return `<head>${head.join('\n')}</head>${createBody({ source })}`
 }

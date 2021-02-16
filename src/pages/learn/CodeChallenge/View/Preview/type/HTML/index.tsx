@@ -1,97 +1,63 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
+import { concatHtml } from 'src/pages/learn/CodeChallenge/rechallenge/builders'
 import Context from '../../../../Context'
 import { ChallengeTestIFrameElement } from '../../interfaces'
 
 const PreviewHtml: React.FC = () => {
-  const [frameLoaded, setFrameLoaded] = useState(false)
-
-  // console.log('frameLoaded', frameLoaded);
-
   const [frame, setFrame] = useState<ChallengeTestIFrameElement | null>(null)
-
-  // console.log('setFrame frame', frame);
 
   const context = useContext(Context)
 
-  // console.log('Preview context', context);
-
   const challenge = context?.challenge
-  // const challengeData = context?.challengeData;
-
-  // console.log('challenge', challenge);
-  // console.log('challengeData', challengeData);
 
   useEffect(() => {
-    if (
-      !frameLoaded ||
-      !frame ||
-      !frame.contentDocument ||
-      !frame.contentDocument.body
-    ) {
+    if (!frame || !frame.contentDocument) {
       return
     }
 
-    frame.contentDocument.body.innerHTML =
-      context?.challengeData.file.contents || ''
-  }, [context?.challengeData.file.contents, frame, frameLoaded])
-
-  const frameOnLoaded = useCallback(() => setFrameLoaded(true), [
-    setFrameLoaded,
-  ])
-
-  const frameContent = useMemo(() => {
-    // console.log('useMemo frameContent');
-
-    const required = (context?.challenge.required ?? []) as {
+    const required = (context?.challenge.required ?? []).slice(0) as {
       src?: string
       link?: string
     }[]
 
+    required.push({
+      src: 'https://code.jquery.com/jquery-3.5.1.min.js',
+    })
+
+    const html = challenge
+      ? concatHtml({
+          required,
+          template: challenge?.template,
+          files: [
+            {
+              contents: context?.challengeData.file.contents || '',
+            },
+          ],
+        })
+      : '<head /><body />'
+
+    frame.contentDocument?.open()
+    frame.contentDocument?.write(html)
+    frame.contentDocument?.close()
+  }, [
+    challenge,
+    context?.challenge.required,
+    context?.challengeData.file.contents,
+    frame,
+  ])
+
+  const frameContent = useMemo(() => {
     return (
       <iframe
         className={'challenge-preview-frame'}
         id="tests-frame"
         title="Challenge Preview"
         ref={setFrame}
-        onLoad={frameOnLoaded}
-        srcDoc={`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-          ${required
-            .map((n) => {
-              const src = n.src
-              const link = n.link
-
-              if (link && src) {
-                throw new Error(
-                  `A required file can not have both a src and a link: src = ${src}, link = ${link}`
-                )
-              }
-              if (src) {
-                return `<script src='${src}' type='text/javascript'></script>`
-              }
-              if (link) {
-                return `<link href='${link}' rel='stylesheet' />`
-              }
-              return ''
-            })
-            .join('\n')}
-        </head>
-        ${challenge?.template || `<body />`}
-      </html>
-    `}
+        // onLoad={frameOnLoaded}
       />
     )
-  }, [challenge?.template, context?.challenge.required, frameOnLoaded])
+  }, [])
 
   return frameContent
 }

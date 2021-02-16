@@ -25,12 +25,19 @@ const CommentPage: Page = () => {
     return null
   }
 
+  let description: string | undefined = undefined
+
+  if (object.Topic) {
+    description = `Комментарий к топику "${object.Topic.name}"`
+  } else if (object.Task) {
+    description = `Комментарий к задаче "${object.Task.name}"`
+  } else {
+    description = object.name || undefined
+  }
+
   return (
     <>
-      <NextSeo
-        title={object.name || ''}
-        description={`Комментарий к топику "${object.Topic?.name}"`}
-      />
+      <NextSeo title={object.name || ''} description={description} />
 
       <Comment linkType="target" object={object} />
     </>

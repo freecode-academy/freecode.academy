@@ -55,6 +55,7 @@ export * from './mainPage';
 export * from './mainPageCodeChallengeCompletion';
 export * from './me';
 export * from './notificationTypes';
+export * from './officeProjects';
 export * from './projectPageProjects';
 export * from './project_';
 export * from './projectsConnection';

@@ -1,0 +1,17 @@
+query officeProjects($currentUserId: ID) {
+  # Все проекты, к которым я имею отношение
+  projectsConnection(
+    orderBy: updatedAt_DESC
+    where: { OR: [{ CreatedBy: { id: $currentUserId } }] }
+  ) {
+    aggregate {
+      count
+    }
+    edges {
+      node {
+        id
+        name
+      }
+    }
+  }
+}

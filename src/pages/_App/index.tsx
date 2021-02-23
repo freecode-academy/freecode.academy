@@ -33,13 +33,13 @@ import Head from 'next/head'
 import UserLink from '../../uikit/Link/User'
 import ProjectLink from '../../uikit/Link/Project'
 import Link from '../../uikit/Link'
-import { LayoutStyled } from './styles'
 // import Editor from '../../uikit/Editor'
 
 // TODO: Проработать локализацию
 moment.locale('ru')
 import { GlobalStyle } from 'src/theme/GlobalStyle'
 import OfficeLayout from './layouts/OfficeLayout'
+import MainLayout from './layouts/MainLayout'
 
 const withWs = true
 
@@ -184,24 +184,9 @@ const App: MainApp = (props) => {
         return <OfficeLayout>{content}</OfficeLayout>
 
       default:
-        return (
-          <LayoutStyled {...layout}>
-            <WithUser context={contextValue}>
-              <Auth
-                open={authOpen}
-                useMetamask={true}
-                loginComplete={loginComplete}
-                loginCanceled={loginCanceled}
-                showRegForm={true}
-              />
-              <div id="wrapper">
-                <div id="content">{content}</div>
-              </div>
-            </WithUser>
-          </LayoutStyled>
-        )
+        return <MainLayout layout={layout}>{content}</MainLayout>
     }
-  }, [authOpen, content, contextValue, layout, loginCanceled, loginComplete])
+  }, [content, layout])
 
   return (
     <>
@@ -222,7 +207,16 @@ const App: MainApp = (props) => {
           <GlobalStyle />
           <ApolloProvider client={apolloClient}>
             <Context.Provider value={contextValue}>
-              {contentWithLayout}
+              <WithUser context={contextValue}>
+                <Auth
+                  open={authOpen}
+                  useMetamask={true}
+                  loginComplete={loginComplete}
+                  loginCanceled={loginCanceled}
+                  showRegForm={true}
+                />
+                {contentWithLayout}
+              </WithUser>
             </Context.Provider>
           </ApolloProvider>
         </ThemeProvider>

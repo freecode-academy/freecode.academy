@@ -1,5 +1,5 @@
+import { LayoutStyledProps } from 'src/pages/_App/interfaces'
 import styled, { css } from 'styled-components'
-import { LayoutStyledProps } from './interfaces'
 
 export const LayoutStyled = styled.div<LayoutStyledProps>`
   height: 100%;

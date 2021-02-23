@@ -4,7 +4,6 @@ import Context, { PrismaCmsContext } from '@prisma-cms/context'
 
 import { useMeQuery } from 'src/modules/gql/generated'
 
-import Header from 'src/components/MainMenu'
 import { WithUserProps } from './interfaces'
 import useSubscriptionProvider from './useSubscriptionProvider'
 
@@ -36,8 +35,6 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
 
   useSubscriptionProvider({ client })
 
-  const header = useMemo(() => <Header user={user} />, [user])
-
   /**
    * Контекст обновляем только в случае если объект пользователя изменился.
    * Иначе у нас будет постоянно передаваться обновленный контекст и все
@@ -62,7 +59,6 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
       {/* 
     TODO добавить подписку на объект пользователя
   */}
-      {header}
 
       {children}
     </Context.Provider>

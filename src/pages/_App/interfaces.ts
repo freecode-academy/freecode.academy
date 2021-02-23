@@ -10,7 +10,10 @@ import {
 // import { Maybe, MeUserFragment } from 'src/modules/gql/generated'
 // import { muiTheme } from './MUI/theme'
 import { AppContext, AppInitialProps as NextAppInitialProps } from 'next/app'
-import { LayoutStyledProps } from './styles/interfaces'
+
+export interface LayoutStyledProps {
+  variant?: 'default' | 'fullwidth' | 'office'
+}
 
 /**
  * Расширенный контекст страниц приложения

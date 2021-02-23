@@ -1,3 +1,3 @@
 export interface LayoutStyledProps {
-  variant?: 'default' | 'fullwidth'
+  variant?: 'default' | 'fullwidth' | 'office'
 }

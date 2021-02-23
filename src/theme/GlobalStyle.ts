@@ -11,13 +11,13 @@ export const GlobalStyle = createGlobalStyle`
 
   html, body{
     height: 100%;
+    padding: 0;
+    margin: 0;
   }
 
   body {
     font-family: Roboto, sans-serif, Tahoma, Helvetica;
     font-size: 14px;
-    padding: 0;
-    margin: 0;
   }
 
   #__next {

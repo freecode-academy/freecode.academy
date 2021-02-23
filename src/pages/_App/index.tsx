@@ -189,8 +189,8 @@ const App: MainApp = (props) => {
           typeof global.window === 'undefined' ? new Map() : undefined
         }
       >
-        <GlobalStyle />
         <ThemeProvider theme={theme}>
+          <GlobalStyle />
           <ApolloProvider client={apolloClient}>
             <Context.Provider value={contextValue}>
               <LayoutStyled {...layout}>

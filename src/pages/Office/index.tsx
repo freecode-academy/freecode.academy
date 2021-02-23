@@ -6,7 +6,7 @@ import { Page } from '../_App/interfaces'
  */
 const OfficePage: Page = () => {
   return useMemo(() => {
-    return <>OfficePage</>
+    return <></>
   }, [])
 }
 

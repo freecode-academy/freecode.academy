@@ -13,7 +13,7 @@ import { gql } from '@apollo/client';
 import { OfficeProjectFragmentDoc } from './officeProject';
 import * as Apollo from '@apollo/client';
 export type OfficeProjectsQueryVariables = Types.Exact<{
-  currentUserId?: Types.Maybe<Types.Scalars['ID']>;
+  where?: Types.Maybe<Types.ProjectWhereInput>;
 }>;
 
 
@@ -24,11 +24,8 @@ export type OfficeProjectsQuery = { __typename?: 'Query', projectsConnection: { 
 
 
 export const OfficeProjectsDocument = gql`
-    query officeProjects($currentUserId: ID) {
-  projectsConnection(
-    orderBy: updatedAt_DESC
-    where: {OR: [{CreatedBy: {id: $currentUserId}}]}
-  ) {
+    query officeProjects($where: ProjectWhereInput) {
+  projectsConnection(orderBy: updatedAt_DESC, where: $where) {
     aggregate {
       count
     }
@@ -53,7 +50,7 @@ export const OfficeProjectsDocument = gql`
  * @example
  * const { data, loading, error } = useOfficeProjectsQuery({
  *   variables: {
- *      currentUserId: // value for 'currentUserId'
+ *      where: // value for 'where'
  *   },
  * });
  */

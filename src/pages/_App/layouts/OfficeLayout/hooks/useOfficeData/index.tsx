@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useMemo } from 'react'
 import {
   TaskOrderByInput,
@@ -17,7 +16,41 @@ const useOfficeData = (props: useOfficeDataProps) => {
   const projectsData = useOfficeProjectsQuery({
     skip: !currentUserId,
     variables: {
-      currentUserId,
+      where: {
+        OR: [
+          {
+            // Проект создан пользователем
+            CreatedBy: {
+              id: currentUserId,
+            },
+          },
+          {
+            // Или содержит задачи, которые
+            ProjectTasks_some: {
+              Task: {
+                OR: [
+                  {
+                    // Созданы текущим пользователем
+                    CreatedBy: {
+                      id: currentUserId,
+                    },
+                  },
+                  {
+                    /**
+                     * Или которые пользователь выполнял
+                     */
+                    Timers_some: {
+                      CreatedBy: {
+                        id: currentUserId,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     },
   })
 
@@ -34,8 +67,6 @@ const useOfficeData = (props: useOfficeDataProps) => {
       }, []) ?? []
     )
   }, [projectsData.data?.projectsConnection.edges])
-
-  console.log('projects', projects)
 
   const projectsIds = useMemo(() => projects.map((n) => n.id), [projects])
 
@@ -67,8 +98,6 @@ const useOfficeData = (props: useOfficeDataProps) => {
       ) ?? []
     )
   }, [tasksData.data?.tasksConnection.edges])
-
-  console.log('tasks', tasks)
 
   return useMemo(() => {
     return {

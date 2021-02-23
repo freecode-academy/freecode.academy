@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { NextSeo } from 'next-seo'
 import React, { useContext, useMemo } from 'react'
 import OfficeLayoutNavBar from './NavBar'
@@ -18,8 +17,6 @@ const OfficeLayout: React.FC = ({ children }) => {
   const { projects, tasks } = useOfficeData({
     currentUserId: context.user?.id,
   })
-
-  console.log('context.user', context.user)
 
   const officeContext = useMemo<OfficeContextValue>(() => {
     return {

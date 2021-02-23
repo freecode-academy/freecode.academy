@@ -1,9 +1,6 @@
-query officeProjects($currentUserId: ID) {
+query officeProjects($where: ProjectWhereInput) {
   # Все проекты, к которым я имею отношение
-  projectsConnection(
-    orderBy: updatedAt_DESC
-    where: { OR: [{ CreatedBy: { id: $currentUserId } }] }
-  ) {
+  projectsConnection(orderBy: updatedAt_DESC, where: $where) {
     aggregate {
       count
     }

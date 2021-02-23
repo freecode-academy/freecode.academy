@@ -8,11 +8,17 @@ export const OfficeLayoutStyled = styled.div`
   height: 100%;
   width: 100%;
   max-width: 100%;
-  color: ${({ theme }) => theme.officeTheme.color.default};
   background: url('${bg}') scroll center top no-repeat;
 
   display: flex;
   overflow: hidden;
+
+  color: ${({ theme }) => theme.officeTheme.color.default};
+
+  a {
+    color: ${({ theme }) => theme.officeTheme.color.default};
+    text-decoration: none;
+  }
 
   ${OfficeLayoutNavBarStyled} {
     width: 250px;

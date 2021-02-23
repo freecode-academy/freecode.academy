@@ -1,12 +1,5 @@
-/* eslint-disable no-console */
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
-import useStopTimer from 'src/pages/Tasks/View/Task/TaskButtons/hooks/useStopTimer'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
+import useActiveTimer from 'src/hooks/useActiveTimer'
 import OfficeContext from '../../Context'
 import StartTimerButton from './StartTimerButton'
 import { OfficeLayoutHeaderStyled } from './styles'
@@ -17,33 +10,38 @@ const OfficeLayoutHeader: React.FC = () => {
 
   useEffect(() => {
     setTitle(window.document.title)
+
+    const titleNode = window.document.querySelector('head title')
+
+    if (!titleNode) {
+      return
+    }
+
+    const config: MutationObserverInit = {
+      childList: true,
+    }
+
+    /**
+     * Слушаем изменения титла страницы
+     */
+    const mutationObserver = new MutationObserver((_changes, _observer) => {
+      titleNode.textContent && setTitle(titleNode.textContent)
+    })
+
+    mutationObserver.observe(titleNode, config)
+
+    return () => {
+      mutationObserver.disconnect()
+    }
   }, [])
 
   const context = useContext(OfficeContext)
 
-  const activeTimer = useMemo(() => {
-    return context?.user?.Timers?.find((n) => n.stopedAt === null)
-  }, [context?.user?.Timers])
-
-  console.log('activeTimer', activeTimer)
-
-  const { mutation: stopTimer, loading: stopTimerLoading } = useStopTimer()
-
-  /**
-   * При клике мы останавливаем или запускаем таймер
-   */
-  const onClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      /**
-       * Если есть активный таймер, завершаем его работу
-       */
-      if (activeTimer) {
-        //
-        stopTimer(event)
-      }
-    },
-    [activeTimer, stopTimer]
-  )
+  const {
+    activeTimer,
+    stopTimerClickHandler,
+    stopTimerLoading,
+  } = useActiveTimer()
 
   /**
    * Если есть активный таймер, выводим его.
@@ -60,7 +58,7 @@ const OfficeLayoutHeader: React.FC = () => {
           <div className="task">{activeTimer.Task.name}</div>
           <TimerButton
             status="play"
-            onClick={onClick}
+            onClick={stopTimerClickHandler}
             timerId={activeTimer.id}
             title="Остановить таймер"
             disabled={stopTimerLoading}
@@ -86,7 +84,7 @@ const OfficeLayoutHeader: React.FC = () => {
     }
 
     return <></>
-  }, [activeTimer, context?.tasks, onClick, stopTimerLoading])
+  }, [activeTimer, context?.tasks, stopTimerClickHandler, stopTimerLoading])
 
   return useMemo(() => {
     return (

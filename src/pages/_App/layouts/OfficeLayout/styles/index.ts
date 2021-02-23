@@ -6,16 +6,20 @@ import bg from './img/bg.jpg'
 
 export const OfficeLayoutStyled = styled.div`
   height: 100%;
+  width: 100%;
+  max-width: 100%;
   color: ${({ theme }) => theme.officeTheme.color.default};
   background: url('${bg}') scroll center top no-repeat;
 
   display: flex;
+  overflow: hidden;
 
   ${OfficeLayoutNavBarStyled} {
     width: 250px;
     border-right: 1px solid #aaa;
     height: 100%;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   ${OfficeLayoutContentStyled} {

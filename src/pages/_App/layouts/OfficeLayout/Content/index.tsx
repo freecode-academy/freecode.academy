@@ -13,23 +13,8 @@ const OfficeLayoutContent: React.FC = ({ children, ...other }) => {
         <OfficeLayoutContentStyled {...other}>
           <OfficeLayoutHeader></OfficeLayoutHeader>
 
-          <div
-            style={{
-              border: '1px solid blue',
-            }}
-            className="wrapper"
-          >
-            <div className="content">
-              <div
-                style={{
-                  border: '1px solid red',
-                  // minHeight: 2000,
-                }}
-              >
-                OfficeLayoutContentStyled
-                {children}
-              </div>
-            </div>
+          <div className="wrapper">
+            <div className="content">{children}</div>
 
             <OfficeLayoutSideBar></OfficeLayoutSideBar>
           </div>

@@ -19,6 +19,8 @@ const OfficeLayout: React.FC = ({ children }) => {
     currentUserId: context.user?.id,
   })
 
+  console.log('context.user', context.user)
+
   const officeContext = useMemo<OfficeContextValue>(() => {
     return {
       user: context.user,

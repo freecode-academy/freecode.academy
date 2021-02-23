@@ -7,6 +7,7 @@ export const OfficeLayoutContentStyled = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 10px;
 
   > ${OfficeLayoutHeaderStyled} {
     
@@ -16,22 +17,24 @@ export const OfficeLayoutContentStyled = styled.div`
     /* height: 100%; */
     display: flex;
     flex:1 ;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     > * {
 
       height: 100%;
-      overflow: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
 
       &.content {
 
-        background: green;
+        /* background: green; */
         flex: 1;
 
       }
 
       &${OfficeLayoutSideBarStyled} {
         width: 250px;
-
+        display: none;
         /* overflow: auto; */
       }
 

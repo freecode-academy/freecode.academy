@@ -5,6 +5,10 @@ export default {
 
   color: {
     default: 'white',
+
+    timer: {
+      active: 'rgb(255, 64, 129)',
+    },
   },
 
   sidebar: {},

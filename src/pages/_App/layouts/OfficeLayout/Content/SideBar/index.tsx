@@ -9,15 +9,7 @@ const OfficeLayoutSideBar: React.FC = ({ children, ...other }) => {
     return (
       <>
         <OfficeLayoutSideBarStyled {...other}>
-          <div
-            style={{
-              border: '1px solid red',
-              // minHeight: 1000,
-            }}
-          >
-            OfficeLayoutSideBarStyled
-            {children}
-          </div>
+          {children}
         </OfficeLayoutSideBarStyled>
       </>
     )

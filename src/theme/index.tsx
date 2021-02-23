@@ -39,6 +39,10 @@ const colors = {
 const theme = {
   colors,
   breakpoints,
+
+  /**
+   * Тема для личного кабинета
+   */
   officeTheme,
 }
 

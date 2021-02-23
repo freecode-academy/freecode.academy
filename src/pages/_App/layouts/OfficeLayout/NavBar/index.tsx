@@ -1,27 +1,23 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
+import OfficeContext from '../Context'
+import SideBarProject from './Projects'
 import { OfficeLayoutNavBarStyled } from './styles'
 
 /**
  * Боковая панель
  */
-const OfficeLayoutNavBar: React.FC = ({ children, ...other }) => {
+const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
+  const context = useContext(OfficeContext)
+
   return useMemo(() => {
     return (
       <>
         <OfficeLayoutNavBarStyled {...other}>
-          <div
-            style={{
-              border: '1px solid yellow',
-              // minHeight: 1000,
-            }}
-          >
-            OfficeLayoutNavBarStyled
-            {children}
-          </div>
+          <SideBarProject projects={context?.projects || []} />
         </OfficeLayoutNavBarStyled>
       </>
     )
-  }, [children, other])
+  }, [context?.projects, other])
 }
 
 export default OfficeLayoutNavBar

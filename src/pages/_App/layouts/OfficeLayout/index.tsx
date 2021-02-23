@@ -7,6 +7,7 @@ import OfficeLayoutContent from './Content'
 import { OfficeLayoutStyled } from './styles'
 import useOfficeData from './hooks/useOfficeData'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
+import OfficeContext, { OfficeContextValue } from './Context'
 
 /**
  * Шаблон для личного кабинета
@@ -14,11 +15,17 @@ import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 const OfficeLayout: React.FC = ({ children }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
 
-  console.log('user', context.user)
-
-  useOfficeData({
+  const { projects, tasks } = useOfficeData({
     currentUserId: context.user?.id,
   })
+
+  const officeContext = useMemo<OfficeContextValue>(() => {
+    return {
+      user: context.user,
+      projects,
+      tasks,
+    }
+  }, [context.user, projects, tasks])
 
   return useMemo(() => {
     return (
@@ -31,22 +38,24 @@ const OfficeLayout: React.FC = ({ children }) => {
           noindex
           nofollow
         />
-        <OfficeLayoutStyled>
-          <OfficeLayoutNavBar></OfficeLayoutNavBar>
+        <OfficeContext.Provider value={officeContext}>
+          <OfficeLayoutStyled>
+            <OfficeLayoutNavBar></OfficeLayoutNavBar>
 
-          <OfficeLayoutContent>{children}</OfficeLayoutContent>
+            <OfficeLayoutContent>{children}</OfficeLayoutContent>
 
-          {/* 
+            {/* 
 
         */}
 
-          {/* <OfficeLayoutSideBar>
+            {/* <OfficeLayoutSideBar>
 
         </OfficeLayoutSideBar> */}
-        </OfficeLayoutStyled>
+          </OfficeLayoutStyled>
+        </OfficeContext.Provider>
       </>
     )
-  }, [children])
+  }, [children, officeContext])
 }
 
 export default OfficeLayout

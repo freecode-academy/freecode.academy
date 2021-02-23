@@ -1,0 +1,17 @@
+query officeTasks($orderBy: TaskOrderByInput, $where: TaskWhereInput) {
+  tasksConnection(orderBy: $orderBy, where: $where) {
+    aggregate {
+      count
+    }
+    edges {
+      node {
+        ...officeTask
+      }
+    }
+  }
+}
+
+fragment officeTask on Task {
+  id
+  name
+}

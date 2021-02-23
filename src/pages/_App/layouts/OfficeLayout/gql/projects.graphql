@@ -9,9 +9,13 @@ query officeProjects($currentUserId: ID) {
     }
     edges {
       node {
-        id
-        name
+        ...officeProject
       }
     }
   }
+}
+
+fragment officeProject on Project {
+  id
+  name
 }

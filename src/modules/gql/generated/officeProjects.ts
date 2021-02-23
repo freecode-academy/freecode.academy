@@ -8,14 +8,19 @@
 
 import * as Types from './types';
 
+import { OfficeProjectFragment } from './officeProject';
 import { gql } from '@apollo/client';
+import { OfficeProjectFragmentDoc } from './officeProject';
 import * as Apollo from '@apollo/client';
 export type OfficeProjectsQueryVariables = Types.Exact<{
   currentUserId?: Types.Maybe<Types.Scalars['ID']>;
 }>;
 
 
-export type OfficeProjectsQuery = { __typename?: 'Query', projectsConnection: { __typename?: 'ProjectConnection', aggregate: { __typename?: 'AggregateProject', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ProjectEdge', node: { __typename?: 'Project', id: string, name: string } }>> } };
+export type OfficeProjectsQuery = { __typename?: 'Query', projectsConnection: { __typename?: 'ProjectConnection', aggregate: { __typename?: 'AggregateProject', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ProjectEdge', node: (
+        { __typename?: 'Project' }
+        & OfficeProjectFragment
+      ) }>> } };
 
 
 export const OfficeProjectsDocument = gql`
@@ -29,13 +34,12 @@ export const OfficeProjectsDocument = gql`
     }
     edges {
       node {
-        id
-        name
+        ...officeProject
       }
     }
   }
 }
-    `;
+    ${OfficeProjectFragmentDoc}`;
 
 /**
  * __useOfficeProjectsQuery__

@@ -1,3 +1,5 @@
+import officeTheme from './office'
+
 /**
  * Размеры экранов
  */
@@ -37,6 +39,7 @@ const colors = {
 const theme = {
   colors,
   breakpoints,
+  officeTheme,
 }
 
 export type Theme = typeof theme

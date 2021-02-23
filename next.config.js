@@ -4,14 +4,52 @@ const webpack = (config) => {
 
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
+  // config.module.rules.push({
+  //   test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+  //   use: {
+  //     loader: 'url-loader',
+  //     options: {
+  //       limit: 10000,
+  //       context: 'src',
+  //       name() {
+  //         if (process.env.NODE_ENV === 'development') {
+  //           return '[path][name].[ext]'
+  //         }
+
+  //         return '[contenthash].[ext]'
+  //       },
+  //       publicPath: `/_next/static/media`,
+  //       outputPath: 'static/media',
+  //     },
+  //   },
+  // })
+
+  // https://github.com/vercel/next.js/issues/11164#issuecomment-602204795
   config.module.rules.push({
-    test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-    use: {
-      loader: 'url-loader',
-      options: {
-        limit: 100000,
+    test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+    // loader: 'url-loader',
+    // issuer: {
+    //   // nextjs already handles url() in css/sass/scss files
+    //   test: /\.\w+(?<!(s?c|sa)ss)$/i,
+    // },
+    use: [
+      {
+        loader: 'url-loader',
+        options: {
+          context: 'src',
+          name() {
+            if (process.env.NODE_ENV === 'development') {
+              return '[path][name].[ext]'
+            }
+
+            return '[contenthash].[ext]'
+          },
+          publicPath: `/_next/static/media`,
+          outputPath: 'static/media',
+          limit: 1000,
+        },
       },
-    },
+    ],
   })
 
   config.plugins.push(

@@ -8,6 +8,7 @@ import React, {
 } from 'react'
 import useStopTimer from 'src/pages/Tasks/View/Task/TaskButtons/hooks/useStopTimer'
 import OfficeContext from '../../Context'
+import StartTimerButton from './StartTimerButton'
 import { OfficeLayoutHeaderStyled } from './styles'
 import TimerButton from './TimerButton'
 
@@ -26,7 +27,7 @@ const OfficeLayoutHeader: React.FC = () => {
 
   console.log('activeTimer', activeTimer)
 
-  const stopTimer = useStopTimer()
+  const { mutation: stopTimer, loading: stopTimerLoading } = useStopTimer()
 
   /**
    * При клике мы останавливаем или запускаем таймер
@@ -61,13 +62,31 @@ const OfficeLayoutHeader: React.FC = () => {
             status="play"
             onClick={onClick}
             timerId={activeTimer.id}
+            title="Остановить таймер"
+            disabled={stopTimerLoading}
           />
         </div>
       )
     }
+    /**
+     * Иначе пытаемся получить крайнюю задачу
+     */
+    const latestTask = context?.tasks[0]
+
+    if (latestTask) {
+      return (
+        <StartTimerButton task={latestTask} />
+        // <TimerButton
+        //   status="pause"
+        //   onClick={startTimer}
+        //   timerId={undefined}
+        //   title={`Приступить к выполнению "${latestTask.name}"`}
+        // />
+      )
+    }
 
     return <></>
-  }, [activeTimer, onClick])
+  }, [activeTimer, context?.tasks, onClick, stopTimerLoading])
 
   return useMemo(() => {
     return (

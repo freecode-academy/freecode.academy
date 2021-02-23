@@ -3,12 +3,10 @@ import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import IconButton from 'material-ui/IconButton'
 import StartIcon from 'material-ui-icons/PlayArrow'
 import StopIcon from 'material-ui-icons/Stop'
-import {
-  useCreateTimerProcessorMutation,
-  useUpdateTimerProcessorMutation,
-} from 'src/modules/gql/generated'
+import { useUpdateTimerProcessorMutation } from 'src/modules/gql/generated'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
 import { TaskButtonsProps } from './interfaces'
+import useStartTimer from './hooks/useStartTimer'
 
 const TaskButtons: React.FC<TaskButtonsProps> = ({ object }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
@@ -18,44 +16,21 @@ const TaskButtons: React.FC<TaskButtonsProps> = ({ object }) => {
    */
   const updateTimerMutationTuple = useUpdateTimerProcessorMutation()
 
-  /**
-   * Запуск таймера
-   */
-
-  const mutationTuple = useCreateTimerProcessorMutation()
-
   const {
-    mutation: createMutation,
+    mutation: onClickCreateTimer,
     snakbar: createMutationSnakbar,
-    loading,
-  } = useProcessorMutation(mutationTuple)
-
-  const onClickCreateTimer = useCallback(() => {
-    createMutation({
-      variables: {
-        data: {
-          Task: {
-            connect: {
-              id: object.id,
-            },
-          },
-        },
-      },
-    })
-    // .then((r) => {
-
-    //   if(!(r instanceof Error)) {
-    //     r?.data?.response
-    //   }
-
-    //   return r;
-    // })
-  }, [createMutation, object.id])
+    loading: createLoading,
+  } = useStartTimer({
+    taskId: object.id,
+  })
 
   const {
     mutation: updateMutation,
     snakbar: updateMutationSnakbar,
+    loading: updateLoading,
   } = useProcessorMutation(updateTimerMutationTuple)
+
+  const loading = createLoading || updateLoading
 
   const onClickUpdateTimer = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {

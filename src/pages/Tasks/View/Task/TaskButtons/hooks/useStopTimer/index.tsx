@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useUpdateTimerProcessorMutation } from 'src/modules/gql/generated'
 
 /**
@@ -6,9 +6,9 @@ import { useUpdateTimerProcessorMutation } from 'src/modules/gql/generated'
  * Передается в кнопку, для которой должно быть задано value={timerId}
  */
 const useStopTimer = () => {
-  const [updateMutation] = useUpdateTimerProcessorMutation()
+  const [updateMutation, { loading }] = useUpdateTimerProcessorMutation()
 
-  return useCallback(
+  const mutation = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       const timerId = event.currentTarget.value
 
@@ -29,6 +29,13 @@ const useStopTimer = () => {
     },
     [updateMutation]
   )
+
+  return useMemo(() => {
+    return {
+      mutation,
+      loading,
+    }
+  }, [loading, mutation])
 }
 
 export default useStopTimer

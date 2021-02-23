@@ -12,8 +12,6 @@ const TimerButton: React.FC<TimerButtonProps> = ({
   ...other
 }) => {
   return useMemo(() => {
-    // ▶⏸
-
     return (
       <TimerButtonStyled
         status={status}
@@ -21,7 +19,7 @@ const TimerButton: React.FC<TimerButtonProps> = ({
         value={timerId}
         {...other}
       >
-        {status === 'pause' ? '⏸' : '▶'}
+        {status === 'pause' ? '▶' : '⏸'}
       </TimerButtonStyled>
     )
   }, [onClick, other, status, timerId])

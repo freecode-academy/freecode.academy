@@ -14,4 +14,8 @@ export type TimerButtonProps = TimerButtonStyledProps & {
    * ID таймера. Нужен для корректной отработки останова таймера.
    */
   timerId: Scalars['ID'] | undefined
+
+  title: string
+
+  disabled: boolean
 }

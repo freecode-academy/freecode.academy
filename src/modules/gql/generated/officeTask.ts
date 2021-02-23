@@ -9,11 +9,19 @@
 import * as Types from './types';
 
 import { gql } from '@apollo/client';
-export type OfficeTaskFragment = { __typename?: 'Task', id: string, name: string };
+export type OfficeTaskFragment = { __typename?: 'Task', id: string, name: string, content?: Types.Maybe<globalThis.Record<string, any> | globalThis.Array<any>>, TaskProjects?: Types.Maybe<Array<{ __typename?: 'ProjectTask', id: string, Project: { __typename?: 'Project', id: string, name: string } }>> };
 
 export const OfficeTaskFragmentDoc = gql`
     fragment officeTask on Task {
   id
   name
+  content
+  TaskProjects {
+    id
+    Project {
+      id
+      name
+    }
+  }
 }
     `;

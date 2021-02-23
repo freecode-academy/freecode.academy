@@ -39,6 +39,7 @@ import { LayoutStyled } from './styles'
 // TODO: Проработать локализацию
 moment.locale('ru')
 import { GlobalStyle } from 'src/theme/GlobalStyle'
+import OfficeLayout from './layouts/OfficeLayout'
 
 const withWs = true
 
@@ -174,6 +175,34 @@ const App: MainApp = (props) => {
     )
   }, [statusCode, pageProps])
 
+  /**
+   * Оборачиваем контент в шаблон
+   */
+  const contentWithLayout = useMemo<JSX.Element>(() => {
+    switch (layout?.variant) {
+      case 'office':
+        return <OfficeLayout>{content}</OfficeLayout>
+
+      default:
+        return (
+          <LayoutStyled {...layout}>
+            <WithUser context={contextValue}>
+              <Auth
+                open={authOpen}
+                useMetamask={true}
+                loginComplete={loginComplete}
+                loginCanceled={loginCanceled}
+                showRegForm={true}
+              />
+              <div id="wrapper">
+                <div id="content">{content}</div>
+              </div>
+            </WithUser>
+          </LayoutStyled>
+        )
+    }
+  }, [authOpen, content, contextValue, layout, loginCanceled, loginComplete])
+
   return (
     <>
       <Head>
@@ -193,20 +222,7 @@ const App: MainApp = (props) => {
           <GlobalStyle />
           <ApolloProvider client={apolloClient}>
             <Context.Provider value={contextValue}>
-              <LayoutStyled {...layout}>
-                <WithUser context={contextValue}>
-                  <Auth
-                    open={authOpen}
-                    useMetamask={true}
-                    loginComplete={loginComplete}
-                    loginCanceled={loginCanceled}
-                    showRegForm={true}
-                  />
-                  <div id="wrapper">
-                    <div id="content">{content}</div>
-                  </div>
-                </WithUser>
-              </LayoutStyled>
+              {contentWithLayout}
             </Context.Provider>
           </ApolloProvider>
         </ThemeProvider>

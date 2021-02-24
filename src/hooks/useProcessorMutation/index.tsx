@@ -1,4 +1,8 @@
-import { MutationTuple, OperationVariables } from '@apollo/client'
+import {
+  MutationTuple,
+  OperationVariables,
+  MutationFunctionOptions,
+} from '@apollo/client'
 import { PrismaCmsComponentError } from '@prisma-cms/component'
 import Snackbar from '@prisma-cms/component/dist/components/Snackbar'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
@@ -9,8 +13,22 @@ import { Error as ResponseError } from 'src/modules/gql/generated'
  * Хук на обновление с обработчиком ошибок.
  * Работает только с процессорами.
  */
+
+// type Payload = {
+//   response: {
+//     success: boolean
+//     message: string | null
+//     errors: ResponseError[]
+//     data?: Record<string, any> | null
+//   }
+// }
+
+type Payload = {
+  response: Record<string, any>
+}
+
 function useProcessorMutation<
-  TData extends Record<string, any> = Record<string, any>,
+  TData extends Payload = Payload,
   TVariables extends OperationVariables = OperationVariables
 >(mutationTuple: MutationTuple<TData, TVariables>) {
   const errorDelay = 3000
@@ -117,7 +135,7 @@ function useProcessorMutation<
   )
 
   const mutation = useCallback(
-    async (options) => {
+    async (options: MutationFunctionOptions<TData, TVariables>) => {
       if (loading) {
         return
       }

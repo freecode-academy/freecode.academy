@@ -22,7 +22,10 @@ const UpdateTaskForm: React.FC<UpdateTaskFormProps> = ({
     },
   })
 
-  const mutationState = useProcessorMutation(mutationTuple)
+  // TODO Fix types
+  const mutationState = (useProcessorMutation(
+    mutationTuple
+  ) as unknown) as ReturnType<typeof useProcessorMutation>
 
   const form = useMemo(() => {
     return (

@@ -28,7 +28,10 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ options }) => {
     },
   })
 
-  const mutationState = useProcessorMutation(mutationTuple)
+  // TODO Fix types
+  const mutationState = (useProcessorMutation(
+    mutationTuple
+  ) as unknown) as ReturnType<typeof useProcessorMutation>
 
   const form = useMemo(() => {
     if (!opened) {

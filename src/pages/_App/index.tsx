@@ -18,7 +18,7 @@ import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import URI from 'urijs'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { muiTheme } from './MUI/theme'
+import { getMuiTheme } from './MUI/theme'
 
 import Auth from 'src/components/Auth'
 import WithUser from './WithUser'
@@ -113,35 +113,6 @@ const App: MainApp = (props) => {
     setOpened(true)
   }, [setOpened])
 
-  const contextValue = useMemo(() => {
-    const context: PrismaCmsContext = {
-      uri: new URI(),
-      client: apolloClient,
-      router,
-      logout,
-      openLoginForm,
-      lang: 'ru',
-      theme: muiTheme,
-      localStorage: global.localStorage,
-      apiClientResetStore: async function () {
-        if (!apolloClient['queryManager'].fetchCancelFns.size) {
-          return apolloClient.resetStore().catch(console.error)
-        }
-      },
-
-      /**
-       * @prisma-cms/front-editor
-       */
-      // Pagination,
-      UserLink,
-      // Editor,
-      ProjectLink,
-      Link,
-    }
-
-    return context
-  }, [apolloClient, logout, openLoginForm, router])
-
   const content = useMemo(() => {
     const meta: NextSeoProps = {}
 
@@ -178,15 +149,55 @@ const App: MainApp = (props) => {
   /**
    * Оборачиваем контент в шаблон
    */
-  const contentWithLayout = useMemo<JSX.Element>(() => {
+  const { contentWithLayout, muiTheme } = useMemo(() => {
     switch (layout?.variant) {
       case 'office':
-        return <OfficeLayout>{content}</OfficeLayout>
+        return {
+          contentWithLayout: <OfficeLayout>{content}</OfficeLayout>,
+          muiTheme: getMuiTheme({
+            palette: {
+              // В офисе используется темная тема
+              type: 'dark',
+            },
+          }),
+        }
 
       default:
-        return <MainLayout layout={layout}>{content}</MainLayout>
+        return {
+          contentWithLayout: <MainLayout layout={layout}>{content}</MainLayout>,
+          muiTheme: getMuiTheme({}),
+        }
     }
   }, [content, layout])
+
+  const contextValue = useMemo(() => {
+    const context: PrismaCmsContext = {
+      uri: new URI(),
+      client: apolloClient,
+      router,
+      logout,
+      openLoginForm,
+      lang: 'ru',
+      theme: muiTheme,
+      localStorage: global.localStorage,
+      apiClientResetStore: async function () {
+        if (!apolloClient['queryManager'].fetchCancelFns.size) {
+          return apolloClient.resetStore().catch(console.error)
+        }
+      },
+
+      /**
+       * @prisma-cms/front-editor
+       */
+      // Pagination,
+      UserLink,
+      // Editor,
+      ProjectLink,
+      Link,
+    }
+
+    return context
+  }, [apolloClient, logout, muiTheme, openLoginForm, router])
 
   return (
     <>

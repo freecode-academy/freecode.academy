@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 import { createMuiTheme } from 'material-ui/styles'
 
 import pink from 'material-ui/colors/pink'
 import { darken } from 'material-ui/styles/colorManipulator'
 import blue from 'material-ui/colors/blue'
+import { ThemeOptions } from 'material-ui/styles/createMuiTheme'
 
 // const SheetsRegistry = require('react-jss').SheetsRegistry
 
@@ -15,15 +17,20 @@ import blue from 'material-ui/colors/blue'
 
 // export const sheetsManager = new Map()
 
-export const getTheme = function (uiTheme: any) {
-  const { direction, paletteType, typography, ...other } = uiTheme
+export const getMuiTheme = function (uiTheme: ThemeOptions) {
+  const { direction, palette, typography, ...other } = uiTheme
+
+  const paletteType = palette?.type
+
+  console.log('paletteType', paletteType)
 
   const theme = createMuiTheme({
     direction,
-    nprogress: {
-      color: paletteType === 'light' ? '#000' : '#fff',
-    },
+    // nprogress: {
+    //   color: paletteType === 'light' ? '#000' : '#fff',
+    // },
     palette: {
+      ...palette,
       primary: {
         ...blue,
         // main: "#ff0000",
@@ -55,7 +62,7 @@ export const getTheme = function (uiTheme: any) {
 
 // export const generateClassName = createGenerateClassName()
 
-export const muiTheme = getTheme({})
+// export const muiTheme = getTheme({})
 
 // export default class ModxclubApp extends PrismaApp {
 //   static defaultProps = {

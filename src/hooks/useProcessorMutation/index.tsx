@@ -136,9 +136,9 @@ function useProcessorMutation<
 
   const mutation = useCallback(
     async (options: MutationFunctionOptions<TData, TVariables>) => {
-      if (loading) {
-        return
-      }
+      // if (loading) {
+      //   return
+      // }
 
       const result = await processor(options).catch(
         (error: PrismaCmsComponentError) => {
@@ -193,7 +193,25 @@ function useProcessorMutation<
 
       return result
     },
-    [addError, apiClientResetStore, loading, processor]
+    [addError, apiClientResetStore, processor]
+  )
+
+  /**
+   * Сброс ошибки в поле ввода
+   */
+  const onFocus = useCallback(
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const name = event.currentTarget.name
+
+      if (!name || !errors.length) {
+        return
+      }
+
+      const error = errors.find((n) => n.key === name || n.name === name)
+
+      error && removeError(error)
+    },
+    [errors, removeError]
   )
 
   const snakbar = useMemo(() => {
@@ -223,6 +241,7 @@ function useProcessorMutation<
     snakbar,
     removeError,
     loading,
+    onFocus,
   }
 }
 

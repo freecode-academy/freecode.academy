@@ -1,0 +1,13 @@
+mutation createProjectProcessor($data: ProjectCreateInput!) {
+  response: createProjectProcessor(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      id
+    }
+  }
+}

@@ -1,7 +1,11 @@
+import Link from 'next/link'
 import React, { useContext, useMemo } from 'react'
 import OfficeContext from '../Context'
 import SideBarProject from './Projects'
 import { OfficeLayoutNavBarStyled } from './styles'
+
+import IconButton from 'material-ui/IconButton'
+import HomeIcon from 'material-ui-icons/Home'
 
 /**
  * Боковая панель
@@ -13,6 +17,18 @@ const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
     return (
       <>
         <OfficeLayoutNavBarStyled {...other}>
+          <div className="mainLinks">
+            <Link href="/office">
+              <a title="На главную">
+                <IconButton>
+                  <HomeIcon />
+                </IconButton>
+              </a>
+            </Link>
+          </div>
+
+          <hr />
+
           <SideBarProject projects={context?.projects || []} />
         </OfficeLayoutNavBarStyled>
       </>

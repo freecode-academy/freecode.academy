@@ -45,6 +45,7 @@ export * from './commentsConnectionComment';
 export * from './commentsConnectionCommentUser';
 export * from './createCodeChallengeCompletionProcessor';
 export * from './createCommentProcessor';
+export * from './createProjectProcessor';
 export * from './createTaskProcessor';
 export * from './createTaskTechnologyProcessor';
 export * from './createTimerProcessor';

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createMuiTheme } from 'material-ui/styles'
 
 import pink from 'material-ui/colors/pink'
@@ -21,8 +20,6 @@ export const getMuiTheme = function (uiTheme: ThemeOptions) {
   const { direction, palette, typography, ...other } = uiTheme
 
   const paletteType = palette?.type
-
-  console.log('paletteType', paletteType)
 
   const theme = createMuiTheme({
     direction,

@@ -1,20 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import useActiveTimer from 'src/hooks/useActiveTimer'
 import StartTimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/StartTimerButton'
 import TimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/TimerButton'
 import moment from 'moment'
 import { OfficeProjectPageViewTaskProps } from './interfaces'
 import { OfficeProjectPageViewTaskStyled } from './styles'
 import Link from 'next/link'
+import useActiveTimer from 'src/hooks/useActiveTimer'
 
 const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   task,
+  projects,
+  info,
+  activeTimer,
 }) => {
-  const {
-    activeTimer,
-    stopTimerClickHandler,
-    stopTimerLoading,
-  } = useActiveTimer()
+  const { stopTimerClickHandler, stopTimerLoading } = useActiveTimer()
 
   /**
    * В текущей задаче есть активный таймер выполнения
@@ -80,15 +79,34 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
       <OfficeProjectPageViewTaskStyled>
         <div>{timer}</div>
         <div className="task">
-          <Link href={`/tasks/${task.id}`}>
-            <a title={task.name}>{task.name}</a>
-          </Link>{' '}
-          ({task.status})
+          <div>
+            <Link href={`/tasks/${task.id}`}>
+              <a title={task.name}>{task.name}</a>
+            </Link>{' '}
+            ({task.status})
+          </div>
+          {projects
+            ? projects
+                .map((project) => {
+                  return (
+                    <small key={project.id}>
+                      <Link href={`/office/projects/${project.id}`}>
+                        <a title={project.name}>{project.name}</a>
+                      </Link>{' '}
+                    </small>
+                  )
+                })
+                .reduce<React.ReactNode[]>(
+                  (curr, next) => (!curr.length ? [next] : [curr, ', ', next]),
+                  []
+                )
+            : null}
         </div>
         <div className="timer">{duration}</div>
+        {info}
       </OfficeProjectPageViewTaskStyled>
     )
-  }, [timer, task.id, task.name, task.status, duration])
+  }, [timer, task.id, task.name, task.status, projects, duration, info])
 }
 
 export default OfficeProjectPageViewTask

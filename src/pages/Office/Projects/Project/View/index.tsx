@@ -1,17 +1,20 @@
 import React, { useMemo } from 'react'
 import { TaskStatus } from 'src/modules/gql/generated'
+import { OfficeProjectListSectionStyled } from 'src/pages/Office/components/ui/list/styles'
+import { OfficeTitleStyled } from 'src/pages/Office/components/ui/Title/styles'
 
 import { OfficeProjectPageViewProps } from './interfaces'
-import {
-  OfficeProjectPageViewStyled,
-  OfficeProjectPageViewTasksSectionStyled,
-} from './styles'
+import { OfficeProjectPageViewStyled } from './styles'
 import OfficeProjectPageViewTask from './Task'
 import { OfficeProjectPageViewTaskProps } from './Task/interfaces'
+
+import useActiveTimer from 'src/hooks/useActiveTimer'
 
 const OfficeProjectPageView: React.FC<OfficeProjectPageViewProps> = ({
   project,
 }) => {
+  const { activeTimer } = useActiveTimer()
+
   const tasks = useMemo(() => {
     const sections: JSX.Element[] = []
 
@@ -39,38 +42,59 @@ const OfficeProjectPageView: React.FC<OfficeProjectPageViewProps> = ({
 
     if (activeTasks.length) {
       sections.push(
-        <OfficeProjectPageViewTasksSectionStyled key="activeTasks">
+        <OfficeProjectListSectionStyled key="activeTasks">
           {activeTasks.map((task) => {
-            return <OfficeProjectPageViewTask key={task.id} task={task} />
+            return (
+              <OfficeProjectPageViewTask
+                projects={[project]}
+                key={task.id}
+                task={task}
+                activeTimer={activeTimer}
+              />
+            )
           })}
-        </OfficeProjectPageViewTasksSectionStyled>
+        </OfficeProjectListSectionStyled>
       )
     }
 
     if (completedTasks.length) {
       sections.push(
-        <OfficeProjectPageViewTasksSectionStyled key="completedTasks">
-          <span className="header">Завершенные задачи</span>
+        <OfficeProjectListSectionStyled key="completedTasks">
+          <OfficeTitleStyled>Завершенные задачи</OfficeTitleStyled>
           {completedTasks.map((task) => {
-            return <OfficeProjectPageViewTask key={task.id} task={task} />
+            return (
+              <OfficeProjectPageViewTask
+                projects={[project]}
+                key={task.id}
+                task={task}
+                activeTimer={activeTimer}
+              />
+            )
           })}
-        </OfficeProjectPageViewTasksSectionStyled>
+        </OfficeProjectListSectionStyled>
       )
     }
 
     if (otherTasks.length) {
       sections.push(
-        <OfficeProjectPageViewTasksSectionStyled key="otherTasks">
-          <span className="header">Остальные задачи</span>
+        <OfficeProjectListSectionStyled key="otherTasks">
+          <OfficeTitleStyled>Остальные задачи</OfficeTitleStyled>
           {otherTasks.map((task) => {
-            return <OfficeProjectPageViewTask key={task.id} task={task} />
+            return (
+              <OfficeProjectPageViewTask
+                projects={[project]}
+                key={task.id}
+                task={task}
+                activeTimer={activeTimer}
+              />
+            )
           })}
-        </OfficeProjectPageViewTasksSectionStyled>
+        </OfficeProjectListSectionStyled>
       )
     }
 
     return <>{sections}</>
-  }, [project.ProjectTasks])
+  }, [activeTimer, project])
 
   return useMemo(() => {
     return (

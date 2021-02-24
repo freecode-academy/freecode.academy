@@ -30,7 +30,7 @@ export type TimersConnectionQuery = { __typename?: 'Query', objectsConnection: {
 
 
 export const TimersConnectionDocument = gql`
-    query timersConnection($where: TimerWhereInput, $orderBy: TimerOrderByInput = createdAt_DESC, $skip: Int, $after: String, $before: String, $first: Int = 10, $last: Int) {
+    query timersConnection($where: TimerWhereInput, $orderBy: TimerOrderByInput = createdAt_DESC, $skip: Int, $after: String, $before: String, $first: Int, $last: Int) {
   objectsConnection: timersConnection(
     where: $where
     orderBy: $orderBy

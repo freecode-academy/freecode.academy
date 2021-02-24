@@ -4,7 +4,7 @@ query timersConnection(
   $skip: Int
   $after: String
   $before: String
-  $first: Int = 10
+  $first: Int
   $last: Int
 ) {
   objectsConnection: timersConnection(

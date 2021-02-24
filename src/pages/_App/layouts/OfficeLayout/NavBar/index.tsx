@@ -6,6 +6,7 @@ import { OfficeLayoutNavBarStyled } from './styles'
 
 import IconButton from 'material-ui/IconButton'
 import HomeIcon from 'material-ui-icons/Home'
+import TimerIcon from 'material-ui-icons/Timer'
 
 /**
  * Боковая панель
@@ -22,6 +23,13 @@ const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
               <a title="На главную">
                 <IconButton>
                   <HomeIcon />
+                </IconButton>
+              </a>
+            </Link>
+            <Link href="/office/timers">
+              <a title="Лог выполнения">
+                <IconButton>
+                  <TimerIcon />
                 </IconButton>
               </a>
             </Link>

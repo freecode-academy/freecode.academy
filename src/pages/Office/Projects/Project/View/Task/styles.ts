@@ -1,12 +1,7 @@
 import styled from 'styled-components'
+import { OfficeListItemStyled } from 'src/pages/Office/components/ui/list/Item/styles'
 
-export const OfficeProjectPageViewTaskStyled = styled.div`
-  display: flex;
-  align-items: center;
-  background: ${({ theme }) => theme.officeTheme.bg.task.default};
-  margin: 2px 0;
-  padding: 10px;
-
+export const OfficeProjectPageViewTaskStyled = styled(OfficeListItemStyled)`
   > .task {
     padding: 0 10px;
     flex: 1;

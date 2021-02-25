@@ -19,7 +19,7 @@ const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
       <>
         <OfficeLayoutNavBarStyled {...other}>
           <div className="mainLinks">
-            <Link href="/office">
+            <Link href="/">
               <a title="На главную">
                 <IconButton>
                   <HomeIcon />

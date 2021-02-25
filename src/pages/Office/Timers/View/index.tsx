@@ -4,11 +4,15 @@ import { OfficeTitleStyled } from '../../components/ui/Title/styles'
 import { OfficeTimersViewProps } from './interfaces'
 import OfficeTimersTimer from './Timer'
 import moment from 'moment'
+import CheckBox from 'src/uikit/CheckBox'
 
 const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
   timers,
   date,
   setDate,
+  user,
+  currentUserOnly,
+  setCurrentUserOnly,
 }) => {
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +24,27 @@ const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
     },
     [setDate]
   )
+
+  const currentUserOnlyOnChange = useCallback(
+    (_, checked: boolean) => {
+      setCurrentUserOnly(checked)
+    },
+    [setCurrentUserOnly]
+  )
+
+  const currentUserOnlyCheckbox = useMemo(() => {
+    if (!user) {
+      return null
+    } else {
+      return (
+        <CheckBox
+          checked={currentUserOnly}
+          label="Только мои"
+          onChange={currentUserOnlyOnChange}
+        />
+      )
+    }
+  }, [currentUserOnly, currentUserOnlyOnChange, user])
 
   return useMemo(() => {
     return (
@@ -36,7 +61,8 @@ const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
                 background: 'none',
                 border: 0,
               }}
-            />
+            />{' '}
+            {currentUserOnlyCheckbox}
           </OfficeTitleStyled>
           {timers.map((timer) => {
             return <OfficeTimersTimer key={timer.id} timer={timer} />
@@ -44,7 +70,7 @@ const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
         </OfficeProjectListSectionStyled>
       </>
     )
-  }, [date, timers, onChange])
+  }, [date, timers, onChange, currentUserOnlyCheckbox])
 }
 
 export default OfficeTimersView

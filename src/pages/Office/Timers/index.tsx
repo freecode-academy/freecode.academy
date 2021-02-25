@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import {
   TimersConnectionQueryVariables,
   useTimersConnectionQuery,
@@ -12,9 +12,19 @@ import View from './View'
 
 import { Page } from '../../_App/interfaces'
 import { NextSeo } from 'next-seo'
+import OfficeContext from 'src/pages/_App/layouts/OfficeLayout/Context'
 
 const OfficeTimersPage: Page = () => {
+  const context = useContext(OfficeContext)
+
   const [date, setDate] = useState(moment())
+
+  const user = context?.user
+
+  /**
+   * Выводить таймеры только для текущего пользователя
+   */
+  const [currentUserOnly, setCurrentUserOnly] = useState(true)
 
   const variables = useMemo<TimersConnectionQueryVariables>(() => {
     return {
@@ -22,9 +32,15 @@ const OfficeTimersPage: Page = () => {
       where: {
         createdAt_lte: moment(`${date.format('YYYY-MM-DD')}T23:59:59`).toDate(),
         createdAt_gte: moment(`${date.format('YYYY-MM-DD')}T00:00:00`).toDate(),
+        CreatedBy:
+          currentUserOnly && user
+            ? {
+                id: user.id,
+              }
+            : undefined,
       },
     }
-  }, [date])
+  }, [user, currentUserOnly, date])
 
   const response = useTimersConnectionQuery({
     variables,
@@ -45,13 +61,22 @@ const OfficeTimersPage: Page = () => {
     )
   }, [response.data?.objectsConnection.edges])
 
-  return (
-    <>
-      <NextSeo title="Лог выполнения" />
+  return useMemo(() => {
+    return (
+      <>
+        <NextSeo title="Лог выполнения" />
 
-      <View timers={objects} date={date} setDate={setDate} />
-    </>
-  )
+        <View
+          timers={objects}
+          date={date}
+          setDate={setDate}
+          currentUserOnly={currentUserOnly}
+          setCurrentUserOnly={setCurrentUserOnly}
+          user={user}
+        />
+      </>
+    )
+  }, [currentUserOnly, date, objects, user])
 }
 
 OfficeTimersPage.getInitialProps = async () => {

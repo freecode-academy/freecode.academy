@@ -6,12 +6,14 @@ import { OfficeProjectPageViewTaskProps } from './interfaces'
 import { OfficeProjectPageViewTaskStyled } from './styles'
 import Link from 'next/link'
 import useActiveTimer from 'src/hooks/useActiveTimer'
+import OfficeProjectPageViewTaskProject from './Project'
 
 const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   task,
   projects,
   info,
   activeTimer,
+  filterByProject,
 }) => {
   const { stopTimerClickHandler, stopTimerLoading } = useActiveTimer()
 
@@ -90,9 +92,10 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
                 .map((project) => {
                   return (
                     <small key={project.id}>
-                      <Link href={`/office/projects/${project.id}`}>
-                        <a title={project.name}>{project.name}</a>
-                      </Link>{' '}
+                      <OfficeProjectPageViewTaskProject
+                        project={project}
+                        filterByProject={filterByProject}
+                      />
                     </small>
                   )
                 })
@@ -106,7 +109,16 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
         {info}
       </OfficeProjectPageViewTaskStyled>
     )
-  }, [timer, task.id, task.name, task.status, projects, duration, info])
+  }, [
+    timer,
+    task.id,
+    task.name,
+    task.status,
+    projects,
+    duration,
+    info,
+    filterByProject,
+  ])
 }
 
 export default OfficeProjectPageViewTask

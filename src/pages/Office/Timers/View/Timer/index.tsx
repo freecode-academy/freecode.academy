@@ -4,7 +4,10 @@ import { OfficeTimersTimerProps } from './interfaces'
 import moment from 'moment'
 import OfficeProjectPageViewTask from 'src/pages/Office/Projects/Project/View/Task'
 
-const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({ timer }) => {
+const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({
+  timer,
+  filterByProject,
+}) => {
   const info = useMemo(() => {
     return (
       <>
@@ -27,10 +30,11 @@ const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({ timer }) => {
           projects={timer.Task.TaskProjects?.map((n) => n.Project) || []}
           activeTimer={!timer.stopedAt ? timer : null}
           info={info}
+          filterByProject={filterByProject}
         />
       </>
     )
-  }, [timer, info])
+  }, [timer, info, filterByProject])
 }
 
 export default OfficeTimersTimer

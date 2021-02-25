@@ -1,19 +1,65 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { OfficeProjectListSectionStyled } from '../../components/ui/list/styles'
 import { OfficeTitleStyled } from '../../components/ui/Title/styles'
 import { OfficeTimersViewProps } from './interfaces'
 import OfficeTimersTimer from './Timer'
 import moment from 'moment'
 import CheckBox from 'src/uikit/CheckBox'
+import { OfficeProjectPageViewTaskProjectProps } from '../../Projects/Project/View/Task/Project/interfaces'
+import { IconButton } from 'material-ui'
+import CloseIcon from 'material-ui-icons/Close'
 
 const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
-  timers,
+  timers: timersProps,
   date,
   setDate,
   user,
   currentUserOnly,
   setCurrentUserOnly,
 }) => {
+  const [filterProject, setFilterProject] = useState<
+    OfficeProjectPageViewTaskProjectProps['project'] | null
+  >(null)
+
+  /**
+   * Фильтр по проекту
+   */
+  const filterByProject = useCallback(
+    (project: OfficeProjectPageViewTaskProjectProps['project']) => {
+      setFilterProject(project)
+    },
+    []
+  )
+
+  const removeProjectFilter = useCallback(() => {
+    setFilterProject(null)
+  }, [])
+
+  const filters = useMemo(() => {
+    if (!filterProject) {
+      return null
+    }
+
+    return (
+      <div>
+        {filterProject.name}{' '}
+        <IconButton onClick={removeProjectFilter} title="Очистить фильтр">
+          <CloseIcon />
+        </IconButton>
+      </div>
+    )
+  }, [filterProject, removeProjectFilter])
+
+  const timers = useMemo(() => {
+    if (filterProject) {
+      return timersProps.filter((n) =>
+        n.Task.TaskProjects?.find((p) => p.Project.id === filterProject.id)
+      )
+    } else {
+      return timersProps
+    }
+  }, [filterProject, timersProps])
+
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const newDate = moment(event.currentTarget.value)
@@ -64,13 +110,29 @@ const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
             />{' '}
             {currentUserOnlyCheckbox}
           </OfficeTitleStyled>
+
+          {filters}
+
           {timers.map((timer) => {
-            return <OfficeTimersTimer key={timer.id} timer={timer} />
+            return (
+              <OfficeTimersTimer
+                key={timer.id}
+                timer={timer}
+                filterByProject={filterByProject}
+              />
+            )
           })}
         </OfficeProjectListSectionStyled>
       </>
     )
-  }, [date, timers, onChange, currentUserOnlyCheckbox])
+  }, [
+    date,
+    onChange,
+    currentUserOnlyCheckbox,
+    filters,
+    timers,
+    filterByProject,
+  ])
 }
 
 export default OfficeTimersView

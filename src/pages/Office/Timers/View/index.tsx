@@ -5,9 +5,9 @@ import { OfficeTimersViewProps } from './interfaces'
 import OfficeTimersTimer from './Timer'
 import moment from 'moment'
 import CheckBox from 'src/uikit/CheckBox'
-import { OfficeProjectPageViewTaskProjectProps } from '../../Projects/Project/View/Task/Project/interfaces'
 import { IconButton } from 'material-ui'
 import CloseIcon from 'material-ui-icons/Close'
+import { OfficeProjectPageViewTaskProjectProps } from '../../Projects/Project/View/Tasks/Task/Project/interfaces'
 
 const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
   timers: timersProps,

@@ -1,29 +1,33 @@
-import React, { useCallback, useMemo, useState } from 'react'
-import Button from 'material-ui/Button/Button'
+import React, { useMemo } from 'react'
 import { CreateTaskFormProps } from './interfaces'
 
 import { useCreateTaskProcessorMutation } from 'src/modules/gql/generated'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
-import { useRouter } from 'next/router'
 import TaskForm from '../TaskForm'
 
 /**
  * Форма создания задачи
  */
-const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ options }) => {
-  const router = useRouter()
+const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
+  options,
+  onSuccess,
+  opened,
+  cancel,
+}) => {
+  // const [opened, setOpened] = useState(false)
 
-  const [opened, setOpened] = useState(false)
-
-  const toggleOpened = useCallback(() => {
-    setOpened(!opened)
-  }, [opened])
+  // const toggleOpened = useCallback(() => {
+  //   setOpened(!opened)
+  // }, [opened])
 
   const mutationTuple = useCreateTaskProcessorMutation({
     onCompleted: (data) => {
       if (data.response.success && data.response.data?.id) {
         // resetForm()
-        router.push(`/tasks/${data.response.data?.id}`)
+
+        if (onSuccess) {
+          onSuccess(data)
+        }
       }
     },
   })
@@ -39,23 +43,27 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ options }) => {
     }
 
     return (
-      <TaskForm variables={options.variables} mutationState={mutationState} />
+      <TaskForm
+        variables={options.variables}
+        mutationState={mutationState}
+        cancel={cancel}
+      />
     )
-  }, [opened, options.variables, mutationState])
+  }, [opened, options.variables, mutationState, cancel])
 
   return useMemo(() => {
     return (
       <>
-        <div>
+        {/* <div>
           <Button onClick={toggleOpened} variant="raised" size="small">
             {opened ? 'Закрыть форму' : 'Добавить задачу'}
           </Button>
-        </div>
+        </div> */}
 
         {form}
       </>
     )
-  }, [form, opened, toggleOpened])
+  }, [form])
 }
 
 export default CreateTaskForm

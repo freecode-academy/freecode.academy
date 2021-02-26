@@ -20,7 +20,7 @@ export type TaskFormProps = {
   /**
    * Отмена редактирования
    */
-  onCancel?: () => void
+  cancel: () => void
 } & (
   | {
       task?: undefined

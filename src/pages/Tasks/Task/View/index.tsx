@@ -67,7 +67,7 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
             data: {},
           },
         }}
-        onCancel={onCancel}
+        cancel={onCancel}
         onSuccess={onCancel}
       />
     )

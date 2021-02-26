@@ -18,7 +18,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
   task,
   variables: variablesProp,
   mutationState,
-  onCancel: onCancelProp,
+  cancel: onCancelProp,
 }) => {
   type Data = typeof variablesProp.data
   type Name = keyof Data
@@ -62,6 +62,9 @@ const TaskForm: React.FC<TaskFormProps> = ({
       }
 
       switch (name) {
+        case 'name':
+          break
+
         case 'startDate':
         case 'startDatePlaning':
         case 'endDate':
@@ -244,7 +247,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     )
   }, [data, errors, getValue, onChange, onFocus])
 
-  const onCancel = useCallback(() => {
+  const cancel = useCallback(() => {
     resetForm()
     onCancelProp && onCancelProp()
   }, [onCancelProp, resetForm])
@@ -367,7 +370,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
                   <Button
                     variant="raised"
                     disabled={mutationState.loading}
-                    onClick={onCancel}
+                    onClick={cancel}
                   >
                     Отмена
                   </Button>
@@ -403,7 +406,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     endDate,
     mutationState.loading,
     mutationState.snakbar,
-    onCancel,
+    cancel,
   ])
 }
 

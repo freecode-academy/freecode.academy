@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { OfficeTimersTimerProps } from './interfaces'
 
 import moment from 'moment'
-import OfficeProjectPageViewTask from 'src/pages/Office/Projects/Project/View/Task'
+import OfficeProjectPageViewTask from 'src/pages/Office/Projects/Project/View/Tasks/Task'
 
 const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({
   timer,

@@ -197,24 +197,35 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
               </Link>{' '}
               ({task.status})
             </div>
-            {projects
-              ? projects
-                  .map((project) => {
-                    return (
-                      <small key={project.id}>
+            <div className="subinfo">
+              {projects
+                ? projects
+                    .map((project) => {
+                      return (
                         <OfficeProjectPageViewTaskProject
+                          key={project.id}
                           project={project}
                           filterByProject={filterByProject}
                         />
-                      </small>
+                      )
+                    })
+                    .reduce<React.ReactNode[]>(
+                      (curr, next) =>
+                        !curr.length ? [next] : [curr, ', ', next],
+                      []
                     )
-                  })
-                  .reduce<React.ReactNode[]>(
-                    (curr, next) =>
-                      !curr.length ? [next] : [curr, ', ', next],
-                    []
-                  )
-              : null}
+                : null}{' '}
+              {task.startDate ? (
+                <span title="Дата начала выполнения задачи">
+                  {moment(task.startDate).format('DD-MM HH:mm:ss')}
+                </span>
+              ) : null}{' '}
+              {task.endDate ? (
+                <span title="Дата завершения выполнения задачи">
+                  {moment(task.endDate).format('DD-MM HH:mm:ss')}
+                </span>
+              ) : null}
+            </div>
           </div>
           <div className="timer">{duration}</div>
           {info}
@@ -231,6 +242,8 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
     task.id,
     task.name,
     task.status,
+    task.startDate,
+    task.endDate,
     projects,
     duration,
     info,

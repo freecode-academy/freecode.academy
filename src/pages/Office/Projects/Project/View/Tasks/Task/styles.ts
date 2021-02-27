@@ -1,9 +1,15 @@
 import styled from 'styled-components'
 import { OfficeListItemStyled } from 'src/pages/Office/components/ui/list/Item/styles'
 
-export const OfficeProjectPageViewTaskStyled = styled(OfficeListItemStyled)`
+export const OfficeTaskListItemStyled = styled(OfficeListItemStyled)`
   > .task {
     padding: 0 10px;
     flex: 1;
+  }
+`
+
+export const OfficeProjectPageViewTaskStyled = styled.div`
+  & > & {
+    margin-left: 3rem;
   }
 `

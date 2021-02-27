@@ -40,6 +40,9 @@ fragment task_ on Task {
       ...UserNoNesting
     }
   }
+  Parent {
+    id
+  }
 }
 
 fragment TaskNoNesting on Task {

@@ -3,7 +3,10 @@ import StartTimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header
 import TimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/TimerButton'
 import moment from 'moment'
 import { OfficeProjectPageViewTaskProps } from './interfaces'
-import { OfficeProjectPageViewTaskStyled } from './styles'
+import {
+  OfficeProjectPageViewTaskStyled,
+  OfficeTaskListItemStyled,
+} from './styles'
 import Link from 'next/link'
 import useActiveTimer from 'src/hooks/useActiveTimer'
 import OfficeProjectPageViewTaskProject from './Project'
@@ -76,37 +79,58 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
     )
   }, [activeTimer, isActive, time])
 
+  /**
+   * Рендерим дочерние таски
+   */
+  const childTasks = useMemo(() => {
+    return task.children?.map((childTask) => {
+      return (
+        <OfficeProjectPageViewTask
+          key={childTask.id}
+          activeTimer={activeTimer}
+          projects={projects}
+          task={childTask}
+        />
+      )
+    })
+  }, [activeTimer, projects, task.children])
+
   return useMemo(() => {
     return (
       <OfficeProjectPageViewTaskStyled>
-        <div>{timer}</div>
-        <div className="task">
-          <div>
-            <Link href={`/tasks/${task.id}`}>
-              <a title={task.name}>{task.name}</a>
-            </Link>{' '}
-            ({task.status})
-          </div>
-          {projects
-            ? projects
-                .map((project) => {
-                  return (
-                    <small key={project.id}>
-                      <OfficeProjectPageViewTaskProject
-                        project={project}
-                        filterByProject={filterByProject}
-                      />
-                    </small>
+        <OfficeTaskListItemStyled>
+          <div>{timer}</div>
+          <div className="task">
+            <div>
+              <Link href={`/tasks/${task.id}`}>
+                <a title={task.name}>{task.name}</a>
+              </Link>{' '}
+              ({task.status})
+            </div>
+            {projects
+              ? projects
+                  .map((project) => {
+                    return (
+                      <small key={project.id}>
+                        <OfficeProjectPageViewTaskProject
+                          project={project}
+                          filterByProject={filterByProject}
+                        />
+                      </small>
+                    )
+                  })
+                  .reduce<React.ReactNode[]>(
+                    (curr, next) =>
+                      !curr.length ? [next] : [curr, ', ', next],
+                    []
                   )
-                })
-                .reduce<React.ReactNode[]>(
-                  (curr, next) => (!curr.length ? [next] : [curr, ', ', next]),
-                  []
-                )
-            : null}
-        </div>
-        <div className="timer">{duration}</div>
-        {info}
+              : null}
+          </div>
+          <div className="timer">{duration}</div>
+          {info}
+        </OfficeTaskListItemStyled>
+
+        {childTasks}
       </OfficeProjectPageViewTaskStyled>
     )
   }, [
@@ -118,6 +142,7 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
     duration,
     info,
     filterByProject,
+    childTasks,
   ])
 }
 

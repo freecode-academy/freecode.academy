@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import { TaskStatus } from 'src/modules/gql/generated'
+import { TaskStatus, Task_Fragment } from 'src/modules/gql/generated'
 import { OfficeProjectListSectionStyled } from 'src/pages/Office/components/ui/list/styles'
 import { OfficeTitleStyled } from 'src/pages/Office/components/ui/Title/styles'
 
@@ -12,6 +12,91 @@ import useActiveTimer from 'src/hooks/useActiveTimer'
 import { ProjectTasksProps } from './interfaces'
 
 /**
+ * Формируем список задач с иерархией
+ */
+const makeTasksListWithHierarchy = (tasks: Task_Fragment[]) => {
+  /**
+   * Делаем копию исходного массива задач
+   */
+  const tasksListWithHierarchy: OfficeProjectPageViewTaskProps['task'][] = [
+    ...tasks,
+  ].map((n) => {
+    /**
+     * Обязательно делаем копию объекта, так как изначальные объекты заморожены
+     */
+    return {
+      ...n,
+      /**
+       * В каждую копию исходной задачи добавляем массив дочерних элементов
+       */
+      children: [],
+    }
+  })
+
+  /**
+   * Выполняем цикл, пока не местим все элементы с учетом их родителя
+   */
+
+  // let item: OfficeProjectPageViewTaskProps['task'] | null | undefined = undefined;
+  // let parent: OfficeProjectPageViewTaskProps['task'] | null | undefined = undefined;
+
+  /**
+   * На всякий случай счетчик, если вдруг в бесконечную рекурсию уйдем
+   */
+  let count = tasksListWithHierarchy.length
+  /**
+   * Находим элемент, у которого указан родитель, родитель есть в корне списка и на этот элемент из корня списка задач никто не ссылается
+   */
+  do {
+    count--
+
+    // Элемент должен иметь ссылку на родителя
+    const item = tasksListWithHierarchy.find(
+      (n) =>
+        n.Parent &&
+        // На этот элемент не должны ссылаться другие элементы из корня
+        tasksListWithHierarchy.findIndex((i) => i.Parent?.id === n.id) === -1 &&
+        // Получить родителя в корне списка и это не должен быть сам элемент
+        tasksListWithHierarchy.findIndex(
+          (p) => p.id !== n.id && p.id === n.Parent?.id
+        ) !== -1
+    )
+
+    /**
+     * Если элемент не был найден, выходим из цикла
+     */
+    if (!item) {
+      break
+    }
+
+    const parent = tasksListWithHierarchy.find(
+      (p) => p.id !== item.id && p.id === item.Parent?.id
+    )
+
+    /**
+     * Такая ситуация совсем вряд ли, но на всякий случай проверка
+     */
+    if (!parent) {
+      console.error('Не был получен родитель')
+      break
+    }
+    /**
+     * Если элемент был найден, выдергиваем его из массива и добавляем к родительскому компоненту
+     */
+
+    tasksListWithHierarchy.splice(tasksListWithHierarchy.indexOf(item), 1)
+
+    if (!parent.children) {
+      parent.children = []
+    }
+
+    parent.children.push(item)
+  } while (count > 0)
+
+  return tasksListWithHierarchy
+}
+
+/**
  * Список задач внутри проекта
  */
 const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
@@ -20,9 +105,9 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
   const sections = useMemo(() => {
     const sections: JSX.Element[] = []
 
-    const activeTasks: OfficeProjectPageViewTaskProps['task'][] = []
-    const completedTasks: OfficeProjectPageViewTaskProps['task'][] = []
-    const otherTasks: OfficeProjectPageViewTaskProps['task'][] = []
+    const activeTasks: Task_Fragment[] = []
+    const completedTasks: Task_Fragment[] = []
+    const otherTasks: Task_Fragment[] = []
 
     project.ProjectTasks?.forEach(({ Task }) => {
       switch (Task.status) {
@@ -45,7 +130,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
     if (activeTasks.length) {
       sections.push(
         <OfficeProjectListSectionStyled key="activeTasks">
-          {activeTasks.map((task) => {
+          {makeTasksListWithHierarchy(activeTasks).map((task) => {
             return (
               <OfficeProjectPageViewTask
                 projects={[project]}
@@ -63,7 +148,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
       sections.push(
         <OfficeProjectListSectionStyled key="completedTasks">
           <OfficeTitleStyled>Завершенные задачи</OfficeTitleStyled>
-          {completedTasks.map((task) => {
+          {makeTasksListWithHierarchy(completedTasks).map((task) => {
             return (
               <OfficeProjectPageViewTask
                 projects={[project]}
@@ -81,7 +166,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
       sections.push(
         <OfficeProjectListSectionStyled key="otherTasks">
           <OfficeTitleStyled>Остальные задачи</OfficeTitleStyled>
-          {otherTasks.map((task) => {
+          {makeTasksListWithHierarchy(otherTasks).map((task) => {
             return (
               <OfficeProjectPageViewTask
                 projects={[project]}

@@ -44,7 +44,7 @@ export type Task_Fragment = (
       & UserNoNestingFragment
     )> }
     & TaskReactionNoNestingFragment
-  )>> }
+  )>>, Parent?: Types.Maybe<{ __typename?: 'Task', id: string }> }
   & TaskNoNestingFragment
 );
 
@@ -84,6 +84,9 @@ export const Task_FragmentDoc = gql`
     CreatedBy {
       ...UserNoNesting
     }
+  }
+  Parent {
+    id
   }
 }
     ${TaskNoNestingFragmentDoc}

@@ -2,7 +2,9 @@ import { MeUserTimerFragment, Task_Fragment } from 'src/modules/gql/generated'
 import { OfficeProjectPageViewTaskProjectProps } from './Project/interfaces'
 
 export type OfficeProjectPageViewTaskProps = {
-  task: Task_Fragment
+  task: Task_Fragment & {
+    children?: OfficeProjectPageViewTaskProps['task'][]
+  }
 
   projects: OfficeProjectPageViewTaskProjectProps['project'][]
 

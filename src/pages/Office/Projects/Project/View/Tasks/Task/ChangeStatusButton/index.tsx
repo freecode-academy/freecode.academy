@@ -22,6 +22,8 @@ const TaskChangeStatusButton: React.FC<TaskChangeStatusButtonProps> = ({
    * Отмечаем задачу выполненной
    */
   const markAsDone = useCallback(() => {
+    const endDate = new Date()
+
     mutation({
       variables: {
         where: {
@@ -32,6 +34,8 @@ const TaskChangeStatusButton: React.FC<TaskChangeStatusButtonProps> = ({
            * Отмечаем таску выполненной
            */
           status: TaskStatus.COMPLETED,
+          endDate,
+
           /**
            * Останавливаем в ней таймеры, если есть запущенные
            */
@@ -45,7 +49,7 @@ const TaskChangeStatusButton: React.FC<TaskChangeStatusButtonProps> = ({
                   stopedAt: null,
                 },
                 data: {
-                  stopedAt: new Date(),
+                  stopedAt: endDate,
                 },
               },
             ],

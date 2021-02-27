@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import StartTimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/StartTimerButton'
 import TimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/TimerButton'
+import AddIcon from 'material-ui-icons/Add'
 import moment from 'moment'
 import { OfficeProjectPageViewTaskProps } from './interfaces'
 import {
@@ -10,10 +11,13 @@ import {
 import Link from 'next/link'
 import useActiveTimer from 'src/hooks/useActiveTimer'
 import OfficeProjectPageViewTaskProject from './Project'
+import CreateSubtask from './CreateSubtask'
+import { IconButton } from 'material-ui'
 
 const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   task,
   projects,
+  project,
   info,
   activeTimer,
   filterByProject,
@@ -80,6 +84,91 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   }, [activeTimer, isActive, time])
 
   /**
+   * Состояние формы добавления подзадачи открыта/закрыта
+   */
+  const [createTaskFormOpened, createTaskFormOpenedSetter] = useState(false)
+
+  /**
+   * Открываем форму
+   */
+  const createTaskFormOpen = useCallback(() => {
+    createTaskFormOpenedSetter(true)
+  }, [])
+
+  /**
+   * Закрываем форму
+   */
+  const createTaskFormCancel = useCallback(() => {
+    createTaskFormOpenedSetter(false)
+  }, [])
+
+  /**
+   * При успешном сохранении задачи закрываем форму
+   */
+  const createTaskonSuccess = useCallback(() => {
+    createTaskFormCancel()
+  }, [createTaskFormCancel])
+
+  /**
+   * Создание подзадачи
+   */
+  const createSubTask = useMemo(() => {
+    if (!project) {
+      return null
+    }
+
+    return (
+      <CreateSubtask
+        opened={createTaskFormOpened}
+        cancel={createTaskFormCancel}
+        onSuccess={createTaskonSuccess}
+        options={{
+          variables: {
+            data: {
+              name: '',
+              Project: {
+                connect: {
+                  id: project.id,
+                },
+              },
+              Parent: {
+                connect: {
+                  id: task.id,
+                },
+              },
+            },
+          },
+        }}
+      />
+    )
+  }, [
+    createTaskFormCancel,
+    createTaskFormOpened,
+    createTaskonSuccess,
+    project,
+    task.id,
+  ])
+
+  /**
+   * Кнопка добавления подзадачи
+   */
+  const addSubtaskButton = useMemo(() => {
+    // TODO вообще задачи имеют связь один-ко-многим проектам. В дальнейшем надо будет переделать.
+    /**
+     * Если проект не указан, то не выводим кнопку
+     */
+    if (!project) {
+      return null
+    }
+
+    return (
+      <IconButton onClick={createTaskFormOpen} title="Добавить подзадачу">
+        <AddIcon />
+      </IconButton>
+    )
+  }, [createTaskFormOpen, project])
+
+  /**
    * Рендерим дочерние таски
    */
   const childTasks = useMemo(() => {
@@ -90,10 +179,11 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
           activeTimer={activeTimer}
           projects={projects}
           task={childTask}
+          project={project}
         />
       )
     })
-  }, [activeTimer, projects, task.children])
+  }, [activeTimer, projects, task.children, project])
 
   return useMemo(() => {
     return (
@@ -128,7 +218,10 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
           </div>
           <div className="timer">{duration}</div>
           {info}
+          {addSubtaskButton}
         </OfficeTaskListItemStyled>
+
+        {createSubTask}
 
         {childTasks}
       </OfficeProjectPageViewTaskStyled>
@@ -141,8 +234,10 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
     projects,
     duration,
     info,
-    filterByProject,
+    addSubtaskButton,
+    createSubTask,
     childTasks,
+    filterByProject,
   ])
 }
 

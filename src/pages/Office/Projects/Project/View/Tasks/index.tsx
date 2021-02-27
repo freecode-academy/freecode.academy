@@ -137,6 +137,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
                 key={task.id}
                 task={task}
                 activeTimer={activeTimer}
+                project={project}
               />
             )
           })}
@@ -155,6 +156,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
                 key={task.id}
                 task={task}
                 activeTimer={activeTimer}
+                project={project}
               />
             )
           })}
@@ -173,6 +175,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
                 key={task.id}
                 task={task}
                 activeTimer={activeTimer}
+                project={project}
               />
             )
           })}

@@ -13,6 +13,7 @@ import useActiveTimer from 'src/hooks/useActiveTimer'
 import OfficeProjectPageViewTaskProject from './Project'
 import CreateSubtask from './CreateSubtask'
 import { IconButton } from 'material-ui'
+import TaskChangeStatusButton from './ChangeStatusButton'
 
 const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   task,
@@ -229,6 +230,7 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
           </div>
           <div className="timer">{duration}</div>
           {info}
+          <TaskChangeStatusButton task={task} />
           {addSubtaskButton}
         </OfficeTaskListItemStyled>
 
@@ -239,11 +241,7 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
     )
   }, [
     timer,
-    task.id,
-    task.name,
-    task.status,
-    task.startDate,
-    task.endDate,
+    task,
     projects,
     duration,
     info,

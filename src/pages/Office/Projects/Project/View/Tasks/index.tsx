@@ -138,6 +138,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
                 task={task}
                 activeTimer={activeTimer}
                 project={project}
+                CreatedBy={task.CreatedBy}
               />
             )
           })}
@@ -157,6 +158,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
                 task={task}
                 activeTimer={activeTimer}
                 project={project}
+                CreatedBy={task.CreatedBy}
               />
             )
           })}
@@ -176,6 +178,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
                 task={task}
                 activeTimer={activeTimer}
                 project={project}
+                CreatedBy={task.CreatedBy}
               />
             )
           })}

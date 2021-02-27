@@ -3,6 +3,7 @@ import {
   Scalars,
   Task_Fragment,
 } from 'src/modules/gql/generated'
+import { UikitUserLinkProps } from 'src/uikit/Link/User'
 import { OfficeProjectPageViewTaskProjectProps } from './Project/interfaces'
 
 export type OfficeProjectPageViewTaskProps = {
@@ -26,4 +27,11 @@ export type OfficeProjectPageViewTaskProps = {
   info?: JSX.Element
 
   activeTimer: MeUserTimerFragment | null | undefined
+
+  // TODO сейчас это хак, потому что в этот компонент приходит по сути или Задача или Задача таймера,
+  // в которой не все сущности имеются. Надо будет переделать компонент
+  /**
+   * Владелец объекта
+   */
+  CreatedBy: UikitUserLinkProps['user']
 }

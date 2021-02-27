@@ -2,6 +2,8 @@ import React, { useMemo } from 'react'
 import { OfficeTimersTimerProps } from './interfaces'
 
 import moment from 'moment'
+
+// TODO Надо создать самостоятельный компонент, так как возникают коллизии со свойствами объекта
 import OfficeProjectPageViewTask from 'src/pages/Office/Projects/Project/View/Tasks/Task'
 
 const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({
@@ -31,6 +33,7 @@ const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({
           activeTimer={!timer.stopedAt ? timer : null}
           info={info}
           filterByProject={filterByProject}
+          CreatedBy={timer.CreatedBy}
         />
       </>
     )

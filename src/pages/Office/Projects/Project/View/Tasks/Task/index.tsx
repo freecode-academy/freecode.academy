@@ -24,6 +24,7 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   info,
   activeTimer,
   filterByProject,
+  CreatedBy,
 }) => {
   const { stopTimerClickHandler, stopTimerLoading } = useActiveTimer()
 
@@ -183,6 +184,7 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
           projects={projects}
           task={childTask}
           project={project}
+          CreatedBy={childTask.CreatedBy}
         />
       )
     })
@@ -192,7 +194,7 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
     return (
       <OfficeProjectPageViewTaskStyled>
         <OfficeTaskListItemStyled>
-          <UikitUserLink user={task.CreatedBy} showName={false} />
+          <UikitUserLink user={CreatedBy} showName={false} />
           {timer}
           <div className="task">
             <div className="task-info">
@@ -246,6 +248,7 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
       </OfficeProjectPageViewTaskStyled>
     )
   }, [
+    CreatedBy,
     timer,
     task,
     projects,

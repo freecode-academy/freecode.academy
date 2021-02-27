@@ -69,11 +69,14 @@ const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
 
           <hr />
 
-          <SideBarProject projects={context?.projects || []} />
+          <SideBarProject
+            projects={context?.projects || []}
+            tasks={context?.tasks || []}
+          />
         </OfficeLayoutNavBarStyled>
       </>
     )
-  }, [context?.projects, other, userMenu])
+  }, [context?.projects, context?.tasks, other, userMenu])
 }
 
 export default OfficeLayoutNavBar

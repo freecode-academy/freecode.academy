@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import {
   TaskOrderByInput,
+  TaskStatus,
   useOfficeProjectsQuery,
   useOfficeTasksQuery,
 } from 'src/modules/gql/generated'
@@ -14,46 +15,54 @@ const useOfficeData = (props: useOfficeDataProps) => {
   const currentUserId = props.currentUserId
 
   const projectsData = useOfficeProjectsQuery({
-    skip: !currentUserId,
     variables: {
-      where: {
-        OR: [
-          {
-            // Проект создан пользователем
-            CreatedBy: {
-              id: currentUserId,
-            },
-          },
-          {
-            // Или содержит задачи, которые
-            ProjectTasks_some: {
-              Task: {
-                OR: [
-                  {
-                    // Созданы текущим пользователем
-                    CreatedBy: {
-                      id: currentUserId,
-                    },
-                  },
-                  {
-                    /**
-                     * Или которые пользователь выполнял
-                     */
-                    Timers_some: {
-                      CreatedBy: {
-                        id: currentUserId,
-                      },
-                    },
-                  },
-                ],
+      /**
+       * Если текущий пользователь авторизован, берем только проекты для него.
+       * Иначе все подряд выводим
+       */
+      where: currentUserId
+        ? {
+            OR: [
+              {
+                // Проект создан пользователем
+                CreatedBy: {
+                  id: currentUserId,
+                },
               },
-            },
-          },
-        ],
-      },
+              {
+                // Или содержит задачи, которые
+                ProjectTasks_some: {
+                  Task: {
+                    OR: [
+                      {
+                        // Созданы текущим пользователем
+                        CreatedBy: {
+                          id: currentUserId,
+                        },
+                      },
+                      {
+                        /**
+                         * Или которые пользователь выполнял
+                         */
+                        Timers_some: {
+                          CreatedBy: {
+                            id: currentUserId,
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          }
+        : undefined,
     },
   })
 
+  /**
+   * Формируем конечный массив проектов
+   */
   const projects = useMemo(() => {
     return (
       projectsData.data?.projectsConnection.edges.reduce<
@@ -68,8 +77,14 @@ const useOfficeData = (props: useOfficeDataProps) => {
     )
   }, [projectsData.data?.projectsConnection.edges])
 
+  /**
+   * Формируем массив айдишников полученных проектов
+   */
   const projectsIds = useMemo(() => projects.map((n) => n.id), [projects])
 
+  /**
+   * Запрос на получение задач
+   */
   const tasksData = useOfficeTasksQuery({
     skip: !projects.length,
     variables: {
@@ -80,10 +95,18 @@ const useOfficeData = (props: useOfficeDataProps) => {
             id_in: projectsIds,
           },
         },
+        status_not_in: [
+          TaskStatus.DONE,
+          TaskStatus.COMPLETED,
+          TaskStatus.REJECTED,
+        ],
       },
     },
   })
 
+  /**
+   * Конечный массив задач
+   */
   const tasks = useMemo(() => {
     return (
       tasksData.data?.tasksConnection.edges.reduce<OfficeContextValue['tasks']>(

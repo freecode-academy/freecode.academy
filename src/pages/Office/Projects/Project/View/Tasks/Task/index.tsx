@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import StartTimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/StartTimerButton'
 import TimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/TimerButton'
 import AddIcon from 'material-ui-icons/Add'
+import HelpIcon from 'material-ui-icons/Help'
 import moment from 'moment'
 import { OfficeProjectPageViewTaskProps } from './interfaces'
 import {
@@ -14,6 +15,7 @@ import OfficeProjectPageViewTaskProject from './Project'
 import CreateSubtask from './CreateSubtask'
 import { IconButton } from 'material-ui'
 import TaskChangeStatusButton from './ChangeStatusButton'
+import UikitUserLink from 'src/uikit/Link/User'
 
 const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   task,
@@ -190,13 +192,17 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
     return (
       <OfficeProjectPageViewTaskStyled>
         <OfficeTaskListItemStyled>
-          <div>{timer}</div>
+          <UikitUserLink user={task.CreatedBy} showName={false} />
+          {timer}
           <div className="task">
-            <div>
+            <div className="task-info">
               <Link href={`/tasks/${task.id}`}>
                 <a title={task.name}>{task.name}</a>
               </Link>{' '}
-              ({task.status})
+              ({task.status}){' '}
+              {task.needHelp ? (
+                <HelpIcon color="primary" titleAccess="Нужна помощь" />
+              ) : null}
             </div>
             <div className="subinfo">
               {projects

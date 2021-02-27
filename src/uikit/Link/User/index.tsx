@@ -24,10 +24,10 @@ const styles = {
     textDecoration: 'none',
   },
   avatar: {
-    '&.avatar-inline': {
-      display: 'inline-flex',
-      margin: 0,
-    },
+    // '&.avatar-inline': {
+    //   display: 'inline-flex',
+    //   margin: 0,
+    // },
 
     '&.avatar-size--small': {
       width: 25,

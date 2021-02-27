@@ -2,15 +2,24 @@ import styled from 'styled-components'
 import { OfficeListItemStyled } from 'src/pages/Office/components/ui/list/Item/styles'
 
 export const OfficeTaskListItemStyled = styled(OfficeListItemStyled)`
-  > .task {
-    padding: 0 10px;
-    flex: 1;
+  > * {
+    margin-right: 5px;
 
-    > * {
-      margin: 2px auto;
+    &.task {
+      padding: 0 5px;
+      flex: 1;
 
-      &.subinfo {
-        font-size: 0.7rem;
+      > * {
+        margin: 2px auto;
+
+        &.task-info {
+          display: flex;
+          align-items: center;
+        }
+
+        &.subinfo {
+          font-size: 0.7rem;
+        }
       }
     }
   }

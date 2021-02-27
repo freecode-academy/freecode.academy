@@ -7,7 +7,7 @@ import { SideBarProjectStyled } from './styles'
 /**
  * Меню проектов
  */
-const SideBarProject: React.FC<SideBarProjectProps> = ({ projects }) => {
+const SideBarProject: React.FC<SideBarProjectProps> = ({ projects, tasks }) => {
   const router = useRouter()
 
   const { projectId } = router.query
@@ -17,6 +17,10 @@ const SideBarProject: React.FC<SideBarProjectProps> = ({ projects }) => {
       <>
         <SideBarProjectStyled>
           {projects.map((project) => {
+            const tasksCount = tasks.filter((n) =>
+              n.TaskProjects?.find((p) => p.Project.id === project.id)
+            ).length
+
             const isActive = projectId === project.id
 
             return (
@@ -26,7 +30,13 @@ const SideBarProject: React.FC<SideBarProjectProps> = ({ projects }) => {
                     title={project.name}
                     className={['project', isActive ? 'active' : ''].join(' ')}
                   >
-                    {project.name}
+                    {project.name}{' '}
+                    {tasksCount ? (
+                      <span title="Количество активных задач в проекте">
+                        {' '}
+                        ({tasksCount})
+                      </span>
+                    ) : null}
                   </a>
                 </Link>
               </div>
@@ -35,7 +45,7 @@ const SideBarProject: React.FC<SideBarProjectProps> = ({ projects }) => {
         </SideBarProjectStyled>
       </>
     )
-  }, [projectId, projects])
+  }, [projectId, projects, tasks])
 }
 
 export default SideBarProject

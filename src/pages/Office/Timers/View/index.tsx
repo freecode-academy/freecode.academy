@@ -93,6 +93,25 @@ const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
   }, [currentUserOnly, currentUserOnlyOnChange, user])
 
   return useMemo(() => {
+    let totalTime = 0
+
+    const timersList = timers.map((timer) => {
+      const diff =
+        (timer.stopedAt || new Date()).getTime() - timer.createdAt.getTime()
+
+      if (diff) {
+        totalTime += diff
+      }
+
+      return (
+        <OfficeTimersTimer
+          key={timer.id}
+          timer={timer}
+          filterByProject={filterByProject}
+        />
+      )
+    })
+
     return (
       <>
         <OfficeProjectListSectionStyled>
@@ -108,20 +127,13 @@ const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
                 border: 0,
               }}
             />{' '}
-            {currentUserOnlyCheckbox}
+            {currentUserOnlyCheckbox}{' '}
+            {totalTime ? moment.utc(totalTime).format('HH:mm:ss') : null}
           </OfficeTitleStyled>
 
           {filters}
 
-          {timers.map((timer) => {
-            return (
-              <OfficeTimersTimer
-                key={timer.id}
-                timer={timer}
-                filterByProject={filterByProject}
-              />
-            )
-          })}
+          {timersList}
         </OfficeProjectListSectionStyled>
       </>
     )

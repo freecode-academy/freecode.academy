@@ -19,6 +19,10 @@ export const OfficeTaskListItemStyled = styled(OfficeListItemStyled)`
 
         &.subinfo {
           font-size: 0.7rem;
+
+          .projects {
+            padding: 0 10px;
+          }
         }
       }
     }

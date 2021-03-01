@@ -207,30 +207,46 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
               ) : null}
             </div>
             <div className="subinfo">
-              {projects
-                ? projects
-                    .map((project) => {
-                      return (
-                        <OfficeProjectPageViewTaskProject
-                          key={project.id}
-                          project={project}
-                          filterByProject={filterByProject}
-                        />
+              {task.startDatePlaning ? (
+                <span title="Планируемая дата начала выполнения задачи">
+                  {moment(task.startDatePlaning).format('DD-MM HH:mm:ss')}
+                  {'>'}
+                </span>
+              ) : null}{' '}
+              {task.endDatePlaning ? (
+                <span title="Планируемая дата завершения выполнения задачи">
+                  {'<'}
+                  {moment(task.endDatePlaning).format('DD-MM HH:mm:ss')}
+                </span>
+              ) : null}
+              <span className="projects">
+                {projects
+                  ? projects
+                      .map((project) => {
+                        return (
+                          <OfficeProjectPageViewTaskProject
+                            key={project.id}
+                            project={project}
+                            filterByProject={filterByProject}
+                          />
+                        )
+                      })
+                      .reduce<React.ReactNode[]>(
+                        (curr, next) =>
+                          !curr.length ? [next] : [curr, ', ', next],
+                        []
                       )
-                    })
-                    .reduce<React.ReactNode[]>(
-                      (curr, next) =>
-                        !curr.length ? [next] : [curr, ', ', next],
-                      []
-                    )
-                : null}{' '}
+                  : null}
+              </span>
               {task.startDate ? (
                 <span title="Дата начала выполнения задачи">
                   {moment(task.startDate).format('DD-MM HH:mm:ss')}
+                  {'>'}
                 </span>
               ) : null}{' '}
               {task.endDate ? (
                 <span title="Дата завершения выполнения задачи">
+                  {'<'}
                   {moment(task.endDate).format('DD-MM HH:mm:ss')}
                 </span>
               ) : null}

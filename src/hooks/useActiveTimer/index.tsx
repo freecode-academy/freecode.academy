@@ -19,6 +19,9 @@ const useActiveTimer = () => {
    */
   const onClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault()
+      event.stopPropagation()
+
       /**
        * Если есть активный таймер, завершаем его работу
        */

@@ -14,12 +14,24 @@ query officeTasks($orderBy: TaskOrderByInput, $where: TaskWhereInput) {
 fragment officeTask on Task {
   id
   name
-  content
+  # content
+  createdAt
+  startDatePlaning
+  endDatePlaning
+  startDate
+  endDate
+  status
   TaskProjects {
     id
     Project {
       id
       name
     }
+  }
+  CreatedBy {
+    id
+    username
+    fullname
+    image
   }
 }

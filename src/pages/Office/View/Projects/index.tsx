@@ -2,6 +2,9 @@ import { Button, Typography } from 'material-ui'
 import React, { useCallback, useMemo, useState } from 'react'
 import OfficeProjectsCreate from '../../Projects/Project/Create/View'
 
+/**
+ * @deprecated
+ */
 const OfficePageViewProjects: React.FC = () => {
   const [opened, setOpened] = useState(false)
 

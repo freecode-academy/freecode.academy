@@ -10,6 +10,7 @@ import IconButton from 'material-ui/IconButton'
 import HomeIcon from 'material-ui-icons/Home'
 import TimerIcon from 'material-ui-icons/Timer'
 import UserIcon from 'material-ui-icons/AccountCircle'
+import OfficeIcon from 'material-ui-icons/Dashboard'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 
 /**
@@ -51,6 +52,13 @@ const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
               <a title="На главную">
                 <IconButton>
                   <HomeIcon />
+                </IconButton>
+              </a>
+            </Link>
+            <Link href="/office">
+              <a title="Офис">
+                <IconButton>
+                  <OfficeIcon />
                 </IconButton>
               </a>
             </Link>

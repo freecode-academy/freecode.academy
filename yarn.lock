@@ -1318,6 +1318,47 @@
   resolved "https://registry.yarnpkg.com/@freecodecamp/loop-protect/-/loop-protect-2.2.1.tgz#86ca105c61d561922ede620ae1de162ceb00f455"
   integrity sha512-px2gy/jHfMyTFOAY+c5IiNuBJCP+B0vC20SGdaS0YgnCJov82bewHDqE9a2fci4XYTxjxyJpuTKZMelLxDcyJg==
 
+"@fullcalendar/common@~5.5.0":
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/common/-/common-5.5.1.tgz#cc3679408b625b35d6f3f05bdca73f3700d0d370"
+  integrity sha512-tfVlX4aBHxCDJAVkUm93FXScOhmdz6/vUy/ISfpNeRNYuUvhJbmjoH67DpGNdS3we2n6/dVte021TE4Bbo4uRA==
+  dependencies:
+    ical.js "^1.4.0"
+    tslib "^2.0.3"
+
+"@fullcalendar/daygrid@^5.5.0", "@fullcalendar/daygrid@~5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/daygrid/-/daygrid-5.5.0.tgz#48f943d070a07f88cd6f8170fb757d3038239bd6"
+  integrity sha512-O/59C3ihElLsPnkjlD1xUgAf3v7WEARXVO+wZfASKtK14Ccux2MA9mWUA1+80m9q8on7SYL36ORhrea7GKy/qQ==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    tslib "^2.0.3"
+
+"@fullcalendar/interaction@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/interaction/-/interaction-5.5.0.tgz#8fe3f2b89c55fad5835a9c74f7a95a7d97419afe"
+  integrity sha512-LKc4VeESBkBkrI/sAtV++f4qUleYyt7STBrnuc5Mpojv7jg5x5XZ1rfOarLwRbEYSvbo6CwccDrsaLTbC1Qk2A==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    tslib "^2.0.3"
+
+"@fullcalendar/react@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/react/-/react-5.5.0.tgz#4a74e816ee67c4de59ca6bae1a658e6e72c7970a"
+  integrity sha512-ss109y/kYIb9mwmE9dZc5c2o5I4CoqREDqLNAur83CGC5NvCH8gRzZXEilZz1E6ORuziBEYkPPtREn7Mp+6lYg==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    tslib "^2.0.3"
+
+"@fullcalendar/timegrid@^5.5.1":
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/timegrid/-/timegrid-5.5.1.tgz#b73eb9e454808313e7146dc5df6105e9b3aa80cb"
+  integrity sha512-bo9DbPcx9PMXtAFP8tsFaQ1FGxUM/FoaQKah/eFVT8ueI5WQqSfWupM5yyGbHOmKgD65l8WhPcuamm6v01Pasw==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    "@fullcalendar/daygrid" "~5.5.0"
+    tslib "^2.0.3"
+
 "@graphql-codegen/add@^2.0.1", "@graphql-codegen/add@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-2.0.2.tgz#4acbb95be9ebb859a3cebfe7132fdf49ffe06dd8"
@@ -3294,12 +3335,19 @@
     "@types/react" "*"
     "@types/reactcss" "*"
 
-"@types/react-dom@^16.9.8", "@types/react-dom@^16.9.9":
+"@types/react-dom@^16.9.8":
   version "16.9.11"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.11.tgz#752e223a1592a2c10f2668b215a0e0667f4faab1"
   integrity sha512-3UuR4MoWf5spNgrG6cwsmT9DdRghcR4IDFOzNZ6+wcmacxkFykcb5ji0nNVm9ckBT4BCxvCrJJbM4+EYsEEVIg==
   dependencies:
     "@types/react" "^16"
+
+"@types/react-dom@^17.0.1":
+  version "17.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.1.tgz#d92d77d020bfb083e07cc8e0ac9f933599a4d56a"
+  integrity sha512-yIVyopxQb8IDZ7SOHeTovurFq+fXiPICa+GV3gp0Xedsl+MwQlMLKmvrnEjFbQxjliH5YVAEWFh975eVNmKj7Q==
+  dependencies:
+    "@types/react" "*"
 
 "@types/react-jss@^8.6.1":
   version "8.6.4"
@@ -3339,7 +3387,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
+"@types/react@*", "@types/react@^17.0.2":
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.2.tgz#3de24c4efef902dd9795a49c75f760cbe4f7a5a8"
   integrity sha512-Xt40xQsrkdvjn1EyWe1Bc0dJLcil/9x2vAuW7ya+PuQip4UYUaXyhzWmAbwRsdMgwOFHpfp7/FFZebDU6Y8VHA==
@@ -3347,7 +3395,7 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/react@^15.x || ^16.x", "@types/react@^16", "@types/react@^16.9.27", "@types/react@^16.9.53":
+"@types/react@^15.x || ^16.x", "@types/react@^16", "@types/react@^16.9.53":
   version "16.14.4"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.4.tgz#365f6a1e117d1eec960ba792c7e1e91ecad38e6f"
   integrity sha512-ETj7GbkPGjca/A4trkVeGvoIakmLV6ZtX3J8dcmOpzKzWVybbrOxanwaIPG71GZwImoMDY6Fq4wIe34lEqZ0FQ==
@@ -9931,6 +9979,11 @@ hyphenate-style-name@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
   integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
+
+ical.js@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ical.js/-/ical.js-1.4.0.tgz#fc5619dc55fe03d909bf04362aa0677f4541b9d7"
+  integrity sha512-ltHZuOFNNjcyEYbzDgjemS7LWIFh2vydJeznxQHUh3dnarbxqOYsWONYteBVAq1MEOHnwXFGN2eskZReHclnrA==
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
@@ -16535,6 +16588,14 @@ scheduler@^0.19.1:
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
   integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.20.1:
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.1.tgz#da0b907e24026b01181ecbc75efdc7f27b5a000c"
+  integrity sha512-LKTe+2xNJBNxu/QhHvDR14wUXHRQbVY5ZOYpOGWRzhydZUqrLb2JBvLPY7cAqFmqrWuDED0Mjk7013SZiOz6Bw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

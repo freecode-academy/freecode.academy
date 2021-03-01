@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback, useState } from 'react'
 
 import { TaskStatus, Task_Fragment } from 'src/modules/gql/generated'
 import { OfficeProjectListSectionStyled } from 'src/pages/Office/components/ui/list/styles'
@@ -9,10 +9,15 @@ import { OfficeProjectPageViewTaskProps } from './Task/interfaces'
 
 import useActiveTimer from 'src/hooks/useActiveTimer'
 
+import CreateTaskForm from 'src/pages/Tasks/Task/View/form/CreateTask'
+import { Button, Paper } from 'material-ui'
+import { CreateTaskProcessorMutation } from 'src/modules/gql/generated'
+
 import { ProjectTasksProps } from './interfaces'
 
 /**
  * Формируем список задач с иерархией
+ * @deprecated
  */
 const makeTasksListWithHierarchy = (tasks: Task_Fragment[]) => {
   /**
@@ -189,9 +194,79 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
     return <>{sections}</>
   }, [activeTimer, project])
 
+  const [createTaskOpened, createTaskOpenedSetter] = useState(false)
+
+  const toggleOpened = useCallback(() => {
+    createTaskOpenedSetter(!createTaskOpened)
+  }, [createTaskOpened])
+
+  const cancel = useCallback(() => {
+    createTaskOpenedSetter(false)
+  }, [])
+
+  const onCreateTask = useCallback(
+    (data: CreateTaskProcessorMutation) => {
+      if (data.response.data?.id) {
+        // router.push(`/tasks/${data.response.data?.id}`);
+
+        cancel()
+      }
+    },
+    [cancel]
+  )
+
+  const createTask = useMemo<JSX.Element>(() => {
+    return (
+      <>
+        {!createTaskOpened ? (
+          <Button onClick={toggleOpened} variant="raised" size="small">
+            Добавить задачу
+          </Button>
+        ) : null}
+
+        <Paper>
+          <CreateTaskForm
+            opened={createTaskOpened}
+            onSuccess={onCreateTask}
+            cancel={cancel}
+            options={{
+              variables: {
+                data: {
+                  name: '',
+                  Project: {
+                    connect: {
+                      id: project.id,
+                    },
+                  },
+                },
+              },
+            }}
+          />
+        </Paper>
+      </>
+    )
+
+    // if (!createTaskOpened) {
+    //   return <Button
+    //     onClick={opendCreateTaskForm}
+    //   >
+    //     Добавить задачу
+    //   </Button>
+    // }
+
+    // else {
+
+    // }
+  }, [cancel, createTaskOpened, onCreateTask, project.id, toggleOpened])
+
   return useMemo(() => {
-    return <>{sections}</>
-  }, [sections])
+    return (
+      <>
+        {createTask}
+        {sections}
+      </>
+    )
+  }, [sections, createTask])
 }
 
 export default ProjectTasks

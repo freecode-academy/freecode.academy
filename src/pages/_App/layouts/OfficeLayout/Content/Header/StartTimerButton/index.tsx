@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import useStartTimer from 'src/pages/Tasks/View/Task/TaskButtons/hooks/useStartTimer'
 import TimerButton from '../TimerButton'
 import { StartTimerButtonProps } from './interfaces'
@@ -11,20 +11,30 @@ const StartTimerButton: React.FC<StartTimerButtonProps> = ({ task }) => {
     taskId: task.id,
   })
 
+  const onClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault()
+      event.stopPropagation()
+
+      return startTimer()
+    },
+    [startTimer]
+  )
+
   return useMemo(() => {
     return (
       <>
         {snakbar}
         <TimerButton
           status="pause"
-          onClick={startTimer}
+          onClick={onClick}
           timerId={undefined}
           title={`Приступить к выполнению "${task.name}"`}
           disabled={loading}
         />
       </>
     )
-  }, [loading, snakbar, startTimer, task.name])
+  }, [loading, onClick, snakbar, task.name])
 }
 
 export default StartTimerButton

@@ -29,7 +29,7 @@ import CalendarEvent from './Event'
 /**
  * Календарь задач
  */
-const Calendar: React.FC<CalendarProps> = ({ tasks, ...other }) => {
+const Calendar: React.FC<CalendarProps> = ({ tasks, select, ...other }) => {
   const updateTaskTuple = useUpdateTaskProcessorMutation()
 
   const { snakbar, mutation: updateTask } = useProcessorMutation(
@@ -66,11 +66,15 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, ...other }) => {
    * Рендерер элемента в календаре
    */
   const renderEventContent = useCallback(
-    (eventContent: EventContentArg) => {
+    (eventContent: EventContentArg): JSX.Element => {
       const task = tasks.find((n) => n.id === eventContent.event.id)
 
       if (!task) {
-        return null
+        /**
+         * Нельзя возвращать null, иначе будет ошибка
+         * Cannot read property 'html' of null
+         */
+        return <></>
       }
 
       return <CalendarEvent task={task} eventContent={eventContent} />
@@ -167,13 +171,13 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, ...other }) => {
           }}
           initialView="timeGridWeek"
           editable={true}
-          selectable={true}
+          selectable={!!select}
+          select={select}
           selectMirror={true}
           dayMaxEvents={true}
           weekends={weekendsVisible}
           // initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
           events={currentEvents}
-          // select={handleDateSelect}
           eventContent={renderEventContent} // custom render function
           // eventClick={handleEventClick}
           // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
@@ -184,11 +188,12 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, ...other }) => {
       </>
     )
   }, [
-    currentEvents,
-    eventChangeHandler,
-    renderEventContent,
     snakbar,
+    select,
     weekendsVisible,
+    currentEvents,
+    renderEventContent,
+    eventChangeHandler,
     other,
   ])
 }

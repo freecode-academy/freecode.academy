@@ -1,6 +1,8 @@
+import React, { useMemo } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useMemo } from 'react'
+import { IconButton } from 'material-ui'
+import AddIcon from 'material-ui-icons/Add'
 import { SideBarProjectProps } from './interfaces'
 import { SideBarProjectStyled } from './styles'
 
@@ -16,6 +18,14 @@ const SideBarProject: React.FC<SideBarProjectProps> = ({ projects, tasks }) => {
     return (
       <>
         <SideBarProjectStyled>
+          <div className="title">
+            <strong>Проекты</strong>{' '}
+            <Link href="/office/projects/create">
+              <IconButton>
+                <AddIcon />
+              </IconButton>
+            </Link>
+          </div>
           {projects.map((project) => {
             const tasksCount = tasks.filter((n) =>
               n.TaskProjects?.find((p) => p.Project.id === project.id)

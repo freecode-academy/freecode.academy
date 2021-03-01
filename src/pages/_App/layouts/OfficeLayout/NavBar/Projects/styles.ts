@@ -16,4 +16,14 @@ export const SideBarProjectStyled = styled.div`
       }
     }
   }
+
+  .title {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+    > *:first-child {
+      flex: 1;
+    }
+  }
 `

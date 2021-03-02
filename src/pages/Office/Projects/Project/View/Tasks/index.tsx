@@ -14,6 +14,8 @@ import { Button, Paper } from 'material-ui'
 import { CreateTaskProcessorMutation } from 'src/modules/gql/generated'
 
 import { ProjectTasksProps } from './interfaces'
+import Link from 'next/link'
+import { ProjectTasksStyled } from './styles'
 
 /**
  * Формируем список задач с иерархией
@@ -262,11 +264,20 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
   return useMemo(() => {
     return (
       <>
-        {createTask}
-        {sections}
+        <ProjectTasksStyled>
+          <header>
+            <div className="left">{createTask}</div>
+            <div>
+              <Link href={`/office/projects/${project.id}/calendar/day`}>
+                <a>Смотреть в календаре</a>
+              </Link>
+            </div>
+          </header>
+          {sections}
+        </ProjectTasksStyled>
       </>
     )
-  }, [sections, createTask])
+  }, [createTask, project.id, sections])
 }
 
 export default ProjectTasks

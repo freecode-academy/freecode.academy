@@ -3,4 +3,6 @@ import { OfficeProjectPageViewProps } from '../interfaces'
 
 export type ProjectCalendarProps = CalendarProps & {
   project: OfficeProjectPageViewProps['project']
+
+  range: CalendarProps['range']
 }

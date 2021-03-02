@@ -1,7 +1,10 @@
 import { DateSelectArg } from '@fullcalendar/react'
 import React, { useCallback, useMemo } from 'react'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
-import { useCreateTaskProcessorMutation } from 'src/modules/gql/generated'
+import {
+  TaskStatus,
+  useCreateTaskProcessorMutation,
+} from 'src/modules/gql/generated'
 import Calendar from 'src/pages/Office/View/Calendar'
 import { ProjectCalendarProps } from './interfaces'
 
@@ -9,14 +12,27 @@ import { ProjectCalendarProps } from './interfaces'
  * Календарь задач в проекте
  */
 const ProjectCalendar: React.FC<ProjectCalendarProps> = ({
-  tasks,
+  tasks: tasksProps,
   project,
+  ...other
 }) => {
   const createTaskTuple = useCreateTaskProcessorMutation()
 
   const { snakbar, loading, mutation: createTask } = useProcessorMutation(
     createTaskTuple
   )
+
+  const tasks = useMemo(() => {
+    /**
+     * Хак. Пока фильтруем задачи по статусу на стороне клиента
+     */
+    return tasksProps.filter(
+      (n) =>
+        ![
+          TaskStatus.COMPLETED || TaskStatus.DONE || TaskStatus.REJECTED,
+        ].includes(n.status)
+    )
+  }, [tasksProps])
 
   const handleDateSelect = useCallback(
     (selectInfo: DateSelectArg) => {
@@ -61,10 +77,10 @@ const ProjectCalendar: React.FC<ProjectCalendarProps> = ({
     return (
       <>
         {snakbar}
-        <Calendar tasks={tasks} select={handleDateSelect} />
+        <Calendar tasks={tasks} select={handleDateSelect} {...other} />
       </>
     )
-  }, [snakbar, tasks, handleDateSelect])
+  }, [snakbar, tasks, handleDateSelect, other])
 }
 
 export default ProjectCalendar

@@ -11,6 +11,7 @@ import View from './View'
 import { Page, NextPageContextCustom } from '../../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
+import { OfficeProjectPageProps } from './interfaces'
 
 const getProjectVariables = (router: NextRouter | NextPageContextCustom) => {
   const variables: ProjectPageProjectsQueryVariables = {}
@@ -26,7 +27,7 @@ const getProjectVariables = (router: NextRouter | NextPageContextCustom) => {
   return variables
 }
 
-const OfficeProjectPage: Page = () => {
+const OfficeProjectPage: Page<OfficeProjectPageProps> = ({ view }) => {
   const router = useRouter()
 
   const variables = useMemo(() => {
@@ -41,7 +42,7 @@ const OfficeProjectPage: Page = () => {
 
   const project = response.data?.projects ? response.data?.projects[0] : null
 
-  if (!project) {
+  if (!project || !view) {
     return null
   }
 
@@ -49,13 +50,13 @@ const OfficeProjectPage: Page = () => {
     <>
       <NextSeo title={project.name} />
 
-      <View project={project} />
+      <View project={project} view={view} />
     </>
   )
 }
 
 OfficeProjectPage.getInitialProps = async (context) => {
-  const { apolloClient } = context
+  const { apolloClient, query } = context
 
   const variables = getProjectVariables(context)
 
@@ -74,12 +75,34 @@ OfficeProjectPage.getInitialProps = async (context) => {
 
   const Project = response?.data?.projects ? response?.data?.projects[0] : null
 
+  let view: OfficeProjectPageProps['view'] | undefined
+
+  if (query.view) {
+    if (query.view === 'calendar') {
+      if (
+        query.range &&
+        typeof query.range === 'string' &&
+        (query.range === 'day' ||
+          query.range === 'week' ||
+          query.range === 'month')
+      ) {
+        view = {
+          type: query.view,
+          range: query.range,
+        }
+      }
+    }
+  } else {
+    view = 'taskslist'
+  }
+
   return {
     layout: {
       variant: 'office',
     },
     // TODO Adde canonical redirect
-    statusCode: !Project ? 404 : undefined,
+    statusCode: !Project || !view ? 404 : undefined,
+    view,
   }
 }
 

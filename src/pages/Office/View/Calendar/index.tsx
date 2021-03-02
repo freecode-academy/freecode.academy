@@ -30,7 +30,12 @@ import { CalendarStyled } from './styles'
 /**
  * Календарь задач
  */
-const Calendar: React.FC<CalendarProps> = ({ tasks, select, ...other }) => {
+const Calendar: React.FC<CalendarProps> = ({
+  tasks,
+  select,
+  range,
+  ...other
+}) => {
   const updateTaskTuple = useUpdateTaskProcessorMutation()
 
   const { snakbar, mutation: updateTask } = useProcessorMutation(
@@ -163,6 +168,7 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, select, ...other }) => {
         {snakbar}
         <CalendarStyled>
           <FullCalendar
+            key={range}
             /* you can update a remote database when these fire:
             eventAdd={function(){}}
             eventChange={function(){}}
@@ -174,7 +180,13 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, select, ...other }) => {
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay',
             }}
-            initialView="timeGridWeek"
+            initialView={
+              range === 'day'
+                ? 'timeGridDay'
+                : range === 'month'
+                ? 'dayGridMonth'
+                : 'timeGridWeek'
+            }
             editable={true}
             selectable={!!select}
             select={select}
@@ -195,6 +207,7 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, select, ...other }) => {
     )
   }, [
     snakbar,
+    range,
     select,
     weekendsVisible,
     currentEvents,

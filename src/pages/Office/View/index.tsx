@@ -6,13 +6,17 @@ import Calendar from './Calendar'
 const OfficePageView: React.FC = () => {
   const context = useContext(OfficeContext)
 
+  const tasks = useMemo(() => {
+    return context?.tasks || []
+  }, [context?.tasks])
+
   return useMemo(() => {
     return (
       <>
-        <Calendar tasks={context?.tasks || []} />
+        <Calendar tasks={tasks} range="week" />
       </>
     )
-  }, [context?.tasks])
+  }, [tasks])
 }
 
 export default OfficePageView

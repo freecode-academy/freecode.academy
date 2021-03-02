@@ -11,6 +11,7 @@ import { useUpdateTaskProcessorMutation } from 'src/modules/gql/generated'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
 import { CalendarProps } from './interfaces'
 import CalendarEvent from './Event'
+import { CalendarStyled } from './styles'
 
 // interface DemoAppState {
 //   weekendsVisible: boolean
@@ -54,9 +55,12 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, select, ...other }) => {
         return {
           id: task.id,
           title: task.name,
-          url: `/tasks/${task.id}`,
           start: task.startDatePlaning || task.startDate || task.createdAt,
           end: task.endDatePlaning || task.endDate || undefined,
+          /**
+           * Нельзя передавать ссылку, так как он оборачивает тогда всю карточку
+           */
+          // url: `/tasks/${task.id}`,
         }
       }) || []
     )
@@ -157,34 +161,36 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, select, ...other }) => {
     return (
       <>
         {snakbar}
-        <FullCalendar
-          /* you can update a remote database when these fire:
-          eventAdd={function(){}}
-          eventChange={function(){}}
-          eventRemove={function(){}}
-          */
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          headerToolbar={{
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay',
-          }}
-          initialView="timeGridWeek"
-          editable={true}
-          selectable={!!select}
-          select={select}
-          selectMirror={true}
-          dayMaxEvents={true}
-          weekends={weekendsVisible}
-          // initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
-          events={currentEvents}
-          eventContent={renderEventContent} // custom render function
-          // eventClick={handleEventClick}
-          // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-          eventChange={eventChangeHandler}
-          locale="ru"
-          {...other}
-        />
+        <CalendarStyled>
+          <FullCalendar
+            /* you can update a remote database when these fire:
+            eventAdd={function(){}}
+            eventChange={function(){}}
+            eventRemove={function(){}}
+            */
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            headerToolbar={{
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay',
+            }}
+            initialView="timeGridWeek"
+            editable={true}
+            selectable={!!select}
+            select={select}
+            selectMirror={true}
+            dayMaxEvents={true}
+            weekends={weekendsVisible}
+            // initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+            events={currentEvents}
+            eventContent={renderEventContent} // custom render function
+            // eventClick={handleEventClick}
+            // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+            eventChange={eventChangeHandler}
+            locale="ru"
+            {...other}
+          />
+        </CalendarStyled>
       </>
     )
   }, [

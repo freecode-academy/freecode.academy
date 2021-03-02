@@ -1,5 +1,5 @@
-import { OfficeProjectPageViewTaskProps } from '../interfaces'
+import { OfficeTaskFragment } from 'src/modules/gql/generated'
 
 export type TaskChangeStatusButtonProps = {
-  task: OfficeProjectPageViewTaskProps['task']
+  task: OfficeTaskFragment
 }

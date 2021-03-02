@@ -6,6 +6,7 @@ import { CalendarEventProps } from './interfaces'
 import useActiveTimer from 'src/hooks/useActiveTimer'
 import TimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/TimerButton'
 import StartTimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/StartTimerButton'
+import TaskChangeStatusButton from 'src/pages/Office/Projects/Project/View/Tasks/Task/ChangeStatusButton'
 
 /**
  * Карточка события в календаре (Задача)
@@ -49,6 +50,10 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
   }, [activeTimer, isActive, stopTimerClickHandler, stopTimerLoading, task])
 
   return useMemo(() => {
+    if (!task) {
+      return <></>
+    }
+
     return (
       <CalendarEventStyled>
         <b>{eventContent.timeText}</b>
@@ -64,7 +69,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
               {task?.status ? `(${task.status})` : null}
             </a>
           </Link>{' '}
-          {timer}
+          {timer} <TaskChangeStatusButton task={task} />
         </i>
         <p>
           {task.TaskProjects?.map((n) => (
@@ -82,9 +87,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
     eventContent.event.title,
     eventContent.event.url,
     eventContent.timeText,
-    task?.CreatedBy,
-    task.TaskProjects,
-    task.status,
+    task,
     timer,
   ])
 }

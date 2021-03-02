@@ -2,6 +2,11 @@ import { TimerButtonStyled } from 'src/pages/_App/layouts/OfficeLayout/Content/H
 import styled from 'styled-components'
 
 export const CalendarEventStyled = styled.div`
+  overflow: hidden;
+  white-space: nowrap;
+  height: 100%;
+  cursor: default;
+
   .avatar-inline {
     /* display: inline-block; */
     float: left;

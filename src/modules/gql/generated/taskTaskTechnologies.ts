@@ -10,18 +10,18 @@ import * as Types from './types';
 
 import { TaskNoNestingFragment } from './TaskNoNesting';
 import { UserNoNestingFragment } from './UserNoNesting';
-import { TaskTaskTechnology_Fragment } from './taskTaskTechnology_';
+import { TaskTaskTechnologyFragment } from './taskTaskTechnology_';
 import { gql } from '@apollo/client';
 import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-import { TaskTaskTechnology_FragmentDoc } from './taskTaskTechnology_';
+import { TaskTaskTechnologyFragmentDoc } from './taskTaskTechnology_';
 export type TaskTaskTechnologiesFragment = (
   { __typename?: 'Task', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
   )>, TaskTechnologies?: Types.Maybe<Array<(
     { __typename?: 'TaskTechnology' }
-    & TaskTaskTechnology_Fragment
+    & TaskTaskTechnologyFragment
   )>> }
   & TaskNoNestingFragment
 );
@@ -38,4 +38,4 @@ export const TaskTaskTechnologiesFragmentDoc = gql`
 }
     ${TaskNoNestingFragmentDoc}
 ${UserNoNestingFragmentDoc}
-${TaskTaskTechnology_FragmentDoc}`;
+${TaskTaskTechnologyFragmentDoc}`;

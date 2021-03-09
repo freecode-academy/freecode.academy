@@ -19,7 +19,7 @@ import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { TimerNoNestingFragmentDoc } from './TimerNoNesting';
 import { ProjectNoNestingFragmentDoc } from './ProjectNoNesting';
 import { TaskReactionNoNestingFragmentDoc } from './TaskReactionNoNesting';
-export type Task_Fragment = (
+export type TaskFragment = (
   { __typename?: 'Task', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
@@ -48,7 +48,7 @@ export type Task_Fragment = (
   & TaskNoNestingFragment
 );
 
-export const Task_FragmentDoc = gql`
+export const TaskFragmentDoc = gql`
     fragment task_ on Task {
   ...TaskNoNesting
   CreatedBy {

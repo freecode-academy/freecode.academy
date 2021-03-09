@@ -11,12 +11,12 @@ import * as Types from './types';
 import { TechnologyNoNestingFragment } from './TechnologyNoNesting';
 import { gql } from '@apollo/client';
 import { TechnologyNoNestingFragmentDoc } from './TechnologyNoNesting';
-export type TaskTaskTechnology_Fragment = { __typename?: 'TaskTechnology', id: string, level?: Types.Maybe<1 | 2 | 3 | 4 | 5 |null>, Technology: (
+export type TaskTaskTechnologyFragment = { __typename?: 'TaskTechnology', id: string, level?: Types.Maybe<1 | 2 | 3 | 4 | 5 |null>, Technology: (
     { __typename?: 'Technology' }
     & TechnologyNoNestingFragment
   ) };
 
-export const TaskTaskTechnology_FragmentDoc = gql`
+export const TaskTaskTechnologyFragmentDoc = gql`
     fragment taskTaskTechnology_ on TaskTechnology {
   id
   level

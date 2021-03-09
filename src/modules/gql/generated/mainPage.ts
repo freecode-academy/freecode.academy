@@ -10,14 +10,15 @@ import * as Types from './types';
 
 import { UserNoNestingFragment } from './UserNoNesting';
 import { MainPageCodeChallengeCompletionFragment } from './mainPageCodeChallengeCompletion';
-import { Resource_Fragment } from './resource_';
+import { ResourceFragment } from './resource_';
 import { TasksConnectionTaskFragment } from './tasksConnectionTask';
 import { gql } from '@apollo/client';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { MainPageCodeChallengeCompletionFragmentDoc } from './mainPageCodeChallengeCompletion';
-import { Resource_FragmentDoc } from './resource_';
+import { ResourceFragmentDoc } from './resource_';
 import { TasksConnectionTaskFragmentDoc } from './tasksConnectionTask';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type MainPageQueryVariables = Types.Exact<{
   timersWhere?: Types.Maybe<Types.TimerWhereInput>;
 }>;
@@ -31,7 +32,7 @@ export type MainPageQuery = { __typename?: 'Query', students: Array<Types.Maybe<
     & MainPageCodeChallengeCompletionFragment
   )>>, comments: Array<Types.Maybe<(
     { __typename?: 'Resource' }
-    & Resource_Fragment
+    & ResourceFragment
   )>>, tasksNeedHelp: { __typename?: 'TaskConnection', aggregate: { __typename?: 'AggregateTask', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TaskEdge', node: (
         { __typename?: 'Task' }
         & TasksConnectionTaskFragment
@@ -74,7 +75,7 @@ export const MainPageDocument = gql`
 }
     ${UserNoNestingFragmentDoc}
 ${MainPageCodeChallengeCompletionFragmentDoc}
-${Resource_FragmentDoc}
+${ResourceFragmentDoc}
 ${TasksConnectionTaskFragmentDoc}`;
 
 /**
@@ -94,10 +95,12 @@ ${TasksConnectionTaskFragmentDoc}`;
  * });
  */
 export function useMainPageQuery(baseOptions?: Apollo.QueryHookOptions<MainPageQuery, MainPageQueryVariables>) {
-        return Apollo.useQuery<MainPageQuery, MainPageQueryVariables>(MainPageDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MainPageQuery, MainPageQueryVariables>(MainPageDocument, options);
       }
 export function useMainPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MainPageQuery, MainPageQueryVariables>) {
-          return Apollo.useLazyQuery<MainPageQuery, MainPageQueryVariables>(MainPageDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MainPageQuery, MainPageQueryVariables>(MainPageDocument, options);
         }
 export type MainPageQueryHookResult = ReturnType<typeof useMainPageQuery>;
 export type MainPageLazyQueryHookResult = ReturnType<typeof useMainPageLazyQuery>;

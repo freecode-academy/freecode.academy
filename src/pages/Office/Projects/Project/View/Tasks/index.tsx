@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback, useState } from 'react'
 
-import { TaskStatus, Task_Fragment } from 'src/modules/gql/generated'
+import { TaskStatus, TaskFragment } from 'src/modules/gql/generated'
 import { OfficeProjectListSectionStyled } from 'src/pages/Office/components/ui/list/styles'
 import { OfficeTitleStyled } from 'src/pages/Office/components/ui/Title/styles'
 
@@ -21,7 +21,7 @@ import { ProjectTasksStyled } from './styles'
  * Формируем список задач с иерархией
  * @deprecated
  */
-const makeTasksListWithHierarchy = (tasks: Task_Fragment[]) => {
+const makeTasksListWithHierarchy = (tasks: TaskFragment[]) => {
   /**
    * Делаем копию исходного массива задач
    */
@@ -112,9 +112,9 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
   const sections = useMemo(() => {
     const sections: JSX.Element[] = []
 
-    const activeTasks: Task_Fragment[] = []
-    const completedTasks: Task_Fragment[] = []
-    const otherTasks: Task_Fragment[] = []
+    const activeTasks: TaskFragment[] = []
+    const completedTasks: TaskFragment[] = []
+    const otherTasks: TaskFragment[] = []
 
     project.ProjectTasks?.forEach(({ Task }) => {
       switch (Task.status) {

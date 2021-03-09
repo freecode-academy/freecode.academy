@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { ChatMessage_Fragment } from './chatMessage_';
+import { ChatMessageFragment } from './chatMessage_';
 import { gql } from '@apollo/client';
-import { ChatMessage_FragmentDoc } from './chatMessage_';
+import { ChatMessageFragmentDoc } from './chatMessage_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type ChatMessagesConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.ChatMessageWhereInput>;
   orderBy?: Types.Maybe<Types.ChatMessageOrderByInput>;
@@ -25,7 +26,7 @@ export type ChatMessagesConnectionQueryVariables = Types.Exact<{
 
 export type ChatMessagesConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'ChatMessageConnection', aggregate: { __typename?: 'AggregateChatMessage', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ChatMessageEdge', node: (
         { __typename?: 'ChatMessage' }
-        & ChatMessage_Fragment
+        & ChatMessageFragment
       ) }>> } };
 
 
@@ -50,7 +51,7 @@ export const ChatMessagesConnectionDocument = gql`
     }
   }
 }
-    ${ChatMessage_FragmentDoc}`;
+    ${ChatMessageFragmentDoc}`;
 
 /**
  * __useChatMessagesConnectionQuery__
@@ -75,10 +76,12 @@ export const ChatMessagesConnectionDocument = gql`
  * });
  */
 export function useChatMessagesConnectionQuery(baseOptions?: Apollo.QueryHookOptions<ChatMessagesConnectionQuery, ChatMessagesConnectionQueryVariables>) {
-        return Apollo.useQuery<ChatMessagesConnectionQuery, ChatMessagesConnectionQueryVariables>(ChatMessagesConnectionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ChatMessagesConnectionQuery, ChatMessagesConnectionQueryVariables>(ChatMessagesConnectionDocument, options);
       }
 export function useChatMessagesConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChatMessagesConnectionQuery, ChatMessagesConnectionQueryVariables>) {
-          return Apollo.useLazyQuery<ChatMessagesConnectionQuery, ChatMessagesConnectionQueryVariables>(ChatMessagesConnectionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ChatMessagesConnectionQuery, ChatMessagesConnectionQueryVariables>(ChatMessagesConnectionDocument, options);
         }
 export type ChatMessagesConnectionQueryHookResult = ReturnType<typeof useChatMessagesConnectionQuery>;
 export type ChatMessagesConnectionLazyQueryHookResult = ReturnType<typeof useChatMessagesConnectionLazyQuery>;

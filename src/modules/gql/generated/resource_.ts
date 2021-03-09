@@ -15,7 +15,7 @@ import { gql } from '@apollo/client';
 import { ResourceNoNestingFragmentDoc } from './ResourceNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
-export type Resource_Fragment = (
+export type ResourceFragment = (
   { __typename?: 'Resource', CreatedBy: (
     { __typename?: 'User' }
     & UserNoNestingFragment
@@ -29,7 +29,7 @@ export type Resource_Fragment = (
   & ResourceNoNestingFragment
 );
 
-export const Resource_FragmentDoc = gql`
+export const ResourceFragmentDoc = gql`
     fragment resource_ on Resource {
   ...ResourceNoNesting
   CreatedBy {

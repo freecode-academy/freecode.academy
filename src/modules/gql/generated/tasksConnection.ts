@@ -12,6 +12,7 @@ import { TasksConnectionTaskFragment } from './tasksConnectionTask';
 import { gql } from '@apollo/client';
 import { TasksConnectionTaskFragmentDoc } from './tasksConnectionTask';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type TasksConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.TaskWhereInput>;
   orderBy?: Types.Maybe<Types.TaskOrderByInput>;
@@ -77,10 +78,12 @@ export const TasksConnectionDocument = gql`
  * });
  */
 export function useTasksConnectionQuery(baseOptions?: Apollo.QueryHookOptions<TasksConnectionQuery, TasksConnectionQueryVariables>) {
-        return Apollo.useQuery<TasksConnectionQuery, TasksConnectionQueryVariables>(TasksConnectionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TasksConnectionQuery, TasksConnectionQueryVariables>(TasksConnectionDocument, options);
       }
 export function useTasksConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TasksConnectionQuery, TasksConnectionQueryVariables>) {
-          return Apollo.useLazyQuery<TasksConnectionQuery, TasksConnectionQueryVariables>(TasksConnectionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TasksConnectionQuery, TasksConnectionQueryVariables>(TasksConnectionDocument, options);
         }
 export type TasksConnectionQueryHookResult = ReturnType<typeof useTasksConnectionQuery>;
 export type TasksConnectionLazyQueryHookResult = ReturnType<typeof useTasksConnectionLazyQuery>;

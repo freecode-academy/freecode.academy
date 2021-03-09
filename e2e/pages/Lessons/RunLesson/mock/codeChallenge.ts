@@ -1,6 +1,6 @@
-import { CodeChallenge_Fragment } from 'src/modules/gql/generated'
+import { CodeChallengeFragment } from 'src/modules/gql/generated'
 
-const codeChallenge: CodeChallenge_Fragment = {
+const codeChallenge: CodeChallengeFragment = {
   id: 'bd7123c9c441eddfaeb4bdef',
   CreatedBy: {
     id: 'cjoe87z9f001b0d9683ysg0m4',

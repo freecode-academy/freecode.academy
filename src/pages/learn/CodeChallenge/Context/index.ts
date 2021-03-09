@@ -3,7 +3,7 @@ import React from 'react'
 import { CodeChallengeFileExt } from 'src/pages/learn/CodeChallenge/View/Editor'
 
 import {
-  CodeChallenge_Fragment,
+  CodeChallengeFragment,
   MeUserCodeChallengeCompletionFragment,
 } from 'src/modules/gql/generated'
 import { PrismaCmsContext } from '@prisma-cms/context'
@@ -55,7 +55,7 @@ export type ChallengeData = {
 }
 
 export interface CodeChallengeContext {
-  challenge: CodeChallenge_Fragment
+  challenge: CodeChallengeFragment
   challengeData: ChallengeData
   setChallengeData: (value: ChallengeData) => void
   resetChallengeData: () => void

@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { User_Fragment } from './user_';
+import { UserFragment } from './user_';
 import { gql } from '@apollo/client';
-import { User_FragmentDoc } from './user_';
+import { UserFragmentDoc } from './user_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type UpdateUserProcessorMutationVariables = Types.Exact<{
   where: Types.UserWhereUniqueInput;
   data: Types.UserUpdateInput;
@@ -20,7 +21,7 @@ export type UpdateUserProcessorMutationVariables = Types.Exact<{
 
 export type UpdateUserProcessorMutation = { __typename?: 'Mutation', updateUserProcessor: { __typename?: 'UserResponse', success: boolean, message?: Types.Maybe<string>, errors: Array<{ __typename?: 'Error', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'User' }
-      & User_Fragment
+      & UserFragment
     )> } };
 
 
@@ -38,7 +39,7 @@ export const UpdateUserProcessorDocument = gql`
     }
   }
 }
-    ${User_FragmentDoc}`;
+    ${UserFragmentDoc}`;
 export type UpdateUserProcessorMutationFn = Apollo.MutationFunction<UpdateUserProcessorMutation, UpdateUserProcessorMutationVariables>;
 
 /**
@@ -60,7 +61,8 @@ export type UpdateUserProcessorMutationFn = Apollo.MutationFunction<UpdateUserPr
  * });
  */
 export function useUpdateUserProcessorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserProcessorMutation, UpdateUserProcessorMutationVariables>) {
-        return Apollo.useMutation<UpdateUserProcessorMutation, UpdateUserProcessorMutationVariables>(UpdateUserProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateUserProcessorMutation, UpdateUserProcessorMutationVariables>(UpdateUserProcessorDocument, options);
       }
 export type UpdateUserProcessorMutationHookResult = ReturnType<typeof useUpdateUserProcessorMutation>;
 export type UpdateUserProcessorMutationResult = Apollo.MutationResult<UpdateUserProcessorMutation>;

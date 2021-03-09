@@ -2,7 +2,7 @@ import Head from 'next/head'
 import React, { useMemo } from 'react'
 import {
   useResourceQuery,
-  Resource_Fragment,
+  ResourceFragment,
   TopicsConnectionQuery,
   TopicsConnectionDocument,
 } from 'src/modules/gql/generated'
@@ -50,7 +50,7 @@ export const BlogPage: Page = () => {
 
 export const blogGetInitialProps = async (
   context: NextPageContextCustom,
-  resource: Resource_Fragment
+  resource: ResourceFragment
 ) => {
   const { apolloClient } = context
 

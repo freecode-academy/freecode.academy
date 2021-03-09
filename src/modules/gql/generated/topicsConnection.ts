@@ -12,6 +12,7 @@ import { TopicsConnectionTopicFragment } from './topicsConnectionTopic';
 import { gql } from '@apollo/client';
 import { TopicsConnectionTopicFragmentDoc } from './topicsConnectionTopic';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type TopicsConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
@@ -66,10 +67,12 @@ export const TopicsConnectionDocument = gql`
  * });
  */
 export function useTopicsConnectionQuery(baseOptions?: Apollo.QueryHookOptions<TopicsConnectionQuery, TopicsConnectionQueryVariables>) {
-        return Apollo.useQuery<TopicsConnectionQuery, TopicsConnectionQueryVariables>(TopicsConnectionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TopicsConnectionQuery, TopicsConnectionQueryVariables>(TopicsConnectionDocument, options);
       }
 export function useTopicsConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TopicsConnectionQuery, TopicsConnectionQueryVariables>) {
-          return Apollo.useLazyQuery<TopicsConnectionQuery, TopicsConnectionQueryVariables>(TopicsConnectionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TopicsConnectionQuery, TopicsConnectionQueryVariables>(TopicsConnectionDocument, options);
         }
 export type TopicsConnectionQueryHookResult = ReturnType<typeof useTopicsConnectionQuery>;
 export type TopicsConnectionLazyQueryHookResult = ReturnType<typeof useTopicsConnectionLazyQuery>;

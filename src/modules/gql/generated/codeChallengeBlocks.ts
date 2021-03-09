@@ -12,6 +12,7 @@ import { CodeChallengeBlocksBlockFragment } from './codeChallengeBlocksBlock';
 import { gql } from '@apollo/client';
 import { CodeChallengeBlocksBlockFragmentDoc } from './codeChallengeBlocksBlock';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CodeChallengeBlocksQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.CodeChallengeBlockWhereInput>;
   orderBy?: Types.Maybe<Types.CodeChallengeBlockOrderByInput>;
@@ -59,10 +60,12 @@ export const CodeChallengeBlocksDocument = gql`
  * });
  */
 export function useCodeChallengeBlocksQuery(baseOptions?: Apollo.QueryHookOptions<CodeChallengeBlocksQuery, CodeChallengeBlocksQueryVariables>) {
-        return Apollo.useQuery<CodeChallengeBlocksQuery, CodeChallengeBlocksQueryVariables>(CodeChallengeBlocksDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CodeChallengeBlocksQuery, CodeChallengeBlocksQueryVariables>(CodeChallengeBlocksDocument, options);
       }
 export function useCodeChallengeBlocksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CodeChallengeBlocksQuery, CodeChallengeBlocksQueryVariables>) {
-          return Apollo.useLazyQuery<CodeChallengeBlocksQuery, CodeChallengeBlocksQueryVariables>(CodeChallengeBlocksDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CodeChallengeBlocksQuery, CodeChallengeBlocksQueryVariables>(CodeChallengeBlocksDocument, options);
         }
 export type CodeChallengeBlocksQueryHookResult = ReturnType<typeof useCodeChallengeBlocksQuery>;
 export type CodeChallengeBlocksLazyQueryHookResult = ReturnType<typeof useCodeChallengeBlocksLazyQuery>;

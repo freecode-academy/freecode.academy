@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { Resource_Fragment } from './resource_';
+import { ResourceFragment } from './resource_';
 import { gql } from '@apollo/client';
-import { Resource_FragmentDoc } from './resource_';
+import { ResourceFragmentDoc } from './resource_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CreateTopicProcessorMutationVariables = Types.Exact<{
   data: Types.TopicCreateInput;
 }>;
@@ -19,7 +20,7 @@ export type CreateTopicProcessorMutationVariables = Types.Exact<{
 
 export type CreateTopicProcessorMutation = { __typename?: 'Mutation', response: { __typename?: 'ResourceResponse', success: boolean, message?: Types.Maybe<string>, errors: Array<{ __typename?: 'Error', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'Resource' }
-      & Resource_Fragment
+      & ResourceFragment
     )> } };
 
 
@@ -37,7 +38,7 @@ export const CreateTopicProcessorDocument = gql`
     }
   }
 }
-    ${Resource_FragmentDoc}`;
+    ${ResourceFragmentDoc}`;
 export type CreateTopicProcessorMutationFn = Apollo.MutationFunction<CreateTopicProcessorMutation, CreateTopicProcessorMutationVariables>;
 
 /**
@@ -58,7 +59,8 @@ export type CreateTopicProcessorMutationFn = Apollo.MutationFunction<CreateTopic
  * });
  */
 export function useCreateTopicProcessorMutation(baseOptions?: Apollo.MutationHookOptions<CreateTopicProcessorMutation, CreateTopicProcessorMutationVariables>) {
-        return Apollo.useMutation<CreateTopicProcessorMutation, CreateTopicProcessorMutationVariables>(CreateTopicProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateTopicProcessorMutation, CreateTopicProcessorMutationVariables>(CreateTopicProcessorDocument, options);
       }
 export type CreateTopicProcessorMutationHookResult = ReturnType<typeof useCreateTopicProcessorMutation>;
 export type CreateTopicProcessorMutationResult = Apollo.MutationResult<CreateTopicProcessorMutation>;

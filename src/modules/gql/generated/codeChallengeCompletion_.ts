@@ -9,9 +9,9 @@
 import * as Types from './types';
 
 import { gql } from '@apollo/client';
-export type CodeChallengeCompletion_Fragment = { __typename?: 'CodeChallengeCompletion', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, success?: Types.Maybe<boolean>, content?: Types.Maybe<string>, Task: { __typename?: 'Task', id: string, status: Types.TaskStatus }, CodeChallenge: { __typename?: 'CodeChallenge', id: string } };
+export type CodeChallengeCompletionFragment = { __typename?: 'CodeChallengeCompletion', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, success?: Types.Maybe<boolean>, content?: Types.Maybe<string>, Task: { __typename?: 'Task', id: string, status: Types.TaskStatus }, CodeChallenge: { __typename?: 'CodeChallenge', id: string } };
 
-export const CodeChallengeCompletion_FragmentDoc = gql`
+export const CodeChallengeCompletionFragmentDoc = gql`
     fragment codeChallengeCompletion_ on CodeChallengeCompletion {
   id
   createdAt

@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { Resource_Fragment } from './resource_';
+import { ResourceFragment } from './resource_';
 import { gql } from '@apollo/client';
-import { Resource_FragmentDoc } from './resource_';
+import { ResourceFragmentDoc } from './resource_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type ResourceQueryVariables = Types.Exact<{
   where: Types.ResourceWhereUniqueInput;
 }>;
@@ -19,7 +20,7 @@ export type ResourceQueryVariables = Types.Exact<{
 
 export type ResourceQuery = { __typename?: 'Query', object?: Types.Maybe<(
     { __typename?: 'Resource' }
-    & Resource_Fragment
+    & ResourceFragment
   )> };
 
 
@@ -29,7 +30,7 @@ export const ResourceDocument = gql`
     ...resource_
   }
 }
-    ${Resource_FragmentDoc}`;
+    ${ResourceFragmentDoc}`;
 
 /**
  * __useResourceQuery__
@@ -48,10 +49,12 @@ export const ResourceDocument = gql`
  * });
  */
 export function useResourceQuery(baseOptions: Apollo.QueryHookOptions<ResourceQuery, ResourceQueryVariables>) {
-        return Apollo.useQuery<ResourceQuery, ResourceQueryVariables>(ResourceDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ResourceQuery, ResourceQueryVariables>(ResourceDocument, options);
       }
 export function useResourceLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ResourceQuery, ResourceQueryVariables>) {
-          return Apollo.useLazyQuery<ResourceQuery, ResourceQueryVariables>(ResourceDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ResourceQuery, ResourceQueryVariables>(ResourceDocument, options);
         }
 export type ResourceQueryHookResult = ReturnType<typeof useResourceQuery>;
 export type ResourceLazyQueryHookResult = ReturnType<typeof useResourceLazyQuery>;

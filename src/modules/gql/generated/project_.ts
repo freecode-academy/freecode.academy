@@ -10,12 +10,12 @@ import * as Types from './types';
 
 import { ProjectNoNestingFragment } from './ProjectNoNesting';
 import { UserNoNestingFragment } from './UserNoNesting';
-import { Task_Fragment } from './task_';
+import { TaskFragment } from './task_';
 import { gql } from '@apollo/client';
 import { ProjectNoNestingFragmentDoc } from './ProjectNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-import { Task_FragmentDoc } from './task_';
-export type Project_Fragment = (
+import { TaskFragmentDoc } from './task_';
+export type ProjectFragment = (
   { __typename?: 'Project', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
@@ -24,12 +24,12 @@ export type Project_Fragment = (
       & UserNoNestingFragment
     ) }>>, ProjectTasks?: Types.Maybe<Array<{ __typename?: 'ProjectTask', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, Task: (
       { __typename?: 'Task' }
-      & Task_Fragment
+      & TaskFragment
     ) }>>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, uri: string, name?: Types.Maybe<string>, type?: Types.Maybe<Types.ResourceType>, Image?: Types.Maybe<{ __typename?: 'File', id: string, path: string }> }> }
   & ProjectNoNestingFragment
 );
 
-export const Project_FragmentDoc = gql`
+export const ProjectFragmentDoc = gql`
     fragment project_ on Project {
   ...ProjectNoNesting
   CreatedBy {
@@ -62,4 +62,4 @@ export const Project_FragmentDoc = gql`
 }
     ${ProjectNoNestingFragmentDoc}
 ${UserNoNestingFragmentDoc}
-${Task_FragmentDoc}`;
+${TaskFragmentDoc}`;

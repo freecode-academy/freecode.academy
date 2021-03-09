@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { Resource_Fragment } from './resource_';
+import { ResourceFragment } from './resource_';
 import { gql } from '@apollo/client';
-import { Resource_FragmentDoc } from './resource_';
+import { ResourceFragmentDoc } from './resource_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type UpdateTopicProcessorMutationVariables = Types.Exact<{
   data: Types.TopicUpdateInput;
   where: Types.ResourceWhereUniqueInput;
@@ -20,7 +21,7 @@ export type UpdateTopicProcessorMutationVariables = Types.Exact<{
 
 export type UpdateTopicProcessorMutation = { __typename?: 'Mutation', response: { __typename?: 'ResourceResponse', success: boolean, message?: Types.Maybe<string>, errors: Array<{ __typename?: 'Error', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'Resource' }
-      & Resource_Fragment
+      & ResourceFragment
     )> } };
 
 
@@ -38,7 +39,7 @@ export const UpdateTopicProcessorDocument = gql`
     }
   }
 }
-    ${Resource_FragmentDoc}`;
+    ${ResourceFragmentDoc}`;
 export type UpdateTopicProcessorMutationFn = Apollo.MutationFunction<UpdateTopicProcessorMutation, UpdateTopicProcessorMutationVariables>;
 
 /**
@@ -60,7 +61,8 @@ export type UpdateTopicProcessorMutationFn = Apollo.MutationFunction<UpdateTopic
  * });
  */
 export function useUpdateTopicProcessorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTopicProcessorMutation, UpdateTopicProcessorMutationVariables>) {
-        return Apollo.useMutation<UpdateTopicProcessorMutation, UpdateTopicProcessorMutationVariables>(UpdateTopicProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateTopicProcessorMutation, UpdateTopicProcessorMutationVariables>(UpdateTopicProcessorDocument, options);
       }
 export type UpdateTopicProcessorMutationHookResult = ReturnType<typeof useUpdateTopicProcessorMutation>;
 export type UpdateTopicProcessorMutationResult = Apollo.MutationResult<UpdateTopicProcessorMutation>;

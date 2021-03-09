@@ -1,8 +1,8 @@
 import { PrismaCmsContext } from '@prisma-cms/context'
-import { TaskTaskTechnology_Fragment } from 'src/modules/gql/generated'
+import { TaskTaskTechnologyFragment } from 'src/modules/gql/generated'
 
 export type TaskTechnologyRowProps = {
-  object: TaskTaskTechnology_Fragment
+  object: TaskTaskTechnologyFragment
 
   user: PrismaCmsContext['user']
 }

@@ -12,6 +12,7 @@ import { AuthFormUsersConnectionResultFragment } from './AuthFormUsersConnection
 import { gql } from '@apollo/client';
 import { AuthFormUsersConnectionResultFragmentDoc } from './AuthFormUsersConnectionResult';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type AuthFormUsersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.UserWhereInput>;
   first?: Types.Maybe<Types.Scalars['Int']>;
@@ -59,10 +60,12 @@ export const AuthFormUsersConnectionDocument = gql`
  * });
  */
 export function useAuthFormUsersConnectionQuery(baseOptions?: Apollo.QueryHookOptions<AuthFormUsersConnectionQuery, AuthFormUsersConnectionQueryVariables>) {
-        return Apollo.useQuery<AuthFormUsersConnectionQuery, AuthFormUsersConnectionQueryVariables>(AuthFormUsersConnectionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AuthFormUsersConnectionQuery, AuthFormUsersConnectionQueryVariables>(AuthFormUsersConnectionDocument, options);
       }
 export function useAuthFormUsersConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AuthFormUsersConnectionQuery, AuthFormUsersConnectionQueryVariables>) {
-          return Apollo.useLazyQuery<AuthFormUsersConnectionQuery, AuthFormUsersConnectionQueryVariables>(AuthFormUsersConnectionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AuthFormUsersConnectionQuery, AuthFormUsersConnectionQueryVariables>(AuthFormUsersConnectionDocument, options);
         }
 export type AuthFormUsersConnectionQueryHookResult = ReturnType<typeof useAuthFormUsersConnectionQuery>;
 export type AuthFormUsersConnectionLazyQueryHookResult = ReturnType<typeof useAuthFormUsersConnectionLazyQuery>;

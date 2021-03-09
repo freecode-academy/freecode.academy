@@ -1,5 +1,5 @@
-import { User_Fragment } from 'src/modules/gql/generated'
+import { UserFragment } from 'src/modules/gql/generated'
 
 export type UserViewTechnologiesProps = {
-  objects: User_Fragment['UserTechnologies']
+  objects: UserFragment['UserTechnologies']
 }

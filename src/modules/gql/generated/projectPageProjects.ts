@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { Project_Fragment } from './project_';
+import { ProjectFragment } from './project_';
 import { gql } from '@apollo/client';
-import { Project_FragmentDoc } from './project_';
+import { ProjectFragmentDoc } from './project_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type ProjectPageProjectsQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.ProjectWhereInput>;
   first?: Types.Maybe<Types.Scalars['Int']>;
@@ -21,7 +22,7 @@ export type ProjectPageProjectsQueryVariables = Types.Exact<{
 
 export type ProjectPageProjectsQuery = { __typename?: 'Query', projects: Array<Types.Maybe<(
     { __typename?: 'Project' }
-    & Project_Fragment
+    & ProjectFragment
   )>> };
 
 
@@ -31,7 +32,7 @@ export const ProjectPageProjectsDocument = gql`
     ...project_
   }
 }
-    ${Project_FragmentDoc}`;
+    ${ProjectFragmentDoc}`;
 
 /**
  * __useProjectPageProjectsQuery__
@@ -52,10 +53,12 @@ export const ProjectPageProjectsDocument = gql`
  * });
  */
 export function useProjectPageProjectsQuery(baseOptions?: Apollo.QueryHookOptions<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>) {
-        return Apollo.useQuery<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>(ProjectPageProjectsDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>(ProjectPageProjectsDocument, options);
       }
 export function useProjectPageProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>) {
-          return Apollo.useLazyQuery<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>(ProjectPageProjectsDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>(ProjectPageProjectsDocument, options);
         }
 export type ProjectPageProjectsQueryHookResult = ReturnType<typeof useProjectPageProjectsQuery>;
 export type ProjectPageProjectsLazyQueryHookResult = ReturnType<typeof useProjectPageProjectsLazyQuery>;

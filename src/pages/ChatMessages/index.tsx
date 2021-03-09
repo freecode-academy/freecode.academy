@@ -4,7 +4,7 @@ import {
   ChatMessagesConnectionDocument,
   ChatMessagesConnectionQueryVariables,
   useChatMessagesConnectionQuery,
-  ChatMessage_Fragment,
+  ChatMessageFragment,
 } from 'src/modules/gql/generated'
 
 import { Page } from '../_App/interfaces'
@@ -57,7 +57,7 @@ const ChatMessagesPage: Page = () => {
   const { variables } = response
 
   const objects = useMemo(() => {
-    const objects: ChatMessage_Fragment[] = []
+    const objects: ChatMessageFragment[] = []
 
     return (
       response.data?.objectsConnection.edges.reduce((curr, next) => {

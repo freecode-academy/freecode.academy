@@ -2,7 +2,7 @@ import Typography from 'material-ui/Typography'
 import React, { useMemo } from 'react'
 import {
   MainPageCodeChallengeCompletionFragment,
-  Resource_Fragment,
+  ResourceFragment,
   TasksConnectionTaskFragment,
   UserNoNestingFragment,
 } from 'src/modules/gql/generated'
@@ -35,7 +35,7 @@ const MainPageView: React.FC<MainPageProps> = (props) => {
       }, []) ?? []
 
     const comments =
-      props.data?.comments.reduce<Resource_Fragment[]>((curr, next) => {
+      props.data?.comments.reduce<ResourceFragment[]>((curr, next) => {
         if (next) {
           curr.push(next)
         }

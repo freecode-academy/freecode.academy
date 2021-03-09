@@ -9,9 +9,9 @@
 import * as Types from './types';
 
 import { gql } from '@apollo/client';
-export type CodeChallengeWithBlocks_Fragment = { __typename?: 'CodeChallenge', id: string, name?: Types.Maybe<string>, localeTitle?: Types.Maybe<string>, Block: { __typename?: 'CodeChallengeBlock', id: string, name?: Types.Maybe<string>, Parent?: Types.Maybe<{ __typename?: 'CodeChallengeBlock', id: string, name?: Types.Maybe<string> }> } };
+export type CodeChallengeWithBlocksFragment = { __typename?: 'CodeChallenge', id: string, name?: Types.Maybe<string>, localeTitle?: Types.Maybe<string>, Block: { __typename?: 'CodeChallengeBlock', id: string, name?: Types.Maybe<string>, Parent?: Types.Maybe<{ __typename?: 'CodeChallengeBlock', id: string, name?: Types.Maybe<string> }> } };
 
-export const CodeChallengeWithBlocks_FragmentDoc = gql`
+export const CodeChallengeWithBlocksFragmentDoc = gql`
     fragment codeChallengeWithBlocks_ on CodeChallenge {
   id
   name

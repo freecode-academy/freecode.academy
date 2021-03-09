@@ -11,12 +11,12 @@ import * as Types from './types';
 import { UserNoNestingFragment } from './UserNoNesting';
 import { gql } from '@apollo/client';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-export type Tag_Fragment = { __typename?: 'Tag', id: string, name: string, Resources?: Types.Maybe<Array<{ __typename?: 'ResourceTag', id: string, Resource: { __typename?: 'Resource', id: string, type?: Types.Maybe<Types.ResourceType>, name?: Types.Maybe<string>, uri: string } }>>, CreatedBy: (
+export type TagFragment = { __typename?: 'Tag', id: string, name: string, Resources?: Types.Maybe<Array<{ __typename?: 'ResourceTag', id: string, Resource: { __typename?: 'Resource', id: string, type?: Types.Maybe<Types.ResourceType>, name?: Types.Maybe<string>, uri: string } }>>, CreatedBy: (
     { __typename?: 'User' }
     & UserNoNestingFragment
   ) };
 
-export const Tag_FragmentDoc = gql`
+export const TagFragmentDoc = gql`
     fragment tag_ on Tag {
   id
   name

@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { Tag_Fragment } from './tag_';
+import { TagFragment } from './tag_';
 import { gql } from '@apollo/client';
-import { Tag_FragmentDoc } from './tag_';
+import { TagFragmentDoc } from './tag_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type TagsConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
@@ -22,7 +23,7 @@ export type TagsConnectionQueryVariables = Types.Exact<{
 
 export type TagsConnectionQuery = { __typename?: 'Query', tagsConnection: { __typename?: 'TagConnection', aggregate: { __typename?: 'AggregateTag', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TagEdge', node: (
         { __typename?: 'Tag' }
-        & Tag_Fragment
+        & TagFragment
       ) }>> } };
 
 
@@ -39,7 +40,7 @@ export const TagsConnectionDocument = gql`
     }
   }
 }
-    ${Tag_FragmentDoc}`;
+    ${TagFragmentDoc}`;
 
 /**
  * __useTagsConnectionQuery__
@@ -61,10 +62,12 @@ export const TagsConnectionDocument = gql`
  * });
  */
 export function useTagsConnectionQuery(baseOptions: Apollo.QueryHookOptions<TagsConnectionQuery, TagsConnectionQueryVariables>) {
-        return Apollo.useQuery<TagsConnectionQuery, TagsConnectionQueryVariables>(TagsConnectionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TagsConnectionQuery, TagsConnectionQueryVariables>(TagsConnectionDocument, options);
       }
 export function useTagsConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagsConnectionQuery, TagsConnectionQueryVariables>) {
-          return Apollo.useLazyQuery<TagsConnectionQuery, TagsConnectionQueryVariables>(TagsConnectionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TagsConnectionQuery, TagsConnectionQueryVariables>(TagsConnectionDocument, options);
         }
 export type TagsConnectionQueryHookResult = ReturnType<typeof useTagsConnectionQuery>;
 export type TagsConnectionLazyQueryHookResult = ReturnType<typeof useTagsConnectionLazyQuery>;

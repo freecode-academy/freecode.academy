@@ -13,7 +13,7 @@ import { UserNoNestingFragment } from './UserNoNesting';
 import { gql } from '@apollo/client';
 import { UserTechnologyNoNestingFragmentDoc } from './UserTechnologyNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-export type Technology_UserTechnologyFragment = (
+export type TechnologyUserTechnologyFragment = (
   { __typename?: 'UserTechnology', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
@@ -21,7 +21,7 @@ export type Technology_UserTechnologyFragment = (
   & UserTechnologyNoNestingFragment
 );
 
-export const Technology_UserTechnologyFragmentDoc = gql`
+export const TechnologyUserTechnologyFragmentDoc = gql`
     fragment technology_UserTechnology on UserTechnology {
   ...UserTechnologyNoNesting
   CreatedBy {

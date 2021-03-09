@@ -12,7 +12,7 @@
 //   }),
 //   testOutput: PropTypes.element
 
-import { CodeChallenge_Fragment } from 'src/modules/gql/generated'
+import { CodeChallengeFragment } from 'src/modules/gql/generated'
 import { TestFile } from '../../Context'
 import { CodeChallengeDiscussProps } from './Discuss/interfacse'
 
@@ -36,6 +36,6 @@ export interface DesktopLayoutProps {
   hasPreview: boolean
   preview: React.ReactNode
   tabIndex: DesktopLayoutTabIndex
-  challenge: CodeChallenge_Fragment
+  challenge: CodeChallengeFragment
   topicId: CodeChallengeDiscussProps['topicId']
 }

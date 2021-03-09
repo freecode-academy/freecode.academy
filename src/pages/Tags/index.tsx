@@ -5,7 +5,7 @@ import {
   TagsConnectionQueryVariables,
   TagsConnectionQuery,
   useTagsConnectionQuery,
-  Tag_Fragment,
+  TagFragment,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -56,7 +56,7 @@ const TagsPage: Page = () => {
   })
 
   const objects = useMemo(() => {
-    const objects: Tag_Fragment[] = []
+    const objects: TagFragment[] = []
 
     return (
       response.data?.tagsConnection.edges.reduce((curr, next) => {

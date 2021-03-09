@@ -12,6 +12,7 @@ import { OfficeTaskFragment } from './officeTask';
 import { gql } from '@apollo/client';
 import { OfficeTaskFragmentDoc } from './officeTask';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type OfficeTasksQueryVariables = Types.Exact<{
   orderBy?: Types.Maybe<Types.TaskOrderByInput>;
   where?: Types.Maybe<Types.TaskWhereInput>;
@@ -57,10 +58,12 @@ export const OfficeTasksDocument = gql`
  * });
  */
 export function useOfficeTasksQuery(baseOptions?: Apollo.QueryHookOptions<OfficeTasksQuery, OfficeTasksQueryVariables>) {
-        return Apollo.useQuery<OfficeTasksQuery, OfficeTasksQueryVariables>(OfficeTasksDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OfficeTasksQuery, OfficeTasksQueryVariables>(OfficeTasksDocument, options);
       }
 export function useOfficeTasksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OfficeTasksQuery, OfficeTasksQueryVariables>) {
-          return Apollo.useLazyQuery<OfficeTasksQuery, OfficeTasksQueryVariables>(OfficeTasksDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OfficeTasksQuery, OfficeTasksQueryVariables>(OfficeTasksDocument, options);
         }
 export type OfficeTasksQueryHookResult = ReturnType<typeof useOfficeTasksQuery>;
 export type OfficeTasksLazyQueryHookResult = ReturnType<typeof useOfficeTasksLazyQuery>;

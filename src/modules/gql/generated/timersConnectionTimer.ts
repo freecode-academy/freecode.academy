@@ -6,16 +6,16 @@
 */
 
 
-import { Timer_Fragment } from './timer_';
+import { TimerFragment } from './timer_';
 import { gql } from '@apollo/client';
-import { Timer_FragmentDoc } from './timer_';
+import { TimerFragmentDoc } from './timer_';
 export type TimersConnectionTimerFragment = (
   { __typename?: 'Timer' }
-  & Timer_Fragment
+  & TimerFragment
 );
 
 export const TimersConnectionTimerFragmentDoc = gql`
     fragment timersConnectionTimer on Timer {
   ...timer_
 }
-    ${Timer_FragmentDoc}`;
+    ${TimerFragmentDoc}`;

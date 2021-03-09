@@ -15,7 +15,7 @@ import { gql } from '@apollo/client';
 import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
 import { TechnologyNoNestingFragmentDoc } from './TechnologyNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-export type TaskTechnology_Fragment = { __typename?: 'TaskTechnology', id: string, createdAt: globalThis.Date, level?: Types.Maybe<1 | 2 | 3 | 4 | 5 |null>, Task: (
+export type TaskTechnologyFragment = { __typename?: 'TaskTechnology', id: string, createdAt: globalThis.Date, level?: Types.Maybe<1 | 2 | 3 | 4 | 5 |null>, Task: (
     { __typename?: 'Task' }
     & TaskNoNestingFragment
   ), Technology: (
@@ -26,7 +26,7 @@ export type TaskTechnology_Fragment = { __typename?: 'TaskTechnology', id: strin
     & UserNoNestingFragment
   )> };
 
-export const TaskTechnology_FragmentDoc = gql`
+export const TaskTechnologyFragmentDoc = gql`
     fragment taskTechnology_ on TaskTechnology {
   id
   createdAt

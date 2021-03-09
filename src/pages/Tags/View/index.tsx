@@ -4,7 +4,7 @@ import { ObjectsListView, styles } from 'src/components/view/List'
 import withStyles from 'material-ui/styles/withStyles'
 import { TagsViewProps } from './interfaces'
 import { ColumnConfig } from 'apollo-cms/dist/DataView/List/Table'
-import { Tag_Fragment } from 'src/modules/gql/generated'
+import { TagFragment } from 'src/modules/gql/generated'
 import UserLink from 'src/uikit/Link/User'
 import Grid from 'src/uikit/Grid'
 import Link from 'next/link'
@@ -17,7 +17,7 @@ class TagsView<
     title: '',
   }
 
-  getColumns<CC extends Tag_Fragment>(): ColumnConfig<CC>[] {
+  getColumns<CC extends TagFragment>(): ColumnConfig<CC>[] {
     return [
       {
         id: 'name',

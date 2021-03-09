@@ -1,5 +1,5 @@
-import { Tag_Fragment } from 'src/modules/gql/generated'
+import { TagFragment } from 'src/modules/gql/generated'
 
 export interface TagViewProps {
-  object: Tag_Fragment | null | undefined
+  object: TagFragment | null | undefined
 }

@@ -17,7 +17,7 @@ import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
 import { ProjectNoNestingFragmentDoc } from './ProjectNoNesting';
 import { TaskReactionNoNestingFragmentDoc } from './TaskReactionNoNesting';
-export type Timer_Fragment = { __typename?: 'Timer', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, stopedAt?: Types.Maybe<globalThis.Date>, CreatedBy?: Types.Maybe<(
+export type TimerFragment = { __typename?: 'Timer', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, stopedAt?: Types.Maybe<globalThis.Date>, CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
   )>, Task: (
@@ -40,7 +40,7 @@ export type Timer_Fragment = { __typename?: 'Timer', id: string, createdAt: glob
     & TaskNoNestingFragment
   ) };
 
-export const Timer_FragmentDoc = gql`
+export const TimerFragmentDoc = gql`
     fragment timer_ on Timer {
   id
   createdAt

@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { TaskTechnology_Fragment } from './taskTechnology_';
+import { TaskTechnologyFragment } from './taskTechnology_';
 import { gql } from '@apollo/client';
-import { TaskTechnology_FragmentDoc } from './taskTechnology_';
+import { TaskTechnologyFragmentDoc } from './taskTechnology_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CreateTaskTechnologyProcessorMutationVariables = Types.Exact<{
   data: Types.TaskTechnologyCreateInput;
 }>;
@@ -19,7 +20,7 @@ export type CreateTaskTechnologyProcessorMutationVariables = Types.Exact<{
 
 export type CreateTaskTechnologyProcessorMutation = { __typename?: 'Mutation', response: { __typename?: 'TaskTechnologyResponse', success: boolean, message?: Types.Maybe<string>, errors: Array<{ __typename?: 'Error', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'TaskTechnology' }
-      & TaskTechnology_Fragment
+      & TaskTechnologyFragment
     )> } };
 
 
@@ -37,7 +38,7 @@ export const CreateTaskTechnologyProcessorDocument = gql`
     }
   }
 }
-    ${TaskTechnology_FragmentDoc}`;
+    ${TaskTechnologyFragmentDoc}`;
 export type CreateTaskTechnologyProcessorMutationFn = Apollo.MutationFunction<CreateTaskTechnologyProcessorMutation, CreateTaskTechnologyProcessorMutationVariables>;
 
 /**
@@ -58,7 +59,8 @@ export type CreateTaskTechnologyProcessorMutationFn = Apollo.MutationFunction<Cr
  * });
  */
 export function useCreateTaskTechnologyProcessorMutation(baseOptions?: Apollo.MutationHookOptions<CreateTaskTechnologyProcessorMutation, CreateTaskTechnologyProcessorMutationVariables>) {
-        return Apollo.useMutation<CreateTaskTechnologyProcessorMutation, CreateTaskTechnologyProcessorMutationVariables>(CreateTaskTechnologyProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateTaskTechnologyProcessorMutation, CreateTaskTechnologyProcessorMutationVariables>(CreateTaskTechnologyProcessorDocument, options);
       }
 export type CreateTaskTechnologyProcessorMutationHookResult = ReturnType<typeof useCreateTaskTechnologyProcessorMutation>;
 export type CreateTaskTechnologyProcessorMutationResult = Apollo.MutationResult<CreateTaskTechnologyProcessorMutation>;

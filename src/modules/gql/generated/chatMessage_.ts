@@ -15,7 +15,7 @@ import { gql } from '@apollo/client';
 import { ChatMessageNoNestingFragmentDoc } from './ChatMessageNoNesting';
 import { ChatRoomNoNestingFragmentDoc } from './ChatRoomNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-export type ChatMessage_Fragment = (
+export type ChatMessageFragment = (
   { __typename?: 'ChatMessage', Room?: Types.Maybe<(
     { __typename?: 'ChatRoom' }
     & ChatRoomNoNestingFragment
@@ -26,7 +26,7 @@ export type ChatMessage_Fragment = (
   & ChatMessageNoNestingFragment
 );
 
-export const ChatMessage_FragmentDoc = gql`
+export const ChatMessageFragmentDoc = gql`
     fragment chatMessage_ on ChatMessage {
   ...ChatMessageNoNesting
   Room {

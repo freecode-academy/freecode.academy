@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { UserTechnology_Fragment } from './UserTechnology_';
+import { UserTechnologyFragment } from './UserTechnology_';
 import { gql } from '@apollo/client';
-import { UserTechnology_FragmentDoc } from './UserTechnology_';
+import { UserTechnologyFragmentDoc } from './UserTechnology_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type UpdateUserTechnologyProcessorMutationVariables = Types.Exact<{
   data: Types.UserTechnologyUpdateInput;
   where: Types.UserTechnologyWhereUniqueInput;
@@ -20,7 +21,7 @@ export type UpdateUserTechnologyProcessorMutationVariables = Types.Exact<{
 
 export type UpdateUserTechnologyProcessorMutation = { __typename?: 'Mutation', response: { __typename?: 'UserTechnologyResponse', success: boolean, message?: Types.Maybe<string>, errors: Array<{ __typename?: 'Error', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'UserTechnology' }
-      & UserTechnology_Fragment
+      & UserTechnologyFragment
     )> } };
 
 
@@ -38,7 +39,7 @@ export const UpdateUserTechnologyProcessorDocument = gql`
     }
   }
 }
-    ${UserTechnology_FragmentDoc}`;
+    ${UserTechnologyFragmentDoc}`;
 export type UpdateUserTechnologyProcessorMutationFn = Apollo.MutationFunction<UpdateUserTechnologyProcessorMutation, UpdateUserTechnologyProcessorMutationVariables>;
 
 /**
@@ -60,7 +61,8 @@ export type UpdateUserTechnologyProcessorMutationFn = Apollo.MutationFunction<Up
  * });
  */
 export function useUpdateUserTechnologyProcessorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserTechnologyProcessorMutation, UpdateUserTechnologyProcessorMutationVariables>) {
-        return Apollo.useMutation<UpdateUserTechnologyProcessorMutation, UpdateUserTechnologyProcessorMutationVariables>(UpdateUserTechnologyProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateUserTechnologyProcessorMutation, UpdateUserTechnologyProcessorMutationVariables>(UpdateUserTechnologyProcessorDocument, options);
       }
 export type UpdateUserTechnologyProcessorMutationHookResult = ReturnType<typeof useUpdateUserTechnologyProcessorMutation>;
 export type UpdateUserTechnologyProcessorMutationResult = Apollo.MutationResult<UpdateUserTechnologyProcessorMutation>;

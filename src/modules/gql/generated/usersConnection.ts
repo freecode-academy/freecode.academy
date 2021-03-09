@@ -12,6 +12,7 @@ import { UsersConnectionUserFragment } from './usersConnectionUser';
 import { gql } from '@apollo/client';
 import { UsersConnectionUserFragmentDoc } from './usersConnectionUser';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type UsersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.UserWhereInput>;
   orderBy?: Types.Maybe<Types.UserOrderByInput>;
@@ -75,10 +76,12 @@ export const UsersConnectionDocument = gql`
  * });
  */
 export function useUsersConnectionQuery(baseOptions?: Apollo.QueryHookOptions<UsersConnectionQuery, UsersConnectionQueryVariables>) {
-        return Apollo.useQuery<UsersConnectionQuery, UsersConnectionQueryVariables>(UsersConnectionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsersConnectionQuery, UsersConnectionQueryVariables>(UsersConnectionDocument, options);
       }
 export function useUsersConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsersConnectionQuery, UsersConnectionQueryVariables>) {
-          return Apollo.useLazyQuery<UsersConnectionQuery, UsersConnectionQueryVariables>(UsersConnectionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsersConnectionQuery, UsersConnectionQueryVariables>(UsersConnectionDocument, options);
         }
 export type UsersConnectionQueryHookResult = ReturnType<typeof useUsersConnectionQuery>;
 export type UsersConnectionLazyQueryHookResult = ReturnType<typeof useUsersConnectionLazyQuery>;

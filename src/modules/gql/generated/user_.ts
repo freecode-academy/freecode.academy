@@ -11,15 +11,15 @@ import * as Types from './types';
 import { UserNoNestingFragment } from './UserNoNesting';
 import { EthAccountNoNestingFragment } from './EthAccountNoNesting';
 import { NotificationTypeNoNestingFragment } from './NotificationTypeNoNesting';
-import { Technology_UserTechnologyFragment } from './technology_UserTechnology';
+import { TechnologyUserTechnologyFragment } from './technology_UserTechnology';
 import { TechnologyNoNestingFragment } from './TechnologyNoNesting';
 import { gql } from '@apollo/client';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { EthAccountNoNestingFragmentDoc } from './EthAccountNoNesting';
 import { NotificationTypeNoNestingFragmentDoc } from './NotificationTypeNoNesting';
-import { Technology_UserTechnologyFragmentDoc } from './technology_UserTechnology';
+import { TechnologyUserTechnologyFragmentDoc } from './technology_UserTechnology';
 import { TechnologyNoNestingFragmentDoc } from './TechnologyNoNesting';
-export type User_Fragment = (
+export type UserFragment = (
   { __typename?: 'User', EthAccounts?: Types.Maybe<Array<(
     { __typename?: 'EthAccount' }
     & EthAccountNoNestingFragment
@@ -31,12 +31,12 @@ export type User_Fragment = (
       { __typename?: 'Technology' }
       & TechnologyNoNestingFragment
     ) }
-    & Technology_UserTechnologyFragment
+    & TechnologyUserTechnologyFragment
   )>> }
   & UserNoNestingFragment
 );
 
-export const User_FragmentDoc = gql`
+export const UserFragmentDoc = gql`
     fragment user_ on User {
   ...UserNoNesting
   EthAccounts {
@@ -55,5 +55,5 @@ export const User_FragmentDoc = gql`
     ${UserNoNestingFragmentDoc}
 ${EthAccountNoNestingFragmentDoc}
 ${NotificationTypeNoNestingFragmentDoc}
-${Technology_UserTechnologyFragmentDoc}
+${TechnologyUserTechnologyFragmentDoc}
 ${TechnologyNoNestingFragmentDoc}`;

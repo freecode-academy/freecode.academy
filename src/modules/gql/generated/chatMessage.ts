@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { ChatMessage_Fragment } from './chatMessage_';
+import { ChatMessageFragment } from './chatMessage_';
 import { gql } from '@apollo/client';
-import { ChatMessage_FragmentDoc } from './chatMessage_';
+import { ChatMessageFragmentDoc } from './chatMessage_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type ChatMessageQueryVariables = Types.Exact<{
   where: Types.ChatMessageWhereUniqueInput;
 }>;
@@ -19,7 +20,7 @@ export type ChatMessageQueryVariables = Types.Exact<{
 
 export type ChatMessageQuery = { __typename?: 'Query', object?: Types.Maybe<(
     { __typename?: 'ChatMessage' }
-    & ChatMessage_Fragment
+    & ChatMessageFragment
   )> };
 
 
@@ -29,7 +30,7 @@ export const ChatMessageDocument = gql`
     ...chatMessage_
   }
 }
-    ${ChatMessage_FragmentDoc}`;
+    ${ChatMessageFragmentDoc}`;
 
 /**
  * __useChatMessageQuery__
@@ -48,10 +49,12 @@ export const ChatMessageDocument = gql`
  * });
  */
 export function useChatMessageQuery(baseOptions: Apollo.QueryHookOptions<ChatMessageQuery, ChatMessageQueryVariables>) {
-        return Apollo.useQuery<ChatMessageQuery, ChatMessageQueryVariables>(ChatMessageDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ChatMessageQuery, ChatMessageQueryVariables>(ChatMessageDocument, options);
       }
 export function useChatMessageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChatMessageQuery, ChatMessageQueryVariables>) {
-          return Apollo.useLazyQuery<ChatMessageQuery, ChatMessageQueryVariables>(ChatMessageDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ChatMessageQuery, ChatMessageQueryVariables>(ChatMessageDocument, options);
         }
 export type ChatMessageQueryHookResult = ReturnType<typeof useChatMessageQuery>;
 export type ChatMessageLazyQueryHookResult = ReturnType<typeof useChatMessageLazyQuery>;

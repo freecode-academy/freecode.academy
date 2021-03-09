@@ -6,14 +6,14 @@
 */
 
 
-import { Task_Fragment } from './task_';
+import { TaskFragment } from './task_';
 import { TaskTaskTechnologiesFragment } from './taskTaskTechnologies';
 import { gql } from '@apollo/client';
-import { Task_FragmentDoc } from './task_';
+import { TaskFragmentDoc } from './task_';
 import { TaskTaskTechnologiesFragmentDoc } from './taskTaskTechnologies';
 export type TasksConnectionTaskFragment = (
   { __typename?: 'Task' }
-  & Task_Fragment
+  & TaskFragment
   & TaskTaskTechnologiesFragment
 );
 
@@ -22,5 +22,5 @@ export const TasksConnectionTaskFragmentDoc = gql`
   ...task_
   ...taskTaskTechnologies
 }
-    ${Task_FragmentDoc}
+    ${TaskFragmentDoc}
 ${TaskTaskTechnologiesFragmentDoc}`;

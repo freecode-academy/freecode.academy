@@ -12,6 +12,7 @@ import { TechnologiesConnectionTechnologyFragment } from './technologiesConnecti
 import { gql } from '@apollo/client';
 import { TechnologiesConnectionTechnologyFragmentDoc } from './technologiesConnectionTechnology';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type TechnologiesConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
@@ -66,10 +67,12 @@ export const TechnologiesConnectionDocument = gql`
  * });
  */
 export function useTechnologiesConnectionQuery(baseOptions?: Apollo.QueryHookOptions<TechnologiesConnectionQuery, TechnologiesConnectionQueryVariables>) {
-        return Apollo.useQuery<TechnologiesConnectionQuery, TechnologiesConnectionQueryVariables>(TechnologiesConnectionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TechnologiesConnectionQuery, TechnologiesConnectionQueryVariables>(TechnologiesConnectionDocument, options);
       }
 export function useTechnologiesConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TechnologiesConnectionQuery, TechnologiesConnectionQueryVariables>) {
-          return Apollo.useLazyQuery<TechnologiesConnectionQuery, TechnologiesConnectionQueryVariables>(TechnologiesConnectionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TechnologiesConnectionQuery, TechnologiesConnectionQueryVariables>(TechnologiesConnectionDocument, options);
         }
 export type TechnologiesConnectionQueryHookResult = ReturnType<typeof useTechnologiesConnectionQuery>;
 export type TechnologiesConnectionLazyQueryHookResult = ReturnType<typeof useTechnologiesConnectionLazyQuery>;

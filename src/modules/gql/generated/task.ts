@@ -8,20 +8,21 @@
 
 import * as Types from './types';
 
-import { Task_Fragment } from './task_';
+import { TaskFragment } from './task_';
 import { UserNoNestingFragment } from './UserNoNesting';
 import { TimersConnectionTimerFragment } from './timersConnectionTimer';
-import { CodeChallengeWithBlocks_Fragment } from './codeChallengeWithBlocks_';
+import { CodeChallengeWithBlocksFragment } from './codeChallengeWithBlocks_';
 import { TaskTaskTechnologiesFragment } from './taskTaskTechnologies';
 import { ResourceNoNestingFragment } from './ResourceNoNesting';
 import { gql } from '@apollo/client';
-import { Task_FragmentDoc } from './task_';
+import { TaskFragmentDoc } from './task_';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { TimersConnectionTimerFragmentDoc } from './timersConnectionTimer';
-import { CodeChallengeWithBlocks_FragmentDoc } from './codeChallengeWithBlocks_';
+import { CodeChallengeWithBlocksFragmentDoc } from './codeChallengeWithBlocks_';
 import { TaskTaskTechnologiesFragmentDoc } from './taskTaskTechnologies';
 import { ResourceNoNestingFragmentDoc } from './ResourceNoNesting';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type TaskQueryVariables = Types.Exact<{
   where: Types.TaskWhereUniqueInput;
   timersWhere?: Types.Maybe<Types.TimerWhereInput>;
@@ -34,7 +35,7 @@ export type TaskQuery = { __typename?: 'Query', object?: Types.Maybe<(
       & TimersConnectionTimerFragment
     )>>, CodeChallengeCompletion?: Types.Maybe<{ __typename?: 'CodeChallengeCompletion', id: string, CodeChallenge: (
         { __typename?: 'CodeChallenge' }
-        & CodeChallengeWithBlocks_Fragment
+        & CodeChallengeWithBlocksFragment
       ) }>, Comments?: Types.Maybe<Array<(
       { __typename?: 'Resource', CreatedBy: (
         { __typename?: 'User' }
@@ -42,7 +43,7 @@ export type TaskQuery = { __typename?: 'Query', object?: Types.Maybe<(
       ) }
       & ResourceNoNestingFragment
     )>> }
-    & Task_Fragment
+    & TaskFragment
     & TaskTaskTechnologiesFragment
   )> };
 
@@ -69,9 +70,9 @@ export const TaskDocument = gql`
     }
   }
 }
-    ${Task_FragmentDoc}
+    ${TaskFragmentDoc}
 ${TimersConnectionTimerFragmentDoc}
-${CodeChallengeWithBlocks_FragmentDoc}
+${CodeChallengeWithBlocksFragmentDoc}
 ${TaskTaskTechnologiesFragmentDoc}
 ${ResourceNoNestingFragmentDoc}
 ${UserNoNestingFragmentDoc}`;
@@ -94,10 +95,12 @@ ${UserNoNestingFragmentDoc}`;
  * });
  */
 export function useTaskQuery(baseOptions: Apollo.QueryHookOptions<TaskQuery, TaskQueryVariables>) {
-        return Apollo.useQuery<TaskQuery, TaskQueryVariables>(TaskDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TaskQuery, TaskQueryVariables>(TaskDocument, options);
       }
 export function useTaskLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TaskQuery, TaskQueryVariables>) {
-          return Apollo.useLazyQuery<TaskQuery, TaskQueryVariables>(TaskDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TaskQuery, TaskQueryVariables>(TaskDocument, options);
         }
 export type TaskQueryHookResult = ReturnType<typeof useTaskQuery>;
 export type TaskLazyQueryHookResult = ReturnType<typeof useTaskLazyQuery>;

@@ -9,12 +9,12 @@
 import { UserTechnologyNoNestingFragment } from './UserTechnologyNoNesting';
 import { gql } from '@apollo/client';
 import { UserTechnologyNoNestingFragmentDoc } from './UserTechnologyNoNesting';
-export type UserTechnology_Fragment = (
+export type UserTechnologyFragment = (
   { __typename?: 'UserTechnology' }
   & UserTechnologyNoNestingFragment
 );
 
-export const UserTechnology_FragmentDoc = gql`
+export const UserTechnologyFragmentDoc = gql`
     fragment UserTechnology_ on UserTechnology {
   ...UserTechnologyNoNesting
 }

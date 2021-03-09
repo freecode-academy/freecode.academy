@@ -8,10 +8,11 @@
 
 import * as Types from './types';
 
-import { CodeChallengeCompletion_Fragment } from './codeChallengeCompletion_';
+import { CodeChallengeCompletionFragment } from './codeChallengeCompletion_';
 import { gql } from '@apollo/client';
-import { CodeChallengeCompletion_FragmentDoc } from './codeChallengeCompletion_';
+import { CodeChallengeCompletionFragmentDoc } from './codeChallengeCompletion_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CreateCodeChallengeCompletionProcessorMutationVariables = Types.Exact<{
   data: Types.CodeChallengeCompletionCreateInput;
 }>;
@@ -19,7 +20,7 @@ export type CreateCodeChallengeCompletionProcessorMutationVariables = Types.Exac
 
 export type CreateCodeChallengeCompletionProcessorMutation = { __typename?: 'Mutation', response: { __typename?: 'CodeChallengeCompletionResponse', success: boolean, message?: Types.Maybe<string>, errors: Array<{ __typename?: 'Error', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'CodeChallengeCompletion' }
-      & CodeChallengeCompletion_Fragment
+      & CodeChallengeCompletionFragment
     )> } };
 
 
@@ -37,7 +38,7 @@ export const CreateCodeChallengeCompletionProcessorDocument = gql`
     }
   }
 }
-    ${CodeChallengeCompletion_FragmentDoc}`;
+    ${CodeChallengeCompletionFragmentDoc}`;
 export type CreateCodeChallengeCompletionProcessorMutationFn = Apollo.MutationFunction<CreateCodeChallengeCompletionProcessorMutation, CreateCodeChallengeCompletionProcessorMutationVariables>;
 
 /**
@@ -58,7 +59,8 @@ export type CreateCodeChallengeCompletionProcessorMutationFn = Apollo.MutationFu
  * });
  */
 export function useCreateCodeChallengeCompletionProcessorMutation(baseOptions?: Apollo.MutationHookOptions<CreateCodeChallengeCompletionProcessorMutation, CreateCodeChallengeCompletionProcessorMutationVariables>) {
-        return Apollo.useMutation<CreateCodeChallengeCompletionProcessorMutation, CreateCodeChallengeCompletionProcessorMutationVariables>(CreateCodeChallengeCompletionProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCodeChallengeCompletionProcessorMutation, CreateCodeChallengeCompletionProcessorMutationVariables>(CreateCodeChallengeCompletionProcessorDocument, options);
       }
 export type CreateCodeChallengeCompletionProcessorMutationHookResult = ReturnType<typeof useCreateCodeChallengeCompletionProcessorMutation>;
 export type CreateCodeChallengeCompletionProcessorMutationResult = Apollo.MutationResult<CreateCodeChallengeCompletionProcessorMutation>;

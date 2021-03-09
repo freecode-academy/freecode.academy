@@ -1,13 +1,13 @@
 import {
   MeUserTimerFragment,
   Scalars,
-  Task_Fragment,
+  TaskFragment,
 } from 'src/modules/gql/generated'
 import { UikitUserLinkProps } from 'src/uikit/Link/User'
 import { OfficeProjectPageViewTaskProjectProps } from './Project/interfaces'
 
 export type OfficeProjectPageViewTaskProps = {
-  task: Task_Fragment & {
+  task: TaskFragment & {
     children?: OfficeProjectPageViewTaskProps['task'][]
   }
 

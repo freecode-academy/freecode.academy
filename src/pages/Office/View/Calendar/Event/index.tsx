@@ -15,6 +15,7 @@ import TaskLink from 'src/uikit/Link/Task'
 const CalendarEvent: React.FC<CalendarEventProps> = ({
   task,
   eventContent,
+  ...other
 }) => {
   const {
     activeTimer,
@@ -56,15 +57,13 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
     }
 
     return (
-      <CalendarEventStyled>
+      <CalendarEventStyled {...other}>
         <b>{eventContent.timeText}</b>
         <i>
           <UikitUserLink user={task?.CreatedBy} size="small" showName={false} />
           <TaskLink object={task}>
-            <a>
-              {eventContent.event.title}{' '}
-              {task?.status ? `(${task.status})` : null}
-            </a>
+            {eventContent.event.title}{' '}
+            {task?.status ? `(${task.status})` : null}
           </TaskLink>{' '}
           {timer} <TaskChangeStatusButton task={task} />
         </i>
@@ -80,7 +79,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
         </p>
       </CalendarEventStyled>
     )
-  }, [eventContent.event.title, eventContent.timeText, task, timer])
+  }, [eventContent.event.title, eventContent.timeText, task, timer, other])
 }
 
 export default CalendarEvent

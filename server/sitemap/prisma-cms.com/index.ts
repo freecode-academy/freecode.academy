@@ -423,7 +423,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
         const { uri: url, updatedAt } = n
 
         this.addSitemapDocument(xml, uri, {
-          url,
+          url: url.replace(/\/+$/, ''),
           updatedAt: updatedAt.toISOString(),
           priority: 0.9,
         })

@@ -4,7 +4,7 @@ import OfficeContext from '../Context'
 import SideBarProject from './Projects'
 import { OfficeLayoutNavBarStyled } from './styles'
 
-import UikitUserLink, { UikitUserLinkAvatarSize } from 'src/uikit/Link/User'
+import UikitUserLink from 'src/uikit/Link/User'
 
 import IconButton from 'material-ui/IconButton'
 import HomeIcon from 'material-ui-icons/Home'
@@ -28,11 +28,7 @@ const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
   const userMenu = useMemo(() => {
     if (context?.user) {
       return (
-        <UikitUserLink
-          user={context?.user}
-          showName={false}
-          size={UikitUserLinkAvatarSize.small}
-        />
+        <UikitUserLink user={context?.user} showName={false} size="small" />
       )
     } else {
       return (

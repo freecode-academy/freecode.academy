@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import Editor from '@prisma-cms/editor'
 import moment from 'moment'
-import UserLink, { UikitUserLinkAvatarSize } from 'src/uikit/Link/User'
+import UserLink from 'src/uikit/Link/User'
 
 import {
   GridTableAttributeStyled,
@@ -32,12 +32,7 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
       const { id, CreatedBy } = n
 
       return (
-        <UserLink
-          key={id}
-          user={CreatedBy}
-          size={UikitUserLinkAvatarSize.small}
-          showName={false}
-        />
+        <UserLink key={id} user={CreatedBy} size="small" showName={false} />
       )
     })
   }, [object.Timers])

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import Link from 'next/link'
-import UikitUserLink, { UikitUserLinkAvatarSize } from 'src/uikit/Link/User'
+import UikitUserLink from 'src/uikit/Link/User'
 import { CalendarEventStyled } from './styles'
 import { CalendarEventProps } from './interfaces'
 import useActiveTimer from 'src/hooks/useActiveTimer'
@@ -59,11 +59,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
       <CalendarEventStyled>
         <b>{eventContent.timeText}</b>
         <i>
-          <UikitUserLink
-            user={task?.CreatedBy}
-            size={UikitUserLinkAvatarSize.small}
-            showName={false}
-          />
+          <UikitUserLink user={task?.CreatedBy} size="small" showName={false} />
           <TaskLink object={task}>
             <a>
               {eventContent.event.title}{' '}

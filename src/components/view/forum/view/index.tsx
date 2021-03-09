@@ -36,7 +36,6 @@ import {
 } from './interfaces'
 
 import { ColumnConfig } from 'apollo-cms/dist/DataView/List/Table'
-import { UikitUserLinkAvatarSize } from 'src/uikit/Link/User/interfaces'
 import { useRouter } from 'next/router'
 
 const customStyles = (theme: Theme) => {
@@ -209,7 +208,7 @@ export class ForumView<
                     key={id}
                     user={n}
                     showName={false}
-                    size={UikitUserLinkAvatarSize.small}
+                    size="small"
                     className={classes?.member}
                   />
                 )

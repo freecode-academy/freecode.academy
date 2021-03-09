@@ -3,7 +3,7 @@ import Typography from 'material-ui/Typography'
 import { ChatRoomViewProps } from './interfaces'
 import { ChatRoomViewStyled } from './styles'
 import Grid from 'src/uikit/Grid'
-import UikitUserLink, { UikitUserLinkAvatarSize } from 'src/uikit/Link/User'
+import UikitUserLink from 'src/uikit/Link/User'
 import UiChatMessage from 'src/uikit/Chat/ChatMessage'
 
 const ChatRoomView: React.FC<ChatRoomViewProps> = (props) => {
@@ -31,11 +31,7 @@ const ChatRoomView: React.FC<ChatRoomViewProps> = (props) => {
             {Members?.map((n) => {
               return (
                 <Grid key={n.id} item>
-                  <UikitUserLink
-                    showName={false}
-                    size={UikitUserLinkAvatarSize.small}
-                    user={n}
-                  />
+                  <UikitUserLink showName={false} size="small" user={n} />
                 </Grid>
               )
             })}

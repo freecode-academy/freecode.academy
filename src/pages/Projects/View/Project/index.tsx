@@ -23,7 +23,6 @@ import {
 // import Link from 'next/link'
 import { ProjectProps, ProjectState } from './interfaces'
 import UserLink from 'src/uikit/Link/User'
-import { UikitUserLinkAvatarSize } from 'src/uikit/Link/User/interfaces'
 import Grid from 'src/uikit/Grid'
 import ProjectLink from 'src/uikit/Link/Project'
 
@@ -171,9 +170,7 @@ export class ProjectView<
       project_members.map((member) => {
         const { id, User } = member
 
-        members.push(
-          <UserLink key={id} user={User} size={UikitUserLinkAvatarSize.small} />
-        )
+        members.push(<UserLink key={id} user={User} size="small" />)
       }, this)
     }
 

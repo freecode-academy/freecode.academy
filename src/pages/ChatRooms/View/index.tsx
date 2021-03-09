@@ -7,7 +7,6 @@ import { ColumnConfig } from 'apollo-cms/dist/DataView/List/Table'
 import { ChatRoomsConnectionChatRoomFragment } from 'src/modules/gql/generated'
 import UserLink from 'src/uikit/Link/User'
 import Grid from 'src/uikit/Grid'
-import { UikitUserLinkAvatarSize } from 'src/uikit/Link/User/interfaces'
 import ChatRoomLink from 'src/uikit/Link/ChatRoom'
 
 class ChatRoomsView<
@@ -51,11 +50,7 @@ class ChatRoomsView<
           const items =
             value?.map((n) => (
               <Grid key={n.id} item>
-                <UserLink
-                  user={n}
-                  showName={false}
-                  size={UikitUserLinkAvatarSize.small}
-                />
+                <UserLink user={n} showName={false} size="small" />
               </Grid>
             )) ?? []
 
@@ -74,11 +69,7 @@ class ChatRoomsView<
           const items =
             value?.map((n) => (
               <Grid key={n.id} item>
-                <UserLink
-                  user={n.User}
-                  showName={false}
-                  size={UikitUserLinkAvatarSize.small}
-                />
+                <UserLink user={n.User} showName={false} size="small" />
               </Grid>
             )) ?? []
 

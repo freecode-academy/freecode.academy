@@ -15,7 +15,7 @@ import Grid from 'src/uikit/Grid'
 // import { styles as defaultStyles } from '@prisma-cms/front/lib/components/App/Renderer/MainMenu'
 // import Language from '@prisma-cms/front/lib/components/Language'
 // import UserItem from './User'
-import UserLink, { UikitUserLinkAvatarSize } from 'src/uikit/Link/User'
+import UserLink from 'src/uikit/Link/User'
 
 // import { Link } from 'react-router-dom'
 import Link from 'next/link'
@@ -285,7 +285,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                     <UserLink
                       // classes={classes}
                       user={currentUser}
-                      size={UikitUserLinkAvatarSize.small}
+                      size="small"
                       showName={false}
                     />
                   </Grid>

@@ -12,7 +12,6 @@ import { NotificationTypeNoNestingFragment } from './NotificationTypeNoNesting';
 import { gql } from '@apollo/client';
 import { NotificationTypeNoNestingFragmentDoc } from './NotificationTypeNoNesting';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type NotificationTypesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
@@ -46,12 +45,10 @@ export const NotificationTypesDocument = gql`
  * });
  */
 export function useNotificationTypesQuery(baseOptions?: Apollo.QueryHookOptions<NotificationTypesQuery, NotificationTypesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<NotificationTypesQuery, NotificationTypesQueryVariables>(NotificationTypesDocument, options);
+        return Apollo.useQuery<NotificationTypesQuery, NotificationTypesQueryVariables>(NotificationTypesDocument, baseOptions);
       }
 export function useNotificationTypesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NotificationTypesQuery, NotificationTypesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<NotificationTypesQuery, NotificationTypesQueryVariables>(NotificationTypesDocument, options);
+          return Apollo.useLazyQuery<NotificationTypesQuery, NotificationTypesQueryVariables>(NotificationTypesDocument, baseOptions);
         }
 export type NotificationTypesQueryHookResult = ReturnType<typeof useNotificationTypesQuery>;
 export type NotificationTypesLazyQueryHookResult = ReturnType<typeof useNotificationTypesLazyQuery>;

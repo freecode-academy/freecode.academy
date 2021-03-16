@@ -12,7 +12,6 @@ import { TimersConnectionTimerFragment } from './timersConnectionTimer';
 import { gql } from '@apollo/client';
 import { TimersConnectionTimerFragmentDoc } from './timersConnectionTimer';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type TimersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.TimerWhereInput>;
   orderBy?: Types.Maybe<Types.TimerOrderByInput>;
@@ -76,12 +75,10 @@ export const TimersConnectionDocument = gql`
  * });
  */
 export function useTimersConnectionQuery(baseOptions?: Apollo.QueryHookOptions<TimersConnectionQuery, TimersConnectionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TimersConnectionQuery, TimersConnectionQueryVariables>(TimersConnectionDocument, options);
+        return Apollo.useQuery<TimersConnectionQuery, TimersConnectionQueryVariables>(TimersConnectionDocument, baseOptions);
       }
 export function useTimersConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TimersConnectionQuery, TimersConnectionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TimersConnectionQuery, TimersConnectionQueryVariables>(TimersConnectionDocument, options);
+          return Apollo.useLazyQuery<TimersConnectionQuery, TimersConnectionQueryVariables>(TimersConnectionDocument, baseOptions);
         }
 export type TimersConnectionQueryHookResult = ReturnType<typeof useTimersConnectionQuery>;
 export type TimersConnectionLazyQueryHookResult = ReturnType<typeof useTimersConnectionLazyQuery>;

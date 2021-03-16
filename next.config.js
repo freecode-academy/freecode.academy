@@ -1,28 +1,24 @@
 // Note: we provide webpack above so you should not `require` it
-const webpack = (config) => {
+const webpack = (config, options) => {
   const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
-  // config.module.rules.push({
-  //   test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-  //   use: {
-  //     loader: 'url-loader',
-  //     options: {
-  //       limit: 10000,
-  //       context: 'src',
-  //       name() {
-  //         if (process.env.NODE_ENV === 'development') {
-  //           return '[path][name].[ext]'
-  //         }
-
-  //         return '[contenthash].[ext]'
-  //       },
-  //       publicPath: `/_next/static/media`,
-  //       outputPath: 'static/media',
-  //     },
-  //   },
-  // })
+  config.module.rules.push({
+    test: /\.pdf/,
+    use: [
+      options.defaultLoaders.babel,
+      {
+        loader: 'file-loader',
+        options: {
+          limit: 1000,
+          name: '[name]_[hash].[ext]',
+          publicPath: `/_next/static/pdf`,
+          outputPath: 'static/pdf',
+        },
+      },
+    ],
+  })
 
   // https://github.com/vercel/next.js/issues/11164#issuecomment-602204795
   config.module.rules.push({

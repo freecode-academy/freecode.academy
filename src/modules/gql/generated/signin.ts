@@ -12,7 +12,6 @@ import { FragmentAuthPayloadFragment } from './FragmentAuthPayload';
 import { gql } from '@apollo/client';
 import { FragmentAuthPayloadFragmentDoc } from './FragmentAuthPayload';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type SigninMutationVariables = Types.Exact<{
   where: Types.UserWhereUniqueInput;
   data: Types.SigninDataInput;
@@ -53,8 +52,7 @@ export type SigninMutationFn = Apollo.MutationFunction<SigninMutation, SigninMut
  * });
  */
 export function useSigninMutation(baseOptions?: Apollo.MutationHookOptions<SigninMutation, SigninMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SigninMutation, SigninMutationVariables>(SigninDocument, options);
+        return Apollo.useMutation<SigninMutation, SigninMutationVariables>(SigninDocument, baseOptions);
       }
 export type SigninMutationHookResult = ReturnType<typeof useSigninMutation>;
 export type SigninMutationResult = Apollo.MutationResult<SigninMutation>;

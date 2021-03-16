@@ -12,7 +12,6 @@ import { TagFragment } from './tag_';
 import { gql } from '@apollo/client';
 import { TagFragmentDoc } from './tag_';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type TagsConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
@@ -62,12 +61,10 @@ export const TagsConnectionDocument = gql`
  * });
  */
 export function useTagsConnectionQuery(baseOptions: Apollo.QueryHookOptions<TagsConnectionQuery, TagsConnectionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TagsConnectionQuery, TagsConnectionQueryVariables>(TagsConnectionDocument, options);
+        return Apollo.useQuery<TagsConnectionQuery, TagsConnectionQueryVariables>(TagsConnectionDocument, baseOptions);
       }
 export function useTagsConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagsConnectionQuery, TagsConnectionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TagsConnectionQuery, TagsConnectionQueryVariables>(TagsConnectionDocument, options);
+          return Apollo.useLazyQuery<TagsConnectionQuery, TagsConnectionQueryVariables>(TagsConnectionDocument, baseOptions);
         }
 export type TagsConnectionQueryHookResult = ReturnType<typeof useTagsConnectionQuery>;
 export type TagsConnectionLazyQueryHookResult = ReturnType<typeof useTagsConnectionLazyQuery>;

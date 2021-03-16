@@ -10,7 +10,6 @@ import * as Types from './types';
 
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type CreateUserTechnologyProcessorMutationVariables = Types.Exact<{
   data: Types.UserTechnologyCreateInput;
 }>;
@@ -54,8 +53,7 @@ export type CreateUserTechnologyProcessorMutationFn = Apollo.MutationFunction<Cr
  * });
  */
 export function useCreateUserTechnologyProcessorMutation(baseOptions?: Apollo.MutationHookOptions<CreateUserTechnologyProcessorMutation, CreateUserTechnologyProcessorMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateUserTechnologyProcessorMutation, CreateUserTechnologyProcessorMutationVariables>(CreateUserTechnologyProcessorDocument, options);
+        return Apollo.useMutation<CreateUserTechnologyProcessorMutation, CreateUserTechnologyProcessorMutationVariables>(CreateUserTechnologyProcessorDocument, baseOptions);
       }
 export type CreateUserTechnologyProcessorMutationHookResult = ReturnType<typeof useCreateUserTechnologyProcessorMutation>;
 export type CreateUserTechnologyProcessorMutationResult = Apollo.MutationResult<CreateUserTechnologyProcessorMutation>;

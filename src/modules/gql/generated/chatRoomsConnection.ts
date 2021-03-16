@@ -12,7 +12,6 @@ import { ChatRoomsConnectionChatRoomFragment } from './chatRoomsConnectionChatRo
 import { gql } from '@apollo/client';
 import { ChatRoomsConnectionChatRoomFragmentDoc } from './chatRoomsConnectionChatRoom';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type ChatRoomsConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.ChatRoomWhereInput>;
   orderBy?: Types.Maybe<Types.ChatRoomOrderByInput>;
@@ -76,12 +75,10 @@ export const ChatRoomsConnectionDocument = gql`
  * });
  */
 export function useChatRoomsConnectionQuery(baseOptions?: Apollo.QueryHookOptions<ChatRoomsConnectionQuery, ChatRoomsConnectionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ChatRoomsConnectionQuery, ChatRoomsConnectionQueryVariables>(ChatRoomsConnectionDocument, options);
+        return Apollo.useQuery<ChatRoomsConnectionQuery, ChatRoomsConnectionQueryVariables>(ChatRoomsConnectionDocument, baseOptions);
       }
 export function useChatRoomsConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChatRoomsConnectionQuery, ChatRoomsConnectionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ChatRoomsConnectionQuery, ChatRoomsConnectionQueryVariables>(ChatRoomsConnectionDocument, options);
+          return Apollo.useLazyQuery<ChatRoomsConnectionQuery, ChatRoomsConnectionQueryVariables>(ChatRoomsConnectionDocument, baseOptions);
         }
 export type ChatRoomsConnectionQueryHookResult = ReturnType<typeof useChatRoomsConnectionQuery>;
 export type ChatRoomsConnectionLazyQueryHookResult = ReturnType<typeof useChatRoomsConnectionLazyQuery>;

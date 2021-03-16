@@ -12,7 +12,6 @@ import { TaskTechnologyFragment } from './taskTechnology_';
 import { gql } from '@apollo/client';
 import { TaskTechnologyFragmentDoc } from './taskTechnology_';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type UpdateTaskTechnologyProcessorMutationVariables = Types.Exact<{
   data: Types.TaskTechnologyUpdateInput;
   where: Types.TaskTechnologyWhereUniqueInput;
@@ -61,8 +60,7 @@ export type UpdateTaskTechnologyProcessorMutationFn = Apollo.MutationFunction<Up
  * });
  */
 export function useUpdateTaskTechnologyProcessorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTaskTechnologyProcessorMutation, UpdateTaskTechnologyProcessorMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateTaskTechnologyProcessorMutation, UpdateTaskTechnologyProcessorMutationVariables>(UpdateTaskTechnologyProcessorDocument, options);
+        return Apollo.useMutation<UpdateTaskTechnologyProcessorMutation, UpdateTaskTechnologyProcessorMutationVariables>(UpdateTaskTechnologyProcessorDocument, baseOptions);
       }
 export type UpdateTaskTechnologyProcessorMutationHookResult = ReturnType<typeof useUpdateTaskTechnologyProcessorMutation>;
 export type UpdateTaskTechnologyProcessorMutationResult = Apollo.MutationResult<UpdateTaskTechnologyProcessorMutation>;

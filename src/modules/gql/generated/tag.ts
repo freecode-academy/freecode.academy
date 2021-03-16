@@ -12,7 +12,6 @@ import { TagFragment } from './tag_';
 import { gql } from '@apollo/client';
 import { TagFragmentDoc } from './tag_';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type TagQueryVariables = Types.Exact<{
   where: Types.TagWhereUniqueInput;
 }>;
@@ -49,12 +48,10 @@ export const TagDocument = gql`
  * });
  */
 export function useTagQuery(baseOptions: Apollo.QueryHookOptions<TagQuery, TagQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TagQuery, TagQueryVariables>(TagDocument, options);
+        return Apollo.useQuery<TagQuery, TagQueryVariables>(TagDocument, baseOptions);
       }
 export function useTagLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagQuery, TagQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TagQuery, TagQueryVariables>(TagDocument, options);
+          return Apollo.useLazyQuery<TagQuery, TagQueryVariables>(TagDocument, baseOptions);
         }
 export type TagQueryHookResult = ReturnType<typeof useTagQuery>;
 export type TagLazyQueryHookResult = ReturnType<typeof useTagLazyQuery>;

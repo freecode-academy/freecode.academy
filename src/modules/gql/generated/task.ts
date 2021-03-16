@@ -22,7 +22,6 @@ import { CodeChallengeWithBlocksFragmentDoc } from './codeChallengeWithBlocks_';
 import { TaskTaskTechnologiesFragmentDoc } from './taskTaskTechnologies';
 import { ResourceNoNestingFragmentDoc } from './ResourceNoNesting';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type TaskQueryVariables = Types.Exact<{
   where: Types.TaskWhereUniqueInput;
   timersWhere?: Types.Maybe<Types.TimerWhereInput>;
@@ -95,12 +94,10 @@ ${UserNoNestingFragmentDoc}`;
  * });
  */
 export function useTaskQuery(baseOptions: Apollo.QueryHookOptions<TaskQuery, TaskQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TaskQuery, TaskQueryVariables>(TaskDocument, options);
+        return Apollo.useQuery<TaskQuery, TaskQueryVariables>(TaskDocument, baseOptions);
       }
 export function useTaskLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TaskQuery, TaskQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TaskQuery, TaskQueryVariables>(TaskDocument, options);
+          return Apollo.useLazyQuery<TaskQuery, TaskQueryVariables>(TaskDocument, baseOptions);
         }
 export type TaskQueryHookResult = ReturnType<typeof useTaskQuery>;
 export type TaskLazyQueryHookResult = ReturnType<typeof useTaskLazyQuery>;

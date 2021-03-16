@@ -12,7 +12,6 @@ import { TaskNoNestingFragment } from './TaskNoNesting';
 import { gql } from '@apollo/client';
 import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type UpdateTaskProcessorMutationVariables = Types.Exact<{
   data: Types.TaskUpdateInput;
   where: Types.TaskWhereUniqueInput;
@@ -61,8 +60,7 @@ export type UpdateTaskProcessorMutationFn = Apollo.MutationFunction<UpdateTaskPr
  * });
  */
 export function useUpdateTaskProcessorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTaskProcessorMutation, UpdateTaskProcessorMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateTaskProcessorMutation, UpdateTaskProcessorMutationVariables>(UpdateTaskProcessorDocument, options);
+        return Apollo.useMutation<UpdateTaskProcessorMutation, UpdateTaskProcessorMutationVariables>(UpdateTaskProcessorDocument, baseOptions);
       }
 export type UpdateTaskProcessorMutationHookResult = ReturnType<typeof useUpdateTaskProcessorMutation>;
 export type UpdateTaskProcessorMutationResult = Apollo.MutationResult<UpdateTaskProcessorMutation>;

@@ -10,7 +10,6 @@ import * as Types from './types';
 
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type SitemapResourcesConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
@@ -65,12 +64,10 @@ export const SitemapResourcesConnectionDocument = gql`
  * });
  */
 export function useSitemapResourcesConnectionQuery(baseOptions: Apollo.QueryHookOptions<SitemapResourcesConnectionQuery, SitemapResourcesConnectionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SitemapResourcesConnectionQuery, SitemapResourcesConnectionQueryVariables>(SitemapResourcesConnectionDocument, options);
+        return Apollo.useQuery<SitemapResourcesConnectionQuery, SitemapResourcesConnectionQueryVariables>(SitemapResourcesConnectionDocument, baseOptions);
       }
 export function useSitemapResourcesConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SitemapResourcesConnectionQuery, SitemapResourcesConnectionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SitemapResourcesConnectionQuery, SitemapResourcesConnectionQueryVariables>(SitemapResourcesConnectionDocument, options);
+          return Apollo.useLazyQuery<SitemapResourcesConnectionQuery, SitemapResourcesConnectionQueryVariables>(SitemapResourcesConnectionDocument, baseOptions);
         }
 export type SitemapResourcesConnectionQueryHookResult = ReturnType<typeof useSitemapResourcesConnectionQuery>;
 export type SitemapResourcesConnectionLazyQueryHookResult = ReturnType<typeof useSitemapResourcesConnectionLazyQuery>;

@@ -12,7 +12,6 @@ import { TimerNoNestingFragment } from './TimerNoNesting';
 import { gql } from '@apollo/client';
 import { TimerNoNestingFragmentDoc } from './TimerNoNesting';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type CreateTimerProcessorMutationVariables = Types.Exact<{
   data: Types.TimerCreateInput;
 }>;
@@ -59,8 +58,7 @@ export type CreateTimerProcessorMutationFn = Apollo.MutationFunction<CreateTimer
  * });
  */
 export function useCreateTimerProcessorMutation(baseOptions?: Apollo.MutationHookOptions<CreateTimerProcessorMutation, CreateTimerProcessorMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateTimerProcessorMutation, CreateTimerProcessorMutationVariables>(CreateTimerProcessorDocument, options);
+        return Apollo.useMutation<CreateTimerProcessorMutation, CreateTimerProcessorMutationVariables>(CreateTimerProcessorDocument, baseOptions);
       }
 export type CreateTimerProcessorMutationHookResult = ReturnType<typeof useCreateTimerProcessorMutation>;
 export type CreateTimerProcessorMutationResult = Apollo.MutationResult<CreateTimerProcessorMutation>;

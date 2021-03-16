@@ -12,7 +12,6 @@ import { TechnologyFragment } from './technology_';
 import { gql } from '@apollo/client';
 import { TechnologyFragmentDoc } from './technology_';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type TechnologyQueryVariables = Types.Exact<{
   where: Types.TechnologyWhereUniqueInput;
 }>;
@@ -49,12 +48,10 @@ export const TechnologyDocument = gql`
  * });
  */
 export function useTechnologyQuery(baseOptions: Apollo.QueryHookOptions<TechnologyQuery, TechnologyQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TechnologyQuery, TechnologyQueryVariables>(TechnologyDocument, options);
+        return Apollo.useQuery<TechnologyQuery, TechnologyQueryVariables>(TechnologyDocument, baseOptions);
       }
 export function useTechnologyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TechnologyQuery, TechnologyQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TechnologyQuery, TechnologyQueryVariables>(TechnologyDocument, options);
+          return Apollo.useLazyQuery<TechnologyQuery, TechnologyQueryVariables>(TechnologyDocument, baseOptions);
         }
 export type TechnologyQueryHookResult = ReturnType<typeof useTechnologyQuery>;
 export type TechnologyLazyQueryHookResult = ReturnType<typeof useTechnologyLazyQuery>;

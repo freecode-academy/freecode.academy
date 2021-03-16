@@ -12,7 +12,6 @@ import { CommentsConnectionCommentFragment } from './commentsConnectionComment';
 import { gql } from '@apollo/client';
 import { CommentsConnectionCommentFragmentDoc } from './commentsConnectionComment';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type CommentsConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
@@ -67,12 +66,10 @@ export const CommentsConnectionDocument = gql`
  * });
  */
 export function useCommentsConnectionQuery(baseOptions?: Apollo.QueryHookOptions<CommentsConnectionQuery, CommentsConnectionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CommentsConnectionQuery, CommentsConnectionQueryVariables>(CommentsConnectionDocument, options);
+        return Apollo.useQuery<CommentsConnectionQuery, CommentsConnectionQueryVariables>(CommentsConnectionDocument, baseOptions);
       }
 export function useCommentsConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CommentsConnectionQuery, CommentsConnectionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CommentsConnectionQuery, CommentsConnectionQueryVariables>(CommentsConnectionDocument, options);
+          return Apollo.useLazyQuery<CommentsConnectionQuery, CommentsConnectionQueryVariables>(CommentsConnectionDocument, baseOptions);
         }
 export type CommentsConnectionQueryHookResult = ReturnType<typeof useCommentsConnectionQuery>;
 export type CommentsConnectionLazyQueryHookResult = ReturnType<typeof useCommentsConnectionLazyQuery>;

@@ -10,7 +10,6 @@ import * as Types from './types';
 
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
 export type SitemapTagsConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
@@ -59,12 +58,10 @@ export const SitemapTagsConnectionDocument = gql`
  * });
  */
 export function useSitemapTagsConnectionQuery(baseOptions: Apollo.QueryHookOptions<SitemapTagsConnectionQuery, SitemapTagsConnectionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SitemapTagsConnectionQuery, SitemapTagsConnectionQueryVariables>(SitemapTagsConnectionDocument, options);
+        return Apollo.useQuery<SitemapTagsConnectionQuery, SitemapTagsConnectionQueryVariables>(SitemapTagsConnectionDocument, baseOptions);
       }
 export function useSitemapTagsConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SitemapTagsConnectionQuery, SitemapTagsConnectionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SitemapTagsConnectionQuery, SitemapTagsConnectionQueryVariables>(SitemapTagsConnectionDocument, options);
+          return Apollo.useLazyQuery<SitemapTagsConnectionQuery, SitemapTagsConnectionQueryVariables>(SitemapTagsConnectionDocument, baseOptions);
         }
 export type SitemapTagsConnectionQueryHookResult = ReturnType<typeof useSitemapTagsConnectionQuery>;
 export type SitemapTagsConnectionLazyQueryHookResult = ReturnType<typeof useSitemapTagsConnectionLazyQuery>;

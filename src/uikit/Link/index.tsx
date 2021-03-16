@@ -53,4 +53,6 @@ export class UiLink<P extends UiLinkProps> extends Component<P> {
   }
 }
 
-export default withStyles(styles)((props: UiLinkProps) => <UiLink {...props} />)
+export default withStyles(styles)((props: UiLinkProps) => (
+  <UiLink {...props} />
+)) as typeof UiLink

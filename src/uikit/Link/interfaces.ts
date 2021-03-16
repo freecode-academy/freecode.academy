@@ -1,7 +1,8 @@
+import { HTMLAttributes } from 'react'
 import { TypographyProps } from 'material-ui/Typography'
 import { LinkProps } from 'next/link'
 
-export interface UiLinkProps extends LinkProps {
+export type UiLinkProps = LinkProps & {
   classes?: {
     root: string
     text: string
@@ -20,4 +21,4 @@ export interface UiLinkProps extends LinkProps {
   color?: TypographyProps['color']
 
   variant?: TypographyProps['variant']
-}
+} & HTMLAttributes<HTMLAnchorElement>

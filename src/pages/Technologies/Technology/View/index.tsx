@@ -14,6 +14,7 @@ import {
 } from 'src/components/GridTable/styles'
 import UserTechnologyRow from './UserTechnologyRow'
 import SiteFrontEditor from 'src/components/SiteFrontEditor'
+import Link from 'src/uikit/Link'
 
 const TechnologyView: React.FC<TechnologyViewProps> = ({
   object: technology,
@@ -80,6 +81,14 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
               <Typography variant="title">{technology.name}</Typography>
             </Grid>
             <Grid item></Grid>
+
+            {technology.site_url ? (
+              <Grid item xs={12}>
+                <Link href={technology.site_url} target="_blank">
+                  {technology.site_url}
+                </Link>
+              </Grid>
+            ) : null}
 
             <Grid item xs={12}>
               {content}

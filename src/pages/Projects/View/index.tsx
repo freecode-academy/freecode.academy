@@ -76,7 +76,7 @@ class ProjectsView extends Component<ProjectsViewProps> {
         </Grid>
 
         <Grid item xs={12}>
-          <Link href="/projects/create">
+          <Link href="/office/projects/create">
             <a>
               <Typography>Добавить проект</Typography>
             </a>

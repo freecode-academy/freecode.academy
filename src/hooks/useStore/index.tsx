@@ -27,6 +27,11 @@ const useStore = <Data extends Record<string, any>>(
       /**
        * Нельзя устанавливать значение, если еще нет хранилища
        */
+      // TODO Пофиксить. Может добавить метод начала редактирования.
+      if (!store) {
+        throw new Error('Нельзя задать значение пустому хранилищу')
+      }
+
       store &&
         updateStore({
           ...store,

@@ -1,0 +1,13 @@
+mutation createChatMessageProcessor($data: ChatMessageCreateInput!) {
+  response: createChatMessageProcessor(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...chatMessage_
+    }
+  }
+}

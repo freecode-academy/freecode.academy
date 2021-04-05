@@ -44,6 +44,7 @@ export * from './codeChallenge_';
 export * from './commentsConnection';
 export * from './commentsConnectionComment';
 export * from './commentsConnectionCommentUser';
+export * from './createChatMessageProcessor';
 export * from './createCodeChallengeCompletionProcessor';
 export * from './createCommentProcessor';
 export * from './createProjectProcessor';

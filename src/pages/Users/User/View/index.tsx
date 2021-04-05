@@ -20,6 +20,7 @@ import Uploader, { UploaderProps } from '@prisma-cms/uploader'
 import UserViewTechnologies from './Technologies'
 import useStore from 'src/hooks/useStore'
 import UserChatSettings from './ChatSettings'
+import UserChatRooms from './ChatRooms'
 
 const UserView: React.FC<UserViewProps> = (props) => {
   const user = props.object
@@ -346,6 +347,14 @@ const UserView: React.FC<UserViewProps> = (props) => {
     userEdited?.username,
   ])
 
+  const chatRooms = useMemo(() => {
+    if (!user.UserTechnologies?.length) {
+      return null
+    }
+
+    return <UserChatRooms user={user} currentUser={currentUser} />
+  }, [currentUser, user])
+
   const technologies = useMemo(() => {
     if (!user.UserTechnologies?.length) {
       return null
@@ -358,10 +367,11 @@ const UserView: React.FC<UserViewProps> = (props) => {
     return (
       <>
         {form}
+        {chatRooms}
         {technologies}
       </>
     )
-  }, [form, technologies])
+  }, [chatRooms, form, technologies])
 }
 
 export default UserView

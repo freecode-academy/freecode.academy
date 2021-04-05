@@ -23,6 +23,9 @@ mutation updateUserProcessor(
 
 fragment user_ on User {
   ...UserNoNesting
+  acceptChatMessageAnonymous
+  acceptNewChatRoomAnonymous
+  acceptNewChatRoom
   EthAccounts {
     ...EthAccountNoNesting
   }

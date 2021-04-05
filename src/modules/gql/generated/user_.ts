@@ -20,7 +20,7 @@ import { NotificationTypeNoNestingFragmentDoc } from './NotificationTypeNoNestin
 import { TechnologyUserTechnologyFragmentDoc } from './technology_UserTechnology';
 import { TechnologyNoNestingFragmentDoc } from './TechnologyNoNesting';
 export type UserFragment = (
-  { __typename?: 'User', EthAccounts?: Types.Maybe<Array<(
+  { __typename?: 'User', acceptChatMessageAnonymous?: Types.Maybe<boolean>, acceptNewChatRoomAnonymous?: Types.Maybe<boolean>, acceptNewChatRoom?: Types.Maybe<boolean>, EthAccounts?: Types.Maybe<Array<(
     { __typename?: 'EthAccount' }
     & EthAccountNoNestingFragment
   )>>, NotificationTypes?: Types.Maybe<Array<(
@@ -39,6 +39,9 @@ export type UserFragment = (
 export const UserFragmentDoc = gql`
     fragment user_ on User {
   ...UserNoNesting
+  acceptChatMessageAnonymous
+  acceptNewChatRoomAnonymous
+  acceptNewChatRoom
   EthAccounts {
     ...EthAccountNoNesting
   }

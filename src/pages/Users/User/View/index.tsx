@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import { UserViewProps } from './interfaces'
 import { UserViewStyled } from './styles'
 // import Link from 'next/link'
@@ -18,6 +18,8 @@ import EditIcon from 'material-ui-icons/ModeEdit'
 import TextField from 'material-ui/TextField'
 import Uploader, { UploaderProps } from '@prisma-cms/uploader'
 import UserViewTechnologies from './Technologies'
+import useStore from 'src/hooks/useStore'
+import UserChatSettings from './ChatSettings'
 
 const UserView: React.FC<UserViewProps> = (props) => {
   const user = props.object
@@ -32,19 +34,25 @@ const UserView: React.FC<UserViewProps> = (props) => {
    * Измененные данные пользователя
    */
 
-  const [data, setData] = useState<UserUpdateInput | null>(null)
+  // const [data, setData] = useState<UserUpdateInput | null>(null)
+
+  const {
+    store: data,
+    setValue,
+    updateStore: setData,
+  } = useStore<UserUpdateInput>(null)
 
   const inEditMode = useMemo(() => {
     return data ? true : false
   }, [data])
 
   const userEdited = useMemo(() => {
-    return data && user
+    return (data && user
       ? {
           ...user,
           ...data,
         }
-      : user
+      : user) as UserViewProps['object']
   }, [data, user])
 
   const onChange = useCallback(
@@ -60,7 +68,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
         [name]: value,
       })
     },
-    [data]
+    [data, setData]
   )
 
   /**
@@ -70,7 +78,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
     if (!data) {
       setData({})
     }
-  }, [data])
+  }, [data, setData])
 
   /**
    * Сброс изменений
@@ -79,7 +87,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
     if (data) {
       setData(null)
     }
-  }, [data])
+  }, [data, setData])
 
   /**
    * Функция на обновление пользователя
@@ -130,6 +138,17 @@ const UserView: React.FC<UserViewProps> = (props) => {
       />
     )
   }, [inEditMode, isCurrentUser, user.NotificationTypes, user.id])
+
+  /**
+   * Настройки чатов
+   */
+  const chatSettings = useMemo(() => {
+    if (!isCurrentUser || !inEditMode) {
+      return null
+    }
+
+    return <UserChatSettings user={userEdited} setValue={setValue} />
+  }, [inEditMode, isCurrentUser, setValue, userEdited])
 
   const buttons = useMemo(() => {
     if (!user?.id || !isCurrentUser) {
@@ -245,7 +264,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
 
       return
     },
-    [data]
+    [data, setData]
   )
 
   const avatar = useMemo(() => {
@@ -304,6 +323,12 @@ const UserView: React.FC<UserViewProps> = (props) => {
                 {notifications}
               </Grid>
             ) : null}
+
+            {chatSettings ? (
+              <Grid item xs={12}>
+                {chatSettings}
+              </Grid>
+            ) : null}
           </Grid>
         </UserViewStyled>
       </form>
@@ -311,6 +336,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
   }, [
     avatar,
     buttons,
+    chatSettings,
     email,
     fullname,
     notifications,

@@ -12,6 +12,7 @@ import { CodeChallengeCompletionFragment } from './codeChallengeCompletion_';
 import { gql } from '@apollo/client';
 import { CodeChallengeCompletionFragmentDoc } from './codeChallengeCompletion_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type UpdateCodeChallengeCompletionProcessorMutationVariables = Types.Exact<{
   data: Types.CodeChallengeCompletionUpdateInput;
   where: Types.CodeChallengeCompletionWhereUniqueInput;
@@ -60,7 +61,8 @@ export type UpdateCodeChallengeCompletionProcessorMutationFn = Apollo.MutationFu
  * });
  */
 export function useUpdateCodeChallengeCompletionProcessorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCodeChallengeCompletionProcessorMutation, UpdateCodeChallengeCompletionProcessorMutationVariables>) {
-        return Apollo.useMutation<UpdateCodeChallengeCompletionProcessorMutation, UpdateCodeChallengeCompletionProcessorMutationVariables>(UpdateCodeChallengeCompletionProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateCodeChallengeCompletionProcessorMutation, UpdateCodeChallengeCompletionProcessorMutationVariables>(UpdateCodeChallengeCompletionProcessorDocument, options);
       }
 export type UpdateCodeChallengeCompletionProcessorMutationHookResult = ReturnType<typeof useUpdateCodeChallengeCompletionProcessorMutation>;
 export type UpdateCodeChallengeCompletionProcessorMutationResult = Apollo.MutationResult<UpdateCodeChallengeCompletionProcessorMutation>;

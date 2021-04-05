@@ -12,6 +12,7 @@ import { ResourceFragment } from './resource_';
 import { gql } from '@apollo/client';
 import { ResourceFragmentDoc } from './resource_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type UpdateTopicProcessorMutationVariables = Types.Exact<{
   data: Types.TopicUpdateInput;
   where: Types.ResourceWhereUniqueInput;
@@ -60,7 +61,8 @@ export type UpdateTopicProcessorMutationFn = Apollo.MutationFunction<UpdateTopic
  * });
  */
 export function useUpdateTopicProcessorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTopicProcessorMutation, UpdateTopicProcessorMutationVariables>) {
-        return Apollo.useMutation<UpdateTopicProcessorMutation, UpdateTopicProcessorMutationVariables>(UpdateTopicProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateTopicProcessorMutation, UpdateTopicProcessorMutationVariables>(UpdateTopicProcessorDocument, options);
       }
 export type UpdateTopicProcessorMutationHookResult = ReturnType<typeof useUpdateTopicProcessorMutation>;
 export type UpdateTopicProcessorMutationResult = Apollo.MutationResult<UpdateTopicProcessorMutation>;

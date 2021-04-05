@@ -12,6 +12,7 @@ import { CodeChallengeCompletionFragment } from './codeChallengeCompletion_';
 import { gql } from '@apollo/client';
 import { CodeChallengeCompletionFragmentDoc } from './codeChallengeCompletion_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CodeChallengeCompletionQueryVariables = Types.Exact<{
   where: Types.CodeChallengeCompletionWhereUniqueInput;
 }>;
@@ -48,10 +49,12 @@ export const CodeChallengeCompletionDocument = gql`
  * });
  */
 export function useCodeChallengeCompletionQuery(baseOptions: Apollo.QueryHookOptions<CodeChallengeCompletionQuery, CodeChallengeCompletionQueryVariables>) {
-        return Apollo.useQuery<CodeChallengeCompletionQuery, CodeChallengeCompletionQueryVariables>(CodeChallengeCompletionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CodeChallengeCompletionQuery, CodeChallengeCompletionQueryVariables>(CodeChallengeCompletionDocument, options);
       }
 export function useCodeChallengeCompletionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CodeChallengeCompletionQuery, CodeChallengeCompletionQueryVariables>) {
-          return Apollo.useLazyQuery<CodeChallengeCompletionQuery, CodeChallengeCompletionQueryVariables>(CodeChallengeCompletionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CodeChallengeCompletionQuery, CodeChallengeCompletionQueryVariables>(CodeChallengeCompletionDocument, options);
         }
 export type CodeChallengeCompletionQueryHookResult = ReturnType<typeof useCodeChallengeCompletionQuery>;
 export type CodeChallengeCompletionLazyQueryHookResult = ReturnType<typeof useCodeChallengeCompletionLazyQuery>;

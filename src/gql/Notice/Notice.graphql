@@ -1,0 +1,67 @@
+query noticesConnection(
+  $where: NoticeWhereInput
+  $orderBy: NoticeOrderByInput
+  $skip: Int
+  $first: Int
+  $last: Int
+  $getNodes: Boolean = true
+) {
+  objectsConnection: noticesConnection(
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    first: $first
+    last: $last
+  ) {
+    aggregate {
+      count
+    }
+    edges @include(if: $getNodes) {
+      node {
+        ...notice
+      }
+    }
+  }
+}
+
+mutation deleteNotice($where: NoticeWhereUniqueInput!) {
+  deleteNotice(where: $where) {
+    ...NoticeNoNesting
+  }
+}
+
+fragment notice on Notice {
+  ...NoticeNoNesting
+  ChatMessage {
+    ...ChatMessageNoNesting
+    CreatedBy {
+      ...UserNoNesting
+    }
+    Room {
+      ...ChatRoomNoNesting
+    }
+  }
+  ChatRoomInvitation {
+    id
+    createdAt
+    CreatedBy {
+      ...UserNoNesting
+    }
+    ChatRoom {
+      ...ChatRoomNoNesting
+    }
+  }
+  User {
+    ...UserNoNesting
+  }
+  CreatedBy {
+    ...UserNoNesting
+  }
+}
+
+fragment NoticeNoNesting on Notice {
+  id
+  createdAt
+  updatedAt
+  type
+}

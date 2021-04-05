@@ -13,7 +13,7 @@ export const OfficeLayoutNavBarStyled = styled.aside`
     padding: 5px 5px 0 0;
 
     > * {
-      margin: 0 5px;
+      margin: 0 2px;
     }
 
     button {

@@ -12,6 +12,7 @@ import { ProjectFragment } from './project_';
 import { gql } from '@apollo/client';
 import { ProjectFragmentDoc } from './project_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type ProjectPageProjectsQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.ProjectWhereInput>;
   first?: Types.Maybe<Types.Scalars['Int']>;
@@ -52,10 +53,12 @@ export const ProjectPageProjectsDocument = gql`
  * });
  */
 export function useProjectPageProjectsQuery(baseOptions?: Apollo.QueryHookOptions<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>) {
-        return Apollo.useQuery<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>(ProjectPageProjectsDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>(ProjectPageProjectsDocument, options);
       }
 export function useProjectPageProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>) {
-          return Apollo.useLazyQuery<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>(ProjectPageProjectsDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProjectPageProjectsQuery, ProjectPageProjectsQueryVariables>(ProjectPageProjectsDocument, options);
         }
 export type ProjectPageProjectsQueryHookResult = ReturnType<typeof useProjectPageProjectsQuery>;
 export type ProjectPageProjectsLazyQueryHookResult = ReturnType<typeof useProjectPageProjectsLazyQuery>;

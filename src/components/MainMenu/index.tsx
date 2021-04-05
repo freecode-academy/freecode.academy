@@ -28,6 +28,7 @@ import { MainMenuProps, MainMenuState } from './interfaces'
 // import { Timer } from '@prisma-cms/cooperation'
 
 import Timer from './Timer'
+import MainMenuNotices from './Notices'
 
 // export const defaultStyles = theme => {
 
@@ -132,7 +133,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
       <AppBar
         // position="static"
         color="default"
-        className={classes.root}
+        className={classes?.root}
       >
         <Toolbar>
           {/* <Button color="inherit">Login</Button> */}
@@ -142,7 +143,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               <Typography
                 variant="title"
                 color="inherit"
-                className={classes.flex}
+                className={classes?.flex}
               >
                 <Link href="/">FreeCode.Academy</Link>
               </Typography>
@@ -263,21 +264,21 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
 
                 {ActiveTimer ? (
                   <Grid key="timer" item>
-                    <Timer timer={ActiveTimer} className={classes.iconButton} />
+                    <Timer
+                      timer={ActiveTimer}
+                      className={classes?.iconButton}
+                    />
                   </Grid>
                 ) : null}
 
-                {/* 
+                {currentUser ? (
                   <Grid key="notifications" item>
-                    <Notices
-                      key={userId}
-                      user={currentUser}
-                      classes={{
-                        icon: classes.link,
-                      }}
-                    /> 
+                    <MainMenuNotices
+                      key={currentUser.id}
+                      className={classes?.iconButton}
+                    />
                   </Grid>
-                */}
+                ) : null}
 
                 {currentUser ? (
                   <Grid key="user" item>

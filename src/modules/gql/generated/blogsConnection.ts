@@ -12,6 +12,7 @@ import { BlogsConnectionResourceFragment } from './BlogsConnectionResource';
 import { gql } from '@apollo/client';
 import { BlogsConnectionResourceFragmentDoc } from './BlogsConnectionResource';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type BlogsConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.ResourceWhereInput>;
   orderBy?: Types.Maybe<Types.ResourceOrderByInput>;
@@ -75,10 +76,12 @@ export const BlogsConnectionDocument = gql`
  * });
  */
 export function useBlogsConnectionQuery(baseOptions?: Apollo.QueryHookOptions<BlogsConnectionQuery, BlogsConnectionQueryVariables>) {
-        return Apollo.useQuery<BlogsConnectionQuery, BlogsConnectionQueryVariables>(BlogsConnectionDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BlogsConnectionQuery, BlogsConnectionQueryVariables>(BlogsConnectionDocument, options);
       }
 export function useBlogsConnectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogsConnectionQuery, BlogsConnectionQueryVariables>) {
-          return Apollo.useLazyQuery<BlogsConnectionQuery, BlogsConnectionQueryVariables>(BlogsConnectionDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BlogsConnectionQuery, BlogsConnectionQueryVariables>(BlogsConnectionDocument, options);
         }
 export type BlogsConnectionQueryHookResult = ReturnType<typeof useBlogsConnectionQuery>;
 export type BlogsConnectionLazyQueryHookResult = ReturnType<typeof useBlogsConnectionLazyQuery>;

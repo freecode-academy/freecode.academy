@@ -31,6 +31,9 @@ const useSubscriptionProvider = ({ client }: SubscriptionProviderProps) => {
       'userTechnology',
       'taskTechnology',
       'career',
+      'notice',
+      'chatRoom',
+      'chatMessage',
 
       // TODO: Check maybe deprecated
       'technologyLesson',
@@ -45,7 +48,7 @@ const useSubscriptionProvider = ({ client }: SubscriptionProviderProps) => {
       const subscription = client
         .subscribe({
           query: gql`
-          subscription Resource {
+          subscription {
             ${n} {
               mutation
               node {

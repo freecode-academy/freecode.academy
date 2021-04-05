@@ -12,6 +12,7 @@ import { ResourceFragment } from './resource_';
 import { gql } from '@apollo/client';
 import { ResourceFragmentDoc } from './resource_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CreateTopicProcessorMutationVariables = Types.Exact<{
   data: Types.TopicCreateInput;
 }>;
@@ -58,7 +59,8 @@ export type CreateTopicProcessorMutationFn = Apollo.MutationFunction<CreateTopic
  * });
  */
 export function useCreateTopicProcessorMutation(baseOptions?: Apollo.MutationHookOptions<CreateTopicProcessorMutation, CreateTopicProcessorMutationVariables>) {
-        return Apollo.useMutation<CreateTopicProcessorMutation, CreateTopicProcessorMutationVariables>(CreateTopicProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateTopicProcessorMutation, CreateTopicProcessorMutationVariables>(CreateTopicProcessorDocument, options);
       }
 export type CreateTopicProcessorMutationHookResult = ReturnType<typeof useCreateTopicProcessorMutation>;
 export type CreateTopicProcessorMutationResult = Apollo.MutationResult<CreateTopicProcessorMutation>;

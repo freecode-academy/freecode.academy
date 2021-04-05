@@ -12,6 +12,7 @@ import { TaskNoNestingFragment } from './TaskNoNesting';
 import { gql } from '@apollo/client';
 import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CreateTaskProcessorMutationVariables = Types.Exact<{
   data: Types.TaskCreateInput;
 }>;
@@ -58,7 +59,8 @@ export type CreateTaskProcessorMutationFn = Apollo.MutationFunction<CreateTaskPr
  * });
  */
 export function useCreateTaskProcessorMutation(baseOptions?: Apollo.MutationHookOptions<CreateTaskProcessorMutation, CreateTaskProcessorMutationVariables>) {
-        return Apollo.useMutation<CreateTaskProcessorMutation, CreateTaskProcessorMutationVariables>(CreateTaskProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateTaskProcessorMutation, CreateTaskProcessorMutationVariables>(CreateTaskProcessorDocument, options);
       }
 export type CreateTaskProcessorMutationHookResult = ReturnType<typeof useCreateTaskProcessorMutation>;
 export type CreateTaskProcessorMutationResult = Apollo.MutationResult<CreateTaskProcessorMutation>;

@@ -12,6 +12,7 @@ import { ResponseCommentFragment } from './responseComment';
 import { gql } from '@apollo/client';
 import { ResponseCommentFragmentDoc } from './responseComment';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CreateCommentProcessorMutationVariables = Types.Exact<{
   data: Types.CommentCreateInput;
 }>;
@@ -58,7 +59,8 @@ export type CreateCommentProcessorMutationFn = Apollo.MutationFunction<CreateCom
  * });
  */
 export function useCreateCommentProcessorMutation(baseOptions?: Apollo.MutationHookOptions<CreateCommentProcessorMutation, CreateCommentProcessorMutationVariables>) {
-        return Apollo.useMutation<CreateCommentProcessorMutation, CreateCommentProcessorMutationVariables>(CreateCommentProcessorDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCommentProcessorMutation, CreateCommentProcessorMutationVariables>(CreateCommentProcessorDocument, options);
       }
 export type CreateCommentProcessorMutationHookResult = ReturnType<typeof useCreateCommentProcessorMutation>;
 export type CreateCommentProcessorMutationResult = Apollo.MutationResult<CreateCommentProcessorMutation>;

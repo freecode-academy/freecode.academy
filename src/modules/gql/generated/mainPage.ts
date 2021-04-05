@@ -18,6 +18,7 @@ import { MainPageCodeChallengeCompletionFragmentDoc } from './mainPageCodeChalle
 import { ResourceFragmentDoc } from './resource_';
 import { TasksConnectionTaskFragmentDoc } from './tasksConnectionTask';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type MainPageQueryVariables = Types.Exact<{
   timersWhere?: Types.Maybe<Types.TimerWhereInput>;
 }>;
@@ -94,10 +95,12 @@ ${TasksConnectionTaskFragmentDoc}`;
  * });
  */
 export function useMainPageQuery(baseOptions?: Apollo.QueryHookOptions<MainPageQuery, MainPageQueryVariables>) {
-        return Apollo.useQuery<MainPageQuery, MainPageQueryVariables>(MainPageDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MainPageQuery, MainPageQueryVariables>(MainPageDocument, options);
       }
 export function useMainPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MainPageQuery, MainPageQueryVariables>) {
-          return Apollo.useLazyQuery<MainPageQuery, MainPageQueryVariables>(MainPageDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MainPageQuery, MainPageQueryVariables>(MainPageDocument, options);
         }
 export type MainPageQueryHookResult = ReturnType<typeof useMainPageQuery>;
 export type MainPageLazyQueryHookResult = ReturnType<typeof useMainPageLazyQuery>;

@@ -28,7 +28,7 @@ const OfficeProjectsCreate: React.FC<OfficeProjectsCreateProps> = ({
     (event: React.FormEvent) => {
       event.preventDefault()
 
-      if (loading) {
+      if (loading || !store) {
         return
       }
 

@@ -4,8 +4,10 @@ import { useCallback, useMemo, useState } from 'react'
  * Стейт-хранилище с геттерем и сеттерем
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useStore = <Data extends Record<string, any>>(initialStore: Data) => {
-  const [store, updateStore] = useState<Data>(initialStore)
+const useStore = <Data extends Record<string, any>>(
+  initialStore: Data | null
+) => {
+  const [store, updateStore] = useState<Data | null>(initialStore)
 
   // type Data = typeof store
   type Name = keyof Data
@@ -15,17 +17,21 @@ const useStore = <Data extends Record<string, any>>(initialStore: Data) => {
    */
   const getValue = useCallback(
     <N extends Name>(name: N) => {
-      return store[name]
+      return store ? store[name] : undefined
     },
     [store]
   )
 
   const setValue = useCallback(
     <N extends Name>(name: N, value: Data[N]) => {
-      updateStore({
-        ...store,
-        [name]: value,
-      })
+      /**
+       * Нельзя устанавливать значение, если еще нет хранилища
+       */
+      store &&
+        updateStore({
+          ...store,
+          [name]: value,
+        })
     },
     [store]
   )

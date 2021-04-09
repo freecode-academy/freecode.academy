@@ -1,69 +1,71 @@
-import { useCallback, useMemo, useState } from 'react'
+export { default } from '@prisma-cms/react-hooks/dist/hooks/useStore'
 
-/**
- * Стейт-хранилище с геттерем и сеттерем
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useStore = <Data extends Record<string, any>>(
-  initialStore: Data | null
-) => {
-  const [store, updateStore] = useState<Data | null>(initialStore)
+// import { useCallback, useMemo, useState } from 'react'
 
-  // type Data = typeof store
-  type Name = keyof Data
+// /**
+//  * Стейт-хранилище с геттерем и сеттерем
+//  */
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// const useStore = <Data extends Record<string, any>>(
+//   initialStore: Data | null
+// ) => {
+//   const [store, updateStore] = useState<Data | null>(initialStore)
 
-  /**
-   * Получаем текущее значение объекта
-   */
-  const getValue = useCallback(
-    <N extends Name>(name: N) => {
-      return store ? store[name] : undefined
-    },
-    [store]
-  )
+//   // type Data = typeof store
+//   type Name = keyof Data
 
-  const setValue = useCallback(
-    <N extends Name>(name: N, value: Data[N]) => {
-      /**
-       * Нельзя устанавливать значение, если еще нет хранилища
-       */
-      // TODO Пофиксить. Может добавить метод начала редактирования.
-      if (!store) {
-        throw new Error('Нельзя задать значение пустому хранилищу')
-      }
+//   /**
+//    * Получаем текущее значение объекта
+//    */
+//   const getValue = useCallback(
+//     <N extends Name>(name: N) => {
+//       return store ? store[name] : undefined
+//     },
+//     [store]
+//   )
 
-      store &&
-        updateStore({
-          ...store,
-          [name]: value,
-        })
-    },
-    [store]
-  )
+//   const setValue = useCallback(
+//     <N extends Name>(name: N, value: Data[N]) => {
+//       /**
+//        * Нельзя устанавливать значение, если еще нет хранилища
+//        */
+//       // TODO Пофиксить. Может добавить метод начала редактирования.
+//       if (!store) {
+//         throw new Error('Нельзя задать значение пустому хранилищу')
+//       }
 
-  const onChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const name = event.currentTarget.name as Name
-      const value = event.currentTarget.value as Data[Name]
+//       store &&
+//         updateStore({
+//           ...store,
+//           [name]: value,
+//         })
+//     },
+//     [store]
+//   )
 
-      if (!name) {
-        return
-      }
+//   const onChange = useCallback(
+//     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+//       const name = event.currentTarget.name as Name
+//       const value = event.currentTarget.value as Data[Name]
 
-      setValue(name, value)
-    },
-    [setValue]
-  )
+//       if (!name) {
+//         return
+//       }
 
-  return useMemo(() => {
-    return {
-      store,
-      updateStore,
-      setValue,
-      getValue,
-      onChange,
-    }
-  }, [getValue, setValue, store, onChange])
-}
+//       setValue(name, value)
+//     },
+//     [setValue]
+//   )
 
-export default useStore
+//   return useMemo(() => {
+//     return {
+//       store,
+//       updateStore,
+//       setValue,
+//       getValue,
+//       onChange,
+//     }
+//   }, [getValue, setValue, store, onChange])
+// }
+
+// export default useStore

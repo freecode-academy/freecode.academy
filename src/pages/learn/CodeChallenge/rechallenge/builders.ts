@@ -60,7 +60,9 @@ export function concatHtml({
   template?: string | null | undefined
   // files?: TestFile[]
   files?: {
+    head: string
     contents: string
+    tail: string
   }[]
 } = {}) {
   const createBody = template ? _template(template) : defaultTemplate
@@ -82,7 +84,8 @@ A required file can not have both a src and a link: src = ${src}, link = ${link}
     .reduce<string[]>((head, element) => head.concat(element), [])
 
   const source = files.reduce(
-    (source, file) => source.concat(file.contents, htmlCatch),
+    (source, file) =>
+      source.concat(file.head, file.contents, file.tail, htmlCatch),
     ''
   )
 

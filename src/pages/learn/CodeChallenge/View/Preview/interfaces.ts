@@ -1,3 +1,6 @@
+import * as chai from 'chai'
+import Enzyme from 'enzyme'
+
 export interface PreviewProps {
   iframeStatus: boolean
   disableIframe: boolean
@@ -13,6 +16,10 @@ export interface ChallengeTestIFrameElement extends HTMLIFrameElement {
         $?: typeof import('jquery')
         ReactDOM?: typeof import('react-dom')
         React?: typeof import('react')
+        assert?: typeof chai.assert
+        code?: string
+        __userCodeWasExecuted?: boolean
+        Enzyme?: typeof Enzyme
       })
     | null
 }

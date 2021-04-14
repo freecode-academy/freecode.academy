@@ -75,6 +75,8 @@ const PreviewModern: React.FC = () => {
 
     const files: {
       contents: string
+      tail: string
+      head: string
     }[] = []
 
     if (build) {
@@ -82,6 +84,8 @@ const PreviewModern: React.FC = () => {
         contents: `<script type="text/babel">
         ${build}
         </script>`,
+        tail: '',
+        head: '',
       })
     }
 

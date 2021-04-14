@@ -116,17 +116,13 @@ function useExecuteChallenge() {
     let range: AsyncGenerator<TestResult | Error, void, unknown> | undefined
 
     if (frame) {
-      // range = frame.executeChallenge?.call(frame.contentWindow, {
-      //   context,
-      //   jquery: frame.contentWindow?.$,
-      // })
       range = executeChallenge?.call(frame.contentWindow, {
         context,
         jquery: frame.contentWindow?.$,
         document: frame.contentDocument,
       })
     } else {
-      range = executeChallenge({
+      range = executeChallenge.call(global.window, {
         context,
         jquery,
         document: global.document,

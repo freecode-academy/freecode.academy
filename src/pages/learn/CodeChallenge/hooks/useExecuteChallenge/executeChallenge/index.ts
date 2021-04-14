@@ -7,6 +7,7 @@ import {
   CodeChallengeContext,
   TestResult,
 } from 'src/pages/learn/CodeChallenge/Context'
+import { ChallengeTestIFrameElement } from '../../../View/Preview/interfaces'
 import buildJSChallenge from './buildFunctions/buildJSChallenge'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -21,24 +22,27 @@ export type executeChallengeProps = {
 }
 
 export default async function* executeCancellableChallengeSaga(
+  this: ChallengeTestIFrameElement['contentWindow'],
   props: executeChallengeProps
 ): AsyncGenerator<TestResult | Error, void, unknown> {
   // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const React = this?.React
+  // const React = this?.React
   // const { default: React } = await import('react');
 
   // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const ReactDOM = this?.ReactDOM
+  // const ReactDOM = this?.ReactDOM
   // const { default: ReactDOM } = await import('react-dom');
 
   // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const assert = chai.assert
 
+  /**
+   * Внимание! Важно, чтобы в целом на сайте был установлен React-16
+   */
   const { default: Enzyme } = await import('enzyme')
-  // if (e.loadEnzyme) {
   const { default: Adapter16 } = await import('enzyme-adapter-react-16')
   /* eslint-disable no-inline-comments */
 
@@ -74,16 +78,6 @@ export default async function* executeCancellableChallengeSaga(
     }
   )
 
-  // console.log('buildData', buildData)
-
-  // eval('console.log("eval React", this.React);')
-
-  // if (buildData instanceof Error) {
-  //   yield buildData;
-  //   return;
-  // }
-  // else
-
   if (Array.isArray(buildData)) {
     yield buildData[0]
     return
@@ -113,8 +107,13 @@ export default async function* executeCancellableChallengeSaga(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       let testResult: any
 
-      // eslint-disable-next-line prefer-const
-      let __userCodeWasExecuted = false
+      if (this) {
+        // eslint-disable-next-line prefer-const
+        this.__userCodeWasExecuted = false
+        this.assert = assert
+        this.code = code
+        this.Enzyme = Enzyme
+      }
 
       try {
         /* eslint-disable no-eval */
@@ -131,12 +130,14 @@ export default async function* executeCancellableChallengeSaga(
 
           // console.log('completeCode', completeCode);
 
-          testResult = eval(completeCode)
+          testResult = this?.window
+            ? this?.window.eval(completeCode)
+            : eval(completeCode)
         } catch (err) {
           // For debug
           console.error(err)
 
-          if (__userCodeWasExecuted) {
+          if (this?.__userCodeWasExecuted) {
             // rethrow error, since test failed.
             throw err
           }
@@ -144,7 +145,10 @@ export default async function* executeCancellableChallengeSaga(
           // __utils.log(err);
           // the tests may not require working code, so they are evaluated even if
           // the user code does not get executed.
-          testResult = eval(testString)
+
+          testResult = this?.window
+            ? this?.window.eval(testString)
+            : eval(testString)
         }
 
         if (typeof testResult === 'function') {

@@ -348,10 +348,6 @@ const UserView: React.FC<UserViewProps> = (props) => {
   ])
 
   const chatRooms = useMemo(() => {
-    if (!user.UserTechnologies?.length) {
-      return null
-    }
-
     return <UserChatRooms user={user} currentUser={currentUser} />
   }, [currentUser, user])
 

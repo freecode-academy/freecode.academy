@@ -16,7 +16,7 @@
     "build": "next build && tsc --project tsconfig.server.json",
     "build:analyze": "cross-env ANALYZE=true yarn build",
     "deploy": "yarn generate:types",
-    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start": "cross-env NODE_ENV=production node dist/server/index.js",
     "generate:types": "cross-env NODE_PATH=. ts-node -P tsconfig.server.json src/modules/gql/cli/generateTypes/run",
     "types": "tsc --pretty --noEmit",
     "types:server": "yarn types -P tsconfig.server.json",

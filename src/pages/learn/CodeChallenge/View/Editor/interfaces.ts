@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import useExecuteChallenge from '../../hooks/useExecuteChallenge'
 
 export const modeMap = {

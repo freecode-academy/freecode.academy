@@ -31,6 +31,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#000000" />
           <base href="/" />
           <link rel="icon" href="/favicon.ico" />
+          <link rel="manifest" href="/pwa/manifest.json" />
           <link
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700&subset=latin,cyrillic"
             rel="stylesheet"

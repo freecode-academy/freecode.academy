@@ -33,7 +33,7 @@ const customStyles = (theme: Theme) => {
           },
           '& thead': {
             '& th': {
-              textAlign: 'center' as 'center',
+              textAlign: 'center' as const,
             },
           },
           '& tbody': {

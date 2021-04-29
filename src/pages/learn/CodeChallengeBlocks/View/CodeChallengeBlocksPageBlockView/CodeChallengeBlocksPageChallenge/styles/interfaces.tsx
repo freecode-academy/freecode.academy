@@ -1,1 +1,4 @@
-export type CodeChallengeBlocksPageChallengeStyledProps = {}
+export type CodeChallengeBlocksPageChallengeStyledProps = Record<
+  string,
+  unknown
+>

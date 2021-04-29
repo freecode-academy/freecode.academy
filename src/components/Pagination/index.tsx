@@ -13,8 +13,8 @@ import Context, { PrismaCmsContext } from '@prisma-cms/context'
 const styles = {
   row: {
     display: 'flex',
-    flexDirection: 'row' as 'row',
-    flexWrap: 'nowrap' as 'nowrap',
+    flexDirection: 'row' as const,
+    flexWrap: 'nowrap' as const,
     justifyContent: 'center',
     listStyle: 'none',
     // margin: 0,

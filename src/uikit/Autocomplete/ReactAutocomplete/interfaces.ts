@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { TextFieldProps } from 'material-ui/TextField'
 
 export interface AutocompleteItem {

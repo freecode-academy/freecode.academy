@@ -71,21 +71,43 @@ const webpack = (config, options) => {
 }
 
 module.exports = (phase, defaultConfig) => {
-  // if(phase === "phase-development-server") {
   if (phase !== 'phase-production-server') {
     const withBundleAnalyzer = require('@next/bundle-analyzer')({
       enabled: process.env.ANALYZE === 'true',
     })
     const withTM = require('next-transpile-modules')(['@modxclub'])
     const withCSS = require('@zeit/next-css')
+    const withPWA = require('next-pwa')
 
-    return withBundleAnalyzer(
+    const config = withBundleAnalyzer(
       withTM(
-        withCSS({
-          webpack,
-        })
+        withCSS(
+          withPWA({
+            pwa: {
+              dest: `.next/public`,
+              // TODO Пока не работает как хотелось бы
+              // fallbacks: {
+              //   // image: '/static/images/fallback.png',
+              //   // document: '/offline',  // if you want to fallback to a custom    page other than /_offline
+              //   // font: '/static/font/fallback.woff2',
+              //   // audio: ...,
+              //   // video: ...,
+              // },
+
+              disable: process.env.NODE_ENV === 'development',
+            },
+            webpack,
+
+            // https://github.com/shadowwalker/next-pwa/issues/198#issuecomment-817205700
+            // future: {
+            //   webpack5: true,
+            // },
+          })
+        )
       )
     )
+
+    return config
   }
 
   // else

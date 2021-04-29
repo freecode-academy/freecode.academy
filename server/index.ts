@@ -1,7 +1,7 @@
 import express from 'express'
 import next from 'next'
 import { createProxyMiddleware, Options } from 'http-proxy-middleware'
-import { endpoint } from '../src/config'
+import { endpoint } from './config'
 
 import Sitemap from './sitemap/prisma-cms.com'
 
@@ -72,6 +72,14 @@ app.prepare().then(() => {
     })
   )
 
+  /**
+   * PWA and other public generated files
+   */
+  server.use(express.static(cwd + '/.next/public'))
+
+  /**
+   * API requests
+   */
   server.use('/api/', apiProxy)
 
   server.get('/sitemap.xml', new Sitemap({}).middleware)

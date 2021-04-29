@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { useCallback, useContext } from 'react'
 import executeChallenge from './executeChallenge'
 import Context, { TestResult } from '../../Context'

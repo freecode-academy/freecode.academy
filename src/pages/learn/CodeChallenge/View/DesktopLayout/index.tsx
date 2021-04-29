@@ -51,7 +51,10 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
   const challengeId = challenge.id
 
   const onChangeTabs = useCallback(
-    (_event: React.ChangeEvent<{}>, value: DesktopLayoutTabIndex) => {
+    (
+      _event: React.ChangeEvent<Record<string, unknown>>,
+      value: DesktopLayoutTabIndex
+    ) => {
       let url: string | undefined
 
       const topicId = challenge.Topic?.id

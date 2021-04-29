@@ -25,14 +25,14 @@ export const styles = {
     width: '100%',
   },
   menuWrapper: {
-    position: 'relative' as 'relative',
+    position: 'relative' as const,
   },
   menuPaper: {
     maxHeight: 300,
     width: '100%',
-    overflow: 'auto' as 'auto',
+    overflow: 'auto' as const,
     padding: 5,
-    position: 'absolute' as 'absolute',
+    position: 'absolute' as const,
     zIndex: 100,
     top: 0,
   },
@@ -44,7 +44,7 @@ export const styles = {
     paddingBottom: 5,
     paddingLeft: 5,
     paddingRight: 5,
-    cursor: 'pointer' as 'pointer',
+    cursor: 'pointer' as const,
 
     fontSize: '0.9rem',
     '&:first-child': {

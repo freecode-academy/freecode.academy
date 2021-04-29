@@ -43,7 +43,7 @@ const styles = (theme: any) => {
         },
 
         '&.nowrap': {
-          whiteSpace: 'nowrap' as 'nowrap',
+          whiteSpace: 'nowrap' as const,
         },
       },
     },

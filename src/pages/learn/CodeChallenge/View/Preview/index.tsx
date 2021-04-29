@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useContext, useMemo } from 'react'
 import Context from '../../Context'
 import { challengeTypes } from '../../utils/challengeTypes'

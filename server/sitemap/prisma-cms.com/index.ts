@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // eslint-disable-next-line no-restricted-modules
 const XMLWriter = require('xml-writer')
 
@@ -64,7 +65,6 @@ export default class PrismaCmsComSitemap extends Sitemap {
   }
 
   async renderRootSitemap(_req: Request, res: Response, uri: URI) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const cleanUri = uri.clone().query(null)
 

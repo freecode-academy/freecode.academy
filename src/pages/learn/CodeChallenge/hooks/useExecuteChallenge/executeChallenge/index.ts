@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable no-var */
 /* eslint-disable @typescript-eslint/no-namespace */
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 
 import * as chai from 'chai'
 import {
@@ -10,7 +10,6 @@ import {
 import { ChallengeTestIFrameElement } from '../../../View/Preview/interfaces'
 import buildJSChallenge from './buildFunctions/buildJSChallenge'
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 // eslint-disable-next-line
 let previewTask: any

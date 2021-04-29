@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useContext, useMemo, useState } from 'react'
 import { concatHtml } from 'src/pages/learn/CodeChallenge/rechallenge/builders'
 import Context from '../../../../Context'

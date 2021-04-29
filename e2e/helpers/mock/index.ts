@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { IMocks } from 'graphql-tools'
 import {
   AuthFormUsersConnectionQueryVariables,
@@ -64,7 +64,7 @@ export const initMockServer = (props?: initMockServerProps) => {
   })
 }
 
-type checkAuthorityProps = {}
+type checkAuthorityProps = Record<string, never>
 
 export const checkAuthority = (_props?: checkAuthorityProps) => {
   describe('Check authority', () => {

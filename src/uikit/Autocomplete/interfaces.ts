@@ -14,7 +14,7 @@ export type AutocompleteProps = Partial<ReactAutocompleteProps> & {
   addHandler?: () => void
   saveHandler?: () => void
   viewElement?: Record<string, any>
-  getItemText?: Function
+  getItemText?: (item: AutocompleteItem) => string
   fullWidth?: boolean
   style?: Record<string, any>
 }

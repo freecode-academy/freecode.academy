@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { CodeChallengeContext } from '../Context'
 import '../rechallenge/transformers'
 // import { transformers, transformersPreview } from '../rechallenge/transformers';

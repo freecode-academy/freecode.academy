@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Head from 'next/head'
 import React, { useCallback, useMemo } from 'react'
 import {

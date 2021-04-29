@@ -43,9 +43,7 @@ import MainLayout from './layouts/MainLayout'
 
 const withWs = true
 
-const App: MainApp = (props) => {
-  const { Component, pageProps } = props
-
+const App: MainApp = ({ Component, pageProps }) => {
   // eslint-disable-next-line no-console
   // console.log('App props', props);
 
@@ -144,7 +142,7 @@ const App: MainApp = (props) => {
         {content}
       </>
     )
-  }, [statusCode, pageProps])
+  }, [statusCode, pageProps, Component])
 
   /**
    * Оборачиваем контент в шаблон

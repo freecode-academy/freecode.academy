@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { PureComponent } from 'react'
 
 // import Loader from './Loader/Loader'

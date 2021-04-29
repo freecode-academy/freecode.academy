@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/no-string-refs */
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { Component, HTMLAttributes } from 'react'
 import { findDOMNode } from 'react-dom'
 import scrollIntoView from 'dom-scroll-into-view'

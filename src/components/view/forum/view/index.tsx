@@ -53,7 +53,7 @@ const customStyles = (theme: Theme) => {
     },
 
     usersWrapper: {
-      whiteSpace: 'nowrap' as 'nowrap',
+      whiteSpace: 'nowrap' as const,
       display: 'flex',
       alignItems: 'end',
     },
@@ -64,7 +64,7 @@ const customStyles = (theme: Theme) => {
       width: '70%',
     },
     alignCenter: {
-      textAlign: 'center' as 'center',
+      textAlign: 'center' as const,
     },
   }
 }

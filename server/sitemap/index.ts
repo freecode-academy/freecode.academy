@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // import { ApolloProvider } from 'react-apollo';
 // import { ApolloClient } from 'apollo-client';
 // import { createHttpLink } from 'apollo-link-http';
@@ -91,7 +92,6 @@ export default class Sitemap {
   }
 
   renderRootSitemap(_req: Request, res: Response, uri: URI) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const cleanUri: URI = uri.clone().query(null)
 

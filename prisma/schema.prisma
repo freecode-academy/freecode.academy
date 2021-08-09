@@ -8,47 +8,1307 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(cuid()) @db.VarChar(32)
-  username     String?  @unique
-  email        String?  @unique
-  fullname     String?
-  password     String?
-  active       Boolean  @default(true)
-  sudo         Boolean  @default(false)
-  createdAt    DateTime @default(now("0")) @db.DateTime("0")
-  updatedAt    DateTime @default(now("0")) @updatedAt @db.DateTime("0")
-  showEmail    Boolean  @default(false)
-  showFullname Boolean  @default(true)
-  image        String?
-  Tokens       Token[]
-  Files        File[]
-}
+  id                                                    String                    @id @default(cuid()) @db.Char(25)
+  createdAt                                             DateTime
+  updatedAt                                             DateTime                  @updatedAt
+  username                                              String?                   @db.MediumText
+  email                                                 String?                   @db.MediumText
+  phone                                                 String?                   @db.MediumText
+  showEmail                                             Boolean?
+  showPhone                                             Boolean?
+  password                                              String?                   @db.MediumText
+  fullname                                              String?                   @db.MediumText
+  image                                                 String?                   @db.MediumText
+  address                                               String?                   @db.MediumText
+  active                                                Boolean?
+  activated                                             Boolean?
+  deleted                                               Boolean?
+  hidden                                                Boolean?
+  sudo                                                  Boolean?
+  marketplaceToken                                      String?                   @db.MediumText
+  oldID                                                 Int?                      @unique
+  CreatedBy                                             String?                   @db.Char(25)
+  EthAccountAuthed                                      String?                   @db.Char(25)
+  acceptChatMessageAnonymous                            Boolean?
+  acceptNewChatRoomAnonymous                            Boolean?
+  acceptNewChatRoom                                     Boolean?
+  User                                                  User?                     @relation("UserToUser_CreatedBy", fields: [CreatedBy], references: [id])
+  EthAccount_EthAccountToUser_EthAccountAuthed          EthAccount?               @relation("EthAccountToUser_EthAccountAuthed", fields: [EthAccountAuthed], references: [id])
+  CallRequest_CallRequest_CalledToUser                  CallRequest[]             @relation("CallRequest_CalledToUser")
+  CallRequest_CallRequest_CallerToUser                  CallRequest[]             @relation("CallRequest_CallerToUser")
+  Career                                                Career[]
+  ChatMessage                                           ChatMessage[]
+  ChatMessageReaded                                     ChatMessageReaded[]
+  ChatRoom_ChatRoomToUser                               ChatRoom[]
+  ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser ChatRoomInvitation[]      @relation("ChatRoomInvitation_CreatedByToUser")
+  ChatRoomInvitation_ChatRoomInvitation_UserToUser      ChatRoomInvitation[]      @relation("ChatRoomInvitation_UserToUser")
+  CodeChallenge                                         CodeChallenge[]
+  CodeChallengeBlock                                    CodeChallengeBlock[]
+  CodeChallengeCompletion                               CodeChallengeCompletion[]
+  Comment                                               Comment[]
+  EthAccount_EthAccount_CreatedByToUser                 EthAccount[]              @relation("EthAccount_CreatedByToUser")
+  EthContractSource                                     EthContractSource[]
+  File                                                  File[]
+  Gallery                                               Gallery[]
+  Game_GameToUser                                       Game[]
+  GameResult_GameResult_CreatedByToUser                 GameResult[]              @relation("GameResult_CreatedByToUser")
+  GameResult_GameResult_UserToUser                      GameResult[]              @relation("GameResult_UserToUser")
+  Import                                                Import[]
+  Letter                                                Letter[]
+  LogedIn                                               LogedIn[]
+  Notice_Notice_CreatedByToUser                         Notice[]                  @relation("Notice_CreatedByToUser")
+  Notice_Notice_UserToUser                              Notice[]                  @relation("Notice_UserToUser")
+  NotificationType_NotificationTypeToUser               NotificationType[]
+  Player                                                Player[]
+  Position_PositionToUser                               Position[]
+  Project_ProjectToUser                                 Project[]
+  ProjectMember_ProjectMember_CreatedByToUser           ProjectMember[]           @relation("ProjectMember_CreatedByToUser")
+  ProjectMember_ProjectMember_UserToUser                ProjectMember[]           @relation("ProjectMember_UserToUser")
+  ProjectTask                                           ProjectTask[]
+  ResetPassword                                         ResetPassword[]
+  Resource                                              Resource[]
+  ResourceTag                                           ResourceTag[]
+  Route                                                 Route[]
+  Service                                               Service[]
+  ServiceCategory                                       ServiceCategory[]
+  Settings                                              Settings[]
+  SmsMessage                                            SmsMessage[]
+  SmsProvider                                           SmsProvider[]
+  Tag                                                   Tag[]
+  Task                                                  Task[]
+  TaskMember_TaskMember_CreatedByToUser                 TaskMember[]              @relation("TaskMember_CreatedByToUser")
+  TaskMember_TaskMember_UserToUser                      TaskMember[]              @relation("TaskMember_UserToUser")
+  TaskReaction                                          TaskReaction[]
+  TaskTechnology                                        TaskTechnology[]
+  Team                                                  Team[]
+  TeamMember_TeamMember_CreatedByToUser                 TeamMember[]              @relation("TeamMember_CreatedByToUser")
+  TeamMember_TeamMember_UserToUser                      TeamMember[]              @relation("TeamMember_UserToUser")
+  Technology                                            Technology[]
+  TechnologyLesson                                      TechnologyLesson[]
+  TechnologyLessonUser                                  TechnologyLessonUser[]
+  Template                                              Template[]
+  Test                                                  Test[]
+  Timer                                                 Timer[]
+  Tournament                                            Tournament[]
+  TournamentGroup                                       TournamentGroup[]
+  Tourney                                               Tourney[]
+  TourneyPlayer                                         TourneyPlayer[]
+  other_User                                            User[]                    @relation("UserToUser_CreatedBy")
+  UserTechnology                                        UserTechnology[]
+  Vote                                                  Vote[]
+  World                                                 World[]
+  ChatRoom_ChatRoomsMembers                             ChatRoom[]                @relation("ChatRoomsMembers")
+  Game_GameUsers                                        Game[]                    @relation("GameUsers")
+  Position_PositionUsers                                Position[]                @relation("PositionUsers")
+  Project_PrismaProjectUsers                            Project[]                 @relation("PrismaProjectUsers")
+  UserGroup                                             UserGroup[]               @relation("UserGroups")
+  NotificationType_UserNotificationTypes                NotificationType[]        @relation("UserNotificationTypes")
 
-model Token {
-  id        String    @id @default(cuid()) @db.VarChar(32)
-  createdAt DateTime  @default(now("0")) @db.DateTime("0")
-  expiredAt DateTime? @db.DateTime("0")
-  userId    String?   @db.VarChar(32)
-
-  // User - не обязательный объект, так как необходимость сформировать токен
-  // может быть еще до существования объекта пользователя
-  User User? @relation(fields: [userId], references: [id])
-
-  @@index(createdAt)
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([EthAccountAuthed], name: "EthAccountAuthed")
 }
 
 model File {
-  id        String   @id @default(cuid()) @db.VarChar(32)
-  createdAt DateTime @default(now("0")) @db.DateTime("0")
-  updatedAt DateTime @default(now("0")) @updatedAt @db.DateTime("0")
-  path      String   @db.MediumText
-  filename  String
-  name      String?
-  mimetype  String
-  encoding  String
-  size      Float
-  rank      Int      @default(value: 0)
+  id                    String    @id @default(cuid()) @db.Char(25)
+  path                  String    @db.MediumText
+  name                  String?   @db.MediumText
+  filename              String?   @db.MediumText
+  mimetype              String    @db.MediumText
+  encoding              String    @db.MediumText
+  hash                  String?   @db.MediumText
+  size                  Decimal?
+  ImageResource         String?   @db.Char(25)
+  CreatedBy             String?   @db.Char(25)
+  rank                  Int?
+  Gallery               String?   @db.Char(25)
+  createdAt             DateTime
+  updatedAt             DateTime  @updatedAt
+  User                  User?     @relation(fields: [CreatedBy], references: [id])
+  Gallery_FileToGallery Gallery?  @relation(fields: [Gallery], references: [id])
+  Resource              Resource? @relation(fields: [ImageResource], references: [id])
+  Project               Project[]
 
-  createdById String? @db.VarChar(32)
-  CreatedBy   User?   @relation(fields: [createdById], references: [id])
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Gallery], name: "Gallery")
+  @@index([ImageResource], name: "ImageResource")
+}
+
+model Block {
+  id             String  @id @db.Char(25)
+  representation String  @db.MediumText
+  type           Int
+  x              Int
+  y              Int
+  z              Int
+  world          String? @db.Char(25)
+  World          World?  @relation(fields: [world], references: [id])
+
+  @@index([world], name: "world")
+}
+
+model CallRequest {
+  id                            String    @id @db.Char(25)
+  called_descriptions           String    @db.MediumText
+  caller_descriptions           String    @db.MediumText
+  status                        String?
+  startedAt                     DateTime?
+  endedAt                       DateTime?
+  Room                          String?   @db.Char(25)
+  Called                        String?   @db.Char(25)
+  Caller                        String?   @db.Char(25)
+  createdAt                     DateTime
+  updatedAt                     DateTime
+  User_CallRequest_CalledToUser User?     @relation("CallRequest_CalledToUser", fields: [Called], references: [id])
+  User_CallRequest_CallerToUser User?     @relation("CallRequest_CallerToUser", fields: [Caller], references: [id])
+  ChatRoom                      ChatRoom? @relation(fields: [Room], references: [id])
+
+  @@index([Called], name: "Called")
+  @@index([Caller], name: "Caller")
+  @@index([Room], name: "Room")
+}
+
+model Career {
+  id          String    @id @db.Char(25)
+  createdAt   DateTime
+  updatedAt   DateTime
+  name        String?   @db.MediumText
+  description String?   @db.MediumText
+  start_date  DateTime?
+  CreatedBy   String?   @db.Char(25)
+  User        User?     @relation(fields: [CreatedBy], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model ChatMessage {
+  id                String              @id @db.Char(25)
+  createdAt         DateTime
+  updatedAt         DateTime
+  content           String?             @db.MediumText
+  contentText       String?             @db.MediumText
+  CreatedBy         String?             @db.Char(25)
+  Room              String?             @db.Char(25)
+  User              User?               @relation(fields: [CreatedBy], references: [id])
+  ChatRoom          ChatRoom?           @relation(fields: [Room], references: [id])
+  ChatMessageReaded ChatMessageReaded[]
+  Notice            Notice[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Room], name: "Room")
+}
+
+model ChatMessageReaded {
+  id                           String       @id @db.Char(25)
+  createdAt                    DateTime
+  updatedAt                    DateTime
+  Message                      String?      @db.Char(25)
+  User                         String?      @db.Char(25)
+  ChatMessage                  ChatMessage? @relation(fields: [Message], references: [id])
+  User_ChatMessageReadedToUser User?        @relation(fields: [User], references: [id])
+
+  @@index([Message], name: "Message")
+  @@index([User], name: "User")
+}
+
+model ChatRoom {
+  id                    String               @id @db.Char(25)
+  createdAt             DateTime
+  updatedAt             DateTime
+  name                  String               @db.MediumText
+  description           String?              @db.MediumText
+  image                 String?              @db.MediumText
+  code                  String?              @unique @db.Char(25)
+  isPublic              Boolean?
+  CreatedBy             String?              @db.Char(25)
+  allowAnonymous        Boolean?
+  sandbox               Boolean?
+  User_ChatRoomToUser   User?                @relation(fields: [CreatedBy], references: [id])
+  CallRequest           CallRequest[]
+  ChatMessage           ChatMessage[]
+  ChatRoomInvitation    ChatRoomInvitation[]
+  Project               Project[]
+  Task                  Task[]
+  User_ChatRoomsMembers User[]               @relation("ChatRoomsMembers")
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model ChatRoomInvitation {
+  id                                      String    @id @db.Char(25)
+  createdAt                               DateTime
+  updatedAt                               DateTime
+  User                                    String?   @db.Char(25)
+  CreatedBy                               String?   @db.Char(25)
+  ChatRoom                                String?   @db.Char(25)
+  Notice                                  String?   @db.Char(25)
+  ChatRoom_ChatRoomToChatRoomInvitation   ChatRoom? @relation(fields: [ChatRoom], references: [id])
+  User_ChatRoomInvitation_CreatedByToUser User?     @relation("ChatRoomInvitation_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Notice_ChatRoomInvitationToNotice       Notice?   @relation(fields: [Notice], references: [id])
+  User_ChatRoomInvitation_UserToUser      User?     @relation("ChatRoomInvitation_UserToUser", fields: [User], references: [id])
+
+  @@index([ChatRoom], name: "ChatRoom")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Notice], name: "Notice")
+  @@index([User], name: "User")
+}
+
+model CodeChallenge {
+  id                      String                    @id @db.Char(25)
+  externalKey             String?                   @unique @db.Char(25)
+  createdAt               DateTime
+  updatedAt               DateTime
+  name                    String?                   @db.MediumText
+  dashedName              String?                   @db.MediumText
+  localeTitle             String?                   @db.MediumText
+  description             String?                   @db.MediumText
+  challengeType           Int?
+  forumTopicId            Int?
+  translations            String?                   @db.MediumText
+  tests                   String?                   @db.MediumText
+  solutions               String?                   @db.MediumText
+  instructions            String?                   @db.MediumText
+  files                   String?                   @db.MediumText
+  videoUrl                String?                   @db.MediumText
+  order                   Int?
+  superOrder              Int?
+  challengeOrder          Int?
+  required                String?                   @db.MediumText
+  isRequired              Boolean?
+  isPrivate               Boolean?
+  isBeta                  Boolean?
+  template                String?                   @db.MediumText
+  time                    String?                   @db.MediumText
+  rank                    Int?
+  Block                   String?                   @db.Char(25)
+  CreatedBy               String?                   @db.Char(25)
+  Topic                   String?                   @db.Char(25)
+  CodeChallengeBlock      CodeChallengeBlock?       @relation(fields: [Block], references: [id])
+  User                    User?                     @relation(fields: [CreatedBy], references: [id])
+  Resource                Resource?                 @relation(fields: [Topic], references: [id])
+  CodeChallengeCompletion CodeChallengeCompletion[]
+
+  @@index([Block], name: "Block")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Topic], name: "Topic")
+}
+
+model CodeChallengeBlock {
+  id                       String               @id @db.Char(25)
+  externalKey              String?              @db.MediumText
+  createdAt                DateTime
+  updatedAt                DateTime
+  name                     String?              @db.MediumText
+  rank                     Int?
+  CreatedBy                String?              @db.Char(25)
+  Parent                   String?              @db.Char(25)
+  User                     User?                @relation(fields: [CreatedBy], references: [id])
+  CodeChallengeBlock       CodeChallengeBlock?  @relation("CodeChallengeBlockToCodeChallengeBlock_Parent", fields: [Parent], references: [id])
+  CodeChallenge            CodeChallenge[]
+  other_CodeChallengeBlock CodeChallengeBlock[] @relation("CodeChallengeBlockToCodeChallengeBlock_Parent")
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Parent], name: "Parent")
+}
+
+model CodeChallengeCompletion {
+  id                                                   String         @id @db.Char(25)
+  createdAt                                            DateTime
+  updatedAt                                            DateTime
+  Task                                                 String?        @db.Char(25)
+  CreatedBy                                            String?        @db.Char(25)
+  CodeChallenge                                        String?        @db.Char(25)
+  content                                              String?        @db.MediumText
+  success                                              Boolean?
+  CodeChallenge_CodeChallengeToCodeChallengeCompletion CodeChallenge? @relation(fields: [CodeChallenge], references: [id])
+  User                                                 User?          @relation(fields: [CreatedBy], references: [id])
+  Task_CodeChallengeCompletionToTask                   Task?          @relation(fields: [Task], references: [id])
+
+  @@index([CodeChallenge], name: "CodeChallenge")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Task], name: "Task")
+}
+
+model Comment {
+  id                                         String            @id @db.Char(25)
+  createdAt                                  DateTime
+  updatedAt                                  DateTime
+  components                                 String?           @db.MediumText
+  contentText                                String?           @db.MediumText
+  CreatedBy                                  String?           @db.Char(25)
+  TechnologyLesson                           String?           @db.Char(25)
+  User                                       User?             @relation(fields: [CreatedBy], references: [id])
+  TechnologyLesson_CommentToTechnologyLesson TechnologyLesson? @relation(fields: [TechnologyLesson], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([TechnologyLesson], name: "TechnologyLesson")
+}
+
+model EthAccount {
+  id                                                 String             @id @db.Char(25)
+  createdAt                                          DateTime
+  updatedAt                                          DateTime
+  name                                               String?            @db.MediumText
+  description                                        String?            @db.MediumText
+  address                                            String             @db.MediumText
+  type                                               String?
+  source                                             String?            @db.MediumText
+  bytecode                                           String?            @db.MediumText
+  abi                                                String?            @db.MediumText
+  ContractSource                                     String?            @db.Char(25)
+  Project                                            String?            @db.Char(25)
+  CreatedBy                                          String?            @db.Char(25)
+  EthContractSource                                  EthContractSource? @relation(fields: [ContractSource], references: [id])
+  User_EthAccount_CreatedByToUser                    User?              @relation("EthAccount_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Project_EthAccountToProject                        Project?           @relation(fields: [Project], references: [id])
+  EthBlock                                           EthBlock[]
+  EthTransaction_EthAccountToEthTransaction_Account  EthTransaction[]   @relation("EthAccountToEthTransaction_Account")
+  EthTransaction_EthAccountToEthTransaction_Receiver EthTransaction[]   @relation("EthAccountToEthTransaction_Receiver")
+  EthTransaction_EthAccountToEthTransaction_Sender   EthTransaction[]   @relation("EthAccountToEthTransaction_Sender")
+  Resource                                           Resource[]
+  User_EthAccountToUser_EthAccountAuthed             User[]             @relation("EthAccountToUser_EthAccountAuthed")
+
+  @@index([ContractSource], name: "ContractSource")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Project], name: "Project")
+}
+
+model EthBlock {
+  id                 String           @id @db.Char(25)
+  createdAt          DateTime
+  updatedAt          DateTime
+  hash               String           @db.MediumText
+  number             Int              @unique
+  difficulty         Decimal?
+  totalDifficulty    Decimal?
+  extraData          String?          @db.MediumText
+  gasLimit           Decimal?
+  gasUsed            Decimal?
+  mixHash            String?          @db.MediumText
+  nonce              String?          @db.MediumText
+  parentHash         String?          @db.MediumText
+  receiptsRoot       String?          @db.MediumText
+  sha3Uncles         String?          @db.MediumText
+  size               Int?
+  stateRoot          String?          @db.MediumText
+  date               DateTime?
+  transactionsRoot   String?          @db.MediumText
+  transactions_count Int?
+  Miner              String?          @db.Char(25)
+  EthAccount         EthAccount?      @relation(fields: [Miner], references: [id])
+  EthTransaction     EthTransaction[]
+  EthBlock_B         EthBlock[]       @relation("EthBlockToEthBlock")
+  EthBlock_A         EthBlock[]       @relation("EthBlockToEthBlock")
+
+  @@index([Miner], name: "Miner")
+}
+
+model EthContractSource {
+  id          String       @id @db.Char(25)
+  createdAt   DateTime
+  updatedAt   DateTime
+  name        String       @db.MediumText
+  description String?      @db.MediumText
+  source      String?      @db.MediumText
+  CreatedBy   String?      @db.Char(25)
+  User        User?        @relation(fields: [CreatedBy], references: [id])
+  EthAccount  EthAccount[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model EthTransaction {
+  id                                             String      @id @db.Char(25)
+  createdAt                                      DateTime
+  updatedAt                                      DateTime
+  chainId                                        Int
+  amount                                         Decimal?
+  input                                          String?     @db.MediumText
+  index                                          Int?
+  address                                        String      @db.MediumText
+  type                                           String?
+  v                                              String?     @db.MediumText
+  r                                              String?     @db.MediumText
+  s                                              String?     @db.MediumText
+  Sender                                         String?     @db.Char(25)
+  Block                                          String?     @db.Char(25)
+  Receiver                                       String?     @db.Char(25)
+  Account                                        String?     @db.Char(25)
+  EthAccount_EthAccountToEthTransaction_Account  EthAccount? @relation("EthAccountToEthTransaction_Account", fields: [Account], references: [id])
+  EthBlock                                       EthBlock?   @relation(fields: [Block], references: [id])
+  EthAccount_EthAccountToEthTransaction_Receiver EthAccount? @relation("EthAccountToEthTransaction_Receiver", fields: [Receiver], references: [id])
+  EthAccount_EthAccountToEthTransaction_Sender   EthAccount? @relation("EthAccountToEthTransaction_Sender", fields: [Sender], references: [id])
+
+  @@index([Account], name: "Account")
+  @@index([Block], name: "Block")
+  @@index([Receiver], name: "Receiver")
+  @@index([Sender], name: "Sender")
+}
+
+model Gallery {
+  id                         String    @id @db.Char(25)
+  name                       String?   @db.MediumText
+  CreatedBy                  String?   @db.Char(25)
+  Resource                   String?   @db.Char(25)
+  createdAt                  DateTime
+  updatedAt                  DateTime
+  User                       User?     @relation(fields: [CreatedBy], references: [id])
+  Resource_GalleryToResource Resource? @relation(fields: [Resource], references: [id])
+  File                       File[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Resource], name: "Resource")
+}
+
+model Game {
+  id                    String       @id @db.Char(25)
+  createdAt             DateTime
+  updatedAt             DateTime
+  name                  String?      @db.MediumText
+  start_date            DateTime?
+  end_date              DateTime?
+  sequence              Int?
+  Parent                String?      @db.Char(25)
+  CreatedBy             String?      @db.Char(25)
+  Tourney               String?      @db.Char(25)
+  User_GameToUser       User?        @relation(fields: [CreatedBy], references: [id])
+  Game                  Game?        @relation("GameToGame_Parent", fields: [Parent], references: [id])
+  Tourney_GameToTourney Tourney?     @relation(fields: [Tourney], references: [id])
+  other_Game            Game[]       @relation("GameToGame_Parent")
+  GameResult            GameResult[]
+  Team                  Team[]
+  User_GameUsers        User[]       @relation("GameUsers")
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Parent], name: "Parent")
+  @@index([Tourney], name: "Tourney")
+}
+
+model GameResult {
+  id                              String    @id @db.Char(25)
+  createdAt                       DateTime
+  updatedAt                       DateTime
+  date                            DateTime?
+  name                            String?   @db.MediumText
+  value                           Decimal?
+  CreatedBy                       String?   @db.Char(25)
+  Team                            String?   @db.Char(25)
+  Game                            String?   @db.Char(25)
+  User                            String?   @db.Char(25)
+  User_GameResult_CreatedByToUser User?     @relation("GameResult_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Game_GameToGameResult           Game?     @relation(fields: [Game], references: [id])
+  Team_GameResultToTeam           Team?     @relation(fields: [Team], references: [id])
+  User_GameResult_UserToUser      User?     @relation("GameResult_UserToUser", fields: [User], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Game], name: "Game")
+  @@index([Team], name: "Team")
+  @@index([User], name: "User")
+}
+
+model Import {
+  id        String   @id @db.Char(25)
+  createdAt DateTime
+  updatedAt DateTime
+  name      String   @db.MediumText
+  status    String
+  CreatedBy String?  @db.Char(25)
+  User      User?    @relation(fields: [CreatedBy], references: [id])
+  Log       Log[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model Inventory {
+  id     String   @id @db.Char(25)
+  cursor Int
+  data   String   @db.MediumText
+  Player Player[]
+}
+
+model LetsadsSmsMessageStatus {
+  id                          String                        @id @db.Char(25)
+  createdAt                   DateTime
+  updatedAt                   DateTime
+  name                        String?
+  description                 String?                       @db.MediumText
+  errorCode                   String?
+  LetsadsSmsMessageStatusItem LetsadsSmsMessageStatusItem[]
+  SmsMessage                  SmsMessage[]
+}
+
+model LetsadsSmsMessageStatusItem {
+  id                      String                   @id @db.Char(25)
+  createdAt               DateTime
+  updatedAt               DateTime
+  sms_id                  Int                      @unique
+  Status                  String?                  @db.Char(25)
+  LetsadsSmsMessageStatus LetsadsSmsMessageStatus? @relation(fields: [Status], references: [id])
+
+  @@index([Status], name: "Status")
+}
+
+model Letter {
+  id                String   @id @db.Char(25)
+  email             String   @db.MediumText
+  subject           String   @db.MediumText
+  message           String   @db.MediumText
+  status            String
+  rank              Int?
+  deleteOnSend      Boolean?
+  replyTo           String?  @db.MediumText
+  returnTo          String?  @db.MediumText
+  createdAt         DateTime
+  updatedAt         DateTime
+  User              String?  @db.Char(25)
+  User_LetterToUser User?    @relation(fields: [User], references: [id])
+
+  @@index([User], name: "User")
+}
+
+model Log {
+  id                 String   @id @db.Char(25)
+  level              String
+  objectType         String?  @db.Char(25)
+  message            String   @db.MediumText
+  stack              String?  @db.MediumText
+  Import             String?  @db.Char(25)
+  createdAt          DateTime
+  updatedAt          DateTime
+  Import_ImportToLog Import?  @relation(fields: [Import], references: [id])
+
+  @@index([Import], name: "Import")
+}
+
+model LogedIn {
+  id                 String   @id @db.Char(25)
+  createdAt          DateTime
+  fake               Boolean?
+  updatedAt          DateTime
+  User               String?  @db.Char(25)
+  User_LogedInToUser User?    @relation(fields: [User], references: [id])
+
+  @@index([User], name: "User")
+}
+
+model Message {
+  id     String  @id @db.Char(25)
+  type   String
+  sender String? @db.MediumText
+  body   String  @db.MediumText
+  world  String? @db.Char(25)
+  World  World?  @relation(fields: [world], references: [id])
+
+  @@index([world], name: "world")
+}
+
+model Notice {
+  id                              String               @id @db.Char(25)
+  createdAt                       DateTime
+  type                            String
+  updatedAt                       DateTime
+  ChatMessage                     String?              @db.Char(25)
+  User                            String?              @db.Char(25)
+  CreatedBy                       String?              @db.Char(25)
+  ChatMessage_ChatMessageToNotice ChatMessage?         @relation(fields: [ChatMessage], references: [id])
+  User_Notice_CreatedByToUser     User?                @relation("Notice_CreatedByToUser", fields: [CreatedBy], references: [id])
+  User_Notice_UserToUser          User?                @relation("Notice_UserToUser", fields: [User], references: [id])
+  ChatRoomInvitation              ChatRoomInvitation[]
+
+  @@index([ChatMessage], name: "ChatMessage")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([User], name: "User")
+}
+
+model NotificationType {
+  id                          String   @id @db.Char(25)
+  createdAt                   DateTime
+  updatedAt                   DateTime
+  name                        String   @db.MediumText
+  code                        String?  @unique @db.Char(25)
+  comment                     String?  @db.MediumText
+  oldID                       Int?     @unique
+  CreatedBy                   String?  @db.Char(25)
+  User_NotificationTypeToUser User?    @relation(fields: [CreatedBy], references: [id])
+  User_UserNotificationTypes  User[]   @relation("UserNotificationTypes")
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model Player {
+  id        String     @id @db.Char(25)
+  createdAt DateTime
+  updatedAt DateTime
+  isAdmin   Boolean
+  gamemode  String
+  lastLogin DateTime?
+  x         Decimal
+  y         Decimal
+  z         Decimal
+  dirx      Decimal
+  diry      Decimal
+  world     String?    @db.Char(25)
+  inventory String?    @db.Char(25)
+  user      String?    @db.Char(25)
+  Inventory Inventory? @relation(fields: [inventory], references: [id])
+  User      User?      @relation(fields: [user], references: [id])
+  World     World?     @relation(fields: [world], references: [id])
+
+  @@index([inventory], name: "inventory")
+  @@index([user], name: "user")
+  @@index([world], name: "world")
+}
+
+model Position {
+  id                  String   @id @db.Char(25)
+  code                String?  @unique @db.Char(25)
+  name                String   @db.MediumText
+  CreatedBy           String?  @db.Char(25)
+  createdAt           DateTime
+  updatedAt           DateTime
+  User_PositionToUser User?    @relation(fields: [CreatedBy], references: [id])
+  User_PositionUsers  User[]   @relation("PositionUsers")
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model Project {
+  id                                       String          @id @db.Char(25)
+  name                                     String          @db.MediumText
+  domain                                   String?         @db.MediumText
+  createdAt                                DateTime
+  updatedAt                                DateTime
+  description                              String?         @db.MediumText
+  url                                      String?         @db.MediumText
+  sequence                                 Int?            @unique
+  content                                  String?         @db.MediumText
+  contentText                              String?         @db.MediumText
+  status                                   String?
+  public                                   Boolean?
+  oldID                                    Int?            @unique
+  CreatedBy                                String?         @db.Char(25)
+  Image                                    String?         @db.Char(25)
+  ChatRoom                                 String?         @db.Char(25)
+  Team                                     String?         @db.Char(25)
+  Resource                                 String?         @db.Char(25)
+  type                                     String?
+  ChatRoom_ChatRoomToProject               ChatRoom?       @relation(fields: [ChatRoom], references: [id])
+  User_ProjectToUser                       User?           @relation(fields: [CreatedBy], references: [id])
+  File                                     File?           @relation(fields: [Image], references: [id])
+  Resource_Project_ResourceToResource      Resource?       @relation("Project_ResourceToResource", fields: [Resource], references: [id])
+  Team_ProjectToTeam                       Team?           @relation(fields: [Team], references: [id])
+  EthAccount                               EthAccount[]
+  ProjectMember                            ProjectMember[]
+  ProjectTask                              ProjectTask[]
+  Resource_ProjectToResource_PrismaProject Resource[]      @relation("ProjectToResource_PrismaProject")
+  Template_ProjectToTemplate_PrismaProject Template[]      @relation("ProjectToTemplate_PrismaProject")
+  Template_ProjectToTemplate_Project       Template[]      @relation("ProjectToTemplate_Project")
+  User_PrismaProjectUsers                  User[]          @relation("PrismaProjectUsers")
+  Team_ProjectCustomers                    Team[]          @relation("ProjectCustomers")
+
+  @@index([ChatRoom], name: "ChatRoom")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Image], name: "Image")
+  @@index([Resource], name: "Resource")
+  @@index([Team], name: "Team")
+}
+
+model ProjectMember {
+  id                                 String    @id @db.Char(25)
+  status                             String?
+  User                               String?   @db.Char(25)
+  CreatedBy                          String?   @db.Char(25)
+  Project                            String?   @db.Char(25)
+  createdAt                          DateTime
+  updatedAt                          DateTime
+  User_ProjectMember_CreatedByToUser User?     @relation("ProjectMember_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Project_ProjectToProjectMember     Project?  @relation(fields: [Project], references: [id])
+  User_ProjectMember_UserToUser      User?     @relation("ProjectMember_UserToUser", fields: [User], references: [id])
+  Service                            Service[] @relation("ProjectMemberServices")
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Project], name: "Project")
+  @@index([User], name: "User")
+}
+
+model ProjectTask {
+  id                           String   @id @db.Char(25)
+  createdAt                    DateTime
+  updatedAt                    DateTime
+  Project                      String?  @db.Char(25)
+  Task                         String?  @db.Char(25)
+  CreatedBy                    String?  @db.Char(25)
+  User                         User?    @relation(fields: [CreatedBy], references: [id])
+  Project_ProjectToProjectTask Project? @relation(fields: [Project], references: [id])
+  Task_ProjectTaskToTask       Task?    @relation(fields: [Task], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Project], name: "Project")
+  @@index([Task], name: "Task")
+}
+
+model ResetPassword {
+  id                       String    @id @db.Char(25)
+  createdAt                DateTime
+  updatedAt                DateTime
+  code                     String?   @unique @db.Char(25)
+  password                 String?   @db.MediumText
+  validTill                DateTime?
+  User                     String?   @db.Char(25)
+  User_ResetPasswordToUser User?     @relation(fields: [User], references: [id])
+
+  @@index([User], name: "User")
+}
+
+model Resource {
+  id                                       String          @id @db.Char(25)
+  code                                     String?         @unique @db.Char(25)
+  createdAt                                DateTime
+  updatedAt                                DateTime
+  type                                     String?
+  name                                     String?         @db.MediumText
+  longtitle                                String?         @db.MediumText
+  content                                  String?         @db.MediumText
+  contentText                              String?         @db.MediumText
+  published                                Boolean
+  deleted                                  Boolean
+  hidemenu                                 Boolean
+  searchable                               Boolean
+  uri                                      String?         @db.MediumText
+  isfolder                                 Boolean
+  rating                                   Decimal?
+  positiveVotesCount                       Int?
+  negativeVotesCount                       Int?
+  neutralVotesCount                        Int?
+  oldID                                    Int?            @unique
+  commentOldID                             Int?            @unique
+  class_key                                String?         @db.MediumText
+  template                                 Int?
+  mockUpdate                               DateTime?
+  components                               String?         @db.MediumText
+  Parent                                   String?         @db.Char(25)
+  Team                                     String?         @db.Char(25)
+  Service                                  String?         @db.Char(25)
+  EthAccount                               String?         @db.Char(25)
+  PrismaProject                            String?         @db.Char(25)
+  CreatedBy                                String?         @db.Char(25)
+  Topic                                    String?         @db.Char(25)
+  Blog                                     String?         @db.Char(25)
+  Task                                     String?         @db.Char(25)
+  Resource_ResourceToResource_Blog         Resource?       @relation("ResourceToResource_Blog", fields: [Blog], references: [id])
+  User                                     User?           @relation(fields: [CreatedBy], references: [id])
+  EthAccount_EthAccountToResource          EthAccount?     @relation(fields: [EthAccount], references: [id])
+  Resource_ResourceToResource_Parent       Resource?       @relation("ResourceToResource_Parent", fields: [Parent], references: [id])
+  Project_ProjectToResource_PrismaProject  Project?        @relation("ProjectToResource_PrismaProject", fields: [PrismaProject], references: [id])
+  Service_ResourceToService                Service?        @relation(fields: [Service], references: [id])
+  Task_ResourceToTask                      Task?           @relation(fields: [Task], references: [id])
+  Team_ResourceToTeam                      Team?           @relation(fields: [Team], references: [id])
+  Resource_ResourceToResource_Topic        Resource?       @relation("ResourceToResource_Topic", fields: [Topic], references: [id])
+  CodeChallenge                            CodeChallenge[]
+  File                                     File[]
+  Gallery                                  Gallery[]
+  Project_Project_ResourceToResource       Project[]       @relation("Project_ResourceToResource")
+  other_Resource_ResourceToResource_Blog   Resource[]      @relation("ResourceToResource_Blog")
+  other_Resource_ResourceToResource_Parent Resource[]      @relation("ResourceToResource_Parent")
+  other_Resource_ResourceToResource_Topic  Resource[]      @relation("ResourceToResource_Topic")
+  ResourceTag                              ResourceTag[]
+  Vote                                     Vote[]
+
+  @@index([Blog], name: "Blog")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([EthAccount], name: "EthAccount")
+  @@index([Parent], name: "Parent")
+  @@index([PrismaProject], name: "PrismaProject")
+  @@index([Service], name: "Service")
+  @@index([Task], name: "Task")
+  @@index([Team], name: "Team")
+  @@index([Topic], name: "Topic")
+}
+
+model ResourceTag {
+  id                             String    @id @db.Char(25)
+  createdAt                      DateTime
+  updatedAt                      DateTime
+  status                         String
+  CreatedBy                      String?   @db.Char(25)
+  Resource                       String?   @db.Char(25)
+  Tag                            String?   @db.Char(25)
+  User                           User?     @relation(fields: [CreatedBy], references: [id])
+  Resource_ResourceToResourceTag Resource? @relation(fields: [Resource], references: [id])
+  Tag_ResourceTagToTag           Tag?      @relation(fields: [Tag], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Resource], name: "Resource")
+  @@index([Tag], name: "Tag")
+}
+
+model Route {
+  id          String  @id @db.Char(25)
+  name        String? @db.MediumText
+  path        String  @db.MediumText
+  exact       Boolean
+  component   String  @db.MediumText
+  CreatedBy   String? @db.Char(25)
+  Parent      String? @db.Char(25)
+  User        User?   @relation(fields: [CreatedBy], references: [id])
+  Route       Route?  @relation("RouteToRoute_Parent", fields: [Parent], references: [id])
+  other_Route Route[] @relation("RouteToRoute_Parent")
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Parent], name: "Parent")
+}
+
+model Service {
+  id              String           @id @db.Char(25)
+  name            String?          @db.MediumText
+  description     String?          @db.MediumText
+  code            String?          @unique @db.Char(25)
+  rank            Int?
+  oldID           Int?             @unique
+  Category        String?          @db.Char(25)
+  Parent          String?          @db.Char(25)
+  CreatedBy       String?          @db.Char(25)
+  createdAt       DateTime
+  updatedAt       DateTime
+  ServiceCategory ServiceCategory? @relation(fields: [Category], references: [id])
+  User            User?            @relation(fields: [CreatedBy], references: [id])
+  Service         Service?         @relation("ServiceToService_Parent", fields: [Parent], references: [id])
+  Resource        Resource[]
+  other_Service   Service[]        @relation("ServiceToService_Parent")
+  ProjectMember   ProjectMember[]  @relation("ProjectMemberServices")
+
+  @@index([Category], name: "Category")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Parent], name: "Parent")
+}
+
+model ServiceCategory {
+  id                    String            @id @db.Char(25)
+  name                  String            @db.MediumText
+  description           String?           @db.MediumText
+  code                  String?           @unique @db.Char(25)
+  Parent                String?           @db.Char(25)
+  CreatedBy             String?           @db.Char(25)
+  createdAt             DateTime
+  updatedAt             DateTime
+  User                  User?             @relation(fields: [CreatedBy], references: [id])
+  ServiceCategory       ServiceCategory?  @relation("ServiceCategoryToServiceCategory_Parent", fields: [Parent], references: [id])
+  Service               Service[]
+  other_ServiceCategory ServiceCategory[] @relation("ServiceCategoryToServiceCategory_Parent")
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Parent], name: "Parent")
+}
+
+model Settings {
+  id                  String  @id @db.Char(25)
+  renderDistance      Int
+  User                String? @db.Char(25)
+  User_SettingsToUser User?   @relation(fields: [User], references: [id])
+
+  @@index([User], name: "User")
+}
+
+model SmsMessage {
+  id                      String                   @id @db.Char(25)
+  createdAt               DateTime
+  updatedAt               DateTime
+  from                    String                   @db.MediumText
+  text                    String                   @db.MediumText
+  deletOnSend             Boolean?
+  Status                  String?                  @db.Char(25)
+  CreatedBy               String?                  @db.Char(25)
+  Provider                String?                  @db.Char(25)
+  User                    User?                    @relation(fields: [CreatedBy], references: [id])
+  SmsProvider             SmsProvider?             @relation(fields: [Provider], references: [id])
+  LetsadsSmsMessageStatus LetsadsSmsMessageStatus? @relation(fields: [Status], references: [id])
+  SmsMessage_recipients   SmsMessage_recipients[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Provider], name: "Provider")
+  @@index([Status], name: "Status")
+}
+
+model SmsMessage_recipients {
+  nodeId     String     @db.Char(25)
+  position   Int
+  value      String     @db.MediumText
+  SmsMessage SmsMessage @relation(fields: [nodeId], references: [id])
+
+  @@id([nodeId, position])
+}
+
+model SmsProvider {
+  id          String       @id @db.Char(25)
+  name        String       @db.MediumText
+  credentials String?      @db.MediumText
+  CreatedBy   String?      @db.Char(25)
+  createdAt   DateTime
+  updatedAt   DateTime
+  User        User?        @relation(fields: [CreatedBy], references: [id])
+  SmsMessage  SmsMessage[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model Tag {
+  id          String        @id @db.Char(25)
+  createdAt   DateTime
+  updatedAt   DateTime
+  name        String        @db.MediumText
+  status      String
+  CreatedBy   String?       @db.Char(25)
+  User        User?         @relation(fields: [CreatedBy], references: [id])
+  ResourceTag ResourceTag[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model Task {
+  id                      String                    @id @db.Char(25)
+  createdAt               DateTime
+  updatedAt               DateTime
+  name                    String                    @db.MediumText
+  description             String?                   @db.MediumText
+  content                 String?                   @db.MediumText
+  status                  String
+  startDatePlaning        DateTime?
+  endDatePlaning          DateTime?
+  startDate               DateTime?
+  endDate                 DateTime?
+  CreatedBy               String?                   @db.Char(25)
+  Parent                  String?                   @db.Char(25)
+  ChatRoom                String?                   @db.Char(25)
+  needHelp                Boolean?
+  ChatRoom_ChatRoomToTask ChatRoom?                 @relation(fields: [ChatRoom], references: [id])
+  User                    User?                     @relation(fields: [CreatedBy], references: [id])
+  Task                    Task?                     @relation("TaskToTask_Parent", fields: [Parent], references: [id])
+  CodeChallengeCompletion CodeChallengeCompletion[]
+  ProjectTask             ProjectTask[]
+  Resource                Resource[]
+  other_Task              Task[]                    @relation("TaskToTask_Parent")
+  TaskMember              TaskMember[]
+  TaskReaction            TaskReaction[]
+  TaskTechnology          TaskTechnology[]
+  Timer                   Timer[]
+  Task_B                  Task[]                    @relation("RelatedTasks")
+  Task_A                  Task[]                    @relation("RelatedTasks")
+
+  @@index([ChatRoom], name: "ChatRoom")
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Parent], name: "Parent")
+}
+
+model TaskMember {
+  id                              String   @id @db.Char(25)
+  status                          String
+  Task                            String?  @db.Char(25)
+  User                            String?  @db.Char(25)
+  CreatedBy                       String?  @db.Char(25)
+  createdAt                       DateTime
+  updatedAt                       DateTime
+  User_TaskMember_CreatedByToUser User?    @relation("TaskMember_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Task_TaskToTaskMember           Task?    @relation(fields: [Task], references: [id])
+  User_TaskMember_UserToUser      User?    @relation("TaskMember_UserToUser", fields: [User], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Task], name: "Task")
+  @@index([User], name: "User")
+}
+
+model TaskReaction {
+  id                      String   @id @db.Char(25)
+  createdAt               DateTime
+  updatedAt               DateTime
+  type                    String?
+  Task                    String?  @db.Char(25)
+  CreatedBy               String?  @db.Char(25)
+  User                    User?    @relation(fields: [CreatedBy], references: [id])
+  Task_TaskToTaskReaction Task?    @relation(fields: [Task], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Task], name: "Task")
+}
+
+model TaskTechnology {
+  id                                    String      @id @db.Char(25)
+  createdAt                             DateTime
+  updatedAt                             DateTime
+  level                                 Int?
+  Technology                            String?     @db.Char(25)
+  Task                                  String?     @db.Char(25)
+  CreatedBy                             String?     @db.Char(25)
+  User                                  User?       @relation(fields: [CreatedBy], references: [id])
+  Task_TaskToTaskTechnology             Task?       @relation(fields: [Task], references: [id])
+  Technology_TaskTechnologyToTechnology Technology? @relation(fields: [Technology], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Task], name: "Task")
+  @@index([Technology], name: "Technology")
+}
+
+model Team {
+  id                       String       @id @db.Char(25)
+  name                     String       @db.MediumText
+  status                   String
+  oldID                    Int?         @unique
+  address                  String?      @db.MediumText
+  website                  String?      @db.MediumText
+  email                    String?      @db.MediumText
+  phone                    String?      @db.MediumText
+  CreatedBy                String?      @db.Char(25)
+  Parent                   String?      @db.Char(25)
+  createdAt                DateTime
+  updatedAt                DateTime
+  User                     User?        @relation(fields: [CreatedBy], references: [id])
+  Team                     Team?        @relation("TeamToTeam_Parent", fields: [Parent], references: [id])
+  GameResult               GameResult[]
+  Project_ProjectToTeam    Project[]
+  Resource                 Resource[]
+  other_Team               Team[]       @relation("TeamToTeam_Parent")
+  TeamMember               TeamMember[]
+  Game                     Game[]
+  Project_ProjectCustomers Project[]    @relation("ProjectCustomers")
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Parent], name: "Parent")
+}
+
+model TeamMember {
+  id                              String   @id @db.Char(25)
+  status                          String?
+  User                            String?  @db.Char(25)
+  Team                            String?  @db.Char(25)
+  CreatedBy                       String?  @db.Char(25)
+  createdAt                       DateTime
+  updatedAt                       DateTime
+  User_TeamMember_CreatedByToUser User?    @relation("TeamMember_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Team_TeamToTeamMember           Team?    @relation(fields: [Team], references: [id])
+  User_TeamMember_UserToUser      User?    @relation("TeamMember_UserToUser", fields: [User], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Team], name: "Team")
+  @@index([User], name: "User")
+}
+
+model Technology {
+  id               String             @id @db.Char(25)
+  createdAt        DateTime
+  updatedAt        DateTime
+  name             String?            @db.MediumText
+  components       String?            @db.MediumText
+  contentText      String?            @db.MediumText
+  site_url         String?            @db.MediumText
+  CreatedBy        String?            @db.Char(25)
+  User             User?              @relation(fields: [CreatedBy], references: [id])
+  TaskTechnology   TaskTechnology[]
+  TechnologyLesson TechnologyLesson[]
+  UserTechnology   UserTechnology[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model TechnologyLesson {
+  id                                      String                 @id @db.Char(25)
+  name                                    String?                @db.MediumText
+  components                              String?                @db.MediumText
+  contentText                             String?                @db.MediumText
+  Technology                              String?                @db.Char(25)
+  CreatedBy                               String?                @db.Char(25)
+  User                                    User?                  @relation(fields: [CreatedBy], references: [id])
+  Technology_TechnologyToTechnologyLesson Technology?            @relation(fields: [Technology], references: [id])
+  Comment                                 Comment[]
+  TechnologyLessonUser                    TechnologyLessonUser[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Technology], name: "Technology")
+}
+
+model TechnologyLessonUser {
+  id               String            @id @db.Char(25)
+  createdAt        DateTime
+  updatedAt        DateTime
+  status           String?
+  completedAt      DateTime?
+  Lesson           String?           @db.Char(25)
+  CreatedBy        String?           @db.Char(25)
+  User             User?             @relation(fields: [CreatedBy], references: [id])
+  TechnologyLesson TechnologyLesson? @relation(fields: [Lesson], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Lesson], name: "Lesson")
+}
+
+model Template {
+  id                                      String     @id @db.Char(25)
+  createdAt                               DateTime
+  updatedAt                               DateTime
+  externalKey                             String?    @db.Char(25)
+  name                                    String?    @db.MediumText
+  description                             String?    @db.MediumText
+  component                               String?    @db.MediumText
+  props                                   String?    @db.MediumText
+  components                              String?    @db.MediumText
+  vars                                    String?    @db.MediumText
+  rank                                    Int?
+  PrismaProject                           String?    @db.Char(25)
+  Project                                 String?    @db.Char(25)
+  Parent                                  String?    @db.Char(25)
+  CreatedBy                               String?    @db.Char(25)
+  User                                    User?      @relation(fields: [CreatedBy], references: [id])
+  Template                                Template?  @relation("TemplateToTemplate_Parent", fields: [Parent], references: [id])
+  Project_ProjectToTemplate_PrismaProject Project?   @relation("ProjectToTemplate_PrismaProject", fields: [PrismaProject], references: [id])
+  Project_ProjectToTemplate_Project       Project?   @relation("ProjectToTemplate_Project", fields: [Project], references: [id])
+  other_Template                          Template[] @relation("TemplateToTemplate_Parent")
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Parent], name: "Parent")
+  @@index([PrismaProject], name: "PrismaProject")
+  @@index([Project], name: "Project")
+}
+
+model Test {
+  id        String    @id @db.Char(25)
+  createdAt DateTime
+  updatedAt DateTime
+  name      String?   @db.MediumText
+  text      String?   @db.MediumText
+  quantity  Decimal?
+  date      DateTime?
+  CreatedBy String?   @db.Char(25)
+  User      User?     @relation(fields: [CreatedBy], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model Timer {
+  id               String    @id @db.Char(25)
+  createdAt        DateTime
+  stopedAt         DateTime?
+  updatedAt        DateTime
+  Task             String?   @db.Char(25)
+  CreatedBy        String?   @db.Char(25)
+  User             User?     @relation(fields: [CreatedBy], references: [id])
+  Task_TaskToTimer Task?     @relation(fields: [Task], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Task], name: "Task")
+}
+
+model Tournament {
+  id              String           @id @db.Char(25)
+  createdAt       DateTime
+  updatedAt       DateTime
+  name            String?          @db.MediumText
+  code            String?          @unique @db.Char(25)
+  CreatedBy       String?          @db.Char(25)
+  Group           String?          @db.Char(25)
+  User            User?            @relation(fields: [CreatedBy], references: [id])
+  TournamentGroup TournamentGroup? @relation(fields: [Group], references: [id])
+  Tourney         Tourney[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Group], name: "Group")
+}
+
+model TournamentGroup {
+  id         String       @id @db.Char(25)
+  createdAt  DateTime
+  updatedAt  DateTime
+  name       String?      @db.MediumText
+  code       String?      @unique @db.Char(25)
+  CreatedBy  String?      @db.Char(25)
+  User       User?        @relation(fields: [CreatedBy], references: [id])
+  Tournament Tournament[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+}
+
+model Tourney {
+  id                             String          @id @db.Char(25)
+  createdAt                      DateTime
+  updatedAt                      DateTime
+  name                           String?         @db.MediumText
+  code                           String?         @unique @db.Char(25)
+  date                           DateTime?
+  date_till                      DateTime?
+  Tournament                     String?         @db.Char(25)
+  CreatedBy                      String?         @db.Char(25)
+  User                           User?           @relation(fields: [CreatedBy], references: [id])
+  Tournament_TournamentToTourney Tournament?     @relation(fields: [Tournament], references: [id])
+  Game                           Game[]
+  TourneyPlayer                  TourneyPlayer[]
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Tournament], name: "Tournament")
+}
+
+model TourneyPlayer {
+  id                             String   @id @db.Char(25)
+  User                           String?  @db.Char(25)
+  Tourney                        String?  @db.Char(25)
+  Tourney_TourneyToTourneyPlayer Tourney? @relation(fields: [Tourney], references: [id])
+  User_TourneyPlayerToUser       User?    @relation(fields: [User], references: [id])
+
+  @@index([Tourney], name: "Tourney")
+  @@index([User], name: "User")
+}
+
+model UserGroup {
+  id        String   @id @db.Char(25)
+  name      String   @db.MediumText
+  createdAt DateTime
+  updatedAt DateTime
+  User      User[]   @relation("UserGroups")
+}
+
+model UserTechnology {
+  id                                    String      @id @db.Char(25)
+  createdAt                             DateTime
+  updatedAt                             DateTime
+  components                            String?     @db.MediumText
+  date_from                             DateTime?
+  date_till                             DateTime?
+  status                                String?
+  CreatedBy                             String?     @db.Char(25)
+  Technology                            String?     @db.Char(25)
+  level                                 Int?
+  User                                  User?       @relation(fields: [CreatedBy], references: [id])
+  Technology_TechnologyToUserTechnology Technology? @relation(fields: [Technology], references: [id])
+
+  @@index([CreatedBy], name: "CreatedBy")
+  @@index([Technology], name: "Technology")
+}
+
+model Vote {
+  id                      String    @id @db.Char(25)
+  createdAt               DateTime
+  updatedAt               DateTime
+  value                   Decimal
+  Resource                String?   @db.Char(25)
+  User                    String?   @db.Char(25)
+  Resource_ResourceToVote Resource? @relation(fields: [Resource], references: [id])
+  User_UserToVote         User?     @relation(fields: [User], references: [id])
+
+  @@index([Resource], name: "Resource")
+  @@index([User], name: "User")
+}
+
+model World {
+  id          String    @id @db.Char(25)
+  createdAt   DateTime
+  updatedAt   DateTime
+  name        String    @db.MediumText
+  seed        String    @db.MediumText
+  type        String
+  time        Decimal
+  timeChanger Decimal?
+  days        Int
+  lastPlayed  DateTime
+  CreatedBy   String?   @db.Char(25)
+  User        User?     @relation(fields: [CreatedBy], references: [id])
+  Block       Block[]
+  Message     Message[]
+  Player      Player[]
+
+  @@index([CreatedBy], name: "CreatedBy")
 }

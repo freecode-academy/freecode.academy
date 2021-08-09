@@ -1,4 +1,5 @@
 query me {
+<<<<<<< HEAD
   user: me {
     ...MeUser
   }
@@ -37,5 +38,73 @@ fragment MeUserTimer on Timer {
         name
       }
     }
+=======
+  me {
+    ...meUser
+>>>>>>> 33e7e287093487395e80b7813f41ed17caed4ded
   }
+}
+
+query usersConnection(
+  $where: UserWhereInput
+  $orderBy: [UserOrderByInput!]
+  $skip: Int
+  $take: Int
+) {
+  users(where: $where, orderBy: $orderBy, skip: $skip, take: $take) {
+    ...user
+  }
+  usersCount
+}
+
+query UserUnique($where: UserWhereUniqueInput!) {
+  user(where: $where) {
+    ...user
+  }
+}
+
+mutation signin($where: UserWhereUniqueInput!, $data: UserSigninDataInput!) {
+  signin(where: $where, data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    token
+    data {
+      ...user
+    }
+  }
+}
+
+mutation signup($data: UserSignupDataInput!) {
+  signup(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    token
+    data {
+      ...user
+    }
+  }
+}
+
+fragment user on User {
+  id
+  createdAt
+  updatedAt
+  email
+  showEmail
+  username
+  fullname
+  showFullname
+  image
+}
+
+fragment meUser on User {
+  ...user
 }

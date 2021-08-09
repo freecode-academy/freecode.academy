@@ -1,7 +1,10 @@
 import express from 'express'
 import next from 'next'
-import { createProxyMiddleware, Options } from 'http-proxy-middleware'
-import { endpoint } from './config'
+
+import './config'
+import graphqlServer from './graphqlServer'
+
+import { graphqlUploadExpress } from 'graphql-upload'
 
 import Sitemap from './sitemap/prisma-cms.com'
 
@@ -12,75 +15,51 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const createProxy = (props: Options) => {
-  return createProxyMiddleware({
-    target: endpoint,
-    changeOrigin: true,
-    onError: (err, _req, res) => {
-      console.error('apiPropxy onError err', err)
-
-      try {
-        res.writeHead(500, {
-          'Content-Type': 'text/plain',
-        })
-      } catch (error) {
-        console.error(error)
-      }
-
-      res.end(
-        'Something went wrong. And we are reporting a custom error message.'
-      )
-    },
-    router: (req) => {
-      if (!req.headers.referer && req.headers.host) {
-        req.headers.referer = `http://${req.headers.host}`
-      }
-
-      return endpoint
-    },
-    ...props,
-  })
-}
-
-const apiProxy = createProxy({
-  ws: true,
-  pathRewrite: {
-    '^/api(/|$)': '/',
-  },
-})
-
-// const imagesProxy = createProxy({
-//   ws: true,
-//   pathRewrite: {
-//     '^/api(/|$)': '/',
-//   },
-// });
-
 app.prepare().then(() => {
   const server = express()
 
   server.use(express.static(cwd + '/shared'))
 
-  server.use(
-    '/images/',
-    createProxy({
-      pathRewrite: {
-        '^/images/resized/([^/]+)/uploads/(.+)': '/images/$1/$2',
-        '^/images/resized/([^/]+)/(.+)': '/images/$1/$2',
-        '^/images/([^/]+)/uploads/(.+)': '/images/$1/$2',
-      },
+  // TODO Restore images
+  // server.use(
+  //   '/images/',
+  //   createProxy({
+  //     pathRewrite: {
+  //       '^/images/resized/([^/]+)/uploads/(.+)': '/images/$1/$2',
+  //       '^/images/resized/([^/]+)/(.+)': '/images/$1/$2',
+  //       '^/images/([^/]+)/uploads/(.+)': '/images/$1/$2',
+  //     },
+  //   })
+  // )
+
+  // server.use('/uploads', express.static('/'))
+
+  server.use('/uploads', (req, res) => {
+    res.sendFile(cwd + '/uploads/' + decodeURI(req.url), (error) => {
+      console.error(error)
     })
-  )
+  })
 
   /**
    * PWA and other public generated files
    */
   server.use(express.static(cwd + '/.next/public'))
 
+  // server.use(
+  //   '/api',
+  //   graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
+  //   // graphqlHTTP({ schema })
+  // )
+
+  server.use(graphqlUploadExpress())
+
   /**
    * API requests
    */
-  server.use('/api/', apiProxy)
+  graphqlServer.applyMiddleware({
+    app: server,
+    path: '/api',
+  })
 
   server.get('/sitemap.xml', new Sitemap({}).middleware)
 

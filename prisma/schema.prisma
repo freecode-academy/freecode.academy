@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid()) @db.VarChar(32)
+  username     String?  @unique
+  email        String?  @unique
+  fullname     String?
+  password     String?
+  active       Boolean  @default(true)
+  sudo         Boolean  @default(false)
+  createdAt    DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt    DateTime @default(now("0")) @updatedAt @db.DateTime("0")
+  showEmail    Boolean  @default(false)
+  showFullname Boolean  @default(true)
+  image        String?
+  Tokens       Token[]
+  Files        File[]
+}
+
+model Token {
+  id        String    @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime  @default(now("0")) @db.DateTime("0")
+  expiredAt DateTime? @db.DateTime("0")
+  userId    String?   @db.VarChar(32)
+
+  // User - не обязательный объект, так как необходимость сформировать токен
+  // может быть еще до существования объекта пользователя
+  User User? @relation(fields: [userId], references: [id])
+
+  @@index(createdAt)
+}
+
+model File {
+  id        String   @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt DateTime @default(now("0")) @updatedAt @db.DateTime("0")
+  path      String   @db.MediumText
+  filename  String
+  name      String?
+  mimetype  String
+  encoding  String
+  size      Float
+  rank      Int      @default(value: 0)
+
+  createdById String? @db.VarChar(32)
+  CreatedBy   User?   @relation(fields: [createdById], references: [id])
+}

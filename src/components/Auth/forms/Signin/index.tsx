@@ -113,10 +113,8 @@ class AuthUsersForm extends PrismaCmsComponent<
   render() {
     const { uri } = this.context
 
-    const {
-      first = AuthUsersForm.defaultProps.first as number,
-      ...other
-    } = this.props
+    const { first = AuthUsersForm.defaultProps.first as number, ...other } =
+      this.props
 
     const { password } = this.state
 

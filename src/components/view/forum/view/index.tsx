@@ -265,8 +265,8 @@ export default withStyles(customStyles)((props: ForumViewProps) => {
     router.push('/add-topic.html')
   }, [router])
 
-  return useMemo(() => <ForumView {...props} addObject={addObject} />, [
-    addObject,
-    props,
-  ])
+  return useMemo(
+    () => <ForumView {...props} addObject={addObject} />,
+    [addObject, props]
+  )
 })

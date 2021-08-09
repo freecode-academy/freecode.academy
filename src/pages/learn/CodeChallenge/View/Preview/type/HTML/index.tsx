@@ -64,9 +64,8 @@ const PreviewHtml: React.FC = () => {
     /**
      * Создаем новый документ
      */
-    const doc = global.document.implementation.createHTMLDocument(
-      'New Document'
-    )
+    const doc =
+      global.document.implementation.createHTMLDocument('New Document')
 
     doc.open()
     doc.write(html)

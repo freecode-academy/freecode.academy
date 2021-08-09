@@ -612,8 +612,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                     id: 'ckfdz5d85q16a0800f34ym0aq',
                     updatedAt: new Date('2020-09-22T13:08:34.229Z'),
                     name: 'Я уже сейчас так наверняка не скажу, но скорее все',
-                    uri:
-                      '/comments/blog/vehicles/315.html/ya-uzhe-seychas-tak-navernyaka-ne-skazhu,-no-skoree-vse',
+                    uri: '/comments/blog/vehicles/315.html/ya-uzhe-seychas-tak-navernyaka-ne-skazhu,-no-skoree-vse',
                     longtitle: null,
                     __typename: 'Resource',
                     CreatedBy: {
@@ -634,8 +633,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                     id: 'ckfdygdfipyd30800jvndzlv2',
                     updatedAt: new Date('2020-09-22T12:49:08.093Z'),
                     name: 'Ну вот всё поставил как в статье. Картbнка каптчи',
-                    uri:
-                      '/comments/blog/vehicles/315.html/nu-vot-vse-postavil-kak-v-state.-kartbnka-kaptchi',
+                    uri: '/comments/blog/vehicles/315.html/nu-vot-vse-postavil-kak-v-state.-kartbnka-kaptchi',
                     longtitle: null,
                     __typename: 'Resource',
                     CreatedBy: {
@@ -656,8 +654,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                     id: 'ckfdy1mbkpwug0800qwip8p8y',
                     updatedAt: new Date('2020-09-22T12:37:39.775Z'),
                     name: 'В статье, вроде, информации достаточно в статье. П',
-                    uri:
-                      '/comments/blog/vehicles/315.html/v-state,-vrode,-informatsii-dostatochno-v-state.-p',
+                    uri: '/comments/blog/vehicles/315.html/v-state,-vrode,-informatsii-dostatochno-v-state.-p',
                     longtitle: null,
                     __typename: 'Resource',
                     CreatedBy: {
@@ -678,8 +675,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                     id: 'ckfdxq8wopveo080030h6dqen',
                     updatedAt: new Date('2020-09-22T12:28:59.895Z'),
                     name: 'А ге инструкция как её пользовать?',
-                    uri:
-                      '/comments/blog/vehicles/315.html/a-ge-instruktsiya-kak-ee-polzovat',
+                    uri: '/comments/blog/vehicles/315.html/a-ge-instruktsiya-kak-ee-polzovat',
                     longtitle: null,
                     __typename: 'Resource',
                     CreatedBy: {
@@ -720,10 +716,8 @@ jest.mock('@apollo/client/react/hooks', () => {
                   node: {
                     id: 'cjoe8a0cr0c840d96szf0f3hz',
                     updatedAt: new Date('2020-05-21T20:58:41.080Z'),
-                    name:
-                      'Гонки на скорость, часть вторая. Ускорение Modx Revo более чем в 8 раз',
-                    uri:
-                      '/topics/gonki-na-skorost-chast-vtoraya.-uskorenie-modx-revo-bolee-chem-v-8-raz.html',
+                    name: 'Гонки на скорость, часть вторая. Ускорение Modx Revo более чем в 8 раз',
+                    uri: '/topics/gonki-na-skorost-chast-vtoraya.-uskorenie-modx-revo-bolee-chem-v-8-raz.html',
                     longtitle: null,
                     __typename: 'Resource',
                     CreatedBy: {
@@ -1403,8 +1397,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                     id: 'ckah9cb3631dk0800444o98nb',
                     updatedAt: new Date('2020-05-21T20:58:41.057Z'),
                     name: 'Вот попробуйте прописать другой шаблон. А лучше, е',
-                    uri:
-                      '/comments/topics/gonki-na-skorost-chast-vtoraya.-uskorenie-modx-revo-bolee-chem-v-8-raz.html/vot-poprobuyte-propisat-drugoy-shablon.-a-luchshe,-e',
+                    uri: '/comments/topics/gonki-na-skorost-chast-vtoraya.-uskorenie-modx-revo-bolee-chem-v-8-raz.html/vot-poprobuyte-propisat-drugoy-shablon.-a-luchshe,-e',
                     longtitle: null,
                     __typename: 'Resource',
                     CreatedBy: {
@@ -1425,8 +1418,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                     id: 'ckagv2e6o258i08003jhuzaxu',
                     updatedAt: new Date('2020-05-21T14:19:03.887Z'),
                     name: 'Имеется другой шаблон tpl в логах ничего нет, что',
-                    uri:
-                      '/comments/topics/gonki-na-skorost-chast-vtoraya.-uskorenie-modx-revo-bolee-chem-v-8-raz.html/imeetsya-drugoy-shablon-tpl-v-logakh-nichego-net,-chto',
+                    uri: '/comments/topics/gonki-na-skorost-chast-vtoraya.-uskorenie-modx-revo-bolee-chem-v-8-raz.html/imeetsya-drugoy-shablon-tpl-v-logakh-nichego-net,-chto',
                     longtitle: null,
                     __typename: 'Resource',
                     CreatedBy: {
@@ -1448,8 +1440,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                     id: 'ckaguje55248r080063orbko0',
                     updatedAt: new Date('2020-05-21T14:04:17.360Z'),
                     name: 'Смотрите пп 2 и 3. У вас шаблон foo.tpl имеется? С',
-                    uri:
-                      '/comments/topics/gonki-na-skorost-chast-vtoraya.-uskorenie-modx-revo-bolee-chem-v-8-raz.html/smotrite-pp-2-i-3.-u-vas-shablon-foo.tpl-imeetsya-s',
+                    uri: '/comments/topics/gonki-na-skorost-chast-vtoraya.-uskorenie-modx-revo-bolee-chem-v-8-raz.html/smotrite-pp-2-i-3.-u-vas-shablon-foo.tpl-imeetsya-s',
                     longtitle: null,
                     __typename: 'Resource',
                     CreatedBy: {

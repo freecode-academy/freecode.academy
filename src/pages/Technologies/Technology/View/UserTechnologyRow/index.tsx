@@ -27,9 +27,8 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
 }) => {
   const mutationTuple = useUpdateUserTechnologyProcessorMutation()
 
-  const { loading, mutation, snakbar, errors } = useProcessorMutation(
-    mutationTuple
-  )
+  const { loading, mutation, snakbar, errors } =
+    useProcessorMutation(mutationTuple)
 
   const [data, setData] = useState<UserTechnologyUpdateInput | null>(null)
 

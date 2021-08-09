@@ -19,9 +19,11 @@ type useStartTimerProps = {
 const useStartTimer = ({ taskId }: useStartTimerProps) => {
   const mutationTuple = useCreateTimerProcessorMutation()
 
-  const { mutation: createMutation, snakbar, loading } = useProcessorMutation(
-    mutationTuple
-  )
+  const {
+    mutation: createMutation,
+    snakbar,
+    loading,
+  } = useProcessorMutation(mutationTuple)
 
   const mutation = useCallback(() => {
     createMutation({

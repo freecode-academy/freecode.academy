@@ -64,8 +64,7 @@ const args: Partial<ContainerProps> = {
       blocks: [
         {
           key: 'el8bh',
-          text:
-            'а слушай, такой вопрос, я аот делаю меню через pdomenu (вот ссылка, меню слева - http://aboev.top-dom.by/zhenskoe/3d-futbolki/), но у меня не получается сделать,  чтобы все пункты были свернут, но только пункт, где активный кружок раскрыт был.',
+          text: 'а слушай, такой вопрос, я аот делаю меню через pdomenu (вот ссылка, меню слева - http://aboev.top-dom.by/zhenskoe/3d-futbolki/), но у меня не получается сделать,  чтобы все пункты были свернут, но только пункт, где активный кружок раскрыт был.',
           type: 'unstyled',
           depth: 0,
           inlineStyleRanges: [],

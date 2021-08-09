@@ -55,8 +55,11 @@ export class JoinUserTechnologyButton extends EditorComponent {
     return (
       <ObjectContext.Consumer>
         {(objectContext) => {
-          const { id: technologyId, UserTechnologies, __typename } =
-            objectContext.object || {}
+          const {
+            id: technologyId,
+            UserTechnologies,
+            __typename,
+          } = objectContext.object || {}
 
           if (!technologyId) {
             return null

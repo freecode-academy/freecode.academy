@@ -17,11 +17,8 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
   eventContent,
   ...other
 }) => {
-  const {
-    activeTimer,
-    stopTimerClickHandler,
-    stopTimerLoading,
-  } = useActiveTimer()
+  const { activeTimer, stopTimerClickHandler, stopTimerLoading } =
+    useActiveTimer()
 
   /**
    * В текущей задаче есть активный таймер выполнения

@@ -48,12 +48,14 @@ const UserView: React.FC<UserViewProps> = (props) => {
   }, [data])
 
   const userEdited = useMemo(() => {
-    return (data && user
-      ? {
-          ...user,
-          ...data,
-        }
-      : user) as UserViewProps['object']
+    return (
+      data && user
+        ? {
+            ...user,
+            ...data,
+          }
+        : user
+    ) as UserViewProps['object']
   }, [data, user])
 
   const onChange = useCallback(

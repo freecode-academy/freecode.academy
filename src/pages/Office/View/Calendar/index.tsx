@@ -38,9 +38,8 @@ const Calendar: React.FC<CalendarProps> = ({
 }) => {
   const updateTaskTuple = useUpdateTaskProcessorMutation()
 
-  const { snakbar, mutation: updateTask } = useProcessorMutation(
-    updateTaskTuple
-  )
+  const { snakbar, mutation: updateTask } =
+    useProcessorMutation(updateTaskTuple)
 
   // state: DemoAppState = {
   //   weekendsVisible: true,

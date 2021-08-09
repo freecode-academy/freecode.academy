@@ -9,7 +9,7 @@ fragment task_ on Task {
   #     ...UserNoNesting
   #   }
   # }
-  Timers(orderBy: createdAt_DESC, where: $timersWhere) {
+  Timers(orderBy: { createdAt: desc }, where: $timersWhere) {
     ...TimerNoNesting
     CreatedBy {
       ...UserNoNesting
@@ -31,15 +31,15 @@ fragment task_ on Task {
       }
     }
   }
-  RelatedTo {
-    ...TaskNoNesting
-  }
-  Reactions {
-    ...TaskReactionNoNesting
-    CreatedBy {
-      ...UserNoNesting
-    }
-  }
+  # RelatedTo {
+  #   ...TaskNoNesting
+  # }
+  # Reactions {
+  #   ...TaskReactionNoNesting
+  #   CreatedBy {
+  #     ...UserNoNesting
+  #   }
+  # }
   Parent {
     id
   }

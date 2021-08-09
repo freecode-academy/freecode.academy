@@ -3,7 +3,7 @@ fragment resource_ on Resource {
   CreatedBy {
     ...UserNoNesting
   }
-  Comments(orderBy: createdAt_ASC) {
+  Comments(orderBy: { createdAt: asc }) {
     id
     uri
     createdAt
@@ -28,6 +28,7 @@ fragment resource_ on Resource {
     type
   }
   Tags {
+    id
     Tag {
       id
       name

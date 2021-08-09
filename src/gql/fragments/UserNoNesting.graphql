@@ -7,7 +7,7 @@ fragment UserNoNesting on User {
   phone
   showEmail
   showPhone
-  password
+  # password
   fullname
   image
   address
@@ -17,6 +17,9 @@ fragment UserNoNesting on User {
   deleted
   hasEmail
   hasPhone
-  marketplaceToken
-  hidden
+  # marketplaceToken
+  # hidden
+  acceptChatMessageAnonymous
+  acceptNewChatRoomAnonymous
+  acceptNewChatRoom
 }

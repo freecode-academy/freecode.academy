@@ -59,10 +59,12 @@ const PreviewModern: React.FC = () => {
   }, [challengeData, file])
 
   const frameContent = useMemo(() => {
-    const required = ((challenge?.required ?? []) as {
-      src?: string
-      link?: string
-    }[]).concat([
+    const required = (
+      (challenge?.required ?? []) as {
+        src?: string
+        link?: string
+      }[]
+    ).concat([
       {
         src: 'https://unpkg.com/@babel/standalone/babel.min.js',
       },

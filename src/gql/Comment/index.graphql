@@ -1,8 +1,8 @@
 query commentsConnection(
   $first: Int = 10
   $skip: Int = 0
-  $orderBy: ResourceOrderByInput = createdAt_DESC
-  $where: ResourceWhereInput = { type: Comment }
+  $orderBy: ResourceOrderByInput = { createdAt: desc }
+  $where: ResourceWhereInput = { type: { equals: "Comment" } }
 ) {
   objectsConnection: resourcesConnection(
     where: $where

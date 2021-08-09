@@ -34,9 +34,10 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
 
   // const contents = context?.challengeData.file.contents || ""
 
-  const output = useMemo(() => context?.logger.output ?? [], [
-    context?.logger.output,
-  ])
+  const output = useMemo(
+    () => context?.logger.output ?? [],
+    [context?.logger.output]
+  )
 
   // const getChallengeFile = useCallback((): TestFile | null => {
   //   const { files } = object

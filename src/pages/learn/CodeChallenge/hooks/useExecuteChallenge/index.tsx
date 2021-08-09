@@ -103,9 +103,10 @@ function useExecuteChallenge() {
       }
     }
 
-    const frame = global.document.querySelector<ChallengeTestIFrameElement>(
-      'iframe#tests-frame'
-    )
+    const frame =
+      global.document.querySelector<ChallengeTestIFrameElement>(
+        'iframe#tests-frame'
+      )
 
     // Reset logger
     context.logger.setOutput([])

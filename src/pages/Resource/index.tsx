@@ -57,7 +57,7 @@ const ResourcePage: Page = (props) => {
     return null
   }
 
-  switch (object?.type) {
+  switch (object?.typewefwef) {
     case ResourceType.TOPIC:
       return <TopicPage {...props} />
 

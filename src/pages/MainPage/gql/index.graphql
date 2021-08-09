@@ -1,32 +1,40 @@
 query mainPage($timersWhere: TimerWhereInput) {
   students: users(
-    first: 4
-    orderBy: createdAt_DESC
-    where: { ProjectsCreated_some: { type: Education } }
+    take: 4
+    orderBy: { createdAt: desc }
+
+    # TODO Check logic
+    # where: { ProjectsCreated_some: { type: Education } }
+    where: {
+      Project_ProjectToUser: { some: { type: { equals: "Education" } } }
+    }
   ) {
     ...UserNoNesting
   }
 
   codeChallengeCompletions(
-    orderBy: createdAt_DESC
-    first: 3
-    where: { Task: { status: Completed } }
+    orderBy: { createdAt: desc }
+    take: 3
+    # where: { Task: { status: Completed } }
+    where: {
+      Task_CodeChallengeCompletionToTask: { status: { equals: "Completed" } }
+    }
   ) {
     ...mainPageCodeChallengeCompletion
   }
 
   comments: resources(
-    first: 5
-    orderBy: createdAt_DESC
-    where: { type: Comment }
+    take: 5
+    orderBy: { createdAt: desc }
+    where: { type: { equals: "Comment" } }
   ) {
     ...resource_
   }
 
   # Задачи, требующие выполнения
   tasksNeedHelp: tasksConnection(
-    where: { needHelp: true, status_not_in: [Completed] }
-    orderBy: createdAt_DESC
+    where: { needHelp: { equals: true }, status: { notIn: ["Completed"] } }
+    orderBy: { createdAt: desc }
     first: 3
   ) {
     aggregate {

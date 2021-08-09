@@ -2,7 +2,7 @@ query topicsConnection(
   $first: Int = 10
   $skip: Int
   $where: ResourceWhereInput
-  $orderBy: ResourceOrderByInput = createdAt_DESC
+  $orderBy: ResourceOrderByInput = { createdAt: desc }
 ) {
   objectsConnection: resourcesConnection(
     orderBy: $orderBy
@@ -30,7 +30,7 @@ fragment topicsConnectionTopic on Resource {
   CreatedBy {
     ...topicsConnectionUser
   }
-  Comments(orderBy: id_ASC) {
+  Comments(orderBy: { createdAt: asc }) {
     id
     updatedAt
     CreatedBy {

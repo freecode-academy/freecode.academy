@@ -56,18 +56,6 @@ const webpack = (config, options) => {
       filename: 'static/[name].worker.js',
     })
   )
-  // Object.assign(config, {
-  //   // https://nextjs.org/docs/api-reference/next.config.js/disabling-etag-generation
-  //   generateEtags: false,
-  // });
-
-  config.resolve.fallback = {
-    ...config.resolve.fallback,
-
-    // https://freecode.academy/tasks/ckp9ahnondb4n0899d1cg5gwm
-    os: require.resolve('os-browserify/browser'),
-  }
-
 
   /**
    * Fix locales issue
@@ -106,11 +94,11 @@ module.exports = (phase, defaultConfig) => {
               //   // video: ...,
               // },
 
-          disable:
-            process.env.PWA !== 'true' ||
-            process.env.NODE_ENV === 'development',
-        },
-        webpack,
+              disable:
+                process.env.PWA !== 'true' ||
+                process.env.NODE_ENV === 'development',
+            },
+            webpack,
 
             // https://github.com/shadowwalker/next-pwa/issues/198#issuecomment-817205700
             // future: {

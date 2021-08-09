@@ -1,4 +1,4 @@
-mutation signin($where: UserWhereUniqueInput!, $data: SigninDataInput!) {
+mutation signin($where: UserWhereUniqueInput!, $data: UserSigninDataInput!) {
   response: signin(where: $where, data: $data) {
     ...FragmentAuthPayload
   }

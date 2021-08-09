@@ -32,13 +32,11 @@ const codeChallenge: CodeChallengeFragment = {
   translations: null,
   tests: [
     {
-      text:
-        'Create a <code>//</code> style comment that contains at least five letters.',
+      text: 'Create a <code>//</code> style comment that contains at least five letters.',
       testString: 'assert(code.match(/(\\/\\/)...../g));',
     },
     {
-      text:
-        'Create a <code>/* */</code> style comment that contains at least five letters.',
+      text: 'Create a <code>/* */</code> style comment that contains at least five letters.',
       testString: 'assert(code.match(/(\\/\\*)([^\\/]{5,})(?=\\*\\/)/gm));',
     },
   ],

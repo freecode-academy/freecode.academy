@@ -56,9 +56,10 @@ const SidePanel: React.FC<SidePanelProps> = ({
 
   // const isChallengeCompleted = true
 
-  const tests = useMemo(() => (object.tests || []) as CodeChallengeTest[], [
-    object.tests,
-  ])
+  const tests = useMemo(
+    () => (object.tests || []) as CodeChallengeTest[],
+    [object.tests]
+  )
 
   const toolPanel = useMemo(
     () =>

@@ -91,13 +91,8 @@ class Auth extends PrismaCmsComponent<AuthProps, AuthState> {
   }
 
   renderSigninForm() {
-    const {
-      open,
-      loginCanceled,
-      loginComplete,
-      showRegForm,
-      useMetamask,
-    } = this.props
+    const { open, loginCanceled, loginComplete, showRegForm, useMetamask } =
+      this.props
 
     return (
       <SigninForm

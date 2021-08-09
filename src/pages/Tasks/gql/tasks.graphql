@@ -1,22 +1,22 @@
 query tasksConnection(
   $where: TaskWhereInput
-  $orderBy: TaskOrderByInput = createdAt_DESC
+  $orderBy: TaskOrderByInput = { createdAt: desc }
   $skip: Int
-  $after: String
-  $before: String
+  # $after: String
+  # $before: String
   $first: Int = 10
-  $last: Int
+  # $last: Int
   $timersWhere: TimerWhereInput
 ) {
   objectsConnection: tasksConnection(
     where: $where
     orderBy: $orderBy
     skip: $skip
-    after: $after
-    before: $before
+    # after: $after
+    # before: $before
     first: $first
-    last: $last
-  ) {
+  ) # last: $last
+  {
     aggregate {
       count
     }

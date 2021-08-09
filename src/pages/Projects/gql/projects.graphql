@@ -2,7 +2,7 @@ query projectsConnection(
   $first: Int = 12
   $skip: Int
   $where: ProjectWhereInput
-  $orderBy: ProjectOrderByInput = updatedAt_DESC
+  $orderBy: ProjectOrderByInput = { updatedAt: desc }
 ) {
   objectsConnection: projectsConnection(
     orderBy: $orderBy
@@ -69,24 +69,5 @@ fragment projectsConnectionProject on Project {
 }
 
 fragment projectsConnectionUser on User {
-  id
-  createdAt
-  updatedAt
-  username
-  email
-  phone
-  showEmail
-  showPhone
-  password
-  fullname
-  image
-  address
-  sudo
-  active
-  activated
-  deleted
-  hasEmail
-  hasPhone
-  marketplaceToken
-  hidden
+  ...UserNoNesting
 }

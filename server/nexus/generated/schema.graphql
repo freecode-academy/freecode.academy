@@ -2,6 +2,42 @@
 ### Do not make changes to this file directly
 
 
+type AggregateChatMessage {
+  count: Int!
+}
+
+type AggregateNotice {
+  count: Int!
+}
+
+type AggregateProject {
+  count: Int!
+}
+
+type AggregateResource {
+  count: Int!
+}
+
+type AggregateTag {
+  count: Int!
+}
+
+type AggregateTask {
+  count: Int!
+}
+
+type AggregateTechnology {
+  count: Int!
+}
+
+type AggregateTimer {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
 """Объект ответа мутации пользователя"""
 type AuthPayload {
   data: User
@@ -11,9 +47,531 @@ type AuthPayload {
   token: String
 }
 
+input BlockListRelationFilter {
+  every: BlockWhereInput
+  none: BlockWhereInput
+  some: BlockWhereInput
+}
+
+input BlockWhereInput {
+  AND: [BlockWhereInput!]
+  NOT: [BlockWhereInput!]
+  OR: [BlockWhereInput!]
+  World: WorldWhereInput
+  id: StringFilter
+  representation: StringFilter
+  type: IntFilter
+  world: StringNullableFilter
+  x: IntFilter
+  y: IntFilter
+  z: IntFilter
+}
+
 input BoolFilter {
   equals: Boolean
   not: NestedBoolFilter
+}
+
+input BoolNullableFilter {
+  equals: Boolean
+  not: NestedBoolNullableFilter
+}
+
+input CallRequestListRelationFilter {
+  every: CallRequestWhereInput
+  none: CallRequestWhereInput
+  some: CallRequestWhereInput
+}
+
+input CallRequestWhereInput {
+  AND: [CallRequestWhereInput!]
+  Called: StringNullableFilter
+  Caller: StringNullableFilter
+  ChatRoom: ChatRoomWhereInput
+  NOT: [CallRequestWhereInput!]
+  OR: [CallRequestWhereInput!]
+  Room: StringNullableFilter
+  User_CallRequest_CalledToUser: UserWhereInput
+  User_CallRequest_CallerToUser: UserWhereInput
+  called_descriptions: StringFilter
+  caller_descriptions: StringFilter
+  createdAt: DateTimeFilter
+  endedAt: DateTimeNullableFilter
+  id: StringFilter
+  startedAt: DateTimeNullableFilter
+  status: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input CareerListRelationFilter {
+  every: CareerWhereInput
+  none: CareerWhereInput
+  some: CareerWhereInput
+}
+
+input CareerWhereInput {
+  AND: [CareerWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [CareerWhereInput!]
+  OR: [CareerWhereInput!]
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  start_date: DateTimeNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+type ChatMessage {
+  CreatedBy: User
+  Room: ChatRoom
+  content: JSON
+  contentText: String
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+type ChatMessageConnection {
+  aggregate: AggregateChatMessage!
+  edges: [ChatMessageEdge]!
+}
+
+input ChatMessageCreateInput {
+  Room: ChatRoomCreateOneWithoutMessagesInput
+  content: JSON
+}
+
+type ChatMessageEdge {
+  node: ChatMessage!
+}
+
+input ChatMessageListRelationFilter {
+  every: ChatMessageWhereInput
+  none: ChatMessageWhereInput
+  some: ChatMessageWhereInput
+}
+
+input ChatMessageOrderByInput {
+  CreatedBy: SortOrder
+  Room: SortOrder
+  content: SortOrder
+  contentText: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input ChatMessageReadedListRelationFilter {
+  every: ChatMessageReadedWhereInput
+  none: ChatMessageReadedWhereInput
+  some: ChatMessageReadedWhereInput
+}
+
+input ChatMessageReadedWhereInput {
+  AND: [ChatMessageReadedWhereInput!]
+  ChatMessage: ChatMessageWhereInput
+  Message: StringNullableFilter
+  NOT: [ChatMessageReadedWhereInput!]
+  OR: [ChatMessageReadedWhereInput!]
+  User: StringNullableFilter
+  User_ChatMessageReadedToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+type ChatMessageResponse {
+  data: ChatMessage
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
+input ChatMessageWhereInput {
+  AND: [ChatMessageWhereInput!]
+  ChatMessageReaded: ChatMessageReadedListRelationFilter
+  ChatRoom: ChatRoomWhereInput
+  CreatedBy: StringNullableFilter
+  NOT: [ChatMessageWhereInput!]
+  Notice: NoticeListRelationFilter
+  OR: [ChatMessageWhereInput!]
+  Room: StringNullableFilter
+  User: UserWhereInput
+  content: StringNullableFilter
+  contentText: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input ChatMessageWhereUniqueInput {
+  id: String
+}
+
+type ChatRoom {
+  CreatedBy: User
+  Invitations: [ChatRoomInvitation!]
+  Members: [User!]
+  Messages: [ChatMessage!]
+  code: ID
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  image: String
+  isPublic: Boolean
+  name: String!
+  updatedAt: DateTime!
+}
+
+input ChatRoomCreateOneWithoutMessagesInput {
+  ID: ID
+  connect: ChatRoomWhereUniqueInput
+}
+
+type ChatRoomInvitation {
+  ChatRoom: ChatRoom
+  CreatedBy: User
+  User: User
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+input ChatRoomInvitationListRelationFilter {
+  every: ChatRoomInvitationWhereInput
+  none: ChatRoomInvitationWhereInput
+  some: ChatRoomInvitationWhereInput
+}
+
+input ChatRoomInvitationWhereInput {
+  AND: [ChatRoomInvitationWhereInput!]
+  ChatRoom: StringNullableFilter
+  ChatRoom_ChatRoomToChatRoomInvitation: ChatRoomWhereInput
+  CreatedBy: StringNullableFilter
+  NOT: [ChatRoomInvitationWhereInput!]
+  Notice: StringNullableFilter
+  Notice_ChatRoomInvitationToNotice: NoticeWhereInput
+  OR: [ChatRoomInvitationWhereInput!]
+  User: StringNullableFilter
+  User_ChatRoomInvitation_CreatedByToUser: UserWhereInput
+  User_ChatRoomInvitation_UserToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input ChatRoomListRelationFilter {
+  every: ChatRoomWhereInput
+  none: ChatRoomWhereInput
+  some: ChatRoomWhereInput
+}
+
+input ChatRoomOrderByInput {
+  CreatedBy: SortOrder
+  allowAnonymous: SortOrder
+  code: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  image: SortOrder
+  isPublic: SortOrder
+  name: SortOrder
+  sandbox: SortOrder
+  updatedAt: SortOrder
+}
+
+input ChatRoomWhereInput {
+  AND: [ChatRoomWhereInput!]
+  CallRequest: CallRequestListRelationFilter
+  ChatMessage: ChatMessageListRelationFilter
+  ChatRoomInvitation: ChatRoomInvitationListRelationFilter
+  CreatedBy: StringNullableFilter
+  NOT: [ChatRoomWhereInput!]
+  OR: [ChatRoomWhereInput!]
+  Project: ProjectListRelationFilter
+  Task: TaskListRelationFilter
+  User_ChatRoomToUser: UserWhereInput
+  User_ChatRoomsMembers: UserListRelationFilter
+  allowAnonymous: BoolNullableFilter
+  code: StringNullableFilter
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  id: StringFilter
+  image: StringNullableFilter
+  isPublic: BoolNullableFilter
+  name: StringFilter
+  sandbox: BoolNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input ChatRoomWhereUniqueInput {
+  code: String
+  id: String
+}
+
+type CodeChallenge {
+  Block: CodeChallengeBlock
+  CreatedBy: User
+  Topic: Resource
+  challengeOrder: Int
+  challengeType: Int
+  createdAt: DateTime!
+  dashedName: String
+  description: String
+  externalKey: ID
+  files: JSON
+  forumTopicId: Int
+  id: ID!
+  instructions: String
+  isBeta: Boolean
+  isPrivate: Boolean
+  isRequired: Boolean
+  localeTitle: String
+  name: String
+  order: Int
+  rank: Int
+  required: JSON
+  solutions: JSON
+  superOrder: Int
+  template: String
+  tests: JSON
+  time: String
+  translations: JSON
+  updatedAt: DateTime!
+  videoUrl: String
+}
+
+type CodeChallengeBlock {
+  Challenges(orderBy: CodeChallengeOrderByInput): [CodeChallenge!]
+  Children(orderBy: CodeChallengeBlockOrderByInput): [CodeChallengeBlock!]
+  Parent: CodeChallengeBlock
+  createdAt: DateTime!
+  id: ID!
+  name: String
+  updatedAt: DateTime!
+}
+
+input CodeChallengeBlockListRelationFilter {
+  every: CodeChallengeBlockWhereInput
+  none: CodeChallengeBlockWhereInput
+  some: CodeChallengeBlockWhereInput
+}
+
+input CodeChallengeBlockOrderByInput {
+  CreatedBy: SortOrder
+  Parent: SortOrder
+  createdAt: SortOrder
+  externalKey: SortOrder
+  id: SortOrder
+  name: SortOrder
+  rank: SortOrder
+  updatedAt: SortOrder
+}
+
+input CodeChallengeBlockWhereInput {
+  AND: [CodeChallengeBlockWhereInput!]
+  CodeChallenge: CodeChallengeListRelationFilter
+  CodeChallengeBlock: CodeChallengeBlockWhereInput
+  CreatedBy: StringNullableFilter
+  NOT: [CodeChallengeBlockWhereInput!]
+  OR: [CodeChallengeBlockWhereInput!]
+  Parent: StringNullableFilter
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  externalKey: StringNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  other_CodeChallengeBlock: CodeChallengeBlockListRelationFilter
+  rank: IntNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input CodeChallengeBlockWhereUniqueInput {
+  id: String
+}
+
+type CodeChallengeCompletion {
+  CodeChallenge: CodeChallenge
+  CreatedBy: User
+  Task: Task
+  content: String
+  createdAt: DateTime!
+  id: ID!
+  success: Boolean
+  updatedAt: DateTime!
+}
+
+input CodeChallengeCompletionCreateInput {
+  CodeChallenge: CodeChallengeCreateOneWithoutCompletionsInput!
+}
+
+input CodeChallengeCompletionListRelationFilter {
+  every: CodeChallengeCompletionWhereInput
+  none: CodeChallengeCompletionWhereInput
+  some: CodeChallengeCompletionWhereInput
+}
+
+input CodeChallengeCompletionOrderByInput {
+  CodeChallenge: SortOrder
+  CreatedBy: SortOrder
+  Task: SortOrder
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  success: SortOrder
+  updatedAt: SortOrder
+}
+
+type CodeChallengeCompletionResponse {
+  data: CodeChallengeCompletion
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
+input CodeChallengeCompletionUpdateInput {
+  content: String
+  success: Boolean
+}
+
+input CodeChallengeCompletionWhereInput {
+  AND: [CodeChallengeCompletionWhereInput!]
+  CodeChallenge: StringNullableFilter
+  CodeChallenge_CodeChallengeToCodeChallengeCompletion: CodeChallengeWhereInput
+  CreatedBy: StringNullableFilter
+  NOT: [CodeChallengeCompletionWhereInput!]
+  OR: [CodeChallengeCompletionWhereInput!]
+  Task: StringNullableFilter
+  Task_CodeChallengeCompletionToTask: TaskWhereInput
+  User: UserWhereInput
+  content: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  success: BoolNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input CodeChallengeCompletionWhereUniqueInput {
+  id: String
+}
+
+input CodeChallengeCreateOneWithoutCompletionsInput {
+  connect: CodeChallengeWhereUniqueInput
+}
+
+input CodeChallengeListRelationFilter {
+  every: CodeChallengeWhereInput
+  none: CodeChallengeWhereInput
+  some: CodeChallengeWhereInput
+}
+
+input CodeChallengeOrderByInput {
+  Block: SortOrder
+  CreatedBy: SortOrder
+  Topic: SortOrder
+  challengeOrder: SortOrder
+  challengeType: SortOrder
+  createdAt: SortOrder
+  dashedName: SortOrder
+  description: SortOrder
+  externalKey: SortOrder
+  files: SortOrder
+  forumTopicId: SortOrder
+  id: SortOrder
+  instructions: SortOrder
+  isBeta: SortOrder
+  isPrivate: SortOrder
+  isRequired: SortOrder
+  localeTitle: SortOrder
+  name: SortOrder
+  order: SortOrder
+  rank: SortOrder
+  required: SortOrder
+  solutions: SortOrder
+  superOrder: SortOrder
+  template: SortOrder
+  tests: SortOrder
+  time: SortOrder
+  translations: SortOrder
+  updatedAt: SortOrder
+  videoUrl: SortOrder
+}
+
+input CodeChallengeWhereInput {
+  AND: [CodeChallengeWhereInput!]
+  Block: StringNullableFilter
+  CodeChallengeBlock: CodeChallengeBlockWhereInput
+  CodeChallengeCompletion: CodeChallengeCompletionListRelationFilter
+  CreatedBy: StringNullableFilter
+  NOT: [CodeChallengeWhereInput!]
+  OR: [CodeChallengeWhereInput!]
+  Resource: ResourceWhereInput
+  Topic: StringNullableFilter
+  User: UserWhereInput
+  challengeOrder: IntNullableFilter
+  challengeType: IntNullableFilter
+  createdAt: DateTimeFilter
+  dashedName: StringNullableFilter
+  description: StringNullableFilter
+  externalKey: StringNullableFilter
+  files: StringNullableFilter
+  forumTopicId: IntNullableFilter
+  id: StringFilter
+  instructions: StringNullableFilter
+  isBeta: BoolNullableFilter
+  isPrivate: BoolNullableFilter
+  isRequired: BoolNullableFilter
+  localeTitle: StringNullableFilter
+  name: StringNullableFilter
+  order: IntNullableFilter
+  rank: IntNullableFilter
+  required: StringNullableFilter
+  solutions: StringNullableFilter
+  superOrder: IntNullableFilter
+  template: StringNullableFilter
+  tests: StringNullableFilter
+  time: StringNullableFilter
+  translations: StringNullableFilter
+  updatedAt: DateTimeFilter
+  videoUrl: StringNullableFilter
+}
+
+input CodeChallengeWhereUniqueInput {
+  externalKey: String
+  id: String
+}
+
+input CommentCreateInput {
+  content: JSON
+  text: JSON
+}
+
+input CommentListRelationFilter {
+  every: CommentWhereInput
+  none: CommentWhereInput
+  some: CommentWhereInput
+}
+
+input CommentUpdateInput {
+  content: JSON
+  text: JSON
+}
+
+input CommentWhereInput {
+  AND: [CommentWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  TechnologyLesson: StringNullableFilter
+  TechnologyLesson_CommentToTechnologyLesson: TechnologyLessonWhereInput
+  User: UserWhereInput
+  components: StringNullableFilter
+  contentText: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  updatedAt: DateTimeFilter
 }
 
 """
@@ -41,6 +599,186 @@ input DateTimeNullableFilter {
   lte: DateTime
   not: NestedDateTimeNullableFilter
   notIn: [DateTime!]
+}
+
+scalar Decimal
+
+input DecimalFilter {
+  equals: Decimal
+  gt: Decimal
+  gte: Decimal
+  in: [Decimal!]
+  lt: Decimal
+  lte: Decimal
+  not: NestedDecimalFilter
+  notIn: [Decimal!]
+}
+
+input DecimalNullableFilter {
+  equals: Decimal
+  gt: Decimal
+  gte: Decimal
+  in: [Decimal!]
+  lt: Decimal
+  lte: Decimal
+  not: NestedDecimalNullableFilter
+  notIn: [Decimal!]
+}
+
+type EthAccount {
+  abi: JSON
+  address: String!
+  balance(convert: EthAmountConvert): Float
+  bytecode: String
+  createdAt: DateTime!
+  description: JSON
+  id: ID!
+  name: String
+  source: String
+  type: EthAccountType
+  updatedAt: DateTime!
+}
+
+input EthAccountListRelationFilter {
+  every: EthAccountWhereInput
+  none: EthAccountWhereInput
+  some: EthAccountWhereInput
+}
+
+enum EthAccountType {
+  Account
+  Contract
+}
+
+input EthAccountWhereInput {
+  AND: [EthAccountWhereInput!]
+  ContractSource: StringNullableFilter
+  CreatedBy: StringNullableFilter
+  EthBlock: EthBlockListRelationFilter
+  EthContractSource: EthContractSourceWhereInput
+  EthTransaction_EthAccountToEthTransaction_Account: EthTransactionListRelationFilter
+  EthTransaction_EthAccountToEthTransaction_Receiver: EthTransactionListRelationFilter
+  EthTransaction_EthAccountToEthTransaction_Sender: EthTransactionListRelationFilter
+  NOT: [EthAccountWhereInput!]
+  OR: [EthAccountWhereInput!]
+  Project: StringNullableFilter
+  Project_EthAccountToProject: ProjectWhereInput
+  Resource: ResourceListRelationFilter
+  User_EthAccountToUser_EthAccountAuthed: UserListRelationFilter
+  User_EthAccount_CreatedByToUser: UserWhereInput
+  abi: StringNullableFilter
+  address: StringFilter
+  bytecode: StringNullableFilter
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  source: StringNullableFilter
+  type: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+enum EthAmountConvert {
+  Gwei
+  Kwei
+  Mwei
+  ether
+  gether
+  kether
+  mether
+  nano
+  tether
+  wei
+}
+
+input EthBlockListRelationFilter {
+  every: EthBlockWhereInput
+  none: EthBlockWhereInput
+  some: EthBlockWhereInput
+}
+
+input EthBlockWhereInput {
+  AND: [EthBlockWhereInput!]
+  EthAccount: EthAccountWhereInput
+  EthBlock_A: EthBlockListRelationFilter
+  EthBlock_B: EthBlockListRelationFilter
+  EthTransaction: EthTransactionListRelationFilter
+  Miner: StringNullableFilter
+  NOT: [EthBlockWhereInput!]
+  OR: [EthBlockWhereInput!]
+  createdAt: DateTimeFilter
+  date: DateTimeNullableFilter
+  difficulty: DecimalNullableFilter
+  extraData: StringNullableFilter
+  gasLimit: DecimalNullableFilter
+  gasUsed: DecimalNullableFilter
+  hash: StringFilter
+  id: StringFilter
+  mixHash: StringNullableFilter
+  nonce: StringNullableFilter
+  number: IntFilter
+  parentHash: StringNullableFilter
+  receiptsRoot: StringNullableFilter
+  sha3Uncles: StringNullableFilter
+  size: IntNullableFilter
+  stateRoot: StringNullableFilter
+  totalDifficulty: DecimalNullableFilter
+  transactionsRoot: StringNullableFilter
+  transactions_count: IntNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input EthContractSourceListRelationFilter {
+  every: EthContractSourceWhereInput
+  none: EthContractSourceWhereInput
+  some: EthContractSourceWhereInput
+}
+
+input EthContractSourceWhereInput {
+  AND: [EthContractSourceWhereInput!]
+  CreatedBy: StringNullableFilter
+  EthAccount: EthAccountListRelationFilter
+  NOT: [EthContractSourceWhereInput!]
+  OR: [EthContractSourceWhereInput!]
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  source: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input EthTransactionListRelationFilter {
+  every: EthTransactionWhereInput
+  none: EthTransactionWhereInput
+  some: EthTransactionWhereInput
+}
+
+input EthTransactionWhereInput {
+  AND: [EthTransactionWhereInput!]
+  Account: StringNullableFilter
+  Block: StringNullableFilter
+  EthAccount_EthAccountToEthTransaction_Account: EthAccountWhereInput
+  EthAccount_EthAccountToEthTransaction_Receiver: EthAccountWhereInput
+  EthAccount_EthAccountToEthTransaction_Sender: EthAccountWhereInput
+  EthBlock: EthBlockWhereInput
+  NOT: [EthTransactionWhereInput!]
+  OR: [EthTransactionWhereInput!]
+  Receiver: StringNullableFilter
+  Sender: StringNullableFilter
+  address: StringFilter
+  amount: DecimalNullableFilter
+  chainId: IntFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  index: IntNullableFilter
+  input: StringNullableFilter
+  r: StringNullableFilter
+  s: StringNullableFilter
+  type: StringNullableFilter
+  updatedAt: DateTimeFilter
+  v: StringNullableFilter
 }
 
 """Файл"""
@@ -81,10 +819,13 @@ input FileListRelationFilter {
 }
 
 input FileOrderByInput {
+  CreatedBy: SortOrder
+  Gallery: SortOrder
+  ImageResource: SortOrder
   createdAt: SortOrder
-  createdById: SortOrder
   encoding: SortOrder
   filename: SortOrder
+  hash: SortOrder
   id: SortOrder
   mimetype: SortOrder
   name: SortOrder
@@ -96,19 +837,25 @@ input FileOrderByInput {
 
 input FileWhereInput {
   AND: [FileWhereInput!]
-  CreatedBy: UserWhereInput
+  CreatedBy: StringNullableFilter
+  Gallery: StringNullableFilter
+  Gallery_FileToGallery: GalleryWhereInput
+  ImageResource: StringNullableFilter
   NOT: [FileWhereInput!]
   OR: [FileWhereInput!]
+  Project: ProjectListRelationFilter
+  Resource: ResourceWhereInput
+  User: UserWhereInput
   createdAt: DateTimeFilter
-  createdById: StringNullableFilter
   encoding: StringFilter
-  filename: StringFilter
+  filename: StringNullableFilter
+  hash: StringNullableFilter
   id: StringFilter
   mimetype: StringFilter
   name: StringNullableFilter
   path: StringFilter
-  rank: IntFilter
-  size: FloatFilter
+  rank: IntNullableFilter
+  size: DecimalNullableFilter
   updatedAt: DateTimeFilter
 }
 
@@ -116,15 +863,100 @@ input FileWhereUniqueInput {
   id: String
 }
 
-input FloatFilter {
-  equals: Float
-  gt: Float
-  gte: Float
-  in: [Float!]
-  lt: Float
-  lte: Float
-  not: NestedFloatFilter
-  notIn: [Float!]
+input GalleryListRelationFilter {
+  every: GalleryWhereInput
+  none: GalleryWhereInput
+  some: GalleryWhereInput
+}
+
+input GalleryWhereInput {
+  AND: [GalleryWhereInput!]
+  CreatedBy: StringNullableFilter
+  File: FileListRelationFilter
+  NOT: [GalleryWhereInput!]
+  OR: [GalleryWhereInput!]
+  Resource: StringNullableFilter
+  Resource_GalleryToResource: ResourceWhereInput
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input GameListRelationFilter {
+  every: GameWhereInput
+  none: GameWhereInput
+  some: GameWhereInput
+}
+
+input GameResultListRelationFilter {
+  every: GameResultWhereInput
+  none: GameResultWhereInput
+  some: GameResultWhereInput
+}
+
+input GameResultWhereInput {
+  AND: [GameResultWhereInput!]
+  CreatedBy: StringNullableFilter
+  Game: StringNullableFilter
+  Game_GameToGameResult: GameWhereInput
+  NOT: [GameResultWhereInput!]
+  OR: [GameResultWhereInput!]
+  Team: StringNullableFilter
+  Team_GameResultToTeam: TeamWhereInput
+  User: StringNullableFilter
+  User_GameResult_CreatedByToUser: UserWhereInput
+  User_GameResult_UserToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  date: DateTimeNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  updatedAt: DateTimeFilter
+  value: DecimalNullableFilter
+}
+
+input GameWhereInput {
+  AND: [GameWhereInput!]
+  CreatedBy: StringNullableFilter
+  Game: GameWhereInput
+  GameResult: GameResultListRelationFilter
+  NOT: [GameWhereInput!]
+  OR: [GameWhereInput!]
+  Parent: StringNullableFilter
+  Team: TeamListRelationFilter
+  Tourney: StringNullableFilter
+  Tourney_GameToTourney: TourneyWhereInput
+  User_GameToUser: UserWhereInput
+  User_GameUsers: UserListRelationFilter
+  createdAt: DateTimeFilter
+  end_date: DateTimeNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  other_Game: GameListRelationFilter
+  sequence: IntNullableFilter
+  start_date: DateTimeNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input ImportListRelationFilter {
+  every: ImportWhereInput
+  none: ImportWhereInput
+  some: ImportWhereInput
+}
+
+input ImportWhereInput {
+  AND: [ImportWhereInput!]
+  CreatedBy: StringNullableFilter
+  Log: LogListRelationFilter
+  NOT: [ImportWhereInput!]
+  OR: [ImportWhereInput!]
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  status: StringFilter
+  updatedAt: DateTimeFilter
 }
 
 input IntFilter {
@@ -138,9 +970,155 @@ input IntFilter {
   notIn: [Int!]
 }
 
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+input InventoryWhereInput {
+  AND: [InventoryWhereInput!]
+  NOT: [InventoryWhereInput!]
+  OR: [InventoryWhereInput!]
+  Player: PlayerListRelationFilter
+  cursor: IntFilter
+  data: StringFilter
+  id: StringFilter
+}
+
 scalar JSON
 
+input LetsadsSmsMessageStatusItemListRelationFilter {
+  every: LetsadsSmsMessageStatusItemWhereInput
+  none: LetsadsSmsMessageStatusItemWhereInput
+  some: LetsadsSmsMessageStatusItemWhereInput
+}
+
+input LetsadsSmsMessageStatusItemWhereInput {
+  AND: [LetsadsSmsMessageStatusItemWhereInput!]
+  LetsadsSmsMessageStatus: LetsadsSmsMessageStatusWhereInput
+  NOT: [LetsadsSmsMessageStatusItemWhereInput!]
+  OR: [LetsadsSmsMessageStatusItemWhereInput!]
+  Status: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  sms_id: IntFilter
+  updatedAt: DateTimeFilter
+}
+
+input LetsadsSmsMessageStatusWhereInput {
+  AND: [LetsadsSmsMessageStatusWhereInput!]
+  LetsadsSmsMessageStatusItem: LetsadsSmsMessageStatusItemListRelationFilter
+  NOT: [LetsadsSmsMessageStatusWhereInput!]
+  OR: [LetsadsSmsMessageStatusWhereInput!]
+  SmsMessage: SmsMessageListRelationFilter
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  errorCode: StringNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input LetterListRelationFilter {
+  every: LetterWhereInput
+  none: LetterWhereInput
+  some: LetterWhereInput
+}
+
+input LetterWhereInput {
+  AND: [LetterWhereInput!]
+  NOT: [LetterWhereInput!]
+  OR: [LetterWhereInput!]
+  User: StringNullableFilter
+  User_LetterToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  deleteOnSend: BoolNullableFilter
+  email: StringFilter
+  id: StringFilter
+  message: StringFilter
+  rank: IntNullableFilter
+  replyTo: StringNullableFilter
+  returnTo: StringNullableFilter
+  status: StringFilter
+  subject: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input LogListRelationFilter {
+  every: LogWhereInput
+  none: LogWhereInput
+  some: LogWhereInput
+}
+
+input LogWhereInput {
+  AND: [LogWhereInput!]
+  Import: StringNullableFilter
+  Import_ImportToLog: ImportWhereInput
+  NOT: [LogWhereInput!]
+  OR: [LogWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  level: StringFilter
+  message: StringFilter
+  objectType: StringNullableFilter
+  stack: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input LogedInListRelationFilter {
+  every: LogedInWhereInput
+  none: LogedInWhereInput
+  some: LogedInWhereInput
+}
+
+input LogedInWhereInput {
+  AND: [LogedInWhereInput!]
+  NOT: [LogedInWhereInput!]
+  OR: [LogedInWhereInput!]
+  User: StringNullableFilter
+  User_LogedInToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  fake: BoolNullableFilter
+  id: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input MessageListRelationFilter {
+  every: MessageWhereInput
+  none: MessageWhereInput
+  some: MessageWhereInput
+}
+
+input MessageWhereInput {
+  AND: [MessageWhereInput!]
+  NOT: [MessageWhereInput!]
+  OR: [MessageWhereInput!]
+  World: WorldWhereInput
+  body: StringFilter
+  id: StringFilter
+  sender: StringNullableFilter
+  type: StringFilter
+  world: StringNullableFilter
+}
+
 type Mutation {
+  createChatMessageProcessor(data: ChatMessageCreateInput!): ChatMessageResponse!
+  createCodeChallengeCompletionProcessor(data: CodeChallengeCompletionCreateInput!): CodeChallengeCompletionResponse!
+  createCommentProcessor(data: CommentCreateInput!): ResourceResponse!
+  createProjectProcessor(data: ProjectCreateInput!): ProjectResponse!
+  createTaskProcessor(data: TaskCreateInput!): TaskResponse!
+  createTaskTechnologyProcessor(data: TaskTechnologyCreateInput!): TaskTechnologyResponse!
+  createTimerProcessor(data: TimerCreateInput!): TimerResponse!
+  createTopicProcessor(data: TopicCreateInput!): ResourceResponse!
+  createUserTechnologyProcessor(data: UserTechnologyCreateInput!): UserTechnologyResponse!
+  deleteNotice(where: NoticeWhereUniqueInput!): Notice
+
   """Авторизация"""
   signin(data: UserSigninDataInput!, where: UserWhereUniqueInput!): AuthPayload!
 
@@ -154,11 +1132,25 @@ type Mutation {
     """Устаревший параметр"""
     file: Upload
   ): File
+  updateCodeChallengeCompletionProcessor(data: CodeChallengeCompletionUpdateInput!, where: CodeChallengeCompletionWhereUniqueInput!): CodeChallengeCompletionResponse!
+  updateCommentProcessor(data: CommentUpdateInput!, where: ResourceWhereUniqueInput!): ResourceResponse!
+  updateProjectProcessor(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): ProjectResponse!
+  updateTaskProcessor(data: TaskUpdateInput!, where: TaskWhereUniqueInput!): TaskResponse!
+  updateTaskTechnologyProcessor(data: TaskTechnologyUpdateInput!, where: TaskTechnologyWhereUniqueInput!): TaskTechnologyResponse!
+  updateTimerProcessor(data: TimerUpdateInput!, where: TimerWhereUniqueInput!): TimerResponse!
+  updateTopicProcessor(data: TopicUpdateInput!, where: ResourceWhereUniqueInput!): ResourceResponse!
+  updateUserProcessor(data: UserUpdateInput!, where: UserWhereUniqueInput!): UserResponse!
+  updateUserTechnologyProcessor(data: UserTechnologyUpdateInput!, where: UserTechnologyWhereUniqueInput!): UserTechnologyResponse!
 }
 
 input NestedBoolFilter {
   equals: Boolean
   not: NestedBoolFilter
+}
+
+input NestedBoolNullableFilter {
+  equals: Boolean
+  not: NestedBoolNullableFilter
 }
 
 input NestedDateTimeFilter {
@@ -183,15 +1175,26 @@ input NestedDateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
-input NestedFloatFilter {
-  equals: Float
-  gt: Float
-  gte: Float
-  in: [Float!]
-  lt: Float
-  lte: Float
-  not: NestedFloatFilter
-  notIn: [Float!]
+input NestedDecimalFilter {
+  equals: Decimal
+  gt: Decimal
+  gte: Decimal
+  in: [Decimal!]
+  lt: Decimal
+  lte: Decimal
+  not: NestedDecimalFilter
+  notIn: [Decimal!]
+}
+
+input NestedDecimalNullableFilter {
+  equals: Decimal
+  gt: Decimal
+  gte: Decimal
+  in: [Decimal!]
+  lt: Decimal
+  lte: Decimal
+  not: NestedDecimalNullableFilter
+  notIn: [Decimal!]
 }
 
 input NestedIntFilter {
@@ -202,6 +1205,17 @@ input NestedIntFilter {
   lt: Int
   lte: Int
   not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
   notIn: [Int!]
 }
 
@@ -233,7 +1247,409 @@ input NestedStringNullableFilter {
   startsWith: String
 }
 
+type Notice {
+  ChatMessage: ChatMessage
+  ChatRoomInvitation: ChatRoomInvitation
+  CreatedBy: User
+  User: User
+  createdAt: DateTime!
+  id: ID!
+  type: NoticeType!
+  updatedAt: DateTime!
+}
+
+type NoticeConnection {
+  aggregate: AggregateNotice!
+  edges: [NoticeEdge]!
+}
+
+type NoticeEdge {
+  node: Notice!
+}
+
+input NoticeListRelationFilter {
+  every: NoticeWhereInput
+  none: NoticeWhereInput
+  some: NoticeWhereInput
+}
+
+input NoticeOrderByInput {
+  ChatMessage: SortOrder
+  CreatedBy: SortOrder
+  User: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  type: SortOrder
+  updatedAt: SortOrder
+}
+
+enum NoticeType {
+  Call
+  CallRequest
+  ChatMessage
+  ChatRoomInvitation
+}
+
+input NoticeWhereInput {
+  AND: [NoticeWhereInput!]
+  ChatMessage: StringNullableFilter
+  ChatMessage_ChatMessageToNotice: ChatMessageWhereInput
+  ChatRoomInvitation: ChatRoomInvitationListRelationFilter
+  CreatedBy: StringNullableFilter
+  NOT: [NoticeWhereInput!]
+  OR: [NoticeWhereInput!]
+  User: StringNullableFilter
+  User_Notice_CreatedByToUser: UserWhereInput
+  User_Notice_UserToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  type: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input NoticeWhereUniqueInput {
+  id: String
+}
+
+type NotificationType {
+  code: ID
+  comment: String
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  oldID: Int
+  updatedAt: DateTime!
+}
+
+input NotificationTypeListRelationFilter {
+  every: NotificationTypeWhereInput
+  none: NotificationTypeWhereInput
+  some: NotificationTypeWhereInput
+}
+
+input NotificationTypeOrderByInput {
+  CreatedBy: SortOrder
+  code: SortOrder
+  comment: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  oldID: SortOrder
+  updatedAt: SortOrder
+}
+
+input NotificationTypeWhereInput {
+  AND: [NotificationTypeWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [NotificationTypeWhereInput!]
+  OR: [NotificationTypeWhereInput!]
+  User_NotificationTypeToUser: UserWhereInput
+  User_UserNotificationTypes: UserListRelationFilter
+  code: StringNullableFilter
+  comment: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  oldID: IntNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input NotificationTypeWhereUniqueInput {
+  code: String
+  id: String
+  oldID: Int
+}
+
+input PlayerListRelationFilter {
+  every: PlayerWhereInput
+  none: PlayerWhereInput
+  some: PlayerWhereInput
+}
+
+input PlayerWhereInput {
+  AND: [PlayerWhereInput!]
+  Inventory: InventoryWhereInput
+  NOT: [PlayerWhereInput!]
+  OR: [PlayerWhereInput!]
+  User: UserWhereInput
+  World: WorldWhereInput
+  createdAt: DateTimeFilter
+  dirx: DecimalFilter
+  diry: DecimalFilter
+  gamemode: StringFilter
+  id: StringFilter
+  inventory: StringNullableFilter
+  isAdmin: BoolFilter
+  lastLogin: DateTimeNullableFilter
+  updatedAt: DateTimeFilter
+  user: StringNullableFilter
+  world: StringNullableFilter
+  x: DecimalFilter
+  y: DecimalFilter
+  z: DecimalFilter
+}
+
+input PositionListRelationFilter {
+  every: PositionWhereInput
+  none: PositionWhereInput
+  some: PositionWhereInput
+}
+
+input PositionWhereInput {
+  AND: [PositionWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [PositionWhereInput!]
+  OR: [PositionWhereInput!]
+  User_PositionToUser: UserWhereInput
+  User_PositionUsers: UserListRelationFilter
+  code: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+type Project {
+  CreatedBy: User
+  Members: [ProjectMember!]
+  ProjectTasks(orderBy: ProjectTaskOrderByInput): [ProjectTask!]
+  Resource: Resource
+  content: JSON
+  contentText: String
+  createdAt: DateTime!
+  description: String
+  domain: String
+  id: ID!
+  name: String!
+  oldID: Int
+  public: Boolean
+  sequence: Int
+  status: ProjectStatus
+  type: ProjectType
+  updatedAt: DateTime!
+  url: String
+}
+
+type ProjectConnection {
+  aggregate: AggregateProject!
+  edges: [ProjectEdge]!
+}
+
+input ProjectCreateInput {
+  name: String!
+}
+
+type ProjectEdge {
+  node: Project!
+}
+
+input ProjectListRelationFilter {
+  every: ProjectWhereInput
+  none: ProjectWhereInput
+  some: ProjectWhereInput
+}
+
+type ProjectMember {
+  Project: Project
+  User: User
+  createdAt: DateTime!
+  id: ID!
+  status: ProjectMemberStatus
+  updatedAt: DateTime!
+}
+
+input ProjectMemberListRelationFilter {
+  every: ProjectMemberWhereInput
+  none: ProjectMemberWhereInput
+  some: ProjectMemberWhereInput
+}
+
+enum ProjectMemberStatus {
+  Active
+  Fired
+  Invited
+  Quit
+}
+
+input ProjectMemberWhereInput {
+  AND: [ProjectMemberWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [ProjectMemberWhereInput!]
+  OR: [ProjectMemberWhereInput!]
+  Project: StringNullableFilter
+  Project_ProjectToProjectMember: ProjectWhereInput
+  Service: ServiceListRelationFilter
+  User: StringNullableFilter
+  User_ProjectMember_CreatedByToUser: UserWhereInput
+  User_ProjectMember_UserToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  status: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input ProjectOrderByInput {
+  ChatRoom: SortOrder
+  CreatedBy: SortOrder
+  Image: SortOrder
+  Resource: SortOrder
+  Team: SortOrder
+  content: SortOrder
+  contentText: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  domain: SortOrder
+  id: SortOrder
+  name: SortOrder
+  oldID: SortOrder
+  public: SortOrder
+  sequence: SortOrder
+  status: SortOrder
+  type: SortOrder
+  updatedAt: SortOrder
+  url: SortOrder
+}
+
+type ProjectResponse {
+  data: Project
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
+enum ProjectStatus {
+  Accepted
+  Completed
+  New
+  Processing
+  Rejected
+  Reopened
+}
+
+type ProjectTask {
+  CreatedBy: User
+  Project: Project
+  Task: Task
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+input ProjectTaskListRelationFilter {
+  every: ProjectTaskWhereInput
+  none: ProjectTaskWhereInput
+  some: ProjectTaskWhereInput
+}
+
+input ProjectTaskOrderByInput {
+  CreatedBy: SortOrder
+  Project: SortOrder
+  Task: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+enum ProjectTaskType {
+  Blog
+  Comment
+  PersonalBlog
+  Project
+  ProjectTask
+  Service
+  Team
+  Topic
+}
+
+input ProjectTaskWhereInput {
+  AND: [ProjectTaskWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [ProjectTaskWhereInput!]
+  OR: [ProjectTaskWhereInput!]
+  Project: StringNullableFilter
+  Project_ProjectToProjectTask: ProjectWhereInput
+  Task: StringNullableFilter
+  Task_ProjectTaskToTask: TaskWhereInput
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input ProjectTaskWhereUniqueInput {
+  id: String
+}
+
+enum ProjectType {
+  Education
+}
+
+input ProjectUpdateInput {
+  name: String
+}
+
+input ProjectWhereInput {
+  AND: [ProjectWhereInput!]
+  ChatRoom: StringNullableFilter
+  ChatRoom_ChatRoomToProject: ChatRoomWhereInput
+  CreatedBy: StringNullableFilter
+  EthAccount: EthAccountListRelationFilter
+  File: FileWhereInput
+  Image: StringNullableFilter
+  NOT: [ProjectWhereInput!]
+  OR: [ProjectWhereInput!]
+  ProjectMember: ProjectMemberListRelationFilter
+  ProjectTask: ProjectTaskListRelationFilter
+  Resource: StringNullableFilter
+  Resource_ProjectToResource_PrismaProject: ResourceListRelationFilter
+  Resource_Project_ResourceToResource: ResourceWhereInput
+  Team: StringNullableFilter
+  Team_ProjectCustomers: TeamListRelationFilter
+  Team_ProjectToTeam: TeamWhereInput
+  Template_ProjectToTemplate_PrismaProject: TemplateListRelationFilter
+  Template_ProjectToTemplate_Project: TemplateListRelationFilter
+  User_PrismaProjectUsers: UserListRelationFilter
+  User_ProjectToUser: UserWhereInput
+  content: StringNullableFilter
+  contentText: StringNullableFilter
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  domain: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  oldID: IntNullableFilter
+  public: BoolNullableFilter
+  sequence: IntNullableFilter
+  status: StringNullableFilter
+  type: StringNullableFilter
+  updatedAt: DateTimeFilter
+  url: StringNullableFilter
+}
+
+input ProjectWhereUniqueInput {
+  id: String
+  oldID: Int
+  sequence: Int
+}
+
 type Query {
+  chatMessage(where: ChatMessageWhereUniqueInput!): ChatMessage
+  chatMessages(cursor: ChatMessageWhereUniqueInput, orderBy: [ChatMessageOrderByInput!], skip: Int, take: Int, where: ChatMessageWhereInput): [ChatMessage!]!
+  chatMessagesConnection(first: Int, orderBy: ChatMessageOrderByInput, skip: Int, where: ChatMessageWhereInput): ChatMessageConnection!
+  chatMessagesCount(where: ChatMessageWhereInput): Int!
+  chatRoom(where: ChatRoomWhereUniqueInput!): ChatRoom
+  chatRooms(cursor: ChatRoomWhereUniqueInput, orderBy: [ChatRoomOrderByInput!], skip: Int, take: Int, where: ChatRoomWhereInput): [ChatRoom!]!
+
+  """Количество чат-комнат"""
+  chatRoomsCount(where: ChatRoomWhereInput): Int!
+  codeChallenge(where: CodeChallengeWhereUniqueInput!): CodeChallenge
+  codeChallengeBlock(where: CodeChallengeBlockWhereUniqueInput!): CodeChallengeBlock
+  codeChallengeBlocks(cursor: CodeChallengeBlockWhereUniqueInput, orderBy: [CodeChallengeBlockOrderByInput!], skip: Int, take: Int, where: CodeChallengeBlockWhereInput): [CodeChallengeBlock!]!
+  codeChallengeBlocksCount(where: CodeChallengeBlockWhereInput): Int!
+  codeChallengeCompletion(where: CodeChallengeCompletionWhereUniqueInput!): CodeChallengeCompletion
+  codeChallengeCompletions(cursor: CodeChallengeCompletionWhereUniqueInput, orderBy: [CodeChallengeCompletionOrderByInput!], skip: Int, take: Int, where: CodeChallengeCompletionWhereInput): [CodeChallengeCompletion!]!
+  codeChallenges(cursor: CodeChallengeWhereUniqueInput, orderBy: [CodeChallengeOrderByInput!], skip: Int, take: Int, where: CodeChallengeWhereInput): [CodeChallenge!]!
+
   """Файл"""
   file(where: FileWhereUniqueInput!): File
 
@@ -244,11 +1660,55 @@ type Query {
   filesCount(where: FileWhereInput): Int!
   me: User
 
+  """Уведомление"""
+  notice(where: NoticeWhereUniqueInput!): Notice
+
+  """Список уведомлений"""
+  notices(cursor: NoticeWhereUniqueInput, orderBy: [NoticeOrderByInput!], skip: Int, take: Int, where: NoticeWhereInput): [Notice!]!
+  noticesConnection(first: Int, orderBy: NoticeOrderByInput, skip: Int, where: NoticeWhereInput): NoticeConnection!
+
+  """Количество уведомлений"""
+  noticesCount(where: NoticeWhereInput): Int!
+
+  """Список уведомлений"""
+  notificationTypes(cursor: NotificationTypeWhereUniqueInput, orderBy: [NotificationTypeOrderByInput!], skip: Int, take: Int, where: NotificationTypeWhereInput): [NotificationType!]!
+
+  """Количество уведомлений"""
+  notificationTypesCount(where: NotificationTypeWhereInput): Int!
+  project(where: ProjectWhereUniqueInput!): Project
+  projectTasks(cursor: ProjectTaskWhereUniqueInput, orderBy: [ProjectTaskOrderByInput!], skip: Int, take: Int, where: ProjectTaskWhereInput): [ProjectTask!]!
+  projects(cursor: ProjectWhereUniqueInput, orderBy: [ProjectOrderByInput!], skip: Int, take: Int, where: ProjectWhereInput): [Project!]!
+  projectsConnection(first: Int, orderBy: ProjectOrderByInput, skip: Int, where: ProjectWhereInput): ProjectConnection!
+  resource(where: ResourceWhereUniqueInput!): Resource
+  resources(cursor: ResourceWhereUniqueInput, orderBy: [ResourceOrderByInput!], skip: Int, take: Int, where: ResourceWhereInput): [Resource!]!
+  resourcesConnection(first: Int, orderBy: ResourceOrderByInput, skip: Int, where: ResourceWhereInput): ResourceConnection!
+  tag(where: TagWhereUniqueInput!): Tag
+  tags(cursor: TagWhereUniqueInput, orderBy: [TagOrderByInput!], skip: Int, take: Int, where: TagWhereInput): [Tag!]!
+  tagsConnection(first: Int, orderBy: TagOrderByInput, skip: Int, where: TagWhereInput): TagConnection!
+  task(where: TaskWhereUniqueInput!): Task
+  taskTechnologies(cursor: TaskTechnologyWhereUniqueInput, orderBy: [TaskTechnologyOrderByInput!], skip: Int, take: Int, where: TaskTechnologyWhereInput): [TaskTechnology!]!
+  taskTechnology(where: TaskTechnologyWhereUniqueInput!): TaskTechnology
+  taskTechnologysCount(where: TaskTechnologyWhereInput): Int!
+  tasks(cursor: TaskWhereUniqueInput, orderBy: [TaskOrderByInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+  tasksConnection(first: Int, orderBy: TaskOrderByInput, skip: Int, where: TaskWhereInput): TaskConnection!
+  tasksCount(where: TaskWhereInput): Int!
+  technologies(cursor: TechnologyWhereUniqueInput, orderBy: [TechnologyOrderByInput!], skip: Int, take: Int, where: TechnologyWhereInput): [Technology!]!
+  technologiesConnection(first: Int, orderBy: TechnologyOrderByInput, skip: Int, where: TechnologyWhereInput): TechnologyConnection!
+  technology(where: TechnologyWhereUniqueInput!): Technology
+  technologysCount(where: TechnologyWhereInput): Int!
+  timer(where: TimerWhereUniqueInput!): Timer
+  timers(cursor: TimerWhereUniqueInput, orderBy: [TimerOrderByInput!], skip: Int, take: Int, where: TimerWhereInput): [Timer!]!
+  timersConnection(first: Int, orderBy: TimerOrderByInput, skip: Int, where: TimerWhereInput): TimerConnection!
+
   """Пользователь"""
   user(where: UserWhereUniqueInput!): User
+  userTechnologies(cursor: UserTechnologyWhereUniqueInput, orderBy: [UserTechnologyOrderByInput!], skip: Int, take: Int, where: UserTechnologyWhereInput): [UserTechnology!]!
+  userTechnology(where: UserTechnologyWhereUniqueInput!): UserTechnology
+  userTechnologysCount(where: UserTechnologyWhereInput): Int!
 
   """Список пользователей"""
   users(cursor: UserWhereUniqueInput, orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
+  usersConnection(first: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): UserConnection!
 
   """Количество пользователей"""
   usersCount(where: UserWhereInput): Int!
@@ -260,6 +1720,321 @@ type RequestError {
   message: String!
 }
 
+input ResetPasswordListRelationFilter {
+  every: ResetPasswordWhereInput
+  none: ResetPasswordWhereInput
+  some: ResetPasswordWhereInput
+}
+
+input ResetPasswordWhereInput {
+  AND: [ResetPasswordWhereInput!]
+  NOT: [ResetPasswordWhereInput!]
+  OR: [ResetPasswordWhereInput!]
+  User: StringNullableFilter
+  User_ResetPasswordToUser: UserWhereInput
+  code: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  password: StringNullableFilter
+  updatedAt: DateTimeFilter
+  validTill: DateTimeNullableFilter
+}
+
+type Resource {
+  Blog: Resource
+  CodeChallenge: CodeChallenge
+
+  """Комментарии"""
+  Comments(orderBy: ResourceOrderByInput): [Resource!]
+  CreatedBy: User
+  Image: File
+  Tags: [ResourceTag!]
+  Task: Task
+  Topic: Resource
+  class_key: String
+  commentOldID: Int
+  components: JSON
+  content: JSON
+  contentText: String
+  createdAt: DateTime!
+  deleted: Boolean!
+  hidemenu: Boolean!
+  id: ID!
+  isfolder: Boolean!
+  longtitle: String
+  mockUpdate: DateTime
+  name: String
+  negativeVotesCount: Int
+  neutralVotesCount: Int
+  oldID: Int
+  positiveVotesCount: Int
+  published: Boolean!
+  rating: Float
+  searchable: Boolean!
+  template: Int
+  type: ResourceType
+  updatedAt: DateTime!
+  uri: String
+}
+
+type ResourceConnection {
+  aggregate: AggregateResource!
+  edges: [ResourceEdge]!
+}
+
+type ResourceEdge {
+  node: Resource!
+}
+
+input ResourceListRelationFilter {
+  every: ResourceWhereInput
+  none: ResourceWhereInput
+  some: ResourceWhereInput
+}
+
+input ResourceOrderByInput {
+  Blog: SortOrder
+  CreatedBy: SortOrder
+  EthAccount: SortOrder
+  Parent: SortOrder
+  PrismaProject: SortOrder
+  Service: SortOrder
+  Task: SortOrder
+  Team: SortOrder
+  Topic: SortOrder
+  class_key: SortOrder
+  code: SortOrder
+  commentOldID: SortOrder
+  components: SortOrder
+  content: SortOrder
+  contentText: SortOrder
+  createdAt: SortOrder
+  deleted: SortOrder
+  hidemenu: SortOrder
+  id: SortOrder
+  isfolder: SortOrder
+  longtitle: SortOrder
+  mockUpdate: SortOrder
+  name: SortOrder
+  negativeVotesCount: SortOrder
+  neutralVotesCount: SortOrder
+  oldID: SortOrder
+  positiveVotesCount: SortOrder
+  published: SortOrder
+  rating: SortOrder
+  searchable: SortOrder
+  template: SortOrder
+  type: SortOrder
+  updatedAt: SortOrder
+  uri: SortOrder
+}
+
+type ResourceResponse {
+  data: Resource
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
+type ResourceTag {
+  CreatedBy: User
+  Resource: Resource
+  Tag: Tag
+  createdAt: DateTime!
+  id: ID!
+  status: TagStatus!
+  updatedAt: DateTime!
+}
+
+input ResourceTagListRelationFilter {
+  every: ResourceTagWhereInput
+  none: ResourceTagWhereInput
+  some: ResourceTagWhereInput
+}
+
+input ResourceTagWhereInput {
+  AND: [ResourceTagWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [ResourceTagWhereInput!]
+  OR: [ResourceTagWhereInput!]
+  Resource: StringNullableFilter
+  Resource_ResourceToResourceTag: ResourceWhereInput
+  Tag: StringNullableFilter
+  Tag_ResourceTagToTag: TagWhereInput
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  status: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+enum ResourceType {
+  Blog
+  Comment
+  PersonalBlog
+  Project
+  Resource
+  Service
+  Team
+  Topic
+}
+
+input ResourceWhereInput {
+  AND: [ResourceWhereInput!]
+  Blog: StringNullableFilter
+  CodeChallenge: CodeChallengeListRelationFilter
+  CreatedBy: StringNullableFilter
+  EthAccount: StringNullableFilter
+  EthAccount_EthAccountToResource: EthAccountWhereInput
+  File: FileListRelationFilter
+  Gallery: GalleryListRelationFilter
+  NOT: [ResourceWhereInput!]
+  OR: [ResourceWhereInput!]
+  Parent: StringNullableFilter
+  PrismaProject: StringNullableFilter
+  Project_ProjectToResource_PrismaProject: ProjectWhereInput
+  Project_Project_ResourceToResource: ProjectListRelationFilter
+  ResourceTag: ResourceTagListRelationFilter
+  Resource_ResourceToResource_Blog: ResourceWhereInput
+  Resource_ResourceToResource_Parent: ResourceWhereInput
+  Resource_ResourceToResource_Topic: ResourceWhereInput
+  Service: StringNullableFilter
+  Service_ResourceToService: ServiceWhereInput
+  Task: StringNullableFilter
+  Task_ResourceToTask: TaskWhereInput
+  Team: StringNullableFilter
+  Team_ResourceToTeam: TeamWhereInput
+  Topic: StringNullableFilter
+  User: UserWhereInput
+  Vote: VoteListRelationFilter
+  class_key: StringNullableFilter
+  code: StringNullableFilter
+  commentOldID: IntNullableFilter
+  components: StringNullableFilter
+  content: StringNullableFilter
+  contentText: StringNullableFilter
+  createdAt: DateTimeFilter
+  deleted: BoolFilter
+  hidemenu: BoolFilter
+  id: StringFilter
+  isfolder: BoolFilter
+  longtitle: StringNullableFilter
+  mockUpdate: DateTimeNullableFilter
+  name: StringNullableFilter
+  negativeVotesCount: IntNullableFilter
+  neutralVotesCount: IntNullableFilter
+  oldID: IntNullableFilter
+  other_Resource_ResourceToResource_Blog: ResourceListRelationFilter
+  other_Resource_ResourceToResource_Parent: ResourceListRelationFilter
+  other_Resource_ResourceToResource_Topic: ResourceListRelationFilter
+  positiveVotesCount: IntNullableFilter
+  published: BoolFilter
+  rating: DecimalNullableFilter
+  searchable: BoolFilter
+  template: IntNullableFilter
+  type: StringNullableFilter
+  updatedAt: DateTimeFilter
+  uri: StringNullableFilter
+}
+
+input ResourceWhereUniqueInput {
+  code: String
+  commentOldID: Int
+  id: String
+  oldID: Int
+}
+
+input RouteListRelationFilter {
+  every: RouteWhereInput
+  none: RouteWhereInput
+  some: RouteWhereInput
+}
+
+input RouteWhereInput {
+  AND: [RouteWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [RouteWhereInput!]
+  OR: [RouteWhereInput!]
+  Parent: StringNullableFilter
+  Route: RouteWhereInput
+  User: UserWhereInput
+  component: StringFilter
+  exact: BoolFilter
+  id: StringFilter
+  name: StringNullableFilter
+  other_Route: RouteListRelationFilter
+  path: StringFilter
+}
+
+input ServiceCategoryListRelationFilter {
+  every: ServiceCategoryWhereInput
+  none: ServiceCategoryWhereInput
+  some: ServiceCategoryWhereInput
+}
+
+input ServiceCategoryWhereInput {
+  AND: [ServiceCategoryWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [ServiceCategoryWhereInput!]
+  OR: [ServiceCategoryWhereInput!]
+  Parent: StringNullableFilter
+  Service: ServiceListRelationFilter
+  ServiceCategory: ServiceCategoryWhereInput
+  User: UserWhereInput
+  code: StringNullableFilter
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  other_ServiceCategory: ServiceCategoryListRelationFilter
+  updatedAt: DateTimeFilter
+}
+
+input ServiceListRelationFilter {
+  every: ServiceWhereInput
+  none: ServiceWhereInput
+  some: ServiceWhereInput
+}
+
+input ServiceWhereInput {
+  AND: [ServiceWhereInput!]
+  Category: StringNullableFilter
+  CreatedBy: StringNullableFilter
+  NOT: [ServiceWhereInput!]
+  OR: [ServiceWhereInput!]
+  Parent: StringNullableFilter
+  ProjectMember: ProjectMemberListRelationFilter
+  Resource: ResourceListRelationFilter
+  Service: ServiceWhereInput
+  ServiceCategory: ServiceCategoryWhereInput
+  User: UserWhereInput
+  code: StringNullableFilter
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  oldID: IntNullableFilter
+  other_Service: ServiceListRelationFilter
+  rank: IntNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input SettingsListRelationFilter {
+  every: SettingsWhereInput
+  none: SettingsWhereInput
+  some: SettingsWhereInput
+}
+
+input SettingsWhereInput {
+  AND: [SettingsWhereInput!]
+  NOT: [SettingsWhereInput!]
+  OR: [SettingsWhereInput!]
+  User: StringNullableFilter
+  User_SettingsToUser: UserWhereInput
+  id: StringFilter
+  renderDistance: IntFilter
+}
+
 input SingleUploadInput {
   """В какую директорю загружать файл"""
   directory: String
@@ -267,6 +2042,67 @@ input SingleUploadInput {
 
   """Пользовательское имя файла"""
   name: String
+}
+
+input SmsMessageListRelationFilter {
+  every: SmsMessageWhereInput
+  none: SmsMessageWhereInput
+  some: SmsMessageWhereInput
+}
+
+input SmsMessageWhereInput {
+  AND: [SmsMessageWhereInput!]
+  CreatedBy: StringNullableFilter
+  LetsadsSmsMessageStatus: LetsadsSmsMessageStatusWhereInput
+  NOT: [SmsMessageWhereInput!]
+  OR: [SmsMessageWhereInput!]
+  Provider: StringNullableFilter
+  SmsMessage_recipients: SmsMessage_recipientsListRelationFilter
+  SmsProvider: SmsProviderWhereInput
+  Status: StringNullableFilter
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  deletOnSend: BoolNullableFilter
+  from: StringFilter
+  id: StringFilter
+  text: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input SmsMessage_recipientsListRelationFilter {
+  every: SmsMessage_recipientsWhereInput
+  none: SmsMessage_recipientsWhereInput
+  some: SmsMessage_recipientsWhereInput
+}
+
+input SmsMessage_recipientsWhereInput {
+  AND: [SmsMessage_recipientsWhereInput!]
+  NOT: [SmsMessage_recipientsWhereInput!]
+  OR: [SmsMessage_recipientsWhereInput!]
+  SmsMessage: SmsMessageWhereInput
+  nodeId: StringFilter
+  position: IntFilter
+  value: StringFilter
+}
+
+input SmsProviderListRelationFilter {
+  every: SmsProviderWhereInput
+  none: SmsProviderWhereInput
+  some: SmsProviderWhereInput
+}
+
+input SmsProviderWhereInput {
+  AND: [SmsProviderWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [SmsProviderWhereInput!]
+  OR: [SmsProviderWhereInput!]
+  SmsMessage: SmsMessageListRelationFilter
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  credentials: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
 }
 
 enum SortOrder {
@@ -302,21 +2138,667 @@ input StringNullableFilter {
   startsWith: String
 }
 
-input TokenListRelationFilter {
-  every: TokenWhereInput
-  none: TokenWhereInput
-  some: TokenWhereInput
+type Tag {
+  CreatedBy: User
+  Resources: [ResourceTag!]
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
 }
 
-input TokenWhereInput {
-  AND: [TokenWhereInput!]
-  NOT: [TokenWhereInput!]
-  OR: [TokenWhereInput!]
+type TagConnection {
+  aggregate: AggregateTag!
+  edges: [TagEdge]!
+}
+
+type TagEdge {
+  node: Tag!
+}
+
+input TagListRelationFilter {
+  every: TagWhereInput
+  none: TagWhereInput
+  some: TagWhereInput
+}
+
+input TagOrderByInput {
+  CreatedBy: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+}
+
+enum TagStatus {
+  Active
+  Blocked
+  Moderated
+}
+
+input TagWhereInput {
+  AND: [TagWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  ResourceTag: ResourceTagListRelationFilter
   User: UserWhereInput
   createdAt: DateTimeFilter
-  expiredAt: DateTimeNullableFilter
   id: StringFilter
-  userId: StringNullableFilter
+  name: StringFilter
+  status: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input TagWhereUniqueInput {
+  id: String
+}
+
+type Task {
+  CodeChallengeCompletion: CodeChallengeCompletion
+  Comments(orderBy: ResourceOrderByInput, where: ResourceWhereInput): [Resource!]
+  CreatedBy: User
+  Parent: Task
+  TaskProjects: [ProjectTask!]
+  TaskTechnologies: [TaskTechnology!]
+  Timers(orderBy: TimerOrderByInput, where: TimerWhereInput): [Timer!]
+  content: JSON
+  createdAt: DateTime!
+  description: String
+  endDate: DateTime
+  endDatePlaning: DateTime
+  id: ID!
+  name: String!
+  needHelp: Boolean
+  startDate: DateTime
+  startDatePlaning: DateTime
+  status: TaskStatus!
+  updatedAt: DateTime!
+}
+
+type TaskConnection {
+  aggregate: AggregateTask!
+  edges: [TaskEdge]!
+}
+
+input TaskCreateInput {
+  name: String!
+}
+
+type TaskEdge {
+  node: Task!
+}
+
+input TaskListRelationFilter {
+  every: TaskWhereInput
+  none: TaskWhereInput
+  some: TaskWhereInput
+}
+
+input TaskMemberListRelationFilter {
+  every: TaskMemberWhereInput
+  none: TaskMemberWhereInput
+  some: TaskMemberWhereInput
+}
+
+input TaskMemberWhereInput {
+  AND: [TaskMemberWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TaskMemberWhereInput!]
+  OR: [TaskMemberWhereInput!]
+  Task: StringNullableFilter
+  Task_TaskToTaskMember: TaskWhereInput
+  User: StringNullableFilter
+  User_TaskMember_CreatedByToUser: UserWhereInput
+  User_TaskMember_UserToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  status: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input TaskOrderByInput {
+  ChatRoom: SortOrder
+  CreatedBy: SortOrder
+  Parent: SortOrder
+  content: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  endDate: SortOrder
+  endDatePlaning: SortOrder
+  id: SortOrder
+  name: SortOrder
+  needHelp: SortOrder
+  startDate: SortOrder
+  startDatePlaning: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+}
+
+type TaskReaction {
+  createdAt: DateTime!
+  id: ID!
+  type: TaskReactionType
+  updatedAt: DateTime!
+}
+
+input TaskReactionListRelationFilter {
+  every: TaskReactionWhereInput
+  none: TaskReactionWhereInput
+  some: TaskReactionWhereInput
+}
+
+enum TaskReactionType {
+  UpVote
+}
+
+input TaskReactionWhereInput {
+  AND: [TaskReactionWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TaskReactionWhereInput!]
+  OR: [TaskReactionWhereInput!]
+  Task: StringNullableFilter
+  Task_TaskToTaskReaction: TaskWhereInput
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  type: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+type TaskResponse {
+  data: Task
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
+enum TaskStatus {
+  Accepted
+  Approved
+  Completed
+  Discuss
+  Done
+  New
+  Paused
+  Progress
+  Rejected
+  RevisionsRequired
+}
+
+type TaskTechnology {
+  CreatedBy: User
+  Task: Task
+  Technology: Technology
+  createdAt: DateTime!
+  id: ID!
+  level: UserTechnologyLevel
+  updatedAt: DateTime!
+}
+
+input TaskTechnologyCreateInput {
+  level: UserTechnologyLevel
+}
+
+input TaskTechnologyListRelationFilter {
+  every: TaskTechnologyWhereInput
+  none: TaskTechnologyWhereInput
+  some: TaskTechnologyWhereInput
+}
+
+input TaskTechnologyOrderByInput {
+  CreatedBy: SortOrder
+  Task: SortOrder
+  Technology: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  level: SortOrder
+  updatedAt: SortOrder
+}
+
+type TaskTechnologyResponse {
+  data: TaskTechnology
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
+input TaskTechnologyUpdateInput {
+  level: UserTechnologyLevel
+}
+
+input TaskTechnologyWhereInput {
+  AND: [TaskTechnologyWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TaskTechnologyWhereInput!]
+  OR: [TaskTechnologyWhereInput!]
+  Task: StringNullableFilter
+  Task_TaskToTaskTechnology: TaskWhereInput
+  Technology: StringNullableFilter
+  Technology_TaskTechnologyToTechnology: TechnologyWhereInput
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  level: IntNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input TaskTechnologyWhereUniqueInput {
+  id: String
+}
+
+input TaskUpdateInput {
+  name: String
+}
+
+input TaskWhereInput {
+  AND: [TaskWhereInput!]
+  ChatRoom: StringNullableFilter
+  ChatRoom_ChatRoomToTask: ChatRoomWhereInput
+  CodeChallengeCompletion: CodeChallengeCompletionListRelationFilter
+  CreatedBy: StringNullableFilter
+  NOT: [TaskWhereInput!]
+  OR: [TaskWhereInput!]
+  Parent: StringNullableFilter
+  ProjectTask: ProjectTaskListRelationFilter
+  Resource: ResourceListRelationFilter
+  Task: TaskWhereInput
+  TaskMember: TaskMemberListRelationFilter
+  TaskReaction: TaskReactionListRelationFilter
+  TaskTechnology: TaskTechnologyListRelationFilter
+  Task_A: TaskListRelationFilter
+  Task_B: TaskListRelationFilter
+  Timer: TimerListRelationFilter
+  User: UserWhereInput
+  content: StringNullableFilter
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  endDate: DateTimeNullableFilter
+  endDatePlaning: DateTimeNullableFilter
+  id: StringFilter
+  name: StringFilter
+  needHelp: BoolNullableFilter
+  other_Task: TaskListRelationFilter
+  startDate: DateTimeNullableFilter
+  startDatePlaning: DateTimeNullableFilter
+  status: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input TaskWhereUniqueInput {
+  id: String
+}
+
+input TeamListRelationFilter {
+  every: TeamWhereInput
+  none: TeamWhereInput
+  some: TeamWhereInput
+}
+
+input TeamMemberListRelationFilter {
+  every: TeamMemberWhereInput
+  none: TeamMemberWhereInput
+  some: TeamMemberWhereInput
+}
+
+input TeamMemberWhereInput {
+  AND: [TeamMemberWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TeamMemberWhereInput!]
+  OR: [TeamMemberWhereInput!]
+  Team: StringNullableFilter
+  Team_TeamToTeamMember: TeamWhereInput
+  User: StringNullableFilter
+  User_TeamMember_CreatedByToUser: UserWhereInput
+  User_TeamMember_UserToUser: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  status: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input TeamWhereInput {
+  AND: [TeamWhereInput!]
+  CreatedBy: StringNullableFilter
+  Game: GameListRelationFilter
+  GameResult: GameResultListRelationFilter
+  NOT: [TeamWhereInput!]
+  OR: [TeamWhereInput!]
+  Parent: StringNullableFilter
+  Project_ProjectCustomers: ProjectListRelationFilter
+  Project_ProjectToTeam: ProjectListRelationFilter
+  Resource: ResourceListRelationFilter
+  Team: TeamWhereInput
+  TeamMember: TeamMemberListRelationFilter
+  User: UserWhereInput
+  address: StringNullableFilter
+  createdAt: DateTimeFilter
+  email: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  oldID: IntNullableFilter
+  other_Team: TeamListRelationFilter
+  phone: StringNullableFilter
+  status: StringFilter
+  updatedAt: DateTimeFilter
+  website: StringNullableFilter
+}
+
+type Technology {
+  CreatedBy: User
+  UserTechnologies: [UserTechnology!]
+  components: JSON
+  contentText: String
+  createdAt: DateTime!
+  id: ID!
+  name: String
+  site_url: String
+  updatedAt: DateTime!
+}
+
+type TechnologyConnection {
+  aggregate: AggregateTechnology!
+  edges: [TechnologyEdge]!
+}
+
+type TechnologyEdge {
+  node: Technology!
+}
+
+input TechnologyLessonListRelationFilter {
+  every: TechnologyLessonWhereInput
+  none: TechnologyLessonWhereInput
+  some: TechnologyLessonWhereInput
+}
+
+input TechnologyLessonUserListRelationFilter {
+  every: TechnologyLessonUserWhereInput
+  none: TechnologyLessonUserWhereInput
+  some: TechnologyLessonUserWhereInput
+}
+
+input TechnologyLessonUserWhereInput {
+  AND: [TechnologyLessonUserWhereInput!]
+  CreatedBy: StringNullableFilter
+  Lesson: StringNullableFilter
+  NOT: [TechnologyLessonUserWhereInput!]
+  OR: [TechnologyLessonUserWhereInput!]
+  TechnologyLesson: TechnologyLessonWhereInput
+  User: UserWhereInput
+  completedAt: DateTimeNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  status: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input TechnologyLessonWhereInput {
+  AND: [TechnologyLessonWhereInput!]
+  Comment: CommentListRelationFilter
+  CreatedBy: StringNullableFilter
+  NOT: [TechnologyLessonWhereInput!]
+  OR: [TechnologyLessonWhereInput!]
+  Technology: StringNullableFilter
+  TechnologyLessonUser: TechnologyLessonUserListRelationFilter
+  Technology_TechnologyToTechnologyLesson: TechnologyWhereInput
+  User: UserWhereInput
+  components: StringNullableFilter
+  contentText: StringNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+}
+
+input TechnologyListRelationFilter {
+  every: TechnologyWhereInput
+  none: TechnologyWhereInput
+  some: TechnologyWhereInput
+}
+
+input TechnologyOrderByInput {
+  CreatedBy: SortOrder
+  components: SortOrder
+  contentText: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  site_url: SortOrder
+  updatedAt: SortOrder
+}
+
+input TechnologyWhereInput {
+  AND: [TechnologyWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TechnologyWhereInput!]
+  OR: [TechnologyWhereInput!]
+  TaskTechnology: TaskTechnologyListRelationFilter
+  TechnologyLesson: TechnologyLessonListRelationFilter
+  User: UserWhereInput
+  UserTechnology: UserTechnologyListRelationFilter
+  components: StringNullableFilter
+  contentText: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringNullableFilter
+  site_url: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input TechnologyWhereUniqueInput {
+  id: String
+}
+
+input TemplateListRelationFilter {
+  every: TemplateWhereInput
+  none: TemplateWhereInput
+  some: TemplateWhereInput
+}
+
+input TemplateWhereInput {
+  AND: [TemplateWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TemplateWhereInput!]
+  OR: [TemplateWhereInput!]
+  Parent: StringNullableFilter
+  PrismaProject: StringNullableFilter
+  Project: StringNullableFilter
+  Project_ProjectToTemplate_PrismaProject: ProjectWhereInput
+  Project_ProjectToTemplate_Project: ProjectWhereInput
+  Template: TemplateWhereInput
+  User: UserWhereInput
+  component: StringNullableFilter
+  components: StringNullableFilter
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  externalKey: StringNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  other_Template: TemplateListRelationFilter
+  props: StringNullableFilter
+  rank: IntNullableFilter
+  updatedAt: DateTimeFilter
+  vars: StringNullableFilter
+}
+
+input TestListRelationFilter {
+  every: TestWhereInput
+  none: TestWhereInput
+  some: TestWhereInput
+}
+
+input TestWhereInput {
+  AND: [TestWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TestWhereInput!]
+  OR: [TestWhereInput!]
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  date: DateTimeNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  quantity: DecimalNullableFilter
+  text: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+type Timer {
+  CreatedBy: User
+  Task: Task
+  createdAt: DateTime!
+  id: ID!
+  stopedAt: DateTime
+  updatedAt: DateTime!
+}
+
+type TimerConnection {
+  aggregate: AggregateTimer!
+  edges: [TimerEdge]!
+}
+
+input TimerCreateInput {
+  stopedAt: DateTime
+}
+
+type TimerEdge {
+  node: Timer!
+}
+
+input TimerListRelationFilter {
+  every: TimerWhereInput
+  none: TimerWhereInput
+  some: TimerWhereInput
+}
+
+input TimerOrderByInput {
+  CreatedBy: SortOrder
+  Task: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  stopedAt: SortOrder
+  updatedAt: SortOrder
+}
+
+type TimerResponse {
+  data: Timer
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
+input TimerUpdateInput {
+  stopedAt: DateTime
+}
+
+input TimerWhereInput {
+  AND: [TimerWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TimerWhereInput!]
+  OR: [TimerWhereInput!]
+  Task: StringNullableFilter
+  Task_TaskToTimer: TaskWhereInput
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  stopedAt: DateTimeNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input TimerWhereUniqueInput {
+  id: String
+}
+
+input TopicCreateInput {
+  content: JSON
+  text: JSON
+}
+
+input TopicUpdateInput {
+  content: JSON
+  text: JSON
+}
+
+input TournamentGroupListRelationFilter {
+  every: TournamentGroupWhereInput
+  none: TournamentGroupWhereInput
+  some: TournamentGroupWhereInput
+}
+
+input TournamentGroupWhereInput {
+  AND: [TournamentGroupWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [TournamentGroupWhereInput!]
+  OR: [TournamentGroupWhereInput!]
+  Tournament: TournamentListRelationFilter
+  User: UserWhereInput
+  code: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input TournamentListRelationFilter {
+  every: TournamentWhereInput
+  none: TournamentWhereInput
+  some: TournamentWhereInput
+}
+
+input TournamentWhereInput {
+  AND: [TournamentWhereInput!]
+  CreatedBy: StringNullableFilter
+  Group: StringNullableFilter
+  NOT: [TournamentWhereInput!]
+  OR: [TournamentWhereInput!]
+  TournamentGroup: TournamentGroupWhereInput
+  Tourney: TourneyListRelationFilter
+  User: UserWhereInput
+  code: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input TourneyListRelationFilter {
+  every: TourneyWhereInput
+  none: TourneyWhereInput
+  some: TourneyWhereInput
+}
+
+input TourneyPlayerListRelationFilter {
+  every: TourneyPlayerWhereInput
+  none: TourneyPlayerWhereInput
+  some: TourneyPlayerWhereInput
+}
+
+input TourneyPlayerWhereInput {
+  AND: [TourneyPlayerWhereInput!]
+  NOT: [TourneyPlayerWhereInput!]
+  OR: [TourneyPlayerWhereInput!]
+  Tourney: StringNullableFilter
+  Tourney_TourneyToTourneyPlayer: TourneyWhereInput
+  User: StringNullableFilter
+  User_TourneyPlayerToUser: UserWhereInput
+  id: StringFilter
+}
+
+input TourneyWhereInput {
+  AND: [TourneyWhereInput!]
+  CreatedBy: StringNullableFilter
+  Game: GameListRelationFilter
+  NOT: [TourneyWhereInput!]
+  OR: [TourneyWhereInput!]
+  Tournament: StringNullableFilter
+  Tournament_TournamentToTourney: TournamentWhereInput
+  TourneyPlayer: TourneyPlayerListRelationFilter
+  User: UserWhereInput
+  code: StringNullableFilter
+  createdAt: DateTimeFilter
+  date: DateTimeNullableFilter
+  date_till: DateTimeNullableFilter
+  id: StringFilter
+  name: StringNullableFilter
+  updatedAt: DateTimeFilter
 }
 
 """desc"""
@@ -324,20 +2806,40 @@ scalar Upload
 
 """Пользователь"""
 type User {
+  CodeChallengeCompletions: [CodeChallengeCompletion!]
+  EthAccounts: [EthAccount!]
+  NotificationTypes: [NotificationType!]
+
+  """Проекты, в которых участвует пользователь"""
+  Projects: [ProjectMember!]
+
+  """Проекты, созданные пользователем"""
+  ProjectsCreated: [Project!]
+  Timers(first: Int, where: TimerWhereInput): [Timer!]
+  UserTechnologies: [UserTechnology!]
+  acceptChatMessageAnonymous: Boolean
+  acceptNewChatRoom: Boolean
+  acceptNewChatRoomAnonymous: Boolean
+  activated: Boolean
+  active: Boolean
+  address: String
+
   """Когда создан"""
   createdAt: DateTime!
+  deleted: Boolean
   email: String
   fullname: String
+  hasEmail: Boolean
+  hasPhone: Boolean
   id: String!
 
   """Avatar"""
   image: String
+  phone: String
 
   """Показывать емейл другим пользователям"""
-  showEmail: Boolean!
-
-  """Показывать ФИО другим пользователям"""
-  showFullname: Boolean!
+  showEmail: Boolean
+  showPhone: Boolean
   sudo: Boolean
 
   """Когда обновлен"""
@@ -345,19 +2847,70 @@ type User {
   username: String
 }
 
+type UserConnection {
+  aggregate: AggregateUser!
+  edges: [UserEdge]!
+}
+
+type UserEdge {
+  node: User!
+}
+
+input UserGroupListRelationFilter {
+  every: UserGroupWhereInput
+  none: UserGroupWhereInput
+  some: UserGroupWhereInput
+}
+
+input UserGroupWhereInput {
+  AND: [UserGroupWhereInput!]
+  NOT: [UserGroupWhereInput!]
+  OR: [UserGroupWhereInput!]
+  User: UserListRelationFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input UserListRelationFilter {
+  every: UserWhereInput
+  none: UserWhereInput
+  some: UserWhereInput
+}
+
 input UserOrderByInput {
+  CreatedBy: SortOrder
+  EthAccountAuthed: SortOrder
+  acceptChatMessageAnonymous: SortOrder
+  acceptNewChatRoom: SortOrder
+  acceptNewChatRoomAnonymous: SortOrder
+  activated: SortOrder
   active: SortOrder
+  address: SortOrder
   createdAt: SortOrder
+  deleted: SortOrder
   email: SortOrder
   fullname: SortOrder
+  hidden: SortOrder
   id: SortOrder
   image: SortOrder
+  marketplaceToken: SortOrder
+  oldID: SortOrder
   password: SortOrder
+  phone: SortOrder
   showEmail: SortOrder
-  showFullname: SortOrder
+  showPhone: SortOrder
   sudo: SortOrder
   updatedAt: SortOrder
   username: SortOrder
+}
+
+type UserResponse {
+  data: User
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
 }
 
 input UserSigninDataInput {
@@ -377,28 +2930,251 @@ input UserSignupDataInput {
   username: String
 }
 
+type UserTechnology {
+  CreatedBy: User
+  Technology: Technology
+  components: JSON
+  createdAt: DateTime!
+  date_from: DateTime
+  date_till: DateTime
+  id: ID!
+  level: UserTechnologyLevel
+  status: UserTechnologyStatus
+  updatedAt: DateTime!
+}
+
+input UserTechnologyCreateInput {
+  components: JSON
+}
+
+"""UserTechnologyLevel from 1 to 5"""
+scalar UserTechnologyLevel
+
+input UserTechnologyListRelationFilter {
+  every: UserTechnologyWhereInput
+  none: UserTechnologyWhereInput
+  some: UserTechnologyWhereInput
+}
+
+input UserTechnologyOrderByInput {
+  CreatedBy: SortOrder
+  Technology: SortOrder
+  components: SortOrder
+  createdAt: SortOrder
+  date_from: SortOrder
+  date_till: SortOrder
+  id: SortOrder
+  level: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+}
+
+type UserTechnologyResponse {
+  data: UserTechnology
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
+enum UserTechnologyStatus {
+  """Активно использую"""
+  ActiveUse
+
+  """Больше не использую"""
+  NoLongerUse
+
+  """Планирую изучать"""
+  PlanToStudy
+
+  """Иногда использую"""
+  RarelyUse
+
+  """Отказался изучать"""
+  RefusedToStudy
+
+  """Изучаю"""
+  Study
+}
+
+input UserTechnologyUpdateInput {
+  components: UserTechnologyLevel
+}
+
+input UserTechnologyWhereInput {
+  AND: [UserTechnologyWhereInput!]
+  CreatedBy: StringNullableFilter
+  NOT: [UserTechnologyWhereInput!]
+  OR: [UserTechnologyWhereInput!]
+  Technology: StringNullableFilter
+  Technology_TechnologyToUserTechnology: TechnologyWhereInput
+  User: UserWhereInput
+  components: StringNullableFilter
+  createdAt: DateTimeFilter
+  date_from: DateTimeNullableFilter
+  date_till: DateTimeNullableFilter
+  id: StringFilter
+  level: IntNullableFilter
+  status: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input UserTechnologyWhereUniqueInput {
+  id: String
+}
+
+input UserUpdateInput {
+  username: String
+}
+
 input UserWhereInput {
   AND: [UserWhereInput!]
-  Files: FileListRelationFilter
+  CallRequest_CallRequest_CalledToUser: CallRequestListRelationFilter
+  CallRequest_CallRequest_CallerToUser: CallRequestListRelationFilter
+  Career: CareerListRelationFilter
+  ChatMessage: ChatMessageListRelationFilter
+  ChatMessageReaded: ChatMessageReadedListRelationFilter
+  ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser: ChatRoomInvitationListRelationFilter
+  ChatRoomInvitation_ChatRoomInvitation_UserToUser: ChatRoomInvitationListRelationFilter
+  ChatRoom_ChatRoomToUser: ChatRoomListRelationFilter
+  ChatRoom_ChatRoomsMembers: ChatRoomListRelationFilter
+  CodeChallenge: CodeChallengeListRelationFilter
+  CodeChallengeBlock: CodeChallengeBlockListRelationFilter
+  CodeChallengeCompletion: CodeChallengeCompletionListRelationFilter
+  Comment: CommentListRelationFilter
+  CreatedBy: StringNullableFilter
+  EthAccountAuthed: StringNullableFilter
+  EthAccount_EthAccountToUser_EthAccountAuthed: EthAccountWhereInput
+  EthAccount_EthAccount_CreatedByToUser: EthAccountListRelationFilter
+  EthContractSource: EthContractSourceListRelationFilter
+  File: FileListRelationFilter
+  Gallery: GalleryListRelationFilter
+  GameResult_GameResult_CreatedByToUser: GameResultListRelationFilter
+  GameResult_GameResult_UserToUser: GameResultListRelationFilter
+  Game_GameToUser: GameListRelationFilter
+  Game_GameUsers: GameListRelationFilter
+  Import: ImportListRelationFilter
+  Letter: LetterListRelationFilter
+  LogedIn: LogedInListRelationFilter
   NOT: [UserWhereInput!]
+  Notice_Notice_CreatedByToUser: NoticeListRelationFilter
+  Notice_Notice_UserToUser: NoticeListRelationFilter
+  NotificationType_NotificationTypeToUser: NotificationTypeListRelationFilter
+  NotificationType_UserNotificationTypes: NotificationTypeListRelationFilter
   OR: [UserWhereInput!]
-  Tokens: TokenListRelationFilter
-  active: BoolFilter
+  Player: PlayerListRelationFilter
+  Position_PositionToUser: PositionListRelationFilter
+  Position_PositionUsers: PositionListRelationFilter
+  ProjectMember_ProjectMember_CreatedByToUser: ProjectMemberListRelationFilter
+  ProjectMember_ProjectMember_UserToUser: ProjectMemberListRelationFilter
+  ProjectTask: ProjectTaskListRelationFilter
+  Project_PrismaProjectUsers: ProjectListRelationFilter
+  Project_ProjectToUser: ProjectListRelationFilter
+  ResetPassword: ResetPasswordListRelationFilter
+  Resource: ResourceListRelationFilter
+  ResourceTag: ResourceTagListRelationFilter
+  Route: RouteListRelationFilter
+  Service: ServiceListRelationFilter
+  ServiceCategory: ServiceCategoryListRelationFilter
+  Settings: SettingsListRelationFilter
+  SmsMessage: SmsMessageListRelationFilter
+  SmsProvider: SmsProviderListRelationFilter
+  Tag: TagListRelationFilter
+  Task: TaskListRelationFilter
+  TaskMember_TaskMember_CreatedByToUser: TaskMemberListRelationFilter
+  TaskMember_TaskMember_UserToUser: TaskMemberListRelationFilter
+  TaskReaction: TaskReactionListRelationFilter
+  TaskTechnology: TaskTechnologyListRelationFilter
+  Team: TeamListRelationFilter
+  TeamMember_TeamMember_CreatedByToUser: TeamMemberListRelationFilter
+  TeamMember_TeamMember_UserToUser: TeamMemberListRelationFilter
+  Technology: TechnologyListRelationFilter
+  TechnologyLesson: TechnologyLessonListRelationFilter
+  TechnologyLessonUser: TechnologyLessonUserListRelationFilter
+  Template: TemplateListRelationFilter
+  Test: TestListRelationFilter
+  Timer: TimerListRelationFilter
+  Tournament: TournamentListRelationFilter
+  TournamentGroup: TournamentGroupListRelationFilter
+  Tourney: TourneyListRelationFilter
+  TourneyPlayer: TourneyPlayerListRelationFilter
+  User: UserWhereInput
+  UserGroup: UserGroupListRelationFilter
+  UserTechnology: UserTechnologyListRelationFilter
+  Vote: VoteListRelationFilter
+  World: WorldListRelationFilter
+  acceptChatMessageAnonymous: BoolNullableFilter
+  acceptNewChatRoom: BoolNullableFilter
+  acceptNewChatRoomAnonymous: BoolNullableFilter
+  activated: BoolNullableFilter
+  active: BoolNullableFilter
+  address: StringNullableFilter
   createdAt: DateTimeFilter
+  deleted: BoolNullableFilter
   email: StringNullableFilter
   fullname: StringNullableFilter
+  hidden: BoolNullableFilter
   id: StringFilter
   image: StringNullableFilter
+  marketplaceToken: StringNullableFilter
+  oldID: IntNullableFilter
+  other_User: UserListRelationFilter
   password: StringNullableFilter
-  showEmail: BoolFilter
-  showFullname: BoolFilter
-  sudo: BoolFilter
+  phone: StringNullableFilter
+  showEmail: BoolNullableFilter
+  showPhone: BoolNullableFilter
+  sudo: BoolNullableFilter
   updatedAt: DateTimeFilter
   username: StringNullableFilter
 }
 
 input UserWhereUniqueInput {
-  email: String
   id: String
-  username: String
+  oldID: Int
+}
+
+input VoteListRelationFilter {
+  every: VoteWhereInput
+  none: VoteWhereInput
+  some: VoteWhereInput
+}
+
+input VoteWhereInput {
+  AND: [VoteWhereInput!]
+  NOT: [VoteWhereInput!]
+  OR: [VoteWhereInput!]
+  Resource: StringNullableFilter
+  Resource_ResourceToVote: ResourceWhereInput
+  User: StringNullableFilter
+  User_UserToVote: UserWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  updatedAt: DateTimeFilter
+  value: DecimalFilter
+}
+
+input WorldListRelationFilter {
+  every: WorldWhereInput
+  none: WorldWhereInput
+  some: WorldWhereInput
+}
+
+input WorldWhereInput {
+  AND: [WorldWhereInput!]
+  Block: BlockListRelationFilter
+  CreatedBy: StringNullableFilter
+  Message: MessageListRelationFilter
+  NOT: [WorldWhereInput!]
+  OR: [WorldWhereInput!]
+  Player: PlayerListRelationFilter
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  days: IntFilter
+  id: StringFilter
+  lastPlayed: DateTimeFilter
+  name: StringFilter
+  seed: StringFilter
+  time: DecimalFilter
+  timeChanger: DecimalNullableFilter
+  type: StringFilter
+  updatedAt: DateTimeFilter
 }

@@ -3,15 +3,14 @@ query noticesConnection(
   $orderBy: NoticeOrderByInput
   $skip: Int
   $first: Int
-  $last: Int
+  # $last: Int
   $getNodes: Boolean = true
 ) {
   objectsConnection: noticesConnection(
     where: $where
     orderBy: $orderBy
     skip: $skip
-    first: $first
-    last: $last
+    first: $first # last: $last
   ) {
     aggregate {
       count

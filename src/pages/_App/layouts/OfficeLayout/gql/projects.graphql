@@ -1,6 +1,6 @@
 query officeProjects($where: ProjectWhereInput) {
   # Все проекты, к которым я имею отношение
-  projectsConnection(orderBy: updatedAt_DESC, where: $where) {
+  projectsConnection(orderBy: { updatedAt: desc }, where: $where) {
     aggregate {
       count
     }

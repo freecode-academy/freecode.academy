@@ -1,5 +1,5 @@
 query notificationTypes {
-  notificationTypes(orderBy: createdAt_ASC) {
+  notificationTypes(orderBy: { createdAt: desc }) {
     ...NotificationTypeNoNesting
   }
 }

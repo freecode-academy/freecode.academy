@@ -2,7 +2,7 @@ query technologiesConnection(
   $first: Int
   $skip: Int
   $where: TechnologyWhereInput
-  $orderBy: TechnologyOrderByInput = createdAt_DESC
+  $orderBy: TechnologyOrderByInput = { createdAt: desc }
 ) {
   objectsConnection: technologiesConnection(
     first: $first
@@ -22,13 +22,7 @@ query technologiesConnection(
 }
 
 fragment technologiesConnectionTechnology on Technology {
-  id
-  createdAt
-  updatedAt
-  name
-  components
-  contentText
-  site_url
+  ...TechnologyNoNesting
   CreatedBy {
     ...technologiesConnectionUser
   }
@@ -41,26 +35,7 @@ fragment technologiesConnectionTechnology on Technology {
 }
 
 fragment technologiesConnectionUser on User {
-  id
-  createdAt
-  updatedAt
-  username
-  email
-  phone
-  showEmail
-  showPhone
-  password
-  fullname
-  image
-  address
-  sudo
-  active
-  activated
-  deleted
-  hasEmail
-  hasPhone
-  marketplaceToken
-  hidden
+  ...UserNoNesting
 }
 
 fragment technologiesConnectionUserTechnology on UserTechnology {

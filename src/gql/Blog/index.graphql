@@ -1,20 +1,14 @@
 query blogsConnection(
   $where: ResourceWhereInput
-  $orderBy: ResourceOrderByInput = name_ASC
+  $orderBy: ResourceOrderByInput = { name: asc }
   $skip: Int
-  $after: String
-  $before: String
   $first: Int
-  $last: Int
 ) {
   objectsConnection: resourcesConnection(
     where: $where
     orderBy: $orderBy
     skip: $skip
-    after: $after
-    before: $before
     first: $first
-    last: $last
   ) {
     aggregate {
       count
@@ -58,24 +52,5 @@ fragment BlogsConnectionResource on Resource {
 }
 
 fragment BlogsConnectionUser on User {
-  id
-  createdAt
-  updatedAt
-  username
-  email
-  phone
-  showEmail
-  showPhone
-  password
-  fullname
-  image
-  address
-  sudo
-  active
-  activated
-  deleted
-  hasEmail
-  hasPhone
-  marketplaceToken
-  hidden
+  ...UserNoNesting
 }

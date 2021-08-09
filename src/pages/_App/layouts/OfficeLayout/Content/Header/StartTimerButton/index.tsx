@@ -7,7 +7,11 @@ import { StartTimerButtonProps } from './interfaces'
  * Кнопка запуска таймера по задаче
  */
 const StartTimerButton: React.FC<StartTimerButtonProps> = ({ task }) => {
-  const { mutation: startTimer, snakbar, loading } = useStartTimer({
+  const {
+    mutation: startTimer,
+    snakbar,
+    loading,
+  } = useStartTimer({
     taskId: task.id,
   })
 

@@ -1,41 +1,17 @@
 query chatRoomsConnection(
   $where: ChatRoomWhereInput
-  $orderBy: ChatRoomOrderByInput
+  $orderBy: [ChatRoomOrderByInput!]
   $skip: Int
-  $after: String
-  $before: String
   $first: Int = 10
-  $last: Int
 ) {
-  objectsConnection: chatRoomsConnection(
-    where: $where
-    orderBy: $orderBy
-    skip: $skip
-    after: $after
-    before: $before
-    first: $first
-    last: $last
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...chatRoomsConnectionChatRoom
-      }
-    }
+  chatRooms(where: $where, orderBy: $orderBy, take: $first, skip: $skip) {
+    ...chatRoomsConnectionChatRoom
   }
+  count: chatRoomsCount(where: $where)
 }
 
 fragment chatRoomsConnectionChatRoom on ChatRoom {
-  id
-  createdAt
-  updatedAt
-  name
-  description
-  image
-  code
-  isPublic
+  ...ChatRoomNoNesting
   CreatedBy {
     ...chatRoomsConnectionUser
   }
@@ -53,24 +29,5 @@ fragment chatRoomsConnectionChatRoom on ChatRoom {
 }
 
 fragment chatRoomsConnectionUser on User {
-  id
-  createdAt
-  updatedAt
-  username
-  email
-  phone
-  showEmail
-  showPhone
-  password
-  fullname
-  image
-  address
-  sudo
-  active
-  activated
-  deleted
-  hasEmail
-  hasPhone
-  marketplaceToken
-  hidden
+  ...UserNoNesting
 }

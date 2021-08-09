@@ -20,9 +20,8 @@ const OfficeProjectsCreate: React.FC<OfficeProjectsCreateProps> = ({
 
   const mutationTuple = useCreateProjectProcessorMutation({})
 
-  const { snakbar, loading, errors, onFocus, mutation } = useProcessorMutation(
-    mutationTuple
-  )
+  const { snakbar, loading, errors, onFocus, mutation } =
+    useProcessorMutation(mutationTuple)
 
   const save = useCallback(
     (event: React.FormEvent) => {

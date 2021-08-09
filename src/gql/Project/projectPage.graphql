@@ -18,7 +18,7 @@ query projectPageProjects(
   $first: Int = 1
   $timersWhere: TimerWhereInput
 ) {
-  projects(where: $where, first: $first) {
+  projects(where: $where, take: $first) {
     ...project_
   }
 }
@@ -34,7 +34,7 @@ fragment project_ on Project {
       ...UserNoNesting
     }
   }
-  ProjectTasks(orderBy: createdAt_DESC) {
+  ProjectTasks(orderBy: { createdAt: desc }) {
     id
     createdAt
     updatedAt

@@ -24,15 +24,15 @@ fragment timer_ on Timer {
         }
       }
     }
-    RelatedTo {
-      ...TaskNoNesting
-    }
-    Reactions {
-      ...TaskReactionNoNesting
-      CreatedBy {
-        ...UserNoNesting
-      }
-    }
+    # RelatedTo {
+    #   ...TaskNoNesting
+    # }
+    # Reactions {
+    #   ...TaskReactionNoNesting
+    #   CreatedBy {
+    #     ...UserNoNesting
+    #   }
+    # }
   }
 }
 

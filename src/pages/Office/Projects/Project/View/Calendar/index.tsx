@@ -18,9 +18,11 @@ const ProjectCalendar: React.FC<ProjectCalendarProps> = ({
 }) => {
   const createTaskTuple = useCreateTaskProcessorMutation()
 
-  const { snakbar, loading, mutation: createTask } = useProcessorMutation(
-    createTaskTuple
-  )
+  const {
+    snakbar,
+    loading,
+    mutation: createTask,
+  } = useProcessorMutation(createTaskTuple)
 
   const tasks = useMemo(() => {
     /**

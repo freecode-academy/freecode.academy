@@ -37,11 +37,8 @@ const OfficeLayoutHeader: React.FC = () => {
 
   const context = useContext(OfficeContext)
 
-  const {
-    activeTimer,
-    stopTimerClickHandler,
-    stopTimerLoading,
-  } = useActiveTimer()
+  const { activeTimer, stopTimerClickHandler, stopTimerLoading } =
+    useActiveTimer()
 
   /**
    * Если есть активный таймер, выводим его.

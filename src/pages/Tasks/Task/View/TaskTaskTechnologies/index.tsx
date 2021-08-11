@@ -123,7 +123,7 @@ const TaskTaskTechnologies: React.FC<TaskTaskTechnologiesProps> = ({
    */
   const newItems = useMemo(() => {
     return newItemsData.map((n, index) => {
-      return (
+      return n ? (
         <NewTaskTaskTechnology
           key={n.id || index}
           data={n}
@@ -131,7 +131,7 @@ const TaskTaskTechnologies: React.FC<TaskTaskTechnologiesProps> = ({
           updateNewItemData={updateNewItemData}
           removeNewItemData={removeNewItemData}
         />
-      )
+      ) : null
     })
   }, [newItemsData, removeNewItemData, updateNewItemData, user])
 

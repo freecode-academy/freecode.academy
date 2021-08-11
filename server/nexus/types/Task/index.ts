@@ -283,7 +283,23 @@ export const TaskResponse = objectType({
 export const TaskCreateInput = inputObjectType({
   name: 'TaskCreateInput',
   definition(t) {
+    t.id('id')
     t.nonNull.string('name')
+    t.string('description')
+    t.field('content', {
+      type: 'JSON',
+    })
+    t.field('status', {
+      type: 'TaskStatus',
+    })
+    t.date('startDatePlaning')
+    t.date('endDatePlaning')
+    t.date('startDate')
+    t.date('endDate')
+    t.boolean('needHelp')
+    t.field('Project', {
+      type: 'ProjectCreateOneWithoutProjectTasksInput',
+    })
   },
 })
 
@@ -291,5 +307,38 @@ export const TaskUpdateInput = inputObjectType({
   name: 'TaskUpdateInput',
   definition(t) {
     t.string('name')
+    t.string('description')
+    t.field('content', {
+      type: 'JSON',
+    })
+    t.field('status', {
+      type: 'TaskStatus',
+    })
+    t.date('startDatePlaning')
+    t.date('endDatePlaning')
+    t.date('startDate')
+    t.date('endDate')
+    t.boolean('needHelp')
+    t.field('Timers', {
+      type: 'TimerUpdateManyWithoutTaskInput',
+    })
+  },
+})
+
+export const TimerUpdateManyWithoutTaskInput = inputObjectType({
+  name: 'TimerUpdateManyWithoutTaskInput',
+  definition(t) {
+    t.list.nonNull.field('updateMany', {
+      type: 'TimerUpdateManyWithWhereNestedInput',
+    })
+  },
+})
+
+export const ProjectCreateOneWithoutProjectTasksInput = inputObjectType({
+  name: 'ProjectCreateOneWithoutProjectTasksInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'ProjectWhereUniqueInput',
+    })
   },
 })

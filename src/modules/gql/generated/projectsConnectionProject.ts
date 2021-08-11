@@ -35,7 +35,7 @@ export type ProjectsConnectionProjectFragment = (
         & TaskNoNestingFragment
       )> }
       & TaskNoNestingFragment
-    )> }>>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, uri?: Types.Maybe<string>, Image?: Types.Maybe<{ __typename?: 'File', id: string, path: string }> }> }
+    )> }>>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, uri: string, Image?: Types.Maybe<{ __typename?: 'File', id: string, path: string }> }> }
   & ProjectNoNestingFragment
 );
 

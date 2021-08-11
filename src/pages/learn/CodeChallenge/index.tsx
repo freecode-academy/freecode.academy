@@ -209,7 +209,7 @@ const CodeChallengePage: Page = () => {
     }
 
     return user.CodeChallengeCompletions?.find(
-      (n) => n.CodeChallenge.id === object.id
+      (n) => n.CodeChallenge?.id === object.id
     )?.id
   }, [object, user])
 

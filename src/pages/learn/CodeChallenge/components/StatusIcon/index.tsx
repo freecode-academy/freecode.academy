@@ -13,7 +13,7 @@ const CodeChallengeStatusIcon: React.FC<CodeChallengeStatusIconProps> = ({
   return useMemo(() => {
     let icon: JSX.Element | undefined
 
-    const taskStatus = codeChallengeCompletion?.Task.status
+    const taskStatus = codeChallengeCompletion?.Task?.status
 
     switch (taskStatus) {
       case undefined:
@@ -28,7 +28,7 @@ const CodeChallengeStatusIcon: React.FC<CodeChallengeStatusIconProps> = ({
     }
 
     return <CodeChallengeStatusIconStyled>{icon}</CodeChallengeStatusIconStyled>
-  }, [codeChallengeCompletion?.Task.status])
+  }, [codeChallengeCompletion?.Task?.status])
 }
 
 export default CodeChallengeStatusIcon

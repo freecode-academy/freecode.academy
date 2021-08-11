@@ -1,3 +1,3 @@
 import styled from 'styled-components'
 
-export const UserPageViewStyled = styled.div``
+export const UserViewStyled = styled.div``

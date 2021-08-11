@@ -1,5 +1,5 @@
 import { scalarType } from 'nexus'
-import { GraphQLError } from 'graphql'
+// import { GraphQLError } from 'graphql'
 // import * as FileType from "file-type";
 
 export const UserTechnologyLevel = scalarType({
@@ -11,10 +11,10 @@ export const UserTechnologyLevel = scalarType({
   parseValue(value) {
     return value
   },
-  serialize: () => {
-    throw new GraphQLError('UserTechnologyLevel serialization unsupported.')
-  },
-  parseLiteral: (ast) => {
-    throw new GraphQLError('UserTechnologyLevel literal unsupported.', ast)
-  },
+  // serialize: () => {
+  //   throw new GraphQLError('UserTechnologyLevel serialization unsupported.')
+  // },
+  // parseLiteral: (ast) => {
+  //   throw new GraphQLError('UserTechnologyLevel literal unsupported.', ast)
+  // },
 })

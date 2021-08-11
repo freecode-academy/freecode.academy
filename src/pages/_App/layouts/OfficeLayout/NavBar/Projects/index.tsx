@@ -28,7 +28,7 @@ const SideBarProject: React.FC<SideBarProjectProps> = ({ projects, tasks }) => {
           </div>
           {projects.map((project) => {
             const tasksCount = tasks.filter((n) =>
-              n.TaskProjects?.find((p) => p.Project.id === project.id)
+              n.TaskProjects?.find((p) => p.Project?.id === project.id)
             ).length
 
             const isActive = projectId === project.id

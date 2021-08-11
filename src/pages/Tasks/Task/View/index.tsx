@@ -76,7 +76,14 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
   const lesson = useMemo(() => {
     if (object.CodeChallengeCompletion) {
       const codeChallenge = object.CodeChallengeCompletion.CodeChallenge
+      if (!codeChallenge) {
+        return null
+      }
+
       const block = codeChallenge.Block
+      if (!block) {
+        return null
+      }
       const rootBlock = block.Parent
 
       const parent = rootBlock ? (
@@ -150,13 +157,13 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
 
         {object.TaskProjects?.map((n) => {
           const project = n.Project
-          return (
+          return project ? (
             <div key={project.id}>
               <p>
                 Проект: <ProjectLink object={project} />
               </p>
             </div>
-          )
+          ) : null
         })}
         <table>
           <tbody>

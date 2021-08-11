@@ -6,10 +6,10 @@ import {
 } from 'src/modules/gql/generated'
 
 export type ContextValue = {
-  user: MeQuery['me']
+  user: MeQuery['user']
 
   onAuthSuccess: (
-    data: SignupMutation['signup'] | SigninMutation['signin']
+    data: SignupMutation['signup'] | SigninMutation['response']
   ) => void
 }
 

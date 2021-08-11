@@ -4,6 +4,21 @@ query me {
   }
 }
 
+mutation signup($data: UserSignupDataInput!) {
+  signup(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    token
+    data {
+      ...UserNoNesting
+    }
+  }
+}
+
 fragment MeUser on User {
   ...UserNoNesting
   CodeChallengeCompletions {

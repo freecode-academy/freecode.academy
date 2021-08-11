@@ -1,1 +1,1 @@
-export { default } from 'src/pages/Users'
+export { UsersPage as default } from 'src/pages/Users'

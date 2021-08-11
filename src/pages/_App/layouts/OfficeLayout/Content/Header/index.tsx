@@ -45,7 +45,7 @@ const OfficeLayoutHeader: React.FC = () => {
    * Если нет, то кнопку запуска последней задачи, если есть
    */
   const timer = useMemo(() => {
-    if (activeTimer) {
+    if (activeTimer?.Task) {
       /**
        * Пытаемся найти проект по задаче
        */

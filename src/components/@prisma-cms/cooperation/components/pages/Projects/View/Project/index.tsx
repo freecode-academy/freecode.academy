@@ -222,6 +222,6 @@ export class ProjectView<
   }
 }
 
-export default withStyles(styles)((props: ProjectViewProps) => (
+export default withStyles<any>(styles)((props: ProjectViewProps) => (
   <ProjectView {...props} />
 ))

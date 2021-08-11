@@ -119,8 +119,15 @@ export const TaskTechnologyResponse = objectType({
 export const TaskTechnologyCreateInput = inputObjectType({
   name: 'TaskTechnologyCreateInput',
   definition(t) {
+    t.id('id')
     t.field('level', {
       type: 'UserTechnologyLevel',
+    })
+    t.nonNull.field('Task', {
+      type: 'TaskCreateOneWithoutTaskTechnologiesInput',
+    })
+    t.nonNull.field('Technology', {
+      type: 'TechnologyCreateOneWithoutTaskTechnologiesInput',
     })
   },
 })
@@ -130,6 +137,30 @@ export const TaskTechnologyUpdateInput = inputObjectType({
   definition(t) {
     t.field('level', {
       type: 'UserTechnologyLevel',
+    })
+    t.nonNull.field('Task', {
+      type: 'TaskCreateOneWithoutTaskTechnologiesInput',
+    })
+    t.nonNull.field('Technology', {
+      type: 'TechnologyCreateOneWithoutTaskTechnologiesInput',
+    })
+  },
+})
+
+export const TaskCreateOneWithoutTaskTechnologiesInput = inputObjectType({
+  name: 'TaskCreateOneWithoutTaskTechnologiesInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'TaskWhereUniqueInput',
+    })
+  },
+})
+
+export const TechnologyCreateOneWithoutTaskTechnologiesInput = inputObjectType({
+  name: 'TechnologyCreateOneWithoutTaskTechnologiesInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'TechnologyWhereUniqueInput',
     })
   },
 })

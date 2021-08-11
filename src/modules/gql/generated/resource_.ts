@@ -19,10 +19,10 @@ export type ResourceFragment = (
   { __typename?: 'Resource', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
-  )>, Comments?: Types.Maybe<Array<{ __typename?: 'Resource', id: string, uri?: Types.Maybe<string>, createdAt: globalThis.Date, updatedAt: globalThis.Date, content?: Types.Maybe<any>, components?: Types.Maybe<any>, CreatedBy?: Types.Maybe<(
+  )>, Comments?: Types.Maybe<Array<{ __typename?: 'Resource', id: string, uri: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, content?: Types.Maybe<any>, components?: Types.Maybe<any>, CreatedBy?: Types.Maybe<(
       { __typename?: 'User' }
       & UserNoNestingFragment
-    )> }>>, Blog?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, longtitle?: Types.Maybe<string>, uri?: Types.Maybe<string> }>, Topic?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, longtitle?: Types.Maybe<string>, uri?: Types.Maybe<string>, type?: Types.Maybe<Types.ResourceType> }>, Tags?: Types.Maybe<Array<{ __typename?: 'ResourceTag', id: string, Tag?: Types.Maybe<{ __typename?: 'Tag', id: string, name: string }> }>>, CodeChallenge?: Types.Maybe<{ __typename?: 'CodeChallenge', id: string, name?: Types.Maybe<string> }>, Task?: Types.Maybe<(
+    )> }>>, Blog?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, longtitle?: Types.Maybe<string>, uri: string }>, Topic?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, longtitle?: Types.Maybe<string>, uri: string, type?: Types.Maybe<Types.ResourceType> }>, Tags?: Types.Maybe<Array<{ __typename?: 'ResourceTag', id: string, Tag?: Types.Maybe<{ __typename?: 'Tag', id: string, name: string }> }>>, CodeChallenge?: Types.Maybe<{ __typename?: 'CodeChallenge', id: string, name?: Types.Maybe<string> }>, Task?: Types.Maybe<(
     { __typename?: 'Task' }
     & TaskNoNestingFragment
   )> }

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import {
-  TaskOrderByInput,
+  SortOrder,
+  // TaskOrderByInput,
   TaskStatus,
   useOfficeProjectsQuery,
   useOfficeTasksQuery,
@@ -26,31 +27,58 @@ const useOfficeData = (props: useOfficeDataProps) => {
               {
                 // Проект создан пользователем
                 CreatedBy: {
-                  id: currentUserId,
+                  // id: currentUserId,
+                  equals: currentUserId,
                 },
               },
               {
                 // Или содержит задачи, которые
-                ProjectTasks_some: {
-                  Task: {
-                    OR: [
-                      {
-                        // Созданы текущим пользователем
-                        CreatedBy: {
-                          id: currentUserId,
-                        },
-                      },
-                      {
-                        /**
-                         * Или которые пользователь выполнял
-                         */
-                        Timers_some: {
+                // ProjectTasks_some: {
+                //   Task: {
+                //     OR: [
+                //       {
+                //         // Созданы текущим пользователем
+                //         CreatedBy: {
+                //           id: currentUserId,
+                //         },
+                //       },
+                //       {
+                //         /**
+                //          * Или которые пользователь выполнял
+                //          */
+                //         Timers_some: {
+                //           CreatedBy: {
+                //             id: currentUserId,
+                //           },
+                //         },
+                //       },
+                //     ],
+                //   },
+                // },
+                ProjectTask: {
+                  some: {
+                    Task_ProjectTaskToTask: {
+                      OR: [
+                        {
+                          // Созданы текущим пользователем
                           CreatedBy: {
-                            id: currentUserId,
+                            equals: currentUserId,
                           },
                         },
-                      },
-                    ],
+                        {
+                          /**
+                           * Или которые пользователь выполнял
+                           */
+                          Timer: {
+                            some: {
+                              CreatedBy: {
+                                equals: currentUserId,
+                              },
+                            },
+                          },
+                        },
+                      ],
+                    },
                   },
                 },
               },
@@ -88,18 +116,33 @@ const useOfficeData = (props: useOfficeDataProps) => {
   const tasksData = useOfficeTasksQuery({
     skip: !projects.length,
     variables: {
-      orderBy: TaskOrderByInput.UPDATEDAT_DESC,
+      // orderBy: TaskOrderByInput.UPDATEDAT_DESC,
+      orderBy: {
+        updatedAt: SortOrder.DESC,
+      },
       where: {
-        TaskProjects_some: {
-          Project: {
-            id_in: projectsIds,
+        // TaskProjects_some: {
+        //   Project: {
+        //     id_in: projectsIds,
+        //   },
+        // },
+        ProjectTask: {
+          some: {
+            Project: {
+              in: projectsIds,
+            },
           },
         },
-        status_not_in: [
-          TaskStatus.DONE,
-          TaskStatus.COMPLETED,
-          TaskStatus.REJECTED,
-        ],
+        // status_not_in: [
+        //   TaskStatus.DONE,
+        //   TaskStatus.COMPLETED,
+        //   TaskStatus.REJECTED,
+        // ],
+        status: {
+          not: {
+            in: [TaskStatus.DONE, TaskStatus.COMPLETED, TaskStatus.REJECTED],
+          },
+        },
       },
     },
   })

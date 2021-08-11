@@ -13,10 +13,10 @@ import { TaskNoNestingFragment } from './TaskNoNesting';
 import { gql } from '@apollo/client';
 import { CommentsConnectionCommentUserFragmentDoc } from './commentsConnectionCommentUser';
 import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
-export type CommentsConnectionCommentFragment = { __typename?: 'Resource', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, type?: Types.Maybe<Types.ResourceType>, content?: Types.Maybe<any>, components?: Types.Maybe<any>, uri?: Types.Maybe<string>, CreatedBy?: Types.Maybe<(
+export type CommentsConnectionCommentFragment = { __typename?: 'Resource', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, type?: Types.Maybe<Types.ResourceType>, content?: Types.Maybe<any>, components?: Types.Maybe<any>, uri: string, CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & CommentsConnectionCommentUserFragment
-  )>, Topic?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, uri?: Types.Maybe<string>, type?: Types.Maybe<Types.ResourceType> }>, Task?: Types.Maybe<(
+  )>, Topic?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, uri: string, type?: Types.Maybe<Types.ResourceType> }>, Task?: Types.Maybe<(
     { __typename?: 'Task' }
     & TaskNoNestingFragment
   )> };

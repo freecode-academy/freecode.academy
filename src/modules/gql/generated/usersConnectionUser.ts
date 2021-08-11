@@ -8,12 +8,15 @@
 
 import * as Types from './types';
 
+import { UserNoNestingFragment } from './UserNoNesting';
 import { UsersConnectionProjectFragment } from './usersConnectionProject';
 import { UsersConnectionResourceFragment } from './usersConnectionResource';
 import { gql } from '@apollo/client';
+import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { UsersConnectionProjectFragmentDoc } from './usersConnectionProject';
 import { UsersConnectionResourceFragmentDoc } from './usersConnectionResource';
-export type UsersConnectionUserFragment = { __typename?: 'User', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, username?: Types.Maybe<string>, email?: Types.Maybe<string>, phone?: Types.Maybe<string>, showEmail?: Types.Maybe<boolean>, showPhone?: Types.Maybe<boolean>, fullname?: Types.Maybe<string>, image?: Types.Maybe<string>, address?: Types.Maybe<string>, sudo?: Types.Maybe<boolean>, active?: Types.Maybe<boolean>, activated?: Types.Maybe<boolean>, deleted?: Types.Maybe<boolean>, hasEmail?: Types.Maybe<boolean>, hasPhone?: Types.Maybe<boolean>, EthAccounts?: Types.Maybe<Array<{ __typename?: 'EthAccount', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, name?: Types.Maybe<string>, description?: Types.Maybe<any>, address: string, type?: Types.Maybe<Types.EthAccountType>, source?: Types.Maybe<string>, bytecode?: Types.Maybe<string>, abi?: Types.Maybe<any>, balance?: Types.Maybe<number> }>>, NotificationTypes?: Types.Maybe<Array<{ __typename?: 'NotificationType', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, name: string, code?: Types.Maybe<string>, comment?: Types.Maybe<string>, oldID?: Types.Maybe<number> }>>, Projects?: Types.Maybe<Array<{ __typename?: 'ProjectMember', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, status?: Types.Maybe<Types.ProjectMemberStatus>, Project?: Types.Maybe<(
+export type UsersConnectionUserFragment = (
+  { __typename?: 'User', EthAccounts?: Types.Maybe<Array<{ __typename?: 'EthAccount', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, name?: Types.Maybe<string>, description?: Types.Maybe<any>, address: string, type?: Types.Maybe<Types.EthAccountType>, source?: Types.Maybe<string>, bytecode?: Types.Maybe<string>, abi?: Types.Maybe<any>, balance?: Types.Maybe<number> }>>, NotificationTypes?: Types.Maybe<Array<{ __typename?: 'NotificationType', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, name: string, code?: Types.Maybe<string>, comment?: Types.Maybe<string>, oldID?: Types.Maybe<number> }>>, Projects?: Types.Maybe<Array<{ __typename?: 'ProjectMember', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, status?: Types.Maybe<Types.ProjectMemberStatus>, Project?: Types.Maybe<(
       { __typename?: 'Project', Resource?: Types.Maybe<(
         { __typename?: 'Resource' }
         & UsersConnectionResourceFragment
@@ -25,27 +28,13 @@ export type UsersConnectionUserFragment = { __typename?: 'User', id: string, cre
       & UsersConnectionResourceFragment
     )> }
     & UsersConnectionProjectFragment
-  )>> };
+  )>> }
+  & UserNoNestingFragment
+);
 
 export const UsersConnectionUserFragmentDoc = gql`
     fragment usersConnectionUser on User {
-  id
-  createdAt
-  updatedAt
-  username
-  email
-  phone
-  showEmail
-  showPhone
-  fullname
-  image
-  address
-  sudo
-  active
-  activated
-  deleted
-  hasEmail
-  hasPhone
+  ...UserNoNesting
   EthAccounts {
     id
     createdAt
@@ -87,5 +76,6 @@ export const UsersConnectionUserFragmentDoc = gql`
     }
   }
 }
-    ${UsersConnectionProjectFragmentDoc}
+    ${UserNoNestingFragmentDoc}
+${UsersConnectionProjectFragmentDoc}
 ${UsersConnectionResourceFragmentDoc}`;

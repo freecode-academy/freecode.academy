@@ -23,7 +23,7 @@ export const getBlogTopicsVariables = (
   return {
     ...getTopicsVariables(router, {
       Blog: {
-        id: blogId,
+        equals: blogId,
       },
     }),
   }

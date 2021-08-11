@@ -132,6 +132,6 @@ class UsersView<
   }
 }
 
-export default withStyles(styles)((props: UsersViewProps) => (
+export default withStyles<any>(styles)((props: UsersViewProps) => (
   <UsersView {...props} />
 ))

@@ -109,7 +109,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
 
           return
 
-        case 'CreatedBy':
+        // case 'CreatedBy':
         case 'Technology':
         case 'components':
         case 'status':

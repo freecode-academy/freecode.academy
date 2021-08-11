@@ -305,6 +305,9 @@ export class Autocomplete extends React.PureComponent<AutocompleteProps> {
   }
 }
 
-export default withStyles(styles)((props: AutocompleteProps) => (
+export default withStyles<any>(styles)((props: AutocompleteProps) => (
   <Autocomplete {...props} />
 ))
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore

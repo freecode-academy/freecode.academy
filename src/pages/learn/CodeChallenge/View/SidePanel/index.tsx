@@ -33,6 +33,11 @@ const SidePanel: React.FC<SidePanelProps> = ({
 
   const breadCrumbs = useMemo(() => {
     const block = object.Block
+
+    if (!block) {
+      return null
+    }
+
     const rootBlock = block.Parent
 
     const parent = rootBlock ? (

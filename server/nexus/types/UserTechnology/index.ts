@@ -154,8 +154,23 @@ export const UserTechnologyResponse = objectType({
 export const UserTechnologyCreateInput = inputObjectType({
   name: 'UserTechnologyCreateInput',
   definition(t) {
+    t.id('id')
     t.field('components', {
-      type: 'JSON',
+      type: 'UserTechnologyLevel',
+    })
+    t.date('date_from')
+    t.date('date_till')
+    t.field('status', {
+      type: 'UserTechnologyStatus',
+    })
+    t.field('level', {
+      type: 'UserTechnologyLevel',
+    })
+    // t.field('CreatedBy', {
+    //   type: 'UserCreateOneInput',
+    // })
+    t.nonNull.field('Technology', {
+      type: 'TechnologyCreateOneWithoutUserTechnologiesInput',
     })
   },
 })
@@ -165,6 +180,29 @@ export const UserTechnologyUpdateInput = inputObjectType({
   definition(t) {
     t.field('components', {
       type: 'UserTechnologyLevel',
+    })
+    t.date('date_from')
+    t.date('date_till')
+    t.field('status', {
+      type: 'UserTechnologyStatus',
+    })
+    t.field('level', {
+      type: 'UserTechnologyLevel',
+    })
+    // t.field('CreatedBy', {
+    //   type: 'UserCreateOneInput',
+    // })
+    t.field('Technology', {
+      type: 'TechnologyCreateOneWithoutUserTechnologiesInput',
+    })
+  },
+})
+
+export const TechnologyCreateOneWithoutUserTechnologiesInput = inputObjectType({
+  name: 'TechnologyCreateOneWithoutUserTechnologiesInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'TechnologyWhereUniqueInput',
     })
   },
 })

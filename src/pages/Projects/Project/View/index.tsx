@@ -8,6 +8,7 @@ import TasksView from 'src/pages/Tasks/View'
 import CreateTaskForm from 'src/pages/Tasks/Task/View/form/CreateTask'
 import { CreateTaskProcessorMutation } from 'src/modules/gql/generated'
 import { Button } from 'material-ui'
+import { TasksViewProps } from 'src/pages/Tasks/View/interfaces'
 
 const ProjectView: React.FC<ProjectViewProps> = (props) => {
   const project = props.object
@@ -16,7 +17,11 @@ const ProjectView: React.FC<ProjectViewProps> = (props) => {
    * Список задач
    */
   const tasksList = useMemo(() => {
-    const tasks = project.ProjectTasks?.map((n) => n.Task) ?? []
+    const tasks: TasksViewProps['objects'] = []
+
+    project.ProjectTasks?.forEach((n) => {
+      n.Task && tasks.push(n.Task)
+    })
 
     if (!tasks.length) {
       return null

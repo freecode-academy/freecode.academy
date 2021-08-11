@@ -36,7 +36,7 @@ const TagPage: Page = () => {
 
   const response = useTagQuery({
     skip: !variables,
-    variables: variables,
+    variables: variables || { where: {} },
     onError: console.error,
   })
 

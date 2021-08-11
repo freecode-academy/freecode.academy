@@ -70,6 +70,6 @@ class TechnologiesView<
   }
 }
 
-export default withStyles(styles)((props: TechnologiesViewProps) => (
+export default withStyles<any>(styles)((props: TechnologiesViewProps) => (
   <TechnologiesView {...props} />
 ))

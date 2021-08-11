@@ -11,6 +11,7 @@ import { CardContent } from 'material-ui/Card'
 import TasksListView from '../../Project/Tasks'
 import { ProjectsListProjectProps } from './interfaces'
 import Link from 'next/link'
+import { TasksListProps } from '../../Project/Tasks/interfaces'
 // import { Project } from 'src/modules/gql/generated'
 
 class ProjectView extends BaseProjectView<ProjectsListProjectProps> {
@@ -22,9 +23,11 @@ class ProjectView extends BaseProjectView<ProjectsListProjectProps> {
   renderTasks() {
     const { id: projectId, ProjectTasks } = this.getObjectWithMutations() || {}
 
-    const Tasks = ProjectTasks
-      ? ProjectTasks.map(({ Task }) => Task).filter((n) => n)
-      : []
+    const Tasks: TasksListProps['tasks'] = []
+
+    ProjectTasks?.forEach((n) => {
+      n.Task && Tasks.push(n.Task)
+    })
 
     const { tasksLimit } = this.props
 
@@ -48,6 +51,6 @@ class ProjectView extends BaseProjectView<ProjectsListProjectProps> {
   }
 }
 
-export default withStyles(styles)((props: ProjectsListProjectProps) => (
+export default withStyles<any>(styles)((props: ProjectsListProjectProps) => (
   <ProjectView {...props} />
 ))

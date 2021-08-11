@@ -23,7 +23,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
   /**
    * В текущей задаче есть активный таймер выполнения
    */
-  const isActive = activeTimer && activeTimer.Task.id === task.id
+  const isActive = activeTimer && activeTimer.Task?.id === task.id
 
   const timer = useMemo(() => {
     if (isActive && activeTimer) {
@@ -65,11 +65,13 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
           {timer} <TaskChangeStatusButton task={task} />
         </i>
         <p>
-          {task.TaskProjects?.map((n) => (
-            <Link key={n.id} href={`/office/projects/${n.Project.id}`}>
-              <a title={`Проект "${n.Project.name}"`}>{n.Project.name}</a>
-            </Link>
-          )).reduce<React.ReactNode[]>(
+          {task.TaskProjects?.map((n) =>
+            n.Project ? (
+              <Link key={n.id} href={`/office/projects/${n.Project.id}`}>
+                <a title={`Проект "${n.Project.name}"`}>{n.Project.name}</a>
+              </Link>
+            ) : null
+          ).reduce<React.ReactNode[]>(
             (curr, next) => (curr.length ? [curr, ', ', next] : [next]),
             []
           )}

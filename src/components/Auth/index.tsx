@@ -274,7 +274,7 @@ class Auth extends PrismaCmsComponent<AuthProps, AuthState> {
 
 // const AuthExtended = (Auth as unknown) as React.FC<AuthProps>
 
-// export default (withStyles(styles)((props: AuthProps) => (
+// export default (withStyles<any>(styles)((props: AuthProps) => (
 //   <AuthExtended {...props} />
 // )) as unknown) as React.FC<AuthProps>
 

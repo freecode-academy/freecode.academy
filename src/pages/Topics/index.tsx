@@ -16,7 +16,9 @@ const first = 10
 
 const topicsVariables: TopicsConnectionQueryVariables = {
   where: {
-    type: ResourceType.TOPIC,
+    type: {
+      equals: ResourceType.TOPIC,
+    },
   },
   first,
 }

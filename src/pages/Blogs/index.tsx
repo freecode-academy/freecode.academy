@@ -18,7 +18,9 @@ const first = 10
 
 const defaultVariables: BlogsConnectionQueryVariables = {
   where: {
-    type_in: [ResourceType.BLOG, ResourceType.PERSONALBLOG],
+    type: {
+      in: [ResourceType.BLOG, ResourceType.PERSONALBLOG],
+    },
   },
   first,
 }

@@ -84,6 +84,6 @@ class ChatRoomsView<
   }
 }
 
-export default withStyles(styles)((props: ChatRoomsViewProps) => (
+export default withStyles<any>(styles)((props: ChatRoomsViewProps) => (
   <ChatRoomsView {...props} />
 ))

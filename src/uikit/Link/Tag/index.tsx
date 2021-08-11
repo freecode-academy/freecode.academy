@@ -73,6 +73,6 @@ export class TagLink extends Component<TagLinkProps> {
   }
 }
 
-export default withStyles(styles)((props: TagLinkProps) => (
+export default withStyles<any>(styles)((props: TagLinkProps) => (
   <TagLink {...props} />
 ))

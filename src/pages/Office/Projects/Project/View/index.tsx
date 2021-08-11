@@ -7,6 +7,7 @@ import { OfficeProjectPageViewStyled } from './styles'
 // import Tasks from './Tasks'
 import ProjectCalendar from './Calendar'
 import ProjectTasks from './Tasks'
+import { CalendarProps } from 'src/pages/Office/View/Calendar/interfaces'
 
 const OfficeProjectPageView: React.FC<OfficeProjectPageViewProps> = ({
   project,
@@ -20,7 +21,13 @@ const OfficeProjectPageView: React.FC<OfficeProjectPageViewProps> = ({
   // }, []);
 
   const tasks = useMemo(() => {
-    return project.ProjectTasks?.map((n) => n.Task) || []
+    const tasks: CalendarProps['tasks'] = []
+
+    project.ProjectTasks?.forEach((n) => {
+      n.Task && tasks.push(n.Task)
+    }) || []
+
+    return tasks
   }, [project.ProjectTasks])
 
   const viewContent = useMemo(() => {

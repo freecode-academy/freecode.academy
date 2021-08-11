@@ -37,7 +37,7 @@ function getQueryParams(query: ParsedUrlQuery) {
   }
 }
 
-const UsersPage: Page = () => {
+export const UsersPage: Page = () => {
   const router = useRouter()
 
   const { query } = router
@@ -108,5 +108,3 @@ UsersPage.getInitialProps = async (context) => {
 
   return {}
 }
-
-export default UsersPage

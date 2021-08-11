@@ -3,20 +3,49 @@
  * Do not make changes to this file directly
  */
 
-
-import type { PrismaContext } from "./../context/index"
-import type { User, File, Resource, ResourceTag, ChatMessage, ChatRoom, ChatRoomInvitation, EthAccount, CodeChallengeCompletion, Timer, Notice, NotificationType, ProjectMember, Project, ProjectTask, Task, TaskReaction, Technology, UserTechnology, CodeChallenge, CodeChallengeBlock, Tag, TaskTechnology } from "@prisma/client"
-import type { core } from "nexus"
+import type { PrismaContext } from './../context/index'
+import type {
+  User,
+  File,
+  Resource,
+  ResourceTag,
+  ChatMessage,
+  ChatRoom,
+  ChatRoomInvitation,
+  EthAccount,
+  CodeChallengeCompletion,
+  Timer,
+  Notice,
+  NotificationType,
+  ProjectMember,
+  Project,
+  ProjectTask,
+  Task,
+  TaskReaction,
+  Technology,
+  UserTechnology,
+  CodeChallenge,
+  CodeChallengeBlock,
+  Tag,
+  TaskTechnology,
+} from '@prisma/client'
+import type { core } from 'nexus'
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
     /**
      * desc
      */
-    upload<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Upload";
+    upload<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.CommonInputFieldConfig<TypeName, FieldName>
+    ): void // "Upload";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
-    date<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "DateTime";
+    date<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.CommonInputFieldConfig<TypeName, FieldName>
+    ): void // "DateTime";
   }
 }
 declare global {
@@ -24,11 +53,17 @@ declare global {
     /**
      * desc
      */
-    upload<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Upload";
+    upload<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void // "Upload";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
-    date<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "DateTime";
+    date<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void // "DateTime";
   }
 }
 declare global {
@@ -43,2194 +78,2710 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  BlockListRelationFilter: { // input type
-    every?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
-    none?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
-    some?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
-  }
-  BlockWhereInput: { // input type
-    AND?: NexusGenInputs['BlockWhereInput'][] | null; // [BlockWhereInput!]
-    NOT?: NexusGenInputs['BlockWhereInput'][] | null; // [BlockWhereInput!]
-    OR?: NexusGenInputs['BlockWhereInput'][] | null; // [BlockWhereInput!]
-    World?: NexusGenInputs['WorldWhereInput'] | null; // WorldWhereInput
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    representation?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    type?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    world?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    x?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    y?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    z?: NexusGenInputs['IntFilter'] | null; // IntFilter
-  }
-  BoolFilter: { // input type
-    equals?: boolean | null; // Boolean
-    not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
-  }
-  BoolNullableFilter: { // input type
-    equals?: boolean | null; // Boolean
-    not?: NexusGenInputs['NestedBoolNullableFilter'] | null; // NestedBoolNullableFilter
-  }
-  CallRequestListRelationFilter: { // input type
-    every?: NexusGenInputs['CallRequestWhereInput'] | null; // CallRequestWhereInput
-    none?: NexusGenInputs['CallRequestWhereInput'] | null; // CallRequestWhereInput
-    some?: NexusGenInputs['CallRequestWhereInput'] | null; // CallRequestWhereInput
-  }
-  CallRequestWhereInput: { // input type
-    AND?: NexusGenInputs['CallRequestWhereInput'][] | null; // [CallRequestWhereInput!]
-    Called?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Caller?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    ChatRoom?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
-    NOT?: NexusGenInputs['CallRequestWhereInput'][] | null; // [CallRequestWhereInput!]
-    OR?: NexusGenInputs['CallRequestWhereInput'][] | null; // [CallRequestWhereInput!]
-    Room?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_CallRequest_CalledToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_CallRequest_CallerToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    called_descriptions?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    caller_descriptions?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    endedAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    startedAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  CareerListRelationFilter: { // input type
-    every?: NexusGenInputs['CareerWhereInput'] | null; // CareerWhereInput
-    none?: NexusGenInputs['CareerWhereInput'] | null; // CareerWhereInput
-    some?: NexusGenInputs['CareerWhereInput'] | null; // CareerWhereInput
-  }
-  CareerWhereInput: { // input type
-    AND?: NexusGenInputs['CareerWhereInput'][] | null; // [CareerWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['CareerWhereInput'][] | null; // [CareerWhereInput!]
-    OR?: NexusGenInputs['CareerWhereInput'][] | null; // [CareerWhereInput!]
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    start_date?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ChatMessageCreateInput: { // input type
-    Room?: NexusGenInputs['ChatRoomCreateOneWithoutMessagesInput'] | null; // ChatRoomCreateOneWithoutMessagesInput
-    content?: NexusGenScalars['JSON'] | null; // JSON
-  }
-  ChatMessageListRelationFilter: { // input type
-    every?: NexusGenInputs['ChatMessageWhereInput'] | null; // ChatMessageWhereInput
-    none?: NexusGenInputs['ChatMessageWhereInput'] | null; // ChatMessageWhereInput
-    some?: NexusGenInputs['ChatMessageWhereInput'] | null; // ChatMessageWhereInput
-  }
-  ChatMessageOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Room?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    content?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    contentText?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  ChatMessageReadedListRelationFilter: { // input type
-    every?: NexusGenInputs['ChatMessageReadedWhereInput'] | null; // ChatMessageReadedWhereInput
-    none?: NexusGenInputs['ChatMessageReadedWhereInput'] | null; // ChatMessageReadedWhereInput
-    some?: NexusGenInputs['ChatMessageReadedWhereInput'] | null; // ChatMessageReadedWhereInput
-  }
-  ChatMessageReadedWhereInput: { // input type
-    AND?: NexusGenInputs['ChatMessageReadedWhereInput'][] | null; // [ChatMessageReadedWhereInput!]
-    ChatMessage?: NexusGenInputs['ChatMessageWhereInput'] | null; // ChatMessageWhereInput
-    Message?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ChatMessageReadedWhereInput'][] | null; // [ChatMessageReadedWhereInput!]
-    OR?: NexusGenInputs['ChatMessageReadedWhereInput'][] | null; // [ChatMessageReadedWhereInput!]
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_ChatMessageReadedToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ChatMessageWhereInput: { // input type
-    AND?: NexusGenInputs['ChatMessageWhereInput'][] | null; // [ChatMessageWhereInput!]
-    ChatMessageReaded?: NexusGenInputs['ChatMessageReadedListRelationFilter'] | null; // ChatMessageReadedListRelationFilter
-    ChatRoom?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ChatMessageWhereInput'][] | null; // [ChatMessageWhereInput!]
-    Notice?: NexusGenInputs['NoticeListRelationFilter'] | null; // NoticeListRelationFilter
-    OR?: NexusGenInputs['ChatMessageWhereInput'][] | null; // [ChatMessageWhereInput!]
-    Room?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    content?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    contentText?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ChatMessageWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  ChatRoomCreateOneWithoutMessagesInput: { // input type
-    ID?: string | null; // ID
-    connect?: NexusGenInputs['ChatRoomWhereUniqueInput'] | null; // ChatRoomWhereUniqueInput
-  }
-  ChatRoomInvitationListRelationFilter: { // input type
-    every?: NexusGenInputs['ChatRoomInvitationWhereInput'] | null; // ChatRoomInvitationWhereInput
-    none?: NexusGenInputs['ChatRoomInvitationWhereInput'] | null; // ChatRoomInvitationWhereInput
-    some?: NexusGenInputs['ChatRoomInvitationWhereInput'] | null; // ChatRoomInvitationWhereInput
-  }
-  ChatRoomInvitationWhereInput: { // input type
-    AND?: NexusGenInputs['ChatRoomInvitationWhereInput'][] | null; // [ChatRoomInvitationWhereInput!]
-    ChatRoom?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    ChatRoom_ChatRoomToChatRoomInvitation?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ChatRoomInvitationWhereInput'][] | null; // [ChatRoomInvitationWhereInput!]
-    Notice?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Notice_ChatRoomInvitationToNotice?: NexusGenInputs['NoticeWhereInput'] | null; // NoticeWhereInput
-    OR?: NexusGenInputs['ChatRoomInvitationWhereInput'][] | null; // [ChatRoomInvitationWhereInput!]
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_ChatRoomInvitation_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_ChatRoomInvitation_UserToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ChatRoomListRelationFilter: { // input type
-    every?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
-    none?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
-    some?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
-  }
-  ChatRoomOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    allowAnonymous?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isPublic?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    sandbox?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  ChatRoomWhereInput: { // input type
-    AND?: NexusGenInputs['ChatRoomWhereInput'][] | null; // [ChatRoomWhereInput!]
-    CallRequest?: NexusGenInputs['CallRequestListRelationFilter'] | null; // CallRequestListRelationFilter
-    ChatMessage?: NexusGenInputs['ChatMessageListRelationFilter'] | null; // ChatMessageListRelationFilter
-    ChatRoomInvitation?: NexusGenInputs['ChatRoomInvitationListRelationFilter'] | null; // ChatRoomInvitationListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ChatRoomWhereInput'][] | null; // [ChatRoomWhereInput!]
-    OR?: NexusGenInputs['ChatRoomWhereInput'][] | null; // [ChatRoomWhereInput!]
-    Project?: NexusGenInputs['ProjectListRelationFilter'] | null; // ProjectListRelationFilter
-    Task?: NexusGenInputs['TaskListRelationFilter'] | null; // TaskListRelationFilter
-    User_ChatRoomToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_ChatRoomsMembers?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    allowAnonymous?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    image?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    isPublic?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    sandbox?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ChatRoomWhereUniqueInput: { // input type
-    code?: string | null; // String
-    id?: string | null; // String
-  }
-  CodeChallengeBlockListRelationFilter: { // input type
-    every?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null; // CodeChallengeBlockWhereInput
-    none?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null; // CodeChallengeBlockWhereInput
-    some?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null; // CodeChallengeBlockWhereInput
-  }
-  CodeChallengeBlockOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Parent?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    externalKey?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    rank?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  CodeChallengeBlockWhereInput: { // input type
-    AND?: NexusGenInputs['CodeChallengeBlockWhereInput'][] | null; // [CodeChallengeBlockWhereInput!]
-    CodeChallenge?: NexusGenInputs['CodeChallengeListRelationFilter'] | null; // CodeChallengeListRelationFilter
-    CodeChallengeBlock?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null; // CodeChallengeBlockWhereInput
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['CodeChallengeBlockWhereInput'][] | null; // [CodeChallengeBlockWhereInput!]
-    OR?: NexusGenInputs['CodeChallengeBlockWhereInput'][] | null; // [CodeChallengeBlockWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    externalKey?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    other_CodeChallengeBlock?: NexusGenInputs['CodeChallengeBlockListRelationFilter'] | null; // CodeChallengeBlockListRelationFilter
-    rank?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  CodeChallengeBlockWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  CodeChallengeCompletionCreateInput: { // input type
-    CodeChallenge: NexusGenInputs['CodeChallengeCreateOneWithoutCompletionsInput']; // CodeChallengeCreateOneWithoutCompletionsInput!
-  }
-  CodeChallengeCompletionListRelationFilter: { // input type
-    every?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null; // CodeChallengeCompletionWhereInput
-    none?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null; // CodeChallengeCompletionWhereInput
-    some?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null; // CodeChallengeCompletionWhereInput
-  }
-  CodeChallengeCompletionOrderByInput: { // input type
-    CodeChallenge?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Task?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    content?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    success?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  CodeChallengeCompletionUpdateInput: { // input type
-    content?: string | null; // String
-    success?: boolean | null; // Boolean
-  }
-  CodeChallengeCompletionWhereInput: { // input type
-    AND?: NexusGenInputs['CodeChallengeCompletionWhereInput'][] | null; // [CodeChallengeCompletionWhereInput!]
-    CodeChallenge?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    CodeChallenge_CodeChallengeToCodeChallengeCompletion?: NexusGenInputs['CodeChallengeWhereInput'] | null; // CodeChallengeWhereInput
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['CodeChallengeCompletionWhereInput'][] | null; // [CodeChallengeCompletionWhereInput!]
-    OR?: NexusGenInputs['CodeChallengeCompletionWhereInput'][] | null; // [CodeChallengeCompletionWhereInput!]
-    Task?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Task_CodeChallengeCompletionToTask?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    content?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    success?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  CodeChallengeCompletionWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  CodeChallengeCreateOneWithoutCompletionsInput: { // input type
-    connect?: NexusGenInputs['CodeChallengeWhereUniqueInput'] | null; // CodeChallengeWhereUniqueInput
-  }
-  CodeChallengeListRelationFilter: { // input type
-    every?: NexusGenInputs['CodeChallengeWhereInput'] | null; // CodeChallengeWhereInput
-    none?: NexusGenInputs['CodeChallengeWhereInput'] | null; // CodeChallengeWhereInput
-    some?: NexusGenInputs['CodeChallengeWhereInput'] | null; // CodeChallengeWhereInput
-  }
-  CodeChallengeOrderByInput: { // input type
-    Block?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Topic?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    challengeOrder?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    challengeType?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    dashedName?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    externalKey?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    files?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    forumTopicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    instructions?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isBeta?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isPrivate?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isRequired?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    localeTitle?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    order?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    rank?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    required?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    solutions?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    superOrder?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    template?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    tests?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    time?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    translations?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    videoUrl?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  CodeChallengeWhereInput: { // input type
-    AND?: NexusGenInputs['CodeChallengeWhereInput'][] | null; // [CodeChallengeWhereInput!]
-    Block?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    CodeChallengeBlock?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null; // CodeChallengeBlockWhereInput
-    CodeChallengeCompletion?: NexusGenInputs['CodeChallengeCompletionListRelationFilter'] | null; // CodeChallengeCompletionListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['CodeChallengeWhereInput'][] | null; // [CodeChallengeWhereInput!]
-    OR?: NexusGenInputs['CodeChallengeWhereInput'][] | null; // [CodeChallengeWhereInput!]
-    Resource?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    Topic?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    challengeOrder?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    challengeType?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    dashedName?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    externalKey?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    files?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    forumTopicId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    instructions?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    isBeta?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    isPrivate?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    isRequired?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    localeTitle?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    order?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    rank?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    required?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    solutions?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    superOrder?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    template?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    tests?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    time?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    translations?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    videoUrl?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  CodeChallengeWhereUniqueInput: { // input type
-    externalKey?: string | null; // String
-    id?: string | null; // String
-  }
-  CommentCreateInput: { // input type
-    content?: NexusGenScalars['JSON'] | null; // JSON
-    text?: NexusGenScalars['JSON'] | null; // JSON
-  }
-  CommentListRelationFilter: { // input type
-    every?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    none?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    some?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-  }
-  CommentUpdateInput: { // input type
-    content?: NexusGenScalars['JSON'] | null; // JSON
-    text?: NexusGenScalars['JSON'] | null; // JSON
-  }
-  CommentWhereInput: { // input type
-    AND?: NexusGenInputs['CommentWhereInput'][] | null; // [CommentWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['CommentWhereInput'][] | null; // [CommentWhereInput!]
-    OR?: NexusGenInputs['CommentWhereInput'][] | null; // [CommentWhereInput!]
-    TechnologyLesson?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    TechnologyLesson_CommentToTechnologyLesson?: NexusGenInputs['TechnologyLessonWhereInput'] | null; // TechnologyLessonWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    components?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    contentText?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  DateTimeFilter: { // input type
-    equals?: NexusGenScalars['DateTime'] | null; // DateTime
-    gt?: NexusGenScalars['DateTime'] | null; // DateTime
-    gte?: NexusGenScalars['DateTime'] | null; // DateTime
-    in?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-    lt?: NexusGenScalars['DateTime'] | null; // DateTime
-    lte?: NexusGenScalars['DateTime'] | null; // DateTime
-    not?: NexusGenInputs['NestedDateTimeFilter'] | null; // NestedDateTimeFilter
-    notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-  }
-  DateTimeNullableFilter: { // input type
-    equals?: NexusGenScalars['DateTime'] | null; // DateTime
-    gt?: NexusGenScalars['DateTime'] | null; // DateTime
-    gte?: NexusGenScalars['DateTime'] | null; // DateTime
-    in?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-    lt?: NexusGenScalars['DateTime'] | null; // DateTime
-    lte?: NexusGenScalars['DateTime'] | null; // DateTime
-    not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
-    notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-  }
-  DecimalFilter: { // input type
-    equals?: NexusGenScalars['Decimal'] | null; // Decimal
-    gt?: NexusGenScalars['Decimal'] | null; // Decimal
-    gte?: NexusGenScalars['Decimal'] | null; // Decimal
-    in?: NexusGenScalars['Decimal'][] | null; // [Decimal!]
-    lt?: NexusGenScalars['Decimal'] | null; // Decimal
-    lte?: NexusGenScalars['Decimal'] | null; // Decimal
-    not?: NexusGenInputs['NestedDecimalFilter'] | null; // NestedDecimalFilter
-    notIn?: NexusGenScalars['Decimal'][] | null; // [Decimal!]
-  }
-  DecimalNullableFilter: { // input type
-    equals?: NexusGenScalars['Decimal'] | null; // Decimal
-    gt?: NexusGenScalars['Decimal'] | null; // Decimal
-    gte?: NexusGenScalars['Decimal'] | null; // Decimal
-    in?: NexusGenScalars['Decimal'][] | null; // [Decimal!]
-    lt?: NexusGenScalars['Decimal'] | null; // Decimal
-    lte?: NexusGenScalars['Decimal'] | null; // Decimal
-    not?: NexusGenInputs['NestedDecimalNullableFilter'] | null; // NestedDecimalNullableFilter
-    notIn?: NexusGenScalars['Decimal'][] | null; // [Decimal!]
-  }
-  EthAccountListRelationFilter: { // input type
-    every?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-    none?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-    some?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-  }
-  EthAccountWhereInput: { // input type
-    AND?: NexusGenInputs['EthAccountWhereInput'][] | null; // [EthAccountWhereInput!]
-    ContractSource?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    EthBlock?: NexusGenInputs['EthBlockListRelationFilter'] | null; // EthBlockListRelationFilter
-    EthContractSource?: NexusGenInputs['EthContractSourceWhereInput'] | null; // EthContractSourceWhereInput
-    EthTransaction_EthAccountToEthTransaction_Account?: NexusGenInputs['EthTransactionListRelationFilter'] | null; // EthTransactionListRelationFilter
-    EthTransaction_EthAccountToEthTransaction_Receiver?: NexusGenInputs['EthTransactionListRelationFilter'] | null; // EthTransactionListRelationFilter
-    EthTransaction_EthAccountToEthTransaction_Sender?: NexusGenInputs['EthTransactionListRelationFilter'] | null; // EthTransactionListRelationFilter
-    NOT?: NexusGenInputs['EthAccountWhereInput'][] | null; // [EthAccountWhereInput!]
-    OR?: NexusGenInputs['EthAccountWhereInput'][] | null; // [EthAccountWhereInput!]
-    Project?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Project_EthAccountToProject?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    User_EthAccountToUser_EthAccountAuthed?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    User_EthAccount_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    abi?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    address?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    bytecode?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    source?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  EthBlockListRelationFilter: { // input type
-    every?: NexusGenInputs['EthBlockWhereInput'] | null; // EthBlockWhereInput
-    none?: NexusGenInputs['EthBlockWhereInput'] | null; // EthBlockWhereInput
-    some?: NexusGenInputs['EthBlockWhereInput'] | null; // EthBlockWhereInput
-  }
-  EthBlockWhereInput: { // input type
-    AND?: NexusGenInputs['EthBlockWhereInput'][] | null; // [EthBlockWhereInput!]
-    EthAccount?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-    EthBlock_A?: NexusGenInputs['EthBlockListRelationFilter'] | null; // EthBlockListRelationFilter
-    EthBlock_B?: NexusGenInputs['EthBlockListRelationFilter'] | null; // EthBlockListRelationFilter
-    EthTransaction?: NexusGenInputs['EthTransactionListRelationFilter'] | null; // EthTransactionListRelationFilter
-    Miner?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['EthBlockWhereInput'][] | null; // [EthBlockWhereInput!]
-    OR?: NexusGenInputs['EthBlockWhereInput'][] | null; // [EthBlockWhereInput!]
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    date?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    difficulty?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    extraData?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    gasLimit?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    gasUsed?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    hash?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    mixHash?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    nonce?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    number?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    parentHash?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    receiptsRoot?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    sha3Uncles?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    size?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    stateRoot?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    totalDifficulty?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    transactionsRoot?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    transactions_count?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  EthContractSourceListRelationFilter: { // input type
-    every?: NexusGenInputs['EthContractSourceWhereInput'] | null; // EthContractSourceWhereInput
-    none?: NexusGenInputs['EthContractSourceWhereInput'] | null; // EthContractSourceWhereInput
-    some?: NexusGenInputs['EthContractSourceWhereInput'] | null; // EthContractSourceWhereInput
-  }
-  EthContractSourceWhereInput: { // input type
-    AND?: NexusGenInputs['EthContractSourceWhereInput'][] | null; // [EthContractSourceWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    EthAccount?: NexusGenInputs['EthAccountListRelationFilter'] | null; // EthAccountListRelationFilter
-    NOT?: NexusGenInputs['EthContractSourceWhereInput'][] | null; // [EthContractSourceWhereInput!]
-    OR?: NexusGenInputs['EthContractSourceWhereInput'][] | null; // [EthContractSourceWhereInput!]
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    source?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  EthTransactionListRelationFilter: { // input type
-    every?: NexusGenInputs['EthTransactionWhereInput'] | null; // EthTransactionWhereInput
-    none?: NexusGenInputs['EthTransactionWhereInput'] | null; // EthTransactionWhereInput
-    some?: NexusGenInputs['EthTransactionWhereInput'] | null; // EthTransactionWhereInput
-  }
-  EthTransactionWhereInput: { // input type
-    AND?: NexusGenInputs['EthTransactionWhereInput'][] | null; // [EthTransactionWhereInput!]
-    Account?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Block?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    EthAccount_EthAccountToEthTransaction_Account?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-    EthAccount_EthAccountToEthTransaction_Receiver?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-    EthAccount_EthAccountToEthTransaction_Sender?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-    EthBlock?: NexusGenInputs['EthBlockWhereInput'] | null; // EthBlockWhereInput
-    NOT?: NexusGenInputs['EthTransactionWhereInput'][] | null; // [EthTransactionWhereInput!]
-    OR?: NexusGenInputs['EthTransactionWhereInput'][] | null; // [EthTransactionWhereInput!]
-    Receiver?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Sender?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    address?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    amount?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    chainId?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    index?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    input?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    r?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    s?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    v?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  FileListRelationFilter: { // input type
-    every?: NexusGenInputs['FileWhereInput'] | null; // FileWhereInput
-    none?: NexusGenInputs['FileWhereInput'] | null; // FileWhereInput
-    some?: NexusGenInputs['FileWhereInput'] | null; // FileWhereInput
-  }
-  FileOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Gallery?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    ImageResource?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    encoding?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    filename?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    hash?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    mimetype?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    path?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    rank?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    size?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  FileWhereInput: { // input type
-    AND?: NexusGenInputs['FileWhereInput'][] | null; // [FileWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Gallery?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Gallery_FileToGallery?: NexusGenInputs['GalleryWhereInput'] | null; // GalleryWhereInput
-    ImageResource?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['FileWhereInput'][] | null; // [FileWhereInput!]
-    OR?: NexusGenInputs['FileWhereInput'][] | null; // [FileWhereInput!]
-    Project?: NexusGenInputs['ProjectListRelationFilter'] | null; // ProjectListRelationFilter
-    Resource?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    encoding?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    filename?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    hash?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    mimetype?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    path?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    rank?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    size?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  FileWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  GalleryListRelationFilter: { // input type
-    every?: NexusGenInputs['GalleryWhereInput'] | null; // GalleryWhereInput
-    none?: NexusGenInputs['GalleryWhereInput'] | null; // GalleryWhereInput
-    some?: NexusGenInputs['GalleryWhereInput'] | null; // GalleryWhereInput
-  }
-  GalleryWhereInput: { // input type
-    AND?: NexusGenInputs['GalleryWhereInput'][] | null; // [GalleryWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    File?: NexusGenInputs['FileListRelationFilter'] | null; // FileListRelationFilter
-    NOT?: NexusGenInputs['GalleryWhereInput'][] | null; // [GalleryWhereInput!]
-    OR?: NexusGenInputs['GalleryWhereInput'][] | null; // [GalleryWhereInput!]
-    Resource?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Resource_GalleryToResource?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  GameListRelationFilter: { // input type
-    every?: NexusGenInputs['GameWhereInput'] | null; // GameWhereInput
-    none?: NexusGenInputs['GameWhereInput'] | null; // GameWhereInput
-    some?: NexusGenInputs['GameWhereInput'] | null; // GameWhereInput
-  }
-  GameResultListRelationFilter: { // input type
-    every?: NexusGenInputs['GameResultWhereInput'] | null; // GameResultWhereInput
-    none?: NexusGenInputs['GameResultWhereInput'] | null; // GameResultWhereInput
-    some?: NexusGenInputs['GameResultWhereInput'] | null; // GameResultWhereInput
-  }
-  GameResultWhereInput: { // input type
-    AND?: NexusGenInputs['GameResultWhereInput'][] | null; // [GameResultWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Game?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Game_GameToGameResult?: NexusGenInputs['GameWhereInput'] | null; // GameWhereInput
-    NOT?: NexusGenInputs['GameResultWhereInput'][] | null; // [GameResultWhereInput!]
-    OR?: NexusGenInputs['GameResultWhereInput'][] | null; // [GameResultWhereInput!]
-    Team?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Team_GameResultToTeam?: NexusGenInputs['TeamWhereInput'] | null; // TeamWhereInput
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_GameResult_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_GameResult_UserToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    date?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    value?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-  }
-  GameWhereInput: { // input type
-    AND?: NexusGenInputs['GameWhereInput'][] | null; // [GameWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Game?: NexusGenInputs['GameWhereInput'] | null; // GameWhereInput
-    GameResult?: NexusGenInputs['GameResultListRelationFilter'] | null; // GameResultListRelationFilter
-    NOT?: NexusGenInputs['GameWhereInput'][] | null; // [GameWhereInput!]
-    OR?: NexusGenInputs['GameWhereInput'][] | null; // [GameWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Team?: NexusGenInputs['TeamListRelationFilter'] | null; // TeamListRelationFilter
-    Tourney?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Tourney_GameToTourney?: NexusGenInputs['TourneyWhereInput'] | null; // TourneyWhereInput
-    User_GameToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_GameUsers?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    end_date?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    other_Game?: NexusGenInputs['GameListRelationFilter'] | null; // GameListRelationFilter
-    sequence?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    start_date?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ImportListRelationFilter: { // input type
-    every?: NexusGenInputs['ImportWhereInput'] | null; // ImportWhereInput
-    none?: NexusGenInputs['ImportWhereInput'] | null; // ImportWhereInput
-    some?: NexusGenInputs['ImportWhereInput'] | null; // ImportWhereInput
-  }
-  ImportWhereInput: { // input type
-    AND?: NexusGenInputs['ImportWhereInput'][] | null; // [ImportWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Log?: NexusGenInputs['LogListRelationFilter'] | null; // LogListRelationFilter
-    NOT?: NexusGenInputs['ImportWhereInput'][] | null; // [ImportWhereInput!]
-    OR?: NexusGenInputs['ImportWhereInput'][] | null; // [ImportWhereInput!]
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    status?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  IntFilter: { // input type
-    equals?: number | null; // Int
-    gt?: number | null; // Int
-    gte?: number | null; // Int
-    in?: number[] | null; // [Int!]
-    lt?: number | null; // Int
-    lte?: number | null; // Int
-    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
-    notIn?: number[] | null; // [Int!]
-  }
-  IntNullableFilter: { // input type
-    equals?: number | null; // Int
-    gt?: number | null; // Int
-    gte?: number | null; // Int
-    in?: number[] | null; // [Int!]
-    lt?: number | null; // Int
-    lte?: number | null; // Int
-    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
-    notIn?: number[] | null; // [Int!]
-  }
-  InventoryWhereInput: { // input type
-    AND?: NexusGenInputs['InventoryWhereInput'][] | null; // [InventoryWhereInput!]
-    NOT?: NexusGenInputs['InventoryWhereInput'][] | null; // [InventoryWhereInput!]
-    OR?: NexusGenInputs['InventoryWhereInput'][] | null; // [InventoryWhereInput!]
-    Player?: NexusGenInputs['PlayerListRelationFilter'] | null; // PlayerListRelationFilter
-    cursor?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    data?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-  }
-  LetsadsSmsMessageStatusItemListRelationFilter: { // input type
-    every?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'] | null; // LetsadsSmsMessageStatusItemWhereInput
-    none?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'] | null; // LetsadsSmsMessageStatusItemWhereInput
-    some?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'] | null; // LetsadsSmsMessageStatusItemWhereInput
-  }
-  LetsadsSmsMessageStatusItemWhereInput: { // input type
-    AND?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'][] | null; // [LetsadsSmsMessageStatusItemWhereInput!]
-    LetsadsSmsMessageStatus?: NexusGenInputs['LetsadsSmsMessageStatusWhereInput'] | null; // LetsadsSmsMessageStatusWhereInput
-    NOT?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'][] | null; // [LetsadsSmsMessageStatusItemWhereInput!]
-    OR?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'][] | null; // [LetsadsSmsMessageStatusItemWhereInput!]
-    Status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    sms_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  LetsadsSmsMessageStatusWhereInput: { // input type
-    AND?: NexusGenInputs['LetsadsSmsMessageStatusWhereInput'][] | null; // [LetsadsSmsMessageStatusWhereInput!]
-    LetsadsSmsMessageStatusItem?: NexusGenInputs['LetsadsSmsMessageStatusItemListRelationFilter'] | null; // LetsadsSmsMessageStatusItemListRelationFilter
-    NOT?: NexusGenInputs['LetsadsSmsMessageStatusWhereInput'][] | null; // [LetsadsSmsMessageStatusWhereInput!]
-    OR?: NexusGenInputs['LetsadsSmsMessageStatusWhereInput'][] | null; // [LetsadsSmsMessageStatusWhereInput!]
-    SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null; // SmsMessageListRelationFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    errorCode?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  LetterListRelationFilter: { // input type
-    every?: NexusGenInputs['LetterWhereInput'] | null; // LetterWhereInput
-    none?: NexusGenInputs['LetterWhereInput'] | null; // LetterWhereInput
-    some?: NexusGenInputs['LetterWhereInput'] | null; // LetterWhereInput
-  }
-  LetterWhereInput: { // input type
-    AND?: NexusGenInputs['LetterWhereInput'][] | null; // [LetterWhereInput!]
-    NOT?: NexusGenInputs['LetterWhereInput'][] | null; // [LetterWhereInput!]
-    OR?: NexusGenInputs['LetterWhereInput'][] | null; // [LetterWhereInput!]
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_LetterToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    deleteOnSend?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    email?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    message?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    rank?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    replyTo?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    returnTo?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    status?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    subject?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  LogListRelationFilter: { // input type
-    every?: NexusGenInputs['LogWhereInput'] | null; // LogWhereInput
-    none?: NexusGenInputs['LogWhereInput'] | null; // LogWhereInput
-    some?: NexusGenInputs['LogWhereInput'] | null; // LogWhereInput
-  }
-  LogWhereInput: { // input type
-    AND?: NexusGenInputs['LogWhereInput'][] | null; // [LogWhereInput!]
-    Import?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Import_ImportToLog?: NexusGenInputs['ImportWhereInput'] | null; // ImportWhereInput
-    NOT?: NexusGenInputs['LogWhereInput'][] | null; // [LogWhereInput!]
-    OR?: NexusGenInputs['LogWhereInput'][] | null; // [LogWhereInput!]
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    level?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    message?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    objectType?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    stack?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  LogedInListRelationFilter: { // input type
-    every?: NexusGenInputs['LogedInWhereInput'] | null; // LogedInWhereInput
-    none?: NexusGenInputs['LogedInWhereInput'] | null; // LogedInWhereInput
-    some?: NexusGenInputs['LogedInWhereInput'] | null; // LogedInWhereInput
-  }
-  LogedInWhereInput: { // input type
-    AND?: NexusGenInputs['LogedInWhereInput'][] | null; // [LogedInWhereInput!]
-    NOT?: NexusGenInputs['LogedInWhereInput'][] | null; // [LogedInWhereInput!]
-    OR?: NexusGenInputs['LogedInWhereInput'][] | null; // [LogedInWhereInput!]
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_LogedInToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    fake?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  MessageListRelationFilter: { // input type
-    every?: NexusGenInputs['MessageWhereInput'] | null; // MessageWhereInput
-    none?: NexusGenInputs['MessageWhereInput'] | null; // MessageWhereInput
-    some?: NexusGenInputs['MessageWhereInput'] | null; // MessageWhereInput
-  }
-  MessageWhereInput: { // input type
-    AND?: NexusGenInputs['MessageWhereInput'][] | null; // [MessageWhereInput!]
-    NOT?: NexusGenInputs['MessageWhereInput'][] | null; // [MessageWhereInput!]
-    OR?: NexusGenInputs['MessageWhereInput'][] | null; // [MessageWhereInput!]
-    World?: NexusGenInputs['WorldWhereInput'] | null; // WorldWhereInput
-    body?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    sender?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    type?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    world?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  NestedBoolFilter: { // input type
-    equals?: boolean | null; // Boolean
-    not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
-  }
-  NestedBoolNullableFilter: { // input type
-    equals?: boolean | null; // Boolean
-    not?: NexusGenInputs['NestedBoolNullableFilter'] | null; // NestedBoolNullableFilter
-  }
-  NestedDateTimeFilter: { // input type
-    equals?: NexusGenScalars['DateTime'] | null; // DateTime
-    gt?: NexusGenScalars['DateTime'] | null; // DateTime
-    gte?: NexusGenScalars['DateTime'] | null; // DateTime
-    in?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-    lt?: NexusGenScalars['DateTime'] | null; // DateTime
-    lte?: NexusGenScalars['DateTime'] | null; // DateTime
-    not?: NexusGenInputs['NestedDateTimeFilter'] | null; // NestedDateTimeFilter
-    notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-  }
-  NestedDateTimeNullableFilter: { // input type
-    equals?: NexusGenScalars['DateTime'] | null; // DateTime
-    gt?: NexusGenScalars['DateTime'] | null; // DateTime
-    gte?: NexusGenScalars['DateTime'] | null; // DateTime
-    in?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-    lt?: NexusGenScalars['DateTime'] | null; // DateTime
-    lte?: NexusGenScalars['DateTime'] | null; // DateTime
-    not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
-    notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-  }
-  NestedDecimalFilter: { // input type
-    equals?: NexusGenScalars['Decimal'] | null; // Decimal
-    gt?: NexusGenScalars['Decimal'] | null; // Decimal
-    gte?: NexusGenScalars['Decimal'] | null; // Decimal
-    in?: NexusGenScalars['Decimal'][] | null; // [Decimal!]
-    lt?: NexusGenScalars['Decimal'] | null; // Decimal
-    lte?: NexusGenScalars['Decimal'] | null; // Decimal
-    not?: NexusGenInputs['NestedDecimalFilter'] | null; // NestedDecimalFilter
-    notIn?: NexusGenScalars['Decimal'][] | null; // [Decimal!]
-  }
-  NestedDecimalNullableFilter: { // input type
-    equals?: NexusGenScalars['Decimal'] | null; // Decimal
-    gt?: NexusGenScalars['Decimal'] | null; // Decimal
-    gte?: NexusGenScalars['Decimal'] | null; // Decimal
-    in?: NexusGenScalars['Decimal'][] | null; // [Decimal!]
-    lt?: NexusGenScalars['Decimal'] | null; // Decimal
-    lte?: NexusGenScalars['Decimal'] | null; // Decimal
-    not?: NexusGenInputs['NestedDecimalNullableFilter'] | null; // NestedDecimalNullableFilter
-    notIn?: NexusGenScalars['Decimal'][] | null; // [Decimal!]
-  }
-  NestedIntFilter: { // input type
-    equals?: number | null; // Int
-    gt?: number | null; // Int
-    gte?: number | null; // Int
-    in?: number[] | null; // [Int!]
-    lt?: number | null; // Int
-    lte?: number | null; // Int
-    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
-    notIn?: number[] | null; // [Int!]
-  }
-  NestedIntNullableFilter: { // input type
-    equals?: number | null; // Int
-    gt?: number | null; // Int
-    gte?: number | null; // Int
-    in?: number[] | null; // [Int!]
-    lt?: number | null; // Int
-    lte?: number | null; // Int
-    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
-    notIn?: number[] | null; // [Int!]
-  }
-  NestedStringFilter: { // input type
-    contains?: string | null; // String
-    endsWith?: string | null; // String
-    equals?: string | null; // String
-    gt?: string | null; // String
-    gte?: string | null; // String
-    in?: string[] | null; // [String!]
-    lt?: string | null; // String
-    lte?: string | null; // String
-    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
-    notIn?: string[] | null; // [String!]
-    startsWith?: string | null; // String
-  }
-  NestedStringNullableFilter: { // input type
-    contains?: string | null; // String
-    endsWith?: string | null; // String
-    equals?: string | null; // String
-    gt?: string | null; // String
-    gte?: string | null; // String
-    in?: string[] | null; // [String!]
-    lt?: string | null; // String
-    lte?: string | null; // String
-    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
-    notIn?: string[] | null; // [String!]
-    startsWith?: string | null; // String
-  }
-  NoticeListRelationFilter: { // input type
-    every?: NexusGenInputs['NoticeWhereInput'] | null; // NoticeWhereInput
-    none?: NexusGenInputs['NoticeWhereInput'] | null; // NoticeWhereInput
-    some?: NexusGenInputs['NoticeWhereInput'] | null; // NoticeWhereInput
-  }
-  NoticeOrderByInput: { // input type
-    ChatMessage?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    User?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    type?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  NoticeWhereInput: { // input type
-    AND?: NexusGenInputs['NoticeWhereInput'][] | null; // [NoticeWhereInput!]
-    ChatMessage?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    ChatMessage_ChatMessageToNotice?: NexusGenInputs['ChatMessageWhereInput'] | null; // ChatMessageWhereInput
-    ChatRoomInvitation?: NexusGenInputs['ChatRoomInvitationListRelationFilter'] | null; // ChatRoomInvitationListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['NoticeWhereInput'][] | null; // [NoticeWhereInput!]
-    OR?: NexusGenInputs['NoticeWhereInput'][] | null; // [NoticeWhereInput!]
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_Notice_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_Notice_UserToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    type?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  NoticeWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  NotificationTypeListRelationFilter: { // input type
-    every?: NexusGenInputs['NotificationTypeWhereInput'] | null; // NotificationTypeWhereInput
-    none?: NexusGenInputs['NotificationTypeWhereInput'] | null; // NotificationTypeWhereInput
-    some?: NexusGenInputs['NotificationTypeWhereInput'] | null; // NotificationTypeWhereInput
-  }
-  NotificationTypeOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    comment?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  NotificationTypeWhereInput: { // input type
-    AND?: NexusGenInputs['NotificationTypeWhereInput'][] | null; // [NotificationTypeWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['NotificationTypeWhereInput'][] | null; // [NotificationTypeWhereInput!]
-    OR?: NexusGenInputs['NotificationTypeWhereInput'][] | null; // [NotificationTypeWhereInput!]
-    User_NotificationTypeToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_UserNotificationTypes?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    comment?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    oldID?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  NotificationTypeWhereUniqueInput: { // input type
-    code?: string | null; // String
-    id?: string | null; // String
-    oldID?: number | null; // Int
-  }
-  PlayerListRelationFilter: { // input type
-    every?: NexusGenInputs['PlayerWhereInput'] | null; // PlayerWhereInput
-    none?: NexusGenInputs['PlayerWhereInput'] | null; // PlayerWhereInput
-    some?: NexusGenInputs['PlayerWhereInput'] | null; // PlayerWhereInput
-  }
-  PlayerWhereInput: { // input type
-    AND?: NexusGenInputs['PlayerWhereInput'][] | null; // [PlayerWhereInput!]
-    Inventory?: NexusGenInputs['InventoryWhereInput'] | null; // InventoryWhereInput
-    NOT?: NexusGenInputs['PlayerWhereInput'][] | null; // [PlayerWhereInput!]
-    OR?: NexusGenInputs['PlayerWhereInput'][] | null; // [PlayerWhereInput!]
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    World?: NexusGenInputs['WorldWhereInput'] | null; // WorldWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    dirx?: NexusGenInputs['DecimalFilter'] | null; // DecimalFilter
-    diry?: NexusGenInputs['DecimalFilter'] | null; // DecimalFilter
-    gamemode?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    inventory?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    isAdmin?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    lastLogin?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    user?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    world?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    x?: NexusGenInputs['DecimalFilter'] | null; // DecimalFilter
-    y?: NexusGenInputs['DecimalFilter'] | null; // DecimalFilter
-    z?: NexusGenInputs['DecimalFilter'] | null; // DecimalFilter
-  }
-  PositionListRelationFilter: { // input type
-    every?: NexusGenInputs['PositionWhereInput'] | null; // PositionWhereInput
-    none?: NexusGenInputs['PositionWhereInput'] | null; // PositionWhereInput
-    some?: NexusGenInputs['PositionWhereInput'] | null; // PositionWhereInput
-  }
-  PositionWhereInput: { // input type
-    AND?: NexusGenInputs['PositionWhereInput'][] | null; // [PositionWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['PositionWhereInput'][] | null; // [PositionWhereInput!]
-    OR?: NexusGenInputs['PositionWhereInput'][] | null; // [PositionWhereInput!]
-    User_PositionToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_PositionUsers?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ProjectCreateInput: { // input type
-    name: string; // String!
-  }
-  ProjectListRelationFilter: { // input type
-    every?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    none?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    some?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-  }
-  ProjectMemberListRelationFilter: { // input type
-    every?: NexusGenInputs['ProjectMemberWhereInput'] | null; // ProjectMemberWhereInput
-    none?: NexusGenInputs['ProjectMemberWhereInput'] | null; // ProjectMemberWhereInput
-    some?: NexusGenInputs['ProjectMemberWhereInput'] | null; // ProjectMemberWhereInput
-  }
-  ProjectMemberWhereInput: { // input type
-    AND?: NexusGenInputs['ProjectMemberWhereInput'][] | null; // [ProjectMemberWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ProjectMemberWhereInput'][] | null; // [ProjectMemberWhereInput!]
-    OR?: NexusGenInputs['ProjectMemberWhereInput'][] | null; // [ProjectMemberWhereInput!]
-    Project?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Project_ProjectToProjectMember?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    Service?: NexusGenInputs['ServiceListRelationFilter'] | null; // ServiceListRelationFilter
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_ProjectMember_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_ProjectMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ProjectOrderByInput: { // input type
-    ChatRoom?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Image?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Resource?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Team?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    content?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    contentText?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    domain?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    public?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    sequence?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    status?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    type?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    url?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  ProjectTaskListRelationFilter: { // input type
-    every?: NexusGenInputs['ProjectTaskWhereInput'] | null; // ProjectTaskWhereInput
-    none?: NexusGenInputs['ProjectTaskWhereInput'] | null; // ProjectTaskWhereInput
-    some?: NexusGenInputs['ProjectTaskWhereInput'] | null; // ProjectTaskWhereInput
-  }
-  ProjectTaskOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Project?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Task?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  ProjectTaskWhereInput: { // input type
-    AND?: NexusGenInputs['ProjectTaskWhereInput'][] | null; // [ProjectTaskWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ProjectTaskWhereInput'][] | null; // [ProjectTaskWhereInput!]
-    OR?: NexusGenInputs['ProjectTaskWhereInput'][] | null; // [ProjectTaskWhereInput!]
-    Project?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Project_ProjectToProjectTask?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    Task?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Task_ProjectTaskToTask?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ProjectTaskWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  ProjectUpdateInput: { // input type
-    name?: string | null; // String
-  }
-  ProjectWhereInput: { // input type
-    AND?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
-    ChatRoom?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    ChatRoom_ChatRoomToProject?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    EthAccount?: NexusGenInputs['EthAccountListRelationFilter'] | null; // EthAccountListRelationFilter
-    File?: NexusGenInputs['FileWhereInput'] | null; // FileWhereInput
-    Image?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
-    OR?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
-    ProjectMember?: NexusGenInputs['ProjectMemberListRelationFilter'] | null; // ProjectMemberListRelationFilter
-    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null; // ProjectTaskListRelationFilter
-    Resource?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Resource_ProjectToResource_PrismaProject?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    Resource_Project_ResourceToResource?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    Team?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Team_ProjectCustomers?: NexusGenInputs['TeamListRelationFilter'] | null; // TeamListRelationFilter
-    Team_ProjectToTeam?: NexusGenInputs['TeamWhereInput'] | null; // TeamWhereInput
-    Template_ProjectToTemplate_PrismaProject?: NexusGenInputs['TemplateListRelationFilter'] | null; // TemplateListRelationFilter
-    Template_ProjectToTemplate_Project?: NexusGenInputs['TemplateListRelationFilter'] | null; // TemplateListRelationFilter
-    User_PrismaProjectUsers?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    User_ProjectToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    content?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    contentText?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    domain?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    oldID?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    public?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    sequence?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    url?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  ProjectWhereUniqueInput: { // input type
-    id?: string | null; // String
-    oldID?: number | null; // Int
-    sequence?: number | null; // Int
-  }
-  ResetPasswordListRelationFilter: { // input type
-    every?: NexusGenInputs['ResetPasswordWhereInput'] | null; // ResetPasswordWhereInput
-    none?: NexusGenInputs['ResetPasswordWhereInput'] | null; // ResetPasswordWhereInput
-    some?: NexusGenInputs['ResetPasswordWhereInput'] | null; // ResetPasswordWhereInput
-  }
-  ResetPasswordWhereInput: { // input type
-    AND?: NexusGenInputs['ResetPasswordWhereInput'][] | null; // [ResetPasswordWhereInput!]
-    NOT?: NexusGenInputs['ResetPasswordWhereInput'][] | null; // [ResetPasswordWhereInput!]
-    OR?: NexusGenInputs['ResetPasswordWhereInput'][] | null; // [ResetPasswordWhereInput!]
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_ResetPasswordToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    password?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    validTill?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-  }
-  ResourceListRelationFilter: { // input type
-    every?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    none?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    some?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-  }
-  ResourceOrderByInput: { // input type
-    Blog?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    EthAccount?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Parent?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    PrismaProject?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Service?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Task?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Team?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Topic?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    class_key?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    commentOldID?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    components?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    content?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    contentText?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    deleted?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    hidemenu?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isfolder?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    longtitle?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    mockUpdate?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    negativeVotesCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    neutralVotesCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    positiveVotesCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    published?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    rating?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    searchable?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    template?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    type?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    uri?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  ResourceTagListRelationFilter: { // input type
-    every?: NexusGenInputs['ResourceTagWhereInput'] | null; // ResourceTagWhereInput
-    none?: NexusGenInputs['ResourceTagWhereInput'] | null; // ResourceTagWhereInput
-    some?: NexusGenInputs['ResourceTagWhereInput'] | null; // ResourceTagWhereInput
-  }
-  ResourceTagWhereInput: { // input type
-    AND?: NexusGenInputs['ResourceTagWhereInput'][] | null; // [ResourceTagWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ResourceTagWhereInput'][] | null; // [ResourceTagWhereInput!]
-    OR?: NexusGenInputs['ResourceTagWhereInput'][] | null; // [ResourceTagWhereInput!]
-    Resource?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Resource_ResourceToResourceTag?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    Tag?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Tag_ResourceTagToTag?: NexusGenInputs['TagWhereInput'] | null; // TagWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    status?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ResourceWhereInput: { // input type
-    AND?: NexusGenInputs['ResourceWhereInput'][] | null; // [ResourceWhereInput!]
-    Blog?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    CodeChallenge?: NexusGenInputs['CodeChallengeListRelationFilter'] | null; // CodeChallengeListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    EthAccount?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    EthAccount_EthAccountToResource?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-    File?: NexusGenInputs['FileListRelationFilter'] | null; // FileListRelationFilter
-    Gallery?: NexusGenInputs['GalleryListRelationFilter'] | null; // GalleryListRelationFilter
-    NOT?: NexusGenInputs['ResourceWhereInput'][] | null; // [ResourceWhereInput!]
-    OR?: NexusGenInputs['ResourceWhereInput'][] | null; // [ResourceWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    PrismaProject?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Project_ProjectToResource_PrismaProject?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    Project_Project_ResourceToResource?: NexusGenInputs['ProjectListRelationFilter'] | null; // ProjectListRelationFilter
-    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null; // ResourceTagListRelationFilter
-    Resource_ResourceToResource_Blog?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    Resource_ResourceToResource_Parent?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    Resource_ResourceToResource_Topic?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    Service?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Service_ResourceToService?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
-    Task?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Task_ResourceToTask?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    Team?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Team_ResourceToTeam?: NexusGenInputs['TeamWhereInput'] | null; // TeamWhereInput
-    Topic?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    Vote?: NexusGenInputs['VoteListRelationFilter'] | null; // VoteListRelationFilter
-    class_key?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    commentOldID?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    components?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    content?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    contentText?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    deleted?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    hidemenu?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    isfolder?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    longtitle?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    mockUpdate?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    negativeVotesCount?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    neutralVotesCount?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    oldID?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    other_Resource_ResourceToResource_Blog?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    other_Resource_ResourceToResource_Parent?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    other_Resource_ResourceToResource_Topic?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    positiveVotesCount?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    published?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    rating?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    searchable?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    template?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    uri?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  ResourceWhereUniqueInput: { // input type
-    code?: string | null; // String
-    commentOldID?: number | null; // Int
-    id?: string | null; // String
-    oldID?: number | null; // Int
-  }
-  RouteListRelationFilter: { // input type
-    every?: NexusGenInputs['RouteWhereInput'] | null; // RouteWhereInput
-    none?: NexusGenInputs['RouteWhereInput'] | null; // RouteWhereInput
-    some?: NexusGenInputs['RouteWhereInput'] | null; // RouteWhereInput
-  }
-  RouteWhereInput: { // input type
-    AND?: NexusGenInputs['RouteWhereInput'][] | null; // [RouteWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['RouteWhereInput'][] | null; // [RouteWhereInput!]
-    OR?: NexusGenInputs['RouteWhereInput'][] | null; // [RouteWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Route?: NexusGenInputs['RouteWhereInput'] | null; // RouteWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    component?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    exact?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    other_Route?: NexusGenInputs['RouteListRelationFilter'] | null; // RouteListRelationFilter
-    path?: NexusGenInputs['StringFilter'] | null; // StringFilter
-  }
-  ServiceCategoryListRelationFilter: { // input type
-    every?: NexusGenInputs['ServiceCategoryWhereInput'] | null; // ServiceCategoryWhereInput
-    none?: NexusGenInputs['ServiceCategoryWhereInput'] | null; // ServiceCategoryWhereInput
-    some?: NexusGenInputs['ServiceCategoryWhereInput'] | null; // ServiceCategoryWhereInput
-  }
-  ServiceCategoryWhereInput: { // input type
-    AND?: NexusGenInputs['ServiceCategoryWhereInput'][] | null; // [ServiceCategoryWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ServiceCategoryWhereInput'][] | null; // [ServiceCategoryWhereInput!]
-    OR?: NexusGenInputs['ServiceCategoryWhereInput'][] | null; // [ServiceCategoryWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Service?: NexusGenInputs['ServiceListRelationFilter'] | null; // ServiceListRelationFilter
-    ServiceCategory?: NexusGenInputs['ServiceCategoryWhereInput'] | null; // ServiceCategoryWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    other_ServiceCategory?: NexusGenInputs['ServiceCategoryListRelationFilter'] | null; // ServiceCategoryListRelationFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  ServiceListRelationFilter: { // input type
-    every?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
-    none?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
-    some?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
-  }
-  ServiceWhereInput: { // input type
-    AND?: NexusGenInputs['ServiceWhereInput'][] | null; // [ServiceWhereInput!]
-    Category?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['ServiceWhereInput'][] | null; // [ServiceWhereInput!]
-    OR?: NexusGenInputs['ServiceWhereInput'][] | null; // [ServiceWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    ProjectMember?: NexusGenInputs['ProjectMemberListRelationFilter'] | null; // ProjectMemberListRelationFilter
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    Service?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
-    ServiceCategory?: NexusGenInputs['ServiceCategoryWhereInput'] | null; // ServiceCategoryWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    oldID?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    other_Service?: NexusGenInputs['ServiceListRelationFilter'] | null; // ServiceListRelationFilter
-    rank?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  SettingsListRelationFilter: { // input type
-    every?: NexusGenInputs['SettingsWhereInput'] | null; // SettingsWhereInput
-    none?: NexusGenInputs['SettingsWhereInput'] | null; // SettingsWhereInput
-    some?: NexusGenInputs['SettingsWhereInput'] | null; // SettingsWhereInput
-  }
-  SettingsWhereInput: { // input type
-    AND?: NexusGenInputs['SettingsWhereInput'][] | null; // [SettingsWhereInput!]
-    NOT?: NexusGenInputs['SettingsWhereInput'][] | null; // [SettingsWhereInput!]
-    OR?: NexusGenInputs['SettingsWhereInput'][] | null; // [SettingsWhereInput!]
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_SettingsToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    renderDistance?: NexusGenInputs['IntFilter'] | null; // IntFilter
-  }
-  SingleUploadInput: { // input type
-    directory?: string | null; // String
-    file: NexusGenScalars['Upload']; // Upload!
-    name?: string | null; // String
-  }
-  SmsMessageListRelationFilter: { // input type
-    every?: NexusGenInputs['SmsMessageWhereInput'] | null; // SmsMessageWhereInput
-    none?: NexusGenInputs['SmsMessageWhereInput'] | null; // SmsMessageWhereInput
-    some?: NexusGenInputs['SmsMessageWhereInput'] | null; // SmsMessageWhereInput
-  }
-  SmsMessageWhereInput: { // input type
-    AND?: NexusGenInputs['SmsMessageWhereInput'][] | null; // [SmsMessageWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    LetsadsSmsMessageStatus?: NexusGenInputs['LetsadsSmsMessageStatusWhereInput'] | null; // LetsadsSmsMessageStatusWhereInput
-    NOT?: NexusGenInputs['SmsMessageWhereInput'][] | null; // [SmsMessageWhereInput!]
-    OR?: NexusGenInputs['SmsMessageWhereInput'][] | null; // [SmsMessageWhereInput!]
-    Provider?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    SmsMessage_recipients?: NexusGenInputs['SmsMessage_recipientsListRelationFilter'] | null; // SmsMessage_recipientsListRelationFilter
-    SmsProvider?: NexusGenInputs['SmsProviderWhereInput'] | null; // SmsProviderWhereInput
-    Status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    deletOnSend?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    from?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  SmsMessage_recipientsListRelationFilter: { // input type
-    every?: NexusGenInputs['SmsMessage_recipientsWhereInput'] | null; // SmsMessage_recipientsWhereInput
-    none?: NexusGenInputs['SmsMessage_recipientsWhereInput'] | null; // SmsMessage_recipientsWhereInput
-    some?: NexusGenInputs['SmsMessage_recipientsWhereInput'] | null; // SmsMessage_recipientsWhereInput
-  }
-  SmsMessage_recipientsWhereInput: { // input type
-    AND?: NexusGenInputs['SmsMessage_recipientsWhereInput'][] | null; // [SmsMessage_recipientsWhereInput!]
-    NOT?: NexusGenInputs['SmsMessage_recipientsWhereInput'][] | null; // [SmsMessage_recipientsWhereInput!]
-    OR?: NexusGenInputs['SmsMessage_recipientsWhereInput'][] | null; // [SmsMessage_recipientsWhereInput!]
-    SmsMessage?: NexusGenInputs['SmsMessageWhereInput'] | null; // SmsMessageWhereInput
-    nodeId?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    position?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    value?: NexusGenInputs['StringFilter'] | null; // StringFilter
-  }
-  SmsProviderListRelationFilter: { // input type
-    every?: NexusGenInputs['SmsProviderWhereInput'] | null; // SmsProviderWhereInput
-    none?: NexusGenInputs['SmsProviderWhereInput'] | null; // SmsProviderWhereInput
-    some?: NexusGenInputs['SmsProviderWhereInput'] | null; // SmsProviderWhereInput
-  }
-  SmsProviderWhereInput: { // input type
-    AND?: NexusGenInputs['SmsProviderWhereInput'][] | null; // [SmsProviderWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['SmsProviderWhereInput'][] | null; // [SmsProviderWhereInput!]
-    OR?: NexusGenInputs['SmsProviderWhereInput'][] | null; // [SmsProviderWhereInput!]
-    SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null; // SmsMessageListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    credentials?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  StringFilter: { // input type
-    contains?: string | null; // String
-    endsWith?: string | null; // String
-    equals?: string | null; // String
-    gt?: string | null; // String
-    gte?: string | null; // String
-    in?: string[] | null; // [String!]
-    lt?: string | null; // String
-    lte?: string | null; // String
-    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
-    notIn?: string[] | null; // [String!]
-    startsWith?: string | null; // String
-  }
-  StringNullableFilter: { // input type
-    contains?: string | null; // String
-    endsWith?: string | null; // String
-    equals?: string | null; // String
-    gt?: string | null; // String
-    gte?: string | null; // String
-    in?: string[] | null; // [String!]
-    lt?: string | null; // String
-    lte?: string | null; // String
-    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
-    notIn?: string[] | null; // [String!]
-    startsWith?: string | null; // String
-  }
-  TagListRelationFilter: { // input type
-    every?: NexusGenInputs['TagWhereInput'] | null; // TagWhereInput
-    none?: NexusGenInputs['TagWhereInput'] | null; // TagWhereInput
-    some?: NexusGenInputs['TagWhereInput'] | null; // TagWhereInput
-  }
-  TagOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    status?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  TagWhereInput: { // input type
-    AND?: NexusGenInputs['TagWhereInput'][] | null; // [TagWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TagWhereInput'][] | null; // [TagWhereInput!]
-    OR?: NexusGenInputs['TagWhereInput'][] | null; // [TagWhereInput!]
-    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null; // ResourceTagListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    status?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TagWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  TaskCreateInput: { // input type
-    name: string; // String!
-  }
-  TaskListRelationFilter: { // input type
-    every?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    none?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    some?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-  }
-  TaskMemberListRelationFilter: { // input type
-    every?: NexusGenInputs['TaskMemberWhereInput'] | null; // TaskMemberWhereInput
-    none?: NexusGenInputs['TaskMemberWhereInput'] | null; // TaskMemberWhereInput
-    some?: NexusGenInputs['TaskMemberWhereInput'] | null; // TaskMemberWhereInput
-  }
-  TaskMemberWhereInput: { // input type
-    AND?: NexusGenInputs['TaskMemberWhereInput'][] | null; // [TaskMemberWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TaskMemberWhereInput'][] | null; // [TaskMemberWhereInput!]
-    OR?: NexusGenInputs['TaskMemberWhereInput'][] | null; // [TaskMemberWhereInput!]
-    Task?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Task_TaskToTaskMember?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_TaskMember_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_TaskMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    status?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TaskOrderByInput: { // input type
-    ChatRoom?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Parent?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    content?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    endDate?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    endDatePlaning?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    needHelp?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    startDate?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    startDatePlaning?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    status?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  TaskReactionListRelationFilter: { // input type
-    every?: NexusGenInputs['TaskReactionWhereInput'] | null; // TaskReactionWhereInput
-    none?: NexusGenInputs['TaskReactionWhereInput'] | null; // TaskReactionWhereInput
-    some?: NexusGenInputs['TaskReactionWhereInput'] | null; // TaskReactionWhereInput
-  }
-  TaskReactionWhereInput: { // input type
-    AND?: NexusGenInputs['TaskReactionWhereInput'][] | null; // [TaskReactionWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TaskReactionWhereInput'][] | null; // [TaskReactionWhereInput!]
-    OR?: NexusGenInputs['TaskReactionWhereInput'][] | null; // [TaskReactionWhereInput!]
-    Task?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Task_TaskToTaskReaction?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TaskTechnologyCreateInput: { // input type
-    level?: NexusGenScalars['UserTechnologyLevel'] | null; // UserTechnologyLevel
-  }
-  TaskTechnologyListRelationFilter: { // input type
-    every?: NexusGenInputs['TaskTechnologyWhereInput'] | null; // TaskTechnologyWhereInput
-    none?: NexusGenInputs['TaskTechnologyWhereInput'] | null; // TaskTechnologyWhereInput
-    some?: NexusGenInputs['TaskTechnologyWhereInput'] | null; // TaskTechnologyWhereInput
-  }
-  TaskTechnologyOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Task?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Technology?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    level?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  TaskTechnologyUpdateInput: { // input type
-    level?: NexusGenScalars['UserTechnologyLevel'] | null; // UserTechnologyLevel
-  }
-  TaskTechnologyWhereInput: { // input type
-    AND?: NexusGenInputs['TaskTechnologyWhereInput'][] | null; // [TaskTechnologyWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TaskTechnologyWhereInput'][] | null; // [TaskTechnologyWhereInput!]
-    OR?: NexusGenInputs['TaskTechnologyWhereInput'][] | null; // [TaskTechnologyWhereInput!]
-    Task?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Task_TaskToTaskTechnology?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    Technology?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Technology_TaskTechnologyToTechnology?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    level?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TaskTechnologyWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  TaskUpdateInput: { // input type
-    name?: string | null; // String
-  }
-  TaskWhereInput: { // input type
-    AND?: NexusGenInputs['TaskWhereInput'][] | null; // [TaskWhereInput!]
-    ChatRoom?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    ChatRoom_ChatRoomToTask?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
-    CodeChallengeCompletion?: NexusGenInputs['CodeChallengeCompletionListRelationFilter'] | null; // CodeChallengeCompletionListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TaskWhereInput'][] | null; // [TaskWhereInput!]
-    OR?: NexusGenInputs['TaskWhereInput'][] | null; // [TaskWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null; // ProjectTaskListRelationFilter
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    Task?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    TaskMember?: NexusGenInputs['TaskMemberListRelationFilter'] | null; // TaskMemberListRelationFilter
-    TaskReaction?: NexusGenInputs['TaskReactionListRelationFilter'] | null; // TaskReactionListRelationFilter
-    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null; // TaskTechnologyListRelationFilter
-    Task_A?: NexusGenInputs['TaskListRelationFilter'] | null; // TaskListRelationFilter
-    Task_B?: NexusGenInputs['TaskListRelationFilter'] | null; // TaskListRelationFilter
-    Timer?: NexusGenInputs['TimerListRelationFilter'] | null; // TimerListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    content?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    endDate?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    endDatePlaning?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    needHelp?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    other_Task?: NexusGenInputs['TaskListRelationFilter'] | null; // TaskListRelationFilter
-    startDate?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    startDatePlaning?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    status?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TaskWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  TeamListRelationFilter: { // input type
-    every?: NexusGenInputs['TeamWhereInput'] | null; // TeamWhereInput
-    none?: NexusGenInputs['TeamWhereInput'] | null; // TeamWhereInput
-    some?: NexusGenInputs['TeamWhereInput'] | null; // TeamWhereInput
-  }
-  TeamMemberListRelationFilter: { // input type
-    every?: NexusGenInputs['TeamMemberWhereInput'] | null; // TeamMemberWhereInput
-    none?: NexusGenInputs['TeamMemberWhereInput'] | null; // TeamMemberWhereInput
-    some?: NexusGenInputs['TeamMemberWhereInput'] | null; // TeamMemberWhereInput
-  }
-  TeamMemberWhereInput: { // input type
-    AND?: NexusGenInputs['TeamMemberWhereInput'][] | null; // [TeamMemberWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TeamMemberWhereInput'][] | null; // [TeamMemberWhereInput!]
-    OR?: NexusGenInputs['TeamMemberWhereInput'][] | null; // [TeamMemberWhereInput!]
-    Team?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Team_TeamToTeamMember?: NexusGenInputs['TeamWhereInput'] | null; // TeamWhereInput
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_TeamMember_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_TeamMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TeamWhereInput: { // input type
-    AND?: NexusGenInputs['TeamWhereInput'][] | null; // [TeamWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Game?: NexusGenInputs['GameListRelationFilter'] | null; // GameListRelationFilter
-    GameResult?: NexusGenInputs['GameResultListRelationFilter'] | null; // GameResultListRelationFilter
-    NOT?: NexusGenInputs['TeamWhereInput'][] | null; // [TeamWhereInput!]
-    OR?: NexusGenInputs['TeamWhereInput'][] | null; // [TeamWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Project_ProjectCustomers?: NexusGenInputs['ProjectListRelationFilter'] | null; // ProjectListRelationFilter
-    Project_ProjectToTeam?: NexusGenInputs['ProjectListRelationFilter'] | null; // ProjectListRelationFilter
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    Team?: NexusGenInputs['TeamWhereInput'] | null; // TeamWhereInput
-    TeamMember?: NexusGenInputs['TeamMemberListRelationFilter'] | null; // TeamMemberListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    address?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    email?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    oldID?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    other_Team?: NexusGenInputs['TeamListRelationFilter'] | null; // TeamListRelationFilter
-    phone?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    status?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    website?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  TechnologyLessonListRelationFilter: { // input type
-    every?: NexusGenInputs['TechnologyLessonWhereInput'] | null; // TechnologyLessonWhereInput
-    none?: NexusGenInputs['TechnologyLessonWhereInput'] | null; // TechnologyLessonWhereInput
-    some?: NexusGenInputs['TechnologyLessonWhereInput'] | null; // TechnologyLessonWhereInput
-  }
-  TechnologyLessonUserListRelationFilter: { // input type
-    every?: NexusGenInputs['TechnologyLessonUserWhereInput'] | null; // TechnologyLessonUserWhereInput
-    none?: NexusGenInputs['TechnologyLessonUserWhereInput'] | null; // TechnologyLessonUserWhereInput
-    some?: NexusGenInputs['TechnologyLessonUserWhereInput'] | null; // TechnologyLessonUserWhereInput
-  }
-  TechnologyLessonUserWhereInput: { // input type
-    AND?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null; // [TechnologyLessonUserWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Lesson?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null; // [TechnologyLessonUserWhereInput!]
-    OR?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null; // [TechnologyLessonUserWhereInput!]
-    TechnologyLesson?: NexusGenInputs['TechnologyLessonWhereInput'] | null; // TechnologyLessonWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    completedAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TechnologyLessonWhereInput: { // input type
-    AND?: NexusGenInputs['TechnologyLessonWhereInput'][] | null; // [TechnologyLessonWhereInput!]
-    Comment?: NexusGenInputs['CommentListRelationFilter'] | null; // CommentListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TechnologyLessonWhereInput'][] | null; // [TechnologyLessonWhereInput!]
-    OR?: NexusGenInputs['TechnologyLessonWhereInput'][] | null; // [TechnologyLessonWhereInput!]
-    Technology?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    TechnologyLessonUser?: NexusGenInputs['TechnologyLessonUserListRelationFilter'] | null; // TechnologyLessonUserListRelationFilter
-    Technology_TechnologyToTechnologyLesson?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    components?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    contentText?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  TechnologyListRelationFilter: { // input type
-    every?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
-    none?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
-    some?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
-  }
-  TechnologyOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    components?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    contentText?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    site_url?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  TechnologyWhereInput: { // input type
-    AND?: NexusGenInputs['TechnologyWhereInput'][] | null; // [TechnologyWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TechnologyWhereInput'][] | null; // [TechnologyWhereInput!]
-    OR?: NexusGenInputs['TechnologyWhereInput'][] | null; // [TechnologyWhereInput!]
-    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null; // TaskTechnologyListRelationFilter
-    TechnologyLesson?: NexusGenInputs['TechnologyLessonListRelationFilter'] | null; // TechnologyLessonListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    UserTechnology?: NexusGenInputs['UserTechnologyListRelationFilter'] | null; // UserTechnologyListRelationFilter
-    components?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    contentText?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    site_url?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TechnologyWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  TemplateListRelationFilter: { // input type
-    every?: NexusGenInputs['TemplateWhereInput'] | null; // TemplateWhereInput
-    none?: NexusGenInputs['TemplateWhereInput'] | null; // TemplateWhereInput
-    some?: NexusGenInputs['TemplateWhereInput'] | null; // TemplateWhereInput
-  }
-  TemplateWhereInput: { // input type
-    AND?: NexusGenInputs['TemplateWhereInput'][] | null; // [TemplateWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TemplateWhereInput'][] | null; // [TemplateWhereInput!]
-    OR?: NexusGenInputs['TemplateWhereInput'][] | null; // [TemplateWhereInput!]
-    Parent?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    PrismaProject?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Project?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Project_ProjectToTemplate_PrismaProject?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    Project_ProjectToTemplate_Project?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    Template?: NexusGenInputs['TemplateWhereInput'] | null; // TemplateWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    component?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    components?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    externalKey?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    other_Template?: NexusGenInputs['TemplateListRelationFilter'] | null; // TemplateListRelationFilter
-    props?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    rank?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    vars?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  TestListRelationFilter: { // input type
-    every?: NexusGenInputs['TestWhereInput'] | null; // TestWhereInput
-    none?: NexusGenInputs['TestWhereInput'] | null; // TestWhereInput
-    some?: NexusGenInputs['TestWhereInput'] | null; // TestWhereInput
-  }
-  TestWhereInput: { // input type
-    AND?: NexusGenInputs['TestWhereInput'][] | null; // [TestWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TestWhereInput'][] | null; // [TestWhereInput!]
-    OR?: NexusGenInputs['TestWhereInput'][] | null; // [TestWhereInput!]
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    date?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    quantity?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    text?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TimerCreateInput: { // input type
-    stopedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  TimerListRelationFilter: { // input type
-    every?: NexusGenInputs['TimerWhereInput'] | null; // TimerWhereInput
-    none?: NexusGenInputs['TimerWhereInput'] | null; // TimerWhereInput
-    some?: NexusGenInputs['TimerWhereInput'] | null; // TimerWhereInput
-  }
-  TimerOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Task?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    stopedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  TimerUpdateInput: { // input type
-    stopedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  TimerWhereInput: { // input type
-    AND?: NexusGenInputs['TimerWhereInput'][] | null; // [TimerWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TimerWhereInput'][] | null; // [TimerWhereInput!]
-    OR?: NexusGenInputs['TimerWhereInput'][] | null; // [TimerWhereInput!]
-    Task?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Task_TaskToTimer?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    stopedAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TimerWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  TokenListRelationFilter: { // input type
-    every?: NexusGenInputs['TokenWhereInput'] | null; // TokenWhereInput
-    none?: NexusGenInputs['TokenWhereInput'] | null; // TokenWhereInput
-    some?: NexusGenInputs['TokenWhereInput'] | null; // TokenWhereInput
-  }
-  TokenWhereInput: { // input type
-    AND?: NexusGenInputs['TokenWhereInput'][] | null; // [TokenWhereInput!]
-    NOT?: NexusGenInputs['TokenWhereInput'][] | null; // [TokenWhereInput!]
-    OR?: NexusGenInputs['TokenWhereInput'][] | null; // [TokenWhereInput!]
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    expiredAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  TopicCreateInput: { // input type
-    content?: NexusGenScalars['JSON'] | null; // JSON
-    text?: NexusGenScalars['JSON'] | null; // JSON
-  }
-  TopicUpdateInput: { // input type
-    content?: NexusGenScalars['JSON'] | null; // JSON
-    text?: NexusGenScalars['JSON'] | null; // JSON
-  }
-  TournamentGroupListRelationFilter: { // input type
-    every?: NexusGenInputs['TournamentGroupWhereInput'] | null; // TournamentGroupWhereInput
-    none?: NexusGenInputs['TournamentGroupWhereInput'] | null; // TournamentGroupWhereInput
-    some?: NexusGenInputs['TournamentGroupWhereInput'] | null; // TournamentGroupWhereInput
-  }
-  TournamentGroupWhereInput: { // input type
-    AND?: NexusGenInputs['TournamentGroupWhereInput'][] | null; // [TournamentGroupWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TournamentGroupWhereInput'][] | null; // [TournamentGroupWhereInput!]
-    OR?: NexusGenInputs['TournamentGroupWhereInput'][] | null; // [TournamentGroupWhereInput!]
-    Tournament?: NexusGenInputs['TournamentListRelationFilter'] | null; // TournamentListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TournamentListRelationFilter: { // input type
-    every?: NexusGenInputs['TournamentWhereInput'] | null; // TournamentWhereInput
-    none?: NexusGenInputs['TournamentWhereInput'] | null; // TournamentWhereInput
-    some?: NexusGenInputs['TournamentWhereInput'] | null; // TournamentWhereInput
-  }
-  TournamentWhereInput: { // input type
-    AND?: NexusGenInputs['TournamentWhereInput'][] | null; // [TournamentWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Group?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['TournamentWhereInput'][] | null; // [TournamentWhereInput!]
-    OR?: NexusGenInputs['TournamentWhereInput'][] | null; // [TournamentWhereInput!]
-    TournamentGroup?: NexusGenInputs['TournamentGroupWhereInput'] | null; // TournamentGroupWhereInput
-    Tourney?: NexusGenInputs['TourneyListRelationFilter'] | null; // TourneyListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  TourneyListRelationFilter: { // input type
-    every?: NexusGenInputs['TourneyWhereInput'] | null; // TourneyWhereInput
-    none?: NexusGenInputs['TourneyWhereInput'] | null; // TourneyWhereInput
-    some?: NexusGenInputs['TourneyWhereInput'] | null; // TourneyWhereInput
-  }
-  TourneyPlayerListRelationFilter: { // input type
-    every?: NexusGenInputs['TourneyPlayerWhereInput'] | null; // TourneyPlayerWhereInput
-    none?: NexusGenInputs['TourneyPlayerWhereInput'] | null; // TourneyPlayerWhereInput
-    some?: NexusGenInputs['TourneyPlayerWhereInput'] | null; // TourneyPlayerWhereInput
-  }
-  TourneyPlayerWhereInput: { // input type
-    AND?: NexusGenInputs['TourneyPlayerWhereInput'][] | null; // [TourneyPlayerWhereInput!]
-    NOT?: NexusGenInputs['TourneyPlayerWhereInput'][] | null; // [TourneyPlayerWhereInput!]
-    OR?: NexusGenInputs['TourneyPlayerWhereInput'][] | null; // [TourneyPlayerWhereInput!]
-    Tourney?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Tourney_TourneyToTourneyPlayer?: NexusGenInputs['TourneyWhereInput'] | null; // TourneyWhereInput
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_TourneyPlayerToUser?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-  }
-  TourneyWhereInput: { // input type
-    AND?: NexusGenInputs['TourneyWhereInput'][] | null; // [TourneyWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Game?: NexusGenInputs['GameListRelationFilter'] | null; // GameListRelationFilter
-    NOT?: NexusGenInputs['TourneyWhereInput'][] | null; // [TourneyWhereInput!]
-    OR?: NexusGenInputs['TourneyWhereInput'][] | null; // [TourneyWhereInput!]
-    Tournament?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Tournament_TournamentToTourney?: NexusGenInputs['TournamentWhereInput'] | null; // TournamentWhereInput
-    TourneyPlayer?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null; // TourneyPlayerListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    date?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    date_till?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  UserGroupListRelationFilter: { // input type
-    every?: NexusGenInputs['UserGroupWhereInput'] | null; // UserGroupWhereInput
-    none?: NexusGenInputs['UserGroupWhereInput'] | null; // UserGroupWhereInput
-    some?: NexusGenInputs['UserGroupWhereInput'] | null; // UserGroupWhereInput
-  }
-  UserGroupWhereInput: { // input type
-    AND?: NexusGenInputs['UserGroupWhereInput'][] | null; // [UserGroupWhereInput!]
-    NOT?: NexusGenInputs['UserGroupWhereInput'][] | null; // [UserGroupWhereInput!]
-    OR?: NexusGenInputs['UserGroupWhereInput'][] | null; // [UserGroupWhereInput!]
-    User?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  UserListRelationFilter: { // input type
-    every?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    none?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    some?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-  }
-  UserOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    EthAccountAuthed?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    acceptChatMessageAnonymous?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    acceptNewChatRoom?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    acceptNewChatRoomAnonymous?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    activated?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    active?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    address?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    deleted?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    email?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    fullname?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    hidden?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    marketplaceToken?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    password?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    phone?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    showEmail?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    showPhone?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    sudo?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    username?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  UserSigninDataInput: { // input type
-    password?: string | null; // String
-  }
-  UserSignupDataInput: { // input type
-    email?: string | null; // String
-    fullname?: string | null; // String
-    password?: string | null; // String
-    showEmail: boolean; // Boolean!
-    showFullname: boolean; // Boolean!
-    username?: string | null; // String
-  }
-  UserTechnologyCreateInput: { // input type
-    components?: NexusGenScalars['JSON'] | null; // JSON
-  }
-  UserTechnologyListRelationFilter: { // input type
-    every?: NexusGenInputs['UserTechnologyWhereInput'] | null; // UserTechnologyWhereInput
-    none?: NexusGenInputs['UserTechnologyWhereInput'] | null; // UserTechnologyWhereInput
-    some?: NexusGenInputs['UserTechnologyWhereInput'] | null; // UserTechnologyWhereInput
-  }
-  UserTechnologyOrderByInput: { // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    Technology?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    components?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    date_from?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    date_till?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    level?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    status?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  UserTechnologyUpdateInput: { // input type
-    components?: NexusGenScalars['UserTechnologyLevel'] | null; // UserTechnologyLevel
-  }
-  UserTechnologyWhereInput: { // input type
-    AND?: NexusGenInputs['UserTechnologyWhereInput'][] | null; // [UserTechnologyWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    NOT?: NexusGenInputs['UserTechnologyWhereInput'][] | null; // [UserTechnologyWhereInput!]
-    OR?: NexusGenInputs['UserTechnologyWhereInput'][] | null; // [UserTechnologyWhereInput!]
-    Technology?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Technology_TechnologyToUserTechnology?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    components?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    date_from?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    date_till?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    level?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  UserTechnologyWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  UserUpdateInput: { // input type
-    username?: string | null; // String
-  }
-  UserWhereInput: { // input type
-    AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
-    CallRequest_CallRequest_CalledToUser?: NexusGenInputs['CallRequestListRelationFilter'] | null; // CallRequestListRelationFilter
-    CallRequest_CallRequest_CallerToUser?: NexusGenInputs['CallRequestListRelationFilter'] | null; // CallRequestListRelationFilter
-    Career?: NexusGenInputs['CareerListRelationFilter'] | null; // CareerListRelationFilter
-    ChatMessage?: NexusGenInputs['ChatMessageListRelationFilter'] | null; // ChatMessageListRelationFilter
-    ChatMessageReaded?: NexusGenInputs['ChatMessageReadedListRelationFilter'] | null; // ChatMessageReadedListRelationFilter
-    ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser?: NexusGenInputs['ChatRoomInvitationListRelationFilter'] | null; // ChatRoomInvitationListRelationFilter
-    ChatRoomInvitation_ChatRoomInvitation_UserToUser?: NexusGenInputs['ChatRoomInvitationListRelationFilter'] | null; // ChatRoomInvitationListRelationFilter
-    ChatRoom_ChatRoomToUser?: NexusGenInputs['ChatRoomListRelationFilter'] | null; // ChatRoomListRelationFilter
-    ChatRoom_ChatRoomsMembers?: NexusGenInputs['ChatRoomListRelationFilter'] | null; // ChatRoomListRelationFilter
-    CodeChallenge?: NexusGenInputs['CodeChallengeListRelationFilter'] | null; // CodeChallengeListRelationFilter
-    CodeChallengeBlock?: NexusGenInputs['CodeChallengeBlockListRelationFilter'] | null; // CodeChallengeBlockListRelationFilter
-    CodeChallengeCompletion?: NexusGenInputs['CodeChallengeCompletionListRelationFilter'] | null; // CodeChallengeCompletionListRelationFilter
-    Comment?: NexusGenInputs['CommentListRelationFilter'] | null; // CommentListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    EthAccountAuthed?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    EthAccount_EthAccountToUser_EthAccountAuthed?: NexusGenInputs['EthAccountWhereInput'] | null; // EthAccountWhereInput
-    EthAccount_EthAccount_CreatedByToUser?: NexusGenInputs['EthAccountListRelationFilter'] | null; // EthAccountListRelationFilter
-    EthContractSource?: NexusGenInputs['EthContractSourceListRelationFilter'] | null; // EthContractSourceListRelationFilter
-    File?: NexusGenInputs['FileListRelationFilter'] | null; // FileListRelationFilter
-    Gallery?: NexusGenInputs['GalleryListRelationFilter'] | null; // GalleryListRelationFilter
-    GameResult_GameResult_CreatedByToUser?: NexusGenInputs['GameResultListRelationFilter'] | null; // GameResultListRelationFilter
-    GameResult_GameResult_UserToUser?: NexusGenInputs['GameResultListRelationFilter'] | null; // GameResultListRelationFilter
-    Game_GameToUser?: NexusGenInputs['GameListRelationFilter'] | null; // GameListRelationFilter
-    Game_GameUsers?: NexusGenInputs['GameListRelationFilter'] | null; // GameListRelationFilter
-    Import?: NexusGenInputs['ImportListRelationFilter'] | null; // ImportListRelationFilter
-    Letter?: NexusGenInputs['LetterListRelationFilter'] | null; // LetterListRelationFilter
-    LogedIn?: NexusGenInputs['LogedInListRelationFilter'] | null; // LogedInListRelationFilter
-    NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
-    Notice_Notice_CreatedByToUser?: NexusGenInputs['NoticeListRelationFilter'] | null; // NoticeListRelationFilter
-    Notice_Notice_UserToUser?: NexusGenInputs['NoticeListRelationFilter'] | null; // NoticeListRelationFilter
-    NotificationType_NotificationTypeToUser?: NexusGenInputs['NotificationTypeListRelationFilter'] | null; // NotificationTypeListRelationFilter
-    NotificationType_UserNotificationTypes?: NexusGenInputs['NotificationTypeListRelationFilter'] | null; // NotificationTypeListRelationFilter
-    OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
-    Player?: NexusGenInputs['PlayerListRelationFilter'] | null; // PlayerListRelationFilter
-    Position_PositionToUser?: NexusGenInputs['PositionListRelationFilter'] | null; // PositionListRelationFilter
-    Position_PositionUsers?: NexusGenInputs['PositionListRelationFilter'] | null; // PositionListRelationFilter
-    ProjectMember_ProjectMember_CreatedByToUser?: NexusGenInputs['ProjectMemberListRelationFilter'] | null; // ProjectMemberListRelationFilter
-    ProjectMember_ProjectMember_UserToUser?: NexusGenInputs['ProjectMemberListRelationFilter'] | null; // ProjectMemberListRelationFilter
-    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null; // ProjectTaskListRelationFilter
-    Project_PrismaProjectUsers?: NexusGenInputs['ProjectListRelationFilter'] | null; // ProjectListRelationFilter
-    Project_ProjectToUser?: NexusGenInputs['ProjectListRelationFilter'] | null; // ProjectListRelationFilter
-    ResetPassword?: NexusGenInputs['ResetPasswordListRelationFilter'] | null; // ResetPasswordListRelationFilter
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null; // ResourceListRelationFilter
-    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null; // ResourceTagListRelationFilter
-    Route?: NexusGenInputs['RouteListRelationFilter'] | null; // RouteListRelationFilter
-    Service?: NexusGenInputs['ServiceListRelationFilter'] | null; // ServiceListRelationFilter
-    ServiceCategory?: NexusGenInputs['ServiceCategoryListRelationFilter'] | null; // ServiceCategoryListRelationFilter
-    Settings?: NexusGenInputs['SettingsListRelationFilter'] | null; // SettingsListRelationFilter
-    SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null; // SmsMessageListRelationFilter
-    SmsProvider?: NexusGenInputs['SmsProviderListRelationFilter'] | null; // SmsProviderListRelationFilter
-    Tag?: NexusGenInputs['TagListRelationFilter'] | null; // TagListRelationFilter
-    Task?: NexusGenInputs['TaskListRelationFilter'] | null; // TaskListRelationFilter
-    TaskMember_TaskMember_CreatedByToUser?: NexusGenInputs['TaskMemberListRelationFilter'] | null; // TaskMemberListRelationFilter
-    TaskMember_TaskMember_UserToUser?: NexusGenInputs['TaskMemberListRelationFilter'] | null; // TaskMemberListRelationFilter
-    TaskReaction?: NexusGenInputs['TaskReactionListRelationFilter'] | null; // TaskReactionListRelationFilter
-    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null; // TaskTechnologyListRelationFilter
-    Team?: NexusGenInputs['TeamListRelationFilter'] | null; // TeamListRelationFilter
-    TeamMember_TeamMember_CreatedByToUser?: NexusGenInputs['TeamMemberListRelationFilter'] | null; // TeamMemberListRelationFilter
-    TeamMember_TeamMember_UserToUser?: NexusGenInputs['TeamMemberListRelationFilter'] | null; // TeamMemberListRelationFilter
-    Technology?: NexusGenInputs['TechnologyListRelationFilter'] | null; // TechnologyListRelationFilter
-    TechnologyLesson?: NexusGenInputs['TechnologyLessonListRelationFilter'] | null; // TechnologyLessonListRelationFilter
-    TechnologyLessonUser?: NexusGenInputs['TechnologyLessonUserListRelationFilter'] | null; // TechnologyLessonUserListRelationFilter
-    Template?: NexusGenInputs['TemplateListRelationFilter'] | null; // TemplateListRelationFilter
-    Test?: NexusGenInputs['TestListRelationFilter'] | null; // TestListRelationFilter
-    Timer?: NexusGenInputs['TimerListRelationFilter'] | null; // TimerListRelationFilter
-    Tokens?: NexusGenInputs['TokenListRelationFilter'] | null; // TokenListRelationFilter
-    Tournament?: NexusGenInputs['TournamentListRelationFilter'] | null; // TournamentListRelationFilter
-    TournamentGroup?: NexusGenInputs['TournamentGroupListRelationFilter'] | null; // TournamentGroupListRelationFilter
-    Tourney?: NexusGenInputs['TourneyListRelationFilter'] | null; // TourneyListRelationFilter
-    TourneyPlayer?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null; // TourneyPlayerListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    UserGroup?: NexusGenInputs['UserGroupListRelationFilter'] | null; // UserGroupListRelationFilter
-    UserTechnology?: NexusGenInputs['UserTechnologyListRelationFilter'] | null; // UserTechnologyListRelationFilter
-    Vote?: NexusGenInputs['VoteListRelationFilter'] | null; // VoteListRelationFilter
-    World?: NexusGenInputs['WorldListRelationFilter'] | null; // WorldListRelationFilter
-    acceptChatMessageAnonymous?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    acceptNewChatRoom?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    acceptNewChatRoomAnonymous?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    activated?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    active?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    address?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    deleted?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    email?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    fullname?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    hidden?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    image?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    marketplaceToken?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    oldID?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
-    other_User?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    password?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    phone?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    showEmail?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    showPhone?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    sudo?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    username?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-  }
-  UserWhereUniqueInput: { // input type
-    email?: string | null; // String
-    id?: string | null; // String
-    oldID?: number | null; // Int
-    username?: string | null; // String
-  }
-  VoteListRelationFilter: { // input type
-    every?: NexusGenInputs['VoteWhereInput'] | null; // VoteWhereInput
-    none?: NexusGenInputs['VoteWhereInput'] | null; // VoteWhereInput
-    some?: NexusGenInputs['VoteWhereInput'] | null; // VoteWhereInput
-  }
-  VoteWhereInput: { // input type
-    AND?: NexusGenInputs['VoteWhereInput'][] | null; // [VoteWhereInput!]
-    NOT?: NexusGenInputs['VoteWhereInput'][] | null; // [VoteWhereInput!]
-    OR?: NexusGenInputs['VoteWhereInput'][] | null; // [VoteWhereInput!]
-    Resource?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Resource_ResourceToVote?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
-    User?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    User_UserToVote?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    value?: NexusGenInputs['DecimalFilter'] | null; // DecimalFilter
-  }
-  WorldListRelationFilter: { // input type
-    every?: NexusGenInputs['WorldWhereInput'] | null; // WorldWhereInput
-    none?: NexusGenInputs['WorldWhereInput'] | null; // WorldWhereInput
-    some?: NexusGenInputs['WorldWhereInput'] | null; // WorldWhereInput
-  }
-  WorldWhereInput: { // input type
-    AND?: NexusGenInputs['WorldWhereInput'][] | null; // [WorldWhereInput!]
-    Block?: NexusGenInputs['BlockListRelationFilter'] | null; // BlockListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    Message?: NexusGenInputs['MessageListRelationFilter'] | null; // MessageListRelationFilter
-    NOT?: NexusGenInputs['WorldWhereInput'][] | null; // [WorldWhereInput!]
-    OR?: NexusGenInputs['WorldWhereInput'][] | null; // [WorldWhereInput!]
-    Player?: NexusGenInputs['PlayerListRelationFilter'] | null; // PlayerListRelationFilter
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    days?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    lastPlayed?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    seed?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    time?: NexusGenInputs['DecimalFilter'] | null; // DecimalFilter
-    timeChanger?: NexusGenInputs['DecimalNullableFilter'] | null; // DecimalNullableFilter
-    type?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  BlockListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['BlockWhereInput'] | null // BlockWhereInput
+    none?: NexusGenInputs['BlockWhereInput'] | null // BlockWhereInput
+    some?: NexusGenInputs['BlockWhereInput'] | null // BlockWhereInput
+  }
+  BlockWhereInput: {
+    // input type
+    AND?: NexusGenInputs['BlockWhereInput'][] | null // [BlockWhereInput!]
+    NOT?: NexusGenInputs['BlockWhereInput'][] | null // [BlockWhereInput!]
+    OR?: NexusGenInputs['BlockWhereInput'][] | null // [BlockWhereInput!]
+    World?: NexusGenInputs['WorldWhereInput'] | null // WorldWhereInput
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    representation?: NexusGenInputs['StringFilter'] | null // StringFilter
+    type?: NexusGenInputs['IntFilter'] | null // IntFilter
+    world?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    x?: NexusGenInputs['IntFilter'] | null // IntFilter
+    y?: NexusGenInputs['IntFilter'] | null // IntFilter
+    z?: NexusGenInputs['IntFilter'] | null // IntFilter
+  }
+  BoolFilter: {
+    // input type
+    equals?: boolean | null // Boolean
+    not?: NexusGenInputs['NestedBoolFilter'] | null // NestedBoolFilter
+  }
+  BoolNullableFilter: {
+    // input type
+    equals?: boolean | null // Boolean
+    not?: NexusGenInputs['NestedBoolNullableFilter'] | null // NestedBoolNullableFilter
+  }
+  CallRequestListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['CallRequestWhereInput'] | null // CallRequestWhereInput
+    none?: NexusGenInputs['CallRequestWhereInput'] | null // CallRequestWhereInput
+    some?: NexusGenInputs['CallRequestWhereInput'] | null // CallRequestWhereInput
+  }
+  CallRequestWhereInput: {
+    // input type
+    AND?: NexusGenInputs['CallRequestWhereInput'][] | null // [CallRequestWhereInput!]
+    Called?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Caller?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    ChatRoom?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
+    NOT?: NexusGenInputs['CallRequestWhereInput'][] | null // [CallRequestWhereInput!]
+    OR?: NexusGenInputs['CallRequestWhereInput'][] | null // [CallRequestWhereInput!]
+    Room?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_CallRequest_CalledToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_CallRequest_CallerToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    called_descriptions?: NexusGenInputs['StringFilter'] | null // StringFilter
+    caller_descriptions?: NexusGenInputs['StringFilter'] | null // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    endedAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    startedAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  CareerListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['CareerWhereInput'] | null // CareerWhereInput
+    none?: NexusGenInputs['CareerWhereInput'] | null // CareerWhereInput
+    some?: NexusGenInputs['CareerWhereInput'] | null // CareerWhereInput
+  }
+  CareerWhereInput: {
+    // input type
+    AND?: NexusGenInputs['CareerWhereInput'][] | null // [CareerWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['CareerWhereInput'][] | null // [CareerWhereInput!]
+    OR?: NexusGenInputs['CareerWhereInput'][] | null // [CareerWhereInput!]
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    start_date?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ChatMessageCreateInput: {
+    // input type
+    Room?: NexusGenInputs['ChatRoomCreateOneWithoutMessagesInput'] | null // ChatRoomCreateOneWithoutMessagesInput
+    content?: NexusGenScalars['JSON'] | null // JSON
+  }
+  ChatMessageListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
+    none?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
+    some?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
+  }
+  ChatMessageOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Room?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenEnums['SortOrder'] | null // SortOrder
+    contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ChatMessageReadedListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ChatMessageReadedWhereInput'] | null // ChatMessageReadedWhereInput
+    none?: NexusGenInputs['ChatMessageReadedWhereInput'] | null // ChatMessageReadedWhereInput
+    some?: NexusGenInputs['ChatMessageReadedWhereInput'] | null // ChatMessageReadedWhereInput
+  }
+  ChatMessageReadedWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ChatMessageReadedWhereInput'][] | null // [ChatMessageReadedWhereInput!]
+    ChatMessage?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
+    Message?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ChatMessageReadedWhereInput'][] | null // [ChatMessageReadedWhereInput!]
+    OR?: NexusGenInputs['ChatMessageReadedWhereInput'][] | null // [ChatMessageReadedWhereInput!]
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_ChatMessageReadedToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ChatMessageWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ChatMessageWhereInput'][] | null // [ChatMessageWhereInput!]
+    ChatMessageReaded?:
+      | NexusGenInputs['ChatMessageReadedListRelationFilter']
+      | null // ChatMessageReadedListRelationFilter
+    ChatRoom?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ChatMessageWhereInput'][] | null // [ChatMessageWhereInput!]
+    Notice?: NexusGenInputs['NoticeListRelationFilter'] | null // NoticeListRelationFilter
+    OR?: NexusGenInputs['ChatMessageWhereInput'][] | null // [ChatMessageWhereInput!]
+    Room?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ChatMessageWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  ChatRoomCreateOneWithoutMessagesInput: {
+    // input type
+    connect?: NexusGenInputs['ChatRoomWhereUniqueInput'] | null // ChatRoomWhereUniqueInput
+    to?: string | null // ID
+  }
+  ChatRoomInvitationListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ChatRoomInvitationWhereInput'] | null // ChatRoomInvitationWhereInput
+    none?: NexusGenInputs['ChatRoomInvitationWhereInput'] | null // ChatRoomInvitationWhereInput
+    some?: NexusGenInputs['ChatRoomInvitationWhereInput'] | null // ChatRoomInvitationWhereInput
+  }
+  ChatRoomInvitationWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ChatRoomInvitationWhereInput'][] | null // [ChatRoomInvitationWhereInput!]
+    ChatRoom?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    ChatRoom_ChatRoomToChatRoomInvitation?:
+      | NexusGenInputs['ChatRoomWhereInput']
+      | null // ChatRoomWhereInput
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ChatRoomInvitationWhereInput'][] | null // [ChatRoomInvitationWhereInput!]
+    Notice?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Notice_ChatRoomInvitationToNotice?:
+      | NexusGenInputs['NoticeWhereInput']
+      | null // NoticeWhereInput
+    OR?: NexusGenInputs['ChatRoomInvitationWhereInput'][] | null // [ChatRoomInvitationWhereInput!]
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_ChatRoomInvitation_CreatedByToUser?:
+      | NexusGenInputs['UserWhereInput']
+      | null // UserWhereInput
+    User_ChatRoomInvitation_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ChatRoomListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
+    none?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
+    some?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
+  }
+  ChatRoomOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    allowAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
+    code?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null // SortOrder
+    isPublic?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    sandbox?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ChatRoomWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ChatRoomWhereInput'][] | null // [ChatRoomWhereInput!]
+    CallRequest?: NexusGenInputs['CallRequestListRelationFilter'] | null // CallRequestListRelationFilter
+    ChatMessage?: NexusGenInputs['ChatMessageListRelationFilter'] | null // ChatMessageListRelationFilter
+    ChatRoomInvitation?:
+      | NexusGenInputs['ChatRoomInvitationListRelationFilter']
+      | null // ChatRoomInvitationListRelationFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ChatRoomWhereInput'][] | null // [ChatRoomWhereInput!]
+    OR?: NexusGenInputs['ChatRoomWhereInput'][] | null // [ChatRoomWhereInput!]
+    Project?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
+    Task?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    User_ChatRoomToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_ChatRoomsMembers?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    allowAnonymous?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    image?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    isPublic?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    sandbox?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ChatRoomWhereUniqueInput: {
+    // input type
+    code?: string | null // String
+    id?: string | null // String
+  }
+  CodeChallengeBlockListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
+    none?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
+    some?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
+  }
+  CodeChallengeBlockOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    externalKey?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    rank?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  CodeChallengeBlockWhereInput: {
+    // input type
+    AND?: NexusGenInputs['CodeChallengeBlockWhereInput'][] | null // [CodeChallengeBlockWhereInput!]
+    CodeChallenge?: NexusGenInputs['CodeChallengeListRelationFilter'] | null // CodeChallengeListRelationFilter
+    CodeChallengeBlock?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['CodeChallengeBlockWhereInput'][] | null // [CodeChallengeBlockWhereInput!]
+    OR?: NexusGenInputs['CodeChallengeBlockWhereInput'][] | null // [CodeChallengeBlockWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    externalKey?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    other_CodeChallengeBlock?:
+      | NexusGenInputs['CodeChallengeBlockListRelationFilter']
+      | null // CodeChallengeBlockListRelationFilter
+    rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  CodeChallengeBlockWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  CodeChallengeCompletionCreateInput: {
+    // input type
+    CodeChallenge: NexusGenInputs['CodeChallengeCreateOneWithoutCompletionsInput'] // CodeChallengeCreateOneWithoutCompletionsInput!
+  }
+  CodeChallengeCompletionListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
+    none?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
+    some?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
+  }
+  CodeChallengeCompletionOrderByInput: {
+    // input type
+    CodeChallenge?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    success?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  CodeChallengeCompletionUpdateInput: {
+    // input type
+    content?: string | null // String
+    success?: boolean | null // Boolean
+  }
+  CodeChallengeCompletionWhereInput: {
+    // input type
+    AND?: NexusGenInputs['CodeChallengeCompletionWhereInput'][] | null // [CodeChallengeCompletionWhereInput!]
+    CodeChallenge?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CodeChallenge_CodeChallengeToCodeChallengeCompletion?:
+      | NexusGenInputs['CodeChallengeWhereInput']
+      | null // CodeChallengeWhereInput
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['CodeChallengeCompletionWhereInput'][] | null // [CodeChallengeCompletionWhereInput!]
+    OR?: NexusGenInputs['CodeChallengeCompletionWhereInput'][] | null // [CodeChallengeCompletionWhereInput!]
+    Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Task_CodeChallengeCompletionToTask?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    success?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  CodeChallengeCompletionWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  CodeChallengeCreateOneWithoutCompletionsInput: {
+    // input type
+    connect?: NexusGenInputs['CodeChallengeWhereUniqueInput'] | null // CodeChallengeWhereUniqueInput
+  }
+  CodeChallengeCreateOneWithoutTopicInput: {
+    // input type
+    connect?: NexusGenInputs['CodeChallengeWhereUniqueInput'] | null // CodeChallengeWhereUniqueInput
+  }
+  CodeChallengeListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['CodeChallengeWhereInput'] | null // CodeChallengeWhereInput
+    none?: NexusGenInputs['CodeChallengeWhereInput'] | null // CodeChallengeWhereInput
+    some?: NexusGenInputs['CodeChallengeWhereInput'] | null // CodeChallengeWhereInput
+  }
+  CodeChallengeOrderByInput: {
+    // input type
+    Block?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Topic?: NexusGenEnums['SortOrder'] | null // SortOrder
+    challengeOrder?: NexusGenEnums['SortOrder'] | null // SortOrder
+    challengeType?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    dashedName?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    externalKey?: NexusGenEnums['SortOrder'] | null // SortOrder
+    files?: NexusGenEnums['SortOrder'] | null // SortOrder
+    forumTopicId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    instructions?: NexusGenEnums['SortOrder'] | null // SortOrder
+    isBeta?: NexusGenEnums['SortOrder'] | null // SortOrder
+    isPrivate?: NexusGenEnums['SortOrder'] | null // SortOrder
+    isRequired?: NexusGenEnums['SortOrder'] | null // SortOrder
+    localeTitle?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    order?: NexusGenEnums['SortOrder'] | null // SortOrder
+    rank?: NexusGenEnums['SortOrder'] | null // SortOrder
+    required?: NexusGenEnums['SortOrder'] | null // SortOrder
+    solutions?: NexusGenEnums['SortOrder'] | null // SortOrder
+    superOrder?: NexusGenEnums['SortOrder'] | null // SortOrder
+    template?: NexusGenEnums['SortOrder'] | null // SortOrder
+    tests?: NexusGenEnums['SortOrder'] | null // SortOrder
+    time?: NexusGenEnums['SortOrder'] | null // SortOrder
+    translations?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    videoUrl?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  CodeChallengeWhereInput: {
+    // input type
+    AND?: NexusGenInputs['CodeChallengeWhereInput'][] | null // [CodeChallengeWhereInput!]
+    Block?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CodeChallengeBlock?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
+    CodeChallengeCompletion?:
+      | NexusGenInputs['CodeChallengeCompletionListRelationFilter']
+      | null // CodeChallengeCompletionListRelationFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['CodeChallengeWhereInput'][] | null // [CodeChallengeWhereInput!]
+    OR?: NexusGenInputs['CodeChallengeWhereInput'][] | null // [CodeChallengeWhereInput!]
+    Resource?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
+    Topic?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    challengeOrder?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    challengeType?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    dashedName?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    externalKey?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    files?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    forumTopicId?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    instructions?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    isBeta?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    isPrivate?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    isRequired?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    localeTitle?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    order?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    required?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    solutions?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    superOrder?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    template?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    tests?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    time?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    translations?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    videoUrl?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  CodeChallengeWhereUniqueInput: {
+    // input type
+    externalKey?: string | null // String
+    id?: string | null // String
+  }
+  CommentCreateInput: {
+    // input type
+    Task?: NexusGenInputs['TaskCreateOneWithoutCommentsInput'] | null // TaskCreateOneWithoutCommentsInput
+    components?: NexusGenScalars['JSON'] | null // JSON
+    content?: NexusGenScalars['JSON'] | null // JSON
+    text?: NexusGenScalars['JSON'] | null // JSON
+    topicID?: string | null // ID
+  }
+  CommentListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['CommentWhereInput'] | null // CommentWhereInput
+    none?: NexusGenInputs['CommentWhereInput'] | null // CommentWhereInput
+    some?: NexusGenInputs['CommentWhereInput'] | null // CommentWhereInput
+  }
+  CommentUpdateInput: {
+    // input type
+    components?: NexusGenScalars['JSON'] | null // JSON
+    content?: NexusGenScalars['JSON'] | null // JSON
+  }
+  CommentWhereInput: {
+    // input type
+    AND?: NexusGenInputs['CommentWhereInput'][] | null // [CommentWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['CommentWhereInput'][] | null // [CommentWhereInput!]
+    OR?: NexusGenInputs['CommentWhereInput'][] | null // [CommentWhereInput!]
+    TechnologyLesson?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    TechnologyLesson_CommentToTechnologyLesson?:
+      | NexusGenInputs['TechnologyLessonWhereInput']
+      | null // TechnologyLessonWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  DateTimeFilter: {
+    // input type
+    equals?: NexusGenScalars['DateTime'] | null // DateTime
+    gt?: NexusGenScalars['DateTime'] | null // DateTime
+    gte?: NexusGenScalars['DateTime'] | null // DateTime
+    in?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null // DateTime
+    lte?: NexusGenScalars['DateTime'] | null // DateTime
+    not?: NexusGenInputs['NestedDateTimeFilter'] | null // NestedDateTimeFilter
+    notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+  }
+  DateTimeNullableFilter: {
+    // input type
+    equals?: NexusGenScalars['DateTime'] | null // DateTime
+    gt?: NexusGenScalars['DateTime'] | null // DateTime
+    gte?: NexusGenScalars['DateTime'] | null // DateTime
+    in?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null // DateTime
+    lte?: NexusGenScalars['DateTime'] | null // DateTime
+    not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null // NestedDateTimeNullableFilter
+    notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+  }
+  DecimalFilter: {
+    // input type
+    equals?: NexusGenScalars['Decimal'] | null // Decimal
+    gt?: NexusGenScalars['Decimal'] | null // Decimal
+    gte?: NexusGenScalars['Decimal'] | null // Decimal
+    in?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+    lt?: NexusGenScalars['Decimal'] | null // Decimal
+    lte?: NexusGenScalars['Decimal'] | null // Decimal
+    not?: NexusGenInputs['NestedDecimalFilter'] | null // NestedDecimalFilter
+    notIn?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+  }
+  DecimalNullableFilter: {
+    // input type
+    equals?: NexusGenScalars['Decimal'] | null // Decimal
+    gt?: NexusGenScalars['Decimal'] | null // Decimal
+    gte?: NexusGenScalars['Decimal'] | null // Decimal
+    in?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+    lt?: NexusGenScalars['Decimal'] | null // Decimal
+    lte?: NexusGenScalars['Decimal'] | null // Decimal
+    not?: NexusGenInputs['NestedDecimalNullableFilter'] | null // NestedDecimalNullableFilter
+    notIn?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+  }
+  EthAccountListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['EthAccountWhereInput'] | null // EthAccountWhereInput
+    none?: NexusGenInputs['EthAccountWhereInput'] | null // EthAccountWhereInput
+    some?: NexusGenInputs['EthAccountWhereInput'] | null // EthAccountWhereInput
+  }
+  EthAccountWhereInput: {
+    // input type
+    AND?: NexusGenInputs['EthAccountWhereInput'][] | null // [EthAccountWhereInput!]
+    ContractSource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    EthBlock?: NexusGenInputs['EthBlockListRelationFilter'] | null // EthBlockListRelationFilter
+    EthContractSource?: NexusGenInputs['EthContractSourceWhereInput'] | null // EthContractSourceWhereInput
+    EthTransaction_EthAccountToEthTransaction_Account?:
+      | NexusGenInputs['EthTransactionListRelationFilter']
+      | null // EthTransactionListRelationFilter
+    EthTransaction_EthAccountToEthTransaction_Receiver?:
+      | NexusGenInputs['EthTransactionListRelationFilter']
+      | null // EthTransactionListRelationFilter
+    EthTransaction_EthAccountToEthTransaction_Sender?:
+      | NexusGenInputs['EthTransactionListRelationFilter']
+      | null // EthTransactionListRelationFilter
+    NOT?: NexusGenInputs['EthAccountWhereInput'][] | null // [EthAccountWhereInput!]
+    OR?: NexusGenInputs['EthAccountWhereInput'][] | null // [EthAccountWhereInput!]
+    Project?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Project_EthAccountToProject?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
+    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    User_EthAccountToUser_EthAccountAuthed?:
+      | NexusGenInputs['UserListRelationFilter']
+      | null // UserListRelationFilter
+    User_EthAccount_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    abi?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    address?: NexusGenInputs['StringFilter'] | null // StringFilter
+    bytecode?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    source?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  EthBlockListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['EthBlockWhereInput'] | null // EthBlockWhereInput
+    none?: NexusGenInputs['EthBlockWhereInput'] | null // EthBlockWhereInput
+    some?: NexusGenInputs['EthBlockWhereInput'] | null // EthBlockWhereInput
+  }
+  EthBlockWhereInput: {
+    // input type
+    AND?: NexusGenInputs['EthBlockWhereInput'][] | null // [EthBlockWhereInput!]
+    EthAccount?: NexusGenInputs['EthAccountWhereInput'] | null // EthAccountWhereInput
+    EthBlock_A?: NexusGenInputs['EthBlockListRelationFilter'] | null // EthBlockListRelationFilter
+    EthBlock_B?: NexusGenInputs['EthBlockListRelationFilter'] | null // EthBlockListRelationFilter
+    EthTransaction?: NexusGenInputs['EthTransactionListRelationFilter'] | null // EthTransactionListRelationFilter
+    Miner?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['EthBlockWhereInput'][] | null // [EthBlockWhereInput!]
+    OR?: NexusGenInputs['EthBlockWhereInput'][] | null // [EthBlockWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    date?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    difficulty?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    extraData?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    gasLimit?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    gasUsed?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    hash?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    mixHash?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    nonce?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    number?: NexusGenInputs['IntFilter'] | null // IntFilter
+    parentHash?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    receiptsRoot?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    sha3Uncles?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    size?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    stateRoot?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    totalDifficulty?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    transactionsRoot?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    transactions_count?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  EthContractSourceListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['EthContractSourceWhereInput'] | null // EthContractSourceWhereInput
+    none?: NexusGenInputs['EthContractSourceWhereInput'] | null // EthContractSourceWhereInput
+    some?: NexusGenInputs['EthContractSourceWhereInput'] | null // EthContractSourceWhereInput
+  }
+  EthContractSourceWhereInput: {
+    // input type
+    AND?: NexusGenInputs['EthContractSourceWhereInput'][] | null // [EthContractSourceWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    EthAccount?: NexusGenInputs['EthAccountListRelationFilter'] | null // EthAccountListRelationFilter
+    NOT?: NexusGenInputs['EthContractSourceWhereInput'][] | null // [EthContractSourceWhereInput!]
+    OR?: NexusGenInputs['EthContractSourceWhereInput'][] | null // [EthContractSourceWhereInput!]
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    source?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  EthTransactionListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['EthTransactionWhereInput'] | null // EthTransactionWhereInput
+    none?: NexusGenInputs['EthTransactionWhereInput'] | null // EthTransactionWhereInput
+    some?: NexusGenInputs['EthTransactionWhereInput'] | null // EthTransactionWhereInput
+  }
+  EthTransactionWhereInput: {
+    // input type
+    AND?: NexusGenInputs['EthTransactionWhereInput'][] | null // [EthTransactionWhereInput!]
+    Account?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Block?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    EthAccount_EthAccountToEthTransaction_Account?:
+      | NexusGenInputs['EthAccountWhereInput']
+      | null // EthAccountWhereInput
+    EthAccount_EthAccountToEthTransaction_Receiver?:
+      | NexusGenInputs['EthAccountWhereInput']
+      | null // EthAccountWhereInput
+    EthAccount_EthAccountToEthTransaction_Sender?:
+      | NexusGenInputs['EthAccountWhereInput']
+      | null // EthAccountWhereInput
+    EthBlock?: NexusGenInputs['EthBlockWhereInput'] | null // EthBlockWhereInput
+    NOT?: NexusGenInputs['EthTransactionWhereInput'][] | null // [EthTransactionWhereInput!]
+    OR?: NexusGenInputs['EthTransactionWhereInput'][] | null // [EthTransactionWhereInput!]
+    Receiver?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Sender?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    address?: NexusGenInputs['StringFilter'] | null // StringFilter
+    amount?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    chainId?: NexusGenInputs['IntFilter'] | null // IntFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    index?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    input?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    r?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    s?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    v?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  FileListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
+    none?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
+    some?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
+  }
+  FileOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Gallery?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ImageResource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    encoding?: NexusGenEnums['SortOrder'] | null // SortOrder
+    filename?: NexusGenEnums['SortOrder'] | null // SortOrder
+    hash?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    mimetype?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    path?: NexusGenEnums['SortOrder'] | null // SortOrder
+    rank?: NexusGenEnums['SortOrder'] | null // SortOrder
+    size?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  FileWhereInput: {
+    // input type
+    AND?: NexusGenInputs['FileWhereInput'][] | null // [FileWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Gallery?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Gallery_FileToGallery?: NexusGenInputs['GalleryWhereInput'] | null // GalleryWhereInput
+    ImageResource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['FileWhereInput'][] | null // [FileWhereInput!]
+    OR?: NexusGenInputs['FileWhereInput'][] | null // [FileWhereInput!]
+    Project?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
+    Resource?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    encoding?: NexusGenInputs['StringFilter'] | null // StringFilter
+    filename?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    hash?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    mimetype?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    path?: NexusGenInputs['StringFilter'] | null // StringFilter
+    rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    size?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  FileWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  GalleryListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['GalleryWhereInput'] | null // GalleryWhereInput
+    none?: NexusGenInputs['GalleryWhereInput'] | null // GalleryWhereInput
+    some?: NexusGenInputs['GalleryWhereInput'] | null // GalleryWhereInput
+  }
+  GalleryWhereInput: {
+    // input type
+    AND?: NexusGenInputs['GalleryWhereInput'][] | null // [GalleryWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    File?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
+    NOT?: NexusGenInputs['GalleryWhereInput'][] | null // [GalleryWhereInput!]
+    OR?: NexusGenInputs['GalleryWhereInput'][] | null // [GalleryWhereInput!]
+    Resource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Resource_GalleryToResource?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  GameListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['GameWhereInput'] | null // GameWhereInput
+    none?: NexusGenInputs['GameWhereInput'] | null // GameWhereInput
+    some?: NexusGenInputs['GameWhereInput'] | null // GameWhereInput
+  }
+  GameResultListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['GameResultWhereInput'] | null // GameResultWhereInput
+    none?: NexusGenInputs['GameResultWhereInput'] | null // GameResultWhereInput
+    some?: NexusGenInputs['GameResultWhereInput'] | null // GameResultWhereInput
+  }
+  GameResultWhereInput: {
+    // input type
+    AND?: NexusGenInputs['GameResultWhereInput'][] | null // [GameResultWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Game?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Game_GameToGameResult?: NexusGenInputs['GameWhereInput'] | null // GameWhereInput
+    NOT?: NexusGenInputs['GameResultWhereInput'][] | null // [GameResultWhereInput!]
+    OR?: NexusGenInputs['GameResultWhereInput'][] | null // [GameResultWhereInput!]
+    Team?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Team_GameResultToTeam?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_GameResult_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_GameResult_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    date?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    value?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+  }
+  GameWhereInput: {
+    // input type
+    AND?: NexusGenInputs['GameWhereInput'][] | null // [GameWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Game?: NexusGenInputs['GameWhereInput'] | null // GameWhereInput
+    GameResult?: NexusGenInputs['GameResultListRelationFilter'] | null // GameResultListRelationFilter
+    NOT?: NexusGenInputs['GameWhereInput'][] | null // [GameWhereInput!]
+    OR?: NexusGenInputs['GameWhereInput'][] | null // [GameWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Team?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
+    Tourney?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Tourney_GameToTourney?: NexusGenInputs['TourneyWhereInput'] | null // TourneyWhereInput
+    User_GameToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_GameUsers?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    end_date?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    other_Game?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
+    sequence?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    start_date?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ImportListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ImportWhereInput'] | null // ImportWhereInput
+    none?: NexusGenInputs['ImportWhereInput'] | null // ImportWhereInput
+    some?: NexusGenInputs['ImportWhereInput'] | null // ImportWhereInput
+  }
+  ImportWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ImportWhereInput'][] | null // [ImportWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Log?: NexusGenInputs['LogListRelationFilter'] | null // LogListRelationFilter
+    NOT?: NexusGenInputs['ImportWhereInput'][] | null // [ImportWhereInput!]
+    OR?: NexusGenInputs['ImportWhereInput'][] | null // [ImportWhereInput!]
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  IntFilter: {
+    // input type
+    equals?: number | null // Int
+    gt?: number | null // Int
+    gte?: number | null // Int
+    in?: number[] | null // [Int!]
+    lt?: number | null // Int
+    lte?: number | null // Int
+    not?: NexusGenInputs['NestedIntFilter'] | null // NestedIntFilter
+    notIn?: number[] | null // [Int!]
+  }
+  IntNullableFilter: {
+    // input type
+    equals?: number | null // Int
+    gt?: number | null // Int
+    gte?: number | null // Int
+    in?: number[] | null // [Int!]
+    lt?: number | null // Int
+    lte?: number | null // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null // NestedIntNullableFilter
+    notIn?: number[] | null // [Int!]
+  }
+  InventoryWhereInput: {
+    // input type
+    AND?: NexusGenInputs['InventoryWhereInput'][] | null // [InventoryWhereInput!]
+    NOT?: NexusGenInputs['InventoryWhereInput'][] | null // [InventoryWhereInput!]
+    OR?: NexusGenInputs['InventoryWhereInput'][] | null // [InventoryWhereInput!]
+    Player?: NexusGenInputs['PlayerListRelationFilter'] | null // PlayerListRelationFilter
+    cursor?: NexusGenInputs['IntFilter'] | null // IntFilter
+    data?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+  }
+  LetsadsSmsMessageStatusItemListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'] | null // LetsadsSmsMessageStatusItemWhereInput
+    none?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'] | null // LetsadsSmsMessageStatusItemWhereInput
+    some?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'] | null // LetsadsSmsMessageStatusItemWhereInput
+  }
+  LetsadsSmsMessageStatusItemWhereInput: {
+    // input type
+    AND?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'][] | null // [LetsadsSmsMessageStatusItemWhereInput!]
+    LetsadsSmsMessageStatus?:
+      | NexusGenInputs['LetsadsSmsMessageStatusWhereInput']
+      | null // LetsadsSmsMessageStatusWhereInput
+    NOT?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'][] | null // [LetsadsSmsMessageStatusItemWhereInput!]
+    OR?: NexusGenInputs['LetsadsSmsMessageStatusItemWhereInput'][] | null // [LetsadsSmsMessageStatusItemWhereInput!]
+    Status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    sms_id?: NexusGenInputs['IntFilter'] | null // IntFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  LetsadsSmsMessageStatusWhereInput: {
+    // input type
+    AND?: NexusGenInputs['LetsadsSmsMessageStatusWhereInput'][] | null // [LetsadsSmsMessageStatusWhereInput!]
+    LetsadsSmsMessageStatusItem?:
+      | NexusGenInputs['LetsadsSmsMessageStatusItemListRelationFilter']
+      | null // LetsadsSmsMessageStatusItemListRelationFilter
+    NOT?: NexusGenInputs['LetsadsSmsMessageStatusWhereInput'][] | null // [LetsadsSmsMessageStatusWhereInput!]
+    OR?: NexusGenInputs['LetsadsSmsMessageStatusWhereInput'][] | null // [LetsadsSmsMessageStatusWhereInput!]
+    SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    errorCode?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  LetterListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['LetterWhereInput'] | null // LetterWhereInput
+    none?: NexusGenInputs['LetterWhereInput'] | null // LetterWhereInput
+    some?: NexusGenInputs['LetterWhereInput'] | null // LetterWhereInput
+  }
+  LetterWhereInput: {
+    // input type
+    AND?: NexusGenInputs['LetterWhereInput'][] | null // [LetterWhereInput!]
+    NOT?: NexusGenInputs['LetterWhereInput'][] | null // [LetterWhereInput!]
+    OR?: NexusGenInputs['LetterWhereInput'][] | null // [LetterWhereInput!]
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_LetterToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    deleteOnSend?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    email?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    message?: NexusGenInputs['StringFilter'] | null // StringFilter
+    rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    replyTo?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    returnTo?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    subject?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  LogListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['LogWhereInput'] | null // LogWhereInput
+    none?: NexusGenInputs['LogWhereInput'] | null // LogWhereInput
+    some?: NexusGenInputs['LogWhereInput'] | null // LogWhereInput
+  }
+  LogWhereInput: {
+    // input type
+    AND?: NexusGenInputs['LogWhereInput'][] | null // [LogWhereInput!]
+    Import?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Import_ImportToLog?: NexusGenInputs['ImportWhereInput'] | null // ImportWhereInput
+    NOT?: NexusGenInputs['LogWhereInput'][] | null // [LogWhereInput!]
+    OR?: NexusGenInputs['LogWhereInput'][] | null // [LogWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    level?: NexusGenInputs['StringFilter'] | null // StringFilter
+    message?: NexusGenInputs['StringFilter'] | null // StringFilter
+    objectType?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    stack?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  LogedInListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['LogedInWhereInput'] | null // LogedInWhereInput
+    none?: NexusGenInputs['LogedInWhereInput'] | null // LogedInWhereInput
+    some?: NexusGenInputs['LogedInWhereInput'] | null // LogedInWhereInput
+  }
+  LogedInWhereInput: {
+    // input type
+    AND?: NexusGenInputs['LogedInWhereInput'][] | null // [LogedInWhereInput!]
+    NOT?: NexusGenInputs['LogedInWhereInput'][] | null // [LogedInWhereInput!]
+    OR?: NexusGenInputs['LogedInWhereInput'][] | null // [LogedInWhereInput!]
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_LogedInToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    fake?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  MessageListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['MessageWhereInput'] | null // MessageWhereInput
+    none?: NexusGenInputs['MessageWhereInput'] | null // MessageWhereInput
+    some?: NexusGenInputs['MessageWhereInput'] | null // MessageWhereInput
+  }
+  MessageWhereInput: {
+    // input type
+    AND?: NexusGenInputs['MessageWhereInput'][] | null // [MessageWhereInput!]
+    NOT?: NexusGenInputs['MessageWhereInput'][] | null // [MessageWhereInput!]
+    OR?: NexusGenInputs['MessageWhereInput'][] | null // [MessageWhereInput!]
+    World?: NexusGenInputs['WorldWhereInput'] | null // WorldWhereInput
+    body?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    sender?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    type?: NexusGenInputs['StringFilter'] | null // StringFilter
+    world?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  NestedBoolFilter: {
+    // input type
+    equals?: boolean | null // Boolean
+    not?: NexusGenInputs['NestedBoolFilter'] | null // NestedBoolFilter
+  }
+  NestedBoolNullableFilter: {
+    // input type
+    equals?: boolean | null // Boolean
+    not?: NexusGenInputs['NestedBoolNullableFilter'] | null // NestedBoolNullableFilter
+  }
+  NestedDateTimeFilter: {
+    // input type
+    equals?: NexusGenScalars['DateTime'] | null // DateTime
+    gt?: NexusGenScalars['DateTime'] | null // DateTime
+    gte?: NexusGenScalars['DateTime'] | null // DateTime
+    in?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null // DateTime
+    lte?: NexusGenScalars['DateTime'] | null // DateTime
+    not?: NexusGenInputs['NestedDateTimeFilter'] | null // NestedDateTimeFilter
+    notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+  }
+  NestedDateTimeNullableFilter: {
+    // input type
+    equals?: NexusGenScalars['DateTime'] | null // DateTime
+    gt?: NexusGenScalars['DateTime'] | null // DateTime
+    gte?: NexusGenScalars['DateTime'] | null // DateTime
+    in?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null // DateTime
+    lte?: NexusGenScalars['DateTime'] | null // DateTime
+    not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null // NestedDateTimeNullableFilter
+    notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+  }
+  NestedDecimalFilter: {
+    // input type
+    equals?: NexusGenScalars['Decimal'] | null // Decimal
+    gt?: NexusGenScalars['Decimal'] | null // Decimal
+    gte?: NexusGenScalars['Decimal'] | null // Decimal
+    in?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+    lt?: NexusGenScalars['Decimal'] | null // Decimal
+    lte?: NexusGenScalars['Decimal'] | null // Decimal
+    not?: NexusGenInputs['NestedDecimalFilter'] | null // NestedDecimalFilter
+    notIn?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+  }
+  NestedDecimalNullableFilter: {
+    // input type
+    equals?: NexusGenScalars['Decimal'] | null // Decimal
+    gt?: NexusGenScalars['Decimal'] | null // Decimal
+    gte?: NexusGenScalars['Decimal'] | null // Decimal
+    in?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+    lt?: NexusGenScalars['Decimal'] | null // Decimal
+    lte?: NexusGenScalars['Decimal'] | null // Decimal
+    not?: NexusGenInputs['NestedDecimalNullableFilter'] | null // NestedDecimalNullableFilter
+    notIn?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+  }
+  NestedIntFilter: {
+    // input type
+    equals?: number | null // Int
+    gt?: number | null // Int
+    gte?: number | null // Int
+    in?: number[] | null // [Int!]
+    lt?: number | null // Int
+    lte?: number | null // Int
+    not?: NexusGenInputs['NestedIntFilter'] | null // NestedIntFilter
+    notIn?: number[] | null // [Int!]
+  }
+  NestedIntNullableFilter: {
+    // input type
+    equals?: number | null // Int
+    gt?: number | null // Int
+    gte?: number | null // Int
+    in?: number[] | null // [Int!]
+    lt?: number | null // Int
+    lte?: number | null // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null // NestedIntNullableFilter
+    notIn?: number[] | null // [Int!]
+  }
+  NestedStringFilter: {
+    // input type
+    contains?: string | null // String
+    endsWith?: string | null // String
+    equals?: string | null // String
+    gt?: string | null // String
+    gte?: string | null // String
+    in?: string[] | null // [String!]
+    lt?: string | null // String
+    lte?: string | null // String
+    not?: NexusGenInputs['NestedStringFilter'] | null // NestedStringFilter
+    notIn?: string[] | null // [String!]
+    startsWith?: string | null // String
+  }
+  NestedStringNullableFilter: {
+    // input type
+    contains?: string | null // String
+    endsWith?: string | null // String
+    equals?: string | null // String
+    gt?: string | null // String
+    gte?: string | null // String
+    in?: string[] | null // [String!]
+    lt?: string | null // String
+    lte?: string | null // String
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null // NestedStringNullableFilter
+    notIn?: string[] | null // [String!]
+    startsWith?: string | null // String
+  }
+  NoticeListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
+    none?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
+    some?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
+  }
+  NoticeOrderByInput: {
+    // input type
+    ChatMessage?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    User?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    type?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  NoticeWhereInput: {
+    // input type
+    AND?: NexusGenInputs['NoticeWhereInput'][] | null // [NoticeWhereInput!]
+    ChatMessage?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    ChatMessage_ChatMessageToNotice?:
+      | NexusGenInputs['ChatMessageWhereInput']
+      | null // ChatMessageWhereInput
+    ChatRoomInvitation?:
+      | NexusGenInputs['ChatRoomInvitationListRelationFilter']
+      | null // ChatRoomInvitationListRelationFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['NoticeWhereInput'][] | null // [NoticeWhereInput!]
+    OR?: NexusGenInputs['NoticeWhereInput'][] | null // [NoticeWhereInput!]
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_Notice_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_Notice_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    type?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  NoticeWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  NotificationTypeListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['NotificationTypeWhereInput'] | null // NotificationTypeWhereInput
+    none?: NexusGenInputs['NotificationTypeWhereInput'] | null // NotificationTypeWhereInput
+    some?: NexusGenInputs['NotificationTypeWhereInput'] | null // NotificationTypeWhereInput
+  }
+  NotificationTypeOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    code?: NexusGenEnums['SortOrder'] | null // SortOrder
+    comment?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  NotificationTypeWhereInput: {
+    // input type
+    AND?: NexusGenInputs['NotificationTypeWhereInput'][] | null // [NotificationTypeWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['NotificationTypeWhereInput'][] | null // [NotificationTypeWhereInput!]
+    OR?: NexusGenInputs['NotificationTypeWhereInput'][] | null // [NotificationTypeWhereInput!]
+    User_NotificationTypeToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_UserNotificationTypes?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    comment?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  NotificationTypeWhereUniqueInput: {
+    // input type
+    code?: string | null // String
+    id?: string | null // String
+    oldID?: number | null // Int
+  }
+  PlayerListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['PlayerWhereInput'] | null // PlayerWhereInput
+    none?: NexusGenInputs['PlayerWhereInput'] | null // PlayerWhereInput
+    some?: NexusGenInputs['PlayerWhereInput'] | null // PlayerWhereInput
+  }
+  PlayerWhereInput: {
+    // input type
+    AND?: NexusGenInputs['PlayerWhereInput'][] | null // [PlayerWhereInput!]
+    Inventory?: NexusGenInputs['InventoryWhereInput'] | null // InventoryWhereInput
+    NOT?: NexusGenInputs['PlayerWhereInput'][] | null // [PlayerWhereInput!]
+    OR?: NexusGenInputs['PlayerWhereInput'][] | null // [PlayerWhereInput!]
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    World?: NexusGenInputs['WorldWhereInput'] | null // WorldWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    dirx?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
+    diry?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
+    gamemode?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    inventory?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    isAdmin?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    lastLogin?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    user?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    world?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    x?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
+    y?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
+    z?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
+  }
+  PositionListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['PositionWhereInput'] | null // PositionWhereInput
+    none?: NexusGenInputs['PositionWhereInput'] | null // PositionWhereInput
+    some?: NexusGenInputs['PositionWhereInput'] | null // PositionWhereInput
+  }
+  PositionWhereInput: {
+    // input type
+    AND?: NexusGenInputs['PositionWhereInput'][] | null // [PositionWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['PositionWhereInput'][] | null // [PositionWhereInput!]
+    OR?: NexusGenInputs['PositionWhereInput'][] | null // [PositionWhereInput!]
+    User_PositionToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_PositionUsers?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ProjectCreateInput: {
+    // input type
+    name: string // String!
+  }
+  ProjectCreateOneWithoutProjectTasksInput: {
+    // input type
+    connect?: NexusGenInputs['ProjectWhereUniqueInput'] | null // ProjectWhereUniqueInput
+  }
+  ProjectListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
+    none?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
+    some?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
+  }
+  ProjectMemberListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ProjectMemberWhereInput'] | null // ProjectMemberWhereInput
+    none?: NexusGenInputs['ProjectMemberWhereInput'] | null // ProjectMemberWhereInput
+    some?: NexusGenInputs['ProjectMemberWhereInput'] | null // ProjectMemberWhereInput
+  }
+  ProjectMemberWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ProjectMemberWhereInput'][] | null // [ProjectMemberWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ProjectMemberWhereInput'][] | null // [ProjectMemberWhereInput!]
+    OR?: NexusGenInputs['ProjectMemberWhereInput'][] | null // [ProjectMemberWhereInput!]
+    Project?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Project_ProjectToProjectMember?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
+    Service?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_ProjectMember_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_ProjectMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ProjectOrderByInput: {
+    // input type
+    ChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Image?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Resource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Team?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenEnums['SortOrder'] | null // SortOrder
+    contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    domain?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    public?: NexusGenEnums['SortOrder'] | null // SortOrder
+    sequence?: NexusGenEnums['SortOrder'] | null // SortOrder
+    status?: NexusGenEnums['SortOrder'] | null // SortOrder
+    type?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    url?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ProjectTaskListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ProjectTaskWhereInput'] | null // ProjectTaskWhereInput
+    none?: NexusGenInputs['ProjectTaskWhereInput'] | null // ProjectTaskWhereInput
+    some?: NexusGenInputs['ProjectTaskWhereInput'] | null // ProjectTaskWhereInput
+  }
+  ProjectTaskOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Project?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ProjectTaskWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ProjectTaskWhereInput'][] | null // [ProjectTaskWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ProjectTaskWhereInput'][] | null // [ProjectTaskWhereInput!]
+    OR?: NexusGenInputs['ProjectTaskWhereInput'][] | null // [ProjectTaskWhereInput!]
+    Project?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Project_ProjectToProjectTask?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
+    Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Task_ProjectTaskToTask?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ProjectTaskWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  ProjectUpdateInput: {
+    // input type
+    name?: string | null // String
+  }
+  ProjectWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ProjectWhereInput'][] | null // [ProjectWhereInput!]
+    ChatRoom?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    ChatRoom_ChatRoomToProject?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    EthAccount?: NexusGenInputs['EthAccountListRelationFilter'] | null // EthAccountListRelationFilter
+    File?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
+    Image?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ProjectWhereInput'][] | null // [ProjectWhereInput!]
+    OR?: NexusGenInputs['ProjectWhereInput'][] | null // [ProjectWhereInput!]
+    ProjectMember?: NexusGenInputs['ProjectMemberListRelationFilter'] | null // ProjectMemberListRelationFilter
+    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
+    Resource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Resource_ProjectToResource_PrismaProject?:
+      | NexusGenInputs['ResourceListRelationFilter']
+      | null // ResourceListRelationFilter
+    Resource_Project_ResourceToResource?:
+      | NexusGenInputs['ResourceWhereInput']
+      | null // ResourceWhereInput
+    Team?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Team_ProjectCustomers?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
+    Team_ProjectToTeam?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
+    Template_ProjectToTemplate_PrismaProject?:
+      | NexusGenInputs['TemplateListRelationFilter']
+      | null // TemplateListRelationFilter
+    Template_ProjectToTemplate_Project?:
+      | NexusGenInputs['TemplateListRelationFilter']
+      | null // TemplateListRelationFilter
+    User_PrismaProjectUsers?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    User_ProjectToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    domain?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    public?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    sequence?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    url?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  ProjectWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+    oldID?: number | null // Int
+    sequence?: number | null // Int
+  }
+  ResetPasswordListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
+    none?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
+    some?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
+  }
+  ResetPasswordWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ResetPasswordWhereInput'][] | null // [ResetPasswordWhereInput!]
+    NOT?: NexusGenInputs['ResetPasswordWhereInput'][] | null // [ResetPasswordWhereInput!]
+    OR?: NexusGenInputs['ResetPasswordWhereInput'][] | null // [ResetPasswordWhereInput!]
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_ResetPasswordToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    password?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    validTill?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+  }
+  ResourceListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
+    none?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
+    some?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
+  }
+  ResourceOrderByInput: {
+    // input type
+    Blog?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    EthAccount?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    PrismaProject?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Service?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Team?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Topic?: NexusGenEnums['SortOrder'] | null // SortOrder
+    class_key?: NexusGenEnums['SortOrder'] | null // SortOrder
+    code?: NexusGenEnums['SortOrder'] | null // SortOrder
+    commentOldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    components?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenEnums['SortOrder'] | null // SortOrder
+    contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    deleted?: NexusGenEnums['SortOrder'] | null // SortOrder
+    hidemenu?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    isfolder?: NexusGenEnums['SortOrder'] | null // SortOrder
+    longtitle?: NexusGenEnums['SortOrder'] | null // SortOrder
+    mockUpdate?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    negativeVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
+    neutralVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    positiveVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
+    published?: NexusGenEnums['SortOrder'] | null // SortOrder
+    rating?: NexusGenEnums['SortOrder'] | null // SortOrder
+    searchable?: NexusGenEnums['SortOrder'] | null // SortOrder
+    template?: NexusGenEnums['SortOrder'] | null // SortOrder
+    type?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    uri?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ResourceTagListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ResourceTagWhereInput'] | null // ResourceTagWhereInput
+    none?: NexusGenInputs['ResourceTagWhereInput'] | null // ResourceTagWhereInput
+    some?: NexusGenInputs['ResourceTagWhereInput'] | null // ResourceTagWhereInput
+  }
+  ResourceTagWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ResourceTagWhereInput'][] | null // [ResourceTagWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ResourceTagWhereInput'][] | null // [ResourceTagWhereInput!]
+    OR?: NexusGenInputs['ResourceTagWhereInput'][] | null // [ResourceTagWhereInput!]
+    Resource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Resource_ResourceToResourceTag?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
+    Tag?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Tag_ResourceTagToTag?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ResourceWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ResourceWhereInput'][] | null // [ResourceWhereInput!]
+    Blog?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CodeChallenge?: NexusGenInputs['CodeChallengeListRelationFilter'] | null // CodeChallengeListRelationFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    EthAccount?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    EthAccount_EthAccountToResource?:
+      | NexusGenInputs['EthAccountWhereInput']
+      | null // EthAccountWhereInput
+    File?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
+    Gallery?: NexusGenInputs['GalleryListRelationFilter'] | null // GalleryListRelationFilter
+    NOT?: NexusGenInputs['ResourceWhereInput'][] | null // [ResourceWhereInput!]
+    OR?: NexusGenInputs['ResourceWhereInput'][] | null // [ResourceWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    PrismaProject?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Project_ProjectToResource_PrismaProject?:
+      | NexusGenInputs['ProjectWhereInput']
+      | null // ProjectWhereInput
+    Project_Project_ResourceToResource?:
+      | NexusGenInputs['ProjectListRelationFilter']
+      | null // ProjectListRelationFilter
+    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
+    Resource_ResourceToResource_Blog?:
+      | NexusGenInputs['ResourceWhereInput']
+      | null // ResourceWhereInput
+    Resource_ResourceToResource_Parent?:
+      | NexusGenInputs['ResourceWhereInput']
+      | null // ResourceWhereInput
+    Resource_ResourceToResource_Topic?:
+      | NexusGenInputs['ResourceWhereInput']
+      | null // ResourceWhereInput
+    Service?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Service_ResourceToService?: NexusGenInputs['ServiceWhereInput'] | null // ServiceWhereInput
+    Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Task_ResourceToTask?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    Team?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Team_ResourceToTeam?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
+    Topic?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    Vote?: NexusGenInputs['VoteListRelationFilter'] | null // VoteListRelationFilter
+    class_key?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    commentOldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    deleted?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    hidemenu?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    isfolder?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    longtitle?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    mockUpdate?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    negativeVotesCount?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    neutralVotesCount?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    other_Resource_ResourceToResource_Blog?:
+      | NexusGenInputs['ResourceListRelationFilter']
+      | null // ResourceListRelationFilter
+    other_Resource_ResourceToResource_Parent?:
+      | NexusGenInputs['ResourceListRelationFilter']
+      | null // ResourceListRelationFilter
+    other_Resource_ResourceToResource_Topic?:
+      | NexusGenInputs['ResourceListRelationFilter']
+      | null // ResourceListRelationFilter
+    positiveVotesCount?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    published?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    rating?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    searchable?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    template?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    uri?: NexusGenInputs['StringFilter'] | null // StringFilter
+  }
+  ResourceWhereUniqueInput: {
+    // input type
+    code?: string | null // String
+    commentOldID?: number | null // Int
+    id?: string | null // String
+    oldID?: number | null // Int
+    uri?: string | null // String
+  }
+  RouteListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['RouteWhereInput'] | null // RouteWhereInput
+    none?: NexusGenInputs['RouteWhereInput'] | null // RouteWhereInput
+    some?: NexusGenInputs['RouteWhereInput'] | null // RouteWhereInput
+  }
+  RouteWhereInput: {
+    // input type
+    AND?: NexusGenInputs['RouteWhereInput'][] | null // [RouteWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['RouteWhereInput'][] | null // [RouteWhereInput!]
+    OR?: NexusGenInputs['RouteWhereInput'][] | null // [RouteWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Route?: NexusGenInputs['RouteWhereInput'] | null // RouteWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    component?: NexusGenInputs['StringFilter'] | null // StringFilter
+    exact?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    other_Route?: NexusGenInputs['RouteListRelationFilter'] | null // RouteListRelationFilter
+    path?: NexusGenInputs['StringFilter'] | null // StringFilter
+  }
+  ServiceCategoryListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
+    none?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
+    some?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
+  }
+  ServiceCategoryWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ServiceCategoryWhereInput'][] | null // [ServiceCategoryWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ServiceCategoryWhereInput'][] | null // [ServiceCategoryWhereInput!]
+    OR?: NexusGenInputs['ServiceCategoryWhereInput'][] | null // [ServiceCategoryWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Service?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
+    ServiceCategory?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    other_ServiceCategory?:
+      | NexusGenInputs['ServiceCategoryListRelationFilter']
+      | null // ServiceCategoryListRelationFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  ServiceListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['ServiceWhereInput'] | null // ServiceWhereInput
+    none?: NexusGenInputs['ServiceWhereInput'] | null // ServiceWhereInput
+    some?: NexusGenInputs['ServiceWhereInput'] | null // ServiceWhereInput
+  }
+  ServiceWhereInput: {
+    // input type
+    AND?: NexusGenInputs['ServiceWhereInput'][] | null // [ServiceWhereInput!]
+    Category?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['ServiceWhereInput'][] | null // [ServiceWhereInput!]
+    OR?: NexusGenInputs['ServiceWhereInput'][] | null // [ServiceWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    ProjectMember?: NexusGenInputs['ProjectMemberListRelationFilter'] | null // ProjectMemberListRelationFilter
+    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    Service?: NexusGenInputs['ServiceWhereInput'] | null // ServiceWhereInput
+    ServiceCategory?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    other_Service?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
+    rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  SettingsListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['SettingsWhereInput'] | null // SettingsWhereInput
+    none?: NexusGenInputs['SettingsWhereInput'] | null // SettingsWhereInput
+    some?: NexusGenInputs['SettingsWhereInput'] | null // SettingsWhereInput
+  }
+  SettingsWhereInput: {
+    // input type
+    AND?: NexusGenInputs['SettingsWhereInput'][] | null // [SettingsWhereInput!]
+    NOT?: NexusGenInputs['SettingsWhereInput'][] | null // [SettingsWhereInput!]
+    OR?: NexusGenInputs['SettingsWhereInput'][] | null // [SettingsWhereInput!]
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_SettingsToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    renderDistance?: NexusGenInputs['IntFilter'] | null // IntFilter
+  }
+  SingleUploadInput: {
+    // input type
+    directory?: string | null // String
+    file: NexusGenScalars['Upload'] // Upload!
+    name?: string | null // String
+  }
+  SmsMessageListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['SmsMessageWhereInput'] | null // SmsMessageWhereInput
+    none?: NexusGenInputs['SmsMessageWhereInput'] | null // SmsMessageWhereInput
+    some?: NexusGenInputs['SmsMessageWhereInput'] | null // SmsMessageWhereInput
+  }
+  SmsMessageWhereInput: {
+    // input type
+    AND?: NexusGenInputs['SmsMessageWhereInput'][] | null // [SmsMessageWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    LetsadsSmsMessageStatus?:
+      | NexusGenInputs['LetsadsSmsMessageStatusWhereInput']
+      | null // LetsadsSmsMessageStatusWhereInput
+    NOT?: NexusGenInputs['SmsMessageWhereInput'][] | null // [SmsMessageWhereInput!]
+    OR?: NexusGenInputs['SmsMessageWhereInput'][] | null // [SmsMessageWhereInput!]
+    Provider?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    SmsMessage_recipients?:
+      | NexusGenInputs['SmsMessage_recipientsListRelationFilter']
+      | null // SmsMessage_recipientsListRelationFilter
+    SmsProvider?: NexusGenInputs['SmsProviderWhereInput'] | null // SmsProviderWhereInput
+    Status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    deletOnSend?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    from?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    text?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  SmsMessage_recipientsListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['SmsMessage_recipientsWhereInput'] | null // SmsMessage_recipientsWhereInput
+    none?: NexusGenInputs['SmsMessage_recipientsWhereInput'] | null // SmsMessage_recipientsWhereInput
+    some?: NexusGenInputs['SmsMessage_recipientsWhereInput'] | null // SmsMessage_recipientsWhereInput
+  }
+  SmsMessage_recipientsWhereInput: {
+    // input type
+    AND?: NexusGenInputs['SmsMessage_recipientsWhereInput'][] | null // [SmsMessage_recipientsWhereInput!]
+    NOT?: NexusGenInputs['SmsMessage_recipientsWhereInput'][] | null // [SmsMessage_recipientsWhereInput!]
+    OR?: NexusGenInputs['SmsMessage_recipientsWhereInput'][] | null // [SmsMessage_recipientsWhereInput!]
+    SmsMessage?: NexusGenInputs['SmsMessageWhereInput'] | null // SmsMessageWhereInput
+    nodeId?: NexusGenInputs['StringFilter'] | null // StringFilter
+    position?: NexusGenInputs['IntFilter'] | null // IntFilter
+    value?: NexusGenInputs['StringFilter'] | null // StringFilter
+  }
+  SmsProviderListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['SmsProviderWhereInput'] | null // SmsProviderWhereInput
+    none?: NexusGenInputs['SmsProviderWhereInput'] | null // SmsProviderWhereInput
+    some?: NexusGenInputs['SmsProviderWhereInput'] | null // SmsProviderWhereInput
+  }
+  SmsProviderWhereInput: {
+    // input type
+    AND?: NexusGenInputs['SmsProviderWhereInput'][] | null // [SmsProviderWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['SmsProviderWhereInput'][] | null // [SmsProviderWhereInput!]
+    OR?: NexusGenInputs['SmsProviderWhereInput'][] | null // [SmsProviderWhereInput!]
+    SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    credentials?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  StringFilter: {
+    // input type
+    contains?: string | null // String
+    endsWith?: string | null // String
+    equals?: string | null // String
+    gt?: string | null // String
+    gte?: string | null // String
+    in?: string[] | null // [String!]
+    lt?: string | null // String
+    lte?: string | null // String
+    not?: NexusGenInputs['NestedStringFilter'] | null // NestedStringFilter
+    notIn?: string[] | null // [String!]
+    startsWith?: string | null // String
+  }
+  StringNullableFilter: {
+    // input type
+    contains?: string | null // String
+    endsWith?: string | null // String
+    equals?: string | null // String
+    gt?: string | null // String
+    gte?: string | null // String
+    in?: string[] | null // [String!]
+    lt?: string | null // String
+    lte?: string | null // String
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null // NestedStringNullableFilter
+    notIn?: string[] | null // [String!]
+    startsWith?: string | null // String
+  }
+  TagListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
+    none?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
+    some?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
+  }
+  TagOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    status?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TagWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TagWhereInput'][] | null // [TagWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TagWhereInput'][] | null // [TagWhereInput!]
+    OR?: NexusGenInputs['TagWhereInput'][] | null // [TagWhereInput!]
+    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TagWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+    name?: string | null // String
+  }
+  TaskCreateInput: {
+    // input type
+    Project?: NexusGenInputs['ProjectCreateOneWithoutProjectTasksInput'] | null // ProjectCreateOneWithoutProjectTasksInput
+    content?: NexusGenScalars['JSON'] | null // JSON
+    description?: string | null // String
+    endDate?: NexusGenScalars['DateTime'] | null // DateTime
+    endDatePlaning?: NexusGenScalars['DateTime'] | null // DateTime
+    id?: string | null // ID
+    name: string // String!
+    needHelp?: boolean | null // Boolean
+    startDate?: NexusGenScalars['DateTime'] | null // DateTime
+    startDatePlaning?: NexusGenScalars['DateTime'] | null // DateTime
+    status?: NexusGenEnums['TaskStatus'] | null // TaskStatus
+  }
+  TaskCreateOneWithoutCommentsInput: {
+    // input type
+    connect?: NexusGenInputs['TaskWhereUniqueInput'] | null // TaskWhereUniqueInput
+  }
+  TaskCreateOneWithoutTaskTechnologiesInput: {
+    // input type
+    connect?: NexusGenInputs['TaskWhereUniqueInput'] | null // TaskWhereUniqueInput
+  }
+  TaskCreateOneWithoutTimersInput: {
+    // input type
+    connect?: NexusGenInputs['TaskWhereUniqueInput'] | null // TaskWhereUniqueInput
+  }
+  TaskListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    none?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    some?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+  }
+  TaskMemberListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TaskMemberWhereInput'] | null // TaskMemberWhereInput
+    none?: NexusGenInputs['TaskMemberWhereInput'] | null // TaskMemberWhereInput
+    some?: NexusGenInputs['TaskMemberWhereInput'] | null // TaskMemberWhereInput
+  }
+  TaskMemberWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TaskMemberWhereInput'][] | null // [TaskMemberWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TaskMemberWhereInput'][] | null // [TaskMemberWhereInput!]
+    OR?: NexusGenInputs['TaskMemberWhereInput'][] | null // [TaskMemberWhereInput!]
+    Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Task_TaskToTaskMember?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_TaskMember_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_TaskMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TaskOrderByInput: {
+    // input type
+    ChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    endDate?: NexusGenEnums['SortOrder'] | null // SortOrder
+    endDatePlaning?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    needHelp?: NexusGenEnums['SortOrder'] | null // SortOrder
+    startDate?: NexusGenEnums['SortOrder'] | null // SortOrder
+    startDatePlaning?: NexusGenEnums['SortOrder'] | null // SortOrder
+    status?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TaskReactionListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TaskReactionWhereInput'] | null // TaskReactionWhereInput
+    none?: NexusGenInputs['TaskReactionWhereInput'] | null // TaskReactionWhereInput
+    some?: NexusGenInputs['TaskReactionWhereInput'] | null // TaskReactionWhereInput
+  }
+  TaskReactionWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TaskReactionWhereInput'][] | null // [TaskReactionWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TaskReactionWhereInput'][] | null // [TaskReactionWhereInput!]
+    OR?: NexusGenInputs['TaskReactionWhereInput'][] | null // [TaskReactionWhereInput!]
+    Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Task_TaskToTaskReaction?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TaskTechnologyCreateInput: {
+    // input type
+    Task: NexusGenInputs['TaskCreateOneWithoutTaskTechnologiesInput'] // TaskCreateOneWithoutTaskTechnologiesInput!
+    Technology: NexusGenInputs['TechnologyCreateOneWithoutTaskTechnologiesInput'] // TechnologyCreateOneWithoutTaskTechnologiesInput!
+    id?: string | null // ID
+    level?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+  }
+  TaskTechnologyListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TaskTechnologyWhereInput'] | null // TaskTechnologyWhereInput
+    none?: NexusGenInputs['TaskTechnologyWhereInput'] | null // TaskTechnologyWhereInput
+    some?: NexusGenInputs['TaskTechnologyWhereInput'] | null // TaskTechnologyWhereInput
+  }
+  TaskTechnologyOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Technology?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TaskTechnologyUpdateInput: {
+    // input type
+    Task: NexusGenInputs['TaskCreateOneWithoutTaskTechnologiesInput'] // TaskCreateOneWithoutTaskTechnologiesInput!
+    Technology: NexusGenInputs['TechnologyCreateOneWithoutTaskTechnologiesInput'] // TechnologyCreateOneWithoutTaskTechnologiesInput!
+    level?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+  }
+  TaskTechnologyWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TaskTechnologyWhereInput'][] | null // [TaskTechnologyWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TaskTechnologyWhereInput'][] | null // [TaskTechnologyWhereInput!]
+    OR?: NexusGenInputs['TaskTechnologyWhereInput'][] | null // [TaskTechnologyWhereInput!]
+    Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Task_TaskToTaskTechnology?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    Technology?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Technology_TaskTechnologyToTechnology?:
+      | NexusGenInputs['TechnologyWhereInput']
+      | null // TechnologyWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    level?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TaskTechnologyWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  TaskUpdateInput: {
+    // input type
+    Timers?: NexusGenInputs['TimerUpdateManyWithoutTaskInput'] | null // TimerUpdateManyWithoutTaskInput
+    content?: NexusGenScalars['JSON'] | null // JSON
+    description?: string | null // String
+    endDate?: NexusGenScalars['DateTime'] | null // DateTime
+    endDatePlaning?: NexusGenScalars['DateTime'] | null // DateTime
+    name?: string | null // String
+    needHelp?: boolean | null // Boolean
+    startDate?: NexusGenScalars['DateTime'] | null // DateTime
+    startDatePlaning?: NexusGenScalars['DateTime'] | null // DateTime
+    status?: NexusGenEnums['TaskStatus'] | null // TaskStatus
+  }
+  TaskWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TaskWhereInput'][] | null // [TaskWhereInput!]
+    ChatRoom?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    ChatRoom_ChatRoomToTask?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
+    CodeChallengeCompletion?:
+      | NexusGenInputs['CodeChallengeCompletionListRelationFilter']
+      | null // CodeChallengeCompletionListRelationFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TaskWhereInput'][] | null // [TaskWhereInput!]
+    OR?: NexusGenInputs['TaskWhereInput'][] | null // [TaskWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
+    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    Task?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    TaskMember?: NexusGenInputs['TaskMemberListRelationFilter'] | null // TaskMemberListRelationFilter
+    TaskReaction?: NexusGenInputs['TaskReactionListRelationFilter'] | null // TaskReactionListRelationFilter
+    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
+    Task_A?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    Task_B?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    Timer?: NexusGenInputs['TimerListRelationFilter'] | null // TimerListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    endDate?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    endDatePlaning?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    needHelp?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    other_Task?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    startDate?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    startDatePlaning?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TaskWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  TeamListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
+    none?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
+    some?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
+  }
+  TeamMemberListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TeamMemberWhereInput'] | null // TeamMemberWhereInput
+    none?: NexusGenInputs['TeamMemberWhereInput'] | null // TeamMemberWhereInput
+    some?: NexusGenInputs['TeamMemberWhereInput'] | null // TeamMemberWhereInput
+  }
+  TeamMemberWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TeamMemberWhereInput'][] | null // [TeamMemberWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TeamMemberWhereInput'][] | null // [TeamMemberWhereInput!]
+    OR?: NexusGenInputs['TeamMemberWhereInput'][] | null // [TeamMemberWhereInput!]
+    Team?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Team_TeamToTeamMember?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_TeamMember_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    User_TeamMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TeamWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TeamWhereInput'][] | null // [TeamWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Game?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
+    GameResult?: NexusGenInputs['GameResultListRelationFilter'] | null // GameResultListRelationFilter
+    NOT?: NexusGenInputs['TeamWhereInput'][] | null // [TeamWhereInput!]
+    OR?: NexusGenInputs['TeamWhereInput'][] | null // [TeamWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Project_ProjectCustomers?:
+      | NexusGenInputs['ProjectListRelationFilter']
+      | null // ProjectListRelationFilter
+    Project_ProjectToTeam?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
+    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    Team?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
+    TeamMember?: NexusGenInputs['TeamMemberListRelationFilter'] | null // TeamMemberListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    address?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    email?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    other_Team?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
+    phone?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    website?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  TechnologyCreateOneWithoutTaskTechnologiesInput: {
+    // input type
+    connect?: NexusGenInputs['TechnologyWhereUniqueInput'] | null // TechnologyWhereUniqueInput
+  }
+  TechnologyCreateOneWithoutUserTechnologiesInput: {
+    // input type
+    connect?: NexusGenInputs['TechnologyWhereUniqueInput'] | null // TechnologyWhereUniqueInput
+  }
+  TechnologyLessonListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TechnologyLessonWhereInput'] | null // TechnologyLessonWhereInput
+    none?: NexusGenInputs['TechnologyLessonWhereInput'] | null // TechnologyLessonWhereInput
+    some?: NexusGenInputs['TechnologyLessonWhereInput'] | null // TechnologyLessonWhereInput
+  }
+  TechnologyLessonUserListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TechnologyLessonUserWhereInput'] | null // TechnologyLessonUserWhereInput
+    none?: NexusGenInputs['TechnologyLessonUserWhereInput'] | null // TechnologyLessonUserWhereInput
+    some?: NexusGenInputs['TechnologyLessonUserWhereInput'] | null // TechnologyLessonUserWhereInput
+  }
+  TechnologyLessonUserWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null // [TechnologyLessonUserWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Lesson?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null // [TechnologyLessonUserWhereInput!]
+    OR?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null // [TechnologyLessonUserWhereInput!]
+    TechnologyLesson?: NexusGenInputs['TechnologyLessonWhereInput'] | null // TechnologyLessonWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    completedAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TechnologyLessonWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TechnologyLessonWhereInput'][] | null // [TechnologyLessonWhereInput!]
+    Comment?: NexusGenInputs['CommentListRelationFilter'] | null // CommentListRelationFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TechnologyLessonWhereInput'][] | null // [TechnologyLessonWhereInput!]
+    OR?: NexusGenInputs['TechnologyLessonWhereInput'][] | null // [TechnologyLessonWhereInput!]
+    Technology?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    TechnologyLessonUser?:
+      | NexusGenInputs['TechnologyLessonUserListRelationFilter']
+      | null // TechnologyLessonUserListRelationFilter
+    Technology_TechnologyToTechnologyLesson?:
+      | NexusGenInputs['TechnologyWhereInput']
+      | null // TechnologyWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  TechnologyListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
+    none?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
+    some?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
+  }
+  TechnologyOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    components?: NexusGenEnums['SortOrder'] | null // SortOrder
+    contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    site_url?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TechnologyWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
+    OR?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
+    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
+    TechnologyLesson?:
+      | NexusGenInputs['TechnologyLessonListRelationFilter']
+      | null // TechnologyLessonListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    UserTechnology?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
+    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    site_url?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TechnologyWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  TemplateListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TemplateWhereInput'] | null // TemplateWhereInput
+    none?: NexusGenInputs['TemplateWhereInput'] | null // TemplateWhereInput
+    some?: NexusGenInputs['TemplateWhereInput'] | null // TemplateWhereInput
+  }
+  TemplateWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TemplateWhereInput'][] | null // [TemplateWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TemplateWhereInput'][] | null // [TemplateWhereInput!]
+    OR?: NexusGenInputs['TemplateWhereInput'][] | null // [TemplateWhereInput!]
+    Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    PrismaProject?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Project?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Project_ProjectToTemplate_PrismaProject?:
+      | NexusGenInputs['ProjectWhereInput']
+      | null // ProjectWhereInput
+    Project_ProjectToTemplate_Project?:
+      | NexusGenInputs['ProjectWhereInput']
+      | null // ProjectWhereInput
+    Template?: NexusGenInputs['TemplateWhereInput'] | null // TemplateWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    component?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    externalKey?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    other_Template?: NexusGenInputs['TemplateListRelationFilter'] | null // TemplateListRelationFilter
+    props?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    vars?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  TestListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TestWhereInput'] | null // TestWhereInput
+    none?: NexusGenInputs['TestWhereInput'] | null // TestWhereInput
+    some?: NexusGenInputs['TestWhereInput'] | null // TestWhereInput
+  }
+  TestWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TestWhereInput'][] | null // [TestWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TestWhereInput'][] | null // [TestWhereInput!]
+    OR?: NexusGenInputs['TestWhereInput'][] | null // [TestWhereInput!]
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    date?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    quantity?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    text?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TimerCreateInput: {
+    // input type
+    Task?: NexusGenInputs['TaskCreateOneWithoutTimersInput'] | null // TaskCreateOneWithoutTimersInput
+    id?: string | null // ID
+    stopedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  TimerListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
+    none?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
+    some?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
+  }
+  TimerOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    stopedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TimerUpdateInput: {
+    // input type
+    Task?: NexusGenInputs['TaskCreateOneWithoutTimersInput'] | null // TaskCreateOneWithoutTimersInput
+    stopedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  TimerUpdateManyDataInput: {
+    // input type
+    stopedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  TimerUpdateManyWithWhereNestedInput: {
+    // input type
+    data: NexusGenInputs['TimerUpdateManyDataInput'] // TimerUpdateManyDataInput!
+    where: NexusGenInputs['TimerWhereInput'] // TimerWhereInput!
+  }
+  TimerUpdateManyWithoutTaskInput: {
+    // input type
+    updateMany?: NexusGenInputs['TimerUpdateManyWithWhereNestedInput'][] | null // [TimerUpdateManyWithWhereNestedInput!]
+  }
+  TimerWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TimerWhereInput'][] | null // [TimerWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TimerWhereInput'][] | null // [TimerWhereInput!]
+    OR?: NexusGenInputs['TimerWhereInput'][] | null // [TimerWhereInput!]
+    Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Task_TaskToTimer?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    stopedAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TimerWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  TokenListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TokenWhereInput'] | null // TokenWhereInput
+    none?: NexusGenInputs['TokenWhereInput'] | null // TokenWhereInput
+    some?: NexusGenInputs['TokenWhereInput'] | null // TokenWhereInput
+  }
+  TokenWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TokenWhereInput'][] | null // [TokenWhereInput!]
+    NOT?: NexusGenInputs['TokenWhereInput'][] | null // [TokenWhereInput!]
+    OR?: NexusGenInputs['TokenWhereInput'][] | null // [TokenWhereInput!]
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    expiredAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    userId?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  TopicCreateInput: {
+    // input type
+    CodeChallenge?:
+      | NexusGenInputs['CodeChallengeCreateOneWithoutTopicInput']
+      | null // CodeChallengeCreateOneWithoutTopicInput
+    blogID?: string | null // ID
+    components?: NexusGenScalars['JSON'] | null // JSON
+    content?: NexusGenScalars['JSON'] | null // JSON
+    id?: string | null // ID
+    longtitle?: string | null // String
+    name?: string | null // String
+    published?: boolean | null // Boolean
+    topic_tags?: string[] | null // [String!]
+    uri?: string | null // String
+  }
+  TopicUpdateInput: {
+    // input type
+    blogID?: string | null // ID
+    components?: NexusGenScalars['JSON'] | null // JSON
+    content?: NexusGenScalars['JSON'] | null // JSON
+    longtitle?: string | null // String
+    name?: string | null // String
+    published?: boolean | null // Boolean
+  }
+  TournamentGroupListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TournamentGroupWhereInput'] | null // TournamentGroupWhereInput
+    none?: NexusGenInputs['TournamentGroupWhereInput'] | null // TournamentGroupWhereInput
+    some?: NexusGenInputs['TournamentGroupWhereInput'] | null // TournamentGroupWhereInput
+  }
+  TournamentGroupWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TournamentGroupWhereInput'][] | null // [TournamentGroupWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TournamentGroupWhereInput'][] | null // [TournamentGroupWhereInput!]
+    OR?: NexusGenInputs['TournamentGroupWhereInput'][] | null // [TournamentGroupWhereInput!]
+    Tournament?: NexusGenInputs['TournamentListRelationFilter'] | null // TournamentListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TournamentListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TournamentWhereInput'] | null // TournamentWhereInput
+    none?: NexusGenInputs['TournamentWhereInput'] | null // TournamentWhereInput
+    some?: NexusGenInputs['TournamentWhereInput'] | null // TournamentWhereInput
+  }
+  TournamentWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TournamentWhereInput'][] | null // [TournamentWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Group?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['TournamentWhereInput'][] | null // [TournamentWhereInput!]
+    OR?: NexusGenInputs['TournamentWhereInput'][] | null // [TournamentWhereInput!]
+    TournamentGroup?: NexusGenInputs['TournamentGroupWhereInput'] | null // TournamentGroupWhereInput
+    Tourney?: NexusGenInputs['TourneyListRelationFilter'] | null // TourneyListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  TourneyListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TourneyWhereInput'] | null // TourneyWhereInput
+    none?: NexusGenInputs['TourneyWhereInput'] | null // TourneyWhereInput
+    some?: NexusGenInputs['TourneyWhereInput'] | null // TourneyWhereInput
+  }
+  TourneyPlayerListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['TourneyPlayerWhereInput'] | null // TourneyPlayerWhereInput
+    none?: NexusGenInputs['TourneyPlayerWhereInput'] | null // TourneyPlayerWhereInput
+    some?: NexusGenInputs['TourneyPlayerWhereInput'] | null // TourneyPlayerWhereInput
+  }
+  TourneyPlayerWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TourneyPlayerWhereInput'][] | null // [TourneyPlayerWhereInput!]
+    NOT?: NexusGenInputs['TourneyPlayerWhereInput'][] | null // [TourneyPlayerWhereInput!]
+    OR?: NexusGenInputs['TourneyPlayerWhereInput'][] | null // [TourneyPlayerWhereInput!]
+    Tourney?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Tourney_TourneyToTourneyPlayer?: NexusGenInputs['TourneyWhereInput'] | null // TourneyWhereInput
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_TourneyPlayerToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+  }
+  TourneyWhereInput: {
+    // input type
+    AND?: NexusGenInputs['TourneyWhereInput'][] | null // [TourneyWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Game?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
+    NOT?: NexusGenInputs['TourneyWhereInput'][] | null // [TourneyWhereInput!]
+    OR?: NexusGenInputs['TourneyWhereInput'][] | null // [TourneyWhereInput!]
+    Tournament?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Tournament_TournamentToTourney?:
+      | NexusGenInputs['TournamentWhereInput']
+      | null // TournamentWhereInput
+    TourneyPlayer?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null // TourneyPlayerListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    date?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    date_till?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  UserCreateOneInput: {
+    // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null // UserWhereUniqueInput
+  }
+  UserGroupListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['UserGroupWhereInput'] | null // UserGroupWhereInput
+    none?: NexusGenInputs['UserGroupWhereInput'] | null // UserGroupWhereInput
+    some?: NexusGenInputs['UserGroupWhereInput'] | null // UserGroupWhereInput
+  }
+  UserGroupWhereInput: {
+    // input type
+    AND?: NexusGenInputs['UserGroupWhereInput'][] | null // [UserGroupWhereInput!]
+    NOT?: NexusGenInputs['UserGroupWhereInput'][] | null // [UserGroupWhereInput!]
+    OR?: NexusGenInputs['UserGroupWhereInput'][] | null // [UserGroupWhereInput!]
+    User?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  UserListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    none?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    some?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+  }
+  UserOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    EthAccountAuthed?: NexusGenEnums['SortOrder'] | null // SortOrder
+    acceptChatMessageAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
+    acceptNewChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
+    acceptNewChatRoomAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
+    activated?: NexusGenEnums['SortOrder'] | null // SortOrder
+    active?: NexusGenEnums['SortOrder'] | null // SortOrder
+    address?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    deleted?: NexusGenEnums['SortOrder'] | null // SortOrder
+    email?: NexusGenEnums['SortOrder'] | null // SortOrder
+    fullname?: NexusGenEnums['SortOrder'] | null // SortOrder
+    hidden?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null // SortOrder
+    marketplaceToken?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    password?: NexusGenEnums['SortOrder'] | null // SortOrder
+    phone?: NexusGenEnums['SortOrder'] | null // SortOrder
+    showEmail?: NexusGenEnums['SortOrder'] | null // SortOrder
+    showPhone?: NexusGenEnums['SortOrder'] | null // SortOrder
+    sudo?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    username?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  UserSigninDataInput: {
+    // input type
+    password?: string | null // String
+  }
+  UserSignupDataInput: {
+    // input type
+    email?: string | null // String
+    fullname?: string | null // String
+    password?: string | null // String
+    showEmail: boolean // Boolean!
+    showFullname: boolean // Boolean!
+    username?: string | null // String
+  }
+  UserTechnologyCreateInput: {
+    // input type
+    Technology: NexusGenInputs['TechnologyCreateOneWithoutUserTechnologiesInput'] // TechnologyCreateOneWithoutUserTechnologiesInput!
+    components?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    date_from?: NexusGenScalars['DateTime'] | null // DateTime
+    date_till?: NexusGenScalars['DateTime'] | null // DateTime
+    id?: string | null // ID
+    level?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    status?: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
+  }
+  UserTechnologyListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['UserTechnologyWhereInput'] | null // UserTechnologyWhereInput
+    none?: NexusGenInputs['UserTechnologyWhereInput'] | null // UserTechnologyWhereInput
+    some?: NexusGenInputs['UserTechnologyWhereInput'] | null // UserTechnologyWhereInput
+  }
+  UserTechnologyOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Technology?: NexusGenEnums['SortOrder'] | null // SortOrder
+    components?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    date_from?: NexusGenEnums['SortOrder'] | null // SortOrder
+    date_till?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level?: NexusGenEnums['SortOrder'] | null // SortOrder
+    status?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  UserTechnologyUpdateInput: {
+    // input type
+    Technology?:
+      | NexusGenInputs['TechnologyCreateOneWithoutUserTechnologiesInput']
+      | null // TechnologyCreateOneWithoutUserTechnologiesInput
+    components?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    date_from?: NexusGenScalars['DateTime'] | null // DateTime
+    date_till?: NexusGenScalars['DateTime'] | null // DateTime
+    level?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    status?: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
+  }
+  UserTechnologyWhereInput: {
+    // input type
+    AND?: NexusGenInputs['UserTechnologyWhereInput'][] | null // [UserTechnologyWhereInput!]
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    NOT?: NexusGenInputs['UserTechnologyWhereInput'][] | null // [UserTechnologyWhereInput!]
+    OR?: NexusGenInputs['UserTechnologyWhereInput'][] | null // [UserTechnologyWhereInput!]
+    Technology?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Technology_TechnologyToUserTechnology?:
+      | NexusGenInputs['TechnologyWhereInput']
+      | null // TechnologyWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    date_from?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    date_till?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    level?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  UserTechnologyWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  UserUpdateInput: {
+    // input type
+    acceptChatMessageAnonymous?: boolean | null // Boolean
+    acceptNewChatRoom?: boolean | null // Boolean
+    acceptNewChatRoomAnonymous?: boolean | null // Boolean
+    address?: string | null // String
+    fullname?: string | null // String
+    image?: string | null // String
+    phone?: string | null // String
+    username?: string | null // String
+  }
+  UserWhereInput: {
+    // input type
+    AND?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
+    CallRequest_CallRequest_CalledToUser?:
+      | NexusGenInputs['CallRequestListRelationFilter']
+      | null // CallRequestListRelationFilter
+    CallRequest_CallRequest_CallerToUser?:
+      | NexusGenInputs['CallRequestListRelationFilter']
+      | null // CallRequestListRelationFilter
+    Career?: NexusGenInputs['CareerListRelationFilter'] | null // CareerListRelationFilter
+    ChatMessage?: NexusGenInputs['ChatMessageListRelationFilter'] | null // ChatMessageListRelationFilter
+    ChatMessageReaded?:
+      | NexusGenInputs['ChatMessageReadedListRelationFilter']
+      | null // ChatMessageReadedListRelationFilter
+    ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser?:
+      | NexusGenInputs['ChatRoomInvitationListRelationFilter']
+      | null // ChatRoomInvitationListRelationFilter
+    ChatRoomInvitation_ChatRoomInvitation_UserToUser?:
+      | NexusGenInputs['ChatRoomInvitationListRelationFilter']
+      | null // ChatRoomInvitationListRelationFilter
+    ChatRoom_ChatRoomToUser?:
+      | NexusGenInputs['ChatRoomListRelationFilter']
+      | null // ChatRoomListRelationFilter
+    ChatRoom_ChatRoomsMembers?:
+      | NexusGenInputs['ChatRoomListRelationFilter']
+      | null // ChatRoomListRelationFilter
+    CodeChallenge?: NexusGenInputs['CodeChallengeListRelationFilter'] | null // CodeChallengeListRelationFilter
+    CodeChallengeBlock?:
+      | NexusGenInputs['CodeChallengeBlockListRelationFilter']
+      | null // CodeChallengeBlockListRelationFilter
+    CodeChallengeCompletion?:
+      | NexusGenInputs['CodeChallengeCompletionListRelationFilter']
+      | null // CodeChallengeCompletionListRelationFilter
+    Comment?: NexusGenInputs['CommentListRelationFilter'] | null // CommentListRelationFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    EthAccountAuthed?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    EthAccount_EthAccountToUser_EthAccountAuthed?:
+      | NexusGenInputs['EthAccountWhereInput']
+      | null // EthAccountWhereInput
+    EthAccount_EthAccount_CreatedByToUser?:
+      | NexusGenInputs['EthAccountListRelationFilter']
+      | null // EthAccountListRelationFilter
+    EthContractSource?:
+      | NexusGenInputs['EthContractSourceListRelationFilter']
+      | null // EthContractSourceListRelationFilter
+    File?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
+    Gallery?: NexusGenInputs['GalleryListRelationFilter'] | null // GalleryListRelationFilter
+    GameResult_GameResult_CreatedByToUser?:
+      | NexusGenInputs['GameResultListRelationFilter']
+      | null // GameResultListRelationFilter
+    GameResult_GameResult_UserToUser?:
+      | NexusGenInputs['GameResultListRelationFilter']
+      | null // GameResultListRelationFilter
+    Game_GameToUser?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
+    Game_GameUsers?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
+    Import?: NexusGenInputs['ImportListRelationFilter'] | null // ImportListRelationFilter
+    Letter?: NexusGenInputs['LetterListRelationFilter'] | null // LetterListRelationFilter
+    LogedIn?: NexusGenInputs['LogedInListRelationFilter'] | null // LogedInListRelationFilter
+    NOT?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
+    Notice_Notice_CreatedByToUser?:
+      | NexusGenInputs['NoticeListRelationFilter']
+      | null // NoticeListRelationFilter
+    Notice_Notice_UserToUser?: NexusGenInputs['NoticeListRelationFilter'] | null // NoticeListRelationFilter
+    NotificationType_NotificationTypeToUser?:
+      | NexusGenInputs['NotificationTypeListRelationFilter']
+      | null // NotificationTypeListRelationFilter
+    NotificationType_UserNotificationTypes?:
+      | NexusGenInputs['NotificationTypeListRelationFilter']
+      | null // NotificationTypeListRelationFilter
+    OR?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
+    Player?: NexusGenInputs['PlayerListRelationFilter'] | null // PlayerListRelationFilter
+    Position_PositionToUser?:
+      | NexusGenInputs['PositionListRelationFilter']
+      | null // PositionListRelationFilter
+    Position_PositionUsers?: NexusGenInputs['PositionListRelationFilter'] | null // PositionListRelationFilter
+    ProjectMember_ProjectMember_CreatedByToUser?:
+      | NexusGenInputs['ProjectMemberListRelationFilter']
+      | null // ProjectMemberListRelationFilter
+    ProjectMember_ProjectMember_UserToUser?:
+      | NexusGenInputs['ProjectMemberListRelationFilter']
+      | null // ProjectMemberListRelationFilter
+    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
+    Project_PrismaProjectUsers?:
+      | NexusGenInputs['ProjectListRelationFilter']
+      | null // ProjectListRelationFilter
+    Project_ProjectToUser?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
+    ResetPassword?: NexusGenInputs['ResetPasswordListRelationFilter'] | null // ResetPasswordListRelationFilter
+    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
+    Route?: NexusGenInputs['RouteListRelationFilter'] | null // RouteListRelationFilter
+    Service?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
+    ServiceCategory?: NexusGenInputs['ServiceCategoryListRelationFilter'] | null // ServiceCategoryListRelationFilter
+    Settings?: NexusGenInputs['SettingsListRelationFilter'] | null // SettingsListRelationFilter
+    SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
+    SmsProvider?: NexusGenInputs['SmsProviderListRelationFilter'] | null // SmsProviderListRelationFilter
+    Tag?: NexusGenInputs['TagListRelationFilter'] | null // TagListRelationFilter
+    Task?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    TaskMember_TaskMember_CreatedByToUser?:
+      | NexusGenInputs['TaskMemberListRelationFilter']
+      | null // TaskMemberListRelationFilter
+    TaskMember_TaskMember_UserToUser?:
+      | NexusGenInputs['TaskMemberListRelationFilter']
+      | null // TaskMemberListRelationFilter
+    TaskReaction?: NexusGenInputs['TaskReactionListRelationFilter'] | null // TaskReactionListRelationFilter
+    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
+    Team?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
+    TeamMember_TeamMember_CreatedByToUser?:
+      | NexusGenInputs['TeamMemberListRelationFilter']
+      | null // TeamMemberListRelationFilter
+    TeamMember_TeamMember_UserToUser?:
+      | NexusGenInputs['TeamMemberListRelationFilter']
+      | null // TeamMemberListRelationFilter
+    Technology?: NexusGenInputs['TechnologyListRelationFilter'] | null // TechnologyListRelationFilter
+    TechnologyLesson?:
+      | NexusGenInputs['TechnologyLessonListRelationFilter']
+      | null // TechnologyLessonListRelationFilter
+    TechnologyLessonUser?:
+      | NexusGenInputs['TechnologyLessonUserListRelationFilter']
+      | null // TechnologyLessonUserListRelationFilter
+    Template?: NexusGenInputs['TemplateListRelationFilter'] | null // TemplateListRelationFilter
+    Test?: NexusGenInputs['TestListRelationFilter'] | null // TestListRelationFilter
+    Timer?: NexusGenInputs['TimerListRelationFilter'] | null // TimerListRelationFilter
+    Tokens?: NexusGenInputs['TokenListRelationFilter'] | null // TokenListRelationFilter
+    Tournament?: NexusGenInputs['TournamentListRelationFilter'] | null // TournamentListRelationFilter
+    TournamentGroup?: NexusGenInputs['TournamentGroupListRelationFilter'] | null // TournamentGroupListRelationFilter
+    Tourney?: NexusGenInputs['TourneyListRelationFilter'] | null // TourneyListRelationFilter
+    TourneyPlayer?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null // TourneyPlayerListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    UserGroup?: NexusGenInputs['UserGroupListRelationFilter'] | null // UserGroupListRelationFilter
+    UserTechnology?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
+    Vote?: NexusGenInputs['VoteListRelationFilter'] | null // VoteListRelationFilter
+    World?: NexusGenInputs['WorldListRelationFilter'] | null // WorldListRelationFilter
+    acceptChatMessageAnonymous?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    acceptNewChatRoom?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    acceptNewChatRoomAnonymous?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    activated?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    active?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    address?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    deleted?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    email?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    fullname?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    hidden?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    image?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    marketplaceToken?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    other_User?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    password?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    phone?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    showEmail?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    showPhone?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    sudo?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    username?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  UserWhereUniqueInput: {
+    // input type
+    email?: string | null // String
+    id?: string | null // String
+    oldID?: number | null // Int
+    username?: string | null // String
+  }
+  VoteListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['VoteWhereInput'] | null // VoteWhereInput
+    none?: NexusGenInputs['VoteWhereInput'] | null // VoteWhereInput
+    some?: NexusGenInputs['VoteWhereInput'] | null // VoteWhereInput
+  }
+  VoteWhereInput: {
+    // input type
+    AND?: NexusGenInputs['VoteWhereInput'][] | null // [VoteWhereInput!]
+    NOT?: NexusGenInputs['VoteWhereInput'][] | null // [VoteWhereInput!]
+    OR?: NexusGenInputs['VoteWhereInput'][] | null // [VoteWhereInput!]
+    Resource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Resource_ResourceToVote?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
+    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User_UserToVote?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    value?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
+  }
+  WorldListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['WorldWhereInput'] | null // WorldWhereInput
+    none?: NexusGenInputs['WorldWhereInput'] | null // WorldWhereInput
+    some?: NexusGenInputs['WorldWhereInput'] | null // WorldWhereInput
+  }
+  WorldWhereInput: {
+    // input type
+    AND?: NexusGenInputs['WorldWhereInput'][] | null // [WorldWhereInput!]
+    Block?: NexusGenInputs['BlockListRelationFilter'] | null // BlockListRelationFilter
+    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Message?: NexusGenInputs['MessageListRelationFilter'] | null // MessageListRelationFilter
+    NOT?: NexusGenInputs['WorldWhereInput'][] | null // [WorldWhereInput!]
+    OR?: NexusGenInputs['WorldWhereInput'][] | null // [WorldWhereInput!]
+    Player?: NexusGenInputs['PlayerListRelationFilter'] | null // PlayerListRelationFilter
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    days?: NexusGenInputs['IntFilter'] | null // IntFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    lastPlayed?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    seed?: NexusGenInputs['StringFilter'] | null // StringFilter
+    time?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
+    timeChanger?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
+    type?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
 }
 
 export interface NexusGenEnums {
-  EthAccountType: "Account" | "Contract"
-  EthAmountConvert: "Gwei" | "Kwei" | "Mwei" | "ether" | "gether" | "kether" | "mether" | "nano" | "tether" | "wei"
-  NoticeType: "Call" | "CallRequest" | "ChatMessage" | "ChatRoomInvitation"
-  ProjectMemberStatus: "Active" | "Fired" | "Invited" | "Quit"
-  ProjectStatus: "Accepted" | "Completed" | "New" | "Processing" | "Rejected" | "Reopened"
-  ProjectTaskType: "Blog" | "Comment" | "PersonalBlog" | "Project" | "ProjectTask" | "Service" | "Team" | "Topic"
-  ProjectType: "Education"
-  ResourceType: "Blog" | "Comment" | "PersonalBlog" | "Project" | "Resource" | "Service" | "Team" | "Topic"
-  SortOrder: "asc" | "desc"
-  TagStatus: "Active" | "Blocked" | "Moderated"
-  TaskReactionType: "UpVote"
-  TaskStatus: "Accepted" | "Approved" | "Completed" | "Discuss" | "Done" | "New" | "Paused" | "Progress" | "Rejected" | "RevisionsRequired"
-  UserTechnologyStatus: "ActiveUse" | "NoLongerUse" | "PlanToStudy" | "RarelyUse" | "RefusedToStudy" | "Study"
+  EthAccountType: 'Account' | 'Contract'
+  EthAmountConvert:
+    | 'Gwei'
+    | 'Kwei'
+    | 'Mwei'
+    | 'ether'
+    | 'gether'
+    | 'kether'
+    | 'mether'
+    | 'nano'
+    | 'tether'
+    | 'wei'
+  NoticeType: 'Call' | 'CallRequest' | 'ChatMessage' | 'ChatRoomInvitation'
+  ProjectMemberStatus: 'Active' | 'Fired' | 'Invited' | 'Quit'
+  ProjectStatus:
+    | 'Accepted'
+    | 'Completed'
+    | 'New'
+    | 'Processing'
+    | 'Rejected'
+    | 'Reopened'
+  ProjectTaskType:
+    | 'Blog'
+    | 'Comment'
+    | 'PersonalBlog'
+    | 'Project'
+    | 'ProjectTask'
+    | 'Service'
+    | 'Team'
+    | 'Topic'
+  ProjectType: 'Education'
+  ResourceType:
+    | 'Blog'
+    | 'Comment'
+    | 'PersonalBlog'
+    | 'Project'
+    | 'Resource'
+    | 'Service'
+    | 'Team'
+    | 'Topic'
+  SortOrder: 'asc' | 'desc'
+  TagStatus: 'Active' | 'Blocked' | 'Moderated'
+  TaskReactionType: 'UpVote'
+  TaskStatus:
+    | 'Accepted'
+    | 'Approved'
+    | 'Completed'
+    | 'Discuss'
+    | 'Done'
+    | 'New'
+    | 'Paused'
+    | 'Progress'
+    | 'Rejected'
+    | 'RevisionsRequired'
+  UserTechnologyStatus:
+    | 'ActiveUse'
+    | 'NoLongerUse'
+    | 'PlanToStudy'
+    | 'RarelyUse'
+    | 'RefusedToStudy'
+    | 'Study'
 }
 
 export interface NexusGenScalars {
@@ -2247,781 +2798,895 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  AggregateChatMessage: { // root type
-    count: number; // Int!
+  AggregateChatMessage: {
+    // root type
+    count: number // Int!
   }
-  AggregateNotice: { // root type
-    count: number; // Int!
+  AggregateNotice: {
+    // root type
+    count: number // Int!
   }
-  AggregateProject: { // root type
-    count: number; // Int!
+  AggregateProject: {
+    // root type
+    count: number // Int!
   }
-  AggregateResource: { // root type
-    count: number; // Int!
+  AggregateResource: {
+    // root type
+    count: number // Int!
   }
-  AggregateTag: { // root type
-    count: number; // Int!
+  AggregateTag: {
+    // root type
+    count: number // Int!
   }
-  AggregateTask: { // root type
-    count: number; // Int!
+  AggregateTask: {
+    // root type
+    count: number // Int!
   }
-  AggregateTechnology: { // root type
-    count: number; // Int!
+  AggregateTechnology: {
+    // root type
+    count: number // Int!
   }
-  AggregateTimer: { // root type
-    count: number; // Int!
+  AggregateTimer: {
+    // root type
+    count: number // Int!
   }
-  AggregateUser: { // root type
-    count: number; // Int!
+  AggregateUser: {
+    // root type
+    count: number // Int!
   }
-  AuthPayload: { // root type
-    data?: NexusGenRootTypes['User'] | null; // User
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message?: string | null; // String
-    success: boolean; // Boolean!
-    token?: string | null; // String
+  AuthPayload: {
+    // root type
+    data?: NexusGenRootTypes['User'] | null // User
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message?: string | null // String
+    success: boolean // Boolean!
+    token?: string | null // String
   }
-  ChatMessage: ChatMessage;
-  ChatMessageConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateChatMessage']; // AggregateChatMessage!
-    edges: Array<NexusGenRootTypes['ChatMessageEdge'] | null>; // [ChatMessageEdge]!
+  ChatMessage: ChatMessage
+  ChatMessageConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateChatMessage'] // AggregateChatMessage!
+    edges: Array<NexusGenRootTypes['ChatMessageEdge'] | null> // [ChatMessageEdge]!
   }
-  ChatMessageEdge: { // root type
-    node: NexusGenRootTypes['ChatMessage']; // ChatMessage!
+  ChatMessageEdge: {
+    // root type
+    node: NexusGenRootTypes['ChatMessage'] // ChatMessage!
   }
-  ChatMessageResponse: { // root type
-    data?: NexusGenRootTypes['ChatMessage'] | null; // ChatMessage
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  ChatMessageResponse: {
+    // root type
+    data?: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  ChatRoom: ChatRoom;
-  ChatRoomInvitation: ChatRoomInvitation;
-  CodeChallenge: CodeChallenge;
-  CodeChallengeBlock: CodeChallengeBlock;
-  CodeChallengeCompletion: CodeChallengeCompletion;
-  CodeChallengeCompletionResponse: { // root type
-    data?: NexusGenRootTypes['CodeChallengeCompletion'] | null; // CodeChallengeCompletion
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  ChatRoom: ChatRoom
+  ChatRoomInvitation: ChatRoomInvitation
+  CodeChallenge: CodeChallenge
+  CodeChallengeBlock: CodeChallengeBlock
+  CodeChallengeCompletion: CodeChallengeCompletion
+  CodeChallengeCompletionResponse: {
+    // root type
+    data?: NexusGenRootTypes['CodeChallengeCompletion'] | null // CodeChallengeCompletion
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  EthAccount: EthAccount;
-  File: File;
-  Mutation: {};
-  Notice: Notice;
-  NoticeConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateNotice']; // AggregateNotice!
-    edges: Array<NexusGenRootTypes['NoticeEdge'] | null>; // [NoticeEdge]!
+  EthAccount: EthAccount
+  File: File
+  Mutation: {}
+  Notice: Notice
+  NoticeConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateNotice'] // AggregateNotice!
+    edges: Array<NexusGenRootTypes['NoticeEdge'] | null> // [NoticeEdge]!
   }
-  NoticeEdge: { // root type
-    node: NexusGenRootTypes['Notice']; // Notice!
+  NoticeEdge: {
+    // root type
+    node: NexusGenRootTypes['Notice'] // Notice!
   }
-  NotificationType: NotificationType;
-  Project: Project;
-  ProjectConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateProject']; // AggregateProject!
-    edges: Array<NexusGenRootTypes['ProjectEdge'] | null>; // [ProjectEdge]!
+  NotificationType: NotificationType
+  Project: Project
+  ProjectConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateProject'] // AggregateProject!
+    edges: Array<NexusGenRootTypes['ProjectEdge'] | null> // [ProjectEdge]!
   }
-  ProjectEdge: { // root type
-    node: NexusGenRootTypes['Project']; // Project!
+  ProjectEdge: {
+    // root type
+    node: NexusGenRootTypes['Project'] // Project!
   }
-  ProjectMember: ProjectMember;
-  ProjectResponse: { // root type
-    data?: NexusGenRootTypes['Project'] | null; // Project
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  ProjectMember: ProjectMember
+  ProjectResponse: {
+    // root type
+    data?: NexusGenRootTypes['Project'] | null // Project
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  ProjectTask: ProjectTask;
-  Query: {};
-  RequestError: { // root type
-    key: string; // String!
-    message: string; // String!
+  ProjectTask: ProjectTask
+  Query: {}
+  RequestError: {
+    // root type
+    key: string // String!
+    message: string // String!
   }
-  Resource: Resource;
-  ResourceConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateResource']; // AggregateResource!
-    edges: Array<NexusGenRootTypes['ResourceEdge'] | null>; // [ResourceEdge]!
+  Resource: Resource
+  ResourceConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateResource'] // AggregateResource!
+    edges: Array<NexusGenRootTypes['ResourceEdge'] | null> // [ResourceEdge]!
   }
-  ResourceEdge: { // root type
-    node: NexusGenRootTypes['Resource']; // Resource!
+  ResourceEdge: {
+    // root type
+    node: NexusGenRootTypes['Resource'] // Resource!
   }
-  ResourceResponse: { // root type
-    data?: NexusGenRootTypes['Resource'] | null; // Resource
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  ResourceResponse: {
+    // root type
+    data?: NexusGenRootTypes['Resource'] | null // Resource
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  ResourceTag: ResourceTag;
-  Tag: Tag;
-  TagConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateTag']; // AggregateTag!
-    edges: Array<NexusGenRootTypes['TagEdge'] | null>; // [TagEdge]!
+  ResourceTag: ResourceTag
+  Tag: Tag
+  TagConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateTag'] // AggregateTag!
+    edges: Array<NexusGenRootTypes['TagEdge'] | null> // [TagEdge]!
   }
-  TagEdge: { // root type
-    node: NexusGenRootTypes['Tag']; // Tag!
+  TagEdge: {
+    // root type
+    node: NexusGenRootTypes['Tag'] // Tag!
   }
-  Task: Task;
-  TaskConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateTask']; // AggregateTask!
-    edges: Array<NexusGenRootTypes['TaskEdge'] | null>; // [TaskEdge]!
+  Task: Task
+  TaskConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateTask'] // AggregateTask!
+    edges: Array<NexusGenRootTypes['TaskEdge'] | null> // [TaskEdge]!
   }
-  TaskEdge: { // root type
-    node: NexusGenRootTypes['Task']; // Task!
+  TaskEdge: {
+    // root type
+    node: NexusGenRootTypes['Task'] // Task!
   }
-  TaskReaction: TaskReaction;
-  TaskResponse: { // root type
-    data?: NexusGenRootTypes['Task'] | null; // Task
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  TaskReaction: TaskReaction
+  TaskResponse: {
+    // root type
+    data?: NexusGenRootTypes['Task'] | null // Task
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  TaskTechnology: TaskTechnology;
-  TaskTechnologyResponse: { // root type
-    data?: NexusGenRootTypes['TaskTechnology'] | null; // TaskTechnology
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  TaskTechnology: TaskTechnology
+  TaskTechnologyResponse: {
+    // root type
+    data?: NexusGenRootTypes['TaskTechnology'] | null // TaskTechnology
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  Technology: Technology;
-  TechnologyConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateTechnology']; // AggregateTechnology!
-    edges: Array<NexusGenRootTypes['TechnologyEdge'] | null>; // [TechnologyEdge]!
+  Technology: Technology
+  TechnologyConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateTechnology'] // AggregateTechnology!
+    edges: Array<NexusGenRootTypes['TechnologyEdge'] | null> // [TechnologyEdge]!
   }
-  TechnologyEdge: { // root type
-    node: NexusGenRootTypes['Technology']; // Technology!
+  TechnologyEdge: {
+    // root type
+    node: NexusGenRootTypes['Technology'] // Technology!
   }
-  Timer: Timer;
-  TimerConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateTimer']; // AggregateTimer!
-    edges: Array<NexusGenRootTypes['TimerEdge'] | null>; // [TimerEdge]!
+  Timer: Timer
+  TimerConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateTimer'] // AggregateTimer!
+    edges: Array<NexusGenRootTypes['TimerEdge'] | null> // [TimerEdge]!
   }
-  TimerEdge: { // root type
-    node: NexusGenRootTypes['Timer']; // Timer!
+  TimerEdge: {
+    // root type
+    node: NexusGenRootTypes['Timer'] // Timer!
   }
-  TimerResponse: { // root type
-    data?: NexusGenRootTypes['Timer'] | null; // Timer
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  TimerResponse: {
+    // root type
+    data?: NexusGenRootTypes['Timer'] | null // Timer
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  User: User;
-  UserConnection: { // root type
-    aggregate: NexusGenRootTypes['AggregateUser']; // AggregateUser!
-    edges: Array<NexusGenRootTypes['UserEdge'] | null>; // [UserEdge]!
+  User: User
+  UserConnection: {
+    // root type
+    aggregate: NexusGenRootTypes['AggregateUser'] // AggregateUser!
+    edges: Array<NexusGenRootTypes['UserEdge'] | null> // [UserEdge]!
   }
-  UserEdge: { // root type
-    node: NexusGenRootTypes['User']; // User!
+  UserEdge: {
+    // root type
+    node: NexusGenRootTypes['User'] // User!
   }
-  UserResponse: { // root type
-    data?: NexusGenRootTypes['User'] | null; // User
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  UserResponse: {
+    // root type
+    data?: NexusGenRootTypes['User'] | null // User
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  UserTechnology: UserTechnology;
-  UserTechnologyResponse: { // root type
-    data?: NexusGenRootTypes['UserTechnology'] | null; // UserTechnology
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  UserTechnology: UserTechnology
+  UserTechnologyResponse: {
+    // root type
+    data?: NexusGenRootTypes['UserTechnology'] | null // UserTechnology
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
 }
 
-export interface NexusGenInterfaces {
-}
+export interface NexusGenInterfaces {}
 
-export interface NexusGenUnions {
-}
+export interface NexusGenUnions {}
 
 export type NexusGenRootTypes = NexusGenObjects
 
-export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
+export type NexusGenAllTypes = NexusGenRootTypes &
+  NexusGenScalars &
+  NexusGenEnums
 
 export interface NexusGenFieldTypes {
-  AggregateChatMessage: { // field return type
-    count: number; // Int!
+  AggregateChatMessage: {
+    // field return type
+    count: number // Int!
   }
-  AggregateNotice: { // field return type
-    count: number; // Int!
+  AggregateNotice: {
+    // field return type
+    count: number // Int!
   }
-  AggregateProject: { // field return type
-    count: number; // Int!
+  AggregateProject: {
+    // field return type
+    count: number // Int!
   }
-  AggregateResource: { // field return type
-    count: number; // Int!
+  AggregateResource: {
+    // field return type
+    count: number // Int!
   }
-  AggregateTag: { // field return type
-    count: number; // Int!
+  AggregateTag: {
+    // field return type
+    count: number // Int!
   }
-  AggregateTask: { // field return type
-    count: number; // Int!
+  AggregateTask: {
+    // field return type
+    count: number // Int!
   }
-  AggregateTechnology: { // field return type
-    count: number; // Int!
+  AggregateTechnology: {
+    // field return type
+    count: number // Int!
   }
-  AggregateTimer: { // field return type
-    count: number; // Int!
+  AggregateTimer: {
+    // field return type
+    count: number // Int!
   }
-  AggregateUser: { // field return type
-    count: number; // Int!
+  AggregateUser: {
+    // field return type
+    count: number // Int!
   }
-  AuthPayload: { // field return type
-    data: NexusGenRootTypes['User'] | null; // User
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string | null; // String
-    success: boolean; // Boolean!
-    token: string | null; // String
+  AuthPayload: {
+    // field return type
+    data: NexusGenRootTypes['User'] | null // User
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string | null // String
+    success: boolean // Boolean!
+    token: string | null // String
   }
-  ChatMessage: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Room: NexusGenRootTypes['ChatRoom'] | null; // ChatRoom
-    content: NexusGenScalars['JSON'] | null; // JSON
-    contentText: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  ChatMessage: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Room: NexusGenRootTypes['ChatRoom'] | null // ChatRoom
+    content: NexusGenScalars['JSON'] | null // JSON
+    contentText: string | null // String
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  ChatMessageConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateChatMessage']; // AggregateChatMessage!
-    edges: Array<NexusGenRootTypes['ChatMessageEdge'] | null>; // [ChatMessageEdge]!
+  ChatMessageConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateChatMessage'] // AggregateChatMessage!
+    edges: Array<NexusGenRootTypes['ChatMessageEdge'] | null> // [ChatMessageEdge]!
   }
-  ChatMessageEdge: { // field return type
-    node: NexusGenRootTypes['ChatMessage']; // ChatMessage!
+  ChatMessageEdge: {
+    // field return type
+    node: NexusGenRootTypes['ChatMessage'] // ChatMessage!
   }
-  ChatMessageResponse: { // field return type
-    data: NexusGenRootTypes['ChatMessage'] | null; // ChatMessage
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  ChatMessageResponse: {
+    // field return type
+    data: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  ChatRoom: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Invitations: NexusGenRootTypes['ChatRoomInvitation'][] | null; // [ChatRoomInvitation!]
-    Members: NexusGenRootTypes['User'][] | null; // [User!]
-    Messages: NexusGenRootTypes['ChatMessage'][] | null; // [ChatMessage!]
-    code: string | null; // ID
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    description: string | null; // String
-    id: string; // ID!
-    image: string | null; // String
-    isPublic: boolean | null; // Boolean
-    name: string; // String!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  ChatRoom: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Invitations: NexusGenRootTypes['ChatRoomInvitation'][] | null // [ChatRoomInvitation!]
+    Members: NexusGenRootTypes['User'][] | null // [User!]
+    Messages: NexusGenRootTypes['ChatMessage'][] | null // [ChatMessage!]
+    code: string | null // ID
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    description: string | null // String
+    id: string // ID!
+    image: string | null // String
+    isPublic: boolean | null // Boolean
+    name: string // String!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  ChatRoomInvitation: { // field return type
-    ChatRoom: NexusGenRootTypes['ChatRoom'] | null; // ChatRoom
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    User: NexusGenRootTypes['User'] | null; // User
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  ChatRoomInvitation: {
+    // field return type
+    ChatRoom: NexusGenRootTypes['ChatRoom'] | null // ChatRoom
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    User: NexusGenRootTypes['User'] | null // User
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  CodeChallenge: { // field return type
-    Block: NexusGenRootTypes['CodeChallengeBlock'] | null; // CodeChallengeBlock
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Topic: NexusGenRootTypes['Resource'] | null; // Resource
-    challengeOrder: number | null; // Int
-    challengeType: number | null; // Int
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    dashedName: string | null; // String
-    description: string | null; // String
-    externalKey: string | null; // ID
-    files: NexusGenScalars['JSON'] | null; // JSON
-    forumTopicId: number | null; // Int
-    id: string; // ID!
-    instructions: string | null; // String
-    isBeta: boolean | null; // Boolean
-    isPrivate: boolean | null; // Boolean
-    isRequired: boolean | null; // Boolean
-    localeTitle: string | null; // String
-    name: string | null; // String
-    order: number | null; // Int
-    rank: number | null; // Int
-    required: NexusGenScalars['JSON'] | null; // JSON
-    solutions: NexusGenScalars['JSON'] | null; // JSON
-    superOrder: number | null; // Int
-    template: string | null; // String
-    tests: NexusGenScalars['JSON'] | null; // JSON
-    time: string | null; // String
-    translations: NexusGenScalars['JSON'] | null; // JSON
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
-    videoUrl: string | null; // String
+  CodeChallenge: {
+    // field return type
+    Block: NexusGenRootTypes['CodeChallengeBlock'] | null // CodeChallengeBlock
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Topic: NexusGenRootTypes['Resource'] | null // Resource
+    challengeOrder: number | null // Int
+    challengeType: number | null // Int
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    dashedName: string | null // String
+    description: string | null // String
+    externalKey: string | null // ID
+    files: NexusGenScalars['JSON'] | null // JSON
+    forumTopicId: number | null // Int
+    id: string // ID!
+    instructions: string | null // String
+    isBeta: boolean | null // Boolean
+    isPrivate: boolean | null // Boolean
+    isRequired: boolean | null // Boolean
+    localeTitle: string | null // String
+    name: string | null // String
+    order: number | null // Int
+    rank: number | null // Int
+    required: NexusGenScalars['JSON'] | null // JSON
+    solutions: NexusGenScalars['JSON'] | null // JSON
+    superOrder: number | null // Int
+    template: string | null // String
+    tests: NexusGenScalars['JSON'] | null // JSON
+    time: string | null // String
+    translations: NexusGenScalars['JSON'] | null // JSON
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
+    videoUrl: string | null // String
   }
-  CodeChallengeBlock: { // field return type
-    Challenges: NexusGenRootTypes['CodeChallenge'][] | null; // [CodeChallenge!]
-    Children: NexusGenRootTypes['CodeChallengeBlock'][] | null; // [CodeChallengeBlock!]
-    Parent: NexusGenRootTypes['CodeChallengeBlock'] | null; // CodeChallengeBlock
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    name: string | null; // String
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  CodeChallengeBlock: {
+    // field return type
+    Challenges: NexusGenRootTypes['CodeChallenge'][] | null // [CodeChallenge!]
+    Children: NexusGenRootTypes['CodeChallengeBlock'][] | null // [CodeChallengeBlock!]
+    Parent: NexusGenRootTypes['CodeChallengeBlock'] | null // CodeChallengeBlock
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    name: string | null // String
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  CodeChallengeCompletion: { // field return type
-    CodeChallenge: NexusGenRootTypes['CodeChallenge'] | null; // CodeChallenge
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Task: NexusGenRootTypes['Task'] | null; // Task
-    content: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    success: boolean | null; // Boolean
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  CodeChallengeCompletion: {
+    // field return type
+    CodeChallenge: NexusGenRootTypes['CodeChallenge'] | null // CodeChallenge
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Task: NexusGenRootTypes['Task'] | null // Task
+    content: string | null // String
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    success: boolean | null // Boolean
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  CodeChallengeCompletionResponse: { // field return type
-    data: NexusGenRootTypes['CodeChallengeCompletion'] | null; // CodeChallengeCompletion
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  CodeChallengeCompletionResponse: {
+    // field return type
+    data: NexusGenRootTypes['CodeChallengeCompletion'] | null // CodeChallengeCompletion
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  EthAccount: { // field return type
-    abi: NexusGenScalars['JSON'] | null; // JSON
-    address: string; // String!
-    balance: number | null; // Float
-    bytecode: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    description: NexusGenScalars['JSON'] | null; // JSON
-    id: string; // ID!
-    name: string | null; // String
-    source: string | null; // String
-    type: NexusGenEnums['EthAccountType'] | null; // EthAccountType
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  EthAccount: {
+    // field return type
+    abi: NexusGenScalars['JSON'] | null // JSON
+    address: string // String!
+    balance: number | null // Float
+    bytecode: string | null // String
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    description: NexusGenScalars['JSON'] | null // JSON
+    id: string // ID!
+    name: string | null // String
+    source: string | null // String
+    type: NexusGenEnums['EthAccountType'] | null // EthAccountType
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  File: { // field return type
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    encoding: string; // String!
-    filename: string | null; // String
-    id: string; // String!
-    mimetype: string; // String!
-    name: string | null; // String
-    path: string; // String!
-    rank: number | null; // Int
-    size: number | null; // Float
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  File: {
+    // field return type
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    encoding: string // String!
+    filename: string | null // String
+    id: string // String!
+    mimetype: string // String!
+    name: string | null // String
+    path: string // String!
+    rank: number | null // Int
+    size: number | null // Float
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  Mutation: { // field return type
-    createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse']; // ChatMessageResponse!
-    createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse']; // CodeChallengeCompletionResponse!
-    createCommentProcessor: NexusGenRootTypes['ResourceResponse']; // ResourceResponse!
-    createProjectProcessor: NexusGenRootTypes['ProjectResponse']; // ProjectResponse!
-    createTaskProcessor: NexusGenRootTypes['TaskResponse']; // TaskResponse!
-    createTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse']; // TaskTechnologyResponse!
-    createTimerProcessor: NexusGenRootTypes['TimerResponse']; // TimerResponse!
-    createTopicProcessor: NexusGenRootTypes['ResourceResponse']; // ResourceResponse!
-    createUserTechnologyProcessor: NexusGenRootTypes['UserTechnologyResponse']; // UserTechnologyResponse!
-    deleteNotice: NexusGenRootTypes['Notice'] | null; // Notice
-    signin: NexusGenRootTypes['AuthPayload']; // AuthPayload!
-    signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
-    singleUpload: NexusGenRootTypes['File'] | null; // File
-    updateCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse']; // CodeChallengeCompletionResponse!
-    updateCommentProcessor: NexusGenRootTypes['ResourceResponse']; // ResourceResponse!
-    updateProjectProcessor: NexusGenRootTypes['ProjectResponse']; // ProjectResponse!
-    updateTaskProcessor: NexusGenRootTypes['TaskResponse']; // TaskResponse!
-    updateTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse']; // TaskTechnologyResponse!
-    updateTimerProcessor: NexusGenRootTypes['TimerResponse']; // TimerResponse!
-    updateTopicProcessor: NexusGenRootTypes['ResourceResponse']; // ResourceResponse!
-    updateUserProcessor: NexusGenRootTypes['UserResponse']; // UserResponse!
-    updateUserTechnologyProcessor: NexusGenRootTypes['UserTechnologyResponse']; // UserTechnologyResponse!
+  Mutation: {
+    // field return type
+    createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse'] // ChatMessageResponse!
+    createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
+    createCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    createProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
+    createTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
+    createTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse'] // TaskTechnologyResponse!
+    createTimerProcessor: NexusGenRootTypes['TimerResponse'] // TimerResponse!
+    createTopicProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    createUserTechnologyProcessor: NexusGenRootTypes['UserTechnologyResponse'] // UserTechnologyResponse!
+    deleteNotice: NexusGenRootTypes['Notice'] | null // Notice
+    signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
+    signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
+    singleUpload: NexusGenRootTypes['File'] | null // File
+    updateCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
+    updateCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    updateProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
+    updateTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
+    updateTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse'] // TaskTechnologyResponse!
+    updateTimerProcessor: NexusGenRootTypes['TimerResponse'] // TimerResponse!
+    updateTopicProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    updateUserProcessor: NexusGenRootTypes['UserResponse'] // UserResponse!
+    updateUserTechnologyProcessor: NexusGenRootTypes['UserTechnologyResponse'] // UserTechnologyResponse!
   }
-  Notice: { // field return type
-    ChatMessage: NexusGenRootTypes['ChatMessage'] | null; // ChatMessage
-    ChatRoomInvitation: NexusGenRootTypes['ChatRoomInvitation'] | null; // ChatRoomInvitation
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    User: NexusGenRootTypes['User'] | null; // User
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    type: NexusGenEnums['NoticeType']; // NoticeType!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  Notice: {
+    // field return type
+    ChatMessage: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
+    ChatRoomInvitation: NexusGenRootTypes['ChatRoomInvitation'] | null // ChatRoomInvitation
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    User: NexusGenRootTypes['User'] | null // User
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    type: NexusGenEnums['NoticeType'] // NoticeType!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  NoticeConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateNotice']; // AggregateNotice!
-    edges: Array<NexusGenRootTypes['NoticeEdge'] | null>; // [NoticeEdge]!
+  NoticeConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateNotice'] // AggregateNotice!
+    edges: Array<NexusGenRootTypes['NoticeEdge'] | null> // [NoticeEdge]!
   }
-  NoticeEdge: { // field return type
-    node: NexusGenRootTypes['Notice']; // Notice!
+  NoticeEdge: {
+    // field return type
+    node: NexusGenRootTypes['Notice'] // Notice!
   }
-  NotificationType: { // field return type
-    code: string | null; // ID
-    comment: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    name: string; // String!
-    oldID: number | null; // Int
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  NotificationType: {
+    // field return type
+    code: string | null // ID
+    comment: string | null // String
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    name: string // String!
+    oldID: number | null // Int
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  Project: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Members: NexusGenRootTypes['ProjectMember'][] | null; // [ProjectMember!]
-    ProjectTasks: NexusGenRootTypes['ProjectTask'][] | null; // [ProjectTask!]
-    Resource: NexusGenRootTypes['Resource'] | null; // Resource
-    content: NexusGenScalars['JSON'] | null; // JSON
-    contentText: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    description: string | null; // String
-    domain: string | null; // String
-    id: string; // ID!
-    name: string; // String!
-    oldID: number | null; // Int
-    public: boolean | null; // Boolean
-    sequence: number | null; // Int
-    status: NexusGenEnums['ProjectStatus'] | null; // ProjectStatus
-    type: NexusGenEnums['ProjectType'] | null; // ProjectType
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
-    url: string | null; // String
+  Project: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Members: NexusGenRootTypes['ProjectMember'][] | null // [ProjectMember!]
+    ProjectTasks: NexusGenRootTypes['ProjectTask'][] | null // [ProjectTask!]
+    Resource: NexusGenRootTypes['Resource'] | null // Resource
+    content: NexusGenScalars['JSON'] | null // JSON
+    contentText: string | null // String
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    description: string | null // String
+    domain: string | null // String
+    id: string // ID!
+    name: string // String!
+    oldID: number | null // Int
+    public: boolean | null // Boolean
+    sequence: number | null // Int
+    status: NexusGenEnums['ProjectStatus'] | null // ProjectStatus
+    type: NexusGenEnums['ProjectType'] | null // ProjectType
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
+    url: string | null // String
   }
-  ProjectConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateProject']; // AggregateProject!
-    edges: Array<NexusGenRootTypes['ProjectEdge'] | null>; // [ProjectEdge]!
+  ProjectConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateProject'] // AggregateProject!
+    edges: Array<NexusGenRootTypes['ProjectEdge'] | null> // [ProjectEdge]!
   }
-  ProjectEdge: { // field return type
-    node: NexusGenRootTypes['Project']; // Project!
+  ProjectEdge: {
+    // field return type
+    node: NexusGenRootTypes['Project'] // Project!
   }
-  ProjectMember: { // field return type
-    Project: NexusGenRootTypes['Project'] | null; // Project
-    User: NexusGenRootTypes['User'] | null; // User
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    status: NexusGenEnums['ProjectMemberStatus'] | null; // ProjectMemberStatus
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  ProjectMember: {
+    // field return type
+    Project: NexusGenRootTypes['Project'] | null // Project
+    User: NexusGenRootTypes['User'] | null // User
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    status: NexusGenEnums['ProjectMemberStatus'] | null // ProjectMemberStatus
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  ProjectResponse: { // field return type
-    data: NexusGenRootTypes['Project'] | null; // Project
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  ProjectResponse: {
+    // field return type
+    data: NexusGenRootTypes['Project'] | null // Project
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  ProjectTask: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Project: NexusGenRootTypes['Project'] | null; // Project
-    Task: NexusGenRootTypes['Task'] | null; // Task
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  ProjectTask: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Project: NexusGenRootTypes['Project'] | null // Project
+    Task: NexusGenRootTypes['Task'] | null // Task
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  Query: { // field return type
-    chatMessage: NexusGenRootTypes['ChatMessage'] | null; // ChatMessage
-    chatMessages: NexusGenRootTypes['ChatMessage'][]; // [ChatMessage!]!
-    chatMessagesConnection: NexusGenRootTypes['ChatMessageConnection']; // ChatMessageConnection!
-    chatMessagesCount: number; // Int!
-    chatRoom: NexusGenRootTypes['ChatRoom'] | null; // ChatRoom
-    chatRooms: NexusGenRootTypes['ChatRoom'][]; // [ChatRoom!]!
-    chatRoomsCount: number; // Int!
-    codeChallenge: NexusGenRootTypes['CodeChallenge'] | null; // CodeChallenge
-    codeChallengeBlock: NexusGenRootTypes['CodeChallengeBlock'] | null; // CodeChallengeBlock
-    codeChallengeBlocks: NexusGenRootTypes['CodeChallengeBlock'][]; // [CodeChallengeBlock!]!
-    codeChallengeBlocksCount: number; // Int!
-    codeChallengeCompletion: NexusGenRootTypes['CodeChallengeCompletion'] | null; // CodeChallengeCompletion
-    codeChallengeCompletions: NexusGenRootTypes['CodeChallengeCompletion'][]; // [CodeChallengeCompletion!]!
-    codeChallenges: NexusGenRootTypes['CodeChallenge'][]; // [CodeChallenge!]!
-    file: NexusGenRootTypes['File'] | null; // File
-    files: NexusGenRootTypes['File'][]; // [File!]!
-    filesCount: number; // Int!
-    me: NexusGenRootTypes['User'] | null; // User
-    notice: NexusGenRootTypes['Notice'] | null; // Notice
-    notices: NexusGenRootTypes['Notice'][]; // [Notice!]!
-    noticesConnection: NexusGenRootTypes['NoticeConnection']; // NoticeConnection!
-    noticesCount: number; // Int!
-    notificationTypes: NexusGenRootTypes['NotificationType'][]; // [NotificationType!]!
-    notificationTypesCount: number; // Int!
-    project: NexusGenRootTypes['Project'] | null; // Project
-    projectTasks: NexusGenRootTypes['ProjectTask'][]; // [ProjectTask!]!
-    projects: NexusGenRootTypes['Project'][]; // [Project!]!
-    projectsConnection: NexusGenRootTypes['ProjectConnection']; // ProjectConnection!
-    resource: NexusGenRootTypes['Resource'] | null; // Resource
-    resources: NexusGenRootTypes['Resource'][]; // [Resource!]!
-    resourcesConnection: NexusGenRootTypes['ResourceConnection']; // ResourceConnection!
-    tag: NexusGenRootTypes['Tag'] | null; // Tag
-    tags: NexusGenRootTypes['Tag'][]; // [Tag!]!
-    tagsConnection: NexusGenRootTypes['TagConnection']; // TagConnection!
-    task: NexusGenRootTypes['Task'] | null; // Task
-    taskTechnologies: NexusGenRootTypes['TaskTechnology'][]; // [TaskTechnology!]!
-    taskTechnology: NexusGenRootTypes['TaskTechnology'] | null; // TaskTechnology
-    taskTechnologysCount: number; // Int!
-    tasks: NexusGenRootTypes['Task'][]; // [Task!]!
-    tasksConnection: NexusGenRootTypes['TaskConnection']; // TaskConnection!
-    tasksCount: number; // Int!
-    technologies: NexusGenRootTypes['Technology'][]; // [Technology!]!
-    technologiesConnection: NexusGenRootTypes['TechnologyConnection']; // TechnologyConnection!
-    technology: NexusGenRootTypes['Technology'] | null; // Technology
-    technologysCount: number; // Int!
-    timer: NexusGenRootTypes['Timer'] | null; // Timer
-    timers: NexusGenRootTypes['Timer'][]; // [Timer!]!
-    timersConnection: NexusGenRootTypes['TimerConnection']; // TimerConnection!
-    user: NexusGenRootTypes['User'] | null; // User
-    userTechnologies: NexusGenRootTypes['UserTechnology'][]; // [UserTechnology!]!
-    userTechnology: NexusGenRootTypes['UserTechnology'] | null; // UserTechnology
-    userTechnologysCount: number; // Int!
-    users: NexusGenRootTypes['User'][]; // [User!]!
-    usersConnection: NexusGenRootTypes['UserConnection']; // UserConnection!
-    usersCount: number; // Int!
+  Query: {
+    // field return type
+    chatMessage: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
+    chatMessages: NexusGenRootTypes['ChatMessage'][] // [ChatMessage!]!
+    chatMessagesConnection: NexusGenRootTypes['ChatMessageConnection'] // ChatMessageConnection!
+    chatMessagesCount: number // Int!
+    chatRoom: NexusGenRootTypes['ChatRoom'] | null // ChatRoom
+    chatRooms: NexusGenRootTypes['ChatRoom'][] // [ChatRoom!]!
+    chatRoomsCount: number // Int!
+    codeChallenge: NexusGenRootTypes['CodeChallenge'] | null // CodeChallenge
+    codeChallengeBlock: NexusGenRootTypes['CodeChallengeBlock'] | null // CodeChallengeBlock
+    codeChallengeBlocks: NexusGenRootTypes['CodeChallengeBlock'][] // [CodeChallengeBlock!]!
+    codeChallengeBlocksCount: number // Int!
+    codeChallengeCompletion: NexusGenRootTypes['CodeChallengeCompletion'] | null // CodeChallengeCompletion
+    codeChallengeCompletions: NexusGenRootTypes['CodeChallengeCompletion'][] // [CodeChallengeCompletion!]!
+    codeChallenges: NexusGenRootTypes['CodeChallenge'][] // [CodeChallenge!]!
+    file: NexusGenRootTypes['File'] | null // File
+    files: NexusGenRootTypes['File'][] // [File!]!
+    filesCount: number // Int!
+    me: NexusGenRootTypes['User'] | null // User
+    notice: NexusGenRootTypes['Notice'] | null // Notice
+    notices: NexusGenRootTypes['Notice'][] // [Notice!]!
+    noticesConnection: NexusGenRootTypes['NoticeConnection'] // NoticeConnection!
+    noticesCount: number // Int!
+    notificationTypes: NexusGenRootTypes['NotificationType'][] // [NotificationType!]!
+    notificationTypesCount: number // Int!
+    project: NexusGenRootTypes['Project'] | null // Project
+    projectTasks: NexusGenRootTypes['ProjectTask'][] // [ProjectTask!]!
+    projects: NexusGenRootTypes['Project'][] // [Project!]!
+    projectsConnection: NexusGenRootTypes['ProjectConnection'] // ProjectConnection!
+    resource: NexusGenRootTypes['Resource'] | null // Resource
+    resources: NexusGenRootTypes['Resource'][] // [Resource!]!
+    resourcesConnection: NexusGenRootTypes['ResourceConnection'] // ResourceConnection!
+    tag: NexusGenRootTypes['Tag'] | null // Tag
+    tags: NexusGenRootTypes['Tag'][] // [Tag!]!
+    tagsConnection: NexusGenRootTypes['TagConnection'] // TagConnection!
+    task: NexusGenRootTypes['Task'] | null // Task
+    taskTechnologies: NexusGenRootTypes['TaskTechnology'][] // [TaskTechnology!]!
+    taskTechnology: NexusGenRootTypes['TaskTechnology'] | null // TaskTechnology
+    taskTechnologysCount: number // Int!
+    tasks: NexusGenRootTypes['Task'][] // [Task!]!
+    tasksConnection: NexusGenRootTypes['TaskConnection'] // TaskConnection!
+    tasksCount: number // Int!
+    technologies: NexusGenRootTypes['Technology'][] // [Technology!]!
+    technologiesConnection: NexusGenRootTypes['TechnologyConnection'] // TechnologyConnection!
+    technology: NexusGenRootTypes['Technology'] | null // Technology
+    technologysCount: number // Int!
+    timer: NexusGenRootTypes['Timer'] | null // Timer
+    timers: NexusGenRootTypes['Timer'][] // [Timer!]!
+    timersConnection: NexusGenRootTypes['TimerConnection'] // TimerConnection!
+    user: NexusGenRootTypes['User'] | null // User
+    userTechnologies: NexusGenRootTypes['UserTechnology'][] // [UserTechnology!]!
+    userTechnology: NexusGenRootTypes['UserTechnology'] | null // UserTechnology
+    userTechnologysCount: number // Int!
+    users: NexusGenRootTypes['User'][] // [User!]!
+    usersConnection: NexusGenRootTypes['UserConnection'] // UserConnection!
+    usersCount: number // Int!
   }
-  RequestError: { // field return type
-    key: string; // String!
-    message: string; // String!
+  RequestError: {
+    // field return type
+    key: string // String!
+    message: string // String!
   }
-  Resource: { // field return type
-    Blog: NexusGenRootTypes['Resource'] | null; // Resource
-    CodeChallenge: NexusGenRootTypes['CodeChallenge'] | null; // CodeChallenge
-    Comments: NexusGenRootTypes['Resource'][] | null; // [Resource!]
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Image: NexusGenRootTypes['File'] | null; // File
-    Tags: NexusGenRootTypes['ResourceTag'][] | null; // [ResourceTag!]
-    Task: NexusGenRootTypes['Task'] | null; // Task
-    Topic: NexusGenRootTypes['Resource'] | null; // Resource
-    class_key: string | null; // String
-    commentOldID: number | null; // Int
-    components: NexusGenScalars['JSON'] | null; // JSON
-    content: NexusGenScalars['JSON'] | null; // JSON
-    contentText: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    deleted: boolean; // Boolean!
-    hidemenu: boolean; // Boolean!
-    id: string; // ID!
-    isfolder: boolean; // Boolean!
-    longtitle: string | null; // String
-    mockUpdate: NexusGenScalars['DateTime'] | null; // DateTime
-    name: string | null; // String
-    negativeVotesCount: number | null; // Int
-    neutralVotesCount: number | null; // Int
-    oldID: number | null; // Int
-    positiveVotesCount: number | null; // Int
-    published: boolean; // Boolean!
-    rating: number | null; // Float
-    searchable: boolean; // Boolean!
-    template: number | null; // Int
-    type: NexusGenEnums['ResourceType'] | null; // ResourceType
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
-    uri: string | null; // String
+  Resource: {
+    // field return type
+    Blog: NexusGenRootTypes['Resource'] | null // Resource
+    CodeChallenge: NexusGenRootTypes['CodeChallenge'] | null // CodeChallenge
+    Comments: NexusGenRootTypes['Resource'][] | null // [Resource!]
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Image: NexusGenRootTypes['File'] | null // File
+    Tags: NexusGenRootTypes['ResourceTag'][] | null // [ResourceTag!]
+    Task: NexusGenRootTypes['Task'] | null // Task
+    Topic: NexusGenRootTypes['Resource'] | null // Resource
+    class_key: string | null // String
+    commentOldID: number | null // Int
+    components: NexusGenScalars['JSON'] | null // JSON
+    content: NexusGenScalars['JSON'] | null // JSON
+    contentText: string | null // String
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    deleted: boolean // Boolean!
+    hidemenu: boolean // Boolean!
+    id: string // ID!
+    isfolder: boolean // Boolean!
+    longtitle: string | null // String
+    mockUpdate: NexusGenScalars['DateTime'] | null // DateTime
+    name: string | null // String
+    negativeVotesCount: number | null // Int
+    neutralVotesCount: number | null // Int
+    oldID: number | null // Int
+    positiveVotesCount: number | null // Int
+    published: boolean // Boolean!
+    rating: number | null // Float
+    searchable: boolean // Boolean!
+    template: number | null // Int
+    type: NexusGenEnums['ResourceType'] | null // ResourceType
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
+    uri: string // String!
   }
-  ResourceConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateResource']; // AggregateResource!
-    edges: Array<NexusGenRootTypes['ResourceEdge'] | null>; // [ResourceEdge]!
+  ResourceConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateResource'] // AggregateResource!
+    edges: Array<NexusGenRootTypes['ResourceEdge'] | null> // [ResourceEdge]!
   }
-  ResourceEdge: { // field return type
-    node: NexusGenRootTypes['Resource']; // Resource!
+  ResourceEdge: {
+    // field return type
+    node: NexusGenRootTypes['Resource'] // Resource!
   }
-  ResourceResponse: { // field return type
-    data: NexusGenRootTypes['Resource'] | null; // Resource
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  ResourceResponse: {
+    // field return type
+    data: NexusGenRootTypes['Resource'] | null // Resource
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  ResourceTag: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Resource: NexusGenRootTypes['Resource'] | null; // Resource
-    Tag: NexusGenRootTypes['Tag'] | null; // Tag
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    status: NexusGenEnums['TagStatus']; // TagStatus!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  ResourceTag: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Resource: NexusGenRootTypes['Resource'] | null // Resource
+    Tag: NexusGenRootTypes['Tag'] | null // Tag
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    status: NexusGenEnums['TagStatus'] // TagStatus!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  Tag: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Resources: NexusGenRootTypes['ResourceTag'][] | null; // [ResourceTag!]
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    name: string; // String!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  Tag: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Resources: NexusGenRootTypes['ResourceTag'][] | null // [ResourceTag!]
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    name: string // String!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  TagConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateTag']; // AggregateTag!
-    edges: Array<NexusGenRootTypes['TagEdge'] | null>; // [TagEdge]!
+  TagConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateTag'] // AggregateTag!
+    edges: Array<NexusGenRootTypes['TagEdge'] | null> // [TagEdge]!
   }
-  TagEdge: { // field return type
-    node: NexusGenRootTypes['Tag']; // Tag!
+  TagEdge: {
+    // field return type
+    node: NexusGenRootTypes['Tag'] // Tag!
   }
-  Task: { // field return type
-    CodeChallengeCompletion: NexusGenRootTypes['CodeChallengeCompletion'] | null; // CodeChallengeCompletion
-    Comments: NexusGenRootTypes['Resource'][] | null; // [Resource!]
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Parent: NexusGenRootTypes['Task'] | null; // Task
-    TaskProjects: NexusGenRootTypes['ProjectTask'][] | null; // [ProjectTask!]
-    TaskTechnologies: NexusGenRootTypes['TaskTechnology'][] | null; // [TaskTechnology!]
-    Timers: NexusGenRootTypes['Timer'][] | null; // [Timer!]
-    content: NexusGenScalars['JSON'] | null; // JSON
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    description: string | null; // String
-    endDate: NexusGenScalars['DateTime'] | null; // DateTime
-    endDatePlaning: NexusGenScalars['DateTime'] | null; // DateTime
-    id: string; // ID!
-    name: string; // String!
-    needHelp: boolean | null; // Boolean
-    startDate: NexusGenScalars['DateTime'] | null; // DateTime
-    startDatePlaning: NexusGenScalars['DateTime'] | null; // DateTime
-    status: NexusGenEnums['TaskStatus']; // TaskStatus!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  Task: {
+    // field return type
+    CodeChallengeCompletion: NexusGenRootTypes['CodeChallengeCompletion'] | null // CodeChallengeCompletion
+    Comments: NexusGenRootTypes['Resource'][] | null // [Resource!]
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Parent: NexusGenRootTypes['Task'] | null // Task
+    TaskProjects: NexusGenRootTypes['ProjectTask'][] | null // [ProjectTask!]
+    TaskTechnologies: NexusGenRootTypes['TaskTechnology'][] | null // [TaskTechnology!]
+    Timers: NexusGenRootTypes['Timer'][] | null // [Timer!]
+    content: NexusGenScalars['JSON'] | null // JSON
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    description: string | null // String
+    endDate: NexusGenScalars['DateTime'] | null // DateTime
+    endDatePlaning: NexusGenScalars['DateTime'] | null // DateTime
+    id: string // ID!
+    name: string // String!
+    needHelp: boolean | null // Boolean
+    startDate: NexusGenScalars['DateTime'] | null // DateTime
+    startDatePlaning: NexusGenScalars['DateTime'] | null // DateTime
+    status: NexusGenEnums['TaskStatus'] // TaskStatus!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  TaskConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateTask']; // AggregateTask!
-    edges: Array<NexusGenRootTypes['TaskEdge'] | null>; // [TaskEdge]!
+  TaskConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateTask'] // AggregateTask!
+    edges: Array<NexusGenRootTypes['TaskEdge'] | null> // [TaskEdge]!
   }
-  TaskEdge: { // field return type
-    node: NexusGenRootTypes['Task']; // Task!
+  TaskEdge: {
+    // field return type
+    node: NexusGenRootTypes['Task'] // Task!
   }
-  TaskReaction: { // field return type
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    type: NexusGenEnums['TaskReactionType'] | null; // TaskReactionType
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  TaskReaction: {
+    // field return type
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    type: NexusGenEnums['TaskReactionType'] | null // TaskReactionType
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  TaskResponse: { // field return type
-    data: NexusGenRootTypes['Task'] | null; // Task
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  TaskResponse: {
+    // field return type
+    data: NexusGenRootTypes['Task'] | null // Task
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  TaskTechnology: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Task: NexusGenRootTypes['Task'] | null; // Task
-    Technology: NexusGenRootTypes['Technology'] | null; // Technology
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    level: NexusGenScalars['UserTechnologyLevel'] | null; // UserTechnologyLevel
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  TaskTechnology: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Task: NexusGenRootTypes['Task'] | null // Task
+    Technology: NexusGenRootTypes['Technology'] | null // Technology
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    level: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  TaskTechnologyResponse: { // field return type
-    data: NexusGenRootTypes['TaskTechnology'] | null; // TaskTechnology
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  TaskTechnologyResponse: {
+    // field return type
+    data: NexusGenRootTypes['TaskTechnology'] | null // TaskTechnology
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  Technology: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    UserTechnologies: NexusGenRootTypes['UserTechnology'][] | null; // [UserTechnology!]
-    components: NexusGenScalars['JSON'] | null; // JSON
-    contentText: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    name: string | null; // String
-    site_url: string | null; // String
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  Technology: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    UserTechnologies: NexusGenRootTypes['UserTechnology'][] | null // [UserTechnology!]
+    components: NexusGenScalars['JSON'] | null // JSON
+    contentText: string | null // String
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    name: string | null // String
+    site_url: string | null // String
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  TechnologyConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateTechnology']; // AggregateTechnology!
-    edges: Array<NexusGenRootTypes['TechnologyEdge'] | null>; // [TechnologyEdge]!
+  TechnologyConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateTechnology'] // AggregateTechnology!
+    edges: Array<NexusGenRootTypes['TechnologyEdge'] | null> // [TechnologyEdge]!
   }
-  TechnologyEdge: { // field return type
-    node: NexusGenRootTypes['Technology']; // Technology!
+  TechnologyEdge: {
+    // field return type
+    node: NexusGenRootTypes['Technology'] // Technology!
   }
-  Timer: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Task: NexusGenRootTypes['Task'] | null; // Task
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // ID!
-    stopedAt: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  Timer: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Task: NexusGenRootTypes['Task'] | null // Task
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    stopedAt: NexusGenScalars['DateTime'] | null // DateTime
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  TimerConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateTimer']; // AggregateTimer!
-    edges: Array<NexusGenRootTypes['TimerEdge'] | null>; // [TimerEdge]!
+  TimerConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateTimer'] // AggregateTimer!
+    edges: Array<NexusGenRootTypes['TimerEdge'] | null> // [TimerEdge]!
   }
-  TimerEdge: { // field return type
-    node: NexusGenRootTypes['Timer']; // Timer!
+  TimerEdge: {
+    // field return type
+    node: NexusGenRootTypes['Timer'] // Timer!
   }
-  TimerResponse: { // field return type
-    data: NexusGenRootTypes['Timer'] | null; // Timer
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  TimerResponse: {
+    // field return type
+    data: NexusGenRootTypes['Timer'] | null // Timer
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  User: { // field return type
-    CodeChallengeCompletions: NexusGenRootTypes['CodeChallengeCompletion'][] | null; // [CodeChallengeCompletion!]
-    EthAccounts: NexusGenRootTypes['EthAccount'][] | null; // [EthAccount!]
-    NotificationTypes: NexusGenRootTypes['NotificationType'][] | null; // [NotificationType!]
-    Projects: NexusGenRootTypes['ProjectMember'][] | null; // [ProjectMember!]
-    ProjectsCreated: NexusGenRootTypes['Project'][] | null; // [Project!]
-    Timers: NexusGenRootTypes['Timer'][] | null; // [Timer!]
-    UserTechnologies: NexusGenRootTypes['UserTechnology'][] | null; // [UserTechnology!]
-    acceptChatMessageAnonymous: boolean | null; // Boolean
-    acceptNewChatRoom: boolean | null; // Boolean
-    acceptNewChatRoomAnonymous: boolean | null; // Boolean
-    activated: boolean | null; // Boolean
-    active: boolean | null; // Boolean
-    address: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    deleted: boolean | null; // Boolean
-    email: string | null; // String
-    fullname: string | null; // String
-    hasEmail: boolean | null; // Boolean
-    hasPhone: boolean | null; // Boolean
-    id: string; // String!
-    image: string | null; // String
-    phone: string | null; // String
-    showEmail: boolean | null; // Boolean
-    showPhone: boolean | null; // Boolean
-    sudo: boolean | null; // Boolean
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
-    username: string | null; // String
+  User: {
+    // field return type
+    CodeChallengeCompletions:
+      | NexusGenRootTypes['CodeChallengeCompletion'][]
+      | null // [CodeChallengeCompletion!]
+    EthAccounts: NexusGenRootTypes['EthAccount'][] | null // [EthAccount!]
+    NotificationTypes: NexusGenRootTypes['NotificationType'][] | null // [NotificationType!]
+    Projects: NexusGenRootTypes['ProjectMember'][] | null // [ProjectMember!]
+    ProjectsCreated: NexusGenRootTypes['Project'][] | null // [Project!]
+    Timers: NexusGenRootTypes['Timer'][] | null // [Timer!]
+    UserTechnologies: NexusGenRootTypes['UserTechnology'][] | null // [UserTechnology!]
+    acceptChatMessageAnonymous: boolean | null // Boolean
+    acceptNewChatRoom: boolean | null // Boolean
+    acceptNewChatRoomAnonymous: boolean | null // Boolean
+    activated: boolean | null // Boolean
+    active: boolean | null // Boolean
+    address: string | null // String
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    deleted: boolean | null // Boolean
+    email: string | null // String
+    fullname: string | null // String
+    hasEmail: boolean | null // Boolean
+    hasPhone: boolean | null // Boolean
+    id: string // String!
+    image: string | null // String
+    phone: string | null // String
+    showEmail: boolean | null // Boolean
+    showPhone: boolean | null // Boolean
+    sudo: boolean | null // Boolean
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
+    username: string | null // String
   }
-  UserConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateUser']; // AggregateUser!
-    edges: Array<NexusGenRootTypes['UserEdge'] | null>; // [UserEdge]!
+  UserConnection: {
+    // field return type
+    aggregate: NexusGenRootTypes['AggregateUser'] // AggregateUser!
+    edges: Array<NexusGenRootTypes['UserEdge'] | null> // [UserEdge]!
   }
-  UserEdge: { // field return type
-    node: NexusGenRootTypes['User']; // User!
+  UserEdge: {
+    // field return type
+    node: NexusGenRootTypes['User'] // User!
   }
-  UserResponse: { // field return type
-    data: NexusGenRootTypes['User'] | null; // User
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  UserResponse: {
+    // field return type
+    data: NexusGenRootTypes['User'] | null // User
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
-  UserTechnology: { // field return type
-    CreatedBy: NexusGenRootTypes['User'] | null; // User
-    Technology: NexusGenRootTypes['Technology'] | null; // Technology
-    components: NexusGenScalars['JSON'] | null; // JSON
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    date_from: NexusGenScalars['DateTime'] | null; // DateTime
-    date_till: NexusGenScalars['DateTime'] | null; // DateTime
-    id: string; // ID!
-    level: NexusGenScalars['UserTechnologyLevel'] | null; // UserTechnologyLevel
-    status: NexusGenEnums['UserTechnologyStatus'] | null; // UserTechnologyStatus
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  UserTechnology: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    Technology: NexusGenRootTypes['Technology'] | null // Technology
+    components: NexusGenScalars['JSON'] | null // JSON
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    date_from: NexusGenScalars['DateTime'] | null // DateTime
+    date_till: NexusGenScalars['DateTime'] | null // DateTime
+    id: string // ID!
+    level: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    status: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  UserTechnologyResponse: { // field return type
-    data: NexusGenRootTypes['UserTechnology'] | null; // UserTechnology
-    errors: NexusGenRootTypes['RequestError'][]; // [RequestError!]!
-    message: string; // String!
-    success: boolean; // Boolean!
+  UserTechnologyResponse: {
+    // field return type
+    data: NexusGenRootTypes['UserTechnology'] | null // UserTechnology
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
 }
 
 export interface NexusGenFieldTypeNames {
-  AggregateChatMessage: { // field return type name
+  AggregateChatMessage: {
+    // field return type name
     count: 'Int'
   }
-  AggregateNotice: { // field return type name
+  AggregateNotice: {
+    // field return type name
     count: 'Int'
   }
-  AggregateProject: { // field return type name
+  AggregateProject: {
+    // field return type name
     count: 'Int'
   }
-  AggregateResource: { // field return type name
+  AggregateResource: {
+    // field return type name
     count: 'Int'
   }
-  AggregateTag: { // field return type name
+  AggregateTag: {
+    // field return type name
     count: 'Int'
   }
-  AggregateTask: { // field return type name
+  AggregateTask: {
+    // field return type name
     count: 'Int'
   }
-  AggregateTechnology: { // field return type name
+  AggregateTechnology: {
+    // field return type name
     count: 'Int'
   }
-  AggregateTimer: { // field return type name
+  AggregateTimer: {
+    // field return type name
     count: 'Int'
   }
-  AggregateUser: { // field return type name
+  AggregateUser: {
+    // field return type name
     count: 'Int'
   }
-  AuthPayload: { // field return type name
+  AuthPayload: {
+    // field return type name
     data: 'User'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
     token: 'String'
   }
-  ChatMessage: { // field return type name
+  ChatMessage: {
+    // field return type name
     CreatedBy: 'User'
     Room: 'ChatRoom'
     content: 'JSON'
@@ -3030,20 +3695,24 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     updatedAt: 'DateTime'
   }
-  ChatMessageConnection: { // field return type name
+  ChatMessageConnection: {
+    // field return type name
     aggregate: 'AggregateChatMessage'
     edges: 'ChatMessageEdge'
   }
-  ChatMessageEdge: { // field return type name
+  ChatMessageEdge: {
+    // field return type name
     node: 'ChatMessage'
   }
-  ChatMessageResponse: { // field return type name
+  ChatMessageResponse: {
+    // field return type name
     data: 'ChatMessage'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
   }
-  ChatRoom: { // field return type name
+  ChatRoom: {
+    // field return type name
     CreatedBy: 'User'
     Invitations: 'ChatRoomInvitation'
     Members: 'User'
@@ -3057,7 +3726,8 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     updatedAt: 'DateTime'
   }
-  ChatRoomInvitation: { // field return type name
+  ChatRoomInvitation: {
+    // field return type name
     ChatRoom: 'ChatRoom'
     CreatedBy: 'User'
     User: 'User'
@@ -3065,7 +3735,8 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     updatedAt: 'DateTime'
   }
-  CodeChallenge: { // field return type name
+  CodeChallenge: {
+    // field return type name
     Block: 'CodeChallengeBlock'
     CreatedBy: 'User'
     Topic: 'Resource'
@@ -3096,7 +3767,8 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
     videoUrl: 'String'
   }
-  CodeChallengeBlock: { // field return type name
+  CodeChallengeBlock: {
+    // field return type name
     Challenges: 'CodeChallenge'
     Children: 'CodeChallengeBlock'
     Parent: 'CodeChallengeBlock'
@@ -3105,7 +3777,8 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     updatedAt: 'DateTime'
   }
-  CodeChallengeCompletion: { // field return type name
+  CodeChallengeCompletion: {
+    // field return type name
     CodeChallenge: 'CodeChallenge'
     CreatedBy: 'User'
     Task: 'Task'
@@ -3115,13 +3788,15 @@ export interface NexusGenFieldTypeNames {
     success: 'Boolean'
     updatedAt: 'DateTime'
   }
-  CodeChallengeCompletionResponse: { // field return type name
+  CodeChallengeCompletionResponse: {
+    // field return type name
     data: 'CodeChallengeCompletion'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
   }
-  EthAccount: { // field return type name
+  EthAccount: {
+    // field return type name
     abi: 'JSON'
     address: 'String'
     balance: 'Float'
@@ -3134,7 +3809,8 @@ export interface NexusGenFieldTypeNames {
     type: 'EthAccountType'
     updatedAt: 'DateTime'
   }
-  File: { // field return type name
+  File: {
+    // field return type name
     createdAt: 'DateTime'
     encoding: 'String'
     filename: 'String'
@@ -3146,7 +3822,8 @@ export interface NexusGenFieldTypeNames {
     size: 'Float'
     updatedAt: 'DateTime'
   }
-  Mutation: { // field return type name
+  Mutation: {
+    // field return type name
     createChatMessageProcessor: 'ChatMessageResponse'
     createCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     createCommentProcessor: 'ResourceResponse'
@@ -3170,7 +3847,8 @@ export interface NexusGenFieldTypeNames {
     updateUserProcessor: 'UserResponse'
     updateUserTechnologyProcessor: 'UserTechnologyResponse'
   }
-  Notice: { // field return type name
+  Notice: {
+    // field return type name
     ChatMessage: 'ChatMessage'
     ChatRoomInvitation: 'ChatRoomInvitation'
     CreatedBy: 'User'
@@ -3180,14 +3858,17 @@ export interface NexusGenFieldTypeNames {
     type: 'NoticeType'
     updatedAt: 'DateTime'
   }
-  NoticeConnection: { // field return type name
+  NoticeConnection: {
+    // field return type name
     aggregate: 'AggregateNotice'
     edges: 'NoticeEdge'
   }
-  NoticeEdge: { // field return type name
+  NoticeEdge: {
+    // field return type name
     node: 'Notice'
   }
-  NotificationType: { // field return type name
+  NotificationType: {
+    // field return type name
     code: 'ID'
     comment: 'String'
     createdAt: 'DateTime'
@@ -3196,7 +3877,8 @@ export interface NexusGenFieldTypeNames {
     oldID: 'Int'
     updatedAt: 'DateTime'
   }
-  Project: { // field return type name
+  Project: {
+    // field return type name
     CreatedBy: 'User'
     Members: 'ProjectMember'
     ProjectTasks: 'ProjectTask'
@@ -3216,14 +3898,17 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
     url: 'String'
   }
-  ProjectConnection: { // field return type name
+  ProjectConnection: {
+    // field return type name
     aggregate: 'AggregateProject'
     edges: 'ProjectEdge'
   }
-  ProjectEdge: { // field return type name
+  ProjectEdge: {
+    // field return type name
     node: 'Project'
   }
-  ProjectMember: { // field return type name
+  ProjectMember: {
+    // field return type name
     Project: 'Project'
     User: 'User'
     createdAt: 'DateTime'
@@ -3231,13 +3916,15 @@ export interface NexusGenFieldTypeNames {
     status: 'ProjectMemberStatus'
     updatedAt: 'DateTime'
   }
-  ProjectResponse: { // field return type name
+  ProjectResponse: {
+    // field return type name
     data: 'Project'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
   }
-  ProjectTask: { // field return type name
+  ProjectTask: {
+    // field return type name
     CreatedBy: 'User'
     Project: 'Project'
     Task: 'Task'
@@ -3245,7 +3932,8 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     updatedAt: 'DateTime'
   }
-  Query: { // field return type name
+  Query: {
+    // field return type name
     chatMessage: 'ChatMessage'
     chatMessages: 'ChatMessage'
     chatMessagesConnection: 'ChatMessageConnection'
@@ -3302,11 +3990,13 @@ export interface NexusGenFieldTypeNames {
     usersConnection: 'UserConnection'
     usersCount: 'Int'
   }
-  RequestError: { // field return type name
+  RequestError: {
+    // field return type name
     key: 'String'
     message: 'String'
   }
-  Resource: { // field return type name
+  Resource: {
+    // field return type name
     Blog: 'Resource'
     CodeChallenge: 'CodeChallenge'
     Comments: 'Resource'
@@ -3340,20 +4030,24 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
     uri: 'String'
   }
-  ResourceConnection: { // field return type name
+  ResourceConnection: {
+    // field return type name
     aggregate: 'AggregateResource'
     edges: 'ResourceEdge'
   }
-  ResourceEdge: { // field return type name
+  ResourceEdge: {
+    // field return type name
     node: 'Resource'
   }
-  ResourceResponse: { // field return type name
+  ResourceResponse: {
+    // field return type name
     data: 'Resource'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
   }
-  ResourceTag: { // field return type name
+  ResourceTag: {
+    // field return type name
     CreatedBy: 'User'
     Resource: 'Resource'
     Tag: 'Tag'
@@ -3362,7 +4056,8 @@ export interface NexusGenFieldTypeNames {
     status: 'TagStatus'
     updatedAt: 'DateTime'
   }
-  Tag: { // field return type name
+  Tag: {
+    // field return type name
     CreatedBy: 'User'
     Resources: 'ResourceTag'
     createdAt: 'DateTime'
@@ -3370,14 +4065,17 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     updatedAt: 'DateTime'
   }
-  TagConnection: { // field return type name
+  TagConnection: {
+    // field return type name
     aggregate: 'AggregateTag'
     edges: 'TagEdge'
   }
-  TagEdge: { // field return type name
+  TagEdge: {
+    // field return type name
     node: 'Tag'
   }
-  Task: { // field return type name
+  Task: {
+    // field return type name
     CodeChallengeCompletion: 'CodeChallengeCompletion'
     Comments: 'Resource'
     CreatedBy: 'User'
@@ -3398,26 +4096,31 @@ export interface NexusGenFieldTypeNames {
     status: 'TaskStatus'
     updatedAt: 'DateTime'
   }
-  TaskConnection: { // field return type name
+  TaskConnection: {
+    // field return type name
     aggregate: 'AggregateTask'
     edges: 'TaskEdge'
   }
-  TaskEdge: { // field return type name
+  TaskEdge: {
+    // field return type name
     node: 'Task'
   }
-  TaskReaction: { // field return type name
+  TaskReaction: {
+    // field return type name
     createdAt: 'DateTime'
     id: 'ID'
     type: 'TaskReactionType'
     updatedAt: 'DateTime'
   }
-  TaskResponse: { // field return type name
+  TaskResponse: {
+    // field return type name
     data: 'Task'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
   }
-  TaskTechnology: { // field return type name
+  TaskTechnology: {
+    // field return type name
     CreatedBy: 'User'
     Task: 'Task'
     Technology: 'Technology'
@@ -3426,13 +4129,15 @@ export interface NexusGenFieldTypeNames {
     level: 'UserTechnologyLevel'
     updatedAt: 'DateTime'
   }
-  TaskTechnologyResponse: { // field return type name
+  TaskTechnologyResponse: {
+    // field return type name
     data: 'TaskTechnology'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
   }
-  Technology: { // field return type name
+  Technology: {
+    // field return type name
     CreatedBy: 'User'
     UserTechnologies: 'UserTechnology'
     components: 'JSON'
@@ -3443,14 +4148,17 @@ export interface NexusGenFieldTypeNames {
     site_url: 'String'
     updatedAt: 'DateTime'
   }
-  TechnologyConnection: { // field return type name
+  TechnologyConnection: {
+    // field return type name
     aggregate: 'AggregateTechnology'
     edges: 'TechnologyEdge'
   }
-  TechnologyEdge: { // field return type name
+  TechnologyEdge: {
+    // field return type name
     node: 'Technology'
   }
-  Timer: { // field return type name
+  Timer: {
+    // field return type name
     CreatedBy: 'User'
     Task: 'Task'
     createdAt: 'DateTime'
@@ -3458,20 +4166,24 @@ export interface NexusGenFieldTypeNames {
     stopedAt: 'DateTime'
     updatedAt: 'DateTime'
   }
-  TimerConnection: { // field return type name
+  TimerConnection: {
+    // field return type name
     aggregate: 'AggregateTimer'
     edges: 'TimerEdge'
   }
-  TimerEdge: { // field return type name
+  TimerEdge: {
+    // field return type name
     node: 'Timer'
   }
-  TimerResponse: { // field return type name
+  TimerResponse: {
+    // field return type name
     data: 'Timer'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
   }
-  User: { // field return type name
+  User: {
+    // field return type name
     CodeChallengeCompletions: 'CodeChallengeCompletion'
     EthAccounts: 'EthAccount'
     NotificationTypes: 'NotificationType'
@@ -3500,20 +4212,24 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
     username: 'String'
   }
-  UserConnection: { // field return type name
+  UserConnection: {
+    // field return type name
     aggregate: 'AggregateUser'
     edges: 'UserEdge'
   }
-  UserEdge: { // field return type name
+  UserEdge: {
+    // field return type name
     node: 'User'
   }
-  UserResponse: { // field return type name
+  UserResponse: {
+    // field return type name
     data: 'User'
     errors: 'RequestError'
     message: 'String'
     success: 'Boolean'
   }
-  UserTechnology: { // field return type name
+  UserTechnology: {
+    // field return type name
     CreatedBy: 'User'
     Technology: 'Technology'
     components: 'JSON'
@@ -3525,7 +4241,8 @@ export interface NexusGenFieldTypeNames {
     status: 'UserTechnologyStatus'
     updatedAt: 'DateTime'
   }
-  UserTechnologyResponse: { // field return type name
+  UserTechnologyResponse: {
+    // field return type name
     data: 'UserTechnology'
     errors: 'RequestError'
     message: 'String'
@@ -3535,409 +4252,491 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   CodeChallengeBlock: {
-    Challenges: { // args
-      orderBy?: NexusGenInputs['CodeChallengeOrderByInput'] | null; // CodeChallengeOrderByInput
+    Challenges: {
+      // args
+      orderBy?: NexusGenInputs['CodeChallengeOrderByInput'] | null // CodeChallengeOrderByInput
     }
-    Children: { // args
-      orderBy?: NexusGenInputs['CodeChallengeBlockOrderByInput'] | null; // CodeChallengeBlockOrderByInput
+    Children: {
+      // args
+      orderBy?: NexusGenInputs['CodeChallengeBlockOrderByInput'] | null // CodeChallengeBlockOrderByInput
     }
   }
   EthAccount: {
-    balance: { // args
-      convert?: NexusGenEnums['EthAmountConvert'] | null; // EthAmountConvert
+    balance: {
+      // args
+      convert?: NexusGenEnums['EthAmountConvert'] | null // EthAmountConvert
     }
   }
   Mutation: {
-    createChatMessageProcessor: { // args
-      data: NexusGenInputs['ChatMessageCreateInput']; // ChatMessageCreateInput!
+    createChatMessageProcessor: {
+      // args
+      data: NexusGenInputs['ChatMessageCreateInput'] // ChatMessageCreateInput!
     }
-    createCodeChallengeCompletionProcessor: { // args
-      data: NexusGenInputs['CodeChallengeCompletionCreateInput']; // CodeChallengeCompletionCreateInput!
+    createCodeChallengeCompletionProcessor: {
+      // args
+      data: NexusGenInputs['CodeChallengeCompletionCreateInput'] // CodeChallengeCompletionCreateInput!
     }
-    createCommentProcessor: { // args
-      data: NexusGenInputs['CommentCreateInput']; // CommentCreateInput!
+    createCommentProcessor: {
+      // args
+      data: NexusGenInputs['CommentCreateInput'] // CommentCreateInput!
     }
-    createProjectProcessor: { // args
-      data: NexusGenInputs['ProjectCreateInput']; // ProjectCreateInput!
+    createProjectProcessor: {
+      // args
+      data: NexusGenInputs['ProjectCreateInput'] // ProjectCreateInput!
     }
-    createTaskProcessor: { // args
-      data: NexusGenInputs['TaskCreateInput']; // TaskCreateInput!
+    createTaskProcessor: {
+      // args
+      data: NexusGenInputs['TaskCreateInput'] // TaskCreateInput!
     }
-    createTaskTechnologyProcessor: { // args
-      data: NexusGenInputs['TaskTechnologyCreateInput']; // TaskTechnologyCreateInput!
+    createTaskTechnologyProcessor: {
+      // args
+      data: NexusGenInputs['TaskTechnologyCreateInput'] // TaskTechnologyCreateInput!
     }
-    createTimerProcessor: { // args
-      data: NexusGenInputs['TimerCreateInput']; // TimerCreateInput!
+    createTimerProcessor: {
+      // args
+      data: NexusGenInputs['TimerCreateInput'] // TimerCreateInput!
     }
-    createTopicProcessor: { // args
-      data: NexusGenInputs['TopicCreateInput']; // TopicCreateInput!
+    createTopicProcessor: {
+      // args
+      data: NexusGenInputs['TopicCreateInput'] // TopicCreateInput!
     }
-    createUserTechnologyProcessor: { // args
-      data: NexusGenInputs['UserTechnologyCreateInput']; // UserTechnologyCreateInput!
+    createUserTechnologyProcessor: {
+      // args
+      data: NexusGenInputs['UserTechnologyCreateInput'] // UserTechnologyCreateInput!
     }
-    deleteNotice: { // args
-      where: NexusGenInputs['NoticeWhereUniqueInput']; // NoticeWhereUniqueInput!
+    deleteNotice: {
+      // args
+      where: NexusGenInputs['NoticeWhereUniqueInput'] // NoticeWhereUniqueInput!
     }
-    signin: { // args
-      data: NexusGenInputs['UserSigninDataInput']; // UserSigninDataInput!
-      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    signin: {
+      // args
+      data: NexusGenInputs['UserSigninDataInput'] // UserSigninDataInput!
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
     }
-    signup: { // args
-      data: NexusGenInputs['UserSignupDataInput']; // UserSignupDataInput!
+    signup: {
+      // args
+      data: NexusGenInputs['UserSignupDataInput'] // UserSignupDataInput!
     }
-    singleUpload: { // args
-      data?: NexusGenInputs['SingleUploadInput'] | null; // SingleUploadInput
-      file?: NexusGenScalars['Upload'] | null; // Upload
+    singleUpload: {
+      // args
+      data?: NexusGenInputs['SingleUploadInput'] | null // SingleUploadInput
+      file?: NexusGenScalars['Upload'] | null // Upload
     }
-    updateCodeChallengeCompletionProcessor: { // args
-      data: NexusGenInputs['CodeChallengeCompletionUpdateInput']; // CodeChallengeCompletionUpdateInput!
-      where: NexusGenInputs['CodeChallengeCompletionWhereUniqueInput']; // CodeChallengeCompletionWhereUniqueInput!
+    updateCodeChallengeCompletionProcessor: {
+      // args
+      data: NexusGenInputs['CodeChallengeCompletionUpdateInput'] // CodeChallengeCompletionUpdateInput!
+      where: NexusGenInputs['CodeChallengeCompletionWhereUniqueInput'] // CodeChallengeCompletionWhereUniqueInput!
     }
-    updateCommentProcessor: { // args
-      data: NexusGenInputs['CommentUpdateInput']; // CommentUpdateInput!
-      where: NexusGenInputs['ResourceWhereUniqueInput']; // ResourceWhereUniqueInput!
+    updateCommentProcessor: {
+      // args
+      data: NexusGenInputs['CommentUpdateInput'] // CommentUpdateInput!
+      where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
     }
-    updateProjectProcessor: { // args
-      data: NexusGenInputs['ProjectUpdateInput']; // ProjectUpdateInput!
-      where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+    updateProjectProcessor: {
+      // args
+      data: NexusGenInputs['ProjectUpdateInput'] // ProjectUpdateInput!
+      where: NexusGenInputs['ProjectWhereUniqueInput'] // ProjectWhereUniqueInput!
     }
-    updateTaskProcessor: { // args
-      data: NexusGenInputs['TaskUpdateInput']; // TaskUpdateInput!
-      where: NexusGenInputs['TaskWhereUniqueInput']; // TaskWhereUniqueInput!
+    updateTaskProcessor: {
+      // args
+      data: NexusGenInputs['TaskUpdateInput'] // TaskUpdateInput!
+      where: NexusGenInputs['TaskWhereUniqueInput'] // TaskWhereUniqueInput!
     }
-    updateTaskTechnologyProcessor: { // args
-      data: NexusGenInputs['TaskTechnologyUpdateInput']; // TaskTechnologyUpdateInput!
-      where: NexusGenInputs['TaskTechnologyWhereUniqueInput']; // TaskTechnologyWhereUniqueInput!
+    updateTaskTechnologyProcessor: {
+      // args
+      data: NexusGenInputs['TaskTechnologyUpdateInput'] // TaskTechnologyUpdateInput!
+      where: NexusGenInputs['TaskTechnologyWhereUniqueInput'] // TaskTechnologyWhereUniqueInput!
     }
-    updateTimerProcessor: { // args
-      data: NexusGenInputs['TimerUpdateInput']; // TimerUpdateInput!
-      where: NexusGenInputs['TimerWhereUniqueInput']; // TimerWhereUniqueInput!
+    updateTimerProcessor: {
+      // args
+      data: NexusGenInputs['TimerUpdateInput'] // TimerUpdateInput!
+      where: NexusGenInputs['TimerWhereUniqueInput'] // TimerWhereUniqueInput!
     }
-    updateTopicProcessor: { // args
-      data: NexusGenInputs['TopicUpdateInput']; // TopicUpdateInput!
-      where: NexusGenInputs['ResourceWhereUniqueInput']; // ResourceWhereUniqueInput!
+    updateTopicProcessor: {
+      // args
+      data: NexusGenInputs['TopicUpdateInput'] // TopicUpdateInput!
+      where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
     }
-    updateUserProcessor: { // args
-      data: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
-      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    updateUserProcessor: {
+      // args
+      data: NexusGenInputs['UserUpdateInput'] // UserUpdateInput!
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
     }
-    updateUserTechnologyProcessor: { // args
-      data: NexusGenInputs['UserTechnologyUpdateInput']; // UserTechnologyUpdateInput!
-      where: NexusGenInputs['UserTechnologyWhereUniqueInput']; // UserTechnologyWhereUniqueInput!
+    updateUserTechnologyProcessor: {
+      // args
+      data: NexusGenInputs['UserTechnologyUpdateInput'] // UserTechnologyUpdateInput!
+      where: NexusGenInputs['UserTechnologyWhereUniqueInput'] // UserTechnologyWhereUniqueInput!
     }
   }
   Project: {
-    ProjectTasks: { // args
-      orderBy?: NexusGenInputs['ProjectTaskOrderByInput'] | null; // ProjectTaskOrderByInput
+    ProjectTasks: {
+      // args
+      orderBy?: NexusGenInputs['ProjectTaskOrderByInput'] | null // ProjectTaskOrderByInput
     }
   }
   Query: {
-    chatMessage: { // args
-      where: NexusGenInputs['ChatMessageWhereUniqueInput']; // ChatMessageWhereUniqueInput!
+    chatMessage: {
+      // args
+      where: NexusGenInputs['ChatMessageWhereUniqueInput'] // ChatMessageWhereUniqueInput!
     }
-    chatMessages: { // args
-      cursor?: NexusGenInputs['ChatMessageWhereUniqueInput'] | null; // ChatMessageWhereUniqueInput
-      orderBy?: NexusGenInputs['ChatMessageOrderByInput'][] | null; // [ChatMessageOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['ChatMessageWhereInput'] | null; // ChatMessageWhereInput
+    chatMessages: {
+      // args
+      cursor?: NexusGenInputs['ChatMessageWhereUniqueInput'] | null // ChatMessageWhereUniqueInput
+      orderBy?: NexusGenInputs['ChatMessageOrderByInput'][] | null // [ChatMessageOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
     }
-    chatMessagesConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['ChatMessageOrderByInput'] | null; // ChatMessageOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['ChatMessageWhereInput'] | null; // ChatMessageWhereInput
+    chatMessagesConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['ChatMessageOrderByInput'] | null // ChatMessageOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
     }
-    chatMessagesCount: { // args
-      where?: NexusGenInputs['ChatMessageWhereInput'] | null; // ChatMessageWhereInput
+    chatMessagesCount: {
+      // args
+      where?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
     }
-    chatRoom: { // args
-      where: NexusGenInputs['ChatRoomWhereUniqueInput']; // ChatRoomWhereUniqueInput!
+    chatRoom: {
+      // args
+      where: NexusGenInputs['ChatRoomWhereUniqueInput'] // ChatRoomWhereUniqueInput!
     }
-    chatRooms: { // args
-      cursor?: NexusGenInputs['ChatRoomWhereUniqueInput'] | null; // ChatRoomWhereUniqueInput
-      orderBy?: NexusGenInputs['ChatRoomOrderByInput'][] | null; // [ChatRoomOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
+    chatRooms: {
+      // args
+      cursor?: NexusGenInputs['ChatRoomWhereUniqueInput'] | null // ChatRoomWhereUniqueInput
+      orderBy?: NexusGenInputs['ChatRoomOrderByInput'][] | null // [ChatRoomOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
     }
-    chatRoomsCount: { // args
-      where?: NexusGenInputs['ChatRoomWhereInput'] | null; // ChatRoomWhereInput
+    chatRoomsCount: {
+      // args
+      where?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
     }
-    codeChallenge: { // args
-      where: NexusGenInputs['CodeChallengeWhereUniqueInput']; // CodeChallengeWhereUniqueInput!
+    codeChallenge: {
+      // args
+      where: NexusGenInputs['CodeChallengeWhereUniqueInput'] // CodeChallengeWhereUniqueInput!
     }
-    codeChallengeBlock: { // args
-      where: NexusGenInputs['CodeChallengeBlockWhereUniqueInput']; // CodeChallengeBlockWhereUniqueInput!
+    codeChallengeBlock: {
+      // args
+      where: NexusGenInputs['CodeChallengeBlockWhereUniqueInput'] // CodeChallengeBlockWhereUniqueInput!
     }
-    codeChallengeBlocks: { // args
-      cursor?: NexusGenInputs['CodeChallengeBlockWhereUniqueInput'] | null; // CodeChallengeBlockWhereUniqueInput
-      orderBy?: NexusGenInputs['CodeChallengeBlockOrderByInput'][] | null; // [CodeChallengeBlockOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null; // CodeChallengeBlockWhereInput
+    codeChallengeBlocks: {
+      // args
+      cursor?: NexusGenInputs['CodeChallengeBlockWhereUniqueInput'] | null // CodeChallengeBlockWhereUniqueInput
+      orderBy?: NexusGenInputs['CodeChallengeBlockOrderByInput'][] | null // [CodeChallengeBlockOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
     }
-    codeChallengeBlocksCount: { // args
-      where?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null; // CodeChallengeBlockWhereInput
+    codeChallengeBlocksCount: {
+      // args
+      where?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
     }
-    codeChallengeCompletion: { // args
-      where: NexusGenInputs['CodeChallengeCompletionWhereUniqueInput']; // CodeChallengeCompletionWhereUniqueInput!
+    codeChallengeCompletion: {
+      // args
+      where: NexusGenInputs['CodeChallengeCompletionWhereUniqueInput'] // CodeChallengeCompletionWhereUniqueInput!
     }
-    codeChallengeCompletions: { // args
-      cursor?: NexusGenInputs['CodeChallengeCompletionWhereUniqueInput'] | null; // CodeChallengeCompletionWhereUniqueInput
-      orderBy?: NexusGenInputs['CodeChallengeCompletionOrderByInput'][] | null; // [CodeChallengeCompletionOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null; // CodeChallengeCompletionWhereInput
+    codeChallengeCompletions: {
+      // args
+      cursor?: NexusGenInputs['CodeChallengeCompletionWhereUniqueInput'] | null // CodeChallengeCompletionWhereUniqueInput
+      orderBy?: NexusGenInputs['CodeChallengeCompletionOrderByInput'][] | null // [CodeChallengeCompletionOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
     }
-    codeChallenges: { // args
-      cursor?: NexusGenInputs['CodeChallengeWhereUniqueInput'] | null; // CodeChallengeWhereUniqueInput
-      orderBy?: NexusGenInputs['CodeChallengeOrderByInput'][] | null; // [CodeChallengeOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['CodeChallengeWhereInput'] | null; // CodeChallengeWhereInput
+    codeChallenges: {
+      // args
+      cursor?: NexusGenInputs['CodeChallengeWhereUniqueInput'] | null // CodeChallengeWhereUniqueInput
+      orderBy?: NexusGenInputs['CodeChallengeOrderByInput'][] | null // [CodeChallengeOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['CodeChallengeWhereInput'] | null // CodeChallengeWhereInput
     }
-    file: { // args
-      where: NexusGenInputs['FileWhereUniqueInput']; // FileWhereUniqueInput!
+    file: {
+      // args
+      where: NexusGenInputs['FileWhereUniqueInput'] // FileWhereUniqueInput!
     }
-    files: { // args
-      cursor?: NexusGenInputs['FileWhereUniqueInput'] | null; // FileWhereUniqueInput
-      orderBy?: NexusGenInputs['FileOrderByInput'][] | null; // [FileOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['FileWhereInput'] | null; // FileWhereInput
+    files: {
+      // args
+      cursor?: NexusGenInputs['FileWhereUniqueInput'] | null // FileWhereUniqueInput
+      orderBy?: NexusGenInputs['FileOrderByInput'][] | null // [FileOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
     }
-    filesCount: { // args
-      where?: NexusGenInputs['FileWhereInput'] | null; // FileWhereInput
+    filesCount: {
+      // args
+      where?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
     }
-    notice: { // args
-      where: NexusGenInputs['NoticeWhereUniqueInput']; // NoticeWhereUniqueInput!
+    notice: {
+      // args
+      where: NexusGenInputs['NoticeWhereUniqueInput'] // NoticeWhereUniqueInput!
     }
-    notices: { // args
-      cursor?: NexusGenInputs['NoticeWhereUniqueInput'] | null; // NoticeWhereUniqueInput
-      orderBy?: NexusGenInputs['NoticeOrderByInput'][] | null; // [NoticeOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['NoticeWhereInput'] | null; // NoticeWhereInput
+    notices: {
+      // args
+      cursor?: NexusGenInputs['NoticeWhereUniqueInput'] | null // NoticeWhereUniqueInput
+      orderBy?: NexusGenInputs['NoticeOrderByInput'][] | null // [NoticeOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
     }
-    noticesConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['NoticeOrderByInput'] | null; // NoticeOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['NoticeWhereInput'] | null; // NoticeWhereInput
+    noticesConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['NoticeOrderByInput'] | null // NoticeOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
     }
-    noticesCount: { // args
-      where?: NexusGenInputs['NoticeWhereInput'] | null; // NoticeWhereInput
+    noticesCount: {
+      // args
+      where?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
     }
-    notificationTypes: { // args
-      cursor?: NexusGenInputs['NotificationTypeWhereUniqueInput'] | null; // NotificationTypeWhereUniqueInput
-      orderBy?: NexusGenInputs['NotificationTypeOrderByInput'][] | null; // [NotificationTypeOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['NotificationTypeWhereInput'] | null; // NotificationTypeWhereInput
+    notificationTypes: {
+      // args
+      cursor?: NexusGenInputs['NotificationTypeWhereUniqueInput'] | null // NotificationTypeWhereUniqueInput
+      orderBy?: NexusGenInputs['NotificationTypeOrderByInput'][] | null // [NotificationTypeOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['NotificationTypeWhereInput'] | null // NotificationTypeWhereInput
     }
-    notificationTypesCount: { // args
-      where?: NexusGenInputs['NotificationTypeWhereInput'] | null; // NotificationTypeWhereInput
+    notificationTypesCount: {
+      // args
+      where?: NexusGenInputs['NotificationTypeWhereInput'] | null // NotificationTypeWhereInput
     }
-    project: { // args
-      where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+    project: {
+      // args
+      where: NexusGenInputs['ProjectWhereUniqueInput'] // ProjectWhereUniqueInput!
     }
-    projectTasks: { // args
-      cursor?: NexusGenInputs['ProjectTaskWhereUniqueInput'] | null; // ProjectTaskWhereUniqueInput
-      orderBy?: NexusGenInputs['ProjectTaskOrderByInput'][] | null; // [ProjectTaskOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['ProjectTaskWhereInput'] | null; // ProjectTaskWhereInput
+    projectTasks: {
+      // args
+      cursor?: NexusGenInputs['ProjectTaskWhereUniqueInput'] | null // ProjectTaskWhereUniqueInput
+      orderBy?: NexusGenInputs['ProjectTaskOrderByInput'][] | null // [ProjectTaskOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['ProjectTaskWhereInput'] | null // ProjectTaskWhereInput
     }
-    projects: { // args
-      cursor?: NexusGenInputs['ProjectWhereUniqueInput'] | null; // ProjectWhereUniqueInput
-      orderBy?: NexusGenInputs['ProjectOrderByInput'][] | null; // [ProjectOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    projects: {
+      // args
+      cursor?: NexusGenInputs['ProjectWhereUniqueInput'] | null // ProjectWhereUniqueInput
+      orderBy?: NexusGenInputs['ProjectOrderByInput'][] | null // [ProjectOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
     }
-    projectsConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['ProjectOrderByInput'] | null; // ProjectOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    projectsConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['ProjectOrderByInput'] | null // ProjectOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
     }
-    resource: { // args
-      where: NexusGenInputs['ResourceWhereUniqueInput']; // ResourceWhereUniqueInput!
+    resource: {
+      // args
+      where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
     }
-    resources: { // args
-      cursor?: NexusGenInputs['ResourceWhereUniqueInput'] | null; // ResourceWhereUniqueInput
-      orderBy?: NexusGenInputs['ResourceOrderByInput'][] | null; // [ResourceOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
+    resources: {
+      // args
+      cursor?: NexusGenInputs['ResourceWhereUniqueInput'] | null // ResourceWhereUniqueInput
+      orderBy?: NexusGenInputs['ResourceOrderByInput'][] | null // [ResourceOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
     }
-    resourcesConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null; // ResourceOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
+    resourcesConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null // ResourceOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
     }
-    tag: { // args
-      where: NexusGenInputs['TagWhereUniqueInput']; // TagWhereUniqueInput!
+    tag: {
+      // args
+      where: NexusGenInputs['TagWhereUniqueInput'] // TagWhereUniqueInput!
     }
-    tags: { // args
-      cursor?: NexusGenInputs['TagWhereUniqueInput'] | null; // TagWhereUniqueInput
-      orderBy?: NexusGenInputs['TagOrderByInput'][] | null; // [TagOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['TagWhereInput'] | null; // TagWhereInput
+    tags: {
+      // args
+      cursor?: NexusGenInputs['TagWhereUniqueInput'] | null // TagWhereUniqueInput
+      orderBy?: NexusGenInputs['TagOrderByInput'][] | null // [TagOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
     }
-    tagsConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['TagOrderByInput'] | null; // TagOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['TagWhereInput'] | null; // TagWhereInput
+    tagsConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['TagOrderByInput'] | null // TagOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
     }
-    task: { // args
-      where: NexusGenInputs['TaskWhereUniqueInput']; // TaskWhereUniqueInput!
+    task: {
+      // args
+      where: NexusGenInputs['TaskWhereUniqueInput'] // TaskWhereUniqueInput!
     }
-    taskTechnologies: { // args
-      cursor?: NexusGenInputs['TaskTechnologyWhereUniqueInput'] | null; // TaskTechnologyWhereUniqueInput
-      orderBy?: NexusGenInputs['TaskTechnologyOrderByInput'][] | null; // [TaskTechnologyOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['TaskTechnologyWhereInput'] | null; // TaskTechnologyWhereInput
+    taskTechnologies: {
+      // args
+      cursor?: NexusGenInputs['TaskTechnologyWhereUniqueInput'] | null // TaskTechnologyWhereUniqueInput
+      orderBy?: NexusGenInputs['TaskTechnologyOrderByInput'][] | null // [TaskTechnologyOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['TaskTechnologyWhereInput'] | null // TaskTechnologyWhereInput
     }
-    taskTechnology: { // args
-      where: NexusGenInputs['TaskTechnologyWhereUniqueInput']; // TaskTechnologyWhereUniqueInput!
+    taskTechnology: {
+      // args
+      where: NexusGenInputs['TaskTechnologyWhereUniqueInput'] // TaskTechnologyWhereUniqueInput!
     }
-    taskTechnologysCount: { // args
-      where?: NexusGenInputs['TaskTechnologyWhereInput'] | null; // TaskTechnologyWhereInput
+    taskTechnologysCount: {
+      // args
+      where?: NexusGenInputs['TaskTechnologyWhereInput'] | null // TaskTechnologyWhereInput
     }
-    tasks: { // args
-      cursor?: NexusGenInputs['TaskWhereUniqueInput'] | null; // TaskWhereUniqueInput
-      orderBy?: NexusGenInputs['TaskOrderByInput'][] | null; // [TaskOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
+    tasks: {
+      // args
+      cursor?: NexusGenInputs['TaskWhereUniqueInput'] | null // TaskWhereUniqueInput
+      orderBy?: NexusGenInputs['TaskOrderByInput'][] | null // [TaskOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
     }
-    tasksConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['TaskOrderByInput'] | null; // TaskOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
+    tasksConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['TaskOrderByInput'] | null // TaskOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
     }
-    tasksCount: { // args
-      where?: NexusGenInputs['TaskWhereInput'] | null; // TaskWhereInput
+    tasksCount: {
+      // args
+      where?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
     }
-    technologies: { // args
-      cursor?: NexusGenInputs['TechnologyWhereUniqueInput'] | null; // TechnologyWhereUniqueInput
-      orderBy?: NexusGenInputs['TechnologyOrderByInput'][] | null; // [TechnologyOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
+    technologies: {
+      // args
+      cursor?: NexusGenInputs['TechnologyWhereUniqueInput'] | null // TechnologyWhereUniqueInput
+      orderBy?: NexusGenInputs['TechnologyOrderByInput'][] | null // [TechnologyOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
     }
-    technologiesConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['TechnologyOrderByInput'] | null; // TechnologyOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
+    technologiesConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['TechnologyOrderByInput'] | null // TechnologyOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
     }
-    technology: { // args
-      where: NexusGenInputs['TechnologyWhereUniqueInput']; // TechnologyWhereUniqueInput!
+    technology: {
+      // args
+      where: NexusGenInputs['TechnologyWhereUniqueInput'] // TechnologyWhereUniqueInput!
     }
-    technologysCount: { // args
-      where?: NexusGenInputs['TechnologyWhereInput'] | null; // TechnologyWhereInput
+    technologysCount: {
+      // args
+      where?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
     }
-    timer: { // args
-      where: NexusGenInputs['TimerWhereUniqueInput']; // TimerWhereUniqueInput!
+    timer: {
+      // args
+      where: NexusGenInputs['TimerWhereUniqueInput'] // TimerWhereUniqueInput!
     }
-    timers: { // args
-      cursor?: NexusGenInputs['TimerWhereUniqueInput'] | null; // TimerWhereUniqueInput
-      orderBy?: NexusGenInputs['TimerOrderByInput'][] | null; // [TimerOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['TimerWhereInput'] | null; // TimerWhereInput
+    timers: {
+      // args
+      cursor?: NexusGenInputs['TimerWhereUniqueInput'] | null // TimerWhereUniqueInput
+      orderBy?: NexusGenInputs['TimerOrderByInput'][] | null // [TimerOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
     }
-    timersConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['TimerOrderByInput'] | null; // TimerOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['TimerWhereInput'] | null; // TimerWhereInput
+    timersConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['TimerOrderByInput'] | null // TimerOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
     }
-    user: { // args
-      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    user: {
+      // args
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
     }
-    userTechnologies: { // args
-      cursor?: NexusGenInputs['UserTechnologyWhereUniqueInput'] | null; // UserTechnologyWhereUniqueInput
-      orderBy?: NexusGenInputs['UserTechnologyOrderByInput'][] | null; // [UserTechnologyOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['UserTechnologyWhereInput'] | null; // UserTechnologyWhereInput
+    userTechnologies: {
+      // args
+      cursor?: NexusGenInputs['UserTechnologyWhereUniqueInput'] | null // UserTechnologyWhereUniqueInput
+      orderBy?: NexusGenInputs['UserTechnologyOrderByInput'][] | null // [UserTechnologyOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['UserTechnologyWhereInput'] | null // UserTechnologyWhereInput
     }
-    userTechnology: { // args
-      where: NexusGenInputs['UserTechnologyWhereUniqueInput']; // UserTechnologyWhereUniqueInput!
+    userTechnology: {
+      // args
+      where: NexusGenInputs['UserTechnologyWhereUniqueInput'] // UserTechnologyWhereUniqueInput!
     }
-    userTechnologysCount: { // args
-      where?: NexusGenInputs['UserTechnologyWhereInput'] | null; // UserTechnologyWhereInput
+    userTechnologysCount: {
+      // args
+      where?: NexusGenInputs['UserTechnologyWhereInput'] | null // UserTechnologyWhereInput
     }
-    users: { // args
-      cursor?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-      orderBy?: NexusGenInputs['UserOrderByInput'][] | null; // [UserOrderByInput!]
-      skip?: number | null; // Int
-      take?: number | null; // Int
-      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    users: {
+      // args
+      cursor?: NexusGenInputs['UserWhereUniqueInput'] | null // UserWhereUniqueInput
+      orderBy?: NexusGenInputs['UserOrderByInput'][] | null // [UserOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     }
-    usersConnection: { // args
-      first?: number | null; // Int
-      orderBy?: NexusGenInputs['UserOrderByInput'] | null; // UserOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    usersConnection: {
+      // args
+      first?: number | null // Int
+      orderBy?: NexusGenInputs['UserOrderByInput'] | null // UserOrderByInput
+      skip?: number | null // Int
+      where?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     }
-    usersCount: { // args
-      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    usersCount: {
+      // args
+      where?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     }
   }
   Resource: {
-    Comments: { // args
-      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null; // ResourceOrderByInput
+    Comments: {
+      // args
+      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null // ResourceOrderByInput
     }
   }
   Task: {
-    Comments: { // args
-      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null; // ResourceOrderByInput
-      where?: NexusGenInputs['ResourceWhereInput'] | null; // ResourceWhereInput
+    Comments: {
+      // args
+      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null // ResourceOrderByInput
+      where?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
     }
-    Timers: { // args
-      orderBy?: NexusGenInputs['TimerOrderByInput'] | null; // TimerOrderByInput
-      where?: NexusGenInputs['TimerWhereInput'] | null; // TimerWhereInput
+    Timers: {
+      // args
+      orderBy?: NexusGenInputs['TimerOrderByInput'] | null // TimerOrderByInput
+      where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
     }
   }
   User: {
-    Timers: { // args
-      first?: number | null; // Int
-      where?: NexusGenInputs['TimerWhereInput'] | null; // TimerWhereInput
+    Timers: {
+      // args
+      first?: number | null // Int
+      where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
     }
   }
 }
 
-export interface NexusGenAbstractTypeMembers {
-}
+export interface NexusGenAbstractTypeMembers {}
 
-export interface NexusGenTypeInterfaces {
-}
+export interface NexusGenTypeInterfaces {}
 
-export type NexusGenObjectNames = keyof NexusGenObjects;
+export type NexusGenObjectNames = keyof NexusGenObjects
 
-export type NexusGenInputNames = keyof NexusGenInputs;
+export type NexusGenInputNames = keyof NexusGenInputs
 
-export type NexusGenEnumNames = keyof NexusGenEnums;
+export type NexusGenEnumNames = keyof NexusGenEnums
 
-export type NexusGenInterfaceNames = never;
+export type NexusGenInterfaceNames = never
 
-export type NexusGenScalarNames = keyof NexusGenScalars;
+export type NexusGenScalarNames = keyof NexusGenScalars
 
-export type NexusGenUnionNames = never;
+export type NexusGenUnionNames = never
 
-export type NexusGenObjectsUsingAbstractStrategyIsTypeOf = never;
+export type NexusGenObjectsUsingAbstractStrategyIsTypeOf = never
 
-export type NexusGenAbstractsUsingStrategyResolveType = never;
+export type NexusGenAbstractsUsingStrategyResolveType = never
 
 export type NexusGenFeaturesConfig = {
   abstractTypeStrategies: {
@@ -3948,43 +4747,52 @@ export type NexusGenFeaturesConfig = {
 }
 
 export interface NexusGenTypes {
-  context: PrismaContext;
-  inputTypes: NexusGenInputs;
-  rootTypes: NexusGenRootTypes;
-  inputTypeShapes: NexusGenInputs & NexusGenEnums & NexusGenScalars;
-  argTypes: NexusGenArgTypes;
-  fieldTypes: NexusGenFieldTypes;
-  fieldTypeNames: NexusGenFieldTypeNames;
-  allTypes: NexusGenAllTypes;
-  typeInterfaces: NexusGenTypeInterfaces;
-  objectNames: NexusGenObjectNames;
-  inputNames: NexusGenInputNames;
-  enumNames: NexusGenEnumNames;
-  interfaceNames: NexusGenInterfaceNames;
-  scalarNames: NexusGenScalarNames;
-  unionNames: NexusGenUnionNames;
-  allInputTypes: NexusGenTypes['inputNames'] | NexusGenTypes['enumNames'] | NexusGenTypes['scalarNames'];
-  allOutputTypes: NexusGenTypes['objectNames'] | NexusGenTypes['enumNames'] | NexusGenTypes['unionNames'] | NexusGenTypes['interfaceNames'] | NexusGenTypes['scalarNames'];
-  allNamedTypes: NexusGenTypes['allInputTypes'] | NexusGenTypes['allOutputTypes']
-  abstractTypes: NexusGenTypes['interfaceNames'] | NexusGenTypes['unionNames'];
-  abstractTypeMembers: NexusGenAbstractTypeMembers;
-  objectsUsingAbstractStrategyIsTypeOf: NexusGenObjectsUsingAbstractStrategyIsTypeOf;
-  abstractsUsingStrategyResolveType: NexusGenAbstractsUsingStrategyResolveType;
-  features: NexusGenFeaturesConfig;
+  context: PrismaContext
+  inputTypes: NexusGenInputs
+  rootTypes: NexusGenRootTypes
+  inputTypeShapes: NexusGenInputs & NexusGenEnums & NexusGenScalars
+  argTypes: NexusGenArgTypes
+  fieldTypes: NexusGenFieldTypes
+  fieldTypeNames: NexusGenFieldTypeNames
+  allTypes: NexusGenAllTypes
+  typeInterfaces: NexusGenTypeInterfaces
+  objectNames: NexusGenObjectNames
+  inputNames: NexusGenInputNames
+  enumNames: NexusGenEnumNames
+  interfaceNames: NexusGenInterfaceNames
+  scalarNames: NexusGenScalarNames
+  unionNames: NexusGenUnionNames
+  allInputTypes:
+    | NexusGenTypes['inputNames']
+    | NexusGenTypes['enumNames']
+    | NexusGenTypes['scalarNames']
+  allOutputTypes:
+    | NexusGenTypes['objectNames']
+    | NexusGenTypes['enumNames']
+    | NexusGenTypes['unionNames']
+    | NexusGenTypes['interfaceNames']
+    | NexusGenTypes['scalarNames']
+  allNamedTypes:
+    | NexusGenTypes['allInputTypes']
+    | NexusGenTypes['allOutputTypes']
+  abstractTypes: NexusGenTypes['interfaceNames'] | NexusGenTypes['unionNames']
+  abstractTypeMembers: NexusGenAbstractTypeMembers
+  objectsUsingAbstractStrategyIsTypeOf: NexusGenObjectsUsingAbstractStrategyIsTypeOf
+  abstractsUsingStrategyResolveType: NexusGenAbstractsUsingStrategyResolveType
+  features: NexusGenFeaturesConfig
 }
 
-
 declare global {
-  interface NexusGenPluginTypeConfig<TypeName extends string> {
-  }
-  interface NexusGenPluginInputTypeConfig<TypeName extends string> {
-  }
-  interface NexusGenPluginFieldConfig<TypeName extends string, FieldName extends string> {
-  }
-  interface NexusGenPluginInputFieldConfig<TypeName extends string, FieldName extends string> {
-  }
-  interface NexusGenPluginSchemaConfig {
-  }
-  interface NexusGenPluginArgConfig {
-  }
+  interface NexusGenPluginTypeConfig<TypeName extends string> {}
+  interface NexusGenPluginInputTypeConfig<TypeName extends string> {}
+  interface NexusGenPluginFieldConfig<
+    TypeName extends string,
+    FieldName extends string
+  > {}
+  interface NexusGenPluginInputFieldConfig<
+    TypeName extends string,
+    FieldName extends string
+  > {}
+  interface NexusGenPluginSchemaConfig {}
+  interface NexusGenPluginArgConfig {}
 }

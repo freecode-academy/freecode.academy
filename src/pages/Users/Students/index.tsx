@@ -17,7 +17,9 @@ const first = 10
 
 const defaultVariables: UsersConnectionQueryVariables = {
   where: {
-    CodeChallengeCompletions_some: {},
+    CodeChallengeCompletion: {
+      some: {},
+    },
   },
   first,
 }

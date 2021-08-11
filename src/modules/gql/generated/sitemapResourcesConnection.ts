@@ -19,7 +19,7 @@ export type SitemapResourcesConnectionQueryVariables = Types.Exact<{
 }>;
 
 
-export type SitemapResourcesConnectionQuery = { __typename?: 'Query', resourcesConnection: { __typename?: 'ResourceConnection', aggregate: { __typename?: 'AggregateResource', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ResourceEdge', node: { __typename?: 'Resource', id: string, type?: Types.Maybe<Types.ResourceType>, uri?: Types.Maybe<string>, updatedAt: globalThis.Date } }>> } };
+export type SitemapResourcesConnectionQuery = { __typename?: 'Query', resourcesConnection: { __typename?: 'ResourceConnection', aggregate: { __typename?: 'AggregateResource', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ResourceEdge', node: { __typename?: 'Resource', id: string, type?: Types.Maybe<Types.ResourceType>, uri: string, updatedAt: globalThis.Date } }>> } };
 
 
 export const SitemapResourcesConnectionDocument = gql`

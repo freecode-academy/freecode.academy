@@ -322,6 +322,13 @@ export const UserUpdateInput = inputObjectType({
   name: 'UserUpdateInput',
   definition(t) {
     t.string('username')
+    t.string('phone')
+    t.string('fullname')
+    t.string('image')
+    t.string('address')
+    t.boolean('acceptChatMessageAnonymous')
+    t.boolean('acceptNewChatRoomAnonymous')
+    t.boolean('acceptNewChatRoom')
   },
 })
 
@@ -335,6 +342,15 @@ export const UserResponse = objectType({
     })
     t.field('data', {
       type: 'User',
+    })
+  },
+})
+
+export const UserCreateOneInput = inputObjectType({
+  name: 'UserCreateOneInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'UserWhereUniqueInput',
     })
   },
 })

@@ -13,13 +13,6 @@ const MainMenuTimer: React.FC<MainMenuTimerProps> = ({ className, timer }) => {
 
   const { Task, stopedAt } = timer
 
-  const { name, TaskProjects } = Task
-
-  const Project =
-    TaskProjects && TaskProjects.length ? TaskProjects[0].Project : null
-
-  const projectName = Project?.name
-
   const [stopTimerMutation, { loading }] = useUpdateTimerProcessorMutation()
 
   // console.log('loading', loading);
@@ -50,6 +43,17 @@ const MainMenuTimer: React.FC<MainMenuTimerProps> = ({ className, timer }) => {
 
     // setInRequest(false);
   }, [stopTimerMutation, timer.id])
+
+  if (!Task) {
+    return null
+  }
+
+  const { name, TaskProjects } = Task
+
+  const Project =
+    TaskProjects && TaskProjects.length ? TaskProjects[0].Project : null
+
+  const projectName = Project?.name
 
   return !stopedAt ? (
     <IconButton

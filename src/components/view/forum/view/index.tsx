@@ -104,7 +104,9 @@ export class ForumView<
 
     // const { tag: activeTag } = where || {}
 
-    const activeTag = variables?.where?.Tags_some?.Tag
+    // const activeTag = variables?.where?.Tags_some?.Tag
+    // TODO Check relation
+    const activeTag = variables?.where?.ResourceTag?.some?.Tag
 
     return [
       {
@@ -118,8 +120,12 @@ export class ForumView<
           const tagsList: JSX.Element[] = []
 
           Tags &&
-            Tags.map((tag) => {
+            Tags.forEach((tag) => {
               const { Tag } = tag
+
+              if (!Tag) {
+                return
+              }
 
               const { id, name } = Tag
 
@@ -129,7 +135,9 @@ export class ForumView<
                   object={Tag}
                   color="textSecondary"
                   className={[classes?.tag].join(' ')}
-                  textClassName={[activeTag === name ? 'active' : ''].join(' ')}
+                  textClassName={[
+                    activeTag?.equals === name ? 'active' : '',
+                  ].join(' ')}
                 />
               )
             })
@@ -175,11 +183,19 @@ export class ForumView<
 
           const { CreatedBy, Comments } = record
 
+          if (!CreatedBy) {
+            return
+          }
+
           const limit = 5
 
           Comments &&
-            Comments.map((n) => {
+            Comments.forEach((n) => {
               const { CreatedBy } = n
+
+              if (!CreatedBy) {
+                return
+              }
 
               if (
                 users.length >= limit ||
@@ -258,7 +274,7 @@ export class ForumView<
 
 export { customStyles as styles, ForumView as TableView }
 
-export default withStyles(customStyles)((props: ForumViewProps) => {
+export default withStyles<any>(customStyles)((props: ForumViewProps) => {
   const router = useRouter()
 
   const addObject = useCallback(() => {

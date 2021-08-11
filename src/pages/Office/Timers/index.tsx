@@ -3,7 +3,7 @@ import {
   TimersConnectionQueryVariables,
   useTimersConnectionQuery,
   TimersConnectionTimerFragment,
-  TimerOrderByInput,
+  SortOrder,
 } from 'src/modules/gql/generated'
 
 import moment from 'moment'
@@ -27,19 +27,26 @@ const OfficeTimersPage: Page = () => {
   const [currentUserOnly, setCurrentUserOnly] = useState(true)
 
   const variables = useMemo<TimersConnectionQueryVariables>(() => {
-    return {
-      orderBy: TimerOrderByInput.CREATEDAT_DESC,
+    const where: TimersConnectionQueryVariables = {
+      orderBy: {
+        createdAt: SortOrder.DESC,
+      },
       where: {
-        createdAt_lte: moment(`${date.format('YYYY-MM-DD')}T23:59:59`).toDate(),
-        createdAt_gte: moment(`${date.format('YYYY-MM-DD')}T00:00:00`).toDate(),
-        CreatedBy:
-          currentUserOnly && user
-            ? {
-                id: user.id,
-              }
-            : undefined,
+        createdAt: {
+          lte: moment(`${date.format('YYYY-MM-DD')}T23:59:59`).toDate(),
+          gte: moment(`${date.format('YYYY-MM-DD')}T00:00:00`).toDate(),
+        },
+        // CreatedBy:
+        //   currentUserOnly && user
+        //     ? {
+        //         id: user.id,
+        //       }
+        //     : undefined,
+        CreatedBy: currentUserOnly && user ? { equals: user.id } : undefined,
       },
     }
+
+    return where
   }, [user, currentUserOnly, date])
 
   const response = useTimersConnectionQuery({

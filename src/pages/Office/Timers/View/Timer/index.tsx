@@ -5,6 +5,7 @@ import moment from 'moment'
 
 // TODO Надо создать самостоятельный компонент, так как возникают коллизии со свойствами объекта
 import OfficeProjectPageViewTask from 'src/pages/Office/Projects/Project/View/Tasks/Task'
+import { OfficeProjectPageViewTaskProps } from 'src/pages/Office/Projects/Project/View/Tasks/Task/interfaces'
 
 const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({
   timer,
@@ -24,12 +25,26 @@ const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({
     )
   }, [timer.createdAt, timer.stopedAt])
 
+  const projects = useMemo(() => {
+    const projects: OfficeProjectPageViewTaskProps['projects'] = []
+
+    timer.Task?.TaskProjects?.forEach((n) => {
+      n.Project && projects.push(n.Project)
+    })
+
+    return projects
+  }, [timer.Task?.TaskProjects])
+
   return useMemo(() => {
+    if (!timer.Task) {
+      return null
+    }
+
     return (
       <>
         <OfficeProjectPageViewTask
           task={timer.Task}
-          projects={timer.Task.TaskProjects?.map((n) => n.Project) || []}
+          projects={projects}
           activeTimer={!timer.stopedAt ? timer : null}
           info={info}
           filterByProject={filterByProject}
@@ -37,7 +52,7 @@ const OfficeTimersTimer: React.FC<OfficeTimersTimerProps> = ({
         />
       </>
     )
-  }, [timer, info, filterByProject])
+  }, [timer, projects, info, filterByProject])
 }
 
 export default OfficeTimersTimer

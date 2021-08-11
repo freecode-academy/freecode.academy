@@ -31,6 +31,6 @@ export class TaskLink extends Component<TaskLinkProps> {
   }
 }
 
-export default withStyles(styles)((props: TaskLinkProps) => (
+export default withStyles<any>(styles)((props: TaskLinkProps) => (
   <TaskLink {...props} />
 ))

@@ -41,13 +41,19 @@ class TagsView<
         label: 'Ресурсы',
         renderer: (value: CC['Resources']) => {
           const items =
-            value?.map((n) => (
-              <Grid key={n.id} item>
-                <Link href={n.Resource.uri}>
-                  <a title={n.Resource.name || ''}>{n.Resource.name}</a>
-                </Link>
-              </Grid>
-            )) ?? []
+            value?.map((n) => {
+              if (!n.Resource) {
+                return null
+              }
+
+              return (
+                <Grid key={n.id} item>
+                  <Link href={n.Resource.uri}>
+                    <a title={n.Resource.name || ''}>{n.Resource.name}</a>
+                  </Link>
+                </Grid>
+              )
+            }) ?? []
 
           return (
             <Grid container spacing={8}>
@@ -68,6 +74,6 @@ class TagsView<
   }
 }
 
-export default withStyles(styles)((props: TagsViewProps) => (
+export default withStyles<any>(styles)((props: TagsViewProps) => (
   <TagsView {...props} />
 ))

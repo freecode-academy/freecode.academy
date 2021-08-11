@@ -35,9 +35,11 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
     return objects?.map((n) => {
       return (
         <GridTableItemStyled key={n.id}>
-          <GridTableAttributeStyled>
-            <TechnologyLink object={n.Technology} />
-          </GridTableAttributeStyled>
+          {n.Technology ? (
+            <GridTableAttributeStyled>
+              <TechnologyLink object={n.Technology} />
+            </GridTableAttributeStyled>
+          ) : null}
 
           <GridTableAttributeStyled>
             <UserTechnologyLevel

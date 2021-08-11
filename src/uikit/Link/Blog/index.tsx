@@ -72,7 +72,9 @@ export class BlogLink extends Component<BlogLinkProps> {
 
     const name_str = name || id || ''
 
-    return (
+    const text = children || name_str
+
+    return uri ? (
       <Link
         href={uri}
         title={longtitle || name_str}
@@ -82,12 +84,14 @@ export class BlogLink extends Component<BlogLinkProps> {
         )}
         {...other}
       >
-        {children || name_str}
+        {text}
       </Link>
+    ) : (
+      text
     )
   }
 }
 
-export default withStyles(styles)((props: BlogLinkProps) => (
+export default withStyles<any>(styles)((props: BlogLinkProps) => (
   <BlogLink {...props} />
 ))

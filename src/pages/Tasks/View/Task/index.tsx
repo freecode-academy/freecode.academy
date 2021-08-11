@@ -63,12 +63,16 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
       return null
     }
 
-    const technologies = object.TaskTechnologies?.map((n) => (
-      <span key={n.id}>
-        <TechnologyLink object={n.Technology} />{' '}
-        {n.level ? <span title={'Требуемый уровень'}>({n.level})</span> : null}
-      </span>
-    )).reduce<React.ReactNode[]>(
+    const technologies = object.TaskTechnologies?.map((n) =>
+      n.Technology ? (
+        <span key={n.id}>
+          <TechnologyLink object={n.Technology} />{' '}
+          {n.level ? (
+            <span title={'Требуемый уровень'}>({n.level})</span>
+          ) : null}
+        </span>
+      ) : null
+    ).reduce<React.ReactNode[]>(
       (curr, next) => (curr.length ? [curr, ', ', next] : [next]),
       []
     )

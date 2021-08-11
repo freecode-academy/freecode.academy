@@ -133,7 +133,14 @@ export const TimerResponse = objectType({
 export const TimerCreateInput = inputObjectType({
   name: 'TimerCreateInput',
   definition(t) {
+    t.id('id')
     t.date('stopedAt')
+    // t.field("CreatedBy", {
+    //   type: "UserCreateOneWithoutTimersInput",
+    // })
+    t.field('Task', {
+      type: 'TaskCreateOneWithoutTimersInput',
+    })
   },
 })
 
@@ -141,6 +148,30 @@ export const TimerUpdateInput = inputObjectType({
   name: 'TimerUpdateInput',
   definition(t) {
     t.date('stopedAt')
+    // t.field("CreatedBy", {
+    //   type: "UserCreateOneWithoutTimersInput",
+    // })
+    t.field('Task', {
+      type: 'TaskCreateOneWithoutTimersInput',
+    })
+  },
+})
+
+// export const UserCreateOneWithoutTimersInput = inputObjectType({
+//   name: "UserCreateOneWithoutTimersInput",
+//   definition(t) {
+//     t.field("connect", {
+//       type: "UserWhereUniqueInput",
+//     })
+//   }
+// })
+
+export const TaskCreateOneWithoutTimersInput = inputObjectType({
+  name: 'TaskCreateOneWithoutTimersInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'TaskWhereUniqueInput',
+    })
   },
 })
 
@@ -168,6 +199,25 @@ export const TimerConnection = objectType({
     })
     t.nonNull.field('aggregate', {
       type: 'AggregateTimer',
+    })
+  },
+})
+
+export const TimerUpdateManyDataInput = inputObjectType({
+  name: 'TimerUpdateManyDataInput',
+  definition(t) {
+    t.date('stopedAt')
+  },
+})
+
+export const TimerUpdateManyWithWhereNestedInput = inputObjectType({
+  name: 'TimerUpdateManyWithWhereNestedInput',
+  definition(t) {
+    t.nonNull.field('where', {
+      type: 'TimerWhereInput',
+    })
+    t.nonNull.field('data', {
+      type: 'TimerUpdateManyDataInput',
     })
   },
 })

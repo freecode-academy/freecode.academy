@@ -6,11 +6,11 @@ import TaskTechnologyRowView from './TaskTechnologyRowView'
 
 const TaskTechnologyRow: React.FC<TaskTechnologyRowProps> = ({ object }) => {
   const technology = useMemo(() => {
-    return (
+    return object.Technology ? (
       <>
         <TechnologyLink object={object.Technology} />
       </>
-    )
+    ) : null
   }, [object.Technology])
 
   return useMemo(() => {

@@ -7,7 +7,7 @@ export type AutocompleteProps = Partial<ReactAutocompleteProps> & {
   classes?: Record<string, any>
   items: AutocompleteItem[]
   value: string
-  // onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void
+  // onChange: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void
   // onSelect: () => void,
   onDelete?: () => void
   viewHandler?: () => void

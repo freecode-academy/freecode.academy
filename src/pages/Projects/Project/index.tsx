@@ -18,7 +18,9 @@ const getProjectVariables = (router: NextRouter | NextPageContextCustom) => {
 
   if (id && typeof id === 'string') {
     variables.where = {
-      id,
+      id: {
+        equals: id,
+      },
     }
   } else {
     const uri = new URL(
@@ -30,13 +32,27 @@ const getProjectVariables = (router: NextRouter | NextPageContextCustom) => {
 
     if (pathname && pathname !== '/') {
       variables.where = {
-        Resource: {
+        // Resource: {
+        //   OR: [
+        //     {
+        //       uri: pathname,
+        //     },
+        //     {
+        //       uri: pathname + '/',
+        //     },
+        //   ],
+        // },
+        Resource_Project_ResourceToResource: {
           OR: [
             {
-              uri: pathname,
+              uri: {
+                equals: pathname,
+              },
             },
             {
-              uri: pathname + '/',
+              uri: {
+                equals: pathname + '/',
+              },
             },
           ],
         },

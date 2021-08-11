@@ -145,6 +145,6 @@ class ObjectsListView<
 // export { customStyles as styles, ObjectsListView as TableView }
 export { customStyles as styles, ObjectsListView }
 
-export default withStyles(customStyles)((props: ObjectsListViewProps) => (
+export default withStyles<any>(customStyles)((props: ObjectsListViewProps) => (
   <ObjectsListView {...props} />
 ))

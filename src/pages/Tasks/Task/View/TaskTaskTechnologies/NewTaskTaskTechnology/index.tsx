@@ -2,8 +2,8 @@ import React, { useCallback, useMemo } from 'react'
 import Button from 'material-ui/Button'
 import {
   CreateTaskTechnologyProcessorMutationVariables,
+  SortOrder,
   TechnologiesConnectionTechnologyFragment,
-  TechnologyOrderByInput,
   useCreateTaskTechnologyProcessorMutation,
   useTechnologiesConnectionQuery,
 } from 'src/modules/gql/generated'
@@ -32,7 +32,9 @@ const NewTaskTaskTechnology: React.FC<NewTaskTaskTechnologyProps> = ({
 
   const technologiesConnection = useTechnologiesConnectionQuery({
     variables: {
-      orderBy: TechnologyOrderByInput.NAME_ASC,
+      orderBy: {
+        name: SortOrder.ASC,
+      },
     },
   })
 

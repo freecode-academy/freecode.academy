@@ -7,7 +7,7 @@ import { PrismaCmsComponentError } from '@prisma-cms/component'
 import Snackbar from '@prisma-cms/component/dist/components/Snackbar'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import { useCallback, useContext, useMemo, useState } from 'react'
-import { Error as ResponseError } from 'src/modules/gql/generated'
+import { RequestError as ResponseError } from 'src/modules/gql/generated'
 
 /**
  * Хук на обновление с обработчиком ошибок.

@@ -22,9 +22,16 @@ export const getTagTopicsVariables = (
 
   return {
     ...getTopicsVariables(router, {
-      Tags_some: {
-        Tag: {
-          id: tagId,
+      // Tags_some: {
+      //   Tag: {
+      //     id: tagId,
+      //   },
+      // },
+      ResourceTag: {
+        some: {
+          id: {
+            equals: tagId,
+          },
         },
       },
     }),

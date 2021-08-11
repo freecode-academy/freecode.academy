@@ -236,6 +236,6 @@ class TimerView extends EditableView<TimerViewProps> {
   }
 }
 
-export default withStyles(styles)((props: TimerViewProps) => (
+export default withStyles<any>(styles)((props: TimerViewProps) => (
   <TimerView {...props} />
 ))

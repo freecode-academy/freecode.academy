@@ -26,7 +26,7 @@ export interface UikitCommentObject extends UikitCommentLinkObject {
   content?: Resource['content']
   components?: Resource['components']
 
-  CreatedBy?: UikitCommentObjectUser
+  CreatedBy?: UikitCommentObjectUser | null
 
   Task?: Maybe<TaskNoNestingFragment>
 }

@@ -266,8 +266,8 @@ export interface ChatRoom {
 }
 
 export interface ChatRoomCreateOneWithoutMessagesInput {
-  ID?: Maybe<Scalars['ID']>;
   connect?: Maybe<ChatRoomWhereUniqueInput>;
+  to?: Maybe<Scalars['ID']>;
 }
 
 export interface ChatRoomInvitation {
@@ -516,6 +516,10 @@ export interface CodeChallengeCreateOneWithoutCompletionsInput {
   connect?: Maybe<CodeChallengeWhereUniqueInput>;
 }
 
+export interface CodeChallengeCreateOneWithoutTopicInput {
+  connect?: Maybe<CodeChallengeWhereUniqueInput>;
+}
+
 export interface CodeChallengeListRelationFilter {
   every?: Maybe<CodeChallengeWhereInput>;
   none?: Maybe<CodeChallengeWhereInput>;
@@ -599,8 +603,11 @@ export interface CodeChallengeWhereUniqueInput {
 }
 
 export interface CommentCreateInput {
+  Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
+  components?: Maybe<Scalars['JSON']>;
   content?: Maybe<Scalars['JSON']>;
   text?: Maybe<Scalars['JSON']>;
+  topicID?: Maybe<Scalars['ID']>;
 }
 
 export interface CommentListRelationFilter {
@@ -610,8 +617,8 @@ export interface CommentListRelationFilter {
 }
 
 export interface CommentUpdateInput {
+  components?: Maybe<Scalars['JSON']>;
   content?: Maybe<Scalars['JSON']>;
-  text?: Maybe<Scalars['JSON']>;
 }
 
 export interface CommentWhereInput {
@@ -1612,6 +1619,10 @@ export interface ProjectCreateInput {
   name: Scalars['String'];
 }
 
+export interface ProjectCreateOneWithoutProjectTasksInput {
+  connect?: Maybe<ProjectWhereUniqueInput>;
+}
+
 export interface ProjectEdge {
   __typename?: 'ProjectEdge';
   node: Project;
@@ -2310,7 +2321,7 @@ export interface Resource {
   template?: Maybe<Scalars['Int']>;
   type?: Maybe<ResourceType>;
   updatedAt: Scalars['DateTime'];
-  uri?: Maybe<Scalars['String']>;
+  uri: Scalars['String'];
 }
 
 
@@ -2479,7 +2490,7 @@ export interface ResourceWhereInput {
   template?: Maybe<IntNullableFilter>;
   type?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
-  uri?: Maybe<StringNullableFilter>;
+  uri?: Maybe<StringFilter>;
 }
 
 export interface ResourceWhereUniqueInput {
@@ -2487,6 +2498,7 @@ export interface ResourceWhereUniqueInput {
   commentOldID?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   oldID?: Maybe<Scalars['Int']>;
+  uri?: Maybe<Scalars['String']>;
 }
 
 export interface RouteListRelationFilter {
@@ -2740,6 +2752,7 @@ export interface TagWhereInput {
 
 export interface TagWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 }
 
 export interface Task {
@@ -2784,7 +2797,29 @@ export interface TaskConnection {
 }
 
 export interface TaskCreateInput {
+  Project?: Maybe<ProjectCreateOneWithoutProjectTasksInput>;
+  content?: Maybe<Scalars['JSON']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['ID']>;
   name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+}
+
+export interface TaskCreateOneWithoutCommentsInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+}
+
+export interface TaskCreateOneWithoutTaskTechnologiesInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+}
+
+export interface TaskCreateOneWithoutTimersInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
 }
 
 export interface TaskEdge {
@@ -2903,6 +2938,9 @@ export interface TaskTechnology {
 }
 
 export interface TaskTechnologyCreateInput {
+  Task: TaskCreateOneWithoutTaskTechnologiesInput;
+  Technology: TechnologyCreateOneWithoutTaskTechnologiesInput;
+  id?: Maybe<Scalars['ID']>;
   level?: Maybe<Scalars['UserTechnologyLevel']>;
 }
 
@@ -2931,6 +2969,8 @@ export interface TaskTechnologyResponse {
 }
 
 export interface TaskTechnologyUpdateInput {
+  Task: TaskCreateOneWithoutTaskTechnologiesInput;
+  Technology: TechnologyCreateOneWithoutTaskTechnologiesInput;
   level?: Maybe<Scalars['UserTechnologyLevel']>;
 }
 
@@ -2955,7 +2995,16 @@ export interface TaskTechnologyWhereUniqueInput {
 }
 
 export interface TaskUpdateInput {
+  Timers?: Maybe<TimerUpdateManyWithoutTaskInput>;
+  content?: Maybe<Scalars['JSON']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
+  needHelp?: Maybe<Scalars['Boolean']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
 }
 
 export interface TaskWhereInput {
@@ -3068,6 +3117,14 @@ export interface TechnologyConnection {
   __typename?: 'TechnologyConnection';
   aggregate: AggregateTechnology;
   edges: Array<Maybe<TechnologyEdge>>;
+}
+
+export interface TechnologyCreateOneWithoutTaskTechnologiesInput {
+  connect?: Maybe<TechnologyWhereUniqueInput>;
+}
+
+export interface TechnologyCreateOneWithoutUserTechnologiesInput {
+  connect?: Maybe<TechnologyWhereUniqueInput>;
 }
 
 export interface TechnologyEdge {
@@ -3227,6 +3284,8 @@ export interface TimerConnection {
 }
 
 export interface TimerCreateInput {
+  Task?: Maybe<TaskCreateOneWithoutTimersInput>;
+  id?: Maybe<Scalars['ID']>;
   stopedAt?: Maybe<Scalars['DateTime']>;
 }
 
@@ -3259,7 +3318,21 @@ export interface TimerResponse {
 }
 
 export interface TimerUpdateInput {
+  Task?: Maybe<TaskCreateOneWithoutTimersInput>;
   stopedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TimerUpdateManyDataInput {
+  stopedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TimerUpdateManyWithWhereNestedInput {
+  data: TimerUpdateManyDataInput;
+  where: TimerWhereInput;
+}
+
+export interface TimerUpdateManyWithoutTaskInput {
+  updateMany?: Maybe<Array<TimerUpdateManyWithWhereNestedInput>>;
 }
 
 export interface TimerWhereInput {
@@ -3298,13 +3371,25 @@ export interface TokenWhereInput {
 }
 
 export interface TopicCreateInput {
+  CodeChallenge?: Maybe<CodeChallengeCreateOneWithoutTopicInput>;
+  blogID?: Maybe<Scalars['ID']>;
+  components?: Maybe<Scalars['JSON']>;
   content?: Maybe<Scalars['JSON']>;
-  text?: Maybe<Scalars['JSON']>;
+  id?: Maybe<Scalars['ID']>;
+  longtitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  published?: Maybe<Scalars['Boolean']>;
+  topic_tags?: Maybe<Array<Scalars['String']>>;
+  uri?: Maybe<Scalars['String']>;
 }
 
 export interface TopicUpdateInput {
+  blogID?: Maybe<Scalars['ID']>;
+  components?: Maybe<Scalars['JSON']>;
   content?: Maybe<Scalars['JSON']>;
-  text?: Maybe<Scalars['JSON']>;
+  longtitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  published?: Maybe<Scalars['Boolean']>;
 }
 
 export interface TournamentGroupListRelationFilter {
@@ -3443,6 +3528,10 @@ export interface UserConnection {
   edges: Array<Maybe<UserEdge>>;
 }
 
+export interface UserCreateOneInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
 export interface UserEdge {
   __typename?: 'UserEdge';
   node: User;
@@ -3536,7 +3625,13 @@ export interface UserTechnology {
 }
 
 export interface UserTechnologyCreateInput {
-  components?: Maybe<Scalars['JSON']>;
+  Technology: TechnologyCreateOneWithoutUserTechnologiesInput;
+  components?: Maybe<Scalars['UserTechnologyLevel']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['ID']>;
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
+  status?: Maybe<UserTechnologyStatus>;
 }
 
 
@@ -3583,7 +3678,12 @@ export enum UserTechnologyStatus {
 }
 
 export interface UserTechnologyUpdateInput {
+  Technology?: Maybe<TechnologyCreateOneWithoutUserTechnologiesInput>;
   components?: Maybe<Scalars['UserTechnologyLevel']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  level?: Maybe<Scalars['UserTechnologyLevel']>;
+  status?: Maybe<UserTechnologyStatus>;
 }
 
 export interface UserTechnologyWhereInput {
@@ -3609,6 +3709,13 @@ export interface UserTechnologyWhereUniqueInput {
 }
 
 export interface UserUpdateInput {
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
 }
 

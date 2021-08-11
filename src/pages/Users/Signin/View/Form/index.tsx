@@ -71,10 +71,10 @@ const SigninForm: React.FC = () => {
       },
     })
       .then((r) => {
-        if (r.data?.signin.data) {
-          context?.onAuthSuccess(r.data.signin)
+        if (r.data?.response.data) {
+          context?.onAuthSuccess(r.data.response)
         } else {
-          alert(r.data?.signin.message || 'Ошибка авторизации')
+          alert(r.data?.response.message || 'Ошибка авторизации')
         }
       })
       .catch((error) => {

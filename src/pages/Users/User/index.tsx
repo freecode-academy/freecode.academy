@@ -22,7 +22,7 @@ function getVariables(router: NextRouter | NextPageContextCustom) {
   }
 }
 
-const UserPage: Page = () => {
+export const UserPage: Page = () => {
   const router = useRouter()
 
   const variables = useMemo(() => {
@@ -69,5 +69,3 @@ UserPage.getInitialProps = async (context) => {
     statusCode: !result.data.object ? 404 : undefined,
   }
 }
-
-export default UserPage

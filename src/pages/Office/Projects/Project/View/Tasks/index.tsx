@@ -117,6 +117,10 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
     const otherTasks: TaskFragment[] = []
 
     project.ProjectTasks?.forEach(({ Task }) => {
+      if (!Task) {
+        return
+      }
+
       switch (Task.status) {
         case TaskStatus.COMPLETED:
         case TaskStatus.DONE:

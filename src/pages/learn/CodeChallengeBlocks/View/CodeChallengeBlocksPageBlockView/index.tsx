@@ -44,7 +44,7 @@ export const CodeChallengeBlocksPageBlockView: React.FC<CodeChallengeBlocksPageB
         const challengesContent = challenges.map((challenge) => {
           const codeChallengeCompletion =
             context.user?.CodeChallengeCompletions?.find(
-              (n) => n.CodeChallenge.id === challenge.id
+              (n) => n.CodeChallenge && n.CodeChallenge.id === challenge.id
             )
 
           return (
@@ -68,7 +68,8 @@ export const CodeChallengeBlocksPageBlockView: React.FC<CodeChallengeBlocksPageB
               {challenges.map((challenge) => {
                 const codeChallengeCompletion =
                   context.user?.CodeChallengeCompletions?.find(
-                    (n) => n.CodeChallenge.id === challenge.id
+                    (n) =>
+                      n.CodeChallenge && n.CodeChallenge.id === challenge.id
                   )
 
                 return (

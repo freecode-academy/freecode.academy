@@ -80,6 +80,6 @@ export class TaskStatus extends PrismaCmsComponent<TaskStatusProps> {
 // После окончательного переноса удалить
 export class TaskStatusItem extends TaskStatus {}
 
-export default withStyles(styles)((props: TaskStatusProps) => (
+export default withStyles<any>(styles)((props: TaskStatusProps) => (
   <TaskStatus {...props} />
 ))

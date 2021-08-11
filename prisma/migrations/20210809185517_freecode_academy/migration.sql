@@ -666,7 +666,7 @@ CREATE TABLE `Resource` (
     `deleted` BOOLEAN NOT NULL,
     `hidemenu` BOOLEAN NOT NULL,
     `searchable` BOOLEAN NOT NULL,
-    `uri` MEDIUMTEXT,
+    `uri` VARCHAR(191) NOT NULL,
     `isfolder` BOOLEAN NOT NULL,
     `rating` DECIMAL(65, 30),
     `positiveVotesCount` INTEGER,
@@ -689,6 +689,7 @@ CREATE TABLE `Resource` (
     `Task` VARCHAR(32),
 
     UNIQUE INDEX `Resource.code_unique`(`code`),
+    UNIQUE INDEX `Resource.uri_unique`(`uri`),
     UNIQUE INDEX `Resource.oldID_unique`(`oldID`),
     UNIQUE INDEX `Resource.commentOldID_unique`(`commentOldID`),
     INDEX `Blog`(`Blog`),
@@ -828,10 +829,11 @@ CREATE TABLE `Tag` (
     `id` VARCHAR(32) NOT NULL,
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-    `name` MEDIUMTEXT NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
     `status` VARCHAR(191) NOT NULL,
     `CreatedBy` VARCHAR(32),
 
+    UNIQUE INDEX `Tag.name_unique`(`name`),
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

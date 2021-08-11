@@ -30,6 +30,10 @@ const MainPageCodeChallengeCompletions: React.FC<MainPageCodeChallengeCompletion
 
             <Slider {...settings}>
               {objects.map((n) => {
+                if (!n.CodeChallenge) {
+                  return null
+                }
+
                 return (
                   <div key={n.id} className="slider--content">
                     <Grid container alignItems="center">

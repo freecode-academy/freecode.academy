@@ -22,7 +22,7 @@ class ProjectsView extends Component<ProjectsViewProps> {
 
   static contextType = Context
 
-  context!: PrismaCmsContext
+  declare context: PrismaCmsContext
 
   // renderFilters() {
   //   const { filters, setFilters } = this.props

@@ -26,26 +26,7 @@ query usersConnection(
 }
 
 fragment usersConnectionUser on User {
-  id
-  createdAt
-  updatedAt
-  username
-  email
-  phone
-  showEmail
-  showPhone
-  # password
-  fullname
-  image
-  address
-  sudo
-  active
-  activated
-  deleted
-  hasEmail
-  hasPhone
-  # marketplaceToken
-  # hidden
+  ...UserNoNesting
   EthAccounts {
     id
     createdAt

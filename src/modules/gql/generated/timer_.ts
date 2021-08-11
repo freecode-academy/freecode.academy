@@ -23,7 +23,7 @@ export type TimerFragment = { __typename?: 'Timer', id: string, createdAt: globa
         { __typename?: 'Project', CreatedBy?: Types.Maybe<(
           { __typename?: 'User' }
           & UserNoNestingFragment
-        )>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, uri?: Types.Maybe<string> }> }
+        )>, Resource?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, uri: string }> }
         & ProjectNoNestingFragment
       )> }>> }
     & TaskNoNestingFragment

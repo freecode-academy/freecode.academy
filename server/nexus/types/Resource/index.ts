@@ -150,7 +150,7 @@ export const Resource = objectType({
     t.nonNull.boolean('hidemenu')
     t.nonNull.boolean('searchable')
     t.nonNull.boolean('isfolder')
-    t.string('uri')
+    t.nonNull.string('uri')
     t.string('class_key')
     t.float('rating')
     t.int('positiveVotesCount')
@@ -314,17 +314,33 @@ export const CommentCreateInput = inputObjectType({
     t.field('content', {
       type: 'JSON',
     })
+    t.field('components', {
+      type: 'JSON',
+    })
+    t.id('topicID')
+    t.field('Task', {
+      type: 'TaskCreateOneWithoutCommentsInput',
+    })
   },
 })
 
 export const CommentUpdateInput = inputObjectType({
   name: 'CommentUpdateInput',
   definition(t) {
-    t.field('text', {
-      type: 'JSON',
-    })
     t.field('content', {
       type: 'JSON',
+    })
+    t.field('components', {
+      type: 'JSON',
+    })
+  },
+})
+
+export const TaskCreateOneWithoutCommentsInput = inputObjectType({
+  name: 'TaskCreateOneWithoutCommentsInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'TaskWhereUniqueInput',
     })
   },
 })
@@ -332,23 +348,48 @@ export const CommentUpdateInput = inputObjectType({
 export const TopicCreateInput = inputObjectType({
   name: 'TopicCreateInput',
   definition(t) {
-    t.field('text', {
-      type: 'JSON',
+    t.id('id')
+    t.string('name', {
+      default: '',
     })
+    t.string('longtitle')
     t.field('content', {
       type: 'JSON',
     })
+    t.field('components', {
+      type: 'JSON',
+    })
+    t.boolean('published')
+    t.list.nonNull.string('topic_tags')
+    t.id('blogID')
+    t.field('CodeChallenge', {
+      type: 'CodeChallengeCreateOneWithoutTopicInput',
+    })
+    t.string('uri')
   },
 })
 
 export const TopicUpdateInput = inputObjectType({
   name: 'TopicUpdateInput',
   definition(t) {
-    t.field('text', {
-      type: 'JSON',
-    })
+    t.string('name')
+    t.string('longtitle')
     t.field('content', {
       type: 'JSON',
+    })
+    t.field('components', {
+      type: 'JSON',
+    })
+    t.boolean('published')
+    t.id('blogID')
+  },
+})
+
+export const CodeChallengeCreateOneWithoutTopicInput = inputObjectType({
+  name: 'CodeChallengeCreateOneWithoutTopicInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'CodeChallengeWhereUniqueInput',
     })
   },
 })

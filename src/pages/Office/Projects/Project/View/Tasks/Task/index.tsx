@@ -31,7 +31,7 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   /**
    * В текущей задаче есть активный таймер выполнения
    */
-  const isActive = activeTimer && activeTimer.Task.id === task.id
+  const isActive = activeTimer && activeTimer.Task?.id === task.id
 
   const [time, setTime] = useState(new Date())
 

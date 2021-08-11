@@ -70,34 +70,36 @@ function useExecuteChallenge() {
          * Если таймер отсутствует, надо запустить таймер
          */
 
-        //  const timer = codeChallengeCompletion.Task.
-        const [ActiveTimer] = user.Timers ?? []
+        if (codeChallengeCompletion.Task) {
+          //  const timer = codeChallengeCompletion.Task.
+          const [ActiveTimer] = user.Timers ?? []
 
-        if (
-          !ActiveTimer ||
-          ActiveTimer.stopedAt ||
-          ActiveTimer?.Task.id !== codeChallengeCompletion.Task.id
-        ) {
-          const result = await client.mutate<
-            CreateTimerProcessorMutation,
-            CreateTimerProcessorMutationVariables
-          >({
-            mutation: CreateTimerProcessorDocument,
-            variables: {
-              data: {
-                Task: {
-                  connect: {
-                    id: codeChallengeCompletion.Task.id,
+          if (
+            !ActiveTimer ||
+            ActiveTimer.stopedAt ||
+            ActiveTimer?.Task?.id !== codeChallengeCompletion.Task.id
+          ) {
+            const result = await client.mutate<
+              CreateTimerProcessorMutation,
+              CreateTimerProcessorMutationVariables
+            >({
+              mutation: CreateTimerProcessorDocument,
+              variables: {
+                data: {
+                  Task: {
+                    connect: {
+                      id: codeChallengeCompletion.Task.id,
+                    },
                   },
                 },
               },
-            },
-          })
+            })
 
-          // console.log('CreateCodeChallengeCompletionProcessorDocument result', result);
+            // console.log('CreateCodeChallengeCompletionProcessorDocument result', result);
 
-          if (result.data?.response.success === true) {
-            await prismaContext.apiClientResetStore()
+            if (result.data?.response.success === true) {
+              await prismaContext.apiClientResetStore()
+            }
           }
         }
       }

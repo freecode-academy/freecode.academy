@@ -313,6 +313,6 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
   }
 }
 
-export default withStyles(styles as any)((props: MainMenuProps) => (
+export default withStyles<any>(styles as any)((props: MainMenuProps) => (
   <MainMenu {...props} />
 ))

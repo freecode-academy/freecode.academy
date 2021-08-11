@@ -4,7 +4,6 @@ import {
   ChatRoomsConnectionDocument,
   ChatRoomsConnectionQueryVariables,
   useChatRoomsConnectionQuery,
-  ChatRoomsConnectionChatRoomFragment,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -55,18 +54,8 @@ const ChatRoomsPage: Page = () => {
   })
 
   const objects = useMemo(() => {
-    const objects: ChatRoomsConnectionChatRoomFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
+    return response.data?.chatRooms || []
+  }, [response.data?.chatRooms])
 
   const { variables, loading } = response
 
@@ -82,7 +71,7 @@ const ChatRoomsPage: Page = () => {
         loading={loading}
         // data={response || null}
         objects={objects}
-        count={response.data?.objectsConnection.aggregate.count}
+        count={response.data?.count}
         variables={variables}
         page={page}
       />

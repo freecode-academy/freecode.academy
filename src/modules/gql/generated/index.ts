@@ -75,6 +75,7 @@ export * from './resource';
 export * from './resource_';
 export * from './responseComment';
 export * from './signin';
+export * from './signup';
 export * from './singleUpload';
 export * from './sitemapResourcesConnection';
 export * from './sitemapTagsConnection';

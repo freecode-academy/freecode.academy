@@ -135,7 +135,7 @@ export const ChatMessageCreateInput = inputObjectType({
 export const ChatRoomCreateOneWithoutMessagesInput = inputObjectType({
   name: 'ChatRoomCreateOneWithoutMessagesInput',
   definition(t) {
-    t.id('ID')
+    t.id('to')
     t.field('connect', {
       type: 'ChatRoomWhereUniqueInput',
     })

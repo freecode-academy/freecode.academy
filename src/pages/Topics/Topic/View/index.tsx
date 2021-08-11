@@ -230,5 +230,5 @@ class TopicView extends EditableView<TopicViewProps> {
   }
 }
 
-// export default withStyles(styles)((props: TopicView) => <TopicView {...props} />)
+// export default withStyles<any>(styles)((props: TopicView) => <TopicView {...props} />)
 export default TopicView

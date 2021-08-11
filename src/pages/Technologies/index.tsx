@@ -5,7 +5,7 @@ import {
   TechnologiesConnectionQueryVariables,
   useTechnologiesConnectionQuery,
   TechnologiesConnectionTechnologyFragment,
-  TechnologyOrderByInput,
+  SortOrder,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -19,7 +19,9 @@ const first = 10
 const defaultVariables: TechnologiesConnectionQueryVariables = {
   where: {},
   first,
-  orderBy: TechnologyOrderByInput.NAME_ASC,
+  orderBy: {
+    name: SortOrder.ASC,
+  },
 }
 
 function getQueryParams(query: ParsedUrlQuery) {

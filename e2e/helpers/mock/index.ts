@@ -84,7 +84,7 @@ export const checkAuthority = (_props?: checkAuthorityProps) => {
           ): AuthFormUsersConnectionResultFragment => {
             // console.log('usersConnection args', args);
 
-            if (!args.where || args.where.search !== 'Fi1osof') {
+            if (!args.where || args.where.username?.equals !== 'Fi1osof') {
               return {
                 aggregate: {
                   count: 0,

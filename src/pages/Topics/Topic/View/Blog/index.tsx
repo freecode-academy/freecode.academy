@@ -10,7 +10,7 @@ import BlogAutocomplete from './BlogAutocomplete'
 import Typography from 'material-ui/Typography'
 import BlogLink from 'src/uikit/Link/Blog'
 import { TopicBlogProps } from './interfaces'
-import { ResourceOrderByInput, ResourceType } from 'src/modules/gql/generated'
+import { ResourceType, SortOrder } from 'src/modules/gql/generated'
 
 // TODO Восстановить выбор блога
 
@@ -79,9 +79,13 @@ const TopicBlog: React.FC<TopicBlogProps> = (props) => {
         updateObject={updateObject}
         where={{
           // ...filters,
-          type: ResourceType.BLOG,
+          type: {
+            equals: ResourceType.BLOG,
+          },
         }}
-        orderBy={ResourceOrderByInput.NAME_ASC}
+        orderBy={{
+          name: SortOrder.ASC,
+        }}
       />
     )
   } else if (Blog) {

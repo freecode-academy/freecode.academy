@@ -5,7 +5,7 @@ export interface BlogLinkProps {
   object: {
     __typename?: 'Resource'
     id: string
-    uri: string
+    uri?: string | null
     name?: Resource['name']
     longtitle?: Maybe<string>
   }

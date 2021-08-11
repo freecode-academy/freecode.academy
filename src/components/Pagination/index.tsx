@@ -183,6 +183,6 @@ export class Pagination extends Component<PaginationProps> {
   }
 }
 
-export default withStyles(styles)((props: PaginationProps) => (
+export default withStyles<any>(styles)((props: PaginationProps) => (
   <Pagination {...props} />
 ))

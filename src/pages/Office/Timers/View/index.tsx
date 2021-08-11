@@ -52,8 +52,12 @@ const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
 
   const timers = useMemo(() => {
     if (filterProject) {
-      return timersProps.filter((n) =>
-        n.Task.TaskProjects?.find((p) => p.Project.id === filterProject.id)
+      return timersProps.filter(
+        (n) =>
+          n.Task &&
+          n.Task.TaskProjects?.find(
+            (p) => p.Project && p.Project.id === filterProject.id
+          )
       )
     } else {
       return timersProps

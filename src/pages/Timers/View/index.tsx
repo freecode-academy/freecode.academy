@@ -43,7 +43,7 @@ class TimersView<
         numeric: false,
         disablePadding: true,
         renderer: (value: CC['Task']) => {
-          const TaskProjects = value.TaskProjects
+          const TaskProjects = value?.TaskProjects
 
           const Projects = TaskProjects
             ? TaskProjects.map(({ Project }) => Project).filter((n) => n)
@@ -52,7 +52,7 @@ class TimersView<
           return Projects && Projects.length
             ? Projects.map<React.ReactNode>((Project, index) => {
                 return (
-                  <ProjectLink key={Project.id || index} object={Project} />
+                  <ProjectLink key={Project?.id || index} object={Project} />
                 )
               }).reduce((curr, next) => [curr, ', ', next])
             : []
@@ -75,7 +75,7 @@ class TimersView<
         numeric: false,
         disablePadding: true,
         renderer: (value: CC['Task']) => {
-          const status = value.status
+          const status = value?.status
           return status ? <TaskStatus value={status} /> : null
         },
       },
@@ -86,7 +86,7 @@ class TimersView<
         numeric: false,
         disablePadding: true,
         renderer: (value: CC['Task']) => {
-          return this.renderDate(value.createdAt)
+          return this.renderDate(value?.createdAt)
         },
       },
       {
@@ -121,6 +121,6 @@ class TimersView<
   }
 }
 
-export default withStyles(styles)((props: TimersViewProps) => (
+export default withStyles<any>(styles)((props: TimersViewProps) => (
   <TimersView {...props} />
 ))

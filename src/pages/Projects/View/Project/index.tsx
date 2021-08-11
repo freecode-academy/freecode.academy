@@ -390,6 +390,6 @@ export class ProjectView<
 }
 
 // TODO Разобраться почему здесь без ошибок типизации
-export default withStyles(styles)((props: ProjectProps) => (
+export default withStyles<any>(styles)((props: ProjectProps) => (
   <ProjectView {...props} />
 ))

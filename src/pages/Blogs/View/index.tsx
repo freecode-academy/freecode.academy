@@ -38,6 +38,6 @@ class BlogsView<
   }
 }
 
-export default withStyles(styles)((props: BlogsViewProps) => (
+export default withStyles<any>(styles)((props: BlogsViewProps) => (
   <BlogsView {...props} />
 ))

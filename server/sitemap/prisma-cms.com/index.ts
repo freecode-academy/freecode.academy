@@ -16,16 +16,14 @@ import {
   SitemapUsersConnectionQuery,
   SitemapUsersConnectionDocument,
   SitemapUsersConnectionQueryVariables,
-  UserOrderByInput,
   SitemapResourcesConnectionQuery,
   SitemapResourcesConnectionQueryVariables,
   SitemapResourcesConnectionDocument,
-  ResourceOrderByInput,
   SitemapTagsConnectionQuery,
   SitemapTagsConnectionQueryVariables,
   SitemapTagsConnectionDocument,
-  TagOrderByInput,
   TagStatus,
+  SortOrder,
 } from '../../../src/modules/gql/generated'
 
 const apolloClient = initializeApollo({
@@ -187,10 +185,16 @@ export default class PrismaCmsComSitemap extends Sitemap {
       variables: {
         first: limit,
         where: {
-          active: true,
-          deleted: false,
+          active: {
+            equals: true,
+          },
+          deleted: {
+            equals: false,
+          },
         },
-        orderBy: UserOrderByInput.UPDATEDAT_DESC,
+        orderBy: {
+          updatedAt: SortOrder.DESC,
+        },
       },
     })
 
@@ -238,10 +242,16 @@ export default class PrismaCmsComSitemap extends Sitemap {
         first: limit,
         skip: page && page > 1 ? (page - 1) * limit : undefined,
         where: {
-          active: true,
-          deleted: false,
+          active: {
+            equals: true,
+          },
+          deleted: {
+            equals: false,
+          },
         },
-        orderBy: UserOrderByInput.UPDATEDAT_DESC,
+        orderBy: {
+          updatedAt: SortOrder.DESC,
+        },
       },
     })
 
@@ -334,11 +344,19 @@ export default class PrismaCmsComSitemap extends Sitemap {
       variables: {
         first: limit,
         where: {
-          published: true,
-          searchable: true,
-          deleted: false,
+          published: {
+            equals: true,
+          },
+          searchable: {
+            equals: true,
+          },
+          deleted: {
+            equals: false,
+          },
         },
-        orderBy: ResourceOrderByInput.UPDATEDAT_DESC,
+        orderBy: {
+          updatedAt: SortOrder.DESC,
+        },
       },
     })
 
@@ -390,11 +408,19 @@ export default class PrismaCmsComSitemap extends Sitemap {
         first: limit,
         skip: page && page > 1 ? (page - 1) * limit : undefined,
         where: {
-          published: true,
-          searchable: true,
-          deleted: false,
+          published: {
+            equals: true,
+          },
+          searchable: {
+            equals: true,
+          },
+          deleted: {
+            equals: false,
+          },
         },
-        orderBy: ResourceOrderByInput.UPDATEDAT_DESC,
+        orderBy: {
+          updatedAt: SortOrder.DESC,
+        },
       },
     })
 
@@ -422,11 +448,12 @@ export default class PrismaCmsComSitemap extends Sitemap {
 
         const { uri: url, updatedAt } = n
 
-        this.addSitemapDocument(xml, uri, {
-          url: url.replace(/\/+$/, ''),
-          updatedAt: updatedAt.toISOString(),
-          priority: 0.9,
-        })
+        url &&
+          this.addSitemapDocument(xml, uri, {
+            url: url.replace(/\/+$/, ''),
+            updatedAt: updatedAt.toISOString(),
+            priority: 0.9,
+          })
       })
     }
     // else {
@@ -479,9 +506,16 @@ export default class PrismaCmsComSitemap extends Sitemap {
       variables: {
         first: limit,
         where: {
-          status_not: TagStatus.BLOCKED,
+          // status_not: TagStatus.BLOCKED,
+          status: {
+            not: {
+              equals: TagStatus.BLOCKED,
+            },
+          },
         },
-        orderBy: TagOrderByInput.UPDATEDAT_DESC,
+        orderBy: {
+          updatedAt: SortOrder.DESC,
+        },
       },
     })
 
@@ -547,9 +581,15 @@ export default class PrismaCmsComSitemap extends Sitemap {
         first: limit,
         skip: page && page > 1 ? (page - 1) * limit : undefined,
         where: {
-          status_not: TagStatus.BLOCKED,
+          status: {
+            not: {
+              equals: TagStatus.BLOCKED,
+            },
+          },
         },
-        orderBy: TagOrderByInput.UPDATEDAT_DESC,
+        orderBy: {
+          updatedAt: SortOrder.DESC,
+        },
       },
     })
 

@@ -14,9 +14,8 @@ query tasksConnection(
     skip: $skip
     # after: $after
     # before: $before
-    first: $first
-  ) # last: $last
-  {
+    first: $first # last: $last
+  ) {
     aggregate {
       count
     }

@@ -845,7 +845,7 @@ export interface File {
   /** Кодировка */
   encoding: Scalars['String'];
   /** Имя файла */
-  filename: Scalars['String'];
+  filename?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   /** Миме-тип */
   mimetype: Scalars['String'];
@@ -854,9 +854,9 @@ export interface File {
   /** Путь к файлу */
   path: Scalars['String'];
   /** Очередность */
-  rank: Scalars['Int'];
+  rank?: Maybe<Scalars['Int']>;
   /** Размер в байтах */
-  size: Scalars['Float'];
+  size?: Maybe<Scalars['Float']>;
   /** Когда обновлен */
   updatedAt: Scalars['DateTime'];
 }
@@ -3280,6 +3280,23 @@ export interface TimerWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
 }
 
+export interface TokenListRelationFilter {
+  every?: Maybe<TokenWhereInput>;
+  none?: Maybe<TokenWhereInput>;
+  some?: Maybe<TokenWhereInput>;
+}
+
+export interface TokenWhereInput {
+  AND?: Maybe<Array<TokenWhereInput>>;
+  NOT?: Maybe<Array<TokenWhereInput>>;
+  OR?: Maybe<Array<TokenWhereInput>>;
+  User?: Maybe<UserWhereInput>;
+  createdAt?: Maybe<DateTimeFilter>;
+  expiredAt?: Maybe<DateTimeNullableFilter>;
+  id?: Maybe<StringFilter>;
+  userId?: Maybe<StringNullableFilter>;
+}
+
 export interface TopicCreateInput {
   content?: Maybe<Scalars['JSON']>;
   text?: Maybe<Scalars['JSON']>;
@@ -3662,6 +3679,7 @@ export interface UserWhereInput {
   Template?: Maybe<TemplateListRelationFilter>;
   Test?: Maybe<TestListRelationFilter>;
   Timer?: Maybe<TimerListRelationFilter>;
+  Tokens?: Maybe<TokenListRelationFilter>;
   Tournament?: Maybe<TournamentListRelationFilter>;
   TournamentGroup?: Maybe<TournamentGroupListRelationFilter>;
   Tourney?: Maybe<TourneyListRelationFilter>;
@@ -3697,8 +3715,10 @@ export interface UserWhereInput {
 }
 
 export interface UserWhereUniqueInput {
+  email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   oldID?: Maybe<Scalars['Int']>;
+  username?: Maybe<Scalars['String']>;
 }
 
 export interface VoteListRelationFilter {

@@ -1863,6 +1863,21 @@ export interface NexusGenInputs {
   TimerWhereUniqueInput: { // input type
     id?: string | null; // String
   }
+  TokenListRelationFilter: { // input type
+    every?: NexusGenInputs['TokenWhereInput'] | null; // TokenWhereInput
+    none?: NexusGenInputs['TokenWhereInput'] | null; // TokenWhereInput
+    some?: NexusGenInputs['TokenWhereInput'] | null; // TokenWhereInput
+  }
+  TokenWhereInput: { // input type
+    AND?: NexusGenInputs['TokenWhereInput'][] | null; // [TokenWhereInput!]
+    NOT?: NexusGenInputs['TokenWhereInput'][] | null; // [TokenWhereInput!]
+    OR?: NexusGenInputs['TokenWhereInput'][] | null; // [TokenWhereInput!]
+    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    expiredAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
   TopicCreateInput: { // input type
     content?: NexusGenScalars['JSON'] | null; // JSON
     text?: NexusGenScalars['JSON'] | null; // JSON
@@ -2117,6 +2132,7 @@ export interface NexusGenInputs {
     Template?: NexusGenInputs['TemplateListRelationFilter'] | null; // TemplateListRelationFilter
     Test?: NexusGenInputs['TestListRelationFilter'] | null; // TestListRelationFilter
     Timer?: NexusGenInputs['TimerListRelationFilter'] | null; // TimerListRelationFilter
+    Tokens?: NexusGenInputs['TokenListRelationFilter'] | null; // TokenListRelationFilter
     Tournament?: NexusGenInputs['TournamentListRelationFilter'] | null; // TournamentListRelationFilter
     TournamentGroup?: NexusGenInputs['TournamentGroupListRelationFilter'] | null; // TournamentGroupListRelationFilter
     Tourney?: NexusGenInputs['TourneyListRelationFilter'] | null; // TourneyListRelationFilter
@@ -2151,8 +2167,10 @@ export interface NexusGenInputs {
     username?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
   }
   UserWhereUniqueInput: { // input type
+    email?: string | null; // String
     id?: string | null; // String
     oldID?: number | null; // Int
+    username?: string | null; // String
   }
   VoteListRelationFilter: { // input type
     every?: NexusGenInputs['VoteWhereInput'] | null; // VoteWhereInput
@@ -2572,13 +2590,13 @@ export interface NexusGenFieldTypes {
   File: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     encoding: string; // String!
-    filename: string; // String!
+    filename: string | null; // String
     id: string; // String!
     mimetype: string; // String!
     name: string | null; // String
     path: string; // String!
-    rank: number; // Int!
-    size: number; // Float!
+    rank: number | null; // Int
+    size: number | null; // Float
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   Mutation: { // field return type

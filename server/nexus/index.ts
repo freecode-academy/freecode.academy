@@ -3,6 +3,8 @@ import { makeSchema, asNexusMethod } from 'nexus'
 import { GraphQLDateTime } from 'graphql-iso-date'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 
+import './fix/pluralize'
+
 import * as types from './types'
 
 export const DateTime = asNexusMethod(GraphQLDateTime, 'date', 'Date')

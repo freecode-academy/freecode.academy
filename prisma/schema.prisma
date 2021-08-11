@@ -8,27 +8,27 @@ datasource db {
 }
 
 model User {
-  id                                                    String                    @id @default(cuid()) @db.Char(25)
-  createdAt                                             DateTime
-  updatedAt                                             DateTime                  @updatedAt
-  username                                              String?                   @db.MediumText
-  email                                                 String?                   @db.MediumText
-  phone                                                 String?                   @db.MediumText
+  id                                                    String                    @id @default(cuid()) @db.VarChar(32)
+  createdAt                                             DateTime                  @default(now("0")) @db.DateTime("0")
+  updatedAt                                             DateTime                  @default(now("0")) @updatedAt @db.DateTime("0")
+  username                                              String?
+  email                                                 String?
+  phone                                                 String?
   showEmail                                             Boolean?
   showPhone                                             Boolean?
-  password                                              String?                   @db.MediumText
-  fullname                                              String?                   @db.MediumText
-  image                                                 String?                   @db.MediumText
-  address                                               String?                   @db.MediumText
+  password                                              String?
+  fullname                                              String?
+  image                                                 String?                   @db.Text
+  address                                               String?                   @db.Text
   active                                                Boolean?
   activated                                             Boolean?
   deleted                                               Boolean?
   hidden                                                Boolean?
   sudo                                                  Boolean?
-  marketplaceToken                                      String?                   @db.MediumText
+  marketplaceToken                                      String?
   oldID                                                 Int?                      @unique
-  CreatedBy                                             String?                   @db.Char(25)
-  EthAccountAuthed                                      String?                   @db.Char(25)
+  CreatedBy                                             String?                   @db.VarChar(32)
+  EthAccountAuthed                                      String?                   @db.VarChar(32)
   acceptChatMessageAnonymous                            Boolean?
   acceptNewChatRoomAnonymous                            Boolean?
   acceptNewChatRoom                                     Boolean?
@@ -103,13 +103,28 @@ model User {
   Project_PrismaProjectUsers                            Project[]                 @relation("PrismaProjectUsers")
   UserGroup                                             UserGroup[]               @relation("UserGroups")
   NotificationType_UserNotificationTypes                NotificationType[]        @relation("UserNotificationTypes")
+  Tokens                                                Token[]
 
+  @@unique([email])
+  @@unique([username])
   @@index([CreatedBy], name: "CreatedBy")
   @@index([EthAccountAuthed], name: "EthAccountAuthed")
 }
 
+model Token {
+  id        String    @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime  @default(now("0")) @db.DateTime("0")
+  expiredAt DateTime? @db.DateTime("0")
+  userId    String?   @db.VarChar(32)
+  // User - не обязательный объект, так как необходимость сформировать токен
+  // может быть еще до существования объекта пользователя
+  User      User?     @relation(fields: [userId], references: [id])
+
+  @@index(createdAt)
+}
+
 model File {
-  id                    String    @id @default(cuid()) @db.Char(25)
+  id                    String    @id @default(cuid()) @db.VarChar(32)
   path                  String    @db.MediumText
   name                  String?   @db.MediumText
   filename              String?   @db.MediumText
@@ -117,12 +132,12 @@ model File {
   encoding              String    @db.MediumText
   hash                  String?   @db.MediumText
   size                  Decimal?
-  ImageResource         String?   @db.Char(25)
-  CreatedBy             String?   @db.Char(25)
+  ImageResource         String?   @db.VarChar(32)
+  CreatedBy             String?   @db.VarChar(32)
   rank                  Int?
-  Gallery               String?   @db.Char(25)
-  createdAt             DateTime
-  updatedAt             DateTime  @updatedAt
+  Gallery               String?   @db.VarChar(32)
+  createdAt             DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt             DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   User                  User?     @relation(fields: [CreatedBy], references: [id])
   Gallery_FileToGallery Gallery?  @relation(fields: [Gallery], references: [id])
   Resource              Resource? @relation(fields: [ImageResource], references: [id])
@@ -134,30 +149,30 @@ model File {
 }
 
 model Block {
-  id             String  @id @db.Char(25)
+  id             String  @id @db.VarChar(32)
   representation String  @db.MediumText
   type           Int
   x              Int
   y              Int
   z              Int
-  world          String? @db.Char(25)
+  world          String? @db.VarChar(32)
   World          World?  @relation(fields: [world], references: [id])
 
   @@index([world], name: "world")
 }
 
 model CallRequest {
-  id                            String    @id @db.Char(25)
+  id                            String    @id @db.VarChar(32)
   called_descriptions           String    @db.MediumText
   caller_descriptions           String    @db.MediumText
   status                        String?
   startedAt                     DateTime?
   endedAt                       DateTime?
-  Room                          String?   @db.Char(25)
-  Called                        String?   @db.Char(25)
-  Caller                        String?   @db.Char(25)
-  createdAt                     DateTime
-  updatedAt                     DateTime
+  Room                          String?   @db.VarChar(32)
+  Called                        String?   @db.VarChar(32)
+  Caller                        String?   @db.VarChar(32)
+  createdAt                     DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt                     DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   User_CallRequest_CalledToUser User?     @relation("CallRequest_CalledToUser", fields: [Called], references: [id])
   User_CallRequest_CallerToUser User?     @relation("CallRequest_CallerToUser", fields: [Caller], references: [id])
   ChatRoom                      ChatRoom? @relation(fields: [Room], references: [id])
@@ -168,26 +183,26 @@ model CallRequest {
 }
 
 model Career {
-  id          String    @id @db.Char(25)
-  createdAt   DateTime
-  updatedAt   DateTime
+  id          String    @id @db.VarChar(32)
+  createdAt   DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt   DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   name        String?   @db.MediumText
   description String?   @db.MediumText
   start_date  DateTime?
-  CreatedBy   String?   @db.Char(25)
+  CreatedBy   String?   @db.VarChar(32)
   User        User?     @relation(fields: [CreatedBy], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
 }
 
 model ChatMessage {
-  id                String              @id @db.Char(25)
-  createdAt         DateTime
-  updatedAt         DateTime
+  id                String              @id @db.VarChar(32)
+  createdAt         DateTime            @default(now("0")) @db.DateTime("0")
+  updatedAt         DateTime            @default(now("0")) @updatedAt @db.DateTime("0")
   content           String?             @db.MediumText
   contentText       String?             @db.MediumText
-  CreatedBy         String?             @db.Char(25)
-  Room              String?             @db.Char(25)
+  CreatedBy         String?             @db.VarChar(32)
+  Room              String?             @db.VarChar(32)
   User              User?               @relation(fields: [CreatedBy], references: [id])
   ChatRoom          ChatRoom?           @relation(fields: [Room], references: [id])
   ChatMessageReaded ChatMessageReaded[]
@@ -198,11 +213,11 @@ model ChatMessage {
 }
 
 model ChatMessageReaded {
-  id                           String       @id @db.Char(25)
-  createdAt                    DateTime
-  updatedAt                    DateTime
-  Message                      String?      @db.Char(25)
-  User                         String?      @db.Char(25)
+  id                           String       @id @db.VarChar(32)
+  createdAt                    DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt                    DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
+  Message                      String?      @db.VarChar(32)
+  User                         String?      @db.VarChar(32)
   ChatMessage                  ChatMessage? @relation(fields: [Message], references: [id])
   User_ChatMessageReadedToUser User?        @relation(fields: [User], references: [id])
 
@@ -211,15 +226,15 @@ model ChatMessageReaded {
 }
 
 model ChatRoom {
-  id                    String               @id @db.Char(25)
-  createdAt             DateTime
-  updatedAt             DateTime
+  id                    String               @id @db.VarChar(32)
+  createdAt             DateTime             @default(now("0")) @db.DateTime("0")
+  updatedAt             DateTime             @default(now("0")) @updatedAt @db.DateTime("0")
   name                  String               @db.MediumText
   description           String?              @db.MediumText
   image                 String?              @db.MediumText
-  code                  String?              @unique @db.Char(25)
+  code                  String?              @unique @db.VarChar(32)
   isPublic              Boolean?
-  CreatedBy             String?              @db.Char(25)
+  CreatedBy             String?              @db.VarChar(32)
   allowAnonymous        Boolean?
   sandbox               Boolean?
   User_ChatRoomToUser   User?                @relation(fields: [CreatedBy], references: [id])
@@ -234,13 +249,13 @@ model ChatRoom {
 }
 
 model ChatRoomInvitation {
-  id                                      String    @id @db.Char(25)
-  createdAt                               DateTime
-  updatedAt                               DateTime
-  User                                    String?   @db.Char(25)
-  CreatedBy                               String?   @db.Char(25)
-  ChatRoom                                String?   @db.Char(25)
-  Notice                                  String?   @db.Char(25)
+  id                                      String    @id @db.VarChar(32)
+  createdAt                               DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt                               DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
+  User                                    String?   @db.VarChar(32)
+  CreatedBy                               String?   @db.VarChar(32)
+  ChatRoom                                String?   @db.VarChar(32)
+  Notice                                  String?   @db.VarChar(32)
   ChatRoom_ChatRoomToChatRoomInvitation   ChatRoom? @relation(fields: [ChatRoom], references: [id])
   User_ChatRoomInvitation_CreatedByToUser User?     @relation("ChatRoomInvitation_CreatedByToUser", fields: [CreatedBy], references: [id])
   Notice_ChatRoomInvitationToNotice       Notice?   @relation(fields: [Notice], references: [id])
@@ -253,10 +268,10 @@ model ChatRoomInvitation {
 }
 
 model CodeChallenge {
-  id                      String                    @id @db.Char(25)
-  externalKey             String?                   @unique @db.Char(25)
-  createdAt               DateTime
-  updatedAt               DateTime
+  id                      String                    @id @db.VarChar(32)
+  externalKey             String?                   @unique @db.VarChar(32)
+  createdAt               DateTime                  @default(now("0")) @db.DateTime("0")
+  updatedAt               DateTime                  @default(now("0")) @updatedAt @db.DateTime("0")
   name                    String?                   @db.MediumText
   dashedName              String?                   @db.MediumText
   localeTitle             String?                   @db.MediumText
@@ -279,9 +294,9 @@ model CodeChallenge {
   template                String?                   @db.MediumText
   time                    String?                   @db.MediumText
   rank                    Int?
-  Block                   String?                   @db.Char(25)
-  CreatedBy               String?                   @db.Char(25)
-  Topic                   String?                   @db.Char(25)
+  Block                   String?                   @db.VarChar(32)
+  CreatedBy               String?                   @db.VarChar(32)
+  Topic                   String?                   @db.VarChar(32)
   CodeChallengeBlock      CodeChallengeBlock?       @relation(fields: [Block], references: [id])
   User                    User?                     @relation(fields: [CreatedBy], references: [id])
   Resource                Resource?                 @relation(fields: [Topic], references: [id])
@@ -293,14 +308,14 @@ model CodeChallenge {
 }
 
 model CodeChallengeBlock {
-  id                       String               @id @db.Char(25)
+  id                       String               @id @db.VarChar(32)
   externalKey              String?              @db.MediumText
-  createdAt                DateTime
-  updatedAt                DateTime
+  createdAt                DateTime             @default(now("0")) @db.DateTime("0")
+  updatedAt                DateTime             @default(now("0")) @updatedAt @db.DateTime("0")
   name                     String?              @db.MediumText
   rank                     Int?
-  CreatedBy                String?              @db.Char(25)
-  Parent                   String?              @db.Char(25)
+  CreatedBy                String?              @db.VarChar(32)
+  Parent                   String?              @db.VarChar(32)
   User                     User?                @relation(fields: [CreatedBy], references: [id])
   CodeChallengeBlock       CodeChallengeBlock?  @relation("CodeChallengeBlockToCodeChallengeBlock_Parent", fields: [Parent], references: [id])
   CodeChallenge            CodeChallenge[]
@@ -311,12 +326,12 @@ model CodeChallengeBlock {
 }
 
 model CodeChallengeCompletion {
-  id                                                   String         @id @db.Char(25)
-  createdAt                                            DateTime
-  updatedAt                                            DateTime
-  Task                                                 String?        @db.Char(25)
-  CreatedBy                                            String?        @db.Char(25)
-  CodeChallenge                                        String?        @db.Char(25)
+  id                                                   String         @id @db.VarChar(32)
+  createdAt                                            DateTime       @default(now("0")) @db.DateTime("0")
+  updatedAt                                            DateTime       @default(now("0")) @updatedAt @db.DateTime("0")
+  Task                                                 String?        @db.VarChar(32)
+  CreatedBy                                            String?        @db.VarChar(32)
+  CodeChallenge                                        String?        @db.VarChar(32)
   content                                              String?        @db.MediumText
   success                                              Boolean?
   CodeChallenge_CodeChallengeToCodeChallengeCompletion CodeChallenge? @relation(fields: [CodeChallenge], references: [id])
@@ -329,13 +344,13 @@ model CodeChallengeCompletion {
 }
 
 model Comment {
-  id                                         String            @id @db.Char(25)
-  createdAt                                  DateTime
-  updatedAt                                  DateTime
+  id                                         String            @id @db.VarChar(32)
+  createdAt                                  DateTime          @default(now("0")) @db.DateTime("0")
+  updatedAt                                  DateTime          @default(now("0")) @updatedAt @db.DateTime("0")
   components                                 String?           @db.MediumText
   contentText                                String?           @db.MediumText
-  CreatedBy                                  String?           @db.Char(25)
-  TechnologyLesson                           String?           @db.Char(25)
+  CreatedBy                                  String?           @db.VarChar(32)
+  TechnologyLesson                           String?           @db.VarChar(32)
   User                                       User?             @relation(fields: [CreatedBy], references: [id])
   TechnologyLesson_CommentToTechnologyLesson TechnologyLesson? @relation(fields: [TechnologyLesson], references: [id])
 
@@ -344,9 +359,9 @@ model Comment {
 }
 
 model EthAccount {
-  id                                                 String             @id @db.Char(25)
-  createdAt                                          DateTime
-  updatedAt                                          DateTime
+  id                                                 String             @id @db.VarChar(32)
+  createdAt                                          DateTime           @default(now("0")) @db.DateTime("0")
+  updatedAt                                          DateTime           @default(now("0")) @updatedAt @db.DateTime("0")
   name                                               String?            @db.MediumText
   description                                        String?            @db.MediumText
   address                                            String             @db.MediumText
@@ -354,9 +369,9 @@ model EthAccount {
   source                                             String?            @db.MediumText
   bytecode                                           String?            @db.MediumText
   abi                                                String?            @db.MediumText
-  ContractSource                                     String?            @db.Char(25)
-  Project                                            String?            @db.Char(25)
-  CreatedBy                                          String?            @db.Char(25)
+  ContractSource                                     String?            @db.VarChar(32)
+  Project                                            String?            @db.VarChar(32)
+  CreatedBy                                          String?            @db.VarChar(32)
   EthContractSource                                  EthContractSource? @relation(fields: [ContractSource], references: [id])
   User_EthAccount_CreatedByToUser                    User?              @relation("EthAccount_CreatedByToUser", fields: [CreatedBy], references: [id])
   Project_EthAccountToProject                        Project?           @relation(fields: [Project], references: [id])
@@ -373,9 +388,9 @@ model EthAccount {
 }
 
 model EthBlock {
-  id                 String           @id @db.Char(25)
-  createdAt          DateTime
-  updatedAt          DateTime
+  id                 String           @id @db.VarChar(32)
+  createdAt          DateTime         @default(now("0")) @db.DateTime("0")
+  updatedAt          DateTime         @default(now("0")) @updatedAt @db.DateTime("0")
   hash               String           @db.MediumText
   number             Int              @unique
   difficulty         Decimal?
@@ -393,7 +408,7 @@ model EthBlock {
   date               DateTime?
   transactionsRoot   String?          @db.MediumText
   transactions_count Int?
-  Miner              String?          @db.Char(25)
+  Miner              String?          @db.VarChar(32)
   EthAccount         EthAccount?      @relation(fields: [Miner], references: [id])
   EthTransaction     EthTransaction[]
   EthBlock_B         EthBlock[]       @relation("EthBlockToEthBlock")
@@ -403,13 +418,13 @@ model EthBlock {
 }
 
 model EthContractSource {
-  id          String       @id @db.Char(25)
-  createdAt   DateTime
-  updatedAt   DateTime
+  id          String       @id @db.VarChar(32)
+  createdAt   DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt   DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
   name        String       @db.MediumText
   description String?      @db.MediumText
   source      String?      @db.MediumText
-  CreatedBy   String?      @db.Char(25)
+  CreatedBy   String?      @db.VarChar(32)
   User        User?        @relation(fields: [CreatedBy], references: [id])
   EthAccount  EthAccount[]
 
@@ -417,9 +432,9 @@ model EthContractSource {
 }
 
 model EthTransaction {
-  id                                             String      @id @db.Char(25)
-  createdAt                                      DateTime
-  updatedAt                                      DateTime
+  id                                             String      @id @db.VarChar(32)
+  createdAt                                      DateTime    @default(now("0")) @db.DateTime("0")
+  updatedAt                                      DateTime    @default(now("0")) @updatedAt @db.DateTime("0")
   chainId                                        Int
   amount                                         Decimal?
   input                                          String?     @db.MediumText
@@ -429,10 +444,10 @@ model EthTransaction {
   v                                              String?     @db.MediumText
   r                                              String?     @db.MediumText
   s                                              String?     @db.MediumText
-  Sender                                         String?     @db.Char(25)
-  Block                                          String?     @db.Char(25)
-  Receiver                                       String?     @db.Char(25)
-  Account                                        String?     @db.Char(25)
+  Sender                                         String?     @db.VarChar(32)
+  Block                                          String?     @db.VarChar(32)
+  Receiver                                       String?     @db.VarChar(32)
+  Account                                        String?     @db.VarChar(32)
   EthAccount_EthAccountToEthTransaction_Account  EthAccount? @relation("EthAccountToEthTransaction_Account", fields: [Account], references: [id])
   EthBlock                                       EthBlock?   @relation(fields: [Block], references: [id])
   EthAccount_EthAccountToEthTransaction_Receiver EthAccount? @relation("EthAccountToEthTransaction_Receiver", fields: [Receiver], references: [id])
@@ -445,12 +460,12 @@ model EthTransaction {
 }
 
 model Gallery {
-  id                         String    @id @db.Char(25)
+  id                         String    @id @db.VarChar(32)
   name                       String?   @db.MediumText
-  CreatedBy                  String?   @db.Char(25)
-  Resource                   String?   @db.Char(25)
-  createdAt                  DateTime
-  updatedAt                  DateTime
+  CreatedBy                  String?   @db.VarChar(32)
+  Resource                   String?   @db.VarChar(32)
+  createdAt                  DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt                  DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   User                       User?     @relation(fields: [CreatedBy], references: [id])
   Resource_GalleryToResource Resource? @relation(fields: [Resource], references: [id])
   File                       File[]
@@ -460,16 +475,16 @@ model Gallery {
 }
 
 model Game {
-  id                    String       @id @db.Char(25)
-  createdAt             DateTime
-  updatedAt             DateTime
+  id                    String       @id @db.VarChar(32)
+  createdAt             DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt             DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
   name                  String?      @db.MediumText
   start_date            DateTime?
   end_date              DateTime?
   sequence              Int?
-  Parent                String?      @db.Char(25)
-  CreatedBy             String?      @db.Char(25)
-  Tourney               String?      @db.Char(25)
+  Parent                String?      @db.VarChar(32)
+  CreatedBy             String?      @db.VarChar(32)
+  Tourney               String?      @db.VarChar(32)
   User_GameToUser       User?        @relation(fields: [CreatedBy], references: [id])
   Game                  Game?        @relation("GameToGame_Parent", fields: [Parent], references: [id])
   Tourney_GameToTourney Tourney?     @relation(fields: [Tourney], references: [id])
@@ -484,16 +499,16 @@ model Game {
 }
 
 model GameResult {
-  id                              String    @id @db.Char(25)
-  createdAt                       DateTime
-  updatedAt                       DateTime
+  id                              String    @id @db.VarChar(32)
+  createdAt                       DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt                       DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   date                            DateTime?
   name                            String?   @db.MediumText
   value                           Decimal?
-  CreatedBy                       String?   @db.Char(25)
-  Team                            String?   @db.Char(25)
-  Game                            String?   @db.Char(25)
-  User                            String?   @db.Char(25)
+  CreatedBy                       String?   @db.VarChar(32)
+  Team                            String?   @db.VarChar(32)
+  Game                            String?   @db.VarChar(32)
+  User                            String?   @db.VarChar(32)
   User_GameResult_CreatedByToUser User?     @relation("GameResult_CreatedByToUser", fields: [CreatedBy], references: [id])
   Game_GameToGameResult           Game?     @relation(fields: [Game], references: [id])
   Team_GameResultToTeam           Team?     @relation(fields: [Team], references: [id])
@@ -506,12 +521,12 @@ model GameResult {
 }
 
 model Import {
-  id        String   @id @db.Char(25)
-  createdAt DateTime
-  updatedAt DateTime
+  id        String   @id @db.VarChar(32)
+  createdAt DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt DateTime @default(now("0")) @updatedAt @db.DateTime("0")
   name      String   @db.MediumText
   status    String
-  CreatedBy String?  @db.Char(25)
+  CreatedBy String?  @db.VarChar(32)
   User      User?    @relation(fields: [CreatedBy], references: [id])
   Log       Log[]
 
@@ -519,16 +534,16 @@ model Import {
 }
 
 model Inventory {
-  id     String   @id @db.Char(25)
+  id     String   @id @db.VarChar(32)
   cursor Int
   data   String   @db.MediumText
   Player Player[]
 }
 
 model LetsadsSmsMessageStatus {
-  id                          String                        @id @db.Char(25)
-  createdAt                   DateTime
-  updatedAt                   DateTime
+  id                          String                        @id @db.VarChar(32)
+  createdAt                   DateTime                      @default(now("0")) @db.DateTime("0")
+  updatedAt                   DateTime                      @default(now("0")) @updatedAt @db.DateTime("0")
   name                        String?
   description                 String?                       @db.MediumText
   errorCode                   String?
@@ -537,18 +552,18 @@ model LetsadsSmsMessageStatus {
 }
 
 model LetsadsSmsMessageStatusItem {
-  id                      String                   @id @db.Char(25)
-  createdAt               DateTime
-  updatedAt               DateTime
+  id                      String                   @id @db.VarChar(32)
+  createdAt               DateTime                 @default(now("0")) @db.DateTime("0")
+  updatedAt               DateTime                 @default(now("0")) @updatedAt @db.DateTime("0")
   sms_id                  Int                      @unique
-  Status                  String?                  @db.Char(25)
+  Status                  String?                  @db.VarChar(32)
   LetsadsSmsMessageStatus LetsadsSmsMessageStatus? @relation(fields: [Status], references: [id])
 
   @@index([Status], name: "Status")
 }
 
 model Letter {
-  id                String   @id @db.Char(25)
+  id                String   @id @db.VarChar(32)
   email             String   @db.MediumText
   subject           String   @db.MediumText
   message           String   @db.MediumText
@@ -557,58 +572,58 @@ model Letter {
   deleteOnSend      Boolean?
   replyTo           String?  @db.MediumText
   returnTo          String?  @db.MediumText
-  createdAt         DateTime
-  updatedAt         DateTime
-  User              String?  @db.Char(25)
+  createdAt         DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt         DateTime @default(now("0")) @updatedAt @db.DateTime("0")
+  User              String?  @db.VarChar(32)
   User_LetterToUser User?    @relation(fields: [User], references: [id])
 
   @@index([User], name: "User")
 }
 
 model Log {
-  id                 String   @id @db.Char(25)
+  id                 String   @id @db.VarChar(32)
   level              String
-  objectType         String?  @db.Char(25)
+  objectType         String?  @db.VarChar(32)
   message            String   @db.MediumText
   stack              String?  @db.MediumText
-  Import             String?  @db.Char(25)
-  createdAt          DateTime
-  updatedAt          DateTime
+  Import             String?  @db.VarChar(32)
+  createdAt          DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt          DateTime @default(now("0")) @updatedAt @db.DateTime("0")
   Import_ImportToLog Import?  @relation(fields: [Import], references: [id])
 
   @@index([Import], name: "Import")
 }
 
 model LogedIn {
-  id                 String   @id @db.Char(25)
-  createdAt          DateTime
+  id                 String   @id @db.VarChar(32)
+  createdAt          DateTime @default(now("0")) @db.DateTime("0")
   fake               Boolean?
-  updatedAt          DateTime
-  User               String?  @db.Char(25)
+  updatedAt          DateTime @default(now("0")) @updatedAt @db.DateTime("0")
+  User               String?  @db.VarChar(32)
   User_LogedInToUser User?    @relation(fields: [User], references: [id])
 
   @@index([User], name: "User")
 }
 
 model Message {
-  id     String  @id @db.Char(25)
+  id     String  @id @db.VarChar(32)
   type   String
   sender String? @db.MediumText
   body   String  @db.MediumText
-  world  String? @db.Char(25)
+  world  String? @db.VarChar(32)
   World  World?  @relation(fields: [world], references: [id])
 
   @@index([world], name: "world")
 }
 
 model Notice {
-  id                              String               @id @db.Char(25)
-  createdAt                       DateTime
+  id                              String               @id @db.VarChar(32)
+  createdAt                       DateTime             @default(now("0")) @db.DateTime("0")
   type                            String
-  updatedAt                       DateTime
-  ChatMessage                     String?              @db.Char(25)
-  User                            String?              @db.Char(25)
-  CreatedBy                       String?              @db.Char(25)
+  updatedAt                       DateTime             @default(now("0")) @updatedAt @db.DateTime("0")
+  ChatMessage                     String?              @db.VarChar(32)
+  User                            String?              @db.VarChar(32)
+  CreatedBy                       String?              @db.VarChar(32)
   ChatMessage_ChatMessageToNotice ChatMessage?         @relation(fields: [ChatMessage], references: [id])
   User_Notice_CreatedByToUser     User?                @relation("Notice_CreatedByToUser", fields: [CreatedBy], references: [id])
   User_Notice_UserToUser          User?                @relation("Notice_UserToUser", fields: [User], references: [id])
@@ -620,14 +635,14 @@ model Notice {
 }
 
 model NotificationType {
-  id                          String   @id @db.Char(25)
-  createdAt                   DateTime
-  updatedAt                   DateTime
+  id                          String   @id @db.VarChar(32)
+  createdAt                   DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt                   DateTime @default(now("0")) @updatedAt @db.DateTime("0")
   name                        String   @db.MediumText
-  code                        String?  @unique @db.Char(25)
+  code                        String?  @unique @db.VarChar(32)
   comment                     String?  @db.MediumText
   oldID                       Int?     @unique
-  CreatedBy                   String?  @db.Char(25)
+  CreatedBy                   String?  @db.VarChar(32)
   User_NotificationTypeToUser User?    @relation(fields: [CreatedBy], references: [id])
   User_UserNotificationTypes  User[]   @relation("UserNotificationTypes")
 
@@ -635,9 +650,9 @@ model NotificationType {
 }
 
 model Player {
-  id        String     @id @db.Char(25)
-  createdAt DateTime
-  updatedAt DateTime
+  id        String     @id @db.VarChar(32)
+  createdAt DateTime   @default(now("0")) @db.DateTime("0")
+  updatedAt DateTime   @default(now("0")) @updatedAt @db.DateTime("0")
   isAdmin   Boolean
   gamemode  String
   lastLogin DateTime?
@@ -646,9 +661,9 @@ model Player {
   z         Decimal
   dirx      Decimal
   diry      Decimal
-  world     String?    @db.Char(25)
-  inventory String?    @db.Char(25)
-  user      String?    @db.Char(25)
+  world     String?    @db.VarChar(32)
+  inventory String?    @db.VarChar(32)
+  user      String?    @db.VarChar(32)
   Inventory Inventory? @relation(fields: [inventory], references: [id])
   User      User?      @relation(fields: [user], references: [id])
   World     World?     @relation(fields: [world], references: [id])
@@ -659,12 +674,12 @@ model Player {
 }
 
 model Position {
-  id                  String   @id @db.Char(25)
-  code                String?  @unique @db.Char(25)
+  id                  String   @id @db.VarChar(32)
+  code                String?  @unique @db.VarChar(32)
   name                String   @db.MediumText
-  CreatedBy           String?  @db.Char(25)
-  createdAt           DateTime
-  updatedAt           DateTime
+  CreatedBy           String?  @db.VarChar(32)
+  createdAt           DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt           DateTime @default(now("0")) @updatedAt @db.DateTime("0")
   User_PositionToUser User?    @relation(fields: [CreatedBy], references: [id])
   User_PositionUsers  User[]   @relation("PositionUsers")
 
@@ -672,11 +687,11 @@ model Position {
 }
 
 model Project {
-  id                                       String          @id @db.Char(25)
+  id                                       String          @id @db.VarChar(32)
   name                                     String          @db.MediumText
   domain                                   String?         @db.MediumText
-  createdAt                                DateTime
-  updatedAt                                DateTime
+  createdAt                                DateTime        @default(now("0")) @db.DateTime("0")
+  updatedAt                                DateTime        @default(now("0")) @updatedAt @db.DateTime("0")
   description                              String?         @db.MediumText
   url                                      String?         @db.MediumText
   sequence                                 Int?            @unique
@@ -685,11 +700,11 @@ model Project {
   status                                   String?
   public                                   Boolean?
   oldID                                    Int?            @unique
-  CreatedBy                                String?         @db.Char(25)
-  Image                                    String?         @db.Char(25)
-  ChatRoom                                 String?         @db.Char(25)
-  Team                                     String?         @db.Char(25)
-  Resource                                 String?         @db.Char(25)
+  CreatedBy                                String?         @db.VarChar(32)
+  Image                                    String?         @db.VarChar(32)
+  ChatRoom                                 String?         @db.VarChar(32)
+  Team                                     String?         @db.VarChar(32)
+  Resource                                 String?         @db.VarChar(32)
   type                                     String?
   ChatRoom_ChatRoomToProject               ChatRoom?       @relation(fields: [ChatRoom], references: [id])
   User_ProjectToUser                       User?           @relation(fields: [CreatedBy], references: [id])
@@ -713,13 +728,13 @@ model Project {
 }
 
 model ProjectMember {
-  id                                 String    @id @db.Char(25)
+  id                                 String    @id @db.VarChar(32)
   status                             String?
-  User                               String?   @db.Char(25)
-  CreatedBy                          String?   @db.Char(25)
-  Project                            String?   @db.Char(25)
-  createdAt                          DateTime
-  updatedAt                          DateTime
+  User                               String?   @db.VarChar(32)
+  CreatedBy                          String?   @db.VarChar(32)
+  Project                            String?   @db.VarChar(32)
+  createdAt                          DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt                          DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   User_ProjectMember_CreatedByToUser User?     @relation("ProjectMember_CreatedByToUser", fields: [CreatedBy], references: [id])
   Project_ProjectToProjectMember     Project?  @relation(fields: [Project], references: [id])
   User_ProjectMember_UserToUser      User?     @relation("ProjectMember_UserToUser", fields: [User], references: [id])
@@ -731,12 +746,12 @@ model ProjectMember {
 }
 
 model ProjectTask {
-  id                           String   @id @db.Char(25)
-  createdAt                    DateTime
-  updatedAt                    DateTime
-  Project                      String?  @db.Char(25)
-  Task                         String?  @db.Char(25)
-  CreatedBy                    String?  @db.Char(25)
+  id                           String   @id @db.VarChar(32)
+  createdAt                    DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt                    DateTime @default(now("0")) @updatedAt @db.DateTime("0")
+  Project                      String?  @db.VarChar(32)
+  Task                         String?  @db.VarChar(32)
+  CreatedBy                    String?  @db.VarChar(32)
   User                         User?    @relation(fields: [CreatedBy], references: [id])
   Project_ProjectToProjectTask Project? @relation(fields: [Project], references: [id])
   Task_ProjectTaskToTask       Task?    @relation(fields: [Task], references: [id])
@@ -747,23 +762,23 @@ model ProjectTask {
 }
 
 model ResetPassword {
-  id                       String    @id @db.Char(25)
-  createdAt                DateTime
-  updatedAt                DateTime
-  code                     String?   @unique @db.Char(25)
+  id                       String    @id @db.VarChar(32)
+  createdAt                DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt                DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
+  code                     String?   @unique @db.VarChar(32)
   password                 String?   @db.MediumText
   validTill                DateTime?
-  User                     String?   @db.Char(25)
+  User                     String?   @db.VarChar(32)
   User_ResetPasswordToUser User?     @relation(fields: [User], references: [id])
 
   @@index([User], name: "User")
 }
 
 model Resource {
-  id                                       String          @id @db.Char(25)
-  code                                     String?         @unique @db.Char(25)
-  createdAt                                DateTime
-  updatedAt                                DateTime
+  id                                       String          @id @db.VarChar(32)
+  code                                     String?         @unique @db.VarChar(32)
+  createdAt                                DateTime        @default(now("0")) @db.DateTime("0")
+  updatedAt                                DateTime        @default(now("0")) @updatedAt @db.DateTime("0")
   type                                     String?
   name                                     String?         @db.MediumText
   longtitle                                String?         @db.MediumText
@@ -785,15 +800,15 @@ model Resource {
   template                                 Int?
   mockUpdate                               DateTime?
   components                               String?         @db.MediumText
-  Parent                                   String?         @db.Char(25)
-  Team                                     String?         @db.Char(25)
-  Service                                  String?         @db.Char(25)
-  EthAccount                               String?         @db.Char(25)
-  PrismaProject                            String?         @db.Char(25)
-  CreatedBy                                String?         @db.Char(25)
-  Topic                                    String?         @db.Char(25)
-  Blog                                     String?         @db.Char(25)
-  Task                                     String?         @db.Char(25)
+  Parent                                   String?         @db.VarChar(32)
+  Team                                     String?         @db.VarChar(32)
+  Service                                  String?         @db.VarChar(32)
+  EthAccount                               String?         @db.VarChar(32)
+  PrismaProject                            String?         @db.VarChar(32)
+  CreatedBy                                String?         @db.VarChar(32)
+  Topic                                    String?         @db.VarChar(32)
+  Blog                                     String?         @db.VarChar(32)
+  Task                                     String?         @db.VarChar(32)
   Resource_ResourceToResource_Blog         Resource?       @relation("ResourceToResource_Blog", fields: [Blog], references: [id])
   User                                     User?           @relation(fields: [CreatedBy], references: [id])
   EthAccount_EthAccountToResource          EthAccount?     @relation(fields: [EthAccount], references: [id])
@@ -825,13 +840,13 @@ model Resource {
 }
 
 model ResourceTag {
-  id                             String    @id @db.Char(25)
-  createdAt                      DateTime
-  updatedAt                      DateTime
+  id                             String    @id @db.VarChar(32)
+  createdAt                      DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt                      DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   status                         String
-  CreatedBy                      String?   @db.Char(25)
-  Resource                       String?   @db.Char(25)
-  Tag                            String?   @db.Char(25)
+  CreatedBy                      String?   @db.VarChar(32)
+  Resource                       String?   @db.VarChar(32)
+  Tag                            String?   @db.VarChar(32)
   User                           User?     @relation(fields: [CreatedBy], references: [id])
   Resource_ResourceToResourceTag Resource? @relation(fields: [Resource], references: [id])
   Tag_ResourceTagToTag           Tag?      @relation(fields: [Tag], references: [id])
@@ -842,13 +857,13 @@ model ResourceTag {
 }
 
 model Route {
-  id          String  @id @db.Char(25)
+  id          String  @id @db.VarChar(32)
   name        String? @db.MediumText
   path        String  @db.MediumText
   exact       Boolean
   component   String  @db.MediumText
-  CreatedBy   String? @db.Char(25)
-  Parent      String? @db.Char(25)
+  CreatedBy   String? @db.VarChar(32)
+  Parent      String? @db.VarChar(32)
   User        User?   @relation(fields: [CreatedBy], references: [id])
   Route       Route?  @relation("RouteToRoute_Parent", fields: [Parent], references: [id])
   other_Route Route[] @relation("RouteToRoute_Parent")
@@ -858,17 +873,17 @@ model Route {
 }
 
 model Service {
-  id              String           @id @db.Char(25)
+  id              String           @id @db.VarChar(32)
   name            String?          @db.MediumText
   description     String?          @db.MediumText
-  code            String?          @unique @db.Char(25)
+  code            String?          @unique @db.VarChar(32)
   rank            Int?
   oldID           Int?             @unique
-  Category        String?          @db.Char(25)
-  Parent          String?          @db.Char(25)
-  CreatedBy       String?          @db.Char(25)
-  createdAt       DateTime
-  updatedAt       DateTime
+  Category        String?          @db.VarChar(32)
+  Parent          String?          @db.VarChar(32)
+  CreatedBy       String?          @db.VarChar(32)
+  createdAt       DateTime         @default(now("0")) @db.DateTime("0")
+  updatedAt       DateTime         @default(now("0")) @updatedAt @db.DateTime("0")
   ServiceCategory ServiceCategory? @relation(fields: [Category], references: [id])
   User            User?            @relation(fields: [CreatedBy], references: [id])
   Service         Service?         @relation("ServiceToService_Parent", fields: [Parent], references: [id])
@@ -882,14 +897,14 @@ model Service {
 }
 
 model ServiceCategory {
-  id                    String            @id @db.Char(25)
+  id                    String            @id @db.VarChar(32)
   name                  String            @db.MediumText
   description           String?           @db.MediumText
-  code                  String?           @unique @db.Char(25)
-  Parent                String?           @db.Char(25)
-  CreatedBy             String?           @db.Char(25)
-  createdAt             DateTime
-  updatedAt             DateTime
+  code                  String?           @unique @db.VarChar(32)
+  Parent                String?           @db.VarChar(32)
+  CreatedBy             String?           @db.VarChar(32)
+  createdAt             DateTime          @default(now("0")) @db.DateTime("0")
+  updatedAt             DateTime          @default(now("0")) @updatedAt @db.DateTime("0")
   User                  User?             @relation(fields: [CreatedBy], references: [id])
   ServiceCategory       ServiceCategory?  @relation("ServiceCategoryToServiceCategory_Parent", fields: [Parent], references: [id])
   Service               Service[]
@@ -900,24 +915,24 @@ model ServiceCategory {
 }
 
 model Settings {
-  id                  String  @id @db.Char(25)
+  id                  String  @id @db.VarChar(32)
   renderDistance      Int
-  User                String? @db.Char(25)
+  User                String? @db.VarChar(32)
   User_SettingsToUser User?   @relation(fields: [User], references: [id])
 
   @@index([User], name: "User")
 }
 
 model SmsMessage {
-  id                      String                   @id @db.Char(25)
-  createdAt               DateTime
-  updatedAt               DateTime
+  id                      String                   @id @db.VarChar(32)
+  createdAt               DateTime                 @default(now("0")) @db.DateTime("0")
+  updatedAt               DateTime                 @default(now("0")) @updatedAt @db.DateTime("0")
   from                    String                   @db.MediumText
   text                    String                   @db.MediumText
   deletOnSend             Boolean?
-  Status                  String?                  @db.Char(25)
-  CreatedBy               String?                  @db.Char(25)
-  Provider                String?                  @db.Char(25)
+  Status                  String?                  @db.VarChar(32)
+  CreatedBy               String?                  @db.VarChar(32)
+  Provider                String?                  @db.VarChar(32)
   User                    User?                    @relation(fields: [CreatedBy], references: [id])
   SmsProvider             SmsProvider?             @relation(fields: [Provider], references: [id])
   LetsadsSmsMessageStatus LetsadsSmsMessageStatus? @relation(fields: [Status], references: [id])
@@ -929,7 +944,7 @@ model SmsMessage {
 }
 
 model SmsMessage_recipients {
-  nodeId     String     @db.Char(25)
+  nodeId     String     @db.VarChar(32)
   position   Int
   value      String     @db.MediumText
   SmsMessage SmsMessage @relation(fields: [nodeId], references: [id])
@@ -938,12 +953,12 @@ model SmsMessage_recipients {
 }
 
 model SmsProvider {
-  id          String       @id @db.Char(25)
+  id          String       @id @db.VarChar(32)
   name        String       @db.MediumText
   credentials String?      @db.MediumText
-  CreatedBy   String?      @db.Char(25)
-  createdAt   DateTime
-  updatedAt   DateTime
+  CreatedBy   String?      @db.VarChar(32)
+  createdAt   DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt   DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
   User        User?        @relation(fields: [CreatedBy], references: [id])
   SmsMessage  SmsMessage[]
 
@@ -951,12 +966,12 @@ model SmsProvider {
 }
 
 model Tag {
-  id          String        @id @db.Char(25)
-  createdAt   DateTime
-  updatedAt   DateTime
+  id          String        @id @db.VarChar(32)
+  createdAt   DateTime      @default(now("0")) @db.DateTime("0")
+  updatedAt   DateTime      @default(now("0")) @updatedAt @db.DateTime("0")
   name        String        @db.MediumText
   status      String
-  CreatedBy   String?       @db.Char(25)
+  CreatedBy   String?       @db.VarChar(32)
   User        User?         @relation(fields: [CreatedBy], references: [id])
   ResourceTag ResourceTag[]
 
@@ -964,9 +979,9 @@ model Tag {
 }
 
 model Task {
-  id                      String                    @id @db.Char(25)
-  createdAt               DateTime
-  updatedAt               DateTime
+  id                      String                    @id @db.VarChar(32)
+  createdAt               DateTime                  @default(now("0")) @db.DateTime("0")
+  updatedAt               DateTime                  @default(now("0")) @updatedAt @db.DateTime("0")
   name                    String                    @db.MediumText
   description             String?                   @db.MediumText
   content                 String?                   @db.MediumText
@@ -975,9 +990,9 @@ model Task {
   endDatePlaning          DateTime?
   startDate               DateTime?
   endDate                 DateTime?
-  CreatedBy               String?                   @db.Char(25)
-  Parent                  String?                   @db.Char(25)
-  ChatRoom                String?                   @db.Char(25)
+  CreatedBy               String?                   @db.VarChar(32)
+  Parent                  String?                   @db.VarChar(32)
+  ChatRoom                String?                   @db.VarChar(32)
   needHelp                Boolean?
   ChatRoom_ChatRoomToTask ChatRoom?                 @relation(fields: [ChatRoom], references: [id])
   User                    User?                     @relation(fields: [CreatedBy], references: [id])
@@ -999,13 +1014,13 @@ model Task {
 }
 
 model TaskMember {
-  id                              String   @id @db.Char(25)
+  id                              String   @id @db.VarChar(32)
   status                          String
-  Task                            String?  @db.Char(25)
-  User                            String?  @db.Char(25)
-  CreatedBy                       String?  @db.Char(25)
-  createdAt                       DateTime
-  updatedAt                       DateTime
+  Task                            String?  @db.VarChar(32)
+  User                            String?  @db.VarChar(32)
+  CreatedBy                       String?  @db.VarChar(32)
+  createdAt                       DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt                       DateTime @default(now("0")) @updatedAt @db.DateTime("0")
   User_TaskMember_CreatedByToUser User?    @relation("TaskMember_CreatedByToUser", fields: [CreatedBy], references: [id])
   Task_TaskToTaskMember           Task?    @relation(fields: [Task], references: [id])
   User_TaskMember_UserToUser      User?    @relation("TaskMember_UserToUser", fields: [User], references: [id])
@@ -1016,12 +1031,12 @@ model TaskMember {
 }
 
 model TaskReaction {
-  id                      String   @id @db.Char(25)
-  createdAt               DateTime
-  updatedAt               DateTime
+  id                      String   @id @db.VarChar(32)
+  createdAt               DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt               DateTime @default(now("0")) @updatedAt @db.DateTime("0")
   type                    String?
-  Task                    String?  @db.Char(25)
-  CreatedBy               String?  @db.Char(25)
+  Task                    String?  @db.VarChar(32)
+  CreatedBy               String?  @db.VarChar(32)
   User                    User?    @relation(fields: [CreatedBy], references: [id])
   Task_TaskToTaskReaction Task?    @relation(fields: [Task], references: [id])
 
@@ -1030,13 +1045,13 @@ model TaskReaction {
 }
 
 model TaskTechnology {
-  id                                    String      @id @db.Char(25)
-  createdAt                             DateTime
-  updatedAt                             DateTime
+  id                                    String      @id @db.VarChar(32)
+  createdAt                             DateTime    @default(now("0")) @db.DateTime("0")
+  updatedAt                             DateTime    @default(now("0")) @updatedAt @db.DateTime("0")
   level                                 Int?
-  Technology                            String?     @db.Char(25)
-  Task                                  String?     @db.Char(25)
-  CreatedBy                             String?     @db.Char(25)
+  Technology                            String?     @db.VarChar(32)
+  Task                                  String?     @db.VarChar(32)
+  CreatedBy                             String?     @db.VarChar(32)
   User                                  User?       @relation(fields: [CreatedBy], references: [id])
   Task_TaskToTaskTechnology             Task?       @relation(fields: [Task], references: [id])
   Technology_TaskTechnologyToTechnology Technology? @relation(fields: [Technology], references: [id])
@@ -1047,7 +1062,7 @@ model TaskTechnology {
 }
 
 model Team {
-  id                       String       @id @db.Char(25)
+  id                       String       @id @db.VarChar(32)
   name                     String       @db.MediumText
   status                   String
   oldID                    Int?         @unique
@@ -1055,10 +1070,10 @@ model Team {
   website                  String?      @db.MediumText
   email                    String?      @db.MediumText
   phone                    String?      @db.MediumText
-  CreatedBy                String?      @db.Char(25)
-  Parent                   String?      @db.Char(25)
-  createdAt                DateTime
-  updatedAt                DateTime
+  CreatedBy                String?      @db.VarChar(32)
+  Parent                   String?      @db.VarChar(32)
+  createdAt                DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt                DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
   User                     User?        @relation(fields: [CreatedBy], references: [id])
   Team                     Team?        @relation("TeamToTeam_Parent", fields: [Parent], references: [id])
   GameResult               GameResult[]
@@ -1074,13 +1089,13 @@ model Team {
 }
 
 model TeamMember {
-  id                              String   @id @db.Char(25)
+  id                              String   @id @db.VarChar(32)
   status                          String?
-  User                            String?  @db.Char(25)
-  Team                            String?  @db.Char(25)
-  CreatedBy                       String?  @db.Char(25)
-  createdAt                       DateTime
-  updatedAt                       DateTime
+  User                            String?  @db.VarChar(32)
+  Team                            String?  @db.VarChar(32)
+  CreatedBy                       String?  @db.VarChar(32)
+  createdAt                       DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt                       DateTime @default(now("0")) @updatedAt @db.DateTime("0")
   User_TeamMember_CreatedByToUser User?    @relation("TeamMember_CreatedByToUser", fields: [CreatedBy], references: [id])
   Team_TeamToTeamMember           Team?    @relation(fields: [Team], references: [id])
   User_TeamMember_UserToUser      User?    @relation("TeamMember_UserToUser", fields: [User], references: [id])
@@ -1091,14 +1106,14 @@ model TeamMember {
 }
 
 model Technology {
-  id               String             @id @db.Char(25)
-  createdAt        DateTime
-  updatedAt        DateTime
+  id               String             @id @db.VarChar(32)
+  createdAt        DateTime           @default(now("0")) @db.DateTime("0")
+  updatedAt        DateTime           @default(now("0")) @updatedAt @db.DateTime("0")
   name             String?            @db.MediumText
   components       String?            @db.MediumText
   contentText      String?            @db.MediumText
   site_url         String?            @db.MediumText
-  CreatedBy        String?            @db.Char(25)
+  CreatedBy        String?            @db.VarChar(32)
   User             User?              @relation(fields: [CreatedBy], references: [id])
   TaskTechnology   TaskTechnology[]
   TechnologyLesson TechnologyLesson[]
@@ -1108,12 +1123,12 @@ model Technology {
 }
 
 model TechnologyLesson {
-  id                                      String                 @id @db.Char(25)
+  id                                      String                 @id @db.VarChar(32)
   name                                    String?                @db.MediumText
   components                              String?                @db.MediumText
   contentText                             String?                @db.MediumText
-  Technology                              String?                @db.Char(25)
-  CreatedBy                               String?                @db.Char(25)
+  Technology                              String?                @db.VarChar(32)
+  CreatedBy                               String?                @db.VarChar(32)
   User                                    User?                  @relation(fields: [CreatedBy], references: [id])
   Technology_TechnologyToTechnologyLesson Technology?            @relation(fields: [Technology], references: [id])
   Comment                                 Comment[]
@@ -1124,13 +1139,13 @@ model TechnologyLesson {
 }
 
 model TechnologyLessonUser {
-  id               String            @id @db.Char(25)
-  createdAt        DateTime
-  updatedAt        DateTime
+  id               String            @id @db.VarChar(32)
+  createdAt        DateTime          @default(now("0")) @db.DateTime("0")
+  updatedAt        DateTime          @default(now("0")) @updatedAt @db.DateTime("0")
   status           String?
   completedAt      DateTime?
-  Lesson           String?           @db.Char(25)
-  CreatedBy        String?           @db.Char(25)
+  Lesson           String?           @db.VarChar(32)
+  CreatedBy        String?           @db.VarChar(32)
   User             User?             @relation(fields: [CreatedBy], references: [id])
   TechnologyLesson TechnologyLesson? @relation(fields: [Lesson], references: [id])
 
@@ -1139,10 +1154,10 @@ model TechnologyLessonUser {
 }
 
 model Template {
-  id                                      String     @id @db.Char(25)
-  createdAt                               DateTime
-  updatedAt                               DateTime
-  externalKey                             String?    @db.Char(25)
+  id                                      String     @id @db.VarChar(32)
+  createdAt                               DateTime   @default(now("0")) @db.DateTime("0")
+  updatedAt                               DateTime   @default(now("0")) @updatedAt @db.DateTime("0")
+  externalKey                             String?    @db.VarChar(32)
   name                                    String?    @db.MediumText
   description                             String?    @db.MediumText
   component                               String?    @db.MediumText
@@ -1150,10 +1165,10 @@ model Template {
   components                              String?    @db.MediumText
   vars                                    String?    @db.MediumText
   rank                                    Int?
-  PrismaProject                           String?    @db.Char(25)
-  Project                                 String?    @db.Char(25)
-  Parent                                  String?    @db.Char(25)
-  CreatedBy                               String?    @db.Char(25)
+  PrismaProject                           String?    @db.VarChar(32)
+  Project                                 String?    @db.VarChar(32)
+  Parent                                  String?    @db.VarChar(32)
+  CreatedBy                               String?    @db.VarChar(32)
   User                                    User?      @relation(fields: [CreatedBy], references: [id])
   Template                                Template?  @relation("TemplateToTemplate_Parent", fields: [Parent], references: [id])
   Project_ProjectToTemplate_PrismaProject Project?   @relation("ProjectToTemplate_PrismaProject", fields: [PrismaProject], references: [id])
@@ -1167,26 +1182,26 @@ model Template {
 }
 
 model Test {
-  id        String    @id @db.Char(25)
-  createdAt DateTime
-  updatedAt DateTime
+  id        String    @id @db.VarChar(32)
+  createdAt DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   name      String?   @db.MediumText
   text      String?   @db.MediumText
   quantity  Decimal?
   date      DateTime?
-  CreatedBy String?   @db.Char(25)
+  CreatedBy String?   @db.VarChar(32)
   User      User?     @relation(fields: [CreatedBy], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
 }
 
 model Timer {
-  id               String    @id @db.Char(25)
-  createdAt        DateTime
+  id               String    @id @db.VarChar(32)
+  createdAt        DateTime  @default(now("0")) @db.DateTime("0")
   stopedAt         DateTime?
-  updatedAt        DateTime
-  Task             String?   @db.Char(25)
-  CreatedBy        String?   @db.Char(25)
+  updatedAt        DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
+  Task             String?   @db.VarChar(32)
+  CreatedBy        String?   @db.VarChar(32)
   User             User?     @relation(fields: [CreatedBy], references: [id])
   Task_TaskToTimer Task?     @relation(fields: [Task], references: [id])
 
@@ -1195,13 +1210,13 @@ model Timer {
 }
 
 model Tournament {
-  id              String           @id @db.Char(25)
-  createdAt       DateTime
-  updatedAt       DateTime
+  id              String           @id @db.VarChar(32)
+  createdAt       DateTime         @default(now("0")) @db.DateTime("0")
+  updatedAt       DateTime         @default(now("0")) @updatedAt @db.DateTime("0")
   name            String?          @db.MediumText
-  code            String?          @unique @db.Char(25)
-  CreatedBy       String?          @db.Char(25)
-  Group           String?          @db.Char(25)
+  code            String?          @unique @db.VarChar(32)
+  CreatedBy       String?          @db.VarChar(32)
+  Group           String?          @db.VarChar(32)
   User            User?            @relation(fields: [CreatedBy], references: [id])
   TournamentGroup TournamentGroup? @relation(fields: [Group], references: [id])
   Tourney         Tourney[]
@@ -1211,12 +1226,12 @@ model Tournament {
 }
 
 model TournamentGroup {
-  id         String       @id @db.Char(25)
-  createdAt  DateTime
-  updatedAt  DateTime
+  id         String       @id @db.VarChar(32)
+  createdAt  DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt  DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
   name       String?      @db.MediumText
-  code       String?      @unique @db.Char(25)
-  CreatedBy  String?      @db.Char(25)
+  code       String?      @unique @db.VarChar(32)
+  CreatedBy  String?      @db.VarChar(32)
   User       User?        @relation(fields: [CreatedBy], references: [id])
   Tournament Tournament[]
 
@@ -1224,15 +1239,15 @@ model TournamentGroup {
 }
 
 model Tourney {
-  id                             String          @id @db.Char(25)
-  createdAt                      DateTime
-  updatedAt                      DateTime
+  id                             String          @id @db.VarChar(32)
+  createdAt                      DateTime        @default(now("0")) @db.DateTime("0")
+  updatedAt                      DateTime        @default(now("0")) @updatedAt @db.DateTime("0")
   name                           String?         @db.MediumText
-  code                           String?         @unique @db.Char(25)
+  code                           String?         @unique @db.VarChar(32)
   date                           DateTime?
   date_till                      DateTime?
-  Tournament                     String?         @db.Char(25)
-  CreatedBy                      String?         @db.Char(25)
+  Tournament                     String?         @db.VarChar(32)
+  CreatedBy                      String?         @db.VarChar(32)
   User                           User?           @relation(fields: [CreatedBy], references: [id])
   Tournament_TournamentToTourney Tournament?     @relation(fields: [Tournament], references: [id])
   Game                           Game[]
@@ -1243,9 +1258,9 @@ model Tourney {
 }
 
 model TourneyPlayer {
-  id                             String   @id @db.Char(25)
-  User                           String?  @db.Char(25)
-  Tourney                        String?  @db.Char(25)
+  id                             String   @id @db.VarChar(32)
+  User                           String?  @db.VarChar(32)
+  Tourney                        String?  @db.VarChar(32)
   Tourney_TourneyToTourneyPlayer Tourney? @relation(fields: [Tourney], references: [id])
   User_TourneyPlayerToUser       User?    @relation(fields: [User], references: [id])
 
@@ -1254,23 +1269,23 @@ model TourneyPlayer {
 }
 
 model UserGroup {
-  id        String   @id @db.Char(25)
+  id        String   @id @db.VarChar(32)
   name      String   @db.MediumText
-  createdAt DateTime
-  updatedAt DateTime
+  createdAt DateTime @default(now("0")) @db.DateTime("0")
+  updatedAt DateTime @default(now("0")) @updatedAt @db.DateTime("0")
   User      User[]   @relation("UserGroups")
 }
 
 model UserTechnology {
-  id                                    String      @id @db.Char(25)
-  createdAt                             DateTime
-  updatedAt                             DateTime
+  id                                    String      @id @db.VarChar(32)
+  createdAt                             DateTime    @default(now("0")) @db.DateTime("0")
+  updatedAt                             DateTime    @default(now("0")) @updatedAt @db.DateTime("0")
   components                            String?     @db.MediumText
   date_from                             DateTime?
   date_till                             DateTime?
   status                                String?
-  CreatedBy                             String?     @db.Char(25)
-  Technology                            String?     @db.Char(25)
+  CreatedBy                             String?     @db.VarChar(32)
+  Technology                            String?     @db.VarChar(32)
   level                                 Int?
   User                                  User?       @relation(fields: [CreatedBy], references: [id])
   Technology_TechnologyToUserTechnology Technology? @relation(fields: [Technology], references: [id])
@@ -1280,12 +1295,12 @@ model UserTechnology {
 }
 
 model Vote {
-  id                      String    @id @db.Char(25)
-  createdAt               DateTime
-  updatedAt               DateTime
+  id                      String    @id @db.VarChar(32)
+  createdAt               DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt               DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   value                   Decimal
-  Resource                String?   @db.Char(25)
-  User                    String?   @db.Char(25)
+  Resource                String?   @db.VarChar(32)
+  User                    String?   @db.VarChar(32)
   Resource_ResourceToVote Resource? @relation(fields: [Resource], references: [id])
   User_UserToVote         User?     @relation(fields: [User], references: [id])
 
@@ -1294,9 +1309,9 @@ model Vote {
 }
 
 model World {
-  id          String    @id @db.Char(25)
-  createdAt   DateTime
-  updatedAt   DateTime
+  id          String    @id @db.VarChar(32)
+  createdAt   DateTime  @default(now("0")) @db.DateTime("0")
+  updatedAt   DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   name        String    @db.MediumText
   seed        String    @db.MediumText
   type        String
@@ -1304,7 +1319,7 @@ model World {
   timeChanger Decimal?
   days        Int
   lastPlayed  DateTime
-  CreatedBy   String?   @db.Char(25)
+  CreatedBy   String?   @db.VarChar(32)
   User        User?     @relation(fields: [CreatedBy], references: [id])
   Block       Block[]
   Message     Message[]

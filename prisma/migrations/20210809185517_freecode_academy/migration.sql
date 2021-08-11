@@ -7,32 +7,23 @@
   - The primary key for the `User` table will be changed. If it partially fails, the table could be left without primary key constraint.
   - You are about to drop the column `showFullname` on the `User` table. All the data in the column will be lost.
   - You are about to alter the column `id` on the `User` table. The data in that column could be lost. The data in that column will be cast from `VarChar(32)` to `Char(25)`.
-  - You are about to drop the `Token` table. If the table is not empty, all the data it contains will be lost.
   - A unique constraint covering the columns `[oldID]` on the table `User` will be added. If there are existing duplicate values, this will fail.
 
 */
 -- DropForeignKey
 ALTER TABLE `File` DROP FOREIGN KEY `File_ibfk_1`;
 
--- DropForeignKey
-ALTER TABLE `Token` DROP FOREIGN KEY `Token_ibfk_1`;
-
--- DropIndex
-DROP INDEX `User.email_unique` ON `User`;
-
--- DropIndex
-DROP INDEX `User.username_unique` ON `User`;
 
 -- AlterTable
 ALTER TABLE `File` DROP PRIMARY KEY,
     DROP COLUMN `createdById`,
-    ADD COLUMN `CreatedBy` CHAR(25),
-    ADD COLUMN `Gallery` CHAR(25),
-    ADD COLUMN `ImageResource` CHAR(25),
+    ADD COLUMN `CreatedBy` VARCHAR(32),
+    ADD COLUMN `Gallery` VARCHAR(32),
+    ADD COLUMN `ImageResource` VARCHAR(32),
     ADD COLUMN `hash` MEDIUMTEXT,
-    MODIFY `id` CHAR(25) NOT NULL,
-    MODIFY `createdAt` DATETIME(3) NOT NULL,
-    MODIFY `updatedAt` DATETIME(3) NOT NULL,
+    MODIFY `id` VARCHAR(32) NOT NULL,
+    MODIFY `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    MODIFY `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     MODIFY `filename` MEDIUMTEXT,
     MODIFY `name` MEDIUMTEXT,
     MODIFY `mimetype` MEDIUMTEXT NOT NULL,
@@ -44,44 +35,35 @@ ALTER TABLE `File` DROP PRIMARY KEY,
 -- AlterTable
 ALTER TABLE `User` DROP PRIMARY KEY,
     DROP COLUMN `showFullname`,
-    ADD COLUMN `CreatedBy` CHAR(25),
-    ADD COLUMN `EthAccountAuthed` CHAR(25),
+    ADD COLUMN `CreatedBy` VARCHAR(32),
+    ADD COLUMN `EthAccountAuthed` VARCHAR(32),
     ADD COLUMN `acceptChatMessageAnonymous` BOOLEAN,
     ADD COLUMN `acceptNewChatRoom` BOOLEAN,
     ADD COLUMN `acceptNewChatRoomAnonymous` BOOLEAN,
     ADD COLUMN `activated` BOOLEAN,
-    ADD COLUMN `address` MEDIUMTEXT,
+    ADD COLUMN `address` TEXT,
     ADD COLUMN `deleted` BOOLEAN,
     ADD COLUMN `hidden` BOOLEAN,
-    ADD COLUMN `marketplaceToken` MEDIUMTEXT,
+    ADD COLUMN `marketplaceToken` VARCHAR(191),
     ADD COLUMN `oldID` INTEGER,
-    ADD COLUMN `phone` MEDIUMTEXT,
+    ADD COLUMN `phone` VARCHAR(191),
     ADD COLUMN `showPhone` BOOLEAN,
-    MODIFY `id` CHAR(25) NOT NULL,
-    MODIFY `username` MEDIUMTEXT,
-    MODIFY `email` MEDIUMTEXT,
-    MODIFY `fullname` MEDIUMTEXT,
-    MODIFY `password` MEDIUMTEXT,
     MODIFY `active` BOOLEAN,
     MODIFY `sudo` BOOLEAN,
-    MODIFY `createdAt` DATETIME(3) NOT NULL,
-    MODIFY `updatedAt` DATETIME(3) NOT NULL,
+    MODIFY `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    MODIFY `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     MODIFY `showEmail` BOOLEAN,
-    MODIFY `image` MEDIUMTEXT,
     ADD PRIMARY KEY (`id`);
-
--- DropTable
-DROP TABLE `Token`;
 
 -- CreateTable
 CREATE TABLE `Block` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `representation` MEDIUMTEXT NOT NULL,
     `type` INTEGER NOT NULL,
     `x` INTEGER NOT NULL,
     `y` INTEGER NOT NULL,
     `z` INTEGER NOT NULL,
-    `world` CHAR(25),
+    `world` VARCHAR(32),
 
     INDEX `world`(`world`),
     PRIMARY KEY (`id`)
@@ -89,17 +71,17 @@ CREATE TABLE `Block` (
 
 -- CreateTable
 CREATE TABLE `CallRequest` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `called_descriptions` MEDIUMTEXT NOT NULL,
     `caller_descriptions` MEDIUMTEXT NOT NULL,
     `status` VARCHAR(191),
     `startedAt` DATETIME(3),
     `endedAt` DATETIME(3),
-    `Room` CHAR(25),
-    `Called` CHAR(25),
-    `Caller` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `Room` VARCHAR(32),
+    `Called` VARCHAR(32),
+    `Caller` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     INDEX `Called`(`Called`),
     INDEX `Caller`(`Caller`),
@@ -109,13 +91,13 @@ CREATE TABLE `CallRequest` (
 
 -- CreateTable
 CREATE TABLE `Career` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
     `description` MEDIUMTEXT,
     `start_date` DATETIME(3),
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
@@ -123,13 +105,13 @@ CREATE TABLE `Career` (
 
 -- CreateTable
 CREATE TABLE `ChatMessage` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `content` MEDIUMTEXT,
     `contentText` MEDIUMTEXT,
-    `CreatedBy` CHAR(25),
-    `Room` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `Room` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Room`(`Room`),
@@ -138,11 +120,11 @@ CREATE TABLE `ChatMessage` (
 
 -- CreateTable
 CREATE TABLE `ChatMessageReaded` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `Message` CHAR(25),
-    `User` CHAR(25),
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `Message` VARCHAR(32),
+    `User` VARCHAR(32),
 
     INDEX `Message`(`Message`),
     INDEX `User`(`User`),
@@ -151,15 +133,15 @@ CREATE TABLE `ChatMessageReaded` (
 
 -- CreateTable
 CREATE TABLE `ChatRoom` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
     `description` MEDIUMTEXT,
     `image` MEDIUMTEXT,
-    `code` CHAR(25),
+    `code` VARCHAR(32),
     `isPublic` BOOLEAN,
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
     `allowAnonymous` BOOLEAN,
     `sandbox` BOOLEAN,
 
@@ -170,13 +152,13 @@ CREATE TABLE `ChatRoom` (
 
 -- CreateTable
 CREATE TABLE `ChatRoomInvitation` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `User` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `ChatRoom` CHAR(25),
-    `Notice` CHAR(25),
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `User` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `ChatRoom` VARCHAR(32),
+    `Notice` VARCHAR(32),
 
     INDEX `ChatRoom`(`ChatRoom`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -187,10 +169,10 @@ CREATE TABLE `ChatRoomInvitation` (
 
 -- CreateTable
 CREATE TABLE `CodeChallenge` (
-    `id` CHAR(25) NOT NULL,
-    `externalKey` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `externalKey` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
     `dashedName` MEDIUMTEXT,
     `localeTitle` MEDIUMTEXT,
@@ -213,9 +195,9 @@ CREATE TABLE `CodeChallenge` (
     `template` MEDIUMTEXT,
     `time` MEDIUMTEXT,
     `rank` INTEGER,
-    `Block` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `Topic` CHAR(25),
+    `Block` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `Topic` VARCHAR(32),
 
     UNIQUE INDEX `CodeChallenge.externalKey_unique`(`externalKey`),
     INDEX `Block`(`Block`),
@@ -226,14 +208,14 @@ CREATE TABLE `CodeChallenge` (
 
 -- CreateTable
 CREATE TABLE `CodeChallengeBlock` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `externalKey` MEDIUMTEXT,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
     `rank` INTEGER,
-    `CreatedBy` CHAR(25),
-    `Parent` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `Parent` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Parent`(`Parent`),
@@ -242,12 +224,12 @@ CREATE TABLE `CodeChallengeBlock` (
 
 -- CreateTable
 CREATE TABLE `CodeChallengeCompletion` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `Task` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `CodeChallenge` CHAR(25),
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `Task` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `CodeChallenge` VARCHAR(32),
     `content` MEDIUMTEXT,
     `success` BOOLEAN,
 
@@ -259,13 +241,13 @@ CREATE TABLE `CodeChallengeCompletion` (
 
 -- CreateTable
 CREATE TABLE `Comment` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `components` MEDIUMTEXT,
     `contentText` MEDIUMTEXT,
-    `CreatedBy` CHAR(25),
-    `TechnologyLesson` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `TechnologyLesson` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `TechnologyLesson`(`TechnologyLesson`),
@@ -274,9 +256,9 @@ CREATE TABLE `Comment` (
 
 -- CreateTable
 CREATE TABLE `EthAccount` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
     `description` MEDIUMTEXT,
     `address` MEDIUMTEXT NOT NULL,
@@ -284,9 +266,9 @@ CREATE TABLE `EthAccount` (
     `source` MEDIUMTEXT,
     `bytecode` MEDIUMTEXT,
     `abi` MEDIUMTEXT,
-    `ContractSource` CHAR(25),
-    `Project` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `ContractSource` VARCHAR(32),
+    `Project` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `ContractSource`(`ContractSource`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -296,9 +278,9 @@ CREATE TABLE `EthAccount` (
 
 -- CreateTable
 CREATE TABLE `EthBlock` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `hash` MEDIUMTEXT NOT NULL,
     `number` INTEGER NOT NULL,
     `difficulty` DECIMAL(65, 30),
@@ -316,7 +298,7 @@ CREATE TABLE `EthBlock` (
     `date` DATETIME(3),
     `transactionsRoot` MEDIUMTEXT,
     `transactions_count` INTEGER,
-    `Miner` CHAR(25),
+    `Miner` VARCHAR(32),
 
     UNIQUE INDEX `EthBlock.number_unique`(`number`),
     INDEX `Miner`(`Miner`),
@@ -325,13 +307,13 @@ CREATE TABLE `EthBlock` (
 
 -- CreateTable
 CREATE TABLE `EthContractSource` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
     `description` MEDIUMTEXT,
     `source` MEDIUMTEXT,
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
@@ -339,9 +321,9 @@ CREATE TABLE `EthContractSource` (
 
 -- CreateTable
 CREATE TABLE `EthTransaction` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `chainId` INTEGER NOT NULL,
     `amount` DECIMAL(65, 30),
     `input` MEDIUMTEXT,
@@ -351,10 +333,10 @@ CREATE TABLE `EthTransaction` (
     `v` MEDIUMTEXT,
     `r` MEDIUMTEXT,
     `s` MEDIUMTEXT,
-    `Sender` CHAR(25),
-    `Block` CHAR(25),
-    `Receiver` CHAR(25),
-    `Account` CHAR(25),
+    `Sender` VARCHAR(32),
+    `Block` VARCHAR(32),
+    `Receiver` VARCHAR(32),
+    `Account` VARCHAR(32),
 
     INDEX `Account`(`Account`),
     INDEX `Block`(`Block`),
@@ -365,12 +347,12 @@ CREATE TABLE `EthTransaction` (
 
 -- CreateTable
 CREATE TABLE `Gallery` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT,
-    `CreatedBy` CHAR(25),
-    `Resource` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `CreatedBy` VARCHAR(32),
+    `Resource` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Resource`(`Resource`),
@@ -379,16 +361,16 @@ CREATE TABLE `Gallery` (
 
 -- CreateTable
 CREATE TABLE `Game` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
     `start_date` DATETIME(3),
     `end_date` DATETIME(3),
     `sequence` INTEGER,
-    `Parent` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `Tourney` CHAR(25),
+    `Parent` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `Tourney` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Parent`(`Parent`),
@@ -398,16 +380,16 @@ CREATE TABLE `Game` (
 
 -- CreateTable
 CREATE TABLE `GameResult` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `date` DATETIME(3),
     `name` MEDIUMTEXT,
     `value` DECIMAL(65, 30),
-    `CreatedBy` CHAR(25),
-    `Team` CHAR(25),
-    `Game` CHAR(25),
-    `User` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `Team` VARCHAR(32),
+    `Game` VARCHAR(32),
+    `User` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Game`(`Game`),
@@ -418,12 +400,12 @@ CREATE TABLE `GameResult` (
 
 -- CreateTable
 CREATE TABLE `Import` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
     `status` VARCHAR(191) NOT NULL,
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
@@ -431,7 +413,7 @@ CREATE TABLE `Import` (
 
 -- CreateTable
 CREATE TABLE `Inventory` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `cursor` INTEGER NOT NULL,
     `data` MEDIUMTEXT NOT NULL,
 
@@ -440,9 +422,9 @@ CREATE TABLE `Inventory` (
 
 -- CreateTable
 CREATE TABLE `LetsadsSmsMessageStatus` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` VARCHAR(191),
     `description` MEDIUMTEXT,
     `errorCode` VARCHAR(191),
@@ -452,11 +434,11 @@ CREATE TABLE `LetsadsSmsMessageStatus` (
 
 -- CreateTable
 CREATE TABLE `LetsadsSmsMessageStatusItem` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `sms_id` INTEGER NOT NULL,
-    `Status` CHAR(25),
+    `Status` VARCHAR(32),
 
     UNIQUE INDEX `LetsadsSmsMessageStatusItem.sms_id_unique`(`sms_id`),
     INDEX `Status`(`Status`),
@@ -465,7 +447,7 @@ CREATE TABLE `LetsadsSmsMessageStatusItem` (
 
 -- CreateTable
 CREATE TABLE `Letter` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `email` MEDIUMTEXT NOT NULL,
     `subject` MEDIUMTEXT NOT NULL,
     `message` MEDIUMTEXT NOT NULL,
@@ -474,9 +456,9 @@ CREATE TABLE `Letter` (
     `deleteOnSend` BOOLEAN,
     `replyTo` MEDIUMTEXT,
     `returnTo` MEDIUMTEXT,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `User` CHAR(25),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `User` VARCHAR(32),
 
     INDEX `User`(`User`),
     PRIMARY KEY (`id`)
@@ -484,14 +466,14 @@ CREATE TABLE `Letter` (
 
 -- CreateTable
 CREATE TABLE `Log` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `level` VARCHAR(191) NOT NULL,
-    `objectType` CHAR(25),
+    `objectType` VARCHAR(32),
     `message` MEDIUMTEXT NOT NULL,
     `stack` MEDIUMTEXT,
-    `Import` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `Import` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     INDEX `Import`(`Import`),
     PRIMARY KEY (`id`)
@@ -499,11 +481,11 @@ CREATE TABLE `Log` (
 
 -- CreateTable
 CREATE TABLE `LogedIn` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `fake` BOOLEAN,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `User` CHAR(25),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `User` VARCHAR(32),
 
     INDEX `User`(`User`),
     PRIMARY KEY (`id`)
@@ -511,11 +493,11 @@ CREATE TABLE `LogedIn` (
 
 -- CreateTable
 CREATE TABLE `Message` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `type` VARCHAR(191) NOT NULL,
     `sender` MEDIUMTEXT,
     `body` MEDIUMTEXT NOT NULL,
-    `world` CHAR(25),
+    `world` VARCHAR(32),
 
     INDEX `world`(`world`),
     PRIMARY KEY (`id`)
@@ -523,13 +505,13 @@ CREATE TABLE `Message` (
 
 -- CreateTable
 CREATE TABLE `Notice` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `type` VARCHAR(191) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `ChatMessage` CHAR(25),
-    `User` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `ChatMessage` VARCHAR(32),
+    `User` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `ChatMessage`(`ChatMessage`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -539,14 +521,14 @@ CREATE TABLE `Notice` (
 
 -- CreateTable
 CREATE TABLE `NotificationType` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
-    `code` CHAR(25),
+    `code` VARCHAR(32),
     `comment` MEDIUMTEXT,
     `oldID` INTEGER,
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
 
     UNIQUE INDEX `NotificationType.code_unique`(`code`),
     UNIQUE INDEX `NotificationType.oldID_unique`(`oldID`),
@@ -556,9 +538,9 @@ CREATE TABLE `NotificationType` (
 
 -- CreateTable
 CREATE TABLE `Player` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `isAdmin` BOOLEAN NOT NULL,
     `gamemode` VARCHAR(191) NOT NULL,
     `lastLogin` DATETIME(3),
@@ -567,9 +549,9 @@ CREATE TABLE `Player` (
     `z` DECIMAL(65, 30) NOT NULL,
     `dirx` DECIMAL(65, 30) NOT NULL,
     `diry` DECIMAL(65, 30) NOT NULL,
-    `world` CHAR(25),
-    `inventory` CHAR(25),
-    `user` CHAR(25),
+    `world` VARCHAR(32),
+    `inventory` VARCHAR(32),
+    `user` VARCHAR(32),
 
     INDEX `inventory`(`inventory`),
     INDEX `user`(`user`),
@@ -579,12 +561,12 @@ CREATE TABLE `Player` (
 
 -- CreateTable
 CREATE TABLE `Position` (
-    `id` CHAR(25) NOT NULL,
-    `code` CHAR(25),
+    `id` VARCHAR(32) NOT NULL,
+    `code` VARCHAR(32),
     `name` MEDIUMTEXT NOT NULL,
-    `CreatedBy` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `CreatedBy` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     UNIQUE INDEX `Position.code_unique`(`code`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -593,11 +575,11 @@ CREATE TABLE `Position` (
 
 -- CreateTable
 CREATE TABLE `Project` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT NOT NULL,
     `domain` MEDIUMTEXT,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `description` MEDIUMTEXT,
     `url` MEDIUMTEXT,
     `sequence` INTEGER,
@@ -606,11 +588,11 @@ CREATE TABLE `Project` (
     `status` VARCHAR(191),
     `public` BOOLEAN,
     `oldID` INTEGER,
-    `CreatedBy` CHAR(25),
-    `Image` CHAR(25),
-    `ChatRoom` CHAR(25),
-    `Team` CHAR(25),
-    `Resource` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `Image` VARCHAR(32),
+    `ChatRoom` VARCHAR(32),
+    `Team` VARCHAR(32),
+    `Resource` VARCHAR(32),
     `type` VARCHAR(191),
 
     UNIQUE INDEX `Project.sequence_unique`(`sequence`),
@@ -625,13 +607,13 @@ CREATE TABLE `Project` (
 
 -- CreateTable
 CREATE TABLE `ProjectMember` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `status` VARCHAR(191),
-    `User` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `Project` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `User` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `Project` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Project`(`Project`),
@@ -641,12 +623,12 @@ CREATE TABLE `ProjectMember` (
 
 -- CreateTable
 CREATE TABLE `ProjectTask` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `Project` CHAR(25),
-    `Task` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `Project` VARCHAR(32),
+    `Task` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Project`(`Project`),
@@ -656,13 +638,13 @@ CREATE TABLE `ProjectTask` (
 
 -- CreateTable
 CREATE TABLE `ResetPassword` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `code` CHAR(25),
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `code` VARCHAR(32),
     `password` MEDIUMTEXT,
     `validTill` DATETIME(3),
-    `User` CHAR(25),
+    `User` VARCHAR(32),
 
     UNIQUE INDEX `ResetPassword.code_unique`(`code`),
     INDEX `User`(`User`),
@@ -671,10 +653,10 @@ CREATE TABLE `ResetPassword` (
 
 -- CreateTable
 CREATE TABLE `Resource` (
-    `id` CHAR(25) NOT NULL,
-    `code` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `code` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `type` VARCHAR(191),
     `name` MEDIUMTEXT,
     `longtitle` MEDIUMTEXT,
@@ -696,15 +678,15 @@ CREATE TABLE `Resource` (
     `template` INTEGER,
     `mockUpdate` DATETIME(3),
     `components` MEDIUMTEXT,
-    `Parent` CHAR(25),
-    `Team` CHAR(25),
-    `Service` CHAR(25),
-    `EthAccount` CHAR(25),
-    `PrismaProject` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `Topic` CHAR(25),
-    `Blog` CHAR(25),
-    `Task` CHAR(25),
+    `Parent` VARCHAR(32),
+    `Team` VARCHAR(32),
+    `Service` VARCHAR(32),
+    `EthAccount` VARCHAR(32),
+    `PrismaProject` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `Topic` VARCHAR(32),
+    `Blog` VARCHAR(32),
+    `Task` VARCHAR(32),
 
     UNIQUE INDEX `Resource.code_unique`(`code`),
     UNIQUE INDEX `Resource.oldID_unique`(`oldID`),
@@ -723,13 +705,13 @@ CREATE TABLE `Resource` (
 
 -- CreateTable
 CREATE TABLE `ResourceTag` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `status` VARCHAR(191) NOT NULL,
-    `CreatedBy` CHAR(25),
-    `Resource` CHAR(25),
-    `Tag` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `Resource` VARCHAR(32),
+    `Tag` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Resource`(`Resource`),
@@ -739,13 +721,13 @@ CREATE TABLE `ResourceTag` (
 
 -- CreateTable
 CREATE TABLE `Route` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT,
     `path` MEDIUMTEXT NOT NULL,
     `exact` BOOLEAN NOT NULL,
     `component` MEDIUMTEXT NOT NULL,
-    `CreatedBy` CHAR(25),
-    `Parent` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `Parent` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Parent`(`Parent`),
@@ -754,17 +736,17 @@ CREATE TABLE `Route` (
 
 -- CreateTable
 CREATE TABLE `Service` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT,
     `description` MEDIUMTEXT,
-    `code` CHAR(25),
+    `code` VARCHAR(32),
     `rank` INTEGER,
     `oldID` INTEGER,
-    `Category` CHAR(25),
-    `Parent` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `Category` VARCHAR(32),
+    `Parent` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     UNIQUE INDEX `Service.code_unique`(`code`),
     UNIQUE INDEX `Service.oldID_unique`(`oldID`),
@@ -776,14 +758,14 @@ CREATE TABLE `Service` (
 
 -- CreateTable
 CREATE TABLE `ServiceCategory` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT NOT NULL,
     `description` MEDIUMTEXT,
-    `code` CHAR(25),
-    `Parent` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `code` VARCHAR(32),
+    `Parent` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     UNIQUE INDEX `ServiceCategory.code_unique`(`code`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -793,9 +775,9 @@ CREATE TABLE `ServiceCategory` (
 
 -- CreateTable
 CREATE TABLE `Settings` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `renderDistance` INTEGER NOT NULL,
-    `User` CHAR(25),
+    `User` VARCHAR(32),
 
     INDEX `User`(`User`),
     PRIMARY KEY (`id`)
@@ -803,15 +785,15 @@ CREATE TABLE `Settings` (
 
 -- CreateTable
 CREATE TABLE `SmsMessage` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `from` MEDIUMTEXT NOT NULL,
     `text` MEDIUMTEXT NOT NULL,
     `deletOnSend` BOOLEAN,
-    `Status` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `Provider` CHAR(25),
+    `Status` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `Provider` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Provider`(`Provider`),
@@ -821,7 +803,7 @@ CREATE TABLE `SmsMessage` (
 
 -- CreateTable
 CREATE TABLE `SmsMessage_recipients` (
-    `nodeId` CHAR(25) NOT NULL,
+    `nodeId` VARCHAR(32) NOT NULL,
     `position` INTEGER NOT NULL,
     `value` MEDIUMTEXT NOT NULL,
 
@@ -830,12 +812,12 @@ CREATE TABLE `SmsMessage_recipients` (
 
 -- CreateTable
 CREATE TABLE `SmsProvider` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT NOT NULL,
     `credentials` MEDIUMTEXT,
-    `CreatedBy` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `CreatedBy` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
@@ -843,12 +825,12 @@ CREATE TABLE `SmsProvider` (
 
 -- CreateTable
 CREATE TABLE `Tag` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
     `status` VARCHAR(191) NOT NULL,
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
@@ -856,9 +838,9 @@ CREATE TABLE `Tag` (
 
 -- CreateTable
 CREATE TABLE `Task` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
     `description` MEDIUMTEXT,
     `content` MEDIUMTEXT,
@@ -867,9 +849,9 @@ CREATE TABLE `Task` (
     `endDatePlaning` DATETIME(3),
     `startDate` DATETIME(3),
     `endDate` DATETIME(3),
-    `CreatedBy` CHAR(25),
-    `Parent` CHAR(25),
-    `ChatRoom` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `Parent` VARCHAR(32),
+    `ChatRoom` VARCHAR(32),
     `needHelp` BOOLEAN,
 
     INDEX `ChatRoom`(`ChatRoom`),
@@ -880,13 +862,13 @@ CREATE TABLE `Task` (
 
 -- CreateTable
 CREATE TABLE `TaskMember` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `status` VARCHAR(191) NOT NULL,
-    `Task` CHAR(25),
-    `User` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `Task` VARCHAR(32),
+    `User` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Task`(`Task`),
@@ -896,12 +878,12 @@ CREATE TABLE `TaskMember` (
 
 -- CreateTable
 CREATE TABLE `TaskReaction` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `type` VARCHAR(191),
-    `Task` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `Task` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Task`(`Task`),
@@ -910,13 +892,13 @@ CREATE TABLE `TaskReaction` (
 
 -- CreateTable
 CREATE TABLE `TaskTechnology` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `level` INTEGER,
-    `Technology` CHAR(25),
-    `Task` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `Technology` VARCHAR(32),
+    `Task` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Task`(`Task`),
@@ -926,7 +908,7 @@ CREATE TABLE `TaskTechnology` (
 
 -- CreateTable
 CREATE TABLE `Team` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT NOT NULL,
     `status` VARCHAR(191) NOT NULL,
     `oldID` INTEGER,
@@ -934,10 +916,10 @@ CREATE TABLE `Team` (
     `website` MEDIUMTEXT,
     `email` MEDIUMTEXT,
     `phone` MEDIUMTEXT,
-    `CreatedBy` CHAR(25),
-    `Parent` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `CreatedBy` VARCHAR(32),
+    `Parent` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     UNIQUE INDEX `Team.oldID_unique`(`oldID`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -947,13 +929,13 @@ CREATE TABLE `Team` (
 
 -- CreateTable
 CREATE TABLE `TeamMember` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `status` VARCHAR(191),
-    `User` CHAR(25),
-    `Team` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `User` VARCHAR(32),
+    `Team` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Team`(`Team`),
@@ -963,14 +945,14 @@ CREATE TABLE `TeamMember` (
 
 -- CreateTable
 CREATE TABLE `Technology` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
     `components` MEDIUMTEXT,
     `contentText` MEDIUMTEXT,
     `site_url` MEDIUMTEXT,
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
@@ -978,12 +960,12 @@ CREATE TABLE `Technology` (
 
 -- CreateTable
 CREATE TABLE `TechnologyLesson` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT,
     `components` MEDIUMTEXT,
     `contentText` MEDIUMTEXT,
-    `Technology` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `Technology` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Technology`(`Technology`),
@@ -992,13 +974,13 @@ CREATE TABLE `TechnologyLesson` (
 
 -- CreateTable
 CREATE TABLE `TechnologyLessonUser` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `status` VARCHAR(191),
     `completedAt` DATETIME(3),
-    `Lesson` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `Lesson` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Lesson`(`Lesson`),
@@ -1007,10 +989,10 @@ CREATE TABLE `TechnologyLessonUser` (
 
 -- CreateTable
 CREATE TABLE `Template` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
-    `externalKey` CHAR(25),
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `externalKey` VARCHAR(32),
     `name` MEDIUMTEXT,
     `description` MEDIUMTEXT,
     `component` MEDIUMTEXT,
@@ -1018,10 +1000,10 @@ CREATE TABLE `Template` (
     `components` MEDIUMTEXT,
     `vars` MEDIUMTEXT,
     `rank` INTEGER,
-    `PrismaProject` CHAR(25),
-    `Project` CHAR(25),
-    `Parent` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `PrismaProject` VARCHAR(32),
+    `Project` VARCHAR(32),
+    `Parent` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Parent`(`Parent`),
@@ -1032,14 +1014,14 @@ CREATE TABLE `Template` (
 
 -- CreateTable
 CREATE TABLE `Test` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
     `text` MEDIUMTEXT,
     `quantity` DECIMAL(65, 30),
     `date` DATETIME(3),
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
@@ -1047,12 +1029,12 @@ CREATE TABLE `Test` (
 
 -- CreateTable
 CREATE TABLE `Timer` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `stopedAt` DATETIME(3),
-    `updatedAt` DATETIME(3) NOT NULL,
-    `Task` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `Task` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     INDEX `Task`(`Task`),
@@ -1061,13 +1043,13 @@ CREATE TABLE `Timer` (
 
 -- CreateTable
 CREATE TABLE `Tournament` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
-    `code` CHAR(25),
-    `CreatedBy` CHAR(25),
-    `Group` CHAR(25),
+    `code` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
+    `Group` VARCHAR(32),
 
     UNIQUE INDEX `Tournament.code_unique`(`code`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -1077,12 +1059,12 @@ CREATE TABLE `Tournament` (
 
 -- CreateTable
 CREATE TABLE `TournamentGroup` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
-    `code` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `code` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     UNIQUE INDEX `TournamentGroup.code_unique`(`code`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -1091,15 +1073,15 @@ CREATE TABLE `TournamentGroup` (
 
 -- CreateTable
 CREATE TABLE `Tourney` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT,
-    `code` CHAR(25),
+    `code` VARCHAR(32),
     `date` DATETIME(3),
     `date_till` DATETIME(3),
-    `Tournament` CHAR(25),
-    `CreatedBy` CHAR(25),
+    `Tournament` VARCHAR(32),
+    `CreatedBy` VARCHAR(32),
 
     UNIQUE INDEX `Tourney.code_unique`(`code`),
     INDEX `CreatedBy`(`CreatedBy`),
@@ -1109,9 +1091,9 @@ CREATE TABLE `Tourney` (
 
 -- CreateTable
 CREATE TABLE `TourneyPlayer` (
-    `id` CHAR(25) NOT NULL,
-    `User` CHAR(25),
-    `Tourney` CHAR(25),
+    `id` VARCHAR(32) NOT NULL,
+    `User` VARCHAR(32),
+    `Tourney` VARCHAR(32),
 
     INDEX `Tourney`(`Tourney`),
     INDEX `User`(`User`),
@@ -1120,25 +1102,25 @@ CREATE TABLE `TourneyPlayer` (
 
 -- CreateTable
 CREATE TABLE `UserGroup` (
-    `id` CHAR(25) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `UserTechnology` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `components` MEDIUMTEXT,
     `date_from` DATETIME(3),
     `date_till` DATETIME(3),
     `status` VARCHAR(191),
-    `CreatedBy` CHAR(25),
-    `Technology` CHAR(25),
+    `CreatedBy` VARCHAR(32),
+    `Technology` VARCHAR(32),
     `level` INTEGER,
 
     INDEX `CreatedBy`(`CreatedBy`),
@@ -1148,12 +1130,12 @@ CREATE TABLE `UserTechnology` (
 
 -- CreateTable
 CREATE TABLE `Vote` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `value` DECIMAL(65, 30) NOT NULL,
-    `Resource` CHAR(25),
-    `User` CHAR(25),
+    `Resource` VARCHAR(32),
+    `User` VARCHAR(32),
 
     INDEX `Resource`(`Resource`),
     INDEX `User`(`User`),
@@ -1162,9 +1144,9 @@ CREATE TABLE `Vote` (
 
 -- CreateTable
 CREATE TABLE `World` (
-    `id` CHAR(25) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `id` VARCHAR(32) NOT NULL,
+    `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
     `seed` MEDIUMTEXT NOT NULL,
     `type` VARCHAR(191) NOT NULL,
@@ -1172,7 +1154,7 @@ CREATE TABLE `World` (
     `timeChanger` DECIMAL(65, 30),
     `days` INTEGER NOT NULL,
     `lastPlayed` DATETIME(3) NOT NULL,
-    `CreatedBy` CHAR(25),
+    `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
     PRIMARY KEY (`id`)
@@ -1180,8 +1162,8 @@ CREATE TABLE `World` (
 
 -- CreateTable
 CREATE TABLE `_ChatRoomsMembers` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_ChatRoomsMembers_AB_unique`(`A`, `B`),
     INDEX `_ChatRoomsMembers_B_index`(`B`)
@@ -1189,8 +1171,8 @@ CREATE TABLE `_ChatRoomsMembers` (
 
 -- CreateTable
 CREATE TABLE `_GameUsers` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_GameUsers_AB_unique`(`A`, `B`),
     INDEX `_GameUsers_B_index`(`B`)
@@ -1198,8 +1180,8 @@ CREATE TABLE `_GameUsers` (
 
 -- CreateTable
 CREATE TABLE `_PositionUsers` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_PositionUsers_AB_unique`(`A`, `B`),
     INDEX `_PositionUsers_B_index`(`B`)
@@ -1207,8 +1189,8 @@ CREATE TABLE `_PositionUsers` (
 
 -- CreateTable
 CREATE TABLE `_PrismaProjectUsers` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_PrismaProjectUsers_AB_unique`(`A`, `B`),
     INDEX `_PrismaProjectUsers_B_index`(`B`)
@@ -1216,8 +1198,8 @@ CREATE TABLE `_PrismaProjectUsers` (
 
 -- CreateTable
 CREATE TABLE `_UserGroups` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_UserGroups_AB_unique`(`A`, `B`),
     INDEX `_UserGroups_B_index`(`B`)
@@ -1225,8 +1207,8 @@ CREATE TABLE `_UserGroups` (
 
 -- CreateTable
 CREATE TABLE `_UserNotificationTypes` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_UserNotificationTypes_AB_unique`(`A`, `B`),
     INDEX `_UserNotificationTypes_B_index`(`B`)
@@ -1234,8 +1216,8 @@ CREATE TABLE `_UserNotificationTypes` (
 
 -- CreateTable
 CREATE TABLE `_EthBlockToEthBlock` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_EthBlockToEthBlock_AB_unique`(`A`, `B`),
     INDEX `_EthBlockToEthBlock_B_index`(`B`)
@@ -1243,8 +1225,8 @@ CREATE TABLE `_EthBlockToEthBlock` (
 
 -- CreateTable
 CREATE TABLE `_GameToTeam` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_GameToTeam_AB_unique`(`A`, `B`),
     INDEX `_GameToTeam_B_index`(`B`)
@@ -1252,8 +1234,8 @@ CREATE TABLE `_GameToTeam` (
 
 -- CreateTable
 CREATE TABLE `_ProjectCustomers` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_ProjectCustomers_AB_unique`(`A`, `B`),
     INDEX `_ProjectCustomers_B_index`(`B`)
@@ -1261,8 +1243,8 @@ CREATE TABLE `_ProjectCustomers` (
 
 -- CreateTable
 CREATE TABLE `_ProjectMemberServices` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_ProjectMemberServices_AB_unique`(`A`, `B`),
     INDEX `_ProjectMemberServices_B_index`(`B`)
@@ -1270,8 +1252,8 @@ CREATE TABLE `_ProjectMemberServices` (
 
 -- CreateTable
 CREATE TABLE `_RelatedTasks` (
-    `A` CHAR(25) NOT NULL,
-    `B` CHAR(25) NOT NULL,
+    `A` VARCHAR(32) NOT NULL,
+    `B` VARCHAR(32) NOT NULL,
 
     UNIQUE INDEX `_RelatedTasks_AB_unique`(`A`, `B`),
     INDEX `_RelatedTasks_B_index`(`B`)

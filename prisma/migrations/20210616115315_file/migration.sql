@@ -1,5 +1,5 @@
 -- AlterTable
-ALTER TABLE `User` ADD COLUMN `image` VARCHAR(191);
+ALTER TABLE `User` ADD COLUMN `image` TEXT;
 
 -- CreateTable
 CREATE TABLE `File` (

@@ -790,7 +790,7 @@ type File {
   encoding: String!
 
   """Имя файла"""
-  filename: String!
+  filename: String
   id: String!
 
   """Миме-тип"""
@@ -803,10 +803,10 @@ type File {
   path: String!
 
   """Очередность"""
-  rank: Int!
+  rank: Int
 
   """Размер в байтах"""
-  size: Float!
+  size: Float
 
   """Когда обновлен"""
   updatedAt: DateTime!
@@ -2707,6 +2707,23 @@ input TimerWhereUniqueInput {
   id: String
 }
 
+input TokenListRelationFilter {
+  every: TokenWhereInput
+  none: TokenWhereInput
+  some: TokenWhereInput
+}
+
+input TokenWhereInput {
+  AND: [TokenWhereInput!]
+  NOT: [TokenWhereInput!]
+  OR: [TokenWhereInput!]
+  User: UserWhereInput
+  createdAt: DateTimeFilter
+  expiredAt: DateTimeNullableFilter
+  id: StringFilter
+  userId: StringNullableFilter
+}
+
 input TopicCreateInput {
   content: JSON
   text: JSON
@@ -3093,6 +3110,7 @@ input UserWhereInput {
   Template: TemplateListRelationFilter
   Test: TestListRelationFilter
   Timer: TimerListRelationFilter
+  Tokens: TokenListRelationFilter
   Tournament: TournamentListRelationFilter
   TournamentGroup: TournamentGroupListRelationFilter
   Tourney: TourneyListRelationFilter
@@ -3128,8 +3146,10 @@ input UserWhereInput {
 }
 
 input UserWhereUniqueInput {
+  email: String
   id: String
   oldID: Int
+  username: String
 }
 
 input VoteListRelationFilter {

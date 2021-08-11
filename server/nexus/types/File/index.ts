@@ -86,7 +86,7 @@ export const File = objectType({
     t.nonNull.string('path', {
       description: 'Путь к файлу',
     })
-    t.nonNull.string('filename', {
+    t.string('filename', {
       description: 'Имя файла',
     })
     t.string('name', {
@@ -98,10 +98,10 @@ export const File = objectType({
     t.nonNull.string('encoding', {
       description: 'Кодировка',
     })
-    t.nonNull.float('size', {
+    t.float('size', {
       description: 'Размер в байтах',
     })
-    t.nonNull.int('rank', {
+    t.int('rank', {
       description: 'Очередность',
     })
   },

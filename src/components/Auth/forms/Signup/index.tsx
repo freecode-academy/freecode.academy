@@ -7,11 +7,15 @@ import Grid from 'src/uikit/Grid'
 import AuthForm from '../'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
-import gql from 'graphql-tag'
 import { SignupFormProps, SignupFormState } from './interfaces'
 
 // import PhoneField from '@prisma-cms/front/lib/modules/ui/Input/Phone'
 import PhoneField from 'src/uikit/Input/Phone'
+import {
+  SignupDocument,
+  SignupMutationResult,
+  SignupMutationVariables,
+} from 'src/modules/gql/generated'
 
 class SignupForm extends AuthForm<SignupFormProps, SignupFormState> {
   // static propTypes = {
@@ -117,41 +121,40 @@ class SignupForm extends AuthForm<SignupFormProps, SignupFormState> {
   }
 
   async signup() {
-    const {
-      signup = `
-        mutation signup(
-          $data:UserCreateInput!
-        ){
-          response: signup(
-            data:$data
-          ){
-            success
-            message
-            errors{
-              key
-              message
-            }
-            token
-            data{
-              ...user
-            }
-          }
-        }
-        
-        
-        fragment user on User {
-          id
-          username
-          email
-          phone
-          showEmail
-          showPhone
-          sudo
-          hasEmail
-          hasPhone
-        }
-      `,
-    } = this.context.query || {}
+    // const {
+    //   signup = `
+    //     mutation signup(
+    //       $data:UserCreateInput!
+    //     ){
+    //       response: signup(
+    //         data:$data
+    //       ){
+    //         success
+    //         message
+    //         errors{
+    //           key
+    //           message
+    //         }
+    //         token
+    //         data{
+    //           ...user
+    //         }
+    //       }
+    //     }
+
+    //     fragment user on User {
+    //       id
+    //       username
+    //       email
+    //       phone
+    //       showEmail
+    //       showPhone
+    //       sudo
+    //       hasEmail
+    //       hasPhone
+    //     }
+    //   `,
+    // } = this.context.query || {}
 
     const { signupInRequest, data } = this.state
 
@@ -159,17 +162,23 @@ class SignupForm extends AuthForm<SignupFormProps, SignupFormState> {
       return
     }
 
+    if (!data) {
+      return
+    }
+
     this.setState({
       signupInRequest: true,
     })
 
+    const variables: SignupMutationVariables = {
+      data,
+    }
+
     const result = await this.mutate({
-      mutation: gql(signup),
-      variables: {
-        data,
-      },
+      mutation: SignupDocument,
+      variables,
     })
-      .then((r: any) => {
+      .then((r: SignupMutationResult) => {
         this.onAuth(r)
 
         return r

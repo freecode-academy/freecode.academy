@@ -21,11 +21,13 @@ export const CodeChallengeCompletionExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
     t.nonNull.field('updateCodeChallengeCompletionProcessor', {
@@ -36,11 +38,13 @@ export const CodeChallengeCompletionExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
   },

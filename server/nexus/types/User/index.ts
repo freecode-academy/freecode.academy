@@ -106,11 +106,13 @@ export const UserMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
   },
@@ -123,11 +125,14 @@ export const UserSignupDataInput = inputObjectType({
     t.string('email')
     t.string('fullname')
     t.string('password')
+    t.string('phone')
     t.nonNull.boolean('showEmail', {
       description: 'Показывать емейл другим пользователям',
+      default: false,
     })
     t.nonNull.boolean('showFullname', {
       description: 'Показывать ФИО другим пользователям',
+      default: true,
     })
   },
 })

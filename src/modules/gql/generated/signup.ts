@@ -18,7 +18,7 @@ export type SignupMutationVariables = Types.Exact<{
 }>;
 
 
-export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'AuthPayload', success: boolean, message?: Types.Maybe<string>, token?: Types.Maybe<string>, errors: Array<{ __typename?: 'RequestError', key: string, message: string }>, data?: Types.Maybe<(
+export type SignupMutation = { __typename?: 'Mutation', response: { __typename?: 'AuthPayload', success: boolean, message?: Types.Maybe<string>, token?: Types.Maybe<string>, errors: Array<{ __typename?: 'RequestError', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'User' }
       & UserNoNestingFragment
     )> } };
@@ -26,7 +26,7 @@ export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: '
 
 export const SignupDocument = gql`
     mutation signup($data: UserSignupDataInput!) {
-  signup(data: $data) {
+  response: signup(data: $data) {
     success
     message
     errors {

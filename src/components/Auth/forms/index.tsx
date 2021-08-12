@@ -5,7 +5,10 @@ import Dialog from 'material-ui/Dialog' // DialogContent, // DialogActions,
 
 import PrismaCmsComponent from '@prisma-cms/component'
 import { AuthFormProps, AuthFormState } from './interfaces'
-import { SigninMutationResult } from 'src/modules/gql/generated'
+import {
+  SigninMutationResult,
+  SignupMutationResult,
+} from 'src/modules/gql/generated'
 // import { PrismaCmsContext } from 'src/pages/_App/interfaces';
 
 const defaultLocales = {
@@ -115,7 +118,7 @@ class AuthForm<
     this.switchForm('signup')
   }
 
-  async onAuth(result: SigninMutationResult) {
+  async onAuth(result: SigninMutationResult | SignupMutationResult) {
     const { response } = (result && result.data) || {}
 
     const {

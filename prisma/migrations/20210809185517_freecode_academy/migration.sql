@@ -5,7 +5,6 @@
   - You are about to drop the column `createdById` on the `File` table. All the data in the column will be lost.
   - You are about to alter the column `id` on the `File` table. The data in that column could be lost. The data in that column will be cast from `VarChar(32)` to `Char(25)`.
   - The primary key for the `User` table will be changed. If it partially fails, the table could be left without primary key constraint.
-  - You are about to drop the column `showFullname` on the `User` table. All the data in the column will be lost.
   - You are about to alter the column `id` on the `User` table. The data in that column could be lost. The data in that column will be cast from `VarChar(32)` to `Char(25)`.
   - A unique constraint covering the columns `[oldID]` on the table `User` will be added. If there are existing duplicate values, this will fail.
 
@@ -34,7 +33,6 @@ ALTER TABLE `File` DROP PRIMARY KEY,
 
 -- AlterTable
 ALTER TABLE `User` DROP PRIMARY KEY,
-    DROP COLUMN `showFullname`,
     ADD COLUMN `CreatedBy` VARCHAR(32),
     ADD COLUMN `EthAccountAuthed` VARCHAR(32),
     ADD COLUMN `acceptChatMessageAnonymous` BOOLEAN,
@@ -47,12 +45,11 @@ ALTER TABLE `User` DROP PRIMARY KEY,
     ADD COLUMN `marketplaceToken` VARCHAR(191),
     ADD COLUMN `oldID` INTEGER,
     ADD COLUMN `phone` VARCHAR(191),
-    ADD COLUMN `showPhone` BOOLEAN,
+    ADD COLUMN `showPhone` BOOLEAN  NOT NULL DEFAULT false,
     MODIFY `active` BOOLEAN,
     MODIFY `sudo` BOOLEAN,
     MODIFY `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     MODIFY `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-    MODIFY `showEmail` BOOLEAN,
     ADD PRIMARY KEY (`id`);
 
 -- CreateTable

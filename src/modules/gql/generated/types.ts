@@ -3581,6 +3581,7 @@ export interface UserOrderByInput {
   password?: Maybe<SortOrder>;
   phone?: Maybe<SortOrder>;
   showEmail?: Maybe<SortOrder>;
+  showFullname?: Maybe<SortOrder>;
   showPhone?: Maybe<SortOrder>;
   sudo?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
@@ -3603,10 +3604,11 @@ export interface UserSignupDataInput {
   email?: Maybe<Scalars['String']>;
   fullname?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   /** Показывать емейл другим пользователям */
-  showEmail: Scalars['Boolean'];
+  showEmail?: Scalars['Boolean'];
   /** Показывать ФИО другим пользователям */
-  showFullname: Scalars['Boolean'];
+  showFullname?: Scalars['Boolean'];
   username?: Maybe<Scalars['String']>;
 }
 
@@ -3814,8 +3816,9 @@ export interface UserWhereInput {
   other_User?: Maybe<UserListRelationFilter>;
   password?: Maybe<StringNullableFilter>;
   phone?: Maybe<StringNullableFilter>;
-  showEmail?: Maybe<BoolNullableFilter>;
-  showPhone?: Maybe<BoolNullableFilter>;
+  showEmail?: Maybe<BoolFilter>;
+  showFullname?: Maybe<BoolFilter>;
+  showPhone?: Maybe<BoolFilter>;
   sudo?: Maybe<BoolNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   username?: Maybe<StringNullableFilter>;

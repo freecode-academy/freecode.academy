@@ -219,7 +219,8 @@ const App: MainApp = ({ Component, pageProps }) => {
               <WithUser context={contextValue}>
                 <Auth
                   open={authOpen}
-                  useMetamask={true}
+                  // TODO Restore metamask
+                  useMetamask={false}
                   loginComplete={loginComplete}
                   loginCanceled={loginCanceled}
                   showRegForm={true}

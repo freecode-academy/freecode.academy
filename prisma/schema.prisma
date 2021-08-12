@@ -14,8 +14,9 @@ model User {
   username                                              String?
   email                                                 String?
   phone                                                 String?
-  showEmail                                             Boolean?
-  showPhone                                             Boolean?
+  showEmail                                             Boolean                   @default(false)
+  showPhone                                             Boolean                   @default(false)
+  showFullname                                          Boolean                   @default(true)
   password                                              String?
   fullname                                              String?
   image                                                 String?                   @db.Text
@@ -970,7 +971,7 @@ model Tag {
   id          String        @id @db.VarChar(32)
   createdAt   DateTime      @default(now("0")) @db.DateTime("0")
   updatedAt   DateTime      @default(now("0")) @updatedAt @db.DateTime("0")
-  name        String        @unique()
+  name        String        @unique
   status      String
   CreatedBy   String?       @db.VarChar(32)
   User        User?         @relation(fields: [CreatedBy], references: [id])

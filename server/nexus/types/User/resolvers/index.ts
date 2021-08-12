@@ -47,7 +47,15 @@ export const signup: FieldResolver<'Mutation', 'signup'> = async (
   args,
   ctx
 ) => {
-  const { password: passwordProps, ...data } = args.data || {}
+  const {
+    password: passwordProps,
+    showEmail,
+    showFullname,
+    email,
+    fullname,
+    phone,
+    username,
+  } = args.data || {}
 
   const password = passwordProps
     ? await createPassword(passwordProps)
@@ -55,8 +63,13 @@ export const signup: FieldResolver<'Mutation', 'signup'> = async (
 
   const user = await ctx.prisma.user.create({
     data: {
-      ...data,
       password,
+      showEmail,
+      showFullname,
+      email,
+      fullname,
+      phone,
+      username,
     },
   })
 

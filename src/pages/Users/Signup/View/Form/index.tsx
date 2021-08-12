@@ -32,6 +32,7 @@ const SignupForm: React.FC = () => {
         username: yup.string(),
         fullname: yup.string(),
         password: yup.string(),
+        phone: yup.string(),
         showEmail: yup.boolean().required(),
         showFullname: yup.boolean().required(),
       })
@@ -86,8 +87,8 @@ const SignupForm: React.FC = () => {
       },
     })
       .then((r) => {
-        if (r.data?.signup.data) {
-          context?.onAuthSuccess(r.data.signup)
+        if (r.data?.response.data) {
+          context?.onAuthSuccess(r.data.response)
         }
       })
       .catch((error) => {

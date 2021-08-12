@@ -5,7 +5,7 @@ query me {
 }
 
 mutation signup($data: UserSignupDataInput!) {
-  signup(data: $data) {
+  response: signup(data: $data) {
     success
     message
     errors {

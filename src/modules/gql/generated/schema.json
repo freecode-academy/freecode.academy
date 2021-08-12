@@ -33653,6 +33653,18 @@
             "deprecationReason": null
           },
           {
+            "name": "showFullname",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "showPhone",
             "description": null,
             "type": {
@@ -33850,6 +33862,18 @@
             "deprecationReason": null
           },
           {
+            "name": "phone",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "showEmail",
             "description": "Показывать емейл другим пользователям",
             "type": {
@@ -33861,7 +33885,7 @@
                 "ofType": null
               }
             },
-            "defaultValue": null,
+            "defaultValue": "false",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -33877,7 +33901,7 @@
                 "ofType": null
               }
             },
-            "defaultValue": null,
+            "defaultValue": "true",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -36045,7 +36069,19 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "BoolNullableFilter",
+              "name": "BoolFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showFullname",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BoolFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -36057,7 +36093,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "BoolNullableFilter",
+              "name": "BoolFilter",
               "ofType": null
             },
             "defaultValue": null,

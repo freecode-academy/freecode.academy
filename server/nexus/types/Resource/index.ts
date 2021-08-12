@@ -68,11 +68,13 @@ export const CommentExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
     t.nonNull.field('updateCommentProcessor', {
@@ -83,11 +85,13 @@ export const CommentExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
 
@@ -98,11 +102,13 @@ export const CommentExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
     t.nonNull.field('updateTopicProcessor', {
@@ -113,11 +119,13 @@ export const CommentExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
   },

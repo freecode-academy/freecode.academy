@@ -2415,6 +2415,7 @@ export interface NexusGenInputs {
     password?: NexusGenEnums['SortOrder'] | null // SortOrder
     phone?: NexusGenEnums['SortOrder'] | null // SortOrder
     showEmail?: NexusGenEnums['SortOrder'] | null // SortOrder
+    showFullname?: NexusGenEnums['SortOrder'] | null // SortOrder
     showPhone?: NexusGenEnums['SortOrder'] | null // SortOrder
     sudo?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -2429,6 +2430,7 @@ export interface NexusGenInputs {
     email?: string | null // String
     fullname?: string | null // String
     password?: string | null // String
+    phone?: string | null // String
     showEmail: boolean // Boolean!
     showFullname: boolean // Boolean!
     username?: string | null // String
@@ -2658,8 +2660,9 @@ export interface NexusGenInputs {
     other_User?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
     password?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     phone?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    showEmail?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
-    showPhone?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    showEmail?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    showFullname?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    showPhone?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     sudo?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     username?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter

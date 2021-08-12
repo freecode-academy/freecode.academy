@@ -9,7 +9,7 @@ export type ContextValue = {
   user: MeQuery['user']
 
   onAuthSuccess: (
-    data: SignupMutation['signup'] | SigninMutation['response']
+    data: SignupMutation['response'] | SigninMutation['response']
   ) => void
 }
 

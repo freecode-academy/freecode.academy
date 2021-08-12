@@ -13,6 +13,9 @@ export const NoticeExtendQuery = extendType({
       description: 'Список уведомлений',
       filtering: true,
       ordering: true,
+      resolve() {
+        return []
+      },
     })
 
     t.nonNull.int('noticesCount', {
@@ -35,36 +38,45 @@ export const NoticeExtendQuery = extendType({
         first: 'Int',
         skip: 'Int',
       },
-      resolve: async (_, args, ctx) => {
-        const where = args.where as Prisma.NoticeWhereInput
-        const orderBy = args.orderBy as Prisma.NoticeOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
-
-        const countPromise = ctx.prisma.notice.count({
-          where,
-        })
-
-        const noticesPromise = ctx.prisma.notice.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
-
-        return Promise.all([countPromise, noticesPromise]).then((results) => {
-          return {
-            aggregate: {
-              count: results[0],
-            },
-            edges: results[1].map((n) => {
-              return {
-                node: n,
-              }
-            }),
-          }
-        })
+      // TODO Restore logic
+      resolve: async () => {
+        return {
+          aggregate: {
+            count: 0,
+          },
+          edges: [],
+        }
       },
+      // resolve: async (_, args, ctx) => {
+      //   const where = args.where as Prisma.NoticeWhereInput
+      //   const orderBy = args.orderBy as Prisma.NoticeOrderByInput
+      //   const take = args.first || undefined
+      //   const skip = args.skip || undefined
+
+      //   const countPromise = ctx.prisma.notice.count({
+      //     where,
+      //   })
+
+      //   const noticesPromise = ctx.prisma.notice.findMany({
+      //     where,
+      //     orderBy: orderBy ? [orderBy] : undefined,
+      //     take,
+      //     skip,
+      //   })
+
+      //   return Promise.all([countPromise, noticesPromise]).then((results) => {
+      //     return {
+      //       aggregate: {
+      //         count: results[0],
+      //       },
+      //       edges: results[1].map((n) => {
+      //         return {
+      //           node: n,
+      //         }
+      //       }),
+      //     }
+      //   })
+      // },
     })
   },
 })

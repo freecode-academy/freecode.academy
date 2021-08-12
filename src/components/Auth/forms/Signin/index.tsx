@@ -5,6 +5,9 @@ import PrismaCmsComponent from '@prisma-cms/component'
 
 import { AuthUsersFormProps, AuthUsersFormState } from './interfaces'
 import AuthUsersConnector from './AuthUsersConnector'
+import { UserWhereInput } from 'src/modules/gql/generated'
+
+type Filters = { search: string }
 
 class AuthUsersForm extends PrismaCmsComponent<
   AuthUsersFormProps,
@@ -20,14 +23,16 @@ class AuthUsersForm extends PrismaCmsComponent<
     first: 3,
   }
 
-  getFilters = (): any | null => {
+  getFilters = (): Filters | undefined => {
     const { uri } = this.context
 
-    let { authFilters: filters } = uri.query(true)
+    let filters: Filters | undefined
 
-    if (filters && typeof filters === 'string') {
+    const { authFilters } = uri.query(true)
+
+    if (authFilters && typeof authFilters === 'string') {
       try {
-        filters = (filters && JSON.parse(filters)) || null
+        filters = authFilters && JSON.parse(authFilters)
       } catch (error) {
         console.error(console.error(error))
       }
@@ -36,7 +41,7 @@ class AuthUsersForm extends PrismaCmsComponent<
     return filters
   }
 
-  setFilters = (filters: any) => {
+  setFilters = (filters: Filters) => {
     const { uri, router } = this.context
 
     let newUri = uri.clone()
@@ -48,20 +53,16 @@ class AuthUsersForm extends PrismaCmsComponent<
       ...filters,
     }
 
-    try {
-      filters = filters ? JSON.stringify(filters) : undefined
-    } catch (error) {
-      console.error(error)
-    }
+    let authFilters = filters ? JSON.stringify(filters) : undefined
 
-    if (filters === '{}') {
-      filters = undefined
+    if (authFilters === '{}') {
+      authFilters = undefined
     }
 
     if (filters) {
       // if (newUri.hasQuery) {
       newUri = newUri.setQuery({
-        authFilters: filters,
+        authFilters,
       })
       // }
       // else {
@@ -100,8 +101,32 @@ class AuthUsersForm extends PrismaCmsComponent<
     router.push(url)
   }
 
-  prepareWhere() {
-    return this.getFilters()
+  prepareWhere(): UserWhereInput | undefined {
+    const filters = this.getFilters()
+
+    const search = filters?.search
+
+    return search
+      ? {
+          OR: [
+            {
+              username: {
+                startsWith: search,
+              },
+            },
+            {
+              email: {
+                startsWith: search,
+              },
+            },
+            {
+              fullname: {
+                contains: search,
+              },
+            },
+          ],
+        }
+      : undefined
   }
 
   onPasswordChange = (password: string) => {

@@ -3278,6 +3278,7 @@ input UserOrderByInput {
   password: SortOrder
   phone: SortOrder
   showEmail: SortOrder
+  showFullname: SortOrder
   showPhone: SortOrder
   sudo: SortOrder
   updatedAt: SortOrder
@@ -3299,16 +3300,17 @@ input UserSignupDataInput {
   email: String
   fullname: String
   password: String
+  phone: String
 
   """
   Показывать емейл другим пользователям
   """
-  showEmail: Boolean!
+  showEmail: Boolean! = false
 
   """
   Показывать ФИО другим пользователям
   """
-  showFullname: Boolean!
+  showFullname: Boolean! = true
   username: String
 }
 
@@ -3535,8 +3537,9 @@ input UserWhereInput {
   other_User: UserListRelationFilter
   password: StringNullableFilter
   phone: StringNullableFilter
-  showEmail: BoolNullableFilter
-  showPhone: BoolNullableFilter
+  showEmail: BoolFilter
+  showFullname: BoolFilter
+  showPhone: BoolFilter
   sudo: BoolNullableFilter
   updatedAt: DateTimeFilter
   username: StringNullableFilter

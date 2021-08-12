@@ -82,11 +82,13 @@ export const TaskExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
     t.nonNull.field('updateTaskProcessor', {
@@ -97,11 +99,13 @@ export const TaskExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
   },

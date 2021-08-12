@@ -63,11 +63,13 @@ export const TimerExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
     t.nonNull.field('updateTimerProcessor', {
@@ -78,11 +80,13 @@ export const TimerExtendMutation = extendType({
       },
       // TODO Restore logic
       resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
       },
     })
   },

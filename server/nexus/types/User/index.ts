@@ -266,6 +266,18 @@ export const User = objectType({
     // TODO Restore logic
     t.list.nonNull.field('NotificationTypes', {
       type: 'NotificationType',
+      resolve({ id }, _, ctx) {
+        /**
+         * Если это не текущий пользователь, то ничего не выводим
+         */
+        if (ctx.currentUser?.id !== id) {
+          return null
+        }
+
+        return ctx.prisma.user
+          .findUnique({ where: { id } })
+          .NotificationType_UserNotificationTypes()
+      },
     })
 
     // TODO Restore logic

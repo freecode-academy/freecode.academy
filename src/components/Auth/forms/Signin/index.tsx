@@ -110,6 +110,11 @@ class AuthUsersForm extends PrismaCmsComponent<
       ? {
           OR: [
             {
+              id: {
+                equals: search,
+              },
+            },
+            {
               username: {
                 startsWith: search,
               },

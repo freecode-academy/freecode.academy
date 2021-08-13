@@ -1,6 +1,6 @@
 query me {
   user: me {
-    ...MeUser
+    ...meUser
   }
 }
 
@@ -16,21 +16,6 @@ mutation signup($data: UserSignupDataInput!) {
     data {
       ...UserNoNesting
     }
-  }
-}
-
-fragment MeUser on User {
-  ...UserNoNesting
-  CodeChallengeCompletions {
-    ...MeUserCodeChallengeCompletion
-  }
-  EthAccounts {
-    id
-    address
-    balance(convert: ether)
-  }
-  Timers(first: 1, where: { stopedAt: null }) {
-    ...MeUserTimer
   }
 }
 
@@ -53,4 +38,107 @@ fragment MeUserTimer on Timer {
       }
     }
   }
+}
+
+fragment UserNoNesting on User {
+  id
+  createdAt
+  updatedAt
+  username
+  email
+  phone
+  showEmail
+  showPhone
+  # password
+  fullname
+  image
+  address
+  sudo
+  active
+  activated
+  deleted
+  hasEmail
+  hasPhone
+  # marketplaceToken
+  # hidden
+  acceptChatMessageAnonymous
+  acceptNewChatRoomAnonymous
+  acceptNewChatRoom
+}
+
+fragment meUser on User {
+  ...UserNoNesting
+  CodeChallengeCompletions {
+    ...MeUserCodeChallengeCompletion
+  }
+  EthAccounts {
+    id
+    address
+    balance(convert: ether)
+  }
+  Timers(first: 1, where: { stopedAt: null }) {
+    ...MeUserTimer
+  }
+}
+
+fragment user_ on User {
+  ...UserNoNesting
+  EthAccounts {
+    ...EthAccountNoNesting
+  }
+  NotificationTypes {
+    ...NotificationTypeNoNesting
+  }
+  UserTechnologies {
+    ...technology_UserTechnology
+    Technology {
+      ...TechnologyNoNesting
+    }
+  }
+  # Projects {
+  #   ...ProjectMemberNoNesting
+  #   Project {
+  #     ...ProjectNoNesting
+  #     Resource {
+  #       ...ResourceNoNesting
+  #     }
+  #   }
+  # }
+  # ProjectsCreated {
+  #   ...ProjectNoNesting
+  #   Resource {
+  #     ...ResourceNoNesting
+  #   }
+  # }
+}
+
+fragment EthAccountNoNesting on EthAccount {
+  id
+  createdAt
+  updatedAt
+  name
+  description
+  address
+  type
+  source
+  bytecode
+  abi
+  balance
+}
+
+fragment NotificationTypeNoNesting on NotificationType {
+  id
+  createdAt
+  updatedAt
+  name
+  code
+  comment
+  oldID
+}
+
+fragment ProjectMemberNoNesting on ProjectMember {
+  id
+  createdAt
+  updatedAt
+  status
 }

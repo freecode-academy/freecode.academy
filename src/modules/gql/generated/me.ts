@@ -8,9 +8,9 @@
 
 import * as Types from './types';
 
-import { MeUserFragment } from './MeUser';
+import { MeUserFragment } from './meUser';
 import { gql } from '@apollo/client';
-import { MeUserFragmentDoc } from './MeUser';
+import { MeUserFragmentDoc } from './meUser';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type MeQueryVariables = Types.Exact<{ [key: string]: never; }>;
@@ -25,7 +25,7 @@ export type MeQuery = { __typename?: 'Query', user?: Types.Maybe<(
 export const MeDocument = gql`
     query me {
   user: me {
-    ...MeUser
+    ...meUser
   }
 }
     ${MeUserFragmentDoc}`;

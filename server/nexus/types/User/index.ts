@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { objectType, extendType, inputObjectType, nonNull, intArg } from 'nexus'
-import { signin, signup } from './resolvers'
+import { signin } from './resolvers/signin'
+import { signup } from './resolvers/signup'
 
 export const UserQuery = extendType({
   type: 'Query',

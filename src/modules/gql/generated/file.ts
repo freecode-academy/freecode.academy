@@ -6,22 +6,16 @@
 */
 
 
-import * as Types from './types';
-
+import { FileNoNestingFragment } from './FileNoNesting';
 import { gql } from '@apollo/client';
-export type FileFragment = { __typename?: 'File', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, path: string, filename?: Types.Maybe<string>, name?: Types.Maybe<string>, mimetype: string, encoding: string, size?: Types.Maybe<number>, rank?: Types.Maybe<number> };
+import { FileNoNestingFragmentDoc } from './FileNoNesting';
+export type FileFragment = (
+  { __typename?: 'File' }
+  & FileNoNestingFragment
+);
 
 export const FileFragmentDoc = gql`
     fragment file on File {
-  id
-  createdAt
-  updatedAt
-  path
-  filename
-  name
-  mimetype
-  encoding
-  size
-  rank
+  ...FileNoNesting
 }
-    `;
+    ${FileNoNestingFragmentDoc}`;

@@ -27,7 +27,7 @@ export type MeUserFragment = (
 );
 
 export const MeUserFragmentDoc = gql`
-    fragment MeUser on User {
+    fragment meUser on User {
   ...UserNoNesting
   CodeChallengeCompletions {
     ...MeUserCodeChallengeCompletion

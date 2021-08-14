@@ -82,11 +82,14 @@ const BlogAutocomplete: React.FC<BlogAutocompleteProps> = (props) => {
   )
 
   const variables = useMemo<BlogsConnectionQueryVariables>(() => {
+    const blogWhere = { ...where }
+
+    blogWhere.name = {
+      contains: name_contains,
+    }
+
     return {
-      where: {
-        ...where,
-        name_contains,
-      },
+      where: blogWhere,
       orderBy,
     }
   }, [name_contains, orderBy, where])

@@ -3082,12 +3082,10 @@ input TopicCreateInput {
 }
 
 input TopicUpdateInput {
-  blogID: ID
   components: JSON
   content: JSON
   longtitle: String
   name: String
-  published: Boolean
 }
 
 input TournamentGroupListRelationFilter {

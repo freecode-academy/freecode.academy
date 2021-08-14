@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
 import { NexusGenEnums } from 'server/nexus/generated/nexus'
-import { createResource } from './createResource'
+import { createResource } from '../../resolvers/createResource'
 
 export const createTopicProcessor: FieldResolver<
   'Mutation',

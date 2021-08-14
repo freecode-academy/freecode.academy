@@ -2284,12 +2284,10 @@ export interface NexusGenInputs {
   }
   TopicUpdateInput: {
     // input type
-    blogID?: string | null // ID
     components?: NexusGenScalars['JSON'] | null // JSON
     content?: NexusGenScalars['JSON'] | null // JSON
     longtitle?: string | null // String
     name?: string | null // String
-    published?: boolean | null // Boolean
   }
   TournamentGroupListRelationFilter: {
     // input type

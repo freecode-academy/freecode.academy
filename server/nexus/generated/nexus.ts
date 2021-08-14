@@ -98,6 +98,16 @@ export interface NexusGenInputs {
     y?: NexusGenInputs['IntFilter'] | null // IntFilter
     z?: NexusGenInputs['IntFilter'] | null // IntFilter
   }
+  BlogCreateInput: {
+    // input type
+    content?: NexusGenScalars['JSON'] | null // JSON
+    name: string // String!
+  }
+  BlogUpdateInput: {
+    // input type
+    content?: NexusGenScalars['JSON'] | null // JSON
+    name: string // String!
+  }
   BoolFilter: {
     // input type
     equals?: boolean | null // Boolean
@@ -3222,6 +3232,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: {
     // field return type
+    createBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse'] // ChatMessageResponse!
     createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     createCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
@@ -3235,6 +3246,7 @@ export interface NexusGenFieldTypes {
     signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     singleUpload: NexusGenRootTypes['File'] | null // File
+    updateBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     updateCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     updateCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     updateProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
@@ -3834,6 +3846,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: {
     // field return type name
+    createBlogProcessor: 'ResourceResponse'
     createChatMessageProcessor: 'ChatMessageResponse'
     createCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     createCommentProcessor: 'ResourceResponse'
@@ -3847,6 +3860,7 @@ export interface NexusGenFieldTypeNames {
     signin: 'AuthPayload'
     signup: 'AuthPayload'
     singleUpload: 'File'
+    updateBlogProcessor: 'ResourceResponse'
     updateCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     updateCommentProcessor: 'ResourceResponse'
     updateProjectProcessor: 'ProjectResponse'
@@ -4278,6 +4292,10 @@ export interface NexusGenArgTypes {
     }
   }
   Mutation: {
+    createBlogProcessor: {
+      // args
+      data: NexusGenInputs['BlogCreateInput'] // BlogCreateInput!
+    }
     createChatMessageProcessor: {
       // args
       data: NexusGenInputs['ChatMessageCreateInput'] // ChatMessageCreateInput!
@@ -4331,6 +4349,11 @@ export interface NexusGenArgTypes {
       // args
       data?: NexusGenInputs['SingleUploadInput'] | null // SingleUploadInput
       file?: NexusGenScalars['Upload'] | null // Upload
+    }
+    updateBlogProcessor: {
+      // args
+      data: NexusGenInputs['BlogUpdateInput'] // BlogUpdateInput!
+      where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
     }
     updateCodeChallengeCompletionProcessor: {
       // args

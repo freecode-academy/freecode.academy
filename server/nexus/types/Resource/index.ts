@@ -8,6 +8,8 @@ import {
 } from 'nexus'
 import { createTopicProcessor } from './resolvers/createTopicProcessor'
 
+export * from './Blog'
+
 export const ResourceExtendQuery = extendType({
   type: 'Query',
   definition(t) {
@@ -59,7 +61,7 @@ export const ResourceExtendQuery = extendType({
   },
 })
 
-export const CommentExtendMutation = extendType({
+export const ResourceExtendMutation = extendType({
   type: 'Mutation',
   definition(t) {
     t.nonNull.field('createCommentProcessor', {

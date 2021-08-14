@@ -139,9 +139,14 @@ export const prepareUri = async (
         addSuffix(uri)
       }
     } else {
-      if (!pathname.endsWith('/')) {
-        pathname = `${pathname}/`
-      }
+      // if (!pathname.endsWith('/')) {
+      //   pathname = `${pathname}/`
+      // }
+
+      /**
+       * На конце не должно быть слешей в next-js
+       */
+      pathname = pathname.replace(/\/+$/, '')
     }
 
     uri.pathname(pathname)

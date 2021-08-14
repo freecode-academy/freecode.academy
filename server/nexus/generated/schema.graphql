@@ -68,6 +68,16 @@ input BlockWhereInput {
   z: IntFilter
 }
 
+input BlogCreateInput {
+  content: JSON
+  name: String! = ""
+}
+
+input BlogUpdateInput {
+  content: JSON
+  name: String! = ""
+}
+
 input BoolFilter {
   equals: Boolean
   not: NestedBoolFilter
@@ -1141,6 +1151,7 @@ input MessageWhereInput {
 }
 
 type Mutation {
+  createBlogProcessor(data: BlogCreateInput!): ResourceResponse!
   createChatMessageProcessor(
     data: ChatMessageCreateInput!
   ): ChatMessageResponse!
@@ -1181,6 +1192,10 @@ type Mutation {
     """
     file: Upload
   ): File
+  updateBlogProcessor(
+    data: BlogUpdateInput!
+    where: ResourceWhereUniqueInput!
+  ): ResourceResponse!
   updateCodeChallengeCompletionProcessor(
     data: CodeChallengeCompletionUpdateInput!
     where: CodeChallengeCompletionWhereUniqueInput!

@@ -16,7 +16,7 @@ function addError(message: string) {
 export const createResource = async (
   args: Prisma.ResourceCreateArgs,
   ctx: PrismaContext
-): Promise<Resource | void> => {
+): Promise<Resource | undefined> => {
   const { currentUser } = ctx
 
   const { id: currentUserId } = currentUser || {}
@@ -45,35 +45,35 @@ export const createResource = async (
   })
 
   switch (type) {
-    case 'Blog':
-      {
-        prepareContent(args, data)
+    // case 'Blog':
+    //   {
+    //     prepareContent(args, data)
 
-        // if (!contentText) {
-        //   // this.addFieldError("content", "Не заполнен текст");
-        //   this.addError("Не заполнен текст");
-        //   return;
-        // }
+    //     // if (!contentText) {
+    //     //   // this.addFieldError("content", "Не заполнен текст");
+    //     //   this.addError("Не заполнен текст");
+    //     //   return;
+    //     // }
 
-        const uri = `/blogs/${name}`
+    //     const uri = `/blogs/${name}`
 
-        Object.assign(data, {
-          uri,
-          isfolder: true,
-        })
+    //     Object.assign(data, {
+    //       uri,
+    //       isfolder: true,
+    //     })
 
-        Object.assign(args, {
-          data,
-        })
+    //     Object.assign(args, {
+    //       data,
+    //     })
 
-        // const result = await super.create(method, args, info);
-        // const result = await ctx.prisma.resource.create(args);
-        const result = await createResourceSuper(args, ctx)
+    //     // const result = await super.create(method, args, info);
+    //     // const result = await ctx.prisma.resource.create(args);
+    //     const result = await createResourceSuper(args, ctx)
 
-        return result
-      }
+    //     return result
+    //   }
 
-      break
+    //   break
 
     case 'Topic':
       {
@@ -214,7 +214,8 @@ export const createResource = async (
           })
 
           if (!Topic) {
-            return addError('Не был получен топик')
+            addError('Не был получен топик')
+            return
           } else {
             const { uri: TopicUri, name: topicName } = Topic
 
@@ -250,7 +251,8 @@ export const createResource = async (
 
             if (!Task) {
               // return this.addError("Не была получена задача");
-              return addError('Не была получена задача')
+              addError('Не была получена задача')
+              return
             }
 
             const { name: taskName } = Task
@@ -436,6 +438,8 @@ async function createResourceSuper(
   // }
 
   // console.log("PrismaProject", PrismaProject);
+
+  prepareContent(args, data)
 
   Object.assign(data, {
     PrismaProject,

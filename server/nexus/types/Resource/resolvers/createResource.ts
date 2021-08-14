@@ -38,7 +38,7 @@ export const createResource = async (
     },
   } = args
 
-  const { id: newResourceId = uid(25), type, name } = data
+  const { id: newResourceId = uid(25), type } = data
 
   Object.assign(data, {
     id: newResourceId,
@@ -75,93 +75,93 @@ export const createResource = async (
 
     //   break
 
-    case 'Topic':
-      {
-        const { contentText } = prepareContent(args, data) || {}
+    // case 'Topic':
+    //   {
+    //     const { contentText } = prepareContent(args, data) || {}
 
-        if (!contentText) {
-          // this.addFieldError("content", "Не заполнен текст");
-          // this.addError("Не заполнен текст");
-          // return;
-        }
+    //     if (!contentText) {
+    //       // this.addFieldError("content", "Не заполнен текст");
+    //       // this.addError("Не заполнен текст");
+    //       // return;
+    //     }
 
-        const uri = args.data.uri || `/topics/${name}`
+    //     const uri = args.data.uri || `/topics/${name}`
 
-        // let connect;
+    //     // let connect;
 
-        // let Blog;
+    //     // let Blog;
 
-        // if (blogID) {
-        //   Blog = {
-        //     connect: {
-        //       id: blogID,
-        //     },
-        //   }
-        // }
-        // else {
-        //   connect = {
-        //     oldID: 637,
-        //   };
-        // }
+    //     // if (blogID) {
+    //     //   Blog = {
+    //     //     connect: {
+    //     //       id: blogID,
+    //     //     },
+    //     //   }
+    //     // }
+    //     // else {
+    //     //   connect = {
+    //     //     oldID: 637,
+    //     //   };
+    //     // }
 
-        Object.assign(data, {
-          uri,
-          isfolder: false,
-          // Blog,
-        })
+    //     Object.assign(data, {
+    //       uri,
+    //       isfolder: false,
+    //       // Blog,
+    //     })
 
-        Object.assign(args, {
-          data,
-        })
+    //     Object.assign(args, {
+    //       data,
+    //     })
 
-        // const result = await super.create(method, args, info);
+    //     // const result = await super.create(method, args, info);
 
-        // const {
-        //   id: topicID,
-        //   name: topicName,
-        //   uri: topicUri,
-        // } = result || {};
+    //     // const {
+    //     //   id: topicID,
+    //     //   name: topicName,
+    //     //   uri: topicUri,
+    //     // } = result || {};
 
-        // /**
-        //  * Если был создан топик, отправляем уведомления
-        //  */
-        // if (topicID) {
+    //     // /**
+    //     //  * Если был создан топик, отправляем уведомления
+    //     //  */
+    //     // if (topicID) {
 
-        //   let content;
+    //     //   let content;
 
-        //   const siteUrl = "https://freecode.academy";
+    //     //   const siteUrl = "https://freecode.academy";
 
-        //   if (contentText) {
+    //     //   if (contentText) {
 
-        //     content = `
-        //     <div>
-        //       ${contentText.substr(0, 3000)}
-        //     </div>
-        //     `;
-        //   }
+    //     //     content = `
+    //     //     <div>
+    //     //       ${contentText.substr(0, 3000)}
+    //     //     </div>
+    //     //     `;
+    //     //   }
 
-        //   let subject = `Новый топик ${topicName}`;
-        //   let message = `<p>
-        //     <a href="${siteUrl}${topicUri}">${topicName}</a>.
-        //   </p>
-        //     ${content}
-        //   `;
+    //     //   let subject = `Новый топик ${topicName}`;
+    //     //   let message = `<p>
+    //     //     <a href="${siteUrl}${topicUri}">${topicName}</a>.
+    //     //   </p>
+    //     //     ${content}
+    //     //   `;
 
-        //   const usersWhere = {
-        //     id_not: currentUserId,
-        //     NotificationTypes_some: {
-        //       name: "new_topic",
-        //     },
-        //   }
+    //     //   const usersWhere = {
+    //     //     id_not: currentUserId,
+    //     //     NotificationTypes_some: {
+    //     //       name: "new_topic",
+    //     //     },
+    //     //   }
 
-        //   this.sendNotifications({ message, subject }, usersWhere);
+    //     //   this.sendNotifications({ message, subject }, usersWhere);
 
-        // }
+    //     // }
 
-        // return result;
-      }
+    //     // return result;
+    //   }
 
-      break
+    //   break
 
     case 'Comment':
       {

@@ -11,7 +11,7 @@ export const createTopicProcessor: FieldResolver<
     id,
     name,
     components,
-    uri,
+    // uri,
     blogID,
     // CodeChallenge,
   } = args.data
@@ -21,6 +21,8 @@ export const createTopicProcessor: FieldResolver<
     | undefined
 
   const type: NexusGenEnums['ResourceType'] = 'Topic'
+
+  const uri = args.data.uri || `/topics/${name}`
 
   const createData: Prisma.ResourceCreateInput = {
     type,
@@ -34,7 +36,7 @@ export const createTopicProcessor: FieldResolver<
       : undefined,
 
     // TODO Надо из createResource вынести метод создания УРЛа
-    uri: '',
+    uri,
   }
 
   if (uri) {

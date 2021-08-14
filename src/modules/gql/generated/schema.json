@@ -14587,6 +14587,41 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "NotificationType_UserNotificationTypes_UpdateInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "connect",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NotificationTypeWhereUniqueInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "disconnect",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NotificationTypeWhereUniqueInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "PlayerListRelationFilter",
         "description": null,
         "fields": null,
@@ -34789,6 +34824,18 @@
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "NotificationTypes",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NotificationType_UserNotificationTypes_UpdateInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "acceptChatMessageAnonymous",
             "description": null,

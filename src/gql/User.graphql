@@ -67,15 +67,15 @@ fragment UserNoNesting on User {
 }
 
 fragment meUser on User {
-  ...UserNoNesting
+  ...user_
   CodeChallengeCompletions {
     ...MeUserCodeChallengeCompletion
   }
-  EthAccounts {
-    id
-    address
-    balance(convert: ether)
-  }
+  # EthAccounts {
+  #   id
+  #   address
+  #   balance(convert: ether)
+  # }
   Timers(first: 1, where: { stopedAt: null }) {
     ...MeUserTimer
   }

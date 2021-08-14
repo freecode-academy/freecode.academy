@@ -1532,6 +1532,11 @@ export interface NotificationTypeWhereUniqueInput {
   oldID?: Maybe<Scalars['Int']>;
 }
 
+export interface NotificationTypeUserNotificationTypesUpdateInput {
+  connect?: Maybe<NotificationTypeWhereUniqueInput>;
+  disconnect?: Maybe<NotificationTypeWhereUniqueInput>;
+}
+
 export interface PlayerListRelationFilter {
   every?: Maybe<PlayerWhereInput>;
   none?: Maybe<PlayerWhereInput>;
@@ -3710,6 +3715,7 @@ export interface UserTechnologyWhereUniqueInput {
 }
 
 export interface UserUpdateInput {
+  NotificationTypes?: Maybe<NotificationTypeUserNotificationTypesUpdateInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;

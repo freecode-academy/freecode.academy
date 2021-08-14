@@ -8,24 +8,23 @@ import {
 } from 'src/modules/gql/generated'
 
 const UserNotification: React.FC<UserNotificationProps> = ({
-  // object,
+  object,
   checked,
   label,
 }) => {
   const [mutate] = useUpdateUserProcessorMutation()
 
   const onChange = useCallback(
-    (_event: React.ChangeEvent<HTMLInputElement>, _checked: boolean) => {
-      // const action = checked ? 'connect' : 'disconnect'
+    (_event: React.ChangeEvent<HTMLInputElement>, newChecked: boolean) => {
+      const action = newChecked ? 'connect' : 'disconnect'
 
       const variables: UpdateUserProcessorMutationVariables = {
         data: {
-          // TODO Restore
-          // NotificationTypes: {
-          //   [action]: {
-          //     id: object.id,
-          //   },
-          // },
+          NotificationTypes: {
+            [action]: {
+              id: object.id,
+            },
+          },
         },
       }
 
@@ -33,7 +32,7 @@ const UserNotification: React.FC<UserNotificationProps> = ({
         variables,
       })
     },
-    [mutate]
+    [mutate, object.id]
   )
 
   return <CheckBox checked={checked} label={label} onChange={onChange} />

@@ -339,6 +339,9 @@ export const UserUpdateInput = inputObjectType({
     t.boolean('acceptChatMessageAnonymous')
     t.boolean('acceptNewChatRoomAnonymous')
     t.boolean('acceptNewChatRoom')
+    t.field('NotificationTypes', {
+      type: 'NotificationType_UserNotificationTypes_UpdateInput',
+    })
   },
 })
 
@@ -364,3 +367,16 @@ export const UserCreateOneInput = inputObjectType({
     })
   },
 })
+
+export const NotificationType_UserNotificationTypes_UpdateInput =
+  inputObjectType({
+    name: 'NotificationType_UserNotificationTypes_UpdateInput',
+    definition(t) {
+      t.field('connect', {
+        type: 'NotificationTypeWhereUniqueInput',
+      })
+      t.field('disconnect', {
+        type: 'NotificationTypeWhereUniqueInput',
+      })
+    },
+  })

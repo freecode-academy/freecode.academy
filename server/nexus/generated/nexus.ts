@@ -1183,6 +1183,11 @@ export interface NexusGenInputs {
     id?: string | null // String
     oldID?: number | null // Int
   }
+  NotificationType_UserNotificationTypes_UpdateInput: {
+    // input type
+    connect?: NexusGenInputs['NotificationTypeWhereUniqueInput'] | null // NotificationTypeWhereUniqueInput
+    disconnect?: NexusGenInputs['NotificationTypeWhereUniqueInput'] | null // NotificationTypeWhereUniqueInput
+  }
   PlayerListRelationFilter: {
     // input type
     every?: NexusGenInputs['PlayerWhereInput'] | null // PlayerWhereInput
@@ -2501,6 +2506,9 @@ export interface NexusGenInputs {
   }
   UserUpdateInput: {
     // input type
+    NotificationTypes?:
+      | NexusGenInputs['NotificationType_UserNotificationTypes_UpdateInput']
+      | null // NotificationType_UserNotificationTypes_UpdateInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean

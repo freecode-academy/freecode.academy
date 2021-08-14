@@ -23,10 +23,18 @@ export const updateUserProcessor: FieldResolver<
       image,
       phone,
       username,
+      NotificationTypes,
     },
   } = args
 
   const passwordUpdate = password ? await createPassword(password) : undefined
+
+  const NotificationType_UserNotificationTypes = NotificationTypes as
+    | Pick<
+        Prisma.NotificationTypeUpdateManyWithoutUser_UserNotificationTypesInput,
+        'connect' | 'disconnect'
+      >
+    | undefined
 
   const data: Prisma.UserUpdateInput = {
     password: passwordUpdate,
@@ -38,6 +46,7 @@ export const updateUserProcessor: FieldResolver<
     image,
     phone,
     username,
+    NotificationType_UserNotificationTypes,
   }
 
   const user = ctx.prisma.user.update({

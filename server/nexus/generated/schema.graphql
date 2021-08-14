@@ -1428,6 +1428,11 @@ input NotificationTypeWhereUniqueInput {
   oldID: Int
 }
 
+input NotificationType_UserNotificationTypes_UpdateInput {
+  connect: NotificationTypeWhereUniqueInput
+  disconnect: NotificationTypeWhereUniqueInput
+}
+
 input PlayerListRelationFilter {
   every: PlayerWhereInput
   none: PlayerWhereInput
@@ -3429,6 +3434,7 @@ input UserTechnologyWhereUniqueInput {
 }
 
 input UserUpdateInput {
+  NotificationTypes: NotificationType_UserNotificationTypes_UpdateInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean

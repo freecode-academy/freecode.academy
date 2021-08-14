@@ -8,39 +8,34 @@
 
 import * as Types from './types';
 
-import { UserNoNestingFragment } from './UserNoNesting';
+import { UserFragment } from './user_';
 import { MeUserCodeChallengeCompletionFragment } from './MeUserCodeChallengeCompletion';
 import { MeUserTimerFragment } from './MeUserTimer';
 import { gql } from '@apollo/client';
-import { UserNoNestingFragmentDoc } from './UserNoNesting';
+import { UserFragmentDoc } from './user_';
 import { MeUserCodeChallengeCompletionFragmentDoc } from './MeUserCodeChallengeCompletion';
 import { MeUserTimerFragmentDoc } from './MeUserTimer';
 export type MeUserFragment = (
   { __typename?: 'User', CodeChallengeCompletions?: Types.Maybe<Array<(
     { __typename?: 'CodeChallengeCompletion' }
     & MeUserCodeChallengeCompletionFragment
-  )>>, EthAccounts?: Types.Maybe<Array<{ __typename?: 'EthAccount', id: string, address: string, balance?: Types.Maybe<number> }>>, Timers?: Types.Maybe<Array<(
+  )>>, Timers?: Types.Maybe<Array<(
     { __typename?: 'Timer' }
     & MeUserTimerFragment
   )>> }
-  & UserNoNestingFragment
+  & UserFragment
 );
 
 export const MeUserFragmentDoc = gql`
     fragment meUser on User {
-  ...UserNoNesting
+  ...user_
   CodeChallengeCompletions {
     ...MeUserCodeChallengeCompletion
-  }
-  EthAccounts {
-    id
-    address
-    balance(convert: ether)
   }
   Timers(first: 1, where: {stopedAt: null}) {
     ...MeUserTimer
   }
 }
-    ${UserNoNestingFragmentDoc}
+    ${UserFragmentDoc}
 ${MeUserCodeChallengeCompletionFragmentDoc}
 ${MeUserTimerFragmentDoc}`;

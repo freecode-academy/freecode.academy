@@ -1303,7 +1303,6 @@ export type MutationUpdateTopicProcessorArgs = {
 
 export type MutationUpdateUserProcessorArgs = {
   data: UserUpdateInput;
-  where: UserWhereUniqueInput;
 };
 
 
@@ -3717,6 +3716,7 @@ export interface UserUpdateInput {
   address?: Maybe<Scalars['String']>;
   fullname?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
 }

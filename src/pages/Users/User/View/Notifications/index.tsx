@@ -8,7 +8,6 @@ import UserNotification from './Notification'
 
 const UserNotifications: React.FC<UserNotificationsProps> = ({
   NotificationTypes,
-  userId,
 }) => {
   const notifications =
     useNotificationTypesQuery().data?.notificationTypes ?? []
@@ -33,7 +32,6 @@ const UserNotifications: React.FC<UserNotificationsProps> = ({
                   false
                 }
                 label={comment || name}
-                userId={userId}
               />
             </Grid>
           )

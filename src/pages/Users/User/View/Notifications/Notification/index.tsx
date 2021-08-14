@@ -11,7 +11,6 @@ const UserNotification: React.FC<UserNotificationProps> = ({
   // object,
   checked,
   label,
-  userId,
 }) => {
   const [mutate] = useUpdateUserProcessorMutation()
 
@@ -20,9 +19,6 @@ const UserNotification: React.FC<UserNotificationProps> = ({
       // const action = checked ? 'connect' : 'disconnect'
 
       const variables: UpdateUserProcessorMutationVariables = {
-        where: {
-          id: userId,
-        },
         data: {
           // TODO Restore
           // NotificationTypes: {
@@ -37,7 +33,7 @@ const UserNotification: React.FC<UserNotificationProps> = ({
         variables,
       })
     },
-    [mutate, userId]
+    [mutate]
   )
 
   return <CheckBox checked={checked} label={label} onChange={onChange} />

@@ -14,7 +14,6 @@ import { UserFragmentDoc } from './user_';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type UpdateUserProcessorMutationVariables = Types.Exact<{
-  where: Types.UserWhereUniqueInput;
   data: Types.UserUpdateInput;
 }>;
 
@@ -26,8 +25,8 @@ export type UpdateUserProcessorMutation = { __typename?: 'Mutation', updateUserP
 
 
 export const UpdateUserProcessorDocument = gql`
-    mutation updateUserProcessor($where: UserWhereUniqueInput!, $data: UserUpdateInput!) {
-  updateUserProcessor(where: $where, data: $data) {
+    mutation updateUserProcessor($data: UserUpdateInput!) {
+  updateUserProcessor(data: $data) {
     success
     message
     errors {
@@ -55,7 +54,6 @@ export type UpdateUserProcessorMutationFn = Apollo.MutationFunction<UpdateUserPr
  * @example
  * const [updateUserProcessorMutation, { data, loading, error }] = useUpdateUserProcessorMutation({
  *   variables: {
- *      where: // value for 'where'
  *      data: // value for 'data'
  *   },
  * });

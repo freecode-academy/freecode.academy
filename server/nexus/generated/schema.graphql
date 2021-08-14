@@ -1204,10 +1204,7 @@ type Mutation {
     data: TopicUpdateInput!
     where: ResourceWhereUniqueInput!
   ): ResourceResponse!
-  updateUserProcessor(
-    data: UserUpdateInput!
-    where: UserWhereUniqueInput!
-  ): UserResponse!
+  updateUserProcessor(data: UserUpdateInput!): UserResponse!
   updateUserTechnologyProcessor(
     data: UserTechnologyUpdateInput!
     where: UserTechnologyWhereUniqueInput!
@@ -3438,6 +3435,7 @@ input UserUpdateInput {
   address: String
   fullname: String
   image: String
+  password: String
   phone: String
   username: String
 }

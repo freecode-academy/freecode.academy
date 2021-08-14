@@ -1,7 +1,7 @@
 import { shield } from 'graphql-shield'
 import { Rule } from 'graphql-shield/dist/rules'
 import { NexusGenFieldTypes } from 'server/nexus/generated/nexus'
-// import { isAuthenticated } from './rules/isAuthenticated'
+import { isAuthenticated } from './rules/isAuthenticated'
 // import { isSudo } from './rules/isSudo'
 // import { isOwner } from './rules/isOwner'
 
@@ -19,7 +19,9 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
   Query: {
     // me: isAuthenticated,
   },
-  Mutation: {},
+  Mutation: {
+    updateUserProcessor: isAuthenticated,
+  },
 }
 
 export const permissions = shield(ruleTree, {

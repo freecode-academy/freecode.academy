@@ -5,10 +5,9 @@ query user($where: UserWhereUniqueInput!) {
 }
 
 mutation updateUserProcessor(
-  $where: UserWhereUniqueInput!
   $data: UserUpdateInput!
 ) {
-  updateUserProcessor(where: $where, data: $data) {
+  updateUserProcessor(data: $data) {
     success
     message
     errors {

@@ -2507,6 +2507,7 @@ export interface NexusGenInputs {
     address?: string | null // String
     fullname?: string | null // String
     image?: string | null // String
+    password?: string | null // String
     phone?: string | null // String
     username?: string | null // String
   }
@@ -4363,7 +4364,6 @@ export interface NexusGenArgTypes {
     updateUserProcessor: {
       // args
       data: NexusGenInputs['UserUpdateInput'] // UserUpdateInput!
-      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
     }
     updateUserTechnologyProcessor: {
       // args

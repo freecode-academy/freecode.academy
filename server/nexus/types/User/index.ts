@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client'
 import { objectType, extendType, inputObjectType, nonNull, intArg } from 'nexus'
 import { signin } from './resolvers/signin'
 import { signup } from './resolvers/signup'
+import { updateUserProcessor } from './resolvers/updateUserProcessor'
 
 export const UserQuery = extendType({
   type: 'Query',
@@ -102,19 +103,9 @@ export const UserMutation = extendType({
     t.nonNull.field('updateUserProcessor', {
       type: 'UserResponse',
       args: {
-        where: nonNull('UserWhereUniqueInput'),
         data: nonNull('UserUpdateInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: updateUserProcessor,
     })
   },
 })
@@ -344,6 +335,7 @@ export const UserUpdateInput = inputObjectType({
     t.string('fullname')
     t.string('image')
     t.string('address')
+    t.string('password')
     t.boolean('acceptChatMessageAnonymous')
     t.boolean('acceptNewChatRoomAnonymous')
     t.boolean('acceptNewChatRoom')

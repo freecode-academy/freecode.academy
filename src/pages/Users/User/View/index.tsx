@@ -117,9 +117,6 @@ const UserView: React.FC<UserViewProps> = (props) => {
       mutate({
         variables: {
           data,
-          where: {
-            id: user.id,
-          },
         },
       })
     },
@@ -134,13 +131,8 @@ const UserView: React.FC<UserViewProps> = (props) => {
       return null
     }
 
-    return (
-      <UserNotifications
-        NotificationTypes={user.NotificationTypes}
-        userId={user.id}
-      />
-    )
-  }, [inEditMode, isCurrentUser, user.NotificationTypes, user.id])
+    return <UserNotifications NotificationTypes={user.NotificationTypes} />
+  }, [inEditMode, isCurrentUser, user.NotificationTypes])
 
   /**
    * Настройки чатов

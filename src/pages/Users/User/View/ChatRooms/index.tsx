@@ -121,15 +121,21 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
   let sendMessage
 
   if (!currentUserId || currentUserId !== userId) {
-    sendMessage = (
-      <div>
-        <Typography variant="subheading">
-          Отправить пользователю приватное сообщение
-        </Typography>
+    // TODO Restore
+    newMessage
+    Typography
 
-        {newMessage}
-      </div>
-    )
+    // sendMessage = (
+    //   <div>
+    //     <Typography variant="subheading">
+    //       Отправить пользователю приватное сообщение
+    //     </Typography>
+
+    //     {newMessage}
+    //   </div>
+    // )
+
+    return <></>
   }
 
   return (

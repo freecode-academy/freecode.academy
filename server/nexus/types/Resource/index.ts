@@ -71,8 +71,19 @@ export const Resource = objectType({
     })
     t.string('name')
     t.string('longtitle')
+
+    // TODO Сейчас есть бага: если возвращать content при наличии данных в components,
+    // То в редактировании топика используется старый редактор, а не новый
     t.field('content', {
       type: 'JSON',
+      resolve: ({ content, components }) => {
+        /**
+         * Так как ввели новое поле components, если оно заполнено,
+         * то поле content не выводим в целях экономии ресурсов
+         */
+
+        return components ? null : content
+      },
     })
     t.field('components', {
       type: 'JSON',

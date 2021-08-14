@@ -126,6 +126,8 @@
     "slick-carousel": "1.8.1",
     "styled-components": "^5.2.3",
     "subscriptions-transport-ws": "^0.9.18",
+    "translit": "^0.1.0",
+    "translit-russian": "^0.0.2",
     "uid": "^2.0.0",
     "urijs": "^1.19.1",
     "xml-writer": "^1.7.0",

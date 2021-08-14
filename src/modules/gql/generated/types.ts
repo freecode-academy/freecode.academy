@@ -21,6 +21,7 @@ export type Scalars = {
   DateTime: globalThis.Date;
   Decimal: any;
   JSON: any;
+  Json: globalThis.Record<string, any> | globalThis.Array<any>;
   /** desc */
   Upload: globalThis.File;
   /** UserTechnologyLevel from 1 to 5 */
@@ -128,8 +129,6 @@ export interface CallRequestWhereInput {
   Room?: Maybe<StringNullableFilter>;
   User_CallRequest_CalledToUser?: Maybe<UserWhereInput>;
   User_CallRequest_CallerToUser?: Maybe<UserWhereInput>;
-  called_descriptions?: Maybe<StringFilter>;
-  caller_descriptions?: Maybe<StringFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   endedAt?: Maybe<DateTimeNullableFilter>;
   id?: Maybe<StringFilter>;
@@ -238,7 +237,7 @@ export interface ChatMessageWhereInput {
   OR?: Maybe<Array<ChatMessageWhereInput>>;
   Room?: Maybe<StringNullableFilter>;
   User?: Maybe<UserWhereInput>;
-  content?: Maybe<StringNullableFilter>;
+  content?: Maybe<JsonNullableFilter>;
   contentText?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
@@ -575,7 +574,7 @@ export interface CodeChallengeWhereInput {
   dashedName?: Maybe<StringNullableFilter>;
   description?: Maybe<StringNullableFilter>;
   externalKey?: Maybe<StringNullableFilter>;
-  files?: Maybe<StringNullableFilter>;
+  files?: Maybe<JsonNullableFilter>;
   forumTopicId?: Maybe<IntNullableFilter>;
   id?: Maybe<StringFilter>;
   instructions?: Maybe<StringNullableFilter>;
@@ -586,13 +585,13 @@ export interface CodeChallengeWhereInput {
   name?: Maybe<StringNullableFilter>;
   order?: Maybe<IntNullableFilter>;
   rank?: Maybe<IntNullableFilter>;
-  required?: Maybe<StringNullableFilter>;
-  solutions?: Maybe<StringNullableFilter>;
+  required?: Maybe<JsonNullableFilter>;
+  solutions?: Maybe<JsonNullableFilter>;
   superOrder?: Maybe<IntNullableFilter>;
   template?: Maybe<StringNullableFilter>;
-  tests?: Maybe<StringNullableFilter>;
+  tests?: Maybe<JsonNullableFilter>;
   time?: Maybe<StringNullableFilter>;
-  translations?: Maybe<StringNullableFilter>;
+  translations?: Maybe<JsonNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   videoUrl?: Maybe<StringNullableFilter>;
 }
@@ -729,11 +728,11 @@ export interface EthAccountWhereInput {
   Resource?: Maybe<ResourceListRelationFilter>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserListRelationFilter>;
   User_EthAccount_CreatedByToUser?: Maybe<UserWhereInput>;
-  abi?: Maybe<StringNullableFilter>;
+  abi?: Maybe<JsonNullableFilter>;
   address?: Maybe<StringFilter>;
   bytecode?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
-  description?: Maybe<StringNullableFilter>;
+  description?: Maybe<JsonNullableFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
   source?: Maybe<StringNullableFilter>;
@@ -805,7 +804,7 @@ export interface EthContractSourceWhereInput {
   OR?: Maybe<Array<EthContractSourceWhereInput>>;
   User?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
-  description?: Maybe<StringNullableFilter>;
+  description?: Maybe<JsonNullableFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
   source?: Maybe<StringNullableFilter>;
@@ -1047,6 +1046,12 @@ export interface InventoryWhereInput {
   id?: Maybe<StringFilter>;
 }
 
+
+
+export interface JsonNullableFilter {
+  equals?: Maybe<Scalars['Json']>;
+  not?: Maybe<Scalars['Json']>;
+}
 
 export interface LetsadsSmsMessageStatusItemListRelationFilter {
   every?: Maybe<LetsadsSmsMessageStatusItemWhereInput>;
@@ -1802,7 +1807,7 @@ export interface ProjectWhereInput {
   Template_ProjectToTemplate_Project?: Maybe<TemplateListRelationFilter>;
   User_PrismaProjectUsers?: Maybe<UserListRelationFilter>;
   User_ProjectToUser?: Maybe<UserWhereInput>;
-  content?: Maybe<StringNullableFilter>;
+  content?: Maybe<JsonNullableFilter>;
   contentText?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   description?: Maybe<StringNullableFilter>;
@@ -2470,8 +2475,8 @@ export interface ResourceWhereInput {
   class_key?: Maybe<StringNullableFilter>;
   code?: Maybe<StringNullableFilter>;
   commentOldID?: Maybe<IntNullableFilter>;
-  components?: Maybe<StringNullableFilter>;
-  content?: Maybe<StringNullableFilter>;
+  components?: Maybe<JsonNullableFilter>;
+  content?: Maybe<JsonNullableFilter>;
   contentText?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   deleted?: Maybe<BoolFilter>;
@@ -2659,7 +2664,7 @@ export interface SmsProviderWhereInput {
   SmsMessage?: Maybe<SmsMessageListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
-  credentials?: Maybe<StringNullableFilter>;
+  credentials?: Maybe<JsonNullableFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
@@ -3030,7 +3035,7 @@ export interface TaskWhereInput {
   Task_B?: Maybe<TaskListRelationFilter>;
   Timer?: Maybe<TimerListRelationFilter>;
   User?: Maybe<UserWhereInput>;
-  content?: Maybe<StringNullableFilter>;
+  content?: Maybe<JsonNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   description?: Maybe<StringNullableFilter>;
   endDate?: Maybe<DateTimeNullableFilter>;
@@ -3173,7 +3178,7 @@ export interface TechnologyLessonWhereInput {
   TechnologyLessonUser?: Maybe<TechnologyLessonUserListRelationFilter>;
   Technology_TechnologyToTechnologyLesson?: Maybe<TechnologyWhereInput>;
   User?: Maybe<UserWhereInput>;
-  components?: Maybe<StringNullableFilter>;
+  components?: Maybe<JsonNullableFilter>;
   contentText?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
@@ -3205,7 +3210,7 @@ export interface TechnologyWhereInput {
   TechnologyLesson?: Maybe<TechnologyLessonListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   UserTechnology?: Maybe<UserTechnologyListRelationFilter>;
-  components?: Maybe<StringNullableFilter>;
+  components?: Maybe<JsonNullableFilter>;
   contentText?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
@@ -3237,17 +3242,15 @@ export interface TemplateWhereInput {
   Template?: Maybe<TemplateWhereInput>;
   User?: Maybe<UserWhereInput>;
   component?: Maybe<StringNullableFilter>;
-  components?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   description?: Maybe<StringNullableFilter>;
   externalKey?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
   other_Template?: Maybe<TemplateListRelationFilter>;
-  props?: Maybe<StringNullableFilter>;
   rank?: Maybe<IntNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
-  vars?: Maybe<StringNullableFilter>;
+  vars?: Maybe<JsonNullableFilter>;
 }
 
 export interface TestListRelationFilter {
@@ -3378,12 +3381,8 @@ export interface TopicCreateInput {
   CodeChallenge?: Maybe<CodeChallengeCreateOneWithoutTopicInput>;
   blogID?: Maybe<Scalars['ID']>;
   components?: Maybe<Scalars['JSON']>;
-  content?: Maybe<Scalars['JSON']>;
   id?: Maybe<Scalars['ID']>;
-  longtitle?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  published?: Maybe<Scalars['Boolean']>;
-  topic_tags?: Maybe<Array<Scalars['String']>>;
   uri?: Maybe<Scalars['String']>;
 }
 
@@ -3700,7 +3699,7 @@ export interface UserTechnologyWhereInput {
   Technology?: Maybe<StringNullableFilter>;
   Technology_TechnologyToUserTechnology?: Maybe<TechnologyWhereInput>;
   User?: Maybe<UserWhereInput>;
-  components?: Maybe<StringNullableFilter>;
+  components?: Maybe<JsonNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   date_from?: Maybe<DateTimeNullableFilter>;
   date_till?: Maybe<DateTimeNullableFilter>;

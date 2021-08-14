@@ -52,7 +52,7 @@ fragment ResourceNoNesting on Resource {
   longtitle
   content
   components
-  contentText
+  # contentText
   published
   deleted
   hidemenu

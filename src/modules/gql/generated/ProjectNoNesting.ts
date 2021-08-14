@@ -9,7 +9,7 @@
 import * as Types from './types';
 
 import { gql } from '@apollo/client';
-export type ProjectNoNestingFragment = { __typename?: 'Project', id: string, name: string, domain?: Types.Maybe<string>, createdAt: globalThis.Date, updatedAt: globalThis.Date, description?: Types.Maybe<string>, url?: Types.Maybe<string>, sequence?: Types.Maybe<number>, content?: Types.Maybe<any>, contentText?: Types.Maybe<string>, status?: Types.Maybe<Types.ProjectStatus>, public?: Types.Maybe<boolean>, oldID?: Types.Maybe<number>, type?: Types.Maybe<Types.ProjectType> };
+export type ProjectNoNestingFragment = { __typename?: 'Project', id: string, name: string, domain?: Types.Maybe<string>, createdAt: globalThis.Date, updatedAt: globalThis.Date, description?: Types.Maybe<string>, url?: Types.Maybe<string>, sequence?: Types.Maybe<number>, content?: Types.Maybe<any>, status?: Types.Maybe<Types.ProjectStatus>, public?: Types.Maybe<boolean>, oldID?: Types.Maybe<number>, type?: Types.Maybe<Types.ProjectType> };
 
 export const ProjectNoNestingFragmentDoc = gql`
     fragment ProjectNoNesting on Project {
@@ -22,7 +22,6 @@ export const ProjectNoNestingFragmentDoc = gql`
   url
   sequence
   content
-  contentText
   status
   public
   oldID

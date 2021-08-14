@@ -6,6 +6,7 @@ import {
   nonNull,
   objectType,
 } from 'nexus'
+import { createTopicProcessor } from './resolvers/createTopicProcessor'
 
 export const ResourceExtendQuery = extendType({
   type: 'Query',
@@ -100,16 +101,7 @@ export const CommentExtendMutation = extendType({
       args: {
         data: nonNull('TopicCreateInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: createTopicProcessor,
     })
     t.nonNull.field('updateTopicProcessor', {
       type: 'ResourceResponse',
@@ -360,15 +352,15 @@ export const TopicCreateInput = inputObjectType({
     t.string('name', {
       default: '',
     })
-    t.string('longtitle')
-    t.field('content', {
-      type: 'JSON',
-    })
+    // t.string('longtitle')
+    // t.field('content', {
+    //   type: 'JSON',
+    // })
     t.field('components', {
       type: 'JSON',
     })
-    t.boolean('published')
-    t.list.nonNull.string('topic_tags')
+    // t.boolean('published')
+    // t.list.nonNull.string('topic_tags')
     t.id('blogID')
     t.field('CodeChallenge', {
       type: 'CodeChallengeCreateOneWithoutTopicInput',

@@ -94,8 +94,6 @@ input CallRequestWhereInput {
   Room: StringNullableFilter
   User_CallRequest_CalledToUser: UserWhereInput
   User_CallRequest_CallerToUser: UserWhereInput
-  called_descriptions: StringFilter
-  caller_descriptions: StringFilter
   createdAt: DateTimeFilter
   endedAt: DateTimeNullableFilter
   id: StringFilter
@@ -200,7 +198,7 @@ input ChatMessageWhereInput {
   OR: [ChatMessageWhereInput!]
   Room: StringNullableFilter
   User: UserWhereInput
-  content: StringNullableFilter
+  content: JsonNullableFilter
   contentText: StringNullableFilter
   createdAt: DateTimeFilter
   id: StringFilter
@@ -521,7 +519,7 @@ input CodeChallengeWhereInput {
   dashedName: StringNullableFilter
   description: StringNullableFilter
   externalKey: StringNullableFilter
-  files: StringNullableFilter
+  files: JsonNullableFilter
   forumTopicId: IntNullableFilter
   id: StringFilter
   instructions: StringNullableFilter
@@ -532,13 +530,13 @@ input CodeChallengeWhereInput {
   name: StringNullableFilter
   order: IntNullableFilter
   rank: IntNullableFilter
-  required: StringNullableFilter
-  solutions: StringNullableFilter
+  required: JsonNullableFilter
+  solutions: JsonNullableFilter
   superOrder: IntNullableFilter
   template: StringNullableFilter
-  tests: StringNullableFilter
+  tests: JsonNullableFilter
   time: StringNullableFilter
-  translations: StringNullableFilter
+  translations: JsonNullableFilter
   updatedAt: DateTimeFilter
   videoUrl: StringNullableFilter
 }
@@ -674,11 +672,11 @@ input EthAccountWhereInput {
   Resource: ResourceListRelationFilter
   User_EthAccountToUser_EthAccountAuthed: UserListRelationFilter
   User_EthAccount_CreatedByToUser: UserWhereInput
-  abi: StringNullableFilter
+  abi: JsonNullableFilter
   address: StringFilter
   bytecode: StringNullableFilter
   createdAt: DateTimeFilter
-  description: StringNullableFilter
+  description: JsonNullableFilter
   id: StringFilter
   name: StringNullableFilter
   source: StringNullableFilter
@@ -750,7 +748,7 @@ input EthContractSourceWhereInput {
   OR: [EthContractSourceWhereInput!]
   User: UserWhereInput
   createdAt: DateTimeFilter
-  description: StringNullableFilter
+  description: JsonNullableFilter
   id: StringFilter
   name: StringFilter
   source: StringNullableFilter
@@ -1020,6 +1018,13 @@ input InventoryWhereInput {
 }
 
 scalar JSON
+
+scalar Json
+
+input JsonNullableFilter {
+  equals: Json
+  not: Json
+}
 
 input LetsadsSmsMessageStatusItemListRelationFilter {
   every: LetsadsSmsMessageStatusItemWhereInput
@@ -1687,7 +1692,7 @@ input ProjectWhereInput {
   Template_ProjectToTemplate_Project: TemplateListRelationFilter
   User_PrismaProjectUsers: UserListRelationFilter
   User_ProjectToUser: UserWhereInput
-  content: StringNullableFilter
+  content: JsonNullableFilter
   contentText: StringNullableFilter
   createdAt: DateTimeFilter
   description: StringNullableFilter
@@ -2172,8 +2177,8 @@ input ResourceWhereInput {
   class_key: StringNullableFilter
   code: StringNullableFilter
   commentOldID: IntNullableFilter
-  components: StringNullableFilter
-  content: StringNullableFilter
+  components: JsonNullableFilter
+  content: JsonNullableFilter
   contentText: StringNullableFilter
   createdAt: DateTimeFilter
   deleted: BoolFilter
@@ -2366,7 +2371,7 @@ input SmsProviderWhereInput {
   SmsMessage: SmsMessageListRelationFilter
   User: UserWhereInput
   createdAt: DateTimeFilter
-  credentials: StringNullableFilter
+  credentials: JsonNullableFilter
   id: StringFilter
   name: StringFilter
   updatedAt: DateTimeFilter
@@ -2718,7 +2723,7 @@ input TaskWhereInput {
   Task_B: TaskListRelationFilter
   Timer: TimerListRelationFilter
   User: UserWhereInput
-  content: StringNullableFilter
+  content: JsonNullableFilter
   createdAt: DateTimeFilter
   description: StringNullableFilter
   endDate: DateTimeNullableFilter
@@ -2858,7 +2863,7 @@ input TechnologyLessonWhereInput {
   TechnologyLessonUser: TechnologyLessonUserListRelationFilter
   Technology_TechnologyToTechnologyLesson: TechnologyWhereInput
   User: UserWhereInput
-  components: StringNullableFilter
+  components: JsonNullableFilter
   contentText: StringNullableFilter
   id: StringFilter
   name: StringNullableFilter
@@ -2890,7 +2895,7 @@ input TechnologyWhereInput {
   TechnologyLesson: TechnologyLessonListRelationFilter
   User: UserWhereInput
   UserTechnology: UserTechnologyListRelationFilter
-  components: StringNullableFilter
+  components: JsonNullableFilter
   contentText: StringNullableFilter
   createdAt: DateTimeFilter
   id: StringFilter
@@ -2922,17 +2927,15 @@ input TemplateWhereInput {
   Template: TemplateWhereInput
   User: UserWhereInput
   component: StringNullableFilter
-  components: StringNullableFilter
   createdAt: DateTimeFilter
   description: StringNullableFilter
   externalKey: StringNullableFilter
   id: StringFilter
   name: StringNullableFilter
   other_Template: TemplateListRelationFilter
-  props: StringNullableFilter
   rank: IntNullableFilter
   updatedAt: DateTimeFilter
-  vars: StringNullableFilter
+  vars: JsonNullableFilter
 }
 
 input TestListRelationFilter {
@@ -3059,12 +3062,8 @@ input TopicCreateInput {
   CodeChallenge: CodeChallengeCreateOneWithoutTopicInput
   blogID: ID
   components: JSON
-  content: JSON
   id: ID
-  longtitle: String
   name: String = ""
-  published: Boolean
-  topic_tags: [String!]
   uri: String
 }
 
@@ -3419,7 +3418,7 @@ input UserTechnologyWhereInput {
   Technology: StringNullableFilter
   Technology_TechnologyToUserTechnology: TechnologyWhereInput
   User: UserWhereInput
-  components: StringNullableFilter
+  components: JsonNullableFilter
   createdAt: DateTimeFilter
   date_from: DateTimeNullableFilter
   date_till: DateTimeNullableFilter

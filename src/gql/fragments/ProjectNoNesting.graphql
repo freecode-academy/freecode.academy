@@ -8,7 +8,7 @@ fragment ProjectNoNesting on Project {
   url
   sequence
   content
-  contentText
+  # contentText
   status
   public
   oldID

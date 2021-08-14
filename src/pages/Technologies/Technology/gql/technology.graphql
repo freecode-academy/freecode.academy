@@ -20,7 +20,7 @@ fragment TechnologyNoNesting on Technology {
   updatedAt
   name
   components
-  contentText
+  # contentText
   site_url
 }
 

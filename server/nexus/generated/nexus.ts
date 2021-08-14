@@ -125,8 +125,6 @@ export interface NexusGenInputs {
     Room?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     User_CallRequest_CalledToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     User_CallRequest_CallerToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    called_descriptions?: NexusGenInputs['StringFilter'] | null // StringFilter
-    caller_descriptions?: NexusGenInputs['StringFilter'] | null // StringFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     endedAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
@@ -207,7 +205,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['ChatMessageWhereInput'][] | null // [ChatMessageWhereInput!]
     Room?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    content?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
@@ -458,7 +456,7 @@ export interface NexusGenInputs {
     dashedName?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     externalKey?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    files?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    files?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     forumTopicId?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     instructions?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -469,13 +467,13 @@ export interface NexusGenInputs {
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     order?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    required?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    solutions?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    required?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
+    solutions?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     superOrder?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     template?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    tests?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    tests?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     time?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    translations?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    translations?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     videoUrl?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
@@ -595,11 +593,11 @@ export interface NexusGenInputs {
       | NexusGenInputs['UserListRelationFilter']
       | null // UserListRelationFilter
     User_EthAccount_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    abi?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    abi?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     address?: NexusGenInputs['StringFilter'] | null // StringFilter
     bytecode?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    description?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     source?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -658,7 +656,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['EthContractSourceWhereInput'][] | null // [EthContractSourceWhereInput!]
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    description?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
     source?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -880,6 +878,11 @@ export interface NexusGenInputs {
     cursor?: NexusGenInputs['IntFilter'] | null // IntFilter
     data?: NexusGenInputs['StringFilter'] | null // StringFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
+  }
+  JsonNullableFilter: {
+    // input type
+    equals?: NexusGenScalars['Json'] | null // Json
+    not?: NexusGenScalars['Json'] | null // Json
   }
   LetsadsSmsMessageStatusItemListRelationFilter: {
     // input type
@@ -1365,7 +1368,7 @@ export interface NexusGenInputs {
       | null // TemplateListRelationFilter
     User_PrismaProjectUsers?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
     User_ProjectToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    content?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -1515,8 +1518,8 @@ export interface NexusGenInputs {
     class_key?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     commentOldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    components?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
+    content?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     deleted?: NexusGenInputs['BoolFilter'] | null // BoolFilter
@@ -1714,7 +1717,7 @@ export interface NexusGenInputs {
     SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-    credentials?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    credentials?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -1959,7 +1962,7 @@ export interface NexusGenInputs {
     Task_B?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
     Timer?: NexusGenInputs['TimerListRelationFilter'] | null // TimerListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    content?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    content?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     endDate?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
@@ -2084,7 +2087,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TechnologyWhereInput']
       | null // TechnologyWhereInput
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    components?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -2118,7 +2121,7 @@ export interface NexusGenInputs {
       | null // TechnologyLessonListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     UserTechnology?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
-    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    components?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
@@ -2154,17 +2157,15 @@ export interface NexusGenInputs {
     Template?: NexusGenInputs['TemplateWhereInput'] | null // TemplateWhereInput
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     component?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     externalKey?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     other_Template?: NexusGenInputs['TemplateListRelationFilter'] | null // TemplateListRelationFilter
-    props?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-    vars?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    vars?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
   }
   TestListRelationFilter: {
     // input type
@@ -2268,12 +2269,8 @@ export interface NexusGenInputs {
       | null // CodeChallengeCreateOneWithoutTopicInput
     blogID?: string | null // ID
     components?: NexusGenScalars['JSON'] | null // JSON
-    content?: NexusGenScalars['JSON'] | null // JSON
     id?: string | null // ID
-    longtitle?: string | null // String
     name?: string | null // String
-    published?: boolean | null // Boolean
-    topic_tags?: string[] | null // [String!]
     uri?: string | null // String
   }
   TopicUpdateInput: {
@@ -2491,7 +2488,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TechnologyWhereInput']
       | null // TechnologyWhereInput
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    components?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    components?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     date_from?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     date_till?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
@@ -2805,6 +2802,7 @@ export interface NexusGenScalars {
   DateTime: Date
   Decimal: any
   JSON: any
+  Json: any
   Upload: any
   UserTechnologyLevel: any
 }

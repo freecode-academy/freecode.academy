@@ -560,7 +560,6 @@ input CommentCreateInput {
   Task: TaskCreateOneWithoutCommentsInput
   components: JSON
   content: JSON
-  text: JSON
   topicID: ID
 }
 

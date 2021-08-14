@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
+import { NexusGenEnums } from 'server/nexus/generated/nexus'
 import { createResource } from '../../resolvers/createResource'
 
 export const createBlogProcessor: FieldResolver<
@@ -9,6 +10,8 @@ export const createBlogProcessor: FieldResolver<
   const {
     data: { name },
   } = args
+
+  const type: NexusGenEnums['ResourceType'] = 'Blog'
 
   const uri = `/blogs/${name}`
 
@@ -25,6 +28,7 @@ export const createBlogProcessor: FieldResolver<
     name,
     uri,
     isfolder: true,
+    type,
   }
 
   const resource = await createResource(

@@ -103,6 +103,16 @@ export interface BlockWhereInput {
   z?: Maybe<IntFilter>;
 }
 
+export interface BlogCreateInput {
+  content?: Maybe<Scalars['JSON']>;
+  name?: Scalars['String'];
+}
+
+export interface BlogUpdateInput {
+  content?: Maybe<Scalars['JSON']>;
+  name?: Scalars['String'];
+}
+
 export interface BoolFilter {
   equals?: Maybe<Scalars['Boolean']>;
   not?: Maybe<NestedBoolFilter>;
@@ -605,7 +615,6 @@ export interface CommentCreateInput {
   Task?: Maybe<TaskCreateOneWithoutCommentsInput>;
   components?: Maybe<Scalars['JSON']>;
   content?: Maybe<Scalars['JSON']>;
-  text?: Maybe<Scalars['JSON']>;
   topicID?: Maybe<Scalars['ID']>;
 }
 
@@ -1169,6 +1178,7 @@ export interface MessageWhereInput {
 
 export interface Mutation {
   __typename?: 'Mutation';
+  createBlogProcessor: ResourceResponse;
   createChatMessageProcessor: ChatMessageResponse;
   createCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
   createCommentProcessor: ResourceResponse;
@@ -1185,6 +1195,7 @@ export interface Mutation {
   signup: AuthPayload;
   /** Загрузка файла */
   singleUpload?: Maybe<File>;
+  updateBlogProcessor: ResourceResponse;
   updateCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
   updateCommentProcessor: ResourceResponse;
   updateProjectProcessor: ProjectResponse;
@@ -1195,6 +1206,11 @@ export interface Mutation {
   updateUserProcessor: UserResponse;
   updateUserTechnologyProcessor: UserTechnologyResponse;
 }
+
+
+export type MutationCreateBlogProcessorArgs = {
+  data: BlogCreateInput;
+};
 
 
 export type MutationCreateChatMessageProcessorArgs = {
@@ -1261,6 +1277,12 @@ export type MutationSignupArgs = {
 export type MutationSingleUploadArgs = {
   data?: Maybe<SingleUploadInput>;
   file?: Maybe<Scalars['Upload']>;
+};
+
+
+export type MutationUpdateBlogProcessorArgs = {
+  data: BlogUpdateInput;
+  where: ResourceWhereUniqueInput;
 };
 
 

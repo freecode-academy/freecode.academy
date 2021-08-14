@@ -497,7 +497,6 @@ export interface NexusGenInputs {
     Task?: NexusGenInputs['TaskCreateOneWithoutCommentsInput'] | null // TaskCreateOneWithoutCommentsInput
     components?: NexusGenScalars['JSON'] | null // JSON
     content?: NexusGenScalars['JSON'] | null // JSON
-    text?: NexusGenScalars['JSON'] | null // JSON
     topicID?: string | null // ID
   }
   CommentListRelationFilter: {

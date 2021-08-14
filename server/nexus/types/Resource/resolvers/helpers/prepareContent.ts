@@ -53,12 +53,16 @@ function reduceBlocks(
 }
 
 const prepareContentSuper = (
-  args: Prisma.ResourceCreateArgs | Prisma.ResourceUpdateArgs,
+  argsData:
+    | Prisma.ResourceCreateArgs['data']
+    | Prisma.ResourceUpdateArgs['data'],
   data: Prisma.ResourceCreateInput | Prisma.ResourceUpdateInput
 ) => {
-  const {
-    data: { content },
-  } = args
+  // const {
+  //   data: { content },
+  // } = args
+
+  const { content } = argsData
 
   if (content !== undefined) {
     // const {
@@ -95,7 +99,9 @@ const prepareContentSuper = (
 }
 
 export const prepareContent = (
-  args: Prisma.ResourceCreateArgs | Prisma.ResourceUpdateArgs,
+  argsData:
+    | Prisma.ResourceCreateArgs['data']
+    | Prisma.ResourceUpdateArgs['data'],
   data: Prisma.ResourceCreateInput | Prisma.ResourceUpdateInput
 ) => {
   // const {
@@ -105,7 +111,7 @@ export const prepareContent = (
   //   },
   // } = args;
 
-  const components = args.data.components as Component[] | undefined | null
+  const components = argsData.components as Component[] | undefined | null
 
   if (components !== undefined) {
     const resourceBlocks: ResourceBlock[] = []
@@ -127,10 +133,10 @@ export const prepareContent = (
       // contentText,
     })
 
-    Object.assign(args.data, {
+    Object.assign(argsData, {
       ...data,
     })
   }
 
-  return prepareContentSuper(args, data)
+  return prepareContentSuper(argsData, data)
 }

@@ -9,6 +9,7 @@ import {
 import { createTopicProcessor } from './resolvers/createTopicProcessor'
 
 export * from './Blog'
+export * from './Comment'
 
 export const ResourceExtendQuery = extendType({
   type: 'Query',
@@ -64,40 +65,6 @@ export const ResourceExtendQuery = extendType({
 export const ResourceExtendMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.nonNull.field('createCommentProcessor', {
-      type: 'ResourceResponse',
-      args: {
-        data: nonNull('CommentCreateInput'),
-      },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
-    })
-    t.nonNull.field('updateCommentProcessor', {
-      type: 'ResourceResponse',
-      args: {
-        data: nonNull('CommentUpdateInput'),
-        where: nonNull('ResourceWhereUniqueInput'),
-      },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
-    })
-
     t.nonNull.field('createTopicProcessor', {
       type: 'ResourceResponse',
       args: {
@@ -303,37 +270,6 @@ export const ResourceResponse = objectType({
     })
     t.field('data', {
       type: 'Resource',
-    })
-  },
-})
-
-export const CommentCreateInput = inputObjectType({
-  name: 'CommentCreateInput',
-  definition(t) {
-    t.field('text', {
-      type: 'JSON',
-    })
-    t.field('content', {
-      type: 'JSON',
-    })
-    t.field('components', {
-      type: 'JSON',
-    })
-    t.id('topicID')
-    t.field('Task', {
-      type: 'TaskCreateOneWithoutCommentsInput',
-    })
-  },
-})
-
-export const CommentUpdateInput = inputObjectType({
-  name: 'CommentUpdateInput',
-  definition(t) {
-    t.field('content', {
-      type: 'JSON',
-    })
-    t.field('components', {
-      type: 'JSON',
     })
   },
 })

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Prisma, Resource } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
 
@@ -6,7 +5,8 @@ import { uid } from 'uid'
 import { prepareContent } from './helpers/prepareContent'
 import { prepareName, prepareUri } from './helpers/prepareUri'
 
-function addError(message: string) {
+// TODO Надо перенести в отдельный метод формирования ответов процессоров
+export function addError(message: string) {
   throw new Error(message)
 }
 
@@ -163,195 +163,195 @@ export const createResource = async (
 
     //   break
 
-    case 'Comment':
-      {
-        Object.assign(data, {
-          // УРИ создаваемого комментария по-умолчанию (может быть переопределен ниже)
-          uri: `/comments/${newResourceId}`,
-          isfolder: false,
-        })
+    // case 'Comment':
+    //   {
+    //     Object.assign(data, {
+    //       // УРИ создаваемого комментария по-умолчанию (может быть переопределен ниже)
+    //       uri: `/comments/${newResourceId}`,
+    //       isfolder: false,
+    //     })
 
-        const { contentText } = prepareContent(args, data) || {}
+    //     const { contentText } = prepareContent(args.data, data) || {}
 
-        if (!contentText) {
-          // this.addFieldError("content", "Не заполнен текст");
-          // this.addError("Не заполнен текст");
-          // return;
-        }
+    //     if (!contentText) {
+    //       // this.addFieldError("content", "Не заполнен текст");
+    //       // this.addError("Не заполнен текст");
+    //       // return;
+    //     }
 
-        // else
+    //     // else
 
-        let name =
-          (contentText &&
-            typeof contentText === 'string' &&
-            contentText.substr(0, 50)) ||
-          undefined
+    //     let name =
+    //       (contentText &&
+    //         typeof contentText === 'string' &&
+    //         contentText.substr(0, 50)) ||
+    //       undefined
 
-        // if (!topicID) {
-        //   return this.addError("Не был указан ID топика");
-        // }
-        // else {
+    //     // if (!topicID) {
+    //     //   return this.addError("Не был указан ID топика");
+    //     // }
+    //     // else {
 
-        const topicID = ''
+    //     const topicID = ''
 
-        // eslint-disable-next-line no-constant-condition
-        if (1 === 1) {
-          throw new Error('Feed fix')
-        }
+    //     // eslint-disable-next-line no-constant-condition
+    //     if (1 === 1) {
+    //       throw new Error('Need fix')
+    //     }
 
-        if (topicID) {
-          // Проверяем есть ли такой топик
-          // const exists = await db.exists.Resource({
-          //   id: topicID,
-          //   type: "Topic",
-          // });
+    //     if (topicID) {
+    //       // Проверяем есть ли такой топик
+    //       // const exists = await db.exists.Resource({
+    //       //   id: topicID,
+    //       //   type: "Topic",
+    //       // });
 
-          // Получаем топик
-          const Topic = await ctx.prisma.resource.findUnique({
-            where: {
-              id: topicID,
-            },
-          })
+    //       // Получаем топик
+    //       const Topic = await ctx.prisma.resource.findUnique({
+    //         where: {
+    //           id: topicID,
+    //         },
+    //       })
 
-          if (!Topic) {
-            addError('Не был получен топик')
-            return
-          } else {
-            const { uri: TopicUri, name: topicName } = Topic
+    //       if (!Topic) {
+    //         addError('Не был получен топик')
+    //         return
+    //       } else {
+    //         const { uri: TopicUri, name: topicName } = Topic
 
-            if (!name) {
-              name = `Комментарий к топику ${topicName}`
-            }
+    //         if (!name) {
+    //           name = `Комментарий к топику ${topicName}`
+    //         }
 
-            Object.assign(data, {
-              // name,
-              // uri: `${TopicUri}/comments/${name}`,
-              uri: `/comments/${TopicUri}/${name}`,
-              isfolder: false,
+    //         Object.assign(data, {
+    //           // name,
+    //           // uri: `${TopicUri}/comments/${name}`,
+    //           uri: `/comments/${TopicUri}/${name}`,
+    //           isfolder: false,
 
-              Topic: {
-                connect: {
-                  id: topicID,
-                },
-              },
-            })
-          }
-        }
-        // else if (data.Task && data.Task.connect && data.Task.connect.id) {
-        else if (data.Task) {
-          {
-            // const Task = await db.query.task({
-            //   where: data.Task.connect,
-            // });
-            const Task = await ctx.prisma.task.findUnique({
-              where: {
-                id: data.Task,
-              },
-            })
+    //           Topic: {
+    //             connect: {
+    //               id: topicID,
+    //             },
+    //           },
+    //         })
+    //       }
+    //     }
+    //     // else if (data.Task && data.Task.connect && data.Task.connect.id) {
+    //     else if (data.Task) {
+    //       {
+    //         // const Task = await db.query.task({
+    //         //   where: data.Task.connect,
+    //         // });
+    //         const Task = await ctx.prisma.task.findUnique({
+    //           where: {
+    //             id: data.Task,
+    //           },
+    //         })
 
-            if (!Task) {
-              // return this.addError("Не была получена задача");
-              addError('Не была получена задача')
-              return
-            }
+    //         if (!Task) {
+    //           // return this.addError("Не была получена задача");
+    //           addError('Не была получена задача')
+    //           return
+    //         }
 
-            const { name: taskName } = Task
+    //         const { name: taskName } = Task
 
-            if (!name) {
-              name = `Комментарий к задаче ${taskName}`
-            }
-          }
-        }
-        // else {
-        //   throw new Error ("Не указан родительский объект для комментария");
-        // }
+    //         if (!name) {
+    //           name = `Комментарий к задаче ${taskName}`
+    //         }
+    //       }
+    //     }
+    //     // else {
+    //     //   throw new Error ("Не указан родительский объект для комментария");
+    //     // }
 
-        if (name) {
-          Object.assign(data, {
-            name,
-          })
-        }
+    //     if (name) {
+    //       Object.assign(data, {
+    //         name,
+    //       })
+    //     }
 
-        Object.assign(args, {
-          data,
-        })
+    //     Object.assign(args, {
+    //       data,
+    //     })
 
-        // const result = await super.create(method, args, info);
+    //     // const result = await super.create(method, args, info);
 
-        // const {
-        //   id: commentId,
-        // } = result || {};
+    //     // const {
+    //     //   id: commentId,
+    //     // } = result || {};
 
-        // /**
-        //  * Если был создан комментарий,
-        //  */
-        // if (commentId) {
+    //     // /**
+    //     //  * Если был создан комментарий,
+    //     //  */
+    //     // if (commentId) {
 
-        //   /**
-        //    * Обновляем дату топика, чтобы сортировку актуализировать
-        //    */
-        //   await db.mutation.updateResource({
-        //     data: {
-        //       mockUpdate: new Date(),
-        //     },
-        //     where: {
-        //       id: topicID,
-        //     },
-        //   })
-        //     .catch(error => {
-        //       /**
-        //        * Не обламываем процесс, если не получилось обновить дату топика
-        //        */
-        //       this.error(error);
-        //       console.error(chalk.red("Update Topic error"), error);
-        //     });
+    //     //   /**
+    //     //    * Обновляем дату топика, чтобы сортировку актуализировать
+    //     //    */
+    //     //   await db.mutation.updateResource({
+    //     //     data: {
+    //     //       mockUpdate: new Date(),
+    //     //     },
+    //     //     where: {
+    //     //       id: topicID,
+    //     //     },
+    //     //   })
+    //     //     .catch(error => {
+    //     //       /**
+    //     //        * Не обламываем процесс, если не получилось обновить дату топика
+    //     //        */
+    //     //       this.error(error);
+    //     //       console.error(chalk.red("Update Topic error"), error);
+    //     //     });
 
-        //   /**
-        //    * отправляем уведомления
-        //    */
+    //     //   /**
+    //     //    * отправляем уведомления
+    //     //    */
 
-        //   const siteUrl = "https://prisma-cms.com";
+    //     //   const siteUrl = "https://prisma-cms.com";
 
-        //   let subject = `Новый комментарий в топике ${topicName}`;
-        //   let message = `<p>
-        //     В топике <a href="${siteUrl}${TopicUri}">${topicName}</a> создан новый комментарий.
-        //   </p>
-        //     <div>
-        //       ${contentText.substr(0, 1000)}
-        //     </div>
-        //   `;
+    //     //   let subject = `Новый комментарий в топике ${topicName}`;
+    //     //   let message = `<p>
+    //     //     В топике <a href="${siteUrl}${TopicUri}">${topicName}</a> создан новый комментарий.
+    //     //   </p>
+    //     //     <div>
+    //     //       ${contentText.substr(0, 1000)}
+    //     //     </div>
+    //     //   `;
 
-        //   const usersWhere = {
-        //     id_not: currentUserId,
-        //     Resources_some: {
-        //       OR: [
-        //         {
-        //           id: topicID,
-        //         },
-        //         {
-        //           Topic: {
-        //             id: topicID,
-        //           },
-        //         },
-        //       ],
-        //     },
-        //     NotificationTypes_some: {
-        //       name_in: ["new_comment", "new_reply", "new_comments_in_my_topics"],
-        //     },
-        //   }
+    //     //   const usersWhere = {
+    //     //     id_not: currentUserId,
+    //     //     Resources_some: {
+    //     //       OR: [
+    //     //         {
+    //     //           id: topicID,
+    //     //         },
+    //     //         {
+    //     //           Topic: {
+    //     //             id: topicID,
+    //     //           },
+    //     //         },
+    //     //       ],
+    //     //     },
+    //     //     NotificationTypes_some: {
+    //     //       name_in: ["new_comment", "new_reply", "new_comments_in_my_topics"],
+    //     //     },
+    //     //   }
 
-        //   this.sendNotifications({
-        //     message,
-        //     subject,
-        //     rank: 100,
-        //   }, usersWhere);
+    //     //   this.sendNotifications({
+    //     //     message,
+    //     //     subject,
+    //     //     rank: 100,
+    //     //   }, usersWhere);
 
-        // }
+    //     // }
 
-        // return result;
-      }
+    //     // return result;
+    //   }
 
-      break
+    //   break
 
     default:
   }
@@ -369,47 +369,18 @@ export const createResource = async (
 
   // return this.addFieldError("test", "error");
 
-  console.log(
-    'createResource complete data',
-    JSON.stringify(data, undefined, 2)
-  )
-
   /**
    * Создаем объект
    */
   // const result = await super.create(method, args, info);
   // const result = await ctx.prisma.resource.create(args);
-  const result = await createResourceSuper(args, ctx)
+  // const result = await createResourceSuper(args, ctx)
 
   /**
    * Отправляем уведомления
    */
   // TODO Restore
   // createNotifications(result);
-
-  return result
-}
-
-async function createResourceSuper(
-  args: Prisma.ResourceCreateArgs,
-  ctx: PrismaContext
-) {
-  // const {
-  //   ctx,
-  // } = this;
-
-  // const {
-  //   getProjectFromRequest,
-  // } = ctx;
-
-  const {
-    data: {
-      // name,
-      // uri,
-      PrismaProject,
-      ...data
-    },
-  } = args
 
   const uriData = await prepareUri(args, undefined, ctx)
 
@@ -439,10 +410,10 @@ async function createResourceSuper(
 
   // console.log("PrismaProject", PrismaProject);
 
-  prepareContent(args, data)
+  prepareContent(args.data, data)
 
   Object.assign(data, {
-    PrismaProject,
+    // PrismaProject,
     ...uriData,
     // ...this.getCreatedBy(),
     name: prepareName(args),
@@ -462,5 +433,16 @@ async function createResourceSuper(
 
   // return super.create(method, args, info);
 
-  return ctx.prisma.resource.create(args)
+  const createData: Prisma.ResourceCreateInput = args.data
+
+  // CreatedBy
+  createData.User = {
+    connect: {
+      id: currentUserId,
+    },
+  }
+
+  return await ctx.prisma.resource.create({
+    data: createData,
+  })
 }

@@ -180,8 +180,9 @@ export type FileFieldPolicy = {
 	size?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createProjectProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserTechnologyProcessor' | 'deleteNotice' | 'signin' | 'signup' | 'singleUpload' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createProjectProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserTechnologyProcessor' | 'deleteNotice' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
+	createBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createChatMessageProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createCodeChallengeCompletionProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createCommentProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -195,6 +196,7 @@ export type MutationFieldPolicy = {
 	signin?: FieldPolicy<any> | FieldReadFunction<any>,
 	signup?: FieldPolicy<any> | FieldReadFunction<any>,
 	singleUpload?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateCodeChallengeCompletionProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateCommentProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateProjectProcessor?: FieldPolicy<any> | FieldReadFunction<any>,

@@ -57,10 +57,8 @@ class UikitComment extends EditableView<UikitCommentProps> {
 
     const { id, CreatedBy } = this.getObjectWithMutations() || {}
 
-    const { id: createdById } = CreatedBy || {}
-
     return (
-      !id || (createdById && createdById === currentUserId) || sudo === true
+      !id || (currentUserId && CreatedBy?.id === currentUserId) || sudo === true
     )
   }
 

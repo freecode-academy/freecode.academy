@@ -1,5 +1,6 @@
 import { extendType, inputObjectType, nonNull } from 'nexus'
 import { createCommentProcessor } from './resolvers/createCommentProcessor'
+import { updateCommentProcessor } from './resolvers/updateCommentProcessor'
 
 export const CommentExtendMutation = extendType({
   type: 'Mutation',
@@ -17,16 +18,7 @@ export const CommentExtendMutation = extendType({
         data: nonNull('CommentUpdateInput'),
         where: nonNull('ResourceWhereUniqueInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: updateCommentProcessor,
     })
   },
 })

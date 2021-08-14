@@ -19,13 +19,15 @@ function escapeUri(uri: string) {
   return uri ? uri.replace(/[/?% ]+/g, '-').replace(/-+/g, '-') : ''
 }
 
-export function prepareName(args: Prisma.ResourceCreateArgs) {
+export function prepareName(
+  args: Prisma.ResourceCreateArgs | Prisma.ResourceUpdateArgs
+) {
   let {
     data: { name },
   } = args
 
   if (name !== undefined) {
-    name = (name && name.trim()) || null
+    name = (name && typeof name === 'string' && name.trim()) || null
 
     if (!name) {
       // this.addFieldError("name", "Не заполнено название");

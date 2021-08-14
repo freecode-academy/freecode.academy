@@ -21,6 +21,15 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
   },
   Mutation: {
     updateUserProcessor: isAuthenticated,
+
+    createCommentProcessor: isAuthenticated,
+    updateCommentProcessor: isAuthenticated,
+
+    createBlogProcessor: isAuthenticated,
+    updateBlogProcessor: isAuthenticated,
+
+    createTopicProcessor: isAuthenticated,
+    updateTopicProcessor: isAuthenticated,
   },
 }
 

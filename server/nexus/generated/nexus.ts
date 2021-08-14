@@ -2200,7 +2200,6 @@ export interface NexusGenInputs {
   TimerCreateInput: {
     // input type
     Task?: NexusGenInputs['TaskCreateOneWithoutTimersInput'] | null // TaskCreateOneWithoutTimersInput
-    id?: string | null // ID
     stopedAt?: NexusGenScalars['DateTime'] | null // DateTime
   }
   TimerListRelationFilter: {
@@ -2220,7 +2219,6 @@ export interface NexusGenInputs {
   }
   TimerUpdateInput: {
     // input type
-    Task?: NexusGenInputs['TaskCreateOneWithoutTimersInput'] | null // TaskCreateOneWithoutTimersInput
     stopedAt?: NexusGenScalars['DateTime'] | null // DateTime
   }
   TimerUpdateManyDataInput: {

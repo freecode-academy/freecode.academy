@@ -2989,7 +2989,6 @@ type TimerConnection {
 
 input TimerCreateInput {
   Task: TaskCreateOneWithoutTimersInput
-  id: ID
   stopedAt: DateTime
 }
 
@@ -3020,7 +3019,6 @@ type TimerResponse {
 }
 
 input TimerUpdateInput {
-  Task: TaskCreateOneWithoutTimersInput
   stopedAt: DateTime
 }
 

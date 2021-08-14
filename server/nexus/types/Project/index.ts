@@ -155,6 +155,18 @@ export const Project = objectType({
       args: {
         orderBy: 'ProjectTaskOrderByInput',
       },
+      resolve({ id }, args, ctx) {
+        const orderBy = args.orderBy as
+          | Prisma.ProjectTaskOrderByInput
+          | undefined
+
+        return ctx.prisma.projectTask.findMany({
+          orderBy,
+          where: {
+            Project: id,
+          },
+        })
+      },
     })
   },
 })

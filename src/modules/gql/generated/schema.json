@@ -30920,18 +30920,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "ID",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "stopedAt",
             "description": null,
             "type": {
@@ -31190,18 +31178,6 @@
         "description": null,
         "fields": null,
         "inputFields": [
-          {
-            "name": "Task",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TaskCreateOneWithoutTimersInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "stopedAt",
             "description": null,
@@ -31774,18 +31750,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "blogID",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "ID",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "components",
             "description": null,
             "type": {
@@ -31827,18 +31791,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "published",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,

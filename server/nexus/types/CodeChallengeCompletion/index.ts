@@ -1,4 +1,6 @@
 import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
+import { createCodeChallengeCompletionProcessor } from './resolvers/createCodeChallengeCompletionProcessor'
+import { updateCodeChallengeCompletionProcessor } from './resolvers/updateCodeChallengeCompletionProcessor'
 
 export const CodeChallengeCompletionExtendQuery = extendType({
   type: 'Query',
@@ -19,16 +21,7 @@ export const CodeChallengeCompletionExtendMutation = extendType({
       args: {
         data: nonNull('CodeChallengeCompletionCreateInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: createCodeChallengeCompletionProcessor,
     })
     t.nonNull.field('updateCodeChallengeCompletionProcessor', {
       type: 'CodeChallengeCompletionResponse',
@@ -36,16 +29,7 @@ export const CodeChallengeCompletionExtendMutation = extendType({
         data: nonNull('CodeChallengeCompletionUpdateInput'),
         where: nonNull('CodeChallengeCompletionWhereUniqueInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: updateCodeChallengeCompletionProcessor,
     })
   },
 })

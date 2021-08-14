@@ -3314,7 +3314,6 @@ export interface TimerConnection {
 
 export interface TimerCreateInput {
   Task?: Maybe<TaskCreateOneWithoutTimersInput>;
-  id?: Maybe<Scalars['ID']>;
   stopedAt?: Maybe<Scalars['DateTime']>;
 }
 
@@ -3347,7 +3346,6 @@ export interface TimerResponse {
 }
 
 export interface TimerUpdateInput {
-  Task?: Maybe<TaskCreateOneWithoutTimersInput>;
   stopedAt?: Maybe<Scalars['DateTime']>;
 }
 
@@ -3409,12 +3407,10 @@ export interface TopicCreateInput {
 }
 
 export interface TopicUpdateInput {
-  blogID?: Maybe<Scalars['ID']>;
   components?: Maybe<Scalars['JSON']>;
   content?: Maybe<Scalars['JSON']>;
   longtitle?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  published?: Maybe<Scalars['Boolean']>;
 }
 
 export interface TournamentGroupListRelationFilter {

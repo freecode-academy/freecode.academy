@@ -1,5 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
+import { createTimerProcessor } from './resolvers/createTimerProcessor'
+import { updateTimerProcessor } from './resolvers/updateTimerProcessor'
 
 export const TimerExtendQuery = extendType({
   type: 'Query',
@@ -61,16 +63,7 @@ export const TimerExtendMutation = extendType({
       args: {
         data: nonNull('TimerCreateInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: createTimerProcessor,
     })
     t.nonNull.field('updateTimerProcessor', {
       type: 'TimerResponse',
@@ -78,16 +71,7 @@ export const TimerExtendMutation = extendType({
         data: nonNull('TimerUpdateInput'),
         where: nonNull('TimerWhereUniqueInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: updateTimerProcessor,
     })
   },
 })
@@ -137,7 +121,7 @@ export const TimerResponse = objectType({
 export const TimerCreateInput = inputObjectType({
   name: 'TimerCreateInput',
   definition(t) {
-    t.id('id')
+    // t.id('id')
     t.date('stopedAt')
     // t.field("CreatedBy", {
     //   type: "UserCreateOneWithoutTimersInput",
@@ -155,9 +139,9 @@ export const TimerUpdateInput = inputObjectType({
     // t.field("CreatedBy", {
     //   type: "UserCreateOneWithoutTimersInput",
     // })
-    t.field('Task', {
-      type: 'TaskCreateOneWithoutTimersInput',
-    })
+    // t.field('Task', {
+    //   type: 'TaskCreateOneWithoutTimersInput',
+    // })
   },
 })
 

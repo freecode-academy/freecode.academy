@@ -786,10 +786,10 @@ export interface EnumProjectMemberStatusFilter {
   notIn?: Maybe<Array<ProjectMemberStatus>>;
 }
 
-export interface EnumProjectStatusFilter {
+export interface EnumProjectStatusNullableFilter {
   equals?: Maybe<ProjectStatus>;
   in?: Maybe<Array<ProjectStatus>>;
-  not?: Maybe<NestedEnumProjectStatusFilter>;
+  not?: Maybe<NestedEnumProjectStatusNullableFilter>;
   notIn?: Maybe<Array<ProjectStatus>>;
 }
 
@@ -1722,10 +1722,10 @@ export interface NestedEnumProjectMemberStatusFilter {
   notIn?: Maybe<Array<ProjectMemberStatus>>;
 }
 
-export interface NestedEnumProjectStatusFilter {
+export interface NestedEnumProjectStatusNullableFilter {
   equals?: Maybe<ProjectStatus>;
   in?: Maybe<Array<ProjectStatus>>;
-  not?: Maybe<NestedEnumProjectStatusFilter>;
+  not?: Maybe<NestedEnumProjectStatusNullableFilter>;
   notIn?: Maybe<Array<ProjectStatus>>;
 }
 
@@ -2253,7 +2253,7 @@ export interface ProjectWhereInput {
   oldID?: Maybe<IntNullableFilter>;
   public?: Maybe<BoolNullableFilter>;
   sequence?: Maybe<IntNullableFilter>;
-  status?: Maybe<EnumProjectStatusFilter>;
+  status?: Maybe<EnumProjectStatusNullableFilter>;
   type?: Maybe<EnumProjectTypeNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   url?: Maybe<StringNullableFilter>;

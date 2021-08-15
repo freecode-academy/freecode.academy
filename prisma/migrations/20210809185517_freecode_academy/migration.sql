@@ -582,7 +582,7 @@ CREATE TABLE `Project` (
     `sequence` INTEGER,
     `content` JSON,
     `contentText` MEDIUMTEXT,
-    `status`  ENUM('New', 'Accepted', 'Rejected', 'Processing', 'Completed', 'Reopened') NOT NULL DEFAULT 'New',
+    `status`  ENUM('New', 'Accepted', 'Rejected', 'Processing', 'Completed', 'Reopened') DEFAULT 'New',
     `public` BOOLEAN,
     `oldID` INTEGER,
     `CreatedBy` VARCHAR(32),

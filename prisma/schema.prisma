@@ -793,7 +793,7 @@ model Project {
   sequence                                 Int?            @unique
   content                                  Json?
   contentText                              String?         @db.MediumText
-  status                                   ProjectStatus   @default(value: New)
+  status                                   ProjectStatus?   @default(value: New)
   public                                   Boolean?
   oldID                                    Int?            @unique
   CreatedBy                                String?         @db.VarChar(32)

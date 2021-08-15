@@ -659,11 +659,11 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedEnumProjectMemberStatusFilter'] | null // NestedEnumProjectMemberStatusFilter
     notIn?: NexusGenEnums['ProjectMemberStatus'][] | null // [ProjectMemberStatus!]
   }
-  EnumProjectStatusFilter: {
+  EnumProjectStatusNullableFilter: {
     // input type
     equals?: NexusGenEnums['ProjectStatus'] | null // ProjectStatus
     in?: NexusGenEnums['ProjectStatus'][] | null // [ProjectStatus!]
-    not?: NexusGenInputs['NestedEnumProjectStatusFilter'] | null // NestedEnumProjectStatusFilter
+    not?: NexusGenInputs['NestedEnumProjectStatusNullableFilter'] | null // NestedEnumProjectStatusNullableFilter
     notIn?: NexusGenEnums['ProjectStatus'][] | null // [ProjectStatus!]
   }
   EnumProjectTypeNullableFilter: {
@@ -1329,11 +1329,11 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedEnumProjectMemberStatusFilter'] | null // NestedEnumProjectMemberStatusFilter
     notIn?: NexusGenEnums['ProjectMemberStatus'][] | null // [ProjectMemberStatus!]
   }
-  NestedEnumProjectStatusFilter: {
+  NestedEnumProjectStatusNullableFilter: {
     // input type
     equals?: NexusGenEnums['ProjectStatus'] | null // ProjectStatus
     in?: NexusGenEnums['ProjectStatus'][] | null // [ProjectStatus!]
-    not?: NexusGenInputs['NestedEnumProjectStatusFilter'] | null // NestedEnumProjectStatusFilter
+    not?: NexusGenInputs['NestedEnumProjectStatusNullableFilter'] | null // NestedEnumProjectStatusNullableFilter
     notIn?: NexusGenEnums['ProjectStatus'][] | null // [ProjectStatus!]
   }
   NestedEnumProjectTypeNullableFilter: {
@@ -1735,7 +1735,7 @@ export interface NexusGenInputs {
     oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     public?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     sequence?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    status?: NexusGenInputs['EnumProjectStatusFilter'] | null // EnumProjectStatusFilter
+    status?: NexusGenInputs['EnumProjectStatusNullableFilter'] | null // EnumProjectStatusNullableFilter
     type?: NexusGenInputs['EnumProjectTypeNullableFilter'] | null // EnumProjectTypeNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     url?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter

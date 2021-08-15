@@ -7473,7 +7473,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "EnumProjectStatusFilter",
+        "name": "EnumProjectStatusNullableFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7514,7 +7514,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumProjectStatusFilter",
+              "name": "NestedEnumProjectStatusNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -16194,7 +16194,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "NestedEnumProjectStatusFilter",
+        "name": "NestedEnumProjectStatusNullableFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -16235,7 +16235,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumProjectStatusFilter",
+              "name": "NestedEnumProjectStatusNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -21451,7 +21451,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumProjectStatusFilter",
+              "name": "EnumProjectStatusNullableFilter",
               "ofType": null
             },
             "defaultValue": null,

@@ -736,10 +736,10 @@ input EnumProjectMemberStatusFilter {
   notIn: [ProjectMemberStatus!]
 }
 
-input EnumProjectStatusFilter {
+input EnumProjectStatusNullableFilter {
   equals: ProjectStatus
   in: [ProjectStatus!]
-  not: NestedEnumProjectStatusFilter
+  not: NestedEnumProjectStatusNullableFilter
   notIn: [ProjectStatus!]
 }
 
@@ -1614,10 +1614,10 @@ input NestedEnumProjectMemberStatusFilter {
   notIn: [ProjectMemberStatus!]
 }
 
-input NestedEnumProjectStatusFilter {
+input NestedEnumProjectStatusNullableFilter {
   equals: ProjectStatus
   in: [ProjectStatus!]
-  not: NestedEnumProjectStatusFilter
+  not: NestedEnumProjectStatusNullableFilter
   notIn: [ProjectStatus!]
 }
 
@@ -2130,7 +2130,7 @@ input ProjectWhereInput {
   oldID: IntNullableFilter
   public: BoolNullableFilter
   sequence: IntNullableFilter
-  status: EnumProjectStatusFilter
+  status: EnumProjectStatusNullableFilter
   type: EnumProjectTypeNullableFilter
   updatedAt: DateTimeFilter
   url: StringNullableFilter

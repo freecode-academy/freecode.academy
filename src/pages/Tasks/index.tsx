@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Head from 'next/head'
 import React, { useCallback, useMemo } from 'react'
 import {
@@ -6,6 +5,8 @@ import {
   TasksConnectionQueryVariables,
   useTasksConnectionQuery,
   TasksConnectionTaskFragment,
+  TaskWhereInput,
+  EnumTaskStatusFilter,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -23,9 +24,33 @@ const defaultVariables: TasksConnectionQueryVariables = {
 }
 
 function getQueryParams(query: ParsedUrlQuery) {
-  const { page: queryPage, needHelp, ...where } = query
+  const { page: queryPage, needHelp, where: queryWhere, status_in } = query
 
   let skip: number | undefined
+
+  const where: TaskWhereInput = {}
+
+  /**
+   * Берем условия фильтрации из УРЛа
+   */
+  if (queryWhere && typeof queryWhere === 'string') {
+    try {
+      const filter: TaskWhereInput = JSON.parse(decodeURIComponent(queryWhere))
+
+      Object.assign(where, filter)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  // Старое условие фильтрации
+  // TODO Надо будет убрать
+  else if (status_in && Array.isArray(status_in)) {
+    const taskStatuses = status_in as EnumTaskStatusFilter['in']
+
+    where.status = {
+      in: taskStatuses,
+    }
+  }
 
   const page =
     (queryPage && typeof queryPage === 'string' && parseInt(queryPage)) || 0
@@ -35,8 +60,9 @@ function getQueryParams(query: ParsedUrlQuery) {
   }
 
   if (needHelp && needHelp === 'true') {
-    // @ts-ignore
-    where.needHelp = true
+    where.needHelp = {
+      equals: true,
+    }
   }
 
   return {
@@ -53,10 +79,12 @@ const TasksPage: Page = () => {
   const { query } = router
 
   const { page, ...queryVariables } = useMemo(() => {
-    return {
+    const variables = {
       ...defaultVariables,
       ...getQueryParams(query),
     }
+
+    return variables
   }, [query])
 
   const response = useTasksConnectionQuery({

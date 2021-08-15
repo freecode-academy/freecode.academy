@@ -29,6 +29,7 @@ import { MainMenuProps, MainMenuState } from './interfaces'
 
 import Timer from './Timer'
 import MainMenuNotices from './Notices'
+import { TaskStatus, TaskWhereInput } from 'src/modules/gql/generated'
 
 // export const defaultStyles = theme => {
 
@@ -50,6 +51,13 @@ import MainMenuNotices from './Notices'
 //     },
 //   }
 // }
+
+/**
+ * Формируем параметры для УРЛ
+ */
+export const prepareTasksFiltersUrl = (filter: TaskWhereInput) => {
+  return encodeURIComponent(JSON.stringify(filter))
+}
 
 export const styles = (theme: any) => {
   const {
@@ -120,6 +128,38 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
     const { openLoginForm } = this.context
 
     return openLoginForm()
+  }
+
+  renderTasksLink = (): JSX.Element => {
+    const filter: TaskWhereInput = {
+      status: {
+        in: [
+          TaskStatus.NEW,
+          TaskStatus.ACCEPTED,
+          TaskStatus.PROGRESS,
+          TaskStatus.PAUSED,
+          TaskStatus.REVISIONSREQUIRED,
+          TaskStatus.DISCUSS,
+          TaskStatus.APPROVED,
+          TaskStatus.DONE,
+        ],
+      },
+    }
+
+    // const encoded = encodeURIComponent(JSON.stringify(filter))
+
+    const where = prepareTasksFiltersUrl(filter)
+
+    return (
+      <Grid item>
+        {/* <Link href="/tasks/?status_in=New&status_in=Accepted&status_in=Progress&status_in=Paused&status_in=RevisionsRequired&status_in=Discuss&status_in=Approved&status_in=Done"> */}
+        <Link href={`/tasks/?where=${where}`}>
+          <a>
+            <Typography>{this.lexicon('Tasks')}</Typography>
+          </a>
+        </Link>
+      </Grid>
+    )
   }
 
   render() {
@@ -213,13 +253,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               </Link>
             </Grid>
 
-            <Grid item>
-              <Link href="/tasks/?status_in=New&status_in=Accepted&status_in=Progress&status_in=Paused&status_in=RevisionsRequired&status_in=Discuss&status_in=Approved&status_in=Done">
-                <a>
-                  <Typography>{this.lexicon('Tasks')}</Typography>
-                </a>
-              </Link>
-            </Grid>
+            {this.renderTasksLink()}
 
             <Grid item>
               <Link href="/timers/">

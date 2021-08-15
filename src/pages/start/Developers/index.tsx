@@ -1,14 +1,41 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { NextSeo } from 'next-seo'
 import { Page } from 'src/pages/_App/interfaces'
 import { DevelopersStartPageStyled } from './styles'
 import Typography from 'material-ui/Typography'
 import Link from 'next/link'
+import { prepareTasksFiltersUrl } from 'src/components/MainMenu'
+import { TaskStatus, TaskWhereInput } from 'src/modules/gql/generated'
 
 /**
  * Стартовая страница Программистам
  */
 const DevelopersStartPage: Page = () => {
+  const needHelpTasksLink = useMemo(() => {
+    const filter: TaskWhereInput = {
+      status: {
+        in: [
+          TaskStatus.NEW,
+          TaskStatus.ACCEPTED,
+          TaskStatus.PROGRESS,
+          TaskStatus.PAUSED,
+          TaskStatus.REVISIONSREQUIRED,
+          TaskStatus.DISCUSS,
+          TaskStatus.APPROVED,
+          TaskStatus.DONE,
+        ],
+      },
+    }
+
+    const where = prepareTasksFiltersUrl(filter)
+
+    return (
+      <Link href={`/tasks?where=${where}`}>
+        <a title="Все задачи, по которых требуется помощь">отдельный список</a>
+      </Link>
+    )
+  }, [])
+
   return (
     <>
       <NextSeo title="С чего начать программистам" />
@@ -160,11 +187,8 @@ const DevelopersStartPage: Page = () => {
         </Typography>
 
         <Typography paragraph>
-          Задачи с пометкой "Нужна помощь" выводятся в{' '}
-          <Link href="/tasks?needHelp=true&status_in=New&status_in=Accepted&status_in=Progress&status_in=Paused&status_in=RevisionsRequired&status_in=Discuss&status_in=Approved&status_in=Done">
-            <a title="">отдельный список</a>
-          </Link>{' '}
-          и помогают привлечь других участников сообщества к более оперативному
+          Задачи с пометкой "Нужна помощь" выводятся в {needHelpTasksLink} и
+          помогают привлечь других участников сообщества к более оперативному
           решению. При чем в каждой задаче тоже есть функция обсуждения, так что
           многие моменты можно обсуждать сразу на месте.
         </Typography>

@@ -147,7 +147,7 @@ export const processUpload = async (
       encoding,
       path: path.replace(/^\.\//, ''),
       size,
-      CreatedBy: {
+      User: {
         connect: {
           id: currentUser.id,
         },

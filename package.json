@@ -13,7 +13,7 @@
     "build": "next build && yarn build:server",
     "build:server": "tsc --project tsconfig.server.json",
     "build:analyze": "cross-env ANALYZE=true yarn build",
-    "deploy": "yarn generate:types",
+    "deploy": "yarn prisma:deploy && yarn generate && yarn generate:types",
     "generate:types": "cross-env NODE_PATH=. ts-node -P tsconfig.server.json src/modules/gql/cli/generateTypes/run",
     "types": "tsc --pretty --noEmit",
     "types:server": "yarn types -P tsconfig.server.json",

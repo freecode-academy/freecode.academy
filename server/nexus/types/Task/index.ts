@@ -6,6 +6,7 @@ import {
   nonNull,
   objectType,
 } from 'nexus'
+import { createTaskProcessor } from './resolvers/createTaskProcessor'
 
 export const TaskExtendQuery = extendType({
   type: 'Query',
@@ -80,16 +81,7 @@ export const TaskExtendMutation = extendType({
       args: {
         data: nonNull('TaskCreateInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: createTaskProcessor,
     })
     t.nonNull.field('updateTaskProcessor', {
       type: 'TaskResponse',

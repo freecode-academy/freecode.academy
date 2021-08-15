@@ -28,7 +28,7 @@ export type CommentsConnectionQuery = { __typename?: 'Query', objectsConnection:
 
 
 export const CommentsConnectionDocument = gql`
-    query commentsConnection($first: Int = 10, $skip: Int = 0, $orderBy: ResourceOrderByInput = {createdAt: desc}, $where: ResourceWhereInput = {type: {equals: "Comment"}}) {
+    query commentsConnection($first: Int = 10, $skip: Int = 0, $orderBy: ResourceOrderByInput = {createdAt: desc}, $where: ResourceWhereInput = {type: {equals: Comment}}) {
   objectsConnection: resourcesConnection(
     where: $where
     first: $first

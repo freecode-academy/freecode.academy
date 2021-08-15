@@ -163,24 +163,36 @@ model Block {
 }
 
 model CallRequest {
-  id                            String    @id @default(cuid()) @db.VarChar(32)
+  id                            String            @id @default(cuid()) @db.VarChar(32)
   called_descriptions           Json
   caller_descriptions           Json
-  status                        String?
+  status                        CallRequestStatus @default(value: Created)
   startedAt                     DateTime?
   endedAt                       DateTime?
-  Room                          String?   @db.VarChar(32)
-  Called                        String?   @db.VarChar(32)
-  Caller                        String?   @db.VarChar(32)
-  createdAt                     DateTime  @default(now("0")) @db.DateTime("0")
-  updatedAt                     DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
-  User_CallRequest_CalledToUser User?     @relation("CallRequest_CalledToUser", fields: [Called], references: [id])
-  User_CallRequest_CallerToUser User?     @relation("CallRequest_CallerToUser", fields: [Caller], references: [id])
-  ChatRoom                      ChatRoom? @relation(fields: [Room], references: [id])
+  Room                          String?           @db.VarChar(32)
+  Called                        String?           @db.VarChar(32)
+  Caller                        String?           @db.VarChar(32)
+  createdAt                     DateTime          @default(now("0")) @db.DateTime("0")
+  updatedAt                     DateTime          @default(now("0")) @updatedAt @db.DateTime("0")
+  User_CallRequest_CalledToUser User?             @relation("CallRequest_CalledToUser", fields: [Called], references: [id])
+  User_CallRequest_CallerToUser User?             @relation("CallRequest_CallerToUser", fields: [Caller], references: [id])
+  ChatRoom                      ChatRoom?         @relation(fields: [Room], references: [id])
 
   @@index([Called], name: "Called")
   @@index([Caller], name: "Caller")
   @@index([Room], name: "Room")
+}
+
+enum CallRequestStatus {
+  Created
+  Rejected
+  Accepted
+  Started
+  Canceled
+  Missed
+  Ended
+  Error
+  Billed
 }
 
 model Career {
@@ -366,7 +378,7 @@ model EthAccount {
   name                                               String?            @db.MediumText
   description                                        Json?
   address                                            String             @db.MediumText
-  type                                               String?
+  type                                               EthAccountType     @default(value: Account)
   source                                             String?            @db.MediumText
   bytecode                                           String?            @db.MediumText
   abi                                                Json?
@@ -386,6 +398,11 @@ model EthAccount {
   @@index([ContractSource], name: "ContractSource")
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Project], name: "Project")
+}
+
+enum EthAccountType {
+  Account
+  Contract
 }
 
 model EthBlock {
@@ -433,31 +450,39 @@ model EthContractSource {
 }
 
 model EthTransaction {
-  id                                             String      @id @default(cuid()) @db.VarChar(32)
-  createdAt                                      DateTime    @default(now("0")) @db.DateTime("0")
-  updatedAt                                      DateTime    @default(now("0")) @updatedAt @db.DateTime("0")
+  id                                             String              @id @default(cuid()) @db.VarChar(32)
+  createdAt                                      DateTime            @default(now("0")) @db.DateTime("0")
+  updatedAt                                      DateTime            @default(now("0")) @updatedAt @db.DateTime("0")
   chainId                                        Int
   amount                                         Decimal?
-  input                                          String?     @db.MediumText
+  input                                          String?             @db.MediumText
   index                                          Int?
-  address                                        String      @db.MediumText
-  type                                           String?
-  v                                              String?     @db.MediumText
-  r                                              String?     @db.MediumText
-  s                                              String?     @db.MediumText
-  Sender                                         String?     @db.VarChar(32)
-  Block                                          String?     @db.VarChar(32)
-  Receiver                                       String?     @db.VarChar(32)
-  Account                                        String?     @db.VarChar(32)
-  EthAccount_EthAccountToEthTransaction_Account  EthAccount? @relation("EthAccountToEthTransaction_Account", fields: [Account], references: [id])
-  EthBlock                                       EthBlock?   @relation(fields: [Block], references: [id])
-  EthAccount_EthAccountToEthTransaction_Receiver EthAccount? @relation("EthAccountToEthTransaction_Receiver", fields: [Receiver], references: [id])
-  EthAccount_EthAccountToEthTransaction_Sender   EthAccount? @relation("EthAccountToEthTransaction_Sender", fields: [Sender], references: [id])
+  address                                        String              @db.MediumText
+  type                                           EthTransactionType?
+  v                                              String?             @db.MediumText
+  r                                              String?             @db.MediumText
+  s                                              String?             @db.MediumText
+  Sender                                         String?             @db.VarChar(32)
+  Block                                          String?             @db.VarChar(32)
+  Receiver                                       String?             @db.VarChar(32)
+  Account                                        String?             @db.VarChar(32)
+  EthAccount_EthAccountToEthTransaction_Account  EthAccount?         @relation("EthAccountToEthTransaction_Account", fields: [Account], references: [id])
+  EthBlock                                       EthBlock?           @relation(fields: [Block], references: [id])
+  EthAccount_EthAccountToEthTransaction_Receiver EthAccount?         @relation("EthAccountToEthTransaction_Receiver", fields: [Receiver], references: [id])
+  EthAccount_EthAccountToEthTransaction_Sender   EthAccount?         @relation("EthAccountToEthTransaction_Sender", fields: [Sender], references: [id])
 
   @@index([Account], name: "Account")
   @@index([Block], name: "Block")
   @@index([Receiver], name: "Receiver")
   @@index([Sender], name: "Sender")
+}
+
+enum EthTransactionType {
+  ContractCreate
+  ContractRead
+  ContractCall
+  SendEth
+  SendToken
 }
 
 model Gallery {
@@ -522,16 +547,24 @@ model GameResult {
 }
 
 model Import {
-  id        String   @id @default(cuid()) @db.VarChar(32)
-  createdAt DateTime @default(now("0")) @db.DateTime("0")
-  updatedAt DateTime @default(now("0")) @updatedAt @db.DateTime("0")
-  name      String   @db.MediumText
-  status    String
-  CreatedBy String?  @db.VarChar(32)
-  User      User?    @relation(fields: [CreatedBy], references: [id])
+  id        String       @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
+  name      String       @db.MediumText
+  status    ImportStatus @default(value: Created)
+  CreatedBy String?      @db.VarChar(32)
+  User      User?        @relation(fields: [CreatedBy], references: [id])
   Log       Log[]
 
   @@index([CreatedBy], name: "CreatedBy")
+}
+
+enum ImportStatus {
+  Created
+  Started
+  Error
+  Completed
+  Stoped
 }
 
 model Inventory {
@@ -541,15 +574,55 @@ model Inventory {
   Player Player[]
 }
 
+enum Gamemode {
+  SURVIVAL
+  CREATIVE
+  ADVENTURE
+  SPECTATOR
+}
+
+enum MessageType {
+  ERROR
+  PLAYER
+  SERVER
+  INFO
+}
+
+enum WorldType {
+  DEFAULT
+  SUPERFLAT
+}
+
 model LetsadsSmsMessageStatus {
-  id                          String                        @id @default(cuid()) @db.VarChar(32)
-  createdAt                   DateTime                      @default(now("0")) @db.DateTime("0")
-  updatedAt                   DateTime                      @default(now("0")) @updatedAt @db.DateTime("0")
-  name                        String?
-  description                 String?                       @db.MediumText
-  errorCode                   String?
+  id                          String                                @id @default(cuid()) @db.VarChar(32)
+  createdAt                   DateTime                              @default(now("0")) @db.DateTime("0")
+  updatedAt                   DateTime                              @default(now("0")) @updatedAt @db.DateTime("0")
+  name                        LetsadsSmsMessageStatusEnum?
+  description                 String?                               @db.MediumText
+  errorCode                   LetsadsSmsMessageStatusErrorCodeEnum?
   LetsadsSmsMessageStatusItem LetsadsSmsMessageStatusItem[]
   SmsMessage                  SmsMessage[]
+}
+
+enum LetsadsSmsMessageStatusEnum {
+  Complete
+  Error
+}
+
+enum LetsadsSmsMessageStatusErrorCodeEnum {
+  NO_DATA
+  WRONG_DATA_FORMAT
+  REQUEST_FORMAT
+  AUTH_DATA
+  API_DISABLED
+  USER_NOT_MODERATED
+  INCORRECT_FROM
+  INVALID_FROM
+  MESSAGE_TOO_LONG
+  NO_MESSAGE
+  MAX_MESSAGES_COUNT
+  NOT_ENOUGH_MONEY
+  UNKNOWN_ERROR
 }
 
 model LetsadsSmsMessageStatusItem {
@@ -564,26 +637,33 @@ model LetsadsSmsMessageStatusItem {
 }
 
 model Letter {
-  id                String   @id @default(cuid()) @db.VarChar(32)
-  email             String   @db.MediumText
-  subject           String   @db.MediumText
-  message           String   @db.MediumText
-  status            String
+  id                String       @id @default(cuid()) @db.VarChar(32)
+  email             String       @db.MediumText
+  subject           String       @db.MediumText
+  message           String       @db.MediumText
+  status            LetterStatus @default(value: Created)
   rank              Int?
   deleteOnSend      Boolean?
-  replyTo           String?  @db.MediumText
-  returnTo          String?  @db.MediumText
-  createdAt         DateTime @default(now("0")) @db.DateTime("0")
-  updatedAt         DateTime @default(now("0")) @updatedAt @db.DateTime("0")
-  User              String?  @db.VarChar(32)
-  User_LetterToUser User?    @relation(fields: [User], references: [id])
+  replyTo           String?      @db.MediumText
+  returnTo          String?      @db.MediumText
+  createdAt         DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt         DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
+  User              String?      @db.VarChar(32)
+  User_LetterToUser User?        @relation(fields: [User], references: [id])
 
   @@index([User], name: "User")
 }
 
+enum LetterStatus {
+  Created
+  Processing
+  Sended
+  Error
+}
+
 model Log {
   id                 String   @id @default(cuid()) @db.VarChar(32)
-  level              String
+  level              LogLevel @default(value: Info)
   objectType         String?  @db.VarChar(32)
   message            String   @db.MediumText
   stack              String?  @db.MediumText
@@ -593,6 +673,14 @@ model Log {
   Import_ImportToLog Import?  @relation(fields: [Import], references: [id])
 
   @@index([Import], name: "Import")
+}
+
+enum LogLevel {
+  Info
+  Notice
+  Warning
+  Error
+  Fatal
 }
 
 model LogedIn {
@@ -607,12 +695,12 @@ model LogedIn {
 }
 
 model Message {
-  id     String  @id @default(cuid()) @db.VarChar(32)
-  type   String
-  sender String? @db.MediumText
-  body   String  @db.MediumText
-  world  String? @db.VarChar(32)
-  World  World?  @relation(fields: [world], references: [id])
+  id     String      @id @default(cuid()) @db.VarChar(32)
+  type   MessageType
+  sender String?     @db.MediumText
+  body   String      @db.MediumText
+  world  String?     @db.VarChar(32)
+  World  World?      @relation(fields: [world], references: [id])
 
   @@index([world], name: "world")
 }
@@ -620,7 +708,7 @@ model Message {
 model Notice {
   id                              String               @id @default(cuid()) @db.VarChar(32)
   createdAt                       DateTime             @default(now("0")) @db.DateTime("0")
-  type                            String
+  type                            NoticeType
   updatedAt                       DateTime             @default(now("0")) @updatedAt @db.DateTime("0")
   ChatMessage                     String?              @db.VarChar(32)
   User                            String?              @db.VarChar(32)
@@ -633,6 +721,13 @@ model Notice {
   @@index([ChatMessage], name: "ChatMessage")
   @@index([CreatedBy], name: "CreatedBy")
   @@index([User], name: "User")
+}
+
+enum NoticeType {
+  ChatMessage
+  Call
+  CallRequest
+  ChatRoomInvitation
 }
 
 model NotificationType {
@@ -655,7 +750,7 @@ model Player {
   createdAt DateTime   @default(now("0")) @db.DateTime("0")
   updatedAt DateTime   @default(now("0")) @updatedAt @db.DateTime("0")
   isAdmin   Boolean
-  gamemode  String
+  gamemode  Gamemode
   lastLogin DateTime?
   x         Decimal
   y         Decimal
@@ -698,7 +793,7 @@ model Project {
   sequence                                 Int?            @unique
   content                                  Json?
   contentText                              String?         @db.MediumText
-  status                                   String?
+  status                                   ProjectStatus   @default(value: New)
   public                                   Boolean?
   oldID                                    Int?            @unique
   CreatedBy                                String?         @db.VarChar(32)
@@ -706,7 +801,7 @@ model Project {
   ChatRoom                                 String?         @db.VarChar(32)
   Team                                     String?         @db.VarChar(32)
   Resource                                 String?         @db.VarChar(32)
-  type                                     String?
+  type                                     ProjectType?
   ChatRoom_ChatRoomToProject               ChatRoom?       @relation(fields: [ChatRoom], references: [id])
   User_ProjectToUser                       User?           @relation(fields: [CreatedBy], references: [id])
   File                                     File?           @relation(fields: [Image], references: [id])
@@ -728,22 +823,42 @@ model Project {
   @@index([Team], name: "Team")
 }
 
+enum ProjectStatus {
+  New
+  Accepted
+  Rejected
+  Processing
+  Completed
+  Reopened
+}
+
+enum ProjectType {
+  Education
+}
+
 model ProjectMember {
-  id                                 String    @id @default(cuid()) @db.VarChar(32)
-  status                             String?
-  User                               String?   @db.VarChar(32)
-  CreatedBy                          String?   @db.VarChar(32)
-  Project                            String?   @db.VarChar(32)
-  createdAt                          DateTime  @default(now("0")) @db.DateTime("0")
-  updatedAt                          DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
-  User_ProjectMember_CreatedByToUser User?     @relation("ProjectMember_CreatedByToUser", fields: [CreatedBy], references: [id])
-  Project_ProjectToProjectMember     Project?  @relation(fields: [Project], references: [id])
-  User_ProjectMember_UserToUser      User?     @relation("ProjectMember_UserToUser", fields: [User], references: [id])
-  Service                            Service[] @relation("ProjectMemberServices")
+  id                                 String              @id @default(cuid()) @db.VarChar(32)
+  status                             ProjectMemberStatus @default(value: Active)
+  User                               String?             @db.VarChar(32)
+  CreatedBy                          String?             @db.VarChar(32)
+  Project                            String?             @db.VarChar(32)
+  createdAt                          DateTime            @default(now("0")) @db.DateTime("0")
+  updatedAt                          DateTime            @default(now("0")) @updatedAt @db.DateTime("0")
+  User_ProjectMember_CreatedByToUser User?               @relation("ProjectMember_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Project_ProjectToProjectMember     Project?            @relation(fields: [Project], references: [id])
+  User_ProjectMember_UserToUser      User?               @relation("ProjectMember_UserToUser", fields: [User], references: [id])
+  Service                            Service[]           @relation("ProjectMemberServices")
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Project], name: "Project")
   @@index([User], name: "User")
+}
+
+enum ProjectMemberStatus {
+  Invited
+  Active
+  Fired
+  Quit
 }
 
 model ProjectTask {
@@ -780,7 +895,7 @@ model Resource {
   code                                     String?         @unique @db.VarChar(32)
   createdAt                                DateTime        @default(now("0")) @db.DateTime("0")
   updatedAt                                DateTime        @default(now("0")) @updatedAt @db.DateTime("0")
-  type                                     String?
+  type                                     ResourceType    @default(value: Resource)
   name                                     String?         @db.MediumText
   longtitle                                String?         @db.MediumText
   content                                  Json?
@@ -839,6 +954,17 @@ model Resource {
   @@index([Task], name: "Task")
   @@index([Team], name: "Team")
   @@index([Topic], name: "Topic")
+}
+
+enum ResourceType {
+  Blog
+  Comment
+  PersonalBlog
+  Project
+  Resource
+  Service
+  Team
+  Topic
 }
 
 model ResourceTag {
@@ -972,12 +1098,18 @@ model Tag {
   createdAt   DateTime      @default(now("0")) @db.DateTime("0")
   updatedAt   DateTime      @default(now("0")) @updatedAt @db.DateTime("0")
   name        String        @unique
-  status      String
+  status      TagStatus     @default(value: Active)
   CreatedBy   String?       @db.VarChar(32)
   User        User?         @relation(fields: [CreatedBy], references: [id])
   ResourceTag ResourceTag[]
 
   @@index([CreatedBy], name: "CreatedBy")
+}
+
+enum TagStatus {
+  Active
+  Moderated
+  Blocked
 }
 
 model Task {
@@ -987,7 +1119,7 @@ model Task {
   name                    String                    @db.MediumText
   description             String?                   @db.MediumText
   content                 Json?
-  status                  String
+  status                  TaskStatus                @default(value: New)
   startDatePlaning        DateTime?
   endDatePlaning          DateTime?
   startDate               DateTime?
@@ -1015,35 +1147,60 @@ model Task {
   @@index([Parent], name: "Parent")
 }
 
+enum TaskStatus {
+  New
+  Accepted
+  Rejected
+  Progress
+  Paused
+  Done
+  Discuss
+  Approved
+  RevisionsRequired
+  Completed
+}
+
 model TaskMember {
-  id                              String   @id @default(cuid()) @db.VarChar(32)
-  status                          String
-  Task                            String?  @db.VarChar(32)
-  User                            String?  @db.VarChar(32)
-  CreatedBy                       String?  @db.VarChar(32)
-  createdAt                       DateTime @default(now("0")) @db.DateTime("0")
-  updatedAt                       DateTime @default(now("0")) @updatedAt @db.DateTime("0")
-  User_TaskMember_CreatedByToUser User?    @relation("TaskMember_CreatedByToUser", fields: [CreatedBy], references: [id])
-  Task_TaskToTaskMember           Task?    @relation(fields: [Task], references: [id])
-  User_TaskMember_UserToUser      User?    @relation("TaskMember_UserToUser", fields: [User], references: [id])
+  id                              String           @id @default(cuid()) @db.VarChar(32)
+  status                          TaskMemberStatus @default(value: Active)
+  Task                            String?          @db.VarChar(32)
+  User                            String?          @db.VarChar(32)
+  CreatedBy                       String?          @db.VarChar(32)
+  createdAt                       DateTime         @default(now("0")) @db.DateTime("0")
+  updatedAt                       DateTime         @default(now("0")) @updatedAt @db.DateTime("0")
+  User_TaskMember_CreatedByToUser User?            @relation("TaskMember_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Task_TaskToTaskMember           Task?            @relation(fields: [Task], references: [id])
+  User_TaskMember_UserToUser      User?            @relation("TaskMember_UserToUser", fields: [User], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Task], name: "Task")
   @@index([User], name: "User")
 }
 
+enum TaskMemberStatus {
+  Invited
+  Active
+  Fired
+  Quit
+}
+
 model TaskReaction {
-  id                      String   @id @default(cuid()) @db.VarChar(32)
-  createdAt               DateTime @default(now("0")) @db.DateTime("0")
-  updatedAt               DateTime @default(now("0")) @updatedAt @db.DateTime("0")
-  type                    String?
-  Task                    String?  @db.VarChar(32)
-  CreatedBy               String?  @db.VarChar(32)
-  User                    User?    @relation(fields: [CreatedBy], references: [id])
-  Task_TaskToTaskReaction Task?    @relation(fields: [Task], references: [id])
+  id                      String           @id @default(cuid()) @db.VarChar(32)
+  createdAt               DateTime         @default(now("0")) @db.DateTime("0")
+  updatedAt               DateTime         @default(now("0")) @updatedAt @db.DateTime("0")
+  type                    TaskReactionType
+  Task                    String?          @db.VarChar(32)
+  CreatedBy               String?          @db.VarChar(32)
+  User                    User?            @relation(fields: [CreatedBy], references: [id])
+  Task_TaskToTaskReaction Task?            @relation(fields: [Task], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Task], name: "Task")
+}
+
+enum TaskReactionType {
+  UpVote
+  DownVote
 }
 
 model TaskTechnology {
@@ -1066,7 +1223,7 @@ model TaskTechnology {
 model Team {
   id                       String       @id @default(cuid()) @db.VarChar(32)
   name                     String       @db.MediumText
-  status                   String
+  status                   TeamStatus   @default(value: Active)
   oldID                    Int?         @unique
   address                  String?      @db.MediumText
   website                  String?      @db.MediumText
@@ -1090,21 +1247,32 @@ model Team {
   @@index([Parent], name: "Parent")
 }
 
+enum TeamStatus {
+  Active
+  Inactive
+}
+
 model TeamMember {
-  id                              String   @id @default(cuid()) @db.VarChar(32)
-  status                          String?
-  User                            String?  @db.VarChar(32)
-  Team                            String?  @db.VarChar(32)
-  CreatedBy                       String?  @db.VarChar(32)
-  createdAt                       DateTime @default(now("0")) @db.DateTime("0")
-  updatedAt                       DateTime @default(now("0")) @updatedAt @db.DateTime("0")
-  User_TeamMember_CreatedByToUser User?    @relation("TeamMember_CreatedByToUser", fields: [CreatedBy], references: [id])
-  Team_TeamToTeamMember           Team?    @relation(fields: [Team], references: [id])
-  User_TeamMember_UserToUser      User?    @relation("TeamMember_UserToUser", fields: [User], references: [id])
+  id                              String           @id @default(cuid()) @db.VarChar(32)
+  status                          TeamMemberStatus @default(value: Active)
+  User                            String?          @db.VarChar(32)
+  Team                            String?          @db.VarChar(32)
+  CreatedBy                       String?          @db.VarChar(32)
+  createdAt                       DateTime         @default(now("0")) @db.DateTime("0")
+  updatedAt                       DateTime         @default(now("0")) @updatedAt @db.DateTime("0")
+  User_TeamMember_CreatedByToUser User?            @relation("TeamMember_CreatedByToUser", fields: [CreatedBy], references: [id])
+  Team_TeamToTeamMember           Team?            @relation(fields: [Team], references: [id])
+  User_TeamMember_UserToUser      User?            @relation("TeamMember_UserToUser", fields: [User], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Team], name: "Team")
   @@index([User], name: "User")
+}
+
+enum TeamMemberStatus {
+  Invited
+  Active
+  Fired
 }
 
 model Technology {
@@ -1141,18 +1309,23 @@ model TechnologyLesson {
 }
 
 model TechnologyLessonUser {
-  id               String            @id @default(cuid()) @db.VarChar(32)
-  createdAt        DateTime          @default(now("0")) @db.DateTime("0")
-  updatedAt        DateTime          @default(now("0")) @updatedAt @db.DateTime("0")
-  status           String?
+  id               String                     @id @default(cuid()) @db.VarChar(32)
+  createdAt        DateTime                   @default(now("0")) @db.DateTime("0")
+  updatedAt        DateTime                   @default(now("0")) @updatedAt @db.DateTime("0")
+  status           TechnologyLessonUserStatus @default(value: Accepted)
   completedAt      DateTime?
-  Lesson           String?           @db.VarChar(32)
-  CreatedBy        String?           @db.VarChar(32)
-  User             User?             @relation(fields: [CreatedBy], references: [id])
-  TechnologyLesson TechnologyLesson? @relation(fields: [Lesson], references: [id])
+  Lesson           String?                    @db.VarChar(32)
+  CreatedBy        String?                    @db.VarChar(32)
+  User             User?                      @relation(fields: [CreatedBy], references: [id])
+  TechnologyLesson TechnologyLesson?          @relation(fields: [Lesson], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Lesson], name: "Lesson")
+}
+
+enum TechnologyLessonUserStatus {
+  Accepted
+  Completed
 }
 
 model Template {
@@ -1279,21 +1452,30 @@ model UserGroup {
 }
 
 model UserTechnology {
-  id                                    String      @id @default(cuid()) @db.VarChar(32)
-  createdAt                             DateTime    @default(now("0")) @db.DateTime("0")
-  updatedAt                             DateTime    @default(now("0")) @updatedAt @db.DateTime("0")
+  id                                    String                @id @default(cuid()) @db.VarChar(32)
+  createdAt                             DateTime              @default(now("0")) @db.DateTime("0")
+  updatedAt                             DateTime              @default(now("0")) @updatedAt @db.DateTime("0")
   components                            Json?
   date_from                             DateTime?
   date_till                             DateTime?
-  status                                String?
-  CreatedBy                             String?     @db.VarChar(32)
-  Technology                            String?     @db.VarChar(32)
+  status                                UserTechnologyStatus?
+  CreatedBy                             String?               @db.VarChar(32)
+  Technology                            String?               @db.VarChar(32)
   level                                 Int?
-  User                                  User?       @relation(fields: [CreatedBy], references: [id])
-  Technology_TechnologyToUserTechnology Technology? @relation(fields: [Technology], references: [id])
+  User                                  User?                 @relation(fields: [CreatedBy], references: [id])
+  Technology_TechnologyToUserTechnology Technology?           @relation(fields: [Technology], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Technology], name: "Technology")
+}
+
+enum UserTechnologyStatus {
+  PlanToStudy
+  RefusedToStudy
+  Study
+  RarelyUse
+  ActiveUse
+  NoLongerUse
 }
 
 model Vote {
@@ -1316,7 +1498,7 @@ model World {
   updatedAt   DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
   name        String    @db.MediumText
   seed        String    @db.MediumText
-  type        String
+  type        WorldType
   time        Decimal
   timeChanger Decimal?
   days        Int

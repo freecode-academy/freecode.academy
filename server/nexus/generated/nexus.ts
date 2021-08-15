@@ -139,7 +139,7 @@ export interface NexusGenInputs {
     endedAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     startedAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    status?: NexusGenInputs['EnumCallRequestStatusFilter'] | null // EnumCallRequestStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   CareerListRelationFilter: {
@@ -571,6 +571,178 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedDecimalNullableFilter'] | null // NestedDecimalNullableFilter
     notIn?: NexusGenScalars['Decimal'][] | null // [Decimal!]
   }
+  EnumCallRequestStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['CallRequestStatus'] | null // CallRequestStatus
+    in?: NexusGenEnums['CallRequestStatus'][] | null // [CallRequestStatus!]
+    not?: NexusGenInputs['NestedEnumCallRequestStatusFilter'] | null // NestedEnumCallRequestStatusFilter
+    notIn?: NexusGenEnums['CallRequestStatus'][] | null // [CallRequestStatus!]
+  }
+  EnumEthAccountTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['EthAccountType'] | null // EthAccountType
+    in?: NexusGenEnums['EthAccountType'][] | null // [EthAccountType!]
+    not?: NexusGenInputs['NestedEnumEthAccountTypeFilter'] | null // NestedEnumEthAccountTypeFilter
+    notIn?: NexusGenEnums['EthAccountType'][] | null // [EthAccountType!]
+  }
+  EnumEthTransactionTypeNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['EthTransactionType'] | null // EthTransactionType
+    in?: NexusGenEnums['EthTransactionType'][] | null // [EthTransactionType!]
+    not?: NexusGenInputs['NestedEnumEthTransactionTypeNullableFilter'] | null // NestedEnumEthTransactionTypeNullableFilter
+    notIn?: NexusGenEnums['EthTransactionType'][] | null // [EthTransactionType!]
+  }
+  EnumGamemodeFilter: {
+    // input type
+    equals?: NexusGenEnums['Gamemode'] | null // Gamemode
+    in?: NexusGenEnums['Gamemode'][] | null // [Gamemode!]
+    not?: NexusGenInputs['NestedEnumGamemodeFilter'] | null // NestedEnumGamemodeFilter
+    notIn?: NexusGenEnums['Gamemode'][] | null // [Gamemode!]
+  }
+  EnumImportStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['ImportStatus'] | null // ImportStatus
+    in?: NexusGenEnums['ImportStatus'][] | null // [ImportStatus!]
+    not?: NexusGenInputs['NestedEnumImportStatusFilter'] | null // NestedEnumImportStatusFilter
+    notIn?: NexusGenEnums['ImportStatus'][] | null // [ImportStatus!]
+  }
+  EnumLetsadsSmsMessageStatusEnumNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['LetsadsSmsMessageStatusEnum'] | null // LetsadsSmsMessageStatusEnum
+    in?: NexusGenEnums['LetsadsSmsMessageStatusEnum'][] | null // [LetsadsSmsMessageStatusEnum!]
+    not?:
+      | NexusGenInputs['NestedEnumLetsadsSmsMessageStatusEnumNullableFilter']
+      | null // NestedEnumLetsadsSmsMessageStatusEnumNullableFilter
+    notIn?: NexusGenEnums['LetsadsSmsMessageStatusEnum'][] | null // [LetsadsSmsMessageStatusEnum!]
+  }
+  EnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['LetsadsSmsMessageStatusErrorCodeEnum'] | null // LetsadsSmsMessageStatusErrorCodeEnum
+    in?: NexusGenEnums['LetsadsSmsMessageStatusErrorCodeEnum'][] | null // [LetsadsSmsMessageStatusErrorCodeEnum!]
+    not?:
+      | NexusGenInputs['NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter']
+      | null // NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter
+    notIn?: NexusGenEnums['LetsadsSmsMessageStatusErrorCodeEnum'][] | null // [LetsadsSmsMessageStatusErrorCodeEnum!]
+  }
+  EnumLetterStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['LetterStatus'] | null // LetterStatus
+    in?: NexusGenEnums['LetterStatus'][] | null // [LetterStatus!]
+    not?: NexusGenInputs['NestedEnumLetterStatusFilter'] | null // NestedEnumLetterStatusFilter
+    notIn?: NexusGenEnums['LetterStatus'][] | null // [LetterStatus!]
+  }
+  EnumLogLevelFilter: {
+    // input type
+    equals?: NexusGenEnums['LogLevel'] | null // LogLevel
+    in?: NexusGenEnums['LogLevel'][] | null // [LogLevel!]
+    not?: NexusGenInputs['NestedEnumLogLevelFilter'] | null // NestedEnumLogLevelFilter
+    notIn?: NexusGenEnums['LogLevel'][] | null // [LogLevel!]
+  }
+  EnumMessageTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['MessageType'] | null // MessageType
+    in?: NexusGenEnums['MessageType'][] | null // [MessageType!]
+    not?: NexusGenInputs['NestedEnumMessageTypeFilter'] | null // NestedEnumMessageTypeFilter
+    notIn?: NexusGenEnums['MessageType'][] | null // [MessageType!]
+  }
+  EnumNoticeTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['NoticeType'] | null // NoticeType
+    in?: NexusGenEnums['NoticeType'][] | null // [NoticeType!]
+    not?: NexusGenInputs['NestedEnumNoticeTypeFilter'] | null // NestedEnumNoticeTypeFilter
+    notIn?: NexusGenEnums['NoticeType'][] | null // [NoticeType!]
+  }
+  EnumProjectMemberStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['ProjectMemberStatus'] | null // ProjectMemberStatus
+    in?: NexusGenEnums['ProjectMemberStatus'][] | null // [ProjectMemberStatus!]
+    not?: NexusGenInputs['NestedEnumProjectMemberStatusFilter'] | null // NestedEnumProjectMemberStatusFilter
+    notIn?: NexusGenEnums['ProjectMemberStatus'][] | null // [ProjectMemberStatus!]
+  }
+  EnumProjectStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['ProjectStatus'] | null // ProjectStatus
+    in?: NexusGenEnums['ProjectStatus'][] | null // [ProjectStatus!]
+    not?: NexusGenInputs['NestedEnumProjectStatusFilter'] | null // NestedEnumProjectStatusFilter
+    notIn?: NexusGenEnums['ProjectStatus'][] | null // [ProjectStatus!]
+  }
+  EnumProjectTypeNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['ProjectType'] | null // ProjectType
+    in?: NexusGenEnums['ProjectType'][] | null // [ProjectType!]
+    not?: NexusGenInputs['NestedEnumProjectTypeNullableFilter'] | null // NestedEnumProjectTypeNullableFilter
+    notIn?: NexusGenEnums['ProjectType'][] | null // [ProjectType!]
+  }
+  EnumResourceTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['ResourceType'] | null // ResourceType
+    in?: NexusGenEnums['ResourceType'][] | null // [ResourceType!]
+    not?: NexusGenInputs['NestedEnumResourceTypeFilter'] | null // NestedEnumResourceTypeFilter
+    notIn?: NexusGenEnums['ResourceType'][] | null // [ResourceType!]
+  }
+  EnumTagStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TagStatus'] | null // TagStatus
+    in?: NexusGenEnums['TagStatus'][] | null // [TagStatus!]
+    not?: NexusGenInputs['NestedEnumTagStatusFilter'] | null // NestedEnumTagStatusFilter
+    notIn?: NexusGenEnums['TagStatus'][] | null // [TagStatus!]
+  }
+  EnumTaskMemberStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TaskMemberStatus'] | null // TaskMemberStatus
+    in?: NexusGenEnums['TaskMemberStatus'][] | null // [TaskMemberStatus!]
+    not?: NexusGenInputs['NestedEnumTaskMemberStatusFilter'] | null // NestedEnumTaskMemberStatusFilter
+    notIn?: NexusGenEnums['TaskMemberStatus'][] | null // [TaskMemberStatus!]
+  }
+  EnumTaskReactionTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['TaskReactionType'] | null // TaskReactionType
+    in?: NexusGenEnums['TaskReactionType'][] | null // [TaskReactionType!]
+    not?: NexusGenInputs['NestedEnumTaskReactionTypeFilter'] | null // NestedEnumTaskReactionTypeFilter
+    notIn?: NexusGenEnums['TaskReactionType'][] | null // [TaskReactionType!]
+  }
+  EnumTaskStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TaskStatus'] | null // TaskStatus
+    in?: NexusGenEnums['TaskStatus'][] | null // [TaskStatus!]
+    not?: NexusGenInputs['NestedEnumTaskStatusFilter'] | null // NestedEnumTaskStatusFilter
+    notIn?: NexusGenEnums['TaskStatus'][] | null // [TaskStatus!]
+  }
+  EnumTeamMemberStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TeamMemberStatus'] | null // TeamMemberStatus
+    in?: NexusGenEnums['TeamMemberStatus'][] | null // [TeamMemberStatus!]
+    not?: NexusGenInputs['NestedEnumTeamMemberStatusFilter'] | null // NestedEnumTeamMemberStatusFilter
+    notIn?: NexusGenEnums['TeamMemberStatus'][] | null // [TeamMemberStatus!]
+  }
+  EnumTeamStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TeamStatus'] | null // TeamStatus
+    in?: NexusGenEnums['TeamStatus'][] | null // [TeamStatus!]
+    not?: NexusGenInputs['NestedEnumTeamStatusFilter'] | null // NestedEnumTeamStatusFilter
+    notIn?: NexusGenEnums['TeamStatus'][] | null // [TeamStatus!]
+  }
+  EnumTechnologyLessonUserStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TechnologyLessonUserStatus'] | null // TechnologyLessonUserStatus
+    in?: NexusGenEnums['TechnologyLessonUserStatus'][] | null // [TechnologyLessonUserStatus!]
+    not?: NexusGenInputs['NestedEnumTechnologyLessonUserStatusFilter'] | null // NestedEnumTechnologyLessonUserStatusFilter
+    notIn?: NexusGenEnums['TechnologyLessonUserStatus'][] | null // [TechnologyLessonUserStatus!]
+  }
+  EnumUserTechnologyStatusNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
+    in?: NexusGenEnums['UserTechnologyStatus'][] | null // [UserTechnologyStatus!]
+    not?: NexusGenInputs['NestedEnumUserTechnologyStatusNullableFilter'] | null // NestedEnumUserTechnologyStatusNullableFilter
+    notIn?: NexusGenEnums['UserTechnologyStatus'][] | null // [UserTechnologyStatus!]
+  }
+  EnumWorldTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['WorldType'] | null // WorldType
+    in?: NexusGenEnums['WorldType'][] | null // [WorldType!]
+    not?: NexusGenInputs['NestedEnumWorldTypeFilter'] | null // NestedEnumWorldTypeFilter
+    notIn?: NexusGenEnums['WorldType'][] | null // [WorldType!]
+  }
   EthAccountListRelationFilter: {
     // input type
     every?: NexusGenInputs['EthAccountWhereInput'] | null // EthAccountWhereInput
@@ -610,7 +782,7 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     source?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    type?: NexusGenInputs['EnumEthAccountTypeFilter'] | null // EnumEthAccountTypeFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   EthBlockListRelationFilter: {
@@ -705,7 +877,7 @@ export interface NexusGenInputs {
     input?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     r?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     s?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    type?: NexusGenInputs['EnumEthTransactionTypeNullableFilter'] | null // EnumEthTransactionTypeNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     v?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
@@ -853,7 +1025,7 @@ export interface NexusGenInputs {
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
-    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['EnumImportStatusFilter'] | null // EnumImportStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   IntFilter: {
@@ -924,9 +1096,13 @@ export interface NexusGenInputs {
     SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    errorCode?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    errorCode?:
+      | NexusGenInputs['EnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter']
+      | null // EnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    name?:
+      | NexusGenInputs['EnumLetsadsSmsMessageStatusEnumNullableFilter']
+      | null // EnumLetsadsSmsMessageStatusEnumNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   LetterListRelationFilter: {
@@ -950,7 +1126,7 @@ export interface NexusGenInputs {
     rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     replyTo?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     returnTo?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['EnumLetterStatusFilter'] | null // EnumLetterStatusFilter
     subject?: NexusGenInputs['StringFilter'] | null // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
@@ -969,7 +1145,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['LogWhereInput'][] | null // [LogWhereInput!]
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    level?: NexusGenInputs['StringFilter'] | null // StringFilter
+    level?: NexusGenInputs['EnumLogLevelFilter'] | null // EnumLogLevelFilter
     message?: NexusGenInputs['StringFilter'] | null // StringFilter
     objectType?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     stack?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -1008,7 +1184,7 @@ export interface NexusGenInputs {
     body?: NexusGenInputs['StringFilter'] | null // StringFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     sender?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    type?: NexusGenInputs['StringFilter'] | null // StringFilter
+    type?: NexusGenInputs['EnumMessageTypeFilter'] | null // EnumMessageTypeFilter
     world?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
   NestedBoolFilter: {
@@ -1064,6 +1240,178 @@ export interface NexusGenInputs {
     lte?: NexusGenScalars['Decimal'] | null // Decimal
     not?: NexusGenInputs['NestedDecimalNullableFilter'] | null // NestedDecimalNullableFilter
     notIn?: NexusGenScalars['Decimal'][] | null // [Decimal!]
+  }
+  NestedEnumCallRequestStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['CallRequestStatus'] | null // CallRequestStatus
+    in?: NexusGenEnums['CallRequestStatus'][] | null // [CallRequestStatus!]
+    not?: NexusGenInputs['NestedEnumCallRequestStatusFilter'] | null // NestedEnumCallRequestStatusFilter
+    notIn?: NexusGenEnums['CallRequestStatus'][] | null // [CallRequestStatus!]
+  }
+  NestedEnumEthAccountTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['EthAccountType'] | null // EthAccountType
+    in?: NexusGenEnums['EthAccountType'][] | null // [EthAccountType!]
+    not?: NexusGenInputs['NestedEnumEthAccountTypeFilter'] | null // NestedEnumEthAccountTypeFilter
+    notIn?: NexusGenEnums['EthAccountType'][] | null // [EthAccountType!]
+  }
+  NestedEnumEthTransactionTypeNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['EthTransactionType'] | null // EthTransactionType
+    in?: NexusGenEnums['EthTransactionType'][] | null // [EthTransactionType!]
+    not?: NexusGenInputs['NestedEnumEthTransactionTypeNullableFilter'] | null // NestedEnumEthTransactionTypeNullableFilter
+    notIn?: NexusGenEnums['EthTransactionType'][] | null // [EthTransactionType!]
+  }
+  NestedEnumGamemodeFilter: {
+    // input type
+    equals?: NexusGenEnums['Gamemode'] | null // Gamemode
+    in?: NexusGenEnums['Gamemode'][] | null // [Gamemode!]
+    not?: NexusGenInputs['NestedEnumGamemodeFilter'] | null // NestedEnumGamemodeFilter
+    notIn?: NexusGenEnums['Gamemode'][] | null // [Gamemode!]
+  }
+  NestedEnumImportStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['ImportStatus'] | null // ImportStatus
+    in?: NexusGenEnums['ImportStatus'][] | null // [ImportStatus!]
+    not?: NexusGenInputs['NestedEnumImportStatusFilter'] | null // NestedEnumImportStatusFilter
+    notIn?: NexusGenEnums['ImportStatus'][] | null // [ImportStatus!]
+  }
+  NestedEnumLetsadsSmsMessageStatusEnumNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['LetsadsSmsMessageStatusEnum'] | null // LetsadsSmsMessageStatusEnum
+    in?: NexusGenEnums['LetsadsSmsMessageStatusEnum'][] | null // [LetsadsSmsMessageStatusEnum!]
+    not?:
+      | NexusGenInputs['NestedEnumLetsadsSmsMessageStatusEnumNullableFilter']
+      | null // NestedEnumLetsadsSmsMessageStatusEnumNullableFilter
+    notIn?: NexusGenEnums['LetsadsSmsMessageStatusEnum'][] | null // [LetsadsSmsMessageStatusEnum!]
+  }
+  NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['LetsadsSmsMessageStatusErrorCodeEnum'] | null // LetsadsSmsMessageStatusErrorCodeEnum
+    in?: NexusGenEnums['LetsadsSmsMessageStatusErrorCodeEnum'][] | null // [LetsadsSmsMessageStatusErrorCodeEnum!]
+    not?:
+      | NexusGenInputs['NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter']
+      | null // NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter
+    notIn?: NexusGenEnums['LetsadsSmsMessageStatusErrorCodeEnum'][] | null // [LetsadsSmsMessageStatusErrorCodeEnum!]
+  }
+  NestedEnumLetterStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['LetterStatus'] | null // LetterStatus
+    in?: NexusGenEnums['LetterStatus'][] | null // [LetterStatus!]
+    not?: NexusGenInputs['NestedEnumLetterStatusFilter'] | null // NestedEnumLetterStatusFilter
+    notIn?: NexusGenEnums['LetterStatus'][] | null // [LetterStatus!]
+  }
+  NestedEnumLogLevelFilter: {
+    // input type
+    equals?: NexusGenEnums['LogLevel'] | null // LogLevel
+    in?: NexusGenEnums['LogLevel'][] | null // [LogLevel!]
+    not?: NexusGenInputs['NestedEnumLogLevelFilter'] | null // NestedEnumLogLevelFilter
+    notIn?: NexusGenEnums['LogLevel'][] | null // [LogLevel!]
+  }
+  NestedEnumMessageTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['MessageType'] | null // MessageType
+    in?: NexusGenEnums['MessageType'][] | null // [MessageType!]
+    not?: NexusGenInputs['NestedEnumMessageTypeFilter'] | null // NestedEnumMessageTypeFilter
+    notIn?: NexusGenEnums['MessageType'][] | null // [MessageType!]
+  }
+  NestedEnumNoticeTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['NoticeType'] | null // NoticeType
+    in?: NexusGenEnums['NoticeType'][] | null // [NoticeType!]
+    not?: NexusGenInputs['NestedEnumNoticeTypeFilter'] | null // NestedEnumNoticeTypeFilter
+    notIn?: NexusGenEnums['NoticeType'][] | null // [NoticeType!]
+  }
+  NestedEnumProjectMemberStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['ProjectMemberStatus'] | null // ProjectMemberStatus
+    in?: NexusGenEnums['ProjectMemberStatus'][] | null // [ProjectMemberStatus!]
+    not?: NexusGenInputs['NestedEnumProjectMemberStatusFilter'] | null // NestedEnumProjectMemberStatusFilter
+    notIn?: NexusGenEnums['ProjectMemberStatus'][] | null // [ProjectMemberStatus!]
+  }
+  NestedEnumProjectStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['ProjectStatus'] | null // ProjectStatus
+    in?: NexusGenEnums['ProjectStatus'][] | null // [ProjectStatus!]
+    not?: NexusGenInputs['NestedEnumProjectStatusFilter'] | null // NestedEnumProjectStatusFilter
+    notIn?: NexusGenEnums['ProjectStatus'][] | null // [ProjectStatus!]
+  }
+  NestedEnumProjectTypeNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['ProjectType'] | null // ProjectType
+    in?: NexusGenEnums['ProjectType'][] | null // [ProjectType!]
+    not?: NexusGenInputs['NestedEnumProjectTypeNullableFilter'] | null // NestedEnumProjectTypeNullableFilter
+    notIn?: NexusGenEnums['ProjectType'][] | null // [ProjectType!]
+  }
+  NestedEnumResourceTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['ResourceType'] | null // ResourceType
+    in?: NexusGenEnums['ResourceType'][] | null // [ResourceType!]
+    not?: NexusGenInputs['NestedEnumResourceTypeFilter'] | null // NestedEnumResourceTypeFilter
+    notIn?: NexusGenEnums['ResourceType'][] | null // [ResourceType!]
+  }
+  NestedEnumTagStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TagStatus'] | null // TagStatus
+    in?: NexusGenEnums['TagStatus'][] | null // [TagStatus!]
+    not?: NexusGenInputs['NestedEnumTagStatusFilter'] | null // NestedEnumTagStatusFilter
+    notIn?: NexusGenEnums['TagStatus'][] | null // [TagStatus!]
+  }
+  NestedEnumTaskMemberStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TaskMemberStatus'] | null // TaskMemberStatus
+    in?: NexusGenEnums['TaskMemberStatus'][] | null // [TaskMemberStatus!]
+    not?: NexusGenInputs['NestedEnumTaskMemberStatusFilter'] | null // NestedEnumTaskMemberStatusFilter
+    notIn?: NexusGenEnums['TaskMemberStatus'][] | null // [TaskMemberStatus!]
+  }
+  NestedEnumTaskReactionTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['TaskReactionType'] | null // TaskReactionType
+    in?: NexusGenEnums['TaskReactionType'][] | null // [TaskReactionType!]
+    not?: NexusGenInputs['NestedEnumTaskReactionTypeFilter'] | null // NestedEnumTaskReactionTypeFilter
+    notIn?: NexusGenEnums['TaskReactionType'][] | null // [TaskReactionType!]
+  }
+  NestedEnumTaskStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TaskStatus'] | null // TaskStatus
+    in?: NexusGenEnums['TaskStatus'][] | null // [TaskStatus!]
+    not?: NexusGenInputs['NestedEnumTaskStatusFilter'] | null // NestedEnumTaskStatusFilter
+    notIn?: NexusGenEnums['TaskStatus'][] | null // [TaskStatus!]
+  }
+  NestedEnumTeamMemberStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TeamMemberStatus'] | null // TeamMemberStatus
+    in?: NexusGenEnums['TeamMemberStatus'][] | null // [TeamMemberStatus!]
+    not?: NexusGenInputs['NestedEnumTeamMemberStatusFilter'] | null // NestedEnumTeamMemberStatusFilter
+    notIn?: NexusGenEnums['TeamMemberStatus'][] | null // [TeamMemberStatus!]
+  }
+  NestedEnumTeamStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TeamStatus'] | null // TeamStatus
+    in?: NexusGenEnums['TeamStatus'][] | null // [TeamStatus!]
+    not?: NexusGenInputs['NestedEnumTeamStatusFilter'] | null // NestedEnumTeamStatusFilter
+    notIn?: NexusGenEnums['TeamStatus'][] | null // [TeamStatus!]
+  }
+  NestedEnumTechnologyLessonUserStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['TechnologyLessonUserStatus'] | null // TechnologyLessonUserStatus
+    in?: NexusGenEnums['TechnologyLessonUserStatus'][] | null // [TechnologyLessonUserStatus!]
+    not?: NexusGenInputs['NestedEnumTechnologyLessonUserStatusFilter'] | null // NestedEnumTechnologyLessonUserStatusFilter
+    notIn?: NexusGenEnums['TechnologyLessonUserStatus'][] | null // [TechnologyLessonUserStatus!]
+  }
+  NestedEnumUserTechnologyStatusNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
+    in?: NexusGenEnums['UserTechnologyStatus'][] | null // [UserTechnologyStatus!]
+    not?: NexusGenInputs['NestedEnumUserTechnologyStatusNullableFilter'] | null // NestedEnumUserTechnologyStatusNullableFilter
+    notIn?: NexusGenEnums['UserTechnologyStatus'][] | null // [UserTechnologyStatus!]
+  }
+  NestedEnumWorldTypeFilter: {
+    // input type
+    equals?: NexusGenEnums['WorldType'] | null // WorldType
+    in?: NexusGenEnums['WorldType'][] | null // [WorldType!]
+    not?: NexusGenInputs['NestedEnumWorldTypeFilter'] | null // NestedEnumWorldTypeFilter
+    notIn?: NexusGenEnums['WorldType'][] | null // [WorldType!]
   }
   NestedIntFilter: {
     // input type
@@ -1149,7 +1497,7 @@ export interface NexusGenInputs {
     User_Notice_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    type?: NexusGenInputs['StringFilter'] | null // StringFilter
+    type?: NexusGenInputs['EnumNoticeTypeFilter'] | null // EnumNoticeTypeFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   NoticeWhereUniqueInput: {
@@ -1217,7 +1565,7 @@ export interface NexusGenInputs {
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     dirx?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
     diry?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
-    gamemode?: NexusGenInputs['StringFilter'] | null // StringFilter
+    gamemode?: NexusGenInputs['EnumGamemodeFilter'] | null // EnumGamemodeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     inventory?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     isAdmin?: NexusGenInputs['BoolFilter'] | null // BoolFilter
@@ -1283,7 +1631,7 @@ export interface NexusGenInputs {
     User_ProjectMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    status?: NexusGenInputs['EnumProjectMemberStatusFilter'] | null // EnumProjectMemberStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   ProjectOrderByInput: {
@@ -1387,8 +1735,8 @@ export interface NexusGenInputs {
     oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     public?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     sequence?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    status?: NexusGenInputs['EnumProjectStatusFilter'] | null // EnumProjectStatusFilter
+    type?: NexusGenInputs['EnumProjectTypeNullableFilter'] | null // EnumProjectTypeNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     url?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
@@ -1555,7 +1903,7 @@ export interface NexusGenInputs {
     rating?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
     searchable?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     template?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    type?: NexusGenInputs['EnumResourceTypeFilter'] | null // EnumResourceTypeFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     uri?: NexusGenInputs['StringFilter'] | null // StringFilter
   }
@@ -1785,7 +2133,7 @@ export interface NexusGenInputs {
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
-    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['EnumTagStatusFilter'] | null // EnumTagStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   TagWhereUniqueInput: {
@@ -1844,7 +2192,7 @@ export interface NexusGenInputs {
     User_TaskMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['EnumTaskMemberStatusFilter'] | null // EnumTaskMemberStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   TaskOrderByInput: {
@@ -1882,7 +2230,7 @@ export interface NexusGenInputs {
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    type?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    type?: NexusGenInputs['EnumTaskReactionTypeFilter'] | null // EnumTaskReactionTypeFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   TaskTechnologyCreateInput: {
@@ -1982,7 +2330,7 @@ export interface NexusGenInputs {
     other_Task?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
     startDate?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     startDatePlaning?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
-    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['EnumTaskStatusFilter'] | null // EnumTaskStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   TaskWhereUniqueInput: {
@@ -2014,7 +2362,7 @@ export interface NexusGenInputs {
     User_TeamMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    status?: NexusGenInputs['EnumTeamMemberStatusFilter'] | null // EnumTeamMemberStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   TeamWhereInput: {
@@ -2042,7 +2390,7 @@ export interface NexusGenInputs {
     oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     other_Team?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
     phone?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    status?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['EnumTeamStatusFilter'] | null // EnumTeamStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     website?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
@@ -2078,7 +2426,7 @@ export interface NexusGenInputs {
     completedAt?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    status?: NexusGenInputs['EnumTechnologyLessonUserStatusFilter'] | null // EnumTechnologyLessonUserStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   TechnologyLessonWhereInput: {
@@ -2499,7 +2847,7 @@ export interface NexusGenInputs {
     date_till?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     level?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    status?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    status?: NexusGenInputs['EnumUserTechnologyStatusNullableFilter'] | null // EnumUserTechnologyStatusNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   UserTechnologyWhereUniqueInput: {
@@ -2729,12 +3077,22 @@ export interface NexusGenInputs {
     seed?: NexusGenInputs['StringFilter'] | null // StringFilter
     time?: NexusGenInputs['DecimalFilter'] | null // DecimalFilter
     timeChanger?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
-    type?: NexusGenInputs['StringFilter'] | null // StringFilter
+    type?: NexusGenInputs['EnumWorldTypeFilter'] | null // EnumWorldTypeFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
 }
 
 export interface NexusGenEnums {
+  CallRequestStatus:
+    | 'Accepted'
+    | 'Billed'
+    | 'Canceled'
+    | 'Created'
+    | 'Ended'
+    | 'Error'
+    | 'Missed'
+    | 'Rejected'
+    | 'Started'
   EthAccountType: 'Account' | 'Contract'
   EthAmountConvert:
     | 'Gwei'
@@ -2747,6 +3105,32 @@ export interface NexusGenEnums {
     | 'nano'
     | 'tether'
     | 'wei'
+  EthTransactionType:
+    | 'ContractCall'
+    | 'ContractCreate'
+    | 'ContractRead'
+    | 'SendEth'
+    | 'SendToken'
+  Gamemode: 'ADVENTURE' | 'CREATIVE' | 'SPECTATOR' | 'SURVIVAL'
+  ImportStatus: 'Completed' | 'Created' | 'Error' | 'Started' | 'Stoped'
+  LetsadsSmsMessageStatusEnum: 'Complete' | 'Error'
+  LetsadsSmsMessageStatusErrorCodeEnum:
+    | 'API_DISABLED'
+    | 'AUTH_DATA'
+    | 'INCORRECT_FROM'
+    | 'INVALID_FROM'
+    | 'MAX_MESSAGES_COUNT'
+    | 'MESSAGE_TOO_LONG'
+    | 'NOT_ENOUGH_MONEY'
+    | 'NO_DATA'
+    | 'NO_MESSAGE'
+    | 'REQUEST_FORMAT'
+    | 'UNKNOWN_ERROR'
+    | 'USER_NOT_MODERATED'
+    | 'WRONG_DATA_FORMAT'
+  LetterStatus: 'Created' | 'Error' | 'Processing' | 'Sended'
+  LogLevel: 'Error' | 'Fatal' | 'Info' | 'Notice' | 'Warning'
+  MessageType: 'ERROR' | 'INFO' | 'PLAYER' | 'SERVER'
   NoticeType: 'Call' | 'CallRequest' | 'ChatMessage' | 'ChatRoomInvitation'
   ProjectMemberStatus: 'Active' | 'Fired' | 'Invited' | 'Quit'
   ProjectStatus:
@@ -2777,6 +3161,7 @@ export interface NexusGenEnums {
     | 'Topic'
   SortOrder: 'asc' | 'desc'
   TagStatus: 'Active' | 'Blocked' | 'Moderated'
+  TaskMemberStatus: 'Active' | 'Fired' | 'Invited' | 'Quit'
   TaskReactionType: 'UpVote'
   TaskStatus:
     | 'Accepted'
@@ -2789,6 +3174,9 @@ export interface NexusGenEnums {
     | 'Progress'
     | 'Rejected'
     | 'RevisionsRequired'
+  TeamMemberStatus: 'Active' | 'Fired' | 'Invited'
+  TeamStatus: 'Active' | 'Inactive'
+  TechnologyLessonUserStatus: 'Accepted' | 'Completed'
   UserTechnologyStatus:
     | 'ActiveUse'
     | 'NoLongerUse'
@@ -2796,6 +3184,7 @@ export interface NexusGenEnums {
     | 'RarelyUse'
     | 'RefusedToStudy'
     | 'Study'
+  WorldType: 'DEFAULT' | 'SUPERFLAT'
 }
 
 export interface NexusGenScalars {

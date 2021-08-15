@@ -129,6 +129,18 @@ export interface CallRequestListRelationFilter {
   some?: Maybe<CallRequestWhereInput>;
 }
 
+export enum CallRequestStatus {
+  ACCEPTED = 'Accepted',
+  BILLED = 'Billed',
+  CANCELED = 'Canceled',
+  CREATED = 'Created',
+  ENDED = 'Ended',
+  ERROR = 'Error',
+  MISSED = 'Missed',
+  REJECTED = 'Rejected',
+  STARTED = 'Started'
+}
+
 export interface CallRequestWhereInput {
   AND?: Maybe<Array<CallRequestWhereInput>>;
   Called?: Maybe<StringNullableFilter>;
@@ -143,7 +155,7 @@ export interface CallRequestWhereInput {
   endedAt?: Maybe<DateTimeNullableFilter>;
   id?: Maybe<StringFilter>;
   startedAt?: Maybe<DateTimeNullableFilter>;
-  status?: Maybe<StringNullableFilter>;
+  status?: Maybe<EnumCallRequestStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -690,6 +702,174 @@ export interface DecimalNullableFilter {
   notIn?: Maybe<Array<Scalars['Decimal']>>;
 }
 
+export interface EnumCallRequestStatusFilter {
+  equals?: Maybe<CallRequestStatus>;
+  in?: Maybe<Array<CallRequestStatus>>;
+  not?: Maybe<NestedEnumCallRequestStatusFilter>;
+  notIn?: Maybe<Array<CallRequestStatus>>;
+}
+
+export interface EnumEthAccountTypeFilter {
+  equals?: Maybe<EthAccountType>;
+  in?: Maybe<Array<EthAccountType>>;
+  not?: Maybe<NestedEnumEthAccountTypeFilter>;
+  notIn?: Maybe<Array<EthAccountType>>;
+}
+
+export interface EnumEthTransactionTypeNullableFilter {
+  equals?: Maybe<EthTransactionType>;
+  in?: Maybe<Array<EthTransactionType>>;
+  not?: Maybe<NestedEnumEthTransactionTypeNullableFilter>;
+  notIn?: Maybe<Array<EthTransactionType>>;
+}
+
+export interface EnumGamemodeFilter {
+  equals?: Maybe<Gamemode>;
+  in?: Maybe<Array<Gamemode>>;
+  not?: Maybe<NestedEnumGamemodeFilter>;
+  notIn?: Maybe<Array<Gamemode>>;
+}
+
+export interface EnumImportStatusFilter {
+  equals?: Maybe<ImportStatus>;
+  in?: Maybe<Array<ImportStatus>>;
+  not?: Maybe<NestedEnumImportStatusFilter>;
+  notIn?: Maybe<Array<ImportStatus>>;
+}
+
+export interface EnumLetsadsSmsMessageStatusEnumNullableFilter {
+  equals?: Maybe<LetsadsSmsMessageStatusEnum>;
+  in?: Maybe<Array<LetsadsSmsMessageStatusEnum>>;
+  not?: Maybe<NestedEnumLetsadsSmsMessageStatusEnumNullableFilter>;
+  notIn?: Maybe<Array<LetsadsSmsMessageStatusEnum>>;
+}
+
+export interface EnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter {
+  equals?: Maybe<LetsadsSmsMessageStatusErrorCodeEnum>;
+  in?: Maybe<Array<LetsadsSmsMessageStatusErrorCodeEnum>>;
+  not?: Maybe<NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter>;
+  notIn?: Maybe<Array<LetsadsSmsMessageStatusErrorCodeEnum>>;
+}
+
+export interface EnumLetterStatusFilter {
+  equals?: Maybe<LetterStatus>;
+  in?: Maybe<Array<LetterStatus>>;
+  not?: Maybe<NestedEnumLetterStatusFilter>;
+  notIn?: Maybe<Array<LetterStatus>>;
+}
+
+export interface EnumLogLevelFilter {
+  equals?: Maybe<LogLevel>;
+  in?: Maybe<Array<LogLevel>>;
+  not?: Maybe<NestedEnumLogLevelFilter>;
+  notIn?: Maybe<Array<LogLevel>>;
+}
+
+export interface EnumMessageTypeFilter {
+  equals?: Maybe<MessageType>;
+  in?: Maybe<Array<MessageType>>;
+  not?: Maybe<NestedEnumMessageTypeFilter>;
+  notIn?: Maybe<Array<MessageType>>;
+}
+
+export interface EnumNoticeTypeFilter {
+  equals?: Maybe<NoticeType>;
+  in?: Maybe<Array<NoticeType>>;
+  not?: Maybe<NestedEnumNoticeTypeFilter>;
+  notIn?: Maybe<Array<NoticeType>>;
+}
+
+export interface EnumProjectMemberStatusFilter {
+  equals?: Maybe<ProjectMemberStatus>;
+  in?: Maybe<Array<ProjectMemberStatus>>;
+  not?: Maybe<NestedEnumProjectMemberStatusFilter>;
+  notIn?: Maybe<Array<ProjectMemberStatus>>;
+}
+
+export interface EnumProjectStatusFilter {
+  equals?: Maybe<ProjectStatus>;
+  in?: Maybe<Array<ProjectStatus>>;
+  not?: Maybe<NestedEnumProjectStatusFilter>;
+  notIn?: Maybe<Array<ProjectStatus>>;
+}
+
+export interface EnumProjectTypeNullableFilter {
+  equals?: Maybe<ProjectType>;
+  in?: Maybe<Array<ProjectType>>;
+  not?: Maybe<NestedEnumProjectTypeNullableFilter>;
+  notIn?: Maybe<Array<ProjectType>>;
+}
+
+export interface EnumResourceTypeFilter {
+  equals?: Maybe<ResourceType>;
+  in?: Maybe<Array<ResourceType>>;
+  not?: Maybe<NestedEnumResourceTypeFilter>;
+  notIn?: Maybe<Array<ResourceType>>;
+}
+
+export interface EnumTagStatusFilter {
+  equals?: Maybe<TagStatus>;
+  in?: Maybe<Array<TagStatus>>;
+  not?: Maybe<NestedEnumTagStatusFilter>;
+  notIn?: Maybe<Array<TagStatus>>;
+}
+
+export interface EnumTaskMemberStatusFilter {
+  equals?: Maybe<TaskMemberStatus>;
+  in?: Maybe<Array<TaskMemberStatus>>;
+  not?: Maybe<NestedEnumTaskMemberStatusFilter>;
+  notIn?: Maybe<Array<TaskMemberStatus>>;
+}
+
+export interface EnumTaskReactionTypeFilter {
+  equals?: Maybe<TaskReactionType>;
+  in?: Maybe<Array<TaskReactionType>>;
+  not?: Maybe<NestedEnumTaskReactionTypeFilter>;
+  notIn?: Maybe<Array<TaskReactionType>>;
+}
+
+export interface EnumTaskStatusFilter {
+  equals?: Maybe<TaskStatus>;
+  in?: Maybe<Array<TaskStatus>>;
+  not?: Maybe<NestedEnumTaskStatusFilter>;
+  notIn?: Maybe<Array<TaskStatus>>;
+}
+
+export interface EnumTeamMemberStatusFilter {
+  equals?: Maybe<TeamMemberStatus>;
+  in?: Maybe<Array<TeamMemberStatus>>;
+  not?: Maybe<NestedEnumTeamMemberStatusFilter>;
+  notIn?: Maybe<Array<TeamMemberStatus>>;
+}
+
+export interface EnumTeamStatusFilter {
+  equals?: Maybe<TeamStatus>;
+  in?: Maybe<Array<TeamStatus>>;
+  not?: Maybe<NestedEnumTeamStatusFilter>;
+  notIn?: Maybe<Array<TeamStatus>>;
+}
+
+export interface EnumTechnologyLessonUserStatusFilter {
+  equals?: Maybe<TechnologyLessonUserStatus>;
+  in?: Maybe<Array<TechnologyLessonUserStatus>>;
+  not?: Maybe<NestedEnumTechnologyLessonUserStatusFilter>;
+  notIn?: Maybe<Array<TechnologyLessonUserStatus>>;
+}
+
+export interface EnumUserTechnologyStatusNullableFilter {
+  equals?: Maybe<UserTechnologyStatus>;
+  in?: Maybe<Array<UserTechnologyStatus>>;
+  not?: Maybe<NestedEnumUserTechnologyStatusNullableFilter>;
+  notIn?: Maybe<Array<UserTechnologyStatus>>;
+}
+
+export interface EnumWorldTypeFilter {
+  equals?: Maybe<WorldType>;
+  in?: Maybe<Array<WorldType>>;
+  not?: Maybe<NestedEnumWorldTypeFilter>;
+  notIn?: Maybe<Array<WorldType>>;
+}
+
 export interface EthAccount {
   __typename?: 'EthAccount';
   abi?: Maybe<Scalars['JSON']>;
@@ -745,7 +925,7 @@ export interface EthAccountWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
   source?: Maybe<StringNullableFilter>;
-  type?: Maybe<StringNullableFilter>;
+  type?: Maybe<EnumEthAccountTypeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -826,6 +1006,14 @@ export interface EthTransactionListRelationFilter {
   some?: Maybe<EthTransactionWhereInput>;
 }
 
+export enum EthTransactionType {
+  CONTRACTCALL = 'ContractCall',
+  CONTRACTCREATE = 'ContractCreate',
+  CONTRACTREAD = 'ContractRead',
+  SENDETH = 'SendEth',
+  SENDTOKEN = 'SendToken'
+}
+
 export interface EthTransactionWhereInput {
   AND?: Maybe<Array<EthTransactionWhereInput>>;
   Account?: Maybe<StringNullableFilter>;
@@ -847,7 +1035,7 @@ export interface EthTransactionWhereInput {
   input?: Maybe<StringNullableFilter>;
   r?: Maybe<StringNullableFilter>;
   s?: Maybe<StringNullableFilter>;
-  type?: Maybe<StringNullableFilter>;
+  type?: Maybe<EnumEthTransactionTypeNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   v?: Maybe<StringNullableFilter>;
 }
@@ -1003,10 +1191,25 @@ export interface GameWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export enum Gamemode {
+  ADVENTURE = 'ADVENTURE',
+  CREATIVE = 'CREATIVE',
+  SPECTATOR = 'SPECTATOR',
+  SURVIVAL = 'SURVIVAL'
+}
+
 export interface ImportListRelationFilter {
   every?: Maybe<ImportWhereInput>;
   none?: Maybe<ImportWhereInput>;
   some?: Maybe<ImportWhereInput>;
+}
+
+export enum ImportStatus {
+  COMPLETED = 'Completed',
+  CREATED = 'Created',
+  ERROR = 'Error',
+  STARTED = 'Started',
+  STOPED = 'Stoped'
 }
 
 export interface ImportWhereInput {
@@ -1019,7 +1222,7 @@ export interface ImportWhereInput {
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
-  status?: Maybe<StringFilter>;
+  status?: Maybe<EnumImportStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -1062,6 +1265,27 @@ export interface JsonNullableFilter {
   not?: Maybe<Scalars['Json']>;
 }
 
+export enum LetsadsSmsMessageStatusEnum {
+  COMPLETE = 'Complete',
+  ERROR = 'Error'
+}
+
+export enum LetsadsSmsMessageStatusErrorCodeEnum {
+  API_DISABLED = 'API_DISABLED',
+  AUTH_DATA = 'AUTH_DATA',
+  INCORRECT_FROM = 'INCORRECT_FROM',
+  INVALID_FROM = 'INVALID_FROM',
+  MAX_MESSAGES_COUNT = 'MAX_MESSAGES_COUNT',
+  MESSAGE_TOO_LONG = 'MESSAGE_TOO_LONG',
+  NOT_ENOUGH_MONEY = 'NOT_ENOUGH_MONEY',
+  NO_DATA = 'NO_DATA',
+  NO_MESSAGE = 'NO_MESSAGE',
+  REQUEST_FORMAT = 'REQUEST_FORMAT',
+  UNKNOWN_ERROR = 'UNKNOWN_ERROR',
+  USER_NOT_MODERATED = 'USER_NOT_MODERATED',
+  WRONG_DATA_FORMAT = 'WRONG_DATA_FORMAT'
+}
+
 export interface LetsadsSmsMessageStatusItemListRelationFilter {
   every?: Maybe<LetsadsSmsMessageStatusItemWhereInput>;
   none?: Maybe<LetsadsSmsMessageStatusItemWhereInput>;
@@ -1088,9 +1312,9 @@ export interface LetsadsSmsMessageStatusWhereInput {
   SmsMessage?: Maybe<SmsMessageListRelationFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   description?: Maybe<StringNullableFilter>;
-  errorCode?: Maybe<StringNullableFilter>;
+  errorCode?: Maybe<EnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter>;
   id?: Maybe<StringFilter>;
-  name?: Maybe<StringNullableFilter>;
+  name?: Maybe<EnumLetsadsSmsMessageStatusEnumNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -1098,6 +1322,13 @@ export interface LetterListRelationFilter {
   every?: Maybe<LetterWhereInput>;
   none?: Maybe<LetterWhereInput>;
   some?: Maybe<LetterWhereInput>;
+}
+
+export enum LetterStatus {
+  CREATED = 'Created',
+  ERROR = 'Error',
+  PROCESSING = 'Processing',
+  SENDED = 'Sended'
 }
 
 export interface LetterWhereInput {
@@ -1114,9 +1345,17 @@ export interface LetterWhereInput {
   rank?: Maybe<IntNullableFilter>;
   replyTo?: Maybe<StringNullableFilter>;
   returnTo?: Maybe<StringNullableFilter>;
-  status?: Maybe<StringFilter>;
+  status?: Maybe<EnumLetterStatusFilter>;
   subject?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export enum LogLevel {
+  ERROR = 'Error',
+  FATAL = 'Fatal',
+  INFO = 'Info',
+  NOTICE = 'Notice',
+  WARNING = 'Warning'
 }
 
 export interface LogListRelationFilter {
@@ -1133,7 +1372,7 @@ export interface LogWhereInput {
   OR?: Maybe<Array<LogWhereInput>>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
-  level?: Maybe<StringFilter>;
+  level?: Maybe<EnumLogLevelFilter>;
   message?: Maybe<StringFilter>;
   objectType?: Maybe<StringNullableFilter>;
   stack?: Maybe<StringNullableFilter>;
@@ -1164,6 +1403,13 @@ export interface MessageListRelationFilter {
   some?: Maybe<MessageWhereInput>;
 }
 
+export enum MessageType {
+  ERROR = 'ERROR',
+  INFO = 'INFO',
+  PLAYER = 'PLAYER',
+  SERVER = 'SERVER'
+}
+
 export interface MessageWhereInput {
   AND?: Maybe<Array<MessageWhereInput>>;
   NOT?: Maybe<Array<MessageWhereInput>>;
@@ -1172,7 +1418,7 @@ export interface MessageWhereInput {
   body?: Maybe<StringFilter>;
   id?: Maybe<StringFilter>;
   sender?: Maybe<StringNullableFilter>;
-  type?: Maybe<StringFilter>;
+  type?: Maybe<EnumMessageTypeFilter>;
   world?: Maybe<StringNullableFilter>;
 }
 
@@ -1392,6 +1638,174 @@ export interface NestedDecimalNullableFilter {
   notIn?: Maybe<Array<Scalars['Decimal']>>;
 }
 
+export interface NestedEnumCallRequestStatusFilter {
+  equals?: Maybe<CallRequestStatus>;
+  in?: Maybe<Array<CallRequestStatus>>;
+  not?: Maybe<NestedEnumCallRequestStatusFilter>;
+  notIn?: Maybe<Array<CallRequestStatus>>;
+}
+
+export interface NestedEnumEthAccountTypeFilter {
+  equals?: Maybe<EthAccountType>;
+  in?: Maybe<Array<EthAccountType>>;
+  not?: Maybe<NestedEnumEthAccountTypeFilter>;
+  notIn?: Maybe<Array<EthAccountType>>;
+}
+
+export interface NestedEnumEthTransactionTypeNullableFilter {
+  equals?: Maybe<EthTransactionType>;
+  in?: Maybe<Array<EthTransactionType>>;
+  not?: Maybe<NestedEnumEthTransactionTypeNullableFilter>;
+  notIn?: Maybe<Array<EthTransactionType>>;
+}
+
+export interface NestedEnumGamemodeFilter {
+  equals?: Maybe<Gamemode>;
+  in?: Maybe<Array<Gamemode>>;
+  not?: Maybe<NestedEnumGamemodeFilter>;
+  notIn?: Maybe<Array<Gamemode>>;
+}
+
+export interface NestedEnumImportStatusFilter {
+  equals?: Maybe<ImportStatus>;
+  in?: Maybe<Array<ImportStatus>>;
+  not?: Maybe<NestedEnumImportStatusFilter>;
+  notIn?: Maybe<Array<ImportStatus>>;
+}
+
+export interface NestedEnumLetsadsSmsMessageStatusEnumNullableFilter {
+  equals?: Maybe<LetsadsSmsMessageStatusEnum>;
+  in?: Maybe<Array<LetsadsSmsMessageStatusEnum>>;
+  not?: Maybe<NestedEnumLetsadsSmsMessageStatusEnumNullableFilter>;
+  notIn?: Maybe<Array<LetsadsSmsMessageStatusEnum>>;
+}
+
+export interface NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter {
+  equals?: Maybe<LetsadsSmsMessageStatusErrorCodeEnum>;
+  in?: Maybe<Array<LetsadsSmsMessageStatusErrorCodeEnum>>;
+  not?: Maybe<NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter>;
+  notIn?: Maybe<Array<LetsadsSmsMessageStatusErrorCodeEnum>>;
+}
+
+export interface NestedEnumLetterStatusFilter {
+  equals?: Maybe<LetterStatus>;
+  in?: Maybe<Array<LetterStatus>>;
+  not?: Maybe<NestedEnumLetterStatusFilter>;
+  notIn?: Maybe<Array<LetterStatus>>;
+}
+
+export interface NestedEnumLogLevelFilter {
+  equals?: Maybe<LogLevel>;
+  in?: Maybe<Array<LogLevel>>;
+  not?: Maybe<NestedEnumLogLevelFilter>;
+  notIn?: Maybe<Array<LogLevel>>;
+}
+
+export interface NestedEnumMessageTypeFilter {
+  equals?: Maybe<MessageType>;
+  in?: Maybe<Array<MessageType>>;
+  not?: Maybe<NestedEnumMessageTypeFilter>;
+  notIn?: Maybe<Array<MessageType>>;
+}
+
+export interface NestedEnumNoticeTypeFilter {
+  equals?: Maybe<NoticeType>;
+  in?: Maybe<Array<NoticeType>>;
+  not?: Maybe<NestedEnumNoticeTypeFilter>;
+  notIn?: Maybe<Array<NoticeType>>;
+}
+
+export interface NestedEnumProjectMemberStatusFilter {
+  equals?: Maybe<ProjectMemberStatus>;
+  in?: Maybe<Array<ProjectMemberStatus>>;
+  not?: Maybe<NestedEnumProjectMemberStatusFilter>;
+  notIn?: Maybe<Array<ProjectMemberStatus>>;
+}
+
+export interface NestedEnumProjectStatusFilter {
+  equals?: Maybe<ProjectStatus>;
+  in?: Maybe<Array<ProjectStatus>>;
+  not?: Maybe<NestedEnumProjectStatusFilter>;
+  notIn?: Maybe<Array<ProjectStatus>>;
+}
+
+export interface NestedEnumProjectTypeNullableFilter {
+  equals?: Maybe<ProjectType>;
+  in?: Maybe<Array<ProjectType>>;
+  not?: Maybe<NestedEnumProjectTypeNullableFilter>;
+  notIn?: Maybe<Array<ProjectType>>;
+}
+
+export interface NestedEnumResourceTypeFilter {
+  equals?: Maybe<ResourceType>;
+  in?: Maybe<Array<ResourceType>>;
+  not?: Maybe<NestedEnumResourceTypeFilter>;
+  notIn?: Maybe<Array<ResourceType>>;
+}
+
+export interface NestedEnumTagStatusFilter {
+  equals?: Maybe<TagStatus>;
+  in?: Maybe<Array<TagStatus>>;
+  not?: Maybe<NestedEnumTagStatusFilter>;
+  notIn?: Maybe<Array<TagStatus>>;
+}
+
+export interface NestedEnumTaskMemberStatusFilter {
+  equals?: Maybe<TaskMemberStatus>;
+  in?: Maybe<Array<TaskMemberStatus>>;
+  not?: Maybe<NestedEnumTaskMemberStatusFilter>;
+  notIn?: Maybe<Array<TaskMemberStatus>>;
+}
+
+export interface NestedEnumTaskReactionTypeFilter {
+  equals?: Maybe<TaskReactionType>;
+  in?: Maybe<Array<TaskReactionType>>;
+  not?: Maybe<NestedEnumTaskReactionTypeFilter>;
+  notIn?: Maybe<Array<TaskReactionType>>;
+}
+
+export interface NestedEnumTaskStatusFilter {
+  equals?: Maybe<TaskStatus>;
+  in?: Maybe<Array<TaskStatus>>;
+  not?: Maybe<NestedEnumTaskStatusFilter>;
+  notIn?: Maybe<Array<TaskStatus>>;
+}
+
+export interface NestedEnumTeamMemberStatusFilter {
+  equals?: Maybe<TeamMemberStatus>;
+  in?: Maybe<Array<TeamMemberStatus>>;
+  not?: Maybe<NestedEnumTeamMemberStatusFilter>;
+  notIn?: Maybe<Array<TeamMemberStatus>>;
+}
+
+export interface NestedEnumTeamStatusFilter {
+  equals?: Maybe<TeamStatus>;
+  in?: Maybe<Array<TeamStatus>>;
+  not?: Maybe<NestedEnumTeamStatusFilter>;
+  notIn?: Maybe<Array<TeamStatus>>;
+}
+
+export interface NestedEnumTechnologyLessonUserStatusFilter {
+  equals?: Maybe<TechnologyLessonUserStatus>;
+  in?: Maybe<Array<TechnologyLessonUserStatus>>;
+  not?: Maybe<NestedEnumTechnologyLessonUserStatusFilter>;
+  notIn?: Maybe<Array<TechnologyLessonUserStatus>>;
+}
+
+export interface NestedEnumUserTechnologyStatusNullableFilter {
+  equals?: Maybe<UserTechnologyStatus>;
+  in?: Maybe<Array<UserTechnologyStatus>>;
+  not?: Maybe<NestedEnumUserTechnologyStatusNullableFilter>;
+  notIn?: Maybe<Array<UserTechnologyStatus>>;
+}
+
+export interface NestedEnumWorldTypeFilter {
+  equals?: Maybe<WorldType>;
+  in?: Maybe<Array<WorldType>>;
+  not?: Maybe<NestedEnumWorldTypeFilter>;
+  notIn?: Maybe<Array<WorldType>>;
+}
+
 export interface NestedIntFilter {
   equals?: Maybe<Scalars['Int']>;
   gt?: Maybe<Scalars['Int']>;
@@ -1501,7 +1915,7 @@ export interface NoticeWhereInput {
   User_Notice_UserToUser?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
-  type?: Maybe<StringFilter>;
+  type?: Maybe<EnumNoticeTypeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -1580,7 +1994,7 @@ export interface PlayerWhereInput {
   createdAt?: Maybe<DateTimeFilter>;
   dirx?: Maybe<DecimalFilter>;
   diry?: Maybe<DecimalFilter>;
-  gamemode?: Maybe<StringFilter>;
+  gamemode?: Maybe<EnumGamemodeFilter>;
   id?: Maybe<StringFilter>;
   inventory?: Maybe<StringNullableFilter>;
   isAdmin?: Maybe<BoolFilter>;
@@ -1701,7 +2115,7 @@ export interface ProjectMemberWhereInput {
   User_ProjectMember_UserToUser?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
-  status?: Maybe<StringNullableFilter>;
+  status?: Maybe<EnumProjectMemberStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -1839,8 +2253,8 @@ export interface ProjectWhereInput {
   oldID?: Maybe<IntNullableFilter>;
   public?: Maybe<BoolNullableFilter>;
   sequence?: Maybe<IntNullableFilter>;
-  status?: Maybe<StringNullableFilter>;
-  type?: Maybe<StringNullableFilter>;
+  status?: Maybe<EnumProjectStatusFilter>;
+  type?: Maybe<EnumProjectTypeNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   url?: Maybe<StringNullableFilter>;
 }
@@ -2519,7 +2933,7 @@ export interface ResourceWhereInput {
   rating?: Maybe<DecimalNullableFilter>;
   searchable?: Maybe<BoolFilter>;
   template?: Maybe<IntNullableFilter>;
-  type?: Maybe<StringNullableFilter>;
+  type?: Maybe<EnumResourceTypeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   uri?: Maybe<StringFilter>;
 }
@@ -2777,7 +3191,7 @@ export interface TagWhereInput {
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
-  status?: Maybe<StringFilter>;
+  status?: Maybe<EnumTagStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -2870,6 +3284,13 @@ export interface TaskMemberListRelationFilter {
   some?: Maybe<TaskMemberWhereInput>;
 }
 
+export enum TaskMemberStatus {
+  ACTIVE = 'Active',
+  FIRED = 'Fired',
+  INVITED = 'Invited',
+  QUIT = 'Quit'
+}
+
 export interface TaskMemberWhereInput {
   AND?: Maybe<Array<TaskMemberWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -2882,7 +3303,7 @@ export interface TaskMemberWhereInput {
   User_TaskMember_UserToUser?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
-  status?: Maybe<StringFilter>;
+  status?: Maybe<EnumTaskMemberStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -2932,7 +3353,7 @@ export interface TaskReactionWhereInput {
   User?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
-  type?: Maybe<StringNullableFilter>;
+  type?: Maybe<EnumTaskReactionTypeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -3068,7 +3489,7 @@ export interface TaskWhereInput {
   other_Task?: Maybe<TaskListRelationFilter>;
   startDate?: Maybe<DateTimeNullableFilter>;
   startDatePlaning?: Maybe<DateTimeNullableFilter>;
-  status?: Maybe<StringFilter>;
+  status?: Maybe<EnumTaskStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -3088,6 +3509,12 @@ export interface TeamMemberListRelationFilter {
   some?: Maybe<TeamMemberWhereInput>;
 }
 
+export enum TeamMemberStatus {
+  ACTIVE = 'Active',
+  FIRED = 'Fired',
+  INVITED = 'Invited'
+}
+
 export interface TeamMemberWhereInput {
   AND?: Maybe<Array<TeamMemberWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -3100,8 +3527,13 @@ export interface TeamMemberWhereInput {
   User_TeamMember_UserToUser?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
-  status?: Maybe<StringNullableFilter>;
+  status?: Maybe<EnumTeamMemberStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export enum TeamStatus {
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive'
 }
 
 export interface TeamWhereInput {
@@ -3126,7 +3558,7 @@ export interface TeamWhereInput {
   oldID?: Maybe<IntNullableFilter>;
   other_Team?: Maybe<TeamListRelationFilter>;
   phone?: Maybe<StringNullableFilter>;
-  status?: Maybe<StringFilter>;
+  status?: Maybe<EnumTeamStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   website?: Maybe<StringNullableFilter>;
 }
@@ -3175,6 +3607,11 @@ export interface TechnologyLessonUserListRelationFilter {
   some?: Maybe<TechnologyLessonUserWhereInput>;
 }
 
+export enum TechnologyLessonUserStatus {
+  ACCEPTED = 'Accepted',
+  COMPLETED = 'Completed'
+}
+
 export interface TechnologyLessonUserWhereInput {
   AND?: Maybe<Array<TechnologyLessonUserWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -3186,7 +3623,7 @@ export interface TechnologyLessonUserWhereInput {
   completedAt?: Maybe<DateTimeNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
-  status?: Maybe<StringNullableFilter>;
+  status?: Maybe<EnumTechnologyLessonUserStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -3723,7 +4160,7 @@ export interface UserTechnologyWhereInput {
   date_till?: Maybe<DateTimeNullableFilter>;
   id?: Maybe<StringFilter>;
   level?: Maybe<IntNullableFilter>;
-  status?: Maybe<StringNullableFilter>;
+  status?: Maybe<EnumUserTechnologyStatusNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -3880,6 +4317,11 @@ export interface WorldListRelationFilter {
   some?: Maybe<WorldWhereInput>;
 }
 
+export enum WorldType {
+  DEFAULT = 'DEFAULT',
+  SUPERFLAT = 'SUPERFLAT'
+}
+
 export interface WorldWhereInput {
   AND?: Maybe<Array<WorldWhereInput>>;
   Block?: Maybe<BlockListRelationFilter>;
@@ -3897,6 +4339,6 @@ export interface WorldWhereInput {
   seed?: Maybe<StringFilter>;
   time?: Maybe<DecimalFilter>;
   timeChanger?: Maybe<DecimalNullableFilter>;
-  type?: Maybe<StringFilter>;
+  type?: Maybe<EnumWorldTypeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }

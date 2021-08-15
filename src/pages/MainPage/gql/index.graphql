@@ -5,9 +5,7 @@ query mainPage($timersWhere: TimerWhereInput) {
 
     # TODO Check logic
     # where: { ProjectsCreated_some: { type: Education } }
-    where: {
-      Project_ProjectToUser: { some: { type: { equals: "Education" } } }
-    }
+    where: { Project_ProjectToUser: { some: { type: { equals: Education } } } }
   ) {
     ...UserNoNesting
   }
@@ -17,7 +15,7 @@ query mainPage($timersWhere: TimerWhereInput) {
     take: 3
     # where: { Task: { status: Completed } }
     where: {
-      Task_CodeChallengeCompletionToTask: { status: { equals: "Completed" } }
+      Task_CodeChallengeCompletionToTask: { status: { equals: Completed } }
     }
   ) {
     ...mainPageCodeChallengeCompletion
@@ -26,14 +24,14 @@ query mainPage($timersWhere: TimerWhereInput) {
   comments: resources(
     take: 5
     orderBy: { createdAt: desc }
-    where: { type: { equals: "Comment" } }
+    where: { type: { equals: Comment } }
   ) {
     ...resource_
   }
 
   # Задачи, требующие выполнения
   tasksNeedHelp: tasksConnection(
-    where: { needHelp: { equals: true }, status: { notIn: ["Completed"] } }
+    where: { needHelp: { equals: true }, status: { notIn: [Completed] } }
     orderBy: { createdAt: desc }
     first: 3
   ) {

@@ -1,6 +1,5 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
-import { NexusGenEnums } from 'server/nexus/generated/nexus'
 import { uid } from 'uid'
 import { createResource } from '../../resolvers/createResource'
 import { prepareContent } from '../../resolvers/helpers/prepareContent'
@@ -13,8 +12,6 @@ export const createCommentProcessor: FieldResolver<
     data: { Task: agrsTask, components, content, topicID },
   } = args
 
-  const type: NexusGenEnums['ResourceType'] = 'Comment'
-
   // const { id: newResourceId = uid(25),  } = data
 
   const newResourceId = uid(25)
@@ -26,7 +23,7 @@ export const createCommentProcessor: FieldResolver<
     uri: `/comments/${newResourceId}`,
     isfolder: false,
     id: newResourceId,
-    type,
+    type: 'Comment',
   }
 
   const { contentText } = prepareContent(data, data) || {}

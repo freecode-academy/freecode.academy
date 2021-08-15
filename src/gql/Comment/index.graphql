@@ -2,7 +2,7 @@ query commentsConnection(
   $first: Int = 10
   $skip: Int = 0
   $orderBy: ResourceOrderByInput = { createdAt: desc }
-  $where: ResourceWhereInput = { type: { equals: "Comment" } }
+  $where: ResourceWhereInput = { type: { equals: Comment } }
 ) {
   objectsConnection: resourcesConnection(
     where: $where

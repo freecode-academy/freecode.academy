@@ -71,7 +71,7 @@ CREATE TABLE `CallRequest` (
     `id` VARCHAR(32) NOT NULL,
     `called_descriptions` JSON NOT NULL,
     `caller_descriptions` JSON NOT NULL,
-    `status` VARCHAR(191),
+    `status` ENUM('Created', 'Rejected', 'Accepted', 'Started', 'Canceled', 'Missed', 'Ended', 'Error', 'Billed') NOT NULL DEFAULT 'Created',
     `startedAt` DATETIME(3),
     `endedAt` DATETIME(3),
     `Room` VARCHAR(32),
@@ -259,7 +259,7 @@ CREATE TABLE `EthAccount` (
     `name` MEDIUMTEXT,
     `description` JSON,
     `address` MEDIUMTEXT NOT NULL,
-    `type` VARCHAR(191),
+    `type` ENUM('Account', 'Contract') NOT NULL DEFAULT 'Account',
     `source` MEDIUMTEXT,
     `bytecode` MEDIUMTEXT,
     `abi` JSON,
@@ -326,7 +326,7 @@ CREATE TABLE `EthTransaction` (
     `input` MEDIUMTEXT,
     `index` INTEGER,
     `address` MEDIUMTEXT NOT NULL,
-    `type` VARCHAR(191),
+    `type` ENUM('ContractCreate', 'ContractRead', 'ContractCall', 'SendEth', 'SendToken'),
     `v` MEDIUMTEXT,
     `r` MEDIUMTEXT,
     `s` MEDIUMTEXT,
@@ -401,7 +401,7 @@ CREATE TABLE `Import` (
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
-    `status` VARCHAR(191) NOT NULL,
+    `status` ENUM('Created', 'Started', 'Error', 'Completed', 'Stoped') NOT NULL DEFAULT 'Created',
     `CreatedBy` VARCHAR(32),
 
     INDEX `CreatedBy`(`CreatedBy`),
@@ -422,9 +422,9 @@ CREATE TABLE `LetsadsSmsMessageStatus` (
     `id` VARCHAR(32) NOT NULL,
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-    `name` VARCHAR(191),
+    `name` ENUM('Complete', 'Error'),
     `description` MEDIUMTEXT,
-    `errorCode` VARCHAR(191),
+    `errorCode` ENUM('NO_DATA', 'WRONG_DATA_FORMAT', 'REQUEST_FORMAT', 'AUTH_DATA', 'API_DISABLED', 'USER_NOT_MODERATED', 'INCORRECT_FROM', 'INVALID_FROM', 'MESSAGE_TOO_LONG', 'NO_MESSAGE', 'MAX_MESSAGES_COUNT', 'NOT_ENOUGH_MONEY', 'UNKNOWN_ERROR'),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -448,7 +448,7 @@ CREATE TABLE `Letter` (
     `email` MEDIUMTEXT NOT NULL,
     `subject` MEDIUMTEXT NOT NULL,
     `message` MEDIUMTEXT NOT NULL,
-    `status` VARCHAR(191) NOT NULL,
+    `status` ENUM('Created', 'Processing', 'Sended', 'Error') NOT NULL DEFAULT 'Created',
     `rank` INTEGER,
     `deleteOnSend` BOOLEAN,
     `replyTo` MEDIUMTEXT,
@@ -464,7 +464,7 @@ CREATE TABLE `Letter` (
 -- CreateTable
 CREATE TABLE `Log` (
     `id` VARCHAR(32) NOT NULL,
-    `level` VARCHAR(191) NOT NULL,
+    `level` ENUM('Info', 'Notice', 'Warning', 'Error', 'Fatal') NOT NULL DEFAULT 'Info',
     `objectType` VARCHAR(32),
     `message` MEDIUMTEXT NOT NULL,
     `stack` MEDIUMTEXT,
@@ -491,7 +491,7 @@ CREATE TABLE `LogedIn` (
 -- CreateTable
 CREATE TABLE `Message` (
     `id` VARCHAR(32) NOT NULL,
-    `type` VARCHAR(191) NOT NULL,
+    `type` ENUM('ERROR', 'PLAYER', 'SERVER', 'INFO') NOT NULL,
     `sender` MEDIUMTEXT,
     `body` MEDIUMTEXT NOT NULL,
     `world` VARCHAR(32),
@@ -504,7 +504,7 @@ CREATE TABLE `Message` (
 CREATE TABLE `Notice` (
     `id` VARCHAR(32) NOT NULL,
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-    `type` VARCHAR(191) NOT NULL,
+    `type`  ENUM('ChatMessage', 'Call', 'CallRequest', 'ChatRoomInvitation') NOT NULL,
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `ChatMessage` VARCHAR(32),
     `User` VARCHAR(32),
@@ -539,7 +539,7 @@ CREATE TABLE `Player` (
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `isAdmin` BOOLEAN NOT NULL,
-    `gamemode` VARCHAR(191) NOT NULL,
+    `gamemode` ENUM('SURVIVAL', 'CREATIVE', 'ADVENTURE', 'SPECTATOR') NOT NULL,
     `lastLogin` DATETIME(3),
     `x` DECIMAL(65, 30) NOT NULL,
     `y` DECIMAL(65, 30) NOT NULL,
@@ -582,7 +582,7 @@ CREATE TABLE `Project` (
     `sequence` INTEGER,
     `content` JSON,
     `contentText` MEDIUMTEXT,
-    `status` VARCHAR(191),
+    `status`  ENUM('New', 'Accepted', 'Rejected', 'Processing', 'Completed', 'Reopened') NOT NULL DEFAULT 'New',
     `public` BOOLEAN,
     `oldID` INTEGER,
     `CreatedBy` VARCHAR(32),
@@ -590,7 +590,7 @@ CREATE TABLE `Project` (
     `ChatRoom` VARCHAR(32),
     `Team` VARCHAR(32),
     `Resource` VARCHAR(32),
-    `type` VARCHAR(191),
+    `type`  ENUM('Education'),
 
     UNIQUE INDEX `Project.sequence_unique`(`sequence`),
     UNIQUE INDEX `Project.oldID_unique`(`oldID`),
@@ -605,7 +605,7 @@ CREATE TABLE `Project` (
 -- CreateTable
 CREATE TABLE `ProjectMember` (
     `id` VARCHAR(32) NOT NULL,
-    `status` VARCHAR(191),
+    `status` ENUM('Invited', 'Active', 'Fired', 'Quit') NOT NULL DEFAULT 'Active',
     `User` VARCHAR(32),
     `CreatedBy` VARCHAR(32),
     `Project` VARCHAR(32),
@@ -654,7 +654,7 @@ CREATE TABLE `Resource` (
     `code` VARCHAR(32),
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-    `type` VARCHAR(191),
+    `type` ENUM('Blog', 'Comment', 'PersonalBlog', 'Project', 'Resource', 'Service', 'Team', 'Topic') NOT NULL DEFAULT 'Resource',
     `name` MEDIUMTEXT,
     `longtitle` MEDIUMTEXT,
     `content` JSON,
@@ -827,7 +827,7 @@ CREATE TABLE `Tag` (
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` VARCHAR(191) NOT NULL,
-    `status` VARCHAR(191) NOT NULL,
+    `status`  ENUM('Active', 'Moderated', 'Blocked') NOT NULL DEFAULT 'Active',
     `CreatedBy` VARCHAR(32),
 
     UNIQUE INDEX `Tag.name_unique`(`name`),
@@ -843,7 +843,7 @@ CREATE TABLE `Task` (
     `name` MEDIUMTEXT NOT NULL,
     `description` MEDIUMTEXT,
     `content` JSON,
-    `status` VARCHAR(191) NOT NULL,
+    `status` ENUM('New', 'Accepted', 'Rejected', 'Progress', 'Paused', 'Done', 'Discuss', 'Approved', 'RevisionsRequired', 'Completed') NOT NULL DEFAULT 'New',
     `startDatePlaning` DATETIME(3),
     `endDatePlaning` DATETIME(3),
     `startDate` DATETIME(3),
@@ -862,7 +862,7 @@ CREATE TABLE `Task` (
 -- CreateTable
 CREATE TABLE `TaskMember` (
     `id` VARCHAR(32) NOT NULL,
-    `status` VARCHAR(191) NOT NULL,
+    `status` ENUM('Invited', 'Active', 'Fired', 'Quit') NOT NULL DEFAULT 'Active',
     `Task` VARCHAR(32),
     `User` VARCHAR(32),
     `CreatedBy` VARCHAR(32),
@@ -880,7 +880,7 @@ CREATE TABLE `TaskReaction` (
     `id` VARCHAR(32) NOT NULL,
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-    `type` VARCHAR(191),
+    `type`  ENUM('UpVote', 'DownVote') NOT NULL,
     `Task` VARCHAR(32),
     `CreatedBy` VARCHAR(32),
 
@@ -909,7 +909,7 @@ CREATE TABLE `TaskTechnology` (
 CREATE TABLE `Team` (
     `id` VARCHAR(32) NOT NULL,
     `name` MEDIUMTEXT NOT NULL,
-    `status` VARCHAR(191) NOT NULL,
+    `status` ENUM('Active', 'Inactive') NOT NULL DEFAULT 'Active',
     `oldID` INTEGER,
     `address` MEDIUMTEXT,
     `website` MEDIUMTEXT,
@@ -929,7 +929,7 @@ CREATE TABLE `Team` (
 -- CreateTable
 CREATE TABLE `TeamMember` (
     `id` VARCHAR(32) NOT NULL,
-    `status` VARCHAR(191),
+    `status`  ENUM('Invited', 'Active', 'Fired') NOT NULL DEFAULT 'Active',
     `User` VARCHAR(32),
     `Team` VARCHAR(32),
     `CreatedBy` VARCHAR(32),
@@ -976,7 +976,7 @@ CREATE TABLE `TechnologyLessonUser` (
     `id` VARCHAR(32) NOT NULL,
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-    `status` VARCHAR(191),
+    `status`  ENUM('Accepted', 'Completed') NOT NULL DEFAULT 'Accepted',
     `completedAt` DATETIME(3),
     `Lesson` VARCHAR(32),
     `CreatedBy` VARCHAR(32),
@@ -1117,7 +1117,7 @@ CREATE TABLE `UserTechnology` (
     `components` JSON,
     `date_from` DATETIME(3),
     `date_till` DATETIME(3),
-    `status` VARCHAR(191),
+    `status` ENUM('PlanToStudy', 'RefusedToStudy', 'Study', 'RarelyUse', 'ActiveUse', 'NoLongerUse'),
     `CreatedBy` VARCHAR(32),
     `Technology` VARCHAR(32),
     `level` INTEGER,
@@ -1148,7 +1148,7 @@ CREATE TABLE `World` (
     `updatedAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `name` MEDIUMTEXT NOT NULL,
     `seed` MEDIUMTEXT NOT NULL,
-    `type` VARCHAR(191) NOT NULL,
+    `type`  ENUM('DEFAULT', 'SUPERFLAT') NOT NULL,
     `time` DECIMAL(65, 30) NOT NULL,
     `timeChanger` DECIMAL(65, 30),
     `days` INTEGER NOT NULL,

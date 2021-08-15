@@ -1,6 +1,5 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
-import { NexusGenEnums } from 'server/nexus/generated/nexus'
 
 export const createCodeChallengeCompletionProcessor: FieldResolver<
   'Mutation',
@@ -31,8 +30,6 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
   //   }
   // `);
 
-  const projectType: NexusGenEnums['ProjectType'] = 'Education'
-
   const user = await ctx.prisma.user.findUnique({
     where: {
       id: currentUserId,
@@ -40,7 +37,7 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
     include: {
       Project_ProjectToUser: {
         where: {
-          type: projectType,
+          type: 'Education',
         },
       },
     },

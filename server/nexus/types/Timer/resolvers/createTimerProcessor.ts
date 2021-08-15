@@ -1,6 +1,5 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
-import { NexusGenEnums } from 'server/nexus/generated/nexus'
 
 export const createTimerProcessor: FieldResolver<
   'Mutation',
@@ -112,10 +111,8 @@ export const createTimerProcessor: FieldResolver<
     // if (!taskStatus || (["New", "Paused"].indexOf(taskStatus) !== -1)) {
     // if (!taskStatus || taskStatus !== "Progress") {
 
-    const progressStatus: NexusGenEnums['TaskStatus'] = 'Progress'
-
-    if (!taskStatus || taskStatus !== progressStatus) {
-      taskData.status = progressStatus
+    if (!taskStatus || taskStatus !== 'Progress') {
+      taskData.status = 'Progress'
     }
 
     /**

@@ -44,26 +44,26 @@ export const MainPageDocument = gql`
   students: users(
     take: 4
     orderBy: {createdAt: desc}
-    where: {Project_ProjectToUser: {some: {type: {equals: "Education"}}}}
+    where: {Project_ProjectToUser: {some: {type: {equals: Education}}}}
   ) {
     ...UserNoNesting
   }
   codeChallengeCompletions(
     orderBy: {createdAt: desc}
     take: 3
-    where: {Task_CodeChallengeCompletionToTask: {status: {equals: "Completed"}}}
+    where: {Task_CodeChallengeCompletionToTask: {status: {equals: Completed}}}
   ) {
     ...mainPageCodeChallengeCompletion
   }
   comments: resources(
     take: 5
     orderBy: {createdAt: desc}
-    where: {type: {equals: "Comment"}}
+    where: {type: {equals: Comment}}
   ) {
     ...resource_
   }
   tasksNeedHelp: tasksConnection(
-    where: {needHelp: {equals: true}, status: {notIn: ["Completed"]}}
+    where: {needHelp: {equals: true}, status: {notIn: [Completed]}}
     orderBy: {createdAt: desc}
     first: 3
   ) {

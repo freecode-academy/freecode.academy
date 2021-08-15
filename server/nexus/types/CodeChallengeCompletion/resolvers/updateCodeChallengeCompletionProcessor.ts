@@ -1,6 +1,5 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
-import { NexusGenEnums } from 'server/nexus/generated/nexus'
 
 // TODO добавить завершение таймера
 export const updateCodeChallengeCompletionProcessor: FieldResolver<
@@ -80,11 +79,9 @@ export const updateCodeChallengeCompletionProcessor: FieldResolver<
         }
       }
 
-      const completeStatus: NexusGenEnums['TaskStatus'] = 'Completed'
-
       const Task: Prisma.TaskUpdateOneWithoutCodeChallengeCompletionInput = {
         update: {
-          status: completeStatus,
+          status: 'Completed',
           Timer: Timers,
         },
       }

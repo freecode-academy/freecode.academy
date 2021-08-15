@@ -94,6 +94,18 @@ input CallRequestListRelationFilter {
   some: CallRequestWhereInput
 }
 
+enum CallRequestStatus {
+  Accepted
+  Billed
+  Canceled
+  Created
+  Ended
+  Error
+  Missed
+  Rejected
+  Started
+}
+
 input CallRequestWhereInput {
   AND: [CallRequestWhereInput!]
   Called: StringNullableFilter
@@ -108,7 +120,7 @@ input CallRequestWhereInput {
   endedAt: DateTimeNullableFilter
   id: StringFilter
   startedAt: DateTimeNullableFilter
-  status: StringNullableFilter
+  status: EnumCallRequestStatusFilter
   updatedAt: DateTimeFilter
 }
 
@@ -640,6 +652,174 @@ input DecimalNullableFilter {
   notIn: [Decimal!]
 }
 
+input EnumCallRequestStatusFilter {
+  equals: CallRequestStatus
+  in: [CallRequestStatus!]
+  not: NestedEnumCallRequestStatusFilter
+  notIn: [CallRequestStatus!]
+}
+
+input EnumEthAccountTypeFilter {
+  equals: EthAccountType
+  in: [EthAccountType!]
+  not: NestedEnumEthAccountTypeFilter
+  notIn: [EthAccountType!]
+}
+
+input EnumEthTransactionTypeNullableFilter {
+  equals: EthTransactionType
+  in: [EthTransactionType!]
+  not: NestedEnumEthTransactionTypeNullableFilter
+  notIn: [EthTransactionType!]
+}
+
+input EnumGamemodeFilter {
+  equals: Gamemode
+  in: [Gamemode!]
+  not: NestedEnumGamemodeFilter
+  notIn: [Gamemode!]
+}
+
+input EnumImportStatusFilter {
+  equals: ImportStatus
+  in: [ImportStatus!]
+  not: NestedEnumImportStatusFilter
+  notIn: [ImportStatus!]
+}
+
+input EnumLetsadsSmsMessageStatusEnumNullableFilter {
+  equals: LetsadsSmsMessageStatusEnum
+  in: [LetsadsSmsMessageStatusEnum!]
+  not: NestedEnumLetsadsSmsMessageStatusEnumNullableFilter
+  notIn: [LetsadsSmsMessageStatusEnum!]
+}
+
+input EnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter {
+  equals: LetsadsSmsMessageStatusErrorCodeEnum
+  in: [LetsadsSmsMessageStatusErrorCodeEnum!]
+  not: NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter
+  notIn: [LetsadsSmsMessageStatusErrorCodeEnum!]
+}
+
+input EnumLetterStatusFilter {
+  equals: LetterStatus
+  in: [LetterStatus!]
+  not: NestedEnumLetterStatusFilter
+  notIn: [LetterStatus!]
+}
+
+input EnumLogLevelFilter {
+  equals: LogLevel
+  in: [LogLevel!]
+  not: NestedEnumLogLevelFilter
+  notIn: [LogLevel!]
+}
+
+input EnumMessageTypeFilter {
+  equals: MessageType
+  in: [MessageType!]
+  not: NestedEnumMessageTypeFilter
+  notIn: [MessageType!]
+}
+
+input EnumNoticeTypeFilter {
+  equals: NoticeType
+  in: [NoticeType!]
+  not: NestedEnumNoticeTypeFilter
+  notIn: [NoticeType!]
+}
+
+input EnumProjectMemberStatusFilter {
+  equals: ProjectMemberStatus
+  in: [ProjectMemberStatus!]
+  not: NestedEnumProjectMemberStatusFilter
+  notIn: [ProjectMemberStatus!]
+}
+
+input EnumProjectStatusFilter {
+  equals: ProjectStatus
+  in: [ProjectStatus!]
+  not: NestedEnumProjectStatusFilter
+  notIn: [ProjectStatus!]
+}
+
+input EnumProjectTypeNullableFilter {
+  equals: ProjectType
+  in: [ProjectType!]
+  not: NestedEnumProjectTypeNullableFilter
+  notIn: [ProjectType!]
+}
+
+input EnumResourceTypeFilter {
+  equals: ResourceType
+  in: [ResourceType!]
+  not: NestedEnumResourceTypeFilter
+  notIn: [ResourceType!]
+}
+
+input EnumTagStatusFilter {
+  equals: TagStatus
+  in: [TagStatus!]
+  not: NestedEnumTagStatusFilter
+  notIn: [TagStatus!]
+}
+
+input EnumTaskMemberStatusFilter {
+  equals: TaskMemberStatus
+  in: [TaskMemberStatus!]
+  not: NestedEnumTaskMemberStatusFilter
+  notIn: [TaskMemberStatus!]
+}
+
+input EnumTaskReactionTypeFilter {
+  equals: TaskReactionType
+  in: [TaskReactionType!]
+  not: NestedEnumTaskReactionTypeFilter
+  notIn: [TaskReactionType!]
+}
+
+input EnumTaskStatusFilter {
+  equals: TaskStatus
+  in: [TaskStatus!]
+  not: NestedEnumTaskStatusFilter
+  notIn: [TaskStatus!]
+}
+
+input EnumTeamMemberStatusFilter {
+  equals: TeamMemberStatus
+  in: [TeamMemberStatus!]
+  not: NestedEnumTeamMemberStatusFilter
+  notIn: [TeamMemberStatus!]
+}
+
+input EnumTeamStatusFilter {
+  equals: TeamStatus
+  in: [TeamStatus!]
+  not: NestedEnumTeamStatusFilter
+  notIn: [TeamStatus!]
+}
+
+input EnumTechnologyLessonUserStatusFilter {
+  equals: TechnologyLessonUserStatus
+  in: [TechnologyLessonUserStatus!]
+  not: NestedEnumTechnologyLessonUserStatusFilter
+  notIn: [TechnologyLessonUserStatus!]
+}
+
+input EnumUserTechnologyStatusNullableFilter {
+  equals: UserTechnologyStatus
+  in: [UserTechnologyStatus!]
+  not: NestedEnumUserTechnologyStatusNullableFilter
+  notIn: [UserTechnologyStatus!]
+}
+
+input EnumWorldTypeFilter {
+  equals: WorldType
+  in: [WorldType!]
+  not: NestedEnumWorldTypeFilter
+  notIn: [WorldType!]
+}
+
 type EthAccount {
   abi: JSON
   address: String!
@@ -689,7 +869,7 @@ input EthAccountWhereInput {
   id: StringFilter
   name: StringNullableFilter
   source: StringNullableFilter
-  type: StringNullableFilter
+  type: EnumEthAccountTypeFilter
   updatedAt: DateTimeFilter
 }
 
@@ -770,6 +950,14 @@ input EthTransactionListRelationFilter {
   some: EthTransactionWhereInput
 }
 
+enum EthTransactionType {
+  ContractCall
+  ContractCreate
+  ContractRead
+  SendEth
+  SendToken
+}
+
 input EthTransactionWhereInput {
   AND: [EthTransactionWhereInput!]
   Account: StringNullableFilter
@@ -791,7 +979,7 @@ input EthTransactionWhereInput {
   input: StringNullableFilter
   r: StringNullableFilter
   s: StringNullableFilter
-  type: StringNullableFilter
+  type: EnumEthTransactionTypeNullableFilter
   updatedAt: DateTimeFilter
   v: StringNullableFilter
 }
@@ -974,10 +1162,25 @@ input GameWhereInput {
   updatedAt: DateTimeFilter
 }
 
+enum Gamemode {
+  ADVENTURE
+  CREATIVE
+  SPECTATOR
+  SURVIVAL
+}
+
 input ImportListRelationFilter {
   every: ImportWhereInput
   none: ImportWhereInput
   some: ImportWhereInput
+}
+
+enum ImportStatus {
+  Completed
+  Created
+  Error
+  Started
+  Stoped
 }
 
 input ImportWhereInput {
@@ -990,7 +1193,7 @@ input ImportWhereInput {
   createdAt: DateTimeFilter
   id: StringFilter
   name: StringFilter
-  status: StringFilter
+  status: EnumImportStatusFilter
   updatedAt: DateTimeFilter
 }
 
@@ -1035,6 +1238,27 @@ input JsonNullableFilter {
   not: Json
 }
 
+enum LetsadsSmsMessageStatusEnum {
+  Complete
+  Error
+}
+
+enum LetsadsSmsMessageStatusErrorCodeEnum {
+  API_DISABLED
+  AUTH_DATA
+  INCORRECT_FROM
+  INVALID_FROM
+  MAX_MESSAGES_COUNT
+  MESSAGE_TOO_LONG
+  NOT_ENOUGH_MONEY
+  NO_DATA
+  NO_MESSAGE
+  REQUEST_FORMAT
+  UNKNOWN_ERROR
+  USER_NOT_MODERATED
+  WRONG_DATA_FORMAT
+}
+
 input LetsadsSmsMessageStatusItemListRelationFilter {
   every: LetsadsSmsMessageStatusItemWhereInput
   none: LetsadsSmsMessageStatusItemWhereInput
@@ -1061,9 +1285,9 @@ input LetsadsSmsMessageStatusWhereInput {
   SmsMessage: SmsMessageListRelationFilter
   createdAt: DateTimeFilter
   description: StringNullableFilter
-  errorCode: StringNullableFilter
+  errorCode: EnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter
   id: StringFilter
-  name: StringNullableFilter
+  name: EnumLetsadsSmsMessageStatusEnumNullableFilter
   updatedAt: DateTimeFilter
 }
 
@@ -1071,6 +1295,13 @@ input LetterListRelationFilter {
   every: LetterWhereInput
   none: LetterWhereInput
   some: LetterWhereInput
+}
+
+enum LetterStatus {
+  Created
+  Error
+  Processing
+  Sended
 }
 
 input LetterWhereInput {
@@ -1087,9 +1318,17 @@ input LetterWhereInput {
   rank: IntNullableFilter
   replyTo: StringNullableFilter
   returnTo: StringNullableFilter
-  status: StringFilter
+  status: EnumLetterStatusFilter
   subject: StringFilter
   updatedAt: DateTimeFilter
+}
+
+enum LogLevel {
+  Error
+  Fatal
+  Info
+  Notice
+  Warning
 }
 
 input LogListRelationFilter {
@@ -1106,7 +1345,7 @@ input LogWhereInput {
   OR: [LogWhereInput!]
   createdAt: DateTimeFilter
   id: StringFilter
-  level: StringFilter
+  level: EnumLogLevelFilter
   message: StringFilter
   objectType: StringNullableFilter
   stack: StringNullableFilter
@@ -1137,6 +1376,13 @@ input MessageListRelationFilter {
   some: MessageWhereInput
 }
 
+enum MessageType {
+  ERROR
+  INFO
+  PLAYER
+  SERVER
+}
+
 input MessageWhereInput {
   AND: [MessageWhereInput!]
   NOT: [MessageWhereInput!]
@@ -1145,7 +1391,7 @@ input MessageWhereInput {
   body: StringFilter
   id: StringFilter
   sender: StringNullableFilter
-  type: StringFilter
+  type: EnumMessageTypeFilter
   world: StringNullableFilter
 }
 
@@ -1284,6 +1530,174 @@ input NestedDecimalNullableFilter {
   notIn: [Decimal!]
 }
 
+input NestedEnumCallRequestStatusFilter {
+  equals: CallRequestStatus
+  in: [CallRequestStatus!]
+  not: NestedEnumCallRequestStatusFilter
+  notIn: [CallRequestStatus!]
+}
+
+input NestedEnumEthAccountTypeFilter {
+  equals: EthAccountType
+  in: [EthAccountType!]
+  not: NestedEnumEthAccountTypeFilter
+  notIn: [EthAccountType!]
+}
+
+input NestedEnumEthTransactionTypeNullableFilter {
+  equals: EthTransactionType
+  in: [EthTransactionType!]
+  not: NestedEnumEthTransactionTypeNullableFilter
+  notIn: [EthTransactionType!]
+}
+
+input NestedEnumGamemodeFilter {
+  equals: Gamemode
+  in: [Gamemode!]
+  not: NestedEnumGamemodeFilter
+  notIn: [Gamemode!]
+}
+
+input NestedEnumImportStatusFilter {
+  equals: ImportStatus
+  in: [ImportStatus!]
+  not: NestedEnumImportStatusFilter
+  notIn: [ImportStatus!]
+}
+
+input NestedEnumLetsadsSmsMessageStatusEnumNullableFilter {
+  equals: LetsadsSmsMessageStatusEnum
+  in: [LetsadsSmsMessageStatusEnum!]
+  not: NestedEnumLetsadsSmsMessageStatusEnumNullableFilter
+  notIn: [LetsadsSmsMessageStatusEnum!]
+}
+
+input NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter {
+  equals: LetsadsSmsMessageStatusErrorCodeEnum
+  in: [LetsadsSmsMessageStatusErrorCodeEnum!]
+  not: NestedEnumLetsadsSmsMessageStatusErrorCodeEnumNullableFilter
+  notIn: [LetsadsSmsMessageStatusErrorCodeEnum!]
+}
+
+input NestedEnumLetterStatusFilter {
+  equals: LetterStatus
+  in: [LetterStatus!]
+  not: NestedEnumLetterStatusFilter
+  notIn: [LetterStatus!]
+}
+
+input NestedEnumLogLevelFilter {
+  equals: LogLevel
+  in: [LogLevel!]
+  not: NestedEnumLogLevelFilter
+  notIn: [LogLevel!]
+}
+
+input NestedEnumMessageTypeFilter {
+  equals: MessageType
+  in: [MessageType!]
+  not: NestedEnumMessageTypeFilter
+  notIn: [MessageType!]
+}
+
+input NestedEnumNoticeTypeFilter {
+  equals: NoticeType
+  in: [NoticeType!]
+  not: NestedEnumNoticeTypeFilter
+  notIn: [NoticeType!]
+}
+
+input NestedEnumProjectMemberStatusFilter {
+  equals: ProjectMemberStatus
+  in: [ProjectMemberStatus!]
+  not: NestedEnumProjectMemberStatusFilter
+  notIn: [ProjectMemberStatus!]
+}
+
+input NestedEnumProjectStatusFilter {
+  equals: ProjectStatus
+  in: [ProjectStatus!]
+  not: NestedEnumProjectStatusFilter
+  notIn: [ProjectStatus!]
+}
+
+input NestedEnumProjectTypeNullableFilter {
+  equals: ProjectType
+  in: [ProjectType!]
+  not: NestedEnumProjectTypeNullableFilter
+  notIn: [ProjectType!]
+}
+
+input NestedEnumResourceTypeFilter {
+  equals: ResourceType
+  in: [ResourceType!]
+  not: NestedEnumResourceTypeFilter
+  notIn: [ResourceType!]
+}
+
+input NestedEnumTagStatusFilter {
+  equals: TagStatus
+  in: [TagStatus!]
+  not: NestedEnumTagStatusFilter
+  notIn: [TagStatus!]
+}
+
+input NestedEnumTaskMemberStatusFilter {
+  equals: TaskMemberStatus
+  in: [TaskMemberStatus!]
+  not: NestedEnumTaskMemberStatusFilter
+  notIn: [TaskMemberStatus!]
+}
+
+input NestedEnumTaskReactionTypeFilter {
+  equals: TaskReactionType
+  in: [TaskReactionType!]
+  not: NestedEnumTaskReactionTypeFilter
+  notIn: [TaskReactionType!]
+}
+
+input NestedEnumTaskStatusFilter {
+  equals: TaskStatus
+  in: [TaskStatus!]
+  not: NestedEnumTaskStatusFilter
+  notIn: [TaskStatus!]
+}
+
+input NestedEnumTeamMemberStatusFilter {
+  equals: TeamMemberStatus
+  in: [TeamMemberStatus!]
+  not: NestedEnumTeamMemberStatusFilter
+  notIn: [TeamMemberStatus!]
+}
+
+input NestedEnumTeamStatusFilter {
+  equals: TeamStatus
+  in: [TeamStatus!]
+  not: NestedEnumTeamStatusFilter
+  notIn: [TeamStatus!]
+}
+
+input NestedEnumTechnologyLessonUserStatusFilter {
+  equals: TechnologyLessonUserStatus
+  in: [TechnologyLessonUserStatus!]
+  not: NestedEnumTechnologyLessonUserStatusFilter
+  notIn: [TechnologyLessonUserStatus!]
+}
+
+input NestedEnumUserTechnologyStatusNullableFilter {
+  equals: UserTechnologyStatus
+  in: [UserTechnologyStatus!]
+  not: NestedEnumUserTechnologyStatusNullableFilter
+  notIn: [UserTechnologyStatus!]
+}
+
+input NestedEnumWorldTypeFilter {
+  equals: WorldType
+  in: [WorldType!]
+  not: NestedEnumWorldTypeFilter
+  notIn: [WorldType!]
+}
+
 input NestedIntFilter {
   equals: Int
   gt: Int
@@ -1390,7 +1804,7 @@ input NoticeWhereInput {
   User_Notice_UserToUser: UserWhereInput
   createdAt: DateTimeFilter
   id: StringFilter
-  type: StringFilter
+  type: EnumNoticeTypeFilter
   updatedAt: DateTimeFilter
 }
 
@@ -1468,7 +1882,7 @@ input PlayerWhereInput {
   createdAt: DateTimeFilter
   dirx: DecimalFilter
   diry: DecimalFilter
-  gamemode: StringFilter
+  gamemode: EnumGamemodeFilter
   id: StringFilter
   inventory: StringNullableFilter
   isAdmin: BoolFilter
@@ -1580,7 +1994,7 @@ input ProjectMemberWhereInput {
   User_ProjectMember_UserToUser: UserWhereInput
   createdAt: DateTimeFilter
   id: StringFilter
-  status: StringNullableFilter
+  status: EnumProjectMemberStatusFilter
   updatedAt: DateTimeFilter
 }
 
@@ -1716,8 +2130,8 @@ input ProjectWhereInput {
   oldID: IntNullableFilter
   public: BoolNullableFilter
   sequence: IntNullableFilter
-  status: StringNullableFilter
-  type: StringNullableFilter
+  status: EnumProjectStatusFilter
+  type: EnumProjectTypeNullableFilter
   updatedAt: DateTimeFilter
   url: StringNullableFilter
 }
@@ -2213,7 +2627,7 @@ input ResourceWhereInput {
   rating: DecimalNullableFilter
   searchable: BoolFilter
   template: IntNullableFilter
-  type: StringNullableFilter
+  type: EnumResourceTypeFilter
   updatedAt: DateTimeFilter
   uri: StringFilter
 }
@@ -2473,7 +2887,7 @@ input TagWhereInput {
   createdAt: DateTimeFilter
   id: StringFilter
   name: StringFilter
-  status: StringFilter
+  status: EnumTagStatusFilter
   updatedAt: DateTimeFilter
 }
 
@@ -2554,6 +2968,13 @@ input TaskMemberListRelationFilter {
   some: TaskMemberWhereInput
 }
 
+enum TaskMemberStatus {
+  Active
+  Fired
+  Invited
+  Quit
+}
+
 input TaskMemberWhereInput {
   AND: [TaskMemberWhereInput!]
   CreatedBy: StringNullableFilter
@@ -2566,7 +2987,7 @@ input TaskMemberWhereInput {
   User_TaskMember_UserToUser: UserWhereInput
   createdAt: DateTimeFilter
   id: StringFilter
-  status: StringFilter
+  status: EnumTaskMemberStatusFilter
   updatedAt: DateTimeFilter
 }
 
@@ -2615,7 +3036,7 @@ input TaskReactionWhereInput {
   User: UserWhereInput
   createdAt: DateTimeFilter
   id: StringFilter
-  type: StringNullableFilter
+  type: EnumTaskReactionTypeFilter
   updatedAt: DateTimeFilter
 }
 
@@ -2748,7 +3169,7 @@ input TaskWhereInput {
   other_Task: TaskListRelationFilter
   startDate: DateTimeNullableFilter
   startDatePlaning: DateTimeNullableFilter
-  status: StringFilter
+  status: EnumTaskStatusFilter
   updatedAt: DateTimeFilter
 }
 
@@ -2768,6 +3189,12 @@ input TeamMemberListRelationFilter {
   some: TeamMemberWhereInput
 }
 
+enum TeamMemberStatus {
+  Active
+  Fired
+  Invited
+}
+
 input TeamMemberWhereInput {
   AND: [TeamMemberWhereInput!]
   CreatedBy: StringNullableFilter
@@ -2780,8 +3207,13 @@ input TeamMemberWhereInput {
   User_TeamMember_UserToUser: UserWhereInput
   createdAt: DateTimeFilter
   id: StringFilter
-  status: StringNullableFilter
+  status: EnumTeamMemberStatusFilter
   updatedAt: DateTimeFilter
+}
+
+enum TeamStatus {
+  Active
+  Inactive
 }
 
 input TeamWhereInput {
@@ -2806,7 +3238,7 @@ input TeamWhereInput {
   oldID: IntNullableFilter
   other_Team: TeamListRelationFilter
   phone: StringNullableFilter
-  status: StringFilter
+  status: EnumTeamStatusFilter
   updatedAt: DateTimeFilter
   website: StringNullableFilter
 }
@@ -2852,6 +3284,11 @@ input TechnologyLessonUserListRelationFilter {
   some: TechnologyLessonUserWhereInput
 }
 
+enum TechnologyLessonUserStatus {
+  Accepted
+  Completed
+}
+
 input TechnologyLessonUserWhereInput {
   AND: [TechnologyLessonUserWhereInput!]
   CreatedBy: StringNullableFilter
@@ -2863,7 +3300,7 @@ input TechnologyLessonUserWhereInput {
   completedAt: DateTimeNullableFilter
   createdAt: DateTimeFilter
   id: StringFilter
-  status: StringNullableFilter
+  status: EnumTechnologyLessonUserStatusFilter
   updatedAt: DateTimeFilter
 }
 
@@ -3434,7 +3871,7 @@ input UserTechnologyWhereInput {
   date_till: DateTimeNullableFilter
   id: StringFilter
   level: IntNullableFilter
-  status: StringNullableFilter
+  status: EnumUserTechnologyStatusNullableFilter
   updatedAt: DateTimeFilter
 }
 
@@ -3591,6 +4028,11 @@ input WorldListRelationFilter {
   some: WorldWhereInput
 }
 
+enum WorldType {
+  DEFAULT
+  SUPERFLAT
+}
+
 input WorldWhereInput {
   AND: [WorldWhereInput!]
   Block: BlockListRelationFilter
@@ -3608,6 +4050,6 @@ input WorldWhereInput {
   seed: StringFilter
   time: DecimalFilter
   timeChanger: DecimalNullableFilter
-  type: StringFilter
+  type: EnumWorldTypeFilter
   updatedAt: DateTimeFilter
 }

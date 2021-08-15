@@ -1,6 +1,5 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
-import { NexusGenEnums } from 'server/nexus/generated/nexus'
 import { createResource } from '../../resolvers/createResource'
 
 export const createTopicProcessor: FieldResolver<
@@ -20,12 +19,10 @@ export const createTopicProcessor: FieldResolver<
     | Prisma.CodeChallengeCreateNestedManyWithoutResourceInput
     | undefined
 
-  const type: NexusGenEnums['ResourceType'] = 'Topic'
-
   const uri = args.data.uri || `/topics/${name}`
 
   const createData: Prisma.ResourceCreateInput = {
-    type,
+    type: 'Topic',
     isfolder: false,
     id: id === null ? undefined : id,
     name,

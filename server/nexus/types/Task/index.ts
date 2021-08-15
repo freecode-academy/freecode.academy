@@ -7,6 +7,7 @@ import {
   objectType,
 } from 'nexus'
 import { createTaskProcessor } from './resolvers/createTaskProcessor'
+import { updateTaskProcessor } from './resolvers/updateTaskProcessor'
 
 export const TaskExtendQuery = extendType({
   type: 'Query',
@@ -89,16 +90,7 @@ export const TaskExtendMutation = extendType({
         data: nonNull('TaskUpdateInput'),
         where: nonNull('TaskWhereUniqueInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: updateTaskProcessor,
     })
   },
 })

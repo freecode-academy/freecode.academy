@@ -3242,6 +3242,7 @@ export interface TaskConnection {
 }
 
 export interface TaskCreateInput {
+  Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Project?: Maybe<ProjectCreateOneWithoutProjectTasksInput>;
   content?: Maybe<Scalars['JSON']>;
   description?: Maybe<Scalars['String']>;
@@ -3253,6 +3254,10 @@ export interface TaskCreateInput {
   startDate?: Maybe<Scalars['DateTime']>;
   startDatePlaning?: Maybe<Scalars['DateTime']>;
   status?: Maybe<TaskStatus>;
+}
+
+export interface TaskCreateOneWithoutChildsInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
 }
 
 export interface TaskCreateOneWithoutCommentsInput {

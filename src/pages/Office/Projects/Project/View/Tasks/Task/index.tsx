@@ -16,6 +16,7 @@ import CreateSubtask from './CreateSubtask'
 import { IconButton } from 'material-ui'
 import TaskChangeStatusButton from './ChangeStatusButton'
 import UikitUserLink from 'src/uikit/Link/User'
+import { CreateTaskProcessorMutationVariables } from 'src/modules/gql/generated'
 
 const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   task,
@@ -121,27 +122,29 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
       return null
     }
 
+    const variables: CreateTaskProcessorMutationVariables = {
+      data: {
+        name: '',
+        Project: {
+          connect: {
+            id: project.id,
+          },
+        },
+        Parent: {
+          connect: {
+            id: task.id,
+          },
+        },
+      },
+    }
+
     return (
       <CreateSubtask
         opened={createTaskFormOpened}
         cancel={createTaskFormCancel}
         onSuccess={createTaskonSuccess}
         options={{
-          variables: {
-            data: {
-              name: '',
-              Project: {
-                connect: {
-                  id: project.id,
-                },
-              },
-              Parent: {
-                connect: {
-                  id: task.id,
-                },
-              },
-            },
-          },
+          variables,
         }}
       />
     )

@@ -2927,6 +2927,7 @@ type TaskConnection {
 }
 
 input TaskCreateInput {
+  Parent: TaskCreateOneWithoutChildsInput
   Project: ProjectCreateOneWithoutProjectTasksInput
   content: JSON
   description: String
@@ -2938,6 +2939,10 @@ input TaskCreateInput {
   startDate: DateTime
   startDatePlaning: DateTime
   status: TaskStatus
+}
+
+input TaskCreateOneWithoutChildsInput {
+  connect: TaskWhereUniqueInput
 }
 
 input TaskCreateOneWithoutCommentsInput {

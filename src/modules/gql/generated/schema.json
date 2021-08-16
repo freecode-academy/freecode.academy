@@ -30092,6 +30092,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "Parent",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TaskCreateOneWithoutChildsInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "Project",
             "description": null,
             "type": {
@@ -30221,6 +30233,29 @@
             "type": {
               "kind": "ENUM",
               "name": "TaskStatus",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TaskCreateOneWithoutChildsInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "connect",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TaskWhereUniqueInput",
               "ofType": null
             },
             "defaultValue": null,

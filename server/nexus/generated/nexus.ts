@@ -2143,6 +2143,7 @@ export interface NexusGenInputs {
   }
   TaskCreateInput: {
     // input type
+    Parent?: NexusGenInputs['TaskCreateOneWithoutChildsInput'] | null // TaskCreateOneWithoutChildsInput
     Project?: NexusGenInputs['ProjectCreateOneWithoutProjectTasksInput'] | null // ProjectCreateOneWithoutProjectTasksInput
     content?: NexusGenScalars['JSON'] | null // JSON
     description?: string | null // String
@@ -2154,6 +2155,10 @@ export interface NexusGenInputs {
     startDate?: NexusGenScalars['DateTime'] | null // DateTime
     startDatePlaning?: NexusGenScalars['DateTime'] | null // DateTime
     status?: NexusGenEnums['TaskStatus'] | null // TaskStatus
+  }
+  TaskCreateOneWithoutChildsInput: {
+    // input type
+    connect?: NexusGenInputs['TaskWhereUniqueInput'] | null // TaskWhereUniqueInput
   }
   TaskCreateOneWithoutCommentsInput: {
     // input type

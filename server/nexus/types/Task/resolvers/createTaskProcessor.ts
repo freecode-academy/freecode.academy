@@ -24,6 +24,7 @@ export const createTaskProcessor: FieldResolver<
       startDatePlaning,
       status,
       Project,
+      Parent,
     },
   } = args
 
@@ -33,7 +34,7 @@ export const createTaskProcessor: FieldResolver<
     throw new Error('Не указано название задачи')
   }
 
-  const createdData: Prisma.TaskCreateArgs['data'] = {
+  const createdData: Prisma.TaskCreateInput = {
     name,
     content,
     description,
@@ -49,6 +50,14 @@ export const createTaskProcessor: FieldResolver<
         id: currentUserId,
       },
     },
+  }
+
+  if (Parent?.connect) {
+    const connect = Parent?.connect as Prisma.TaskWhereUniqueInput
+
+    createdData.Task = {
+      connect,
+    }
   }
 
   if (Project?.connect) {

@@ -288,6 +288,9 @@ export const TaskCreateInput = inputObjectType({
     t.field('Project', {
       type: 'ProjectCreateOneWithoutProjectTasksInput',
     })
+    t.field('Parent', {
+      type: 'TaskCreateOneWithoutChildsInput',
+    })
   },
 })
 
@@ -327,6 +330,15 @@ export const ProjectCreateOneWithoutProjectTasksInput = inputObjectType({
   definition(t) {
     t.field('connect', {
       type: 'ProjectWhereUniqueInput',
+    })
+  },
+})
+
+export const TaskCreateOneWithoutChildsInput = inputObjectType({
+  name: 'TaskCreateOneWithoutChildsInput',
+  definition(t) {
+    t.field('connect', {
+      type: 'TaskWhereUniqueInput',
     })
   },
 })

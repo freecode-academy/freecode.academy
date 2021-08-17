@@ -38,8 +38,6 @@ interface PrismaModels {
   Inventory: Prisma.Inventory
   LetsadsSmsMessageStatus: Prisma.LetsadsSmsMessageStatus
   LetsadsSmsMessageStatusItem: Prisma.LetsadsSmsMessageStatusItem
-  Letter: Prisma.Letter
-  Log: Prisma.Log
   LogedIn: Prisma.LogedIn
   Message: Prisma.Message
   Notice: Prisma.Notice
@@ -80,6 +78,8 @@ interface PrismaModels {
   UserTechnology: Prisma.UserTechnology
   Vote: Prisma.Vote
   World: Prisma.World
+  Letter: Prisma.Letter
+  Log: Prisma.Log
 }
 
 // Prisma input types metadata
@@ -184,14 +184,6 @@ interface NexusPrismaInputs {
     letsadsSmsMessageStatusItems: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'sms_id' | 'Status' | 'LetsadsSmsMessageStatus'
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'sms_id' | 'Status'
-    }
-    letters: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'subject' | 'message' | 'status' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User' | 'User_LetterToUser'
-      ordering: 'id' | 'email' | 'subject' | 'message' | 'status' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User'
-    }
-    logs: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt' | 'Import_ImportToLog'
-      ordering: 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt'
     }
     logedIns: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'fake' | 'updatedAt' | 'User' | 'User_LogedInToUser'
@@ -353,6 +345,14 @@ interface NexusPrismaInputs {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'seed' | 'type' | 'time' | 'timeChanger' | 'days' | 'lastPlayed' | 'CreatedBy' | 'User' | 'Block' | 'Message' | 'Player'
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'seed' | 'type' | 'time' | 'timeChanger' | 'days' | 'lastPlayed' | 'CreatedBy'
     }
+    letters: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User' | 'User_LetterToUser'
+      ordering: 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User'
+    }
+    logs: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt' | 'Import_ImportToLog'
+      ordering: 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt'
+    }
   },
   User: {
     CallRequest_CallRequest_CalledToUser: {
@@ -436,8 +436,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy'
     }
     Letter: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'subject' | 'message' | 'status' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User' | 'User_LetterToUser'
-      ordering: 'id' | 'email' | 'subject' | 'message' | 'status' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User' | 'User_LetterToUser'
+      ordering: 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User'
     }
     LogedIn: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'fake' | 'updatedAt' | 'User' | 'User_LogedInToUser'
@@ -819,12 +819,6 @@ interface NexusPrismaInputs {
   LetsadsSmsMessageStatusItem: {
 
   }
-  Letter: {
-
-  }
-  Log: {
-
-  }
   LogedIn: {
 
   }
@@ -1167,6 +1161,12 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user'
     }
   }
+  Letter: {
+
+  }
+  Log: {
+
+  }
 }
 
 // Prisma output types metadata
@@ -1222,10 +1222,6 @@ interface NexusPrismaOutputs {
     letsadsSmsMessageStatuses: 'LetsadsSmsMessageStatus'
     letsadsSmsMessageStatusItem: 'LetsadsSmsMessageStatusItem'
     letsadsSmsMessageStatusItems: 'LetsadsSmsMessageStatusItem'
-    letter: 'Letter'
-    letters: 'Letter'
-    log: 'Log'
-    logs: 'Log'
     logedIn: 'LogedIn'
     logedIns: 'LogedIn'
     message: 'Message'
@@ -1306,6 +1302,10 @@ interface NexusPrismaOutputs {
     votes: 'Vote'
     world: 'World'
     worlds: 'World'
+    letter: 'Letter'
+    letters: 'Letter'
+    log: 'Log'
+    logs: 'Log'
   },
   Mutation: {
     createOneUser: 'User'
@@ -1458,18 +1458,6 @@ interface NexusPrismaOutputs {
     deleteOneLetsadsSmsMessageStatusItem: 'LetsadsSmsMessageStatusItem'
     deleteManyLetsadsSmsMessageStatusItem: 'AffectedRowsOutput'
     upsertOneLetsadsSmsMessageStatusItem: 'LetsadsSmsMessageStatusItem'
-    createOneLetter: 'Letter'
-    updateOneLetter: 'Letter'
-    updateManyLetter: 'AffectedRowsOutput'
-    deleteOneLetter: 'Letter'
-    deleteManyLetter: 'AffectedRowsOutput'
-    upsertOneLetter: 'Letter'
-    createOneLog: 'Log'
-    updateOneLog: 'Log'
-    updateManyLog: 'AffectedRowsOutput'
-    deleteOneLog: 'Log'
-    deleteManyLog: 'AffectedRowsOutput'
-    upsertOneLog: 'Log'
     createOneLogedIn: 'LogedIn'
     updateOneLogedIn: 'LogedIn'
     updateManyLogedIn: 'AffectedRowsOutput'
@@ -1710,6 +1698,18 @@ interface NexusPrismaOutputs {
     deleteOneWorld: 'World'
     deleteManyWorld: 'AffectedRowsOutput'
     upsertOneWorld: 'World'
+    createOneLetter: 'Letter'
+    updateOneLetter: 'Letter'
+    updateManyLetter: 'AffectedRowsOutput'
+    deleteOneLetter: 'Letter'
+    deleteManyLetter: 'AffectedRowsOutput'
+    upsertOneLetter: 'Letter'
+    createOneLog: 'Log'
+    updateOneLog: 'Log'
+    updateManyLog: 'AffectedRowsOutput'
+    deleteOneLog: 'Log'
+    deleteManyLog: 'AffectedRowsOutput'
+    upsertOneLog: 'Log'
   },
   User: {
     id: 'String'
@@ -2164,32 +2164,6 @@ interface NexusPrismaOutputs {
     sms_id: 'Int'
     Status: 'String'
     LetsadsSmsMessageStatus: 'LetsadsSmsMessageStatus'
-  }
-  Letter: {
-    id: 'String'
-    email: 'String'
-    subject: 'String'
-    message: 'String'
-    status: 'LetterStatus'
-    rank: 'Int'
-    deleteOnSend: 'Boolean'
-    replyTo: 'String'
-    returnTo: 'String'
-    createdAt: 'DateTime'
-    updatedAt: 'DateTime'
-    User: 'String'
-    User_LetterToUser: 'User'
-  }
-  Log: {
-    id: 'String'
-    level: 'LogLevel'
-    objectType: 'String'
-    message: 'String'
-    stack: 'String'
-    Import: 'String'
-    createdAt: 'DateTime'
-    updatedAt: 'DateTime'
-    Import_ImportToLog: 'Import'
   }
   LogedIn: {
     id: 'String'
@@ -2758,6 +2732,33 @@ interface NexusPrismaOutputs {
     Message: 'Message'
     Player: 'Player'
   }
+  Letter: {
+    id: 'String'
+    email: 'String'
+    subject: 'String'
+    message: 'String'
+    status: 'LetterStatus'
+    errorMessage: 'String'
+    rank: 'Int'
+    deleteOnSend: 'Boolean'
+    replyTo: 'String'
+    returnTo: 'String'
+    createdAt: 'DateTime'
+    updatedAt: 'DateTime'
+    User: 'String'
+    User_LetterToUser: 'User'
+  }
+  Log: {
+    id: 'String'
+    level: 'LogLevel'
+    objectType: 'String'
+    message: 'String'
+    stack: 'String'
+    Import: 'String'
+    createdAt: 'DateTime'
+    updatedAt: 'DateTime'
+    Import_ImportToLog: 'Import'
+  }
 }
 
 // Helper to gather all methods relative to a model
@@ -2787,8 +2788,6 @@ interface NexusPrismaMethods {
   Inventory: Typegen.NexusPrismaFields<'Inventory'>
   LetsadsSmsMessageStatus: Typegen.NexusPrismaFields<'LetsadsSmsMessageStatus'>
   LetsadsSmsMessageStatusItem: Typegen.NexusPrismaFields<'LetsadsSmsMessageStatusItem'>
-  Letter: Typegen.NexusPrismaFields<'Letter'>
-  Log: Typegen.NexusPrismaFields<'Log'>
   LogedIn: Typegen.NexusPrismaFields<'LogedIn'>
   Message: Typegen.NexusPrismaFields<'Message'>
   Notice: Typegen.NexusPrismaFields<'Notice'>
@@ -2829,6 +2828,8 @@ interface NexusPrismaMethods {
   UserTechnology: Typegen.NexusPrismaFields<'UserTechnology'>
   Vote: Typegen.NexusPrismaFields<'Vote'>
   World: Typegen.NexusPrismaFields<'World'>
+  Letter: Typegen.NexusPrismaFields<'Letter'>
+  Log: Typegen.NexusPrismaFields<'Log'>
   Query: Typegen.NexusPrismaFields<'Query'>
   Mutation: Typegen.NexusPrismaFields<'Mutation'>
 }

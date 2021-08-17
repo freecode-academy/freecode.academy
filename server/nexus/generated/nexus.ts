@@ -1121,6 +1121,7 @@ export interface NexusGenInputs {
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     deleteOnSend?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     email?: NexusGenInputs['StringFilter'] | null // StringFilter
+    errorMessage?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     message?: NexusGenInputs['StringFilter'] | null // StringFilter
     rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter

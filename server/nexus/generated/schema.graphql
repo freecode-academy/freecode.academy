@@ -1313,6 +1313,7 @@ input LetterWhereInput {
   createdAt: DateTimeFilter
   deleteOnSend: BoolNullableFilter
   email: StringFilter
+  errorMessage: StringNullableFilter
   id: StringFilter
   message: StringFilter
   rank: IntNullableFilter

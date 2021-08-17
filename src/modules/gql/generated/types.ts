@@ -1340,6 +1340,7 @@ export interface LetterWhereInput {
   createdAt?: Maybe<DateTimeFilter>;
   deleteOnSend?: Maybe<BoolNullableFilter>;
   email?: Maybe<StringFilter>;
+  errorMessage?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
   message?: Maybe<StringFilter>;
   rank?: Maybe<IntNullableFilter>;

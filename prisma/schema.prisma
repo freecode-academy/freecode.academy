@@ -1473,7 +1473,7 @@ model Letter {
   status            LetterStatus @default(value: Created)
   errorMessage      String?      @db.Text
   rank              Int?
-  deleteOnSend      Boolean?
+  deleteOnSend      Boolean      @default(value: true)
   replyTo           String?      @db.MediumText
   returnTo          String?      @db.MediumText
   createdAt         DateTime     @default(now("0")) @db.DateTime("0")

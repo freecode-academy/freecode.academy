@@ -2,6 +2,7 @@ import { Prisma, Resource } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
 
 import { uid } from 'uid'
+import { createNotifications } from './helpers/createNotifications'
 import { prepareContent } from './helpers/prepareContent'
 import { prepareName, prepareUri } from './helpers/prepareUri'
 
@@ -37,12 +38,6 @@ export const createResource = async (
     data,
   })
 
-  /**
-   * Отправляем уведомления
-   */
-  // TODO Restore
-  // createNotifications(result);
-
   const uriData = await prepareUri(args, undefined, ctx)
 
   prepareContent(args.data, data)
@@ -75,7 +70,14 @@ export const createResource = async (
     },
   }
 
-  return await ctx.prisma.resource.create({
+  const result = await ctx.prisma.resource.create({
     data: createData,
   })
+
+  /**
+   * Отправляем уведомления
+   */
+  createNotifications(result, ctx)
+
+  return result
 }

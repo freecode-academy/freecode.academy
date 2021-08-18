@@ -1311,7 +1311,7 @@ input LetterWhereInput {
   User: StringNullableFilter
   User_LetterToUser: UserWhereInput
   createdAt: DateTimeFilter
-  deleteOnSend: BoolNullableFilter
+  deleteOnSend: BoolFilter
   email: StringFilter
   errorMessage: StringNullableFilter
   id: StringFilter
@@ -3891,6 +3891,7 @@ input UserUpdateInput {
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
   address: String
+  email: String
   fullname: String
   image: String
   password: String

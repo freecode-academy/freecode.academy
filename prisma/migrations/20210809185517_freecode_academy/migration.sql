@@ -450,7 +450,7 @@ CREATE TABLE `Letter` (
     `message` MEDIUMTEXT NOT NULL,
     `status` ENUM('Created', 'Processing', 'Sended', 'Error') NOT NULL DEFAULT 'Created',
     `rank` INTEGER,
-    `deleteOnSend` BOOLEAN,
+    `deleteOnSend` BOOLEAN NOT NULL DEFAULT true,
     `replyTo` MEDIUMTEXT,
     `returnTo` MEDIUMTEXT,
     `createdAt` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),

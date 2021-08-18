@@ -1338,7 +1338,7 @@ export interface LetterWhereInput {
   User?: Maybe<StringNullableFilter>;
   User_LetterToUser?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
-  deleteOnSend?: Maybe<BoolNullableFilter>;
+  deleteOnSend?: Maybe<BoolFilter>;
   email?: Maybe<StringFilter>;
   errorMessage?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
@@ -4180,6 +4180,7 @@ export interface UserUpdateInput {
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
   address?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
   fullname?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;

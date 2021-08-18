@@ -330,6 +330,7 @@ export const UserConnection = objectType({
 export const UserUpdateInput = inputObjectType({
   name: 'UserUpdateInput',
   definition(t) {
+    t.string('email')
     t.string('username')
     t.string('phone')
     t.string('fullname')

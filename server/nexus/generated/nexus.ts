@@ -1119,7 +1119,7 @@ export interface NexusGenInputs {
     User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     User_LetterToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-    deleteOnSend?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    deleteOnSend?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     email?: NexusGenInputs['StringFilter'] | null // StringFilter
     errorMessage?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
@@ -2869,6 +2869,7 @@ export interface NexusGenInputs {
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
     address?: string | null // String
+    email?: string | null // String
     fullname?: string | null // String
     image?: string | null // String
     password?: string | null // String

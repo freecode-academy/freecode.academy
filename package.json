@@ -94,6 +94,7 @@
     "ethereumjs-util": "^7.0.7",
     "express": "^4.17.1",
     "graphql": "^15.4.0",
+    "generate-password": "^1.6.1",
     "graphql-iso-date": "^3.6.1",
     "graphql-middleware": "^6.0.10",
     "graphql-shield": "^7.5.0",

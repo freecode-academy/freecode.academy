@@ -1430,12 +1430,14 @@ export interface Mutation {
   createCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
   createCommentProcessor: ResourceResponse;
   createProjectProcessor: ProjectResponse;
+  createResetPasswordProcessor: ResetPasswordResponse;
   createTaskProcessor: TaskResponse;
   createTaskTechnologyProcessor: TaskTechnologyResponse;
   createTimerProcessor: TimerResponse;
   createTopicProcessor: ResourceResponse;
   createUserTechnologyProcessor: UserTechnologyResponse;
   deleteNotice?: Maybe<Notice>;
+  resetPasswordProcessor: AuthPayload;
   /** Авторизация */
   signin: AuthPayload;
   /** Регистрация */
@@ -1480,6 +1482,11 @@ export type MutationCreateProjectProcessorArgs = {
 };
 
 
+export type MutationCreateResetPasswordProcessorArgs = {
+  where: UserWhereUniqueInput;
+};
+
+
 export type MutationCreateTaskProcessorArgs = {
   data: TaskCreateInput;
 };
@@ -1507,6 +1514,12 @@ export type MutationCreateUserTechnologyProcessorArgs = {
 
 export type MutationDeleteNoticeArgs = {
   where: NoticeWhereUniqueInput;
+};
+
+
+export type MutationResetPasswordProcessorArgs = {
+  data: ResetPasswordInput;
+  where: ResetPasswordWhereUniqueInput;
 };
 
 
@@ -2713,24 +2726,46 @@ export interface RequestError {
   message: Scalars['String'];
 }
 
+export interface ResetPassword {
+  __typename?: 'ResetPassword';
+  foo?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+}
+
+export interface ResetPasswordInput {
+  code: Scalars['ID'];
+}
+
 export interface ResetPasswordListRelationFilter {
   every?: Maybe<ResetPasswordWhereInput>;
   none?: Maybe<ResetPasswordWhereInput>;
   some?: Maybe<ResetPasswordWhereInput>;
 }
 
+export interface ResetPasswordResponse {
+  __typename?: 'ResetPasswordResponse';
+  data?: Maybe<ResetPassword>;
+  errors: Array<RequestError>;
+  message: Scalars['String'];
+  success: Scalars['Boolean'];
+}
+
 export interface ResetPasswordWhereInput {
   AND?: Maybe<Array<ResetPasswordWhereInput>>;
   NOT?: Maybe<Array<ResetPasswordWhereInput>>;
   OR?: Maybe<Array<ResetPasswordWhereInput>>;
-  User?: Maybe<StringNullableFilter>;
+  User?: Maybe<StringFilter>;
   User_ResetPasswordToUser?: Maybe<UserWhereInput>;
-  code?: Maybe<StringNullableFilter>;
+  code?: Maybe<StringFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
-  password?: Maybe<StringNullableFilter>;
+  password?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   validTill?: Maybe<DateTimeNullableFilter>;
+}
+
+export interface ResetPasswordWhereUniqueInput {
+  id?: Maybe<Scalars['ID']>;
 }
 
 export interface Resource {
@@ -4231,7 +4266,7 @@ export interface UserWhereInput {
   ProjectTask?: Maybe<ProjectTaskListRelationFilter>;
   Project_PrismaProjectUsers?: Maybe<ProjectListRelationFilter>;
   Project_ProjectToUser?: Maybe<ProjectListRelationFilter>;
-  ResetPassword?: Maybe<ResetPasswordListRelationFilter>;
+  ResetPasswords?: Maybe<ResetPasswordListRelationFilter>;
   Resource?: Maybe<ResourceListRelationFilter>;
   ResourceTag?: Maybe<ResourceTagListRelationFilter>;
   Route?: Maybe<RouteListRelationFilter>;

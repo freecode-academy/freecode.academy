@@ -66,7 +66,7 @@ model User {
   ProjectMember_ProjectMember_CreatedByToUser           ProjectMember[]           @relation("ProjectMember_CreatedByToUser")
   ProjectMember_ProjectMember_UserToUser                ProjectMember[]           @relation("ProjectMember_UserToUser")
   ProjectTask                                           ProjectTask[]
-  ResetPassword                                         ResetPassword[]
+  ResetPasswords                                         ResetPassword[]
   Resource                                              Resource[]
   ResourceTag                                           ResourceTag[]
   Route                                                 Route[]
@@ -834,11 +834,11 @@ model ResetPassword {
   id                       String    @id @default(cuid()) @db.VarChar(32)
   createdAt                DateTime  @default(now("0")) @db.DateTime("0")
   updatedAt                DateTime  @default(now("0")) @updatedAt @db.DateTime("0")
-  code                     String?   @unique @db.VarChar(32)
-  password                 String?   @db.MediumText
+  code                     String    @db.VarChar(32)
+  password                 String
   validTill                DateTime?
-  User                     String?   @db.VarChar(32)
-  User_ResetPasswordToUser User?     @relation(fields: [User], references: [id])
+  User                     String    @db.VarChar(32)
+  User_ResetPasswordToUser User      @relation(fields: [User], references: [id])
 
   @@index([User], name: "User")
 }
@@ -1466,20 +1466,20 @@ model World {
 }
 
 model Letter {
-  id                String       @id @default(cuid()) @db.VarChar(32)
-  email             String       @db.MediumText
-  subject           String       @db.MediumText
-  message           String       @db.MediumText
-  status            LetterStatus @default(value: Created)
-  errorMessage      String?      @db.Text
-  rank              Int?
-  deleteOnSend      Boolean      @default(value: true)
-  replyTo           String?      @db.MediumText
-  returnTo          String?      @db.MediumText
-  createdAt         DateTime     @default(now("0")) @db.DateTime("0")
-  updatedAt         DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
-  User              String?      @db.VarChar(32)
-  User_LetterToUser User?        @relation(fields: [User], references: [id])
+id                String       @id @default(cuid()) @db.VarChar(32)
+email             String       @db.MediumText
+subject           String       @db.MediumText
+message           String       @db.MediumText
+status            LetterStatus @default(value: Created)
+errorMessage      String?      @db.Text
+rank              Int?
+deleteOnSend      Boolean      @default(value: true)
+replyTo           String?      @db.MediumText
+returnTo          String?      @db.MediumText
+createdAt         DateTime     @default(now("0")) @db.DateTime("0")
+updatedAt         DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
+User              String?      @db.VarChar(32)
+User_LetterToUser User?        @relation(fields: [User], references: [id])
 
   @@index([User], name: "User")
 }

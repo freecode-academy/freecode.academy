@@ -180,19 +180,21 @@ export type FileFieldPolicy = {
 	size?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createProjectProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserTechnologyProcessor' | 'deleteNotice' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserTechnologyProcessor' | 'deleteNotice' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	createBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createChatMessageProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createCodeChallengeCompletionProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createCommentProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createProjectProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
+	createResetPasswordProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTaskProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTaskTechnologyProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTimerProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTopicProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createUserTechnologyProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteNotice?: FieldPolicy<any> | FieldReadFunction<any>,
+	resetPasswordProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	signin?: FieldPolicy<any> | FieldReadFunction<any>,
 	signup?: FieldPolicy<any> | FieldReadFunction<any>,
 	singleUpload?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -354,6 +356,18 @@ export type RequestErrorKeySpecifier = ('key' | 'message' | RequestErrorKeySpeci
 export type RequestErrorFieldPolicy = {
 	key?: FieldPolicy<any> | FieldReadFunction<any>,
 	message?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type ResetPasswordKeySpecifier = ('foo' | 'id' | ResetPasswordKeySpecifier)[];
+export type ResetPasswordFieldPolicy = {
+	foo?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type ResetPasswordResponseKeySpecifier = ('data' | 'errors' | 'message' | 'success' | ResetPasswordResponseKeySpecifier)[];
+export type ResetPasswordResponseFieldPolicy = {
+	data?: FieldPolicy<any> | FieldReadFunction<any>,
+	errors?: FieldPolicy<any> | FieldReadFunction<any>,
+	message?: FieldPolicy<any> | FieldReadFunction<any>,
+	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type ResourceKeySpecifier = ('Blog' | 'CodeChallenge' | 'Comments' | 'CreatedBy' | 'Image' | 'Tags' | 'Task' | 'Topic' | 'class_key' | 'commentOldID' | 'components' | 'content' | 'contentText' | 'createdAt' | 'deleted' | 'hidemenu' | 'id' | 'isfolder' | 'longtitle' | 'mockUpdate' | 'name' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'positiveVotesCount' | 'published' | 'rating' | 'searchable' | 'template' | 'type' | 'updatedAt' | 'uri' | ResourceKeySpecifier)[];
 export type ResourceFieldPolicy = {
@@ -748,6 +762,14 @@ export type TypedTypePolicies = TypePolicies & {
 	RequestError?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | RequestErrorKeySpecifier | (() => undefined | RequestErrorKeySpecifier),
 		fields?: RequestErrorFieldPolicy,
+	},
+	ResetPassword?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | ResetPasswordKeySpecifier | (() => undefined | ResetPasswordKeySpecifier),
+		fields?: ResetPasswordFieldPolicy,
+	},
+	ResetPasswordResponse?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | ResetPasswordResponseKeySpecifier | (() => undefined | ResetPasswordResponseKeySpecifier),
+		fields?: ResetPasswordResponseFieldPolicy,
 	},
 	Resource?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | ResourceKeySpecifier | (() => undefined | ResourceKeySpecifier),

@@ -1406,6 +1406,9 @@ type Mutation {
   ): CodeChallengeCompletionResponse!
   createCommentProcessor(data: CommentCreateInput!): ResourceResponse!
   createProjectProcessor(data: ProjectCreateInput!): ProjectResponse!
+  createResetPasswordProcessor(
+    where: UserWhereUniqueInput!
+  ): ResetPasswordResponse!
   createTaskProcessor(data: TaskCreateInput!): TaskResponse!
   createTaskTechnologyProcessor(
     data: TaskTechnologyCreateInput!
@@ -1416,6 +1419,10 @@ type Mutation {
     data: UserTechnologyCreateInput!
   ): UserTechnologyResponse!
   deleteNotice(where: NoticeWhereUniqueInput!): Notice
+  resetPasswordProcessor(
+    data: ResetPasswordInput!
+    where: ResetPasswordWhereUniqueInput!
+  ): AuthPayload!
 
   """
   Авторизация
@@ -2414,24 +2421,44 @@ type RequestError {
   message: String!
 }
 
+type ResetPassword {
+  foo: String
+  id: ID!
+}
+
+input ResetPasswordInput {
+  code: ID!
+}
+
 input ResetPasswordListRelationFilter {
   every: ResetPasswordWhereInput
   none: ResetPasswordWhereInput
   some: ResetPasswordWhereInput
 }
 
+type ResetPasswordResponse {
+  data: ResetPassword
+  errors: [RequestError!]!
+  message: String!
+  success: Boolean!
+}
+
 input ResetPasswordWhereInput {
   AND: [ResetPasswordWhereInput!]
   NOT: [ResetPasswordWhereInput!]
   OR: [ResetPasswordWhereInput!]
-  User: StringNullableFilter
+  User: StringFilter
   User_ResetPasswordToUser: UserWhereInput
-  code: StringNullableFilter
+  code: StringFilter
   createdAt: DateTimeFilter
   id: StringFilter
-  password: StringNullableFilter
+  password: StringFilter
   updatedAt: DateTimeFilter
   validTill: DateTimeNullableFilter
+}
+
+input ResetPasswordWhereUniqueInput {
+  id: ID
 }
 
 type Resource {
@@ -3942,7 +3969,7 @@ input UserWhereInput {
   ProjectTask: ProjectTaskListRelationFilter
   Project_PrismaProjectUsers: ProjectListRelationFilter
   Project_ProjectToUser: ProjectListRelationFilter
-  ResetPassword: ResetPasswordListRelationFilter
+  ResetPasswords: ResetPasswordListRelationFilter
   Resource: ResourceListRelationFilter
   ResourceTag: ResourceTagListRelationFilter
   Route: RouteListRelationFilter

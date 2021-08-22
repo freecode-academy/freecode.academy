@@ -3,7 +3,6 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
-import gql from 'graphql-tag'
 
 import { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
 
@@ -16,6 +15,10 @@ import AuthForm from '../..'
 import { AuthUsersProps, AuthUsersState } from './interfaces'
 import {
   AuthFormUsersConnectionUserFragment,
+  CreateResetPasswordProcessorDocument,
+  CreateResetPasswordProcessorMutationVariables,
+  ResetPasswordProcessorDocument,
+  ResetPasswordProcessorMutationOptions,
   SigninDocument,
   SigninMutationResult,
 } from 'src/modules/gql/generated'
@@ -104,45 +107,7 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
       .catch(console.error)
   }
 
-  async resetPassword(options: any) {
-    const {
-      resetPasswordProcessor = `
-        mutation resetPasswordProcessor(
-          $where: UserWhereUniqueInput!
-          $data:ResetPasswordInput!
-        ){
-          response: resetPasswordProcessor(
-            where: $where
-            data:$data
-          ){
-            success
-            message
-            errors{
-              key
-              message
-            }
-            token
-            data{
-              ...user
-            }
-          }
-        }
-        
-        
-        fragment user on User {
-          id
-          username
-          email
-          phone
-          showEmail
-          showPhone
-          sudo
-          hasEmail
-          hasPhone
-        }
-      `,
-    } = this.context.query || {}
-
+  async resetPassword(options: ResetPasswordProcessorMutationOptions) {
     const { resetPasswordInRequest } = this.state
 
     if (resetPasswordInRequest) {
@@ -154,7 +119,7 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
     })
 
     const result = await this.mutate({
-      mutation: gql(resetPasswordProcessor),
+      mutation: ResetPasswordProcessorDocument,
       ...options,
     })
       .then((r: any) => {
@@ -375,7 +340,7 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
           this.resetPassword({
             variables: {
               where: {
-                id: userId,
+                id: resetPasswordId,
               },
               data: {
                 code: resetPasswordCode || '',
@@ -433,41 +398,15 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
             size="small"
             // eslint-disable-next-line react/jsx-no-bind
             onClick={async () => {
-              const {
-                createResetPasswordProcessor = `
-                mutation createResetPasswordProcessor(
-                  $data:ResetPasswordCreateInput!
-                ){
-                  response: createResetPasswordProcessor(
-                    data:$data
-                  ){
-                    success
-                    message
-                    errors{
-                      key
-                      message
-                    }
-                    data{
-                      id
-                      code
-                      validTill
-                    }
-                  }
-                }
-              `,
-              } = this.context.query || {}
+              const variables: CreateResetPasswordProcessorMutationVariables = {
+                where: {
+                  id: userId,
+                },
+              }
 
               this.mutate({
-                mutation: gql(createResetPasswordProcessor),
-                variables: {
-                  data: {
-                    User: {
-                      connect: {
-                        id: userId,
-                      },
-                    },
-                  },
-                },
+                mutation: CreateResetPasswordProcessorDocument,
+                variables,
               }).then((r: any) => {
                 const { id: resetPasswordId } =
                   (r.data.response && r.data.response.data) || {}

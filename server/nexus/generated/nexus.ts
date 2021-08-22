@@ -28,6 +28,7 @@ import type {
   CodeChallengeBlock,
   Tag,
   TaskTechnology,
+  ResetPassword,
 } from '@prisma/client'
 import type { core } from 'nexus'
 declare global {
@@ -1747,6 +1748,10 @@ export interface NexusGenInputs {
     oldID?: number | null // Int
     sequence?: number | null // Int
   }
+  ResetPasswordInput: {
+    // input type
+    code: string // ID!
+  }
   ResetPasswordListRelationFilter: {
     // input type
     every?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
@@ -1758,14 +1763,18 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['ResetPasswordWhereInput'][] | null // [ResetPasswordWhereInput!]
     NOT?: NexusGenInputs['ResetPasswordWhereInput'][] | null // [ResetPasswordWhereInput!]
     OR?: NexusGenInputs['ResetPasswordWhereInput'][] | null // [ResetPasswordWhereInput!]
-    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User?: NexusGenInputs['StringFilter'] | null // StringFilter
     User_ResetPasswordToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    code?: NexusGenInputs['StringFilter'] | null // StringFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    password?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    password?: NexusGenInputs['StringFilter'] | null // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     validTill?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+  }
+  ResetPasswordWhereUniqueInput: {
+    // input type
+    id?: string | null // ID
   }
   ResourceListRelationFilter: {
     // input type
@@ -2962,7 +2971,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['ProjectListRelationFilter']
       | null // ProjectListRelationFilter
     Project_ProjectToUser?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
-    ResetPassword?: NexusGenInputs['ResetPasswordListRelationFilter'] | null // ResetPasswordListRelationFilter
+    ResetPasswords?: NexusGenInputs['ResetPasswordListRelationFilter'] | null // ResetPasswordListRelationFilter
     Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
     ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
     Route?: NexusGenInputs['RouteListRelationFilter'] | null // RouteListRelationFilter
@@ -3321,6 +3330,14 @@ export interface NexusGenObjects {
     key: string // String!
     message: string // String!
   }
+  ResetPassword: ResetPassword
+  ResetPasswordResponse: {
+    // root type
+    data?: NexusGenRootTypes['ResetPassword'] | null // ResetPassword
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
+  }
   Resource: Resource
   ResourceConnection: {
     // root type
@@ -3628,12 +3645,14 @@ export interface NexusGenFieldTypes {
     createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     createCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
+    createResetPasswordProcessor: NexusGenRootTypes['ResetPasswordResponse'] // ResetPasswordResponse!
     createTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
     createTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse'] // TaskTechnologyResponse!
     createTimerProcessor: NexusGenRootTypes['TimerResponse'] // TimerResponse!
     createTopicProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createUserTechnologyProcessor: NexusGenRootTypes['UserTechnologyResponse'] // UserTechnologyResponse!
     deleteNotice: NexusGenRootTypes['Notice'] | null // Notice
+    resetPasswordProcessor: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     singleUpload: NexusGenRootTypes['File'] | null // File
@@ -3795,6 +3814,18 @@ export interface NexusGenFieldTypes {
     // field return type
     key: string // String!
     message: string // String!
+  }
+  ResetPassword: {
+    // field return type
+    foo: string | null // String
+    id: string // ID!
+  }
+  ResetPasswordResponse: {
+    // field return type
+    data: NexusGenRootTypes['ResetPassword'] | null // ResetPassword
+    errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
+    message: string // String!
+    success: boolean // Boolean!
   }
   Resource: {
     // field return type
@@ -4242,12 +4273,14 @@ export interface NexusGenFieldTypeNames {
     createCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     createCommentProcessor: 'ResourceResponse'
     createProjectProcessor: 'ProjectResponse'
+    createResetPasswordProcessor: 'ResetPasswordResponse'
     createTaskProcessor: 'TaskResponse'
     createTaskTechnologyProcessor: 'TaskTechnologyResponse'
     createTimerProcessor: 'TimerResponse'
     createTopicProcessor: 'ResourceResponse'
     createUserTechnologyProcessor: 'UserTechnologyResponse'
     deleteNotice: 'Notice'
+    resetPasswordProcessor: 'AuthPayload'
     signin: 'AuthPayload'
     signup: 'AuthPayload'
     singleUpload: 'File'
@@ -4409,6 +4442,18 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     key: 'String'
     message: 'String'
+  }
+  ResetPassword: {
+    // field return type name
+    foo: 'String'
+    id: 'ID'
+  }
+  ResetPasswordResponse: {
+    // field return type name
+    data: 'ResetPassword'
+    errors: 'RequestError'
+    message: 'String'
+    success: 'Boolean'
   }
   Resource: {
     // field return type name
@@ -4703,6 +4748,10 @@ export interface NexusGenArgTypes {
       // args
       data: NexusGenInputs['ProjectCreateInput'] // ProjectCreateInput!
     }
+    createResetPasswordProcessor: {
+      // args
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
+    }
     createTaskProcessor: {
       // args
       data: NexusGenInputs['TaskCreateInput'] // TaskCreateInput!
@@ -4726,6 +4775,11 @@ export interface NexusGenArgTypes {
     deleteNotice: {
       // args
       where: NexusGenInputs['NoticeWhereUniqueInput'] // NoticeWhereUniqueInput!
+    }
+    resetPasswordProcessor: {
+      // args
+      data: NexusGenInputs['ResetPasswordInput'] // ResetPasswordInput!
+      where: NexusGenInputs['ResetPasswordWhereUniqueInput'] // ResetPasswordWhereUniqueInput!
     }
     signin: {
       // args

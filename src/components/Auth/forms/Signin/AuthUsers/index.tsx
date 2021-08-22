@@ -340,9 +340,9 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
           this.resetPassword({
             variables: {
               where: {
-                id: resetPasswordId,
-              },
-              data: {
+                User: {
+                  id: userId,
+                },
                 code: resetPasswordCode || '',
               },
             },

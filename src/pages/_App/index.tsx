@@ -81,7 +81,11 @@ const App: MainApp = ({ Component, pageProps }) => {
        */
       const subscriptionClient = getSubscriptionClient()
 
-      subscriptionClient?.close(false, false)
+      try {
+        subscriptionClient?.close(false, false)
+      } catch (error) {
+        console.error(error)
+      }
 
       await apolloClient.resetStore().catch(console.error)
     },

@@ -14,8 +14,7 @@ import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type ResetPasswordProcessorMutationVariables = Types.Exact<{
-  data: Types.ResetPasswordInput;
-  where: Types.ResetPasswordWhereUniqueInput;
+  where: Types.ResetPasswordProcessorWhereInput;
 }>;
 
 
@@ -26,8 +25,8 @@ export type ResetPasswordProcessorMutation = { __typename?: 'Mutation', response
 
 
 export const ResetPasswordProcessorDocument = gql`
-    mutation resetPasswordProcessor($data: ResetPasswordInput!, $where: ResetPasswordWhereUniqueInput!) {
-  response: resetPasswordProcessor(where: $where, data: $data) {
+    mutation resetPasswordProcessor($where: ResetPasswordProcessorWhereInput!) {
+  response: resetPasswordProcessor(where: $where) {
     success
     message
     errors {
@@ -56,7 +55,6 @@ export type ResetPasswordProcessorMutationFn = Apollo.MutationFunction<ResetPass
  * @example
  * const [resetPasswordProcessorMutation, { data, loading, error }] = useResetPasswordProcessorMutation({
  *   variables: {
- *      data: // value for 'data'
  *      where: // value for 'where'
  *   },
  * });

@@ -1748,15 +1748,16 @@ export interface NexusGenInputs {
     oldID?: number | null // Int
     sequence?: number | null // Int
   }
-  ResetPasswordInput: {
-    // input type
-    code: string // ID!
-  }
   ResetPasswordListRelationFilter: {
     // input type
     every?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
     none?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
     some?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
+  }
+  ResetPasswordProcessorWhereInput: {
+    // input type
+    User: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
+    code: string // ID!
   }
   ResetPasswordWhereInput: {
     // input type
@@ -4778,8 +4779,7 @@ export interface NexusGenArgTypes {
     }
     resetPasswordProcessor: {
       // args
-      data: NexusGenInputs['ResetPasswordInput'] // ResetPasswordInput!
-      where: NexusGenInputs['ResetPasswordWhereUniqueInput'] // ResetPasswordWhereUniqueInput!
+      where: NexusGenInputs['ResetPasswordProcessorWhereInput'] // ResetPasswordProcessorWhereInput!
     }
     signin: {
       // args

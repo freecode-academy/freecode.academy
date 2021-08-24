@@ -29,6 +29,8 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
 
   const context = useContext(Context)
 
+  const user = context?.user
+
   const challengeFile = context?.challengeData.file ?? null
   const challenge = context?.challenge
 
@@ -119,9 +121,10 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
         object={object}
         executeChallenge={executeChallenge}
         codeChallengeCompletion={codeChallengeCompletion}
+        user={user}
       />
     ),
-    [executeChallenge, object, codeChallengeCompletion]
+    [executeChallenge, object, codeChallengeCompletion, user]
   )
 
   const preview = useMemo(

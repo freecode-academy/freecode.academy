@@ -3,11 +3,12 @@ import React, { useCallback, useContext, useMemo } from 'react'
 // import { openModal, executeChallenge } from '../redux';
 import { ToolPanelProps } from './interfaces'
 
-import { ToolPanelStyled, Button, MenuItem } from './styles'
+import { ToolPanelStyled, MenuItem, ButtonStyled } from './styles'
 
 import DropdownButton from './DropdownButton'
 // import useExecuteChallenge from '../hooks/useExecuteChallenge'
 import Context from '../../../Context'
+import { ExecuteChallengeButton } from '../ExecuteChallengeButton'
 
 // const mapStateToProps = () => ({});
 // const mapDispatchToProps = dispatch =>
@@ -29,6 +30,7 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
   guideUrl,
   videoUrl,
   executeChallenge,
+  user,
 }) => {
   // const openHelpModal = useCallback(() => {
   //   return null;
@@ -38,15 +40,13 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
 
   const context = useContext(Context)
 
+  const codeChallengeCompletion = context?.codeChallengeCompletion
+
   const resetChallengeData = useCallback(() => {
     context?.resetChallengeData()
   }, [context])
 
   return useMemo(() => {
-    const codeChallengeCompletion = context?.codeChallengeCompletion
-
-    const user = context?.user
-
     const items: JSX.Element[] = []
 
     if (guideUrl) {
@@ -78,16 +78,15 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
 
     return (
       <ToolPanelStyled className={'tool-panel-group button-group'}>
-        <Button role="run-tests" onClick={executeChallenge}>
-          {user && !codeChallengeCompletion
-            ? 'Приступить к выполнению'
-            : 'Запустить тесты'}{' '}
-          (Ctrl+Enter)
-        </Button>
+        <ExecuteChallengeButton
+          executeChallenge={executeChallenge}
+          codeChallengeCompletion={codeChallengeCompletion}
+          user={user}
+        />
 
-        <Button className="btn-invert" onClick={resetChallengeData}>
+        <ButtonStyled className="btn-invert" onClick={resetChallengeData}>
           Восстановить код
-        </Button>
+        </ButtonStyled>
 
         {items.length ? (
           <DropdownButton>
@@ -102,12 +101,12 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
       </ToolPanelStyled>
     )
   }, [
-    context?.codeChallengeCompletion,
-    context?.user,
+    codeChallengeCompletion,
     executeChallenge,
     guideUrl,
     resetChallengeData,
     videoUrl,
+    user,
   ])
 }
 

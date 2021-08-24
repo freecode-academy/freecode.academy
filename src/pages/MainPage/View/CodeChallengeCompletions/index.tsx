@@ -62,6 +62,11 @@ const MainPageCodeChallengeCompletions: React.FC<MainPageCodeChallengeCompletion
                       key={n.id}
                       description={n.CodeChallenge.description || ''}
                       instructions={n.CodeChallenge.instructions || ''}
+                      /**
+                       * Не передаем здесь пользователя и выполнение, так как это не требуется
+                       */
+                      user={undefined}
+                      codeChallengeCompletion={undefined}
                     />
                   </div>
                 )

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import useExecuteChallenge from '../../../hooks/useExecuteChallenge'
+import { SidePanelProps } from '../interfaces'
 
 export interface ToolPanelProps {
   // isMobile?: boolean,
@@ -9,4 +10,5 @@ export interface ToolPanelProps {
   videoUrl: string | null | undefined
   guideUrl: string | null | undefined
   executeChallenge: ReturnType<typeof useExecuteChallenge>
+  user: SidePanelProps['user']
 }

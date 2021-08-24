@@ -1,6 +1,13 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const ChallengeDescriptionStyled = styled.div`
+type ChallengeDescriptionStyledProps = {
+  /**
+   * Размытый текст (пока не начали выполнение)
+   */
+  blur: boolean
+}
+
+export const ChallengeDescriptionStyled = styled.div<ChallengeDescriptionStyledProps>`
   &.challenge-instructions {
     blockquote {
       background-color: #f5f2f0;
@@ -25,4 +32,12 @@ export const ChallengeDescriptionStyled = styled.div`
   #instructions {
     font-size: 1rem;
   }
+
+  ${({ blur }) => {
+    if (blur) {
+      return css`
+        filter: blur(2px);
+      `
+    }
+  }}
 `

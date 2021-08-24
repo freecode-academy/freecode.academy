@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { Button } from '../styles'
+import { ButtonStyled } from '../styles'
 
 import { DropdownButtonStyled } from './styles'
 
@@ -38,7 +38,7 @@ const DropdownButton: React.FC = ({ children }) => {
 
   return (
     <DropdownButtonStyled>
-      <Button onClick={toggleOpener}>Помощь</Button>
+      <ButtonStyled onClick={toggleOpener}>Помощь</ButtonStyled>
       {content}
     </DropdownButtonStyled>
   )

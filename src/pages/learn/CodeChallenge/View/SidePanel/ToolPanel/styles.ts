@@ -12,7 +12,7 @@ const buttonStyles = css`
   border: 2px solid grey;
   /* border-radius: 2px; */
   color: #333;
-  line-height: 3rem;
+  line-height: 1.6rem;
 
   &:hover {
     background: #17528c;
@@ -20,7 +20,7 @@ const buttonStyles = css`
   }
 `
 
-export const Button = styled.button`
+export const ButtonStyled = styled.button`
   ${buttonStyles}
 `
 

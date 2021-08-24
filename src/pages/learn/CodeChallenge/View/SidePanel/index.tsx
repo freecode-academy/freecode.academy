@@ -13,6 +13,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
   showToolPanel,
   executeChallenge,
   codeChallengeCompletion,
+  user,
 }) => {
   const { forumTopicId, description, instructions, videoUrl } = object
 
@@ -80,6 +81,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
           // openResetModal={openResetModal}
           openVideoModal={openVideoModal}
           executeChallenge={executeChallenge}
+          user={user}
         />
       ) : null,
     [
@@ -89,6 +91,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
       openVideoModal,
       showToolPanel,
       videoUrl,
+      user,
     ]
   )
 
@@ -99,7 +102,11 @@ const SidePanel: React.FC<SidePanelProps> = ({
         role="complementary"
         tabIndex={-1}
       >
-        <ChallengeTitle codeChallengeCompletion={codeChallengeCompletion}>
+        <ChallengeTitle
+          codeChallengeCompletion={codeChallengeCompletion}
+          executeChallenge={executeChallenge}
+          user={user}
+        >
           {title}
         </ChallengeTitle>
 
@@ -109,6 +116,8 @@ const SidePanel: React.FC<SidePanelProps> = ({
           description={description || ''}
           instructions={instructions || ''}
           // section={section}
+          codeChallengeCompletion={codeChallengeCompletion}
+          user={user}
         />
         {toolPanel}
         <TestSuite tests={tests} />
@@ -116,12 +125,14 @@ const SidePanel: React.FC<SidePanelProps> = ({
     )
   }, [
     codeChallengeCompletion,
+    executeChallenge,
     title,
     breadCrumbs,
     description,
     instructions,
     toolPanel,
     tests,
+    user,
   ])
 }
 

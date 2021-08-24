@@ -9,10 +9,13 @@ const ChallengeDescription: React.FC<ChallengeDescriptionProps> = ({
   description,
   instructions,
   section,
+  user,
+  codeChallengeCompletion,
 }) => {
   return (
     <ChallengeDescriptionStyled
       className={`challenge-instructions${section ? ' ' + section : ''}`}
+      blur={!!(user && !codeChallengeCompletion)}
     >
       {description && <PrismFormatted text={description} />}
       {instructions && (

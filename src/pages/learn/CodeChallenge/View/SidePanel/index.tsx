@@ -7,15 +7,16 @@ import { SidePanelProps } from './interfaces'
 import { SidePanelStyled } from './styles'
 import TestSuite from './TestSuite'
 import ToolPanel from './ToolPanel'
+import { ToolPanelCompletions } from './ToolPanel/Completions'
 
 const SidePanel: React.FC<SidePanelProps> = ({
-  object,
+  codeChallenge,
   showToolPanel,
   executeChallenge,
   codeChallengeCompletion,
   user,
 }) => {
-  const { forumTopicId, description, instructions, videoUrl } = object
+  const { forumTopicId, description, instructions, videoUrl } = codeChallenge
 
   const openHelpModal = useCallback(() => {
     // eslint-disable-next-line no-console
@@ -30,10 +31,10 @@ const SidePanel: React.FC<SidePanelProps> = ({
     // console.log('openVideoModal')
   }, [])
 
-  const title = object.localeTitle || object.name
+  const title = codeChallenge.localeTitle || codeChallenge.name
 
   const breadCrumbs = useMemo(() => {
-    const block = object.Block
+    const block = codeChallenge.Block
 
     if (!block) {
       return null
@@ -58,13 +59,13 @@ const SidePanel: React.FC<SidePanelProps> = ({
         </Link>
       </div>
     )
-  }, [object.Block])
+  }, [codeChallenge.Block])
 
   // const isChallengeCompleted = true
 
   const tests = useMemo(
-    () => (object.tests || []) as CodeChallengeTest[],
-    [object.tests]
+    () => (codeChallenge.tests || []) as CodeChallengeTest[],
+    [codeChallenge.tests]
   )
 
   const toolPanel = useMemo(
@@ -121,18 +122,21 @@ const SidePanel: React.FC<SidePanelProps> = ({
         />
         {toolPanel}
         <TestSuite tests={tests} />
+
+        <ToolPanelCompletions codeChallenge={codeChallenge} />
       </SidePanelStyled>
     )
   }, [
     codeChallengeCompletion,
     executeChallenge,
+    user,
     title,
     breadCrumbs,
     description,
     instructions,
     toolPanel,
     tests,
-    user,
+    codeChallenge,
   ])
 }
 

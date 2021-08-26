@@ -334,6 +334,12 @@ input ChatRoomWhereUniqueInput {
 
 type CodeChallenge {
   Block: CodeChallengeBlock
+  CodeChallengeCompletions(
+    orderBy: [CodeChallengeCompletionOrderByInput!]
+    skip: Int
+    take: Int
+    where: CodeChallengeCompletionWhereInput
+  ): [CodeChallengeCompletion!]
   CreatedBy: User
   Topic: Resource
   challengeOrder: Int
@@ -528,7 +534,7 @@ input CodeChallengeWhereInput {
   AND: [CodeChallengeWhereInput!]
   Block: StringNullableFilter
   CodeChallengeBlock: CodeChallengeBlockWhereInput
-  CodeChallengeCompletion: CodeChallengeCompletionListRelationFilter
+  CodeChallengeCompletions: CodeChallengeCompletionListRelationFilter
   CreatedBy: StringNullableFilter
   NOT: [CodeChallengeWhereInput!]
   OR: [CodeChallengeWhereInput!]

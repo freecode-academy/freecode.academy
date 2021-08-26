@@ -392,7 +392,7 @@ const CodeChallengePage: Page = () => {
 
       <Context.Provider value={context}>
         <View
-          object={object}
+          codeChallenge={object}
           codeChallengeCompletion={context?.codeChallengeCompletion}
           tabIndex={tabIndex}
           topicId={topicId}

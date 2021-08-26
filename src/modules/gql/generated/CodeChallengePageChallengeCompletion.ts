@@ -13,24 +13,17 @@ import { UserNoNestingFragment } from './UserNoNesting';
 import { gql } from '@apollo/client';
 import { CodeChallengeCompletionNoNestingFragmentDoc } from './codeChallengeCompletionNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-export type CodeChallengeCompletionFragment = (
-  { __typename?: 'CodeChallengeCompletion', Task?: Types.Maybe<{ __typename?: 'Task', id: string, status: Types.TaskStatus }>, CodeChallenge?: Types.Maybe<{ __typename?: 'CodeChallenge', id: string }>, CreatedBy?: Types.Maybe<(
+export type CodeChallengePageChallengeCompletionFragment = (
+  { __typename?: 'CodeChallengeCompletion', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
   )> }
   & CodeChallengeCompletionNoNestingFragment
 );
 
-export const CodeChallengeCompletionFragmentDoc = gql`
-    fragment codeChallengeCompletion_ on CodeChallengeCompletion {
+export const CodeChallengePageChallengeCompletionFragmentDoc = gql`
+    fragment CodeChallengePageChallengeCompletion on CodeChallengeCompletion {
   ...codeChallengeCompletionNoNesting
-  Task {
-    id
-    status
-  }
-  CodeChallenge {
-    id
-  }
   CreatedBy {
     ...UserNoNesting
   }

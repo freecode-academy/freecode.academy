@@ -17,7 +17,7 @@ import useExecuteChallenge from '../hooks/useExecuteChallenge'
 const Preview = dynamic(import('./Preview'), { ssr: false })
 
 const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
-  const { object, codeChallengeCompletion, tabIndex, topicId } = props
+  const { codeChallenge, codeChallengeCompletion, tabIndex, topicId } = props
 
   // const onResize = () => {
   //   this.setState({ resizing: true })
@@ -42,19 +42,19 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
   )
 
   // const getChallengeFile = useCallback((): TestFile | null => {
-  //   const { files } = object
+  //   const { files } = codeChallenge
 
   //   return files && Array.isArray(files) ? files[0] : null
-  // }, [object])
+  // }, [codeChallenge])
 
   const hasPreview = useMemo(() => {
-    const { challengeType } = object
+    const { challengeType } = codeChallenge
 
     return (
       challengeType === challengeTypes.html ||
       challengeType === challengeTypes.modern
     )
-  }, [object])
+  }, [codeChallenge])
 
   const saveEditorContent = useCallback(() => {
     // eslint-disable-next-line no-console
@@ -118,13 +118,13 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
         // title={this.getBlockNameTitle()}
         // videoUrl={this.getVideoUrl()}
         className="full-height"
-        object={object}
+        codeChallenge={codeChallenge}
         executeChallenge={executeChallenge}
         codeChallengeCompletion={codeChallengeCompletion}
         user={user}
       />
     ),
-    [executeChallenge, object, codeChallengeCompletion, user]
+    [executeChallenge, codeChallenge, codeChallengeCompletion, user]
   )
 
   const preview = useMemo(

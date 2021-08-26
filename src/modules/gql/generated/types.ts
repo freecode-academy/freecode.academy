@@ -376,6 +376,7 @@ export interface ChatRoomWhereUniqueInput {
 export interface CodeChallenge {
   __typename?: 'CodeChallenge';
   Block?: Maybe<CodeChallengeBlock>;
+  CodeChallengeCompletions?: Maybe<Array<CodeChallengeCompletion>>;
   CreatedBy?: Maybe<User>;
   Topic?: Maybe<Resource>;
   challengeOrder?: Maybe<Scalars['Int']>;
@@ -405,6 +406,14 @@ export interface CodeChallenge {
   updatedAt: Scalars['DateTime'];
   videoUrl?: Maybe<Scalars['String']>;
 }
+
+
+export type CodeChallengeCodeChallengeCompletionsArgs = {
+  orderBy?: Maybe<Array<CodeChallengeCompletionOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<CodeChallengeCompletionWhereInput>;
+};
 
 export interface CodeChallengeBlock {
   __typename?: 'CodeChallengeBlock';
@@ -583,7 +592,7 @@ export interface CodeChallengeWhereInput {
   AND?: Maybe<Array<CodeChallengeWhereInput>>;
   Block?: Maybe<StringNullableFilter>;
   CodeChallengeBlock?: Maybe<CodeChallengeBlockWhereInput>;
-  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionListRelationFilter>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionListRelationFilter>;
   CreatedBy?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<CodeChallengeWhereInput>>;
   OR?: Maybe<Array<CodeChallengeWhereInput>>;

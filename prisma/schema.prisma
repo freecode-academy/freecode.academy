@@ -313,7 +313,7 @@ model CodeChallenge {
   CodeChallengeBlock      CodeChallengeBlock?       @relation(fields: [Block], references: [id])
   User                    User?                     @relation(fields: [CreatedBy], references: [id])
   Resource                Resource?                 @relation(fields: [Topic], references: [id])
-  CodeChallengeCompletion CodeChallengeCompletion[]
+  CodeChallengeCompletions CodeChallengeCompletion[]
 
   @@index([Block], name: "Block")
   @@index([CreatedBy], name: "CreatedBy")

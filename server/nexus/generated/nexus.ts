@@ -452,7 +452,7 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['CodeChallengeWhereInput'][] | null // [CodeChallengeWhereInput!]
     Block?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     CodeChallengeBlock?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
-    CodeChallengeCompletion?:
+    CodeChallengeCompletions?:
       | NexusGenInputs['CodeChallengeCompletionListRelationFilter']
       | null // CodeChallengeCompletionListRelationFilter
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -3555,6 +3555,9 @@ export interface NexusGenFieldTypes {
   CodeChallenge: {
     // field return type
     Block: NexusGenRootTypes['CodeChallengeBlock'] | null // CodeChallengeBlock
+    CodeChallengeCompletions:
+      | NexusGenRootTypes['CodeChallengeCompletion'][]
+      | null // [CodeChallengeCompletion!]
     CreatedBy: NexusGenRootTypes['User'] | null // User
     Topic: NexusGenRootTypes['Resource'] | null // Resource
     challengeOrder: number | null // Int
@@ -4183,6 +4186,7 @@ export interface NexusGenFieldTypeNames {
   CodeChallenge: {
     // field return type name
     Block: 'CodeChallengeBlock'
+    CodeChallengeCompletions: 'CodeChallengeCompletion'
     CreatedBy: 'User'
     Topic: 'Resource'
     challengeOrder: 'Int'
@@ -4712,6 +4716,15 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  CodeChallenge: {
+    CodeChallengeCompletions: {
+      // args
+      orderBy?: NexusGenInputs['CodeChallengeCompletionOrderByInput'][] | null // [CodeChallengeCompletionOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
+    }
+  }
   CodeChallengeBlock: {
     Challenges: {
       // args

@@ -16,7 +16,7 @@ jest.mock('@apollo/client/react/hooks', () => {
       switch (query.definitions[0].name.value) {
         case 'codeChallenge':
           {
-            const challenge: CodeChallengeViewProps['object'] = {
+            const challenge: CodeChallengeViewProps['codeChallenge'] = {
               __typename: 'CodeChallenge',
               id: 'bd7123c9c441eddfaeb4bdef',
               CreatedBy: {

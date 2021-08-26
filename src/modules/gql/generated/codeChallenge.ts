@@ -8,11 +8,9 @@
 
 import * as Types from './types';
 
-import { CodeChallengeFragment } from './codeChallenge_';
-import { CodeChallengeWithBlocksFragment } from './codeChallengeWithBlocks_';
+import { CodeChallengePageFragment } from './CodeChallengePage';
 import { gql } from '@apollo/client';
-import { CodeChallengeFragmentDoc } from './codeChallenge_';
-import { CodeChallengeWithBlocksFragmentDoc } from './codeChallengeWithBlocks_';
+import { CodeChallengePageFragmentDoc } from './CodeChallengePage';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type CodeChallengeQueryVariables = Types.Exact<{
@@ -22,20 +20,17 @@ export type CodeChallengeQueryVariables = Types.Exact<{
 
 export type CodeChallengeQuery = { __typename?: 'Query', codeChallenge?: Types.Maybe<(
     { __typename?: 'CodeChallenge' }
-    & CodeChallengeFragment
-    & CodeChallengeWithBlocksFragment
+    & CodeChallengePageFragment
   )> };
 
 
 export const CodeChallengeDocument = gql`
     query codeChallenge($where: CodeChallengeWhereUniqueInput!) {
   codeChallenge(where: $where) {
-    ...codeChallenge_
-    ...codeChallengeWithBlocks_
+    ...CodeChallengePage
   }
 }
-    ${CodeChallengeFragmentDoc}
-${CodeChallengeWithBlocksFragmentDoc}`;
+    ${CodeChallengePageFragmentDoc}`;
 
 /**
  * __useCodeChallengeQuery__

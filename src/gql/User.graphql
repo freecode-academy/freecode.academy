@@ -142,3 +142,14 @@ fragment ProjectMemberNoNesting on ProjectMember {
   updatedAt
   status
 }
+
+fragment MeUserCodeChallengeCompletion on CodeChallengeCompletion {
+  id
+  Task {
+    id
+    status
+  }
+  CodeChallenge {
+    id
+  }
+}

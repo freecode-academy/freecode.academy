@@ -6,6 +6,22 @@ query codeChallengeCompletion(
   }
 }
 
+query codeChallengeCompletions(
+  $where: CodeChallengeCompletionWhereInput
+  $orderBy: [CodeChallengeCompletionOrderByInput!]
+  $take: Int
+  $skip: Int
+) {
+  codeChallengeCompletions(
+    where: $where
+    orderBy: $orderBy
+    take: $take
+    skip: $skip
+  ) {
+    ...codeChallengeCompletion_
+  }
+}
+
 mutation createCodeChallengeCompletionProcessor(
   $data: CodeChallengeCompletionCreateInput!
 ) {
@@ -36,5 +52,27 @@ mutation updateCodeChallengeCompletionProcessor(
     data {
       ...codeChallengeCompletion_
     }
+  }
+}
+
+fragment codeChallengeCompletionNoNesting on CodeChallengeCompletion {
+  id
+  createdAt
+  updatedAt
+  success
+  content
+}
+
+fragment codeChallengeCompletion_ on CodeChallengeCompletion {
+  ...codeChallengeCompletionNoNesting
+  Task {
+    id
+    status
+  }
+  CodeChallenge {
+    id
+  }
+  CreatedBy {
+    ...UserNoNesting
   }
 }

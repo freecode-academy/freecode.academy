@@ -93,9 +93,10 @@ export type ChatRoomInvitationFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type CodeChallengeKeySpecifier = ('Block' | 'CreatedBy' | 'Topic' | 'challengeOrder' | 'challengeType' | 'createdAt' | 'dashedName' | 'description' | 'externalKey' | 'files' | 'forumTopicId' | 'id' | 'instructions' | 'isBeta' | 'isPrivate' | 'isRequired' | 'localeTitle' | 'name' | 'order' | 'rank' | 'required' | 'solutions' | 'superOrder' | 'template' | 'tests' | 'time' | 'translations' | 'updatedAt' | 'videoUrl' | CodeChallengeKeySpecifier)[];
+export type CodeChallengeKeySpecifier = ('Block' | 'CodeChallengeCompletions' | 'CreatedBy' | 'Topic' | 'challengeOrder' | 'challengeType' | 'createdAt' | 'dashedName' | 'description' | 'externalKey' | 'files' | 'forumTopicId' | 'id' | 'instructions' | 'isBeta' | 'isPrivate' | 'isRequired' | 'localeTitle' | 'name' | 'order' | 'rank' | 'required' | 'solutions' | 'superOrder' | 'template' | 'tests' | 'time' | 'translations' | 'updatedAt' | 'videoUrl' | CodeChallengeKeySpecifier)[];
 export type CodeChallengeFieldPolicy = {
 	Block?: FieldPolicy<any> | FieldReadFunction<any>,
+	CodeChallengeCompletions?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	Topic?: FieldPolicy<any> | FieldReadFunction<any>,
 	challengeOrder?: FieldPolicy<any> | FieldReadFunction<any>,

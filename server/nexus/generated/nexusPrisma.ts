@@ -126,7 +126,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice'
     }
     codeChallenges: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletion'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
       ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic'
     }
     codeChallengeBlocks: {
@@ -388,7 +388,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice'
     }
     CodeChallenge: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletion'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
       ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic'
     }
     CodeChallengeBlock: {
@@ -697,14 +697,14 @@ interface NexusPrismaInputs {
 
   }
   CodeChallenge: {
-    CodeChallengeCompletion: {
+    CodeChallengeCompletions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success'
     }
   }
   CodeChallengeBlock: {
     CodeChallenge: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletion'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
       ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic'
     }
     other_CodeChallengeBlock: {
@@ -894,7 +894,7 @@ interface NexusPrismaInputs {
   }
   Resource: {
     CodeChallenge: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletion'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
       ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic'
     }
     File: {
@@ -1961,7 +1961,7 @@ interface NexusPrismaOutputs {
     CodeChallengeBlock: 'CodeChallengeBlock'
     User: 'User'
     Resource: 'Resource'
-    CodeChallengeCompletion: 'CodeChallengeCompletion'
+    CodeChallengeCompletions: 'CodeChallengeCompletion'
   }
   CodeChallengeBlock: {
     id: 'String'

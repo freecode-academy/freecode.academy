@@ -1,6 +1,33 @@
 query codeChallenge($where: CodeChallengeWhereUniqueInput!) {
   codeChallenge(where: $where) {
-    ...codeChallenge_
-    ...codeChallengeWithBlocks_
+    ...CodeChallengePage
+  }
+  # codeChallengeCompletions (
+  #   where: {
+  #     CodeChallenge_CodeChallengeToCodeChallengeCompletion: {
+
+  #     }
+  #   }
+  #   # orderBy: $orderBy
+  # ){
+  #   ...codeChallengeCompletion_
+  # }
+}
+
+fragment CodeChallengePage on CodeChallenge {
+  ...codeChallenge_
+  ...codeChallengeWithBlocks_
+  CodeChallengeCompletionsSuccess: CodeChallengeCompletions(
+    orderBy: [{ createdAt: desc }]
+    where: { success: { equals: true } }
+  ) {
+    ...CodeChallengePageChallengeCompletion
+  }
+}
+
+fragment CodeChallengePageChallengeCompletion on CodeChallengeCompletion {
+  ...codeChallengeCompletionNoNesting
+  CreatedBy {
+    ...UserNoNesting
   }
 }

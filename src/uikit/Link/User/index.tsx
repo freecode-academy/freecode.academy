@@ -98,7 +98,13 @@ export class UikitUserLink extends Component<UikitUserLinkProps> {
       <Grid container className={classes?.root}>
         <Grid item>{(withAvatar && avatarLink) || null}</Grid>
 
-        <Grid item xs>
+        <Grid
+          item
+          xs
+          style={{
+            textAlign: 'left',
+          }}
+        >
           <Link
             key={id}
             style={{

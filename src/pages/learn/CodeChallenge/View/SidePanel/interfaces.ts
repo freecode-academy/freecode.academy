@@ -6,7 +6,7 @@ import { ToolPanelProps } from './ToolPanel/interfaces'
 export interface SidePanelProps {
   className?: string
   // description?: string | null | undefined
-  object: CodeChallengeViewProps['object']
+  codeChallenge: CodeChallengeViewProps['codeChallenge']
 
   showToolPanel: boolean
 

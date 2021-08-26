@@ -1,4 +1,5 @@
-import { extendType, objectType } from 'nexus'
+import { Prisma } from '@prisma/client'
+import { extendType, intArg, list, nonNull, objectType } from 'nexus'
 
 export const CodeChallengeExtendQuery = extendType({
   type: 'Query',
@@ -72,6 +73,38 @@ export const CodeChallenge = objectType({
         return Block
           ? ctx.prisma.codeChallengeBlock.findUnique({ where: { id: Block } })
           : null
+      },
+    })
+
+    t.list.nonNull.field('CodeChallengeCompletions', {
+      type: 'CodeChallengeCompletion',
+      args: {
+        orderBy: list(nonNull('CodeChallengeCompletionOrderByInput')),
+        where: 'CodeChallengeCompletionWhereInput',
+        take: intArg(),
+        skip: intArg(),
+      },
+      resolve({ id }, args, ctx) {
+        const orderBy =
+          args.orderBy as Prisma.CodeChallengeCompletionFindManyArgs['orderBy']
+        const where =
+          args.where as Prisma.CodeChallengeCompletionFindManyArgs['where']
+
+        return ctx.prisma.codeChallengeCompletion.findMany({
+          where: {
+            AND: [
+              {
+                CodeChallenge: id,
+              },
+              {
+                ...where,
+              },
+            ],
+          },
+          orderBy,
+          take: args.take || undefined,
+          skip: args.skip || undefined,
+        })
       },
     })
   },

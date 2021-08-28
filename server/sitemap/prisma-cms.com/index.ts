@@ -146,12 +146,22 @@ export default class PrismaCmsComSitemap extends Sitemap {
     })
 
     this.addSitemapDocument(xml, uri, {
-      url: `/comments/`,
+      url: `/comments`,
       priority: 0.6,
     })
 
     this.addSitemapDocument(xml, uri, {
-      url: `/people/`,
+      url: `/people`,
+      priority: 0.5,
+    })
+
+    this.addSitemapDocument(xml, uri, {
+      url: `/about`,
+      priority: 0.5,
+    })
+
+    this.addSitemapDocument(xml, uri, {
+      url: `/start/developers`,
       priority: 0.5,
     })
 

@@ -108,6 +108,7 @@ export const locales = {
       Timers: 'Таймеры',
       Technologies: 'Технологии',
       Learn: 'Уроки',
+      About: 'О проекте',
     },
   },
 }
@@ -268,10 +269,10 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                 href="/graphql-voyager/"
                 rel="noindex,nofollow"
                 target="_blank"
-              >
+                >
                 <Typography>{this.lexicon('API Schema')}</Typography>
-              </a>
-            </Grid> */}
+                </a>
+              </Grid> */}
 
             <Grid item>
               <a
@@ -281,6 +282,14 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               >
                 <Typography>{this.lexicon('API')}</Typography>
               </a>
+            </Grid>
+
+            <Grid item>
+              <Link href="/about/">
+                <a>
+                  <Typography>{this.lexicon('About')}</Typography>
+                </a>
+              </Link>
             </Grid>
 
             <Grid item xs></Grid>

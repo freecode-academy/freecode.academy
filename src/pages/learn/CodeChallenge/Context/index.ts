@@ -10,7 +10,7 @@ import { PrismaCmsContext } from '@prisma-cms/context'
 
 export type TestError = {
   message: string
-  stack: string
+  stack?: string
   code: string | undefined
   file: Record<string, any>
 }

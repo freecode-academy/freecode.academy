@@ -156,7 +156,9 @@ export default async function* executeCancellableChallengeSaga(
 
         result = { pass: true }
         yield result
-      } catch (err) {
+      } catch (error) {
+        const err = error as Error
+
         if (!(err instanceof chai.AssertionError)) {
           console.error(err)
         }

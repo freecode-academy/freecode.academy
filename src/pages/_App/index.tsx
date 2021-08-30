@@ -80,7 +80,7 @@ const App: MainApp = ({ Component, pageProps }) => {
       /**
        * Переподключаем веб-сокет
        */
-      const subscriptionClient = getSubscriptionClient()
+      const subscriptionClient = getSubscriptionClient(withWs)
 
       try {
         subscriptionClient?.close(false, false)

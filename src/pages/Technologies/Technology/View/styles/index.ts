@@ -19,7 +19,8 @@ export const TechnologyGridTableStyled = styled(GridTableStyled)`
         minmax(54px, min-content) minmax(80px, 1fr) minmax(130px, 1fr) minmax(
           130px,
           1fr
-        ) minmax(130px, 1fr)
+        )
+        minmax(130px, 1fr)
         minmax(130px, 1fr);
     }
   }

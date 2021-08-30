@@ -113,5 +113,11 @@ module.exports = (phase, defaultConfig) => {
   }
 
   // else
-  return defaultConfig
+  // return defaultConfig
+
+  return {
+    ...defaultConfig,
+    webpack,
+    generateEtags: false,
+  }
 }

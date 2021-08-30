@@ -17997,7 +17997,7 @@ prisma-binding@^2.1.6:
     subscriptions-transport-ws "0.9.16"
     yargs "12.0.5"
 
-prisma@^2.18.0:
+prisma@^2.30.2:
   version "2.30.2"
   resolved "https://registry.yarnpkg.com/prisma/-/prisma-2.30.2.tgz#f65ea0a04ff642e1e393d5b42c804bdcb099a465"
   integrity sha512-AoLz3CfD7XM+vfE7IWzxQq1O2+ZZ31+6yfabWeMr32wxdLLxSsGagW80LFgKIsZgWW6Ypwleu5ujyKNvO91WHA==

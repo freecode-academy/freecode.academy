@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useCallback, useContext, useMemo } from 'react'
 import { UserViewProps } from './interfaces'
 import { UserViewStyled } from './styles'
@@ -354,6 +355,8 @@ const UserView: React.FC<UserViewProps> = (props) => {
   }, [user.UserTechnologies])
 
   return useMemo(() => {
+    console.log('user', user)
+
     return (
       <>
         {form}
@@ -361,7 +364,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
         {technologies}
       </>
     )
-  }, [chatRooms, form, technologies])
+  }, [chatRooms, form, technologies, user])
 }
 
 export default UserView

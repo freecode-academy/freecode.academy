@@ -275,6 +275,13 @@ export const User = objectType({
     // TODO Restore logic
     t.list.nonNull.field('UserTechnologies', {
       type: 'UserTechnology',
+      resolve({ id }, _, ctx) {
+        return ctx.prisma.userTechnology.findMany({
+          where: {
+            CreatedBy: id,
+          },
+        })
+      },
     })
 
     t.list.nonNull.field('ProjectsCreated', {

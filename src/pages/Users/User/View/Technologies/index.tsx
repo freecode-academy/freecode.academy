@@ -10,6 +10,7 @@ import UserTechnologyLevel from 'src/pages/Technologies/Technology/View/UserTech
 import TechnologyLink from 'src/uikit/Link/Technology'
 import { UserViewTechnologiesProps } from './interfaces'
 import { UserViewTechnologiesGridViewStyled } from './styles'
+import { getUserTechnologyStatusText } from 'src/helpers/getUserTechnologyStatusText'
 
 const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
   objects,
@@ -48,7 +49,9 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
               inEditMode={false}
             />
           </GridTableAttributeStyled>
-          <GridTableAttributeStyled>{n.status}</GridTableAttributeStyled>
+          <GridTableAttributeStyled>
+            {n.status ? getUserTechnologyStatusText(n.status) : null}
+          </GridTableAttributeStyled>
 
           <GridTableAttributesContainerStyled>
             <GridTableAttributeStyled>

@@ -812,6 +812,13 @@ input EnumTechnologyLessonUserStatusFilter {
   notIn: [TechnologyLessonUserStatus!]
 }
 
+input EnumUserTechnologyHiringStatusNullableFilter {
+  equals: UserTechnologyHiringStatus
+  in: [UserTechnologyHiringStatus!]
+  not: NestedEnumUserTechnologyHiringStatusNullableFilter
+  notIn: [UserTechnologyHiringStatus!]
+}
+
 input EnumUserTechnologyStatusNullableFilter {
   equals: UserTechnologyStatus
   in: [UserTechnologyStatus!]
@@ -1693,6 +1700,13 @@ input NestedEnumTechnologyLessonUserStatusFilter {
   in: [TechnologyLessonUserStatus!]
   not: NestedEnumTechnologyLessonUserStatusFilter
   notIn: [TechnologyLessonUserStatus!]
+}
+
+input NestedEnumUserTechnologyHiringStatusNullableFilter {
+  equals: UserTechnologyHiringStatus
+  in: [UserTechnologyHiringStatus!]
+  not: NestedEnumUserTechnologyHiringStatusNullableFilter
+  notIn: [UserTechnologyHiringStatus!]
 }
 
 input NestedEnumUserTechnologyStatusNullableFilter {
@@ -3806,6 +3820,7 @@ type UserTechnology {
   createdAt: DateTime!
   date_from: DateTime
   date_till: DateTime
+  hiring_status: UserTechnologyHiringStatus
   id: ID!
   level: UserTechnologyLevel
   status: UserTechnologyStatus
@@ -3814,12 +3829,31 @@ type UserTechnology {
 
 input UserTechnologyCreateInput {
   Technology: TechnologyCreateOneWithoutUserTechnologiesInput!
-  components: UserTechnologyLevel
-  date_from: DateTime
-  date_till: DateTime
-  id: ID
-  level: UserTechnologyLevel
-  status: UserTechnologyStatus
+}
+
+input UserTechnologyCreatedByTechnologyCompoundUniqueInput {
+  CreatedBy: String!
+  Technology: String!
+}
+
+"""
+Готов ли принимать заказы с таким технологиями
+"""
+enum UserTechnologyHiringStatus {
+  """
+  Очень интересно
+  """
+  Active
+
+  """
+  Отрицательно
+  """
+  Negative
+
+  """
+  Малоинтересно
+  """
+  Neutral
 }
 
 """
@@ -3840,6 +3874,7 @@ input UserTechnologyOrderByInput {
   createdAt: SortOrder
   date_from: SortOrder
   date_till: SortOrder
+  hiring_status: SortOrder
   id: SortOrder
   level: SortOrder
   status: SortOrder
@@ -3886,26 +3921,27 @@ enum UserTechnologyStatus {
 }
 
 input UserTechnologyUpdateInput {
-  Technology: TechnologyCreateOneWithoutUserTechnologiesInput
   components: UserTechnologyLevel
   date_from: DateTime
   date_till: DateTime
+  hiring_status: UserTechnologyHiringStatus
   level: UserTechnologyLevel
   status: UserTechnologyStatus
 }
 
 input UserTechnologyWhereInput {
   AND: [UserTechnologyWhereInput!]
-  CreatedBy: StringNullableFilter
+  CreatedBy: StringFilter
   NOT: [UserTechnologyWhereInput!]
   OR: [UserTechnologyWhereInput!]
-  Technology: StringNullableFilter
+  Technology: StringFilter
   Technology_TechnologyToUserTechnology: TechnologyWhereInput
   User: UserWhereInput
   components: JsonNullableFilter
   createdAt: DateTimeFilter
   date_from: DateTimeNullableFilter
   date_till: DateTimeNullableFilter
+  hiring_status: EnumUserTechnologyHiringStatusNullableFilter
   id: StringFilter
   level: IntNullableFilter
   status: EnumUserTechnologyStatusNullableFilter
@@ -3913,6 +3949,7 @@ input UserTechnologyWhereInput {
 }
 
 input UserTechnologyWhereUniqueInput {
+  CreatedBy_Technology: UserTechnologyCreatedByTechnologyCompoundUniqueInput
   id: String
 }
 

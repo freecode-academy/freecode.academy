@@ -334,8 +334,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'name' | 'createdAt' | 'updatedAt'
     }
     userTechnologies: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'CreatedBy' | 'Technology' | 'level' | 'User' | 'Technology_TechnologyToUserTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'CreatedBy' | 'Technology' | 'level'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level' | 'User' | 'Technology_TechnologyToUserTechnology'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level'
     }
     votes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User' | 'Resource_ResourceToVote' | 'User_UserToVote'
@@ -596,8 +596,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
     }
     UserTechnology: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'CreatedBy' | 'Technology' | 'level' | 'User' | 'Technology_TechnologyToUserTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'CreatedBy' | 'Technology' | 'level'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level' | 'User' | 'Technology_TechnologyToUserTechnology'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level'
     }
     Vote: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User' | 'Resource_ResourceToVote' | 'User_UserToVote'
@@ -1081,8 +1081,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'name' | 'components' | 'contentText' | 'Technology' | 'CreatedBy'
     }
     UserTechnology: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'CreatedBy' | 'Technology' | 'level' | 'User' | 'Technology_TechnologyToUserTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'CreatedBy' | 'Technology' | 'level'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level' | 'User' | 'Technology_TechnologyToUserTechnology'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level'
     }
   }
   TechnologyLesson: {
@@ -2699,6 +2699,7 @@ interface NexusPrismaOutputs {
     date_from: 'DateTime'
     date_till: 'DateTime'
     status: 'UserTechnologyStatus'
+    hiring_status: 'UserTechnologyHiringStatus'
     CreatedBy: 'String'
     Technology: 'String'
     level: 'Int'

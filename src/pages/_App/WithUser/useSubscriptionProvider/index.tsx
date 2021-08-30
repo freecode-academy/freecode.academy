@@ -20,26 +20,24 @@ const useSubscriptionProvider = ({ client }: SubscriptionProviderProps) => {
       return
     }
 
-    const nodes = [
-      'user',
-      'resource',
-      // "lesson",
-      'task',
-      'timer',
-      'comment',
-      'technology',
-      'userTechnology',
-      'taskTechnology',
-      'career',
-      'notice',
-      'chatRoom',
-      'chatMessage',
-
-      // TODO: Check maybe deprecated
-      'technologyLesson',
-
-      // TODO: Check maybe deprecated
-      'technologyLessonUser',
+    const nodes: string[] = [
+      // 'user',
+      // 'resource',
+      // // "lesson",
+      // 'task',
+      // 'timer',
+      // 'comment',
+      // 'technology',
+      // 'userTechnology',
+      // 'taskTechnology',
+      // 'career',
+      // 'notice',
+      // 'chatRoom',
+      // 'chatMessage',
+      // // TODO: Check maybe deprecated
+      // 'technologyLesson',
+      // // TODO: Check maybe deprecated
+      // 'technologyLessonUser',
     ]
 
     const subscriptions: ZenObservable.Subscription[] = []

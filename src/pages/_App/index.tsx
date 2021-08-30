@@ -41,7 +41,8 @@ import { GlobalStyle } from 'src/theme/GlobalStyle'
 import OfficeLayout from './layouts/OfficeLayout'
 import MainLayout from './layouts/MainLayout'
 
-const withWs = true
+// TODO Restore WebSockets
+const withWs = false
 
 const App: MainApp = ({ Component, pageProps }) => {
   // eslint-disable-next-line no-console

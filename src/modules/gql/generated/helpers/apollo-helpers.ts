@@ -603,7 +603,7 @@ export type UserResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserTechnologyKeySpecifier = ('CreatedBy' | 'Technology' | 'components' | 'createdAt' | 'date_from' | 'date_till' | 'id' | 'level' | 'status' | 'updatedAt' | UserTechnologyKeySpecifier)[];
+export type UserTechnologyKeySpecifier = ('CreatedBy' | 'Technology' | 'components' | 'createdAt' | 'date_from' | 'date_till' | 'hiring_status' | 'id' | 'level' | 'status' | 'updatedAt' | UserTechnologyKeySpecifier)[];
 export type UserTechnologyFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	Technology?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -611,6 +611,7 @@ export type UserTechnologyFieldPolicy = {
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	date_from?: FieldPolicy<any> | FieldReadFunction<any>,
 	date_till?: FieldPolicy<any> | FieldReadFunction<any>,
+	hiring_status?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	level?: FieldPolicy<any> | FieldReadFunction<any>,
 	status?: FieldPolicy<any> | FieldReadFunction<any>,

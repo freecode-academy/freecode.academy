@@ -865,6 +865,13 @@ export interface EnumTechnologyLessonUserStatusFilter {
   notIn?: Maybe<Array<TechnologyLessonUserStatus>>;
 }
 
+export interface EnumUserTechnologyHiringStatusNullableFilter {
+  equals?: Maybe<UserTechnologyHiringStatus>;
+  in?: Maybe<Array<UserTechnologyHiringStatus>>;
+  not?: Maybe<NestedEnumUserTechnologyHiringStatusNullableFilter>;
+  notIn?: Maybe<Array<UserTechnologyHiringStatus>>;
+}
+
 export interface EnumUserTechnologyStatusNullableFilter {
   equals?: Maybe<UserTechnologyStatus>;
   in?: Maybe<Array<UserTechnologyStatus>>;
@@ -1812,6 +1819,13 @@ export interface NestedEnumTechnologyLessonUserStatusFilter {
   in?: Maybe<Array<TechnologyLessonUserStatus>>;
   not?: Maybe<NestedEnumTechnologyLessonUserStatusFilter>;
   notIn?: Maybe<Array<TechnologyLessonUserStatus>>;
+}
+
+export interface NestedEnumUserTechnologyHiringStatusNullableFilter {
+  equals?: Maybe<UserTechnologyHiringStatus>;
+  in?: Maybe<Array<UserTechnologyHiringStatus>>;
+  not?: Maybe<NestedEnumUserTechnologyHiringStatusNullableFilter>;
+  notIn?: Maybe<Array<UserTechnologyHiringStatus>>;
 }
 
 export interface NestedEnumUserTechnologyStatusNullableFilter {
@@ -4128,6 +4142,7 @@ export interface UserTechnology {
   createdAt: Scalars['DateTime'];
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
+  hiring_status?: Maybe<UserTechnologyHiringStatus>;
   id: Scalars['ID'];
   level?: Maybe<Scalars['UserTechnologyLevel']>;
   status?: Maybe<UserTechnologyStatus>;
@@ -4136,12 +4151,21 @@ export interface UserTechnology {
 
 export interface UserTechnologyCreateInput {
   Technology: TechnologyCreateOneWithoutUserTechnologiesInput;
-  components?: Maybe<Scalars['UserTechnologyLevel']>;
-  date_from?: Maybe<Scalars['DateTime']>;
-  date_till?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['ID']>;
-  level?: Maybe<Scalars['UserTechnologyLevel']>;
-  status?: Maybe<UserTechnologyStatus>;
+}
+
+export interface UserTechnologyCreatedByTechnologyCompoundUniqueInput {
+  CreatedBy: Scalars['String'];
+  Technology: Scalars['String'];
+}
+
+/** Готов ли принимать заказы с таким технологиями */
+export enum UserTechnologyHiringStatus {
+  /** Очень интересно */
+  ACTIVE = 'Active',
+  /** Отрицательно */
+  NEGATIVE = 'Negative',
+  /** Малоинтересно */
+  NEUTRAL = 'Neutral'
 }
 
 
@@ -4158,6 +4182,7 @@ export interface UserTechnologyOrderByInput {
   createdAt?: Maybe<SortOrder>;
   date_from?: Maybe<SortOrder>;
   date_till?: Maybe<SortOrder>;
+  hiring_status?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   level?: Maybe<SortOrder>;
   status?: Maybe<SortOrder>;
@@ -4188,26 +4213,27 @@ export enum UserTechnologyStatus {
 }
 
 export interface UserTechnologyUpdateInput {
-  Technology?: Maybe<TechnologyCreateOneWithoutUserTechnologiesInput>;
   components?: Maybe<Scalars['UserTechnologyLevel']>;
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
+  hiring_status?: Maybe<UserTechnologyHiringStatus>;
   level?: Maybe<Scalars['UserTechnologyLevel']>;
   status?: Maybe<UserTechnologyStatus>;
 }
 
 export interface UserTechnologyWhereInput {
   AND?: Maybe<Array<UserTechnologyWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   NOT?: Maybe<Array<UserTechnologyWhereInput>>;
   OR?: Maybe<Array<UserTechnologyWhereInput>>;
-  Technology?: Maybe<StringNullableFilter>;
+  Technology?: Maybe<StringFilter>;
   Technology_TechnologyToUserTechnology?: Maybe<TechnologyWhereInput>;
   User?: Maybe<UserWhereInput>;
   components?: Maybe<JsonNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   date_from?: Maybe<DateTimeNullableFilter>;
   date_till?: Maybe<DateTimeNullableFilter>;
+  hiring_status?: Maybe<EnumUserTechnologyHiringStatusNullableFilter>;
   id?: Maybe<StringFilter>;
   level?: Maybe<IntNullableFilter>;
   status?: Maybe<EnumUserTechnologyStatusNullableFilter>;
@@ -4215,6 +4241,7 @@ export interface UserTechnologyWhereInput {
 }
 
 export interface UserTechnologyWhereUniqueInput {
+  CreatedBy_Technology?: Maybe<UserTechnologyCreatedByTechnologyCompoundUniqueInput>;
   id?: Maybe<Scalars['String']>;
 }
 

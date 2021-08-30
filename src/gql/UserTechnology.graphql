@@ -28,3 +28,19 @@ mutation updateUserTechnologyProcessor(
     }
   }
 }
+
+fragment UserTechnology_ on UserTechnology {
+  ...UserTechnologyNoNesting
+}
+
+fragment UserTechnologyNoNesting on UserTechnology {
+  id
+  createdAt
+  updatedAt
+  components
+  date_from
+  date_till
+  status
+  hiring_status
+  level
+}

@@ -6,6 +6,8 @@ import {
   nonNull,
   objectType,
 } from 'nexus'
+import { createUserTechnologyProcessor } from './resolvers/createUserTechnologyProcessor'
+import { updateUserTechnologyProcessor } from './resolvers/updateUserTechnologyProcessor'
 
 export const UserTechnologyExtendQuery = extendType({
   type: 'Query',
@@ -40,16 +42,7 @@ export const UserTechnologyExtendMutation = extendType({
       args: {
         data: nonNull('UserTechnologyCreateInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: createUserTechnologyProcessor,
     })
     t.nonNull.field('updateUserTechnologyProcessor', {
       type: 'UserTechnologyResponse',
@@ -57,16 +50,7 @@ export const UserTechnologyExtendMutation = extendType({
         data: nonNull('UserTechnologyUpdateInput'),
         where: nonNull('UserTechnologyWhereUniqueInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: updateUserTechnologyProcessor,
     })
   },
 })
@@ -88,6 +72,9 @@ export const UserTechnology = objectType({
     t.date('date_till')
     t.field('status', {
       type: 'UserTechnologyStatus',
+    })
+    t.field('hiring_status', {
+      type: 'UserTechnologyHiringStatus',
     })
     t.field('level', {
       type: 'UserTechnologyLevel',
@@ -141,6 +128,25 @@ export const UserTechnologyStatus = enumType({
   ],
 })
 
+export const UserTechnologyHiringStatus = enumType({
+  name: 'UserTechnologyHiringStatus',
+  description: 'Готов ли принимать заказы с таким технологиями',
+  members: [
+    {
+      name: 'Active',
+      description: 'Очень интересно',
+    },
+    {
+      name: 'Neutral',
+      description: 'Малоинтересно',
+    },
+    {
+      name: 'Negative',
+      description: 'Отрицательно',
+    },
+  ],
+})
+
 export const UserTechnologyResponse = objectType({
   name: 'UserTechnologyResponse',
   definition(t) {
@@ -158,18 +164,21 @@ export const UserTechnologyResponse = objectType({
 export const UserTechnologyCreateInput = inputObjectType({
   name: 'UserTechnologyCreateInput',
   definition(t) {
-    t.id('id')
-    t.field('components', {
-      type: 'UserTechnologyLevel',
-    })
-    t.date('date_from')
-    t.date('date_till')
-    t.field('status', {
-      type: 'UserTechnologyStatus',
-    })
-    t.field('level', {
-      type: 'UserTechnologyLevel',
-    })
+    // t.id('id')
+    // t.field('components', {
+    //   type: 'UserTechnologyLevel',
+    // })
+    // t.date('date_from')
+    // t.date('date_till')
+    // t.field('status', {
+    //   type: 'UserTechnologyStatus',
+    // })
+    // t.field('hiring_status', {
+    //   type: 'UserTechnologyHiringStatus',
+    // })
+    // t.field('level', {
+    //   type: 'UserTechnologyLevel',
+    // })
     // t.field('CreatedBy', {
     //   type: 'UserCreateOneInput',
     // })
@@ -190,15 +199,18 @@ export const UserTechnologyUpdateInput = inputObjectType({
     t.field('status', {
       type: 'UserTechnologyStatus',
     })
+    t.field('hiring_status', {
+      type: 'UserTechnologyHiringStatus',
+    })
     t.field('level', {
       type: 'UserTechnologyLevel',
     })
     // t.field('CreatedBy', {
     //   type: 'UserCreateOneInput',
     // })
-    t.field('Technology', {
-      type: 'TechnologyCreateOneWithoutUserTechnologiesInput',
-    })
+    // t.field('Technology', {
+    //   type: 'TechnologyCreateOneWithoutUserTechnologiesInput',
+    // })
   },
 })
 

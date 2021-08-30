@@ -20,6 +20,7 @@ import ResetIcon from 'material-ui-icons/Restore'
 import TextField from 'material-ui/TextField'
 import UserTechnologyLevel from './UserTechnologyLevel'
 import UserTechnologyStatusView from './UserTechnologyStatus'
+import UserTechnologyHiringStatusView from './UserTechnologyStatusHiring'
 
 const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
   object,
@@ -110,9 +111,10 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
           return
 
         // case 'CreatedBy':
-        case 'Technology':
+        // case 'Technology':
         case 'components':
         case 'status':
+        case 'hiring_status':
           return
 
         // default:
@@ -293,6 +295,22 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     )
   }, [errors, getValue, inEditMode, setValue])
 
+  const hiring_status = useMemo(() => {
+    const fieldName: Name = 'hiring_status'
+    const value = getValue(fieldName)
+
+    const error = errors.find((n) => n.key === fieldName)
+
+    return (
+      <UserTechnologyHiringStatusView
+        value={value}
+        setValue={setValue}
+        inEditMode={inEditMode}
+        error={error}
+      />
+    )
+  }, [errors, getValue, inEditMode, setValue])
+
   // const level = useMemo(() => {
   //   const fieldName: Name = 'level'
   //   const value = getValue(fieldName)
@@ -338,6 +356,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
           <GridTableAttributeStyled>{level}</GridTableAttributeStyled>
 
           <GridTableAttributeStyled>{status}</GridTableAttributeStyled>
+          <GridTableAttributeStyled>{hiring_status}</GridTableAttributeStyled>
 
           <GridTableAttributesContainerStyled>
             <GridTableAttributeStyled>{dateFrom}</GridTableAttributeStyled>
@@ -351,6 +370,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     buttons,
     dateFrom,
     dateTill,
+    hiring_status,
     level,
     object.CreatedBy,
     onSubmit,

@@ -730,6 +730,15 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedEnumTechnologyLessonUserStatusFilter'] | null // NestedEnumTechnologyLessonUserStatusFilter
     notIn?: NexusGenEnums['TechnologyLessonUserStatus'][] | null // [TechnologyLessonUserStatus!]
   }
+  EnumUserTechnologyHiringStatusNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['UserTechnologyHiringStatus'] | null // UserTechnologyHiringStatus
+    in?: NexusGenEnums['UserTechnologyHiringStatus'][] | null // [UserTechnologyHiringStatus!]
+    not?:
+      | NexusGenInputs['NestedEnumUserTechnologyHiringStatusNullableFilter']
+      | null // NestedEnumUserTechnologyHiringStatusNullableFilter
+    notIn?: NexusGenEnums['UserTechnologyHiringStatus'][] | null // [UserTechnologyHiringStatus!]
+  }
   EnumUserTechnologyStatusNullableFilter: {
     // input type
     equals?: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
@@ -1400,6 +1409,15 @@ export interface NexusGenInputs {
     in?: NexusGenEnums['TechnologyLessonUserStatus'][] | null // [TechnologyLessonUserStatus!]
     not?: NexusGenInputs['NestedEnumTechnologyLessonUserStatusFilter'] | null // NestedEnumTechnologyLessonUserStatusFilter
     notIn?: NexusGenEnums['TechnologyLessonUserStatus'][] | null // [TechnologyLessonUserStatus!]
+  }
+  NestedEnumUserTechnologyHiringStatusNullableFilter: {
+    // input type
+    equals?: NexusGenEnums['UserTechnologyHiringStatus'] | null // UserTechnologyHiringStatus
+    in?: NexusGenEnums['UserTechnologyHiringStatus'][] | null // [UserTechnologyHiringStatus!]
+    not?:
+      | NexusGenInputs['NestedEnumUserTechnologyHiringStatusNullableFilter']
+      | null // NestedEnumUserTechnologyHiringStatusNullableFilter
+    notIn?: NexusGenEnums['UserTechnologyHiringStatus'][] | null // [UserTechnologyHiringStatus!]
   }
   NestedEnumUserTechnologyStatusNullableFilter: {
     // input type
@@ -2809,12 +2827,11 @@ export interface NexusGenInputs {
   UserTechnologyCreateInput: {
     // input type
     Technology: NexusGenInputs['TechnologyCreateOneWithoutUserTechnologiesInput'] // TechnologyCreateOneWithoutUserTechnologiesInput!
-    components?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
-    date_from?: NexusGenScalars['DateTime'] | null // DateTime
-    date_till?: NexusGenScalars['DateTime'] | null // DateTime
-    id?: string | null // ID
-    level?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
-    status?: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
+  }
+  UserTechnologyCreatedByTechnologyCompoundUniqueInput: {
+    // input type
+    CreatedBy: string // String!
+    Technology: string // String!
   }
   UserTechnologyListRelationFilter: {
     // input type
@@ -2830,6 +2847,7 @@ export interface NexusGenInputs {
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     date_from?: NexusGenEnums['SortOrder'] | null // SortOrder
     date_till?: NexusGenEnums['SortOrder'] | null // SortOrder
+    hiring_status?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     level?: NexusGenEnums['SortOrder'] | null // SortOrder
     status?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -2837,22 +2855,20 @@ export interface NexusGenInputs {
   }
   UserTechnologyUpdateInput: {
     // input type
-    Technology?:
-      | NexusGenInputs['TechnologyCreateOneWithoutUserTechnologiesInput']
-      | null // TechnologyCreateOneWithoutUserTechnologiesInput
     components?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     date_from?: NexusGenScalars['DateTime'] | null // DateTime
     date_till?: NexusGenScalars['DateTime'] | null // DateTime
+    hiring_status?: NexusGenEnums['UserTechnologyHiringStatus'] | null // UserTechnologyHiringStatus
     level?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     status?: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
   }
   UserTechnologyWhereInput: {
     // input type
     AND?: NexusGenInputs['UserTechnologyWhereInput'][] | null // [UserTechnologyWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     NOT?: NexusGenInputs['UserTechnologyWhereInput'][] | null // [UserTechnologyWhereInput!]
     OR?: NexusGenInputs['UserTechnologyWhereInput'][] | null // [UserTechnologyWhereInput!]
-    Technology?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Technology?: NexusGenInputs['StringFilter'] | null // StringFilter
     Technology_TechnologyToUserTechnology?:
       | NexusGenInputs['TechnologyWhereInput']
       | null // TechnologyWhereInput
@@ -2861,6 +2877,9 @@ export interface NexusGenInputs {
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     date_from?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     date_till?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    hiring_status?:
+      | NexusGenInputs['EnumUserTechnologyHiringStatusNullableFilter']
+      | null // EnumUserTechnologyHiringStatusNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     level?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     status?: NexusGenInputs['EnumUserTechnologyStatusNullableFilter'] | null // EnumUserTechnologyStatusNullableFilter
@@ -2868,6 +2887,9 @@ export interface NexusGenInputs {
   }
   UserTechnologyWhereUniqueInput: {
     // input type
+    CreatedBy_Technology?:
+      | NexusGenInputs['UserTechnologyCreatedByTechnologyCompoundUniqueInput']
+      | null // UserTechnologyCreatedByTechnologyCompoundUniqueInput
     id?: string | null // String
   }
   UserUpdateInput: {
@@ -3194,6 +3216,7 @@ export interface NexusGenEnums {
   TeamMemberStatus: 'Active' | 'Fired' | 'Invited'
   TeamStatus: 'Active' | 'Inactive'
   TechnologyLessonUserStatus: 'Accepted' | 'Completed'
+  UserTechnologyHiringStatus: 'Active' | 'Negative' | 'Neutral'
   UserTechnologyStatus:
     | 'ActiveUse'
     | 'NoLongerUse'
@@ -4074,6 +4097,7 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     date_from: NexusGenScalars['DateTime'] | null // DateTime
     date_till: NexusGenScalars['DateTime'] | null // DateTime
+    hiring_status: NexusGenEnums['UserTechnologyHiringStatus'] | null // UserTechnologyHiringStatus
     id: string // ID!
     level: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     status: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
@@ -4701,6 +4725,7 @@ export interface NexusGenFieldTypeNames {
     createdAt: 'DateTime'
     date_from: 'DateTime'
     date_till: 'DateTime'
+    hiring_status: 'UserTechnologyHiringStatus'
     id: 'ID'
     level: 'UserTechnologyLevel'
     status: 'UserTechnologyStatus'

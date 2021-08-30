@@ -66,7 +66,7 @@ model User {
   ProjectMember_ProjectMember_CreatedByToUser           ProjectMember[]           @relation("ProjectMember_CreatedByToUser")
   ProjectMember_ProjectMember_UserToUser                ProjectMember[]           @relation("ProjectMember_UserToUser")
   ProjectTask                                           ProjectTask[]
-  ResetPasswords                                         ResetPassword[]
+  ResetPasswords                                        ResetPassword[]
   Resource                                              Resource[]
   ResourceTag                                           ResourceTag[]
   Route                                                 Route[]
@@ -281,38 +281,38 @@ model ChatRoomInvitation {
 }
 
 model CodeChallenge {
-  id                      String                    @id @default(cuid()) @db.VarChar(32)
-  externalKey             String?                   @unique @db.VarChar(32)
-  createdAt               DateTime                  @default(now("0")) @db.DateTime("0")
-  updatedAt               DateTime                  @default(now("0")) @updatedAt @db.DateTime("0")
-  name                    String?                   @db.MediumText
-  dashedName              String?                   @db.MediumText
-  localeTitle             String?                   @db.MediumText
-  description             String?                   @db.MediumText
-  challengeType           Int?
-  forumTopicId            Int?
-  translations            Json?
-  tests                   Json?
-  solutions               Json?
-  instructions            String?                   @db.MediumText
-  files                   Json?
-  videoUrl                String?                   @db.MediumText
-  order                   Int?
-  superOrder              Int?
-  challengeOrder          Int?
-  required                Json?
-  isRequired              Boolean?
-  isPrivate               Boolean?
-  isBeta                  Boolean?
-  template                String?                   @db.MediumText
-  time                    String?                   @db.MediumText
-  rank                    Int?
-  Block                   String?                   @db.VarChar(32)
-  CreatedBy               String?                   @db.VarChar(32)
-  Topic                   String?                   @db.VarChar(32)
-  CodeChallengeBlock      CodeChallengeBlock?       @relation(fields: [Block], references: [id])
-  User                    User?                     @relation(fields: [CreatedBy], references: [id])
-  Resource                Resource?                 @relation(fields: [Topic], references: [id])
+  id                       String                    @id @default(cuid()) @db.VarChar(32)
+  externalKey              String?                   @unique @db.VarChar(32)
+  createdAt                DateTime                  @default(now("0")) @db.DateTime("0")
+  updatedAt                DateTime                  @default(now("0")) @updatedAt @db.DateTime("0")
+  name                     String?                   @db.MediumText
+  dashedName               String?                   @db.MediumText
+  localeTitle              String?                   @db.MediumText
+  description              String?                   @db.MediumText
+  challengeType            Int?
+  forumTopicId             Int?
+  translations             Json?
+  tests                    Json?
+  solutions                Json?
+  instructions             String?                   @db.MediumText
+  files                    Json?
+  videoUrl                 String?                   @db.MediumText
+  order                    Int?
+  superOrder               Int?
+  challengeOrder           Int?
+  required                 Json?
+  isRequired               Boolean?
+  isPrivate                Boolean?
+  isBeta                   Boolean?
+  template                 String?                   @db.MediumText
+  time                     String?                   @db.MediumText
+  rank                     Int?
+  Block                    String?                   @db.VarChar(32)
+  CreatedBy                String?                   @db.VarChar(32)
+  Topic                    String?                   @db.VarChar(32)
+  CodeChallengeBlock       CodeChallengeBlock?       @relation(fields: [Block], references: [id])
+  User                     User?                     @relation(fields: [CreatedBy], references: [id])
+  Resource                 Resource?                 @relation(fields: [Topic], references: [id])
   CodeChallengeCompletions CodeChallengeCompletion[]
 
   @@index([Block], name: "Block")
@@ -1405,21 +1405,24 @@ model UserGroup {
 }
 
 model UserTechnology {
-  id                                    String                @id @default(cuid()) @db.VarChar(32)
-  createdAt                             DateTime              @default(now("0")) @db.DateTime("0")
-  updatedAt                             DateTime              @default(now("0")) @updatedAt @db.DateTime("0")
+  id                                    String                      @id @default(cuid()) @db.VarChar(32)
+  createdAt                             DateTime                    @default(now("0")) @db.DateTime("0")
+  updatedAt                             DateTime                    @default(now("0")) @updatedAt @db.DateTime("0")
   components                            Json?
   date_from                             DateTime?
   date_till                             DateTime?
   status                                UserTechnologyStatus?
-  CreatedBy                             String?               @db.VarChar(32)
-  Technology                            String?               @db.VarChar(32)
+  // Готов ли принимать заказы с таким технологиями
+  hiring_status                         UserTechnologyHiringStatus?
+  CreatedBy                             String                     @db.VarChar(32)
+  Technology                            String                     @db.VarChar(32)
   level                                 Int?
-  User                                  User?                 @relation(fields: [CreatedBy], references: [id])
-  Technology_TechnologyToUserTechnology Technology?           @relation(fields: [Technology], references: [id])
+  User                                  User?                       @relation(fields: [CreatedBy], references: [id])
+  Technology_TechnologyToUserTechnology Technology?                 @relation(fields: [Technology], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Technology], name: "Technology")
+  @@unique([CreatedBy, Technology])
 }
 
 enum UserTechnologyStatus {
@@ -1429,6 +1432,12 @@ enum UserTechnologyStatus {
   RarelyUse
   ActiveUse
   NoLongerUse
+}
+
+enum UserTechnologyHiringStatus {
+  Active
+  Neutral
+  Negative
 }
 
 model Vote {
@@ -1466,20 +1475,20 @@ model World {
 }
 
 model Letter {
-id                String       @id @default(cuid()) @db.VarChar(32)
-email             String       @db.MediumText
-subject           String       @db.MediumText
-message           String       @db.MediumText
-status            LetterStatus @default(value: Created)
-errorMessage      String?      @db.Text
-rank              Int?
-deleteOnSend      Boolean      @default(value: true)
-replyTo           String?      @db.MediumText
-returnTo          String?      @db.MediumText
-createdAt         DateTime     @default(now("0")) @db.DateTime("0")
-updatedAt         DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
-User              String?      @db.VarChar(32)
-User_LetterToUser User?        @relation(fields: [User], references: [id])
+  id                String       @id @default(cuid()) @db.VarChar(32)
+  email             String       @db.MediumText
+  subject           String       @db.MediumText
+  message           String       @db.MediumText
+  status            LetterStatus @default(value: Created)
+  errorMessage      String?      @db.Text
+  rank              Int?
+  deleteOnSend      Boolean      @default(value: true)
+  replyTo           String?      @db.MediumText
+  returnTo          String?      @db.MediumText
+  createdAt         DateTime     @default(now("0")) @db.DateTime("0")
+  updatedAt         DateTime     @default(now("0")) @updatedAt @db.DateTime("0")
+  User              String?      @db.VarChar(32)
+  User_LetterToUser User?        @relation(fields: [User], references: [id])
 
   @@index([User], name: "User")
 }

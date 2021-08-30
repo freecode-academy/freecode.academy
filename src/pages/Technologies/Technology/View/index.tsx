@@ -30,6 +30,7 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
 
         <GridTableAttributeStyled>Уровень знания</GridTableAttributeStyled>
         <GridTableAttributeStyled>Статус</GridTableAttributeStyled>
+        <GridTableAttributeStyled>Готовность к найму</GridTableAttributeStyled>
 
         <GridTableAttributesContainerStyled>
           <GridTableAttributeStyled>Используется С</GridTableAttributeStyled>

@@ -29,6 +29,9 @@ import type {
   Tag,
   TaskTechnology,
   ResetPassword,
+  LearnStrategy,
+  UserLearnStrategy,
+  LearnStrategyStage,
 } from '@prisma/client'
 import type { core } from 'nexus'
 declare global {
@@ -40,6 +43,13 @@ declare global {
       fieldName: FieldName,
       opts?: core.CommonInputFieldConfig<TypeName, FieldName>
     ): void // "Upload";
+    /**
+     * UserTechnologyLevel from 1 to 5
+     */
+    technologyLevel<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.CommonInputFieldConfig<TypeName, FieldName>
+    ): void // "UserTechnologyLevel";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -58,6 +68,13 @@ declare global {
       fieldName: FieldName,
       ...opts: core.ScalarOutSpread<TypeName, FieldName>
     ): void // "Upload";
+    /**
+     * UserTechnologyLevel from 1 to 5
+     */
+    technologyLevel<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void // "UserTechnologyLevel";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -1074,6 +1091,115 @@ export interface NexusGenInputs {
     // input type
     equals?: NexusGenScalars['Json'] | null // Json
     not?: NexusGenScalars['Json'] | null // Json
+  }
+  LearnStrategyCreateInput: {
+    // input type
+    description?: string | null // String
+    level: NexusGenScalars['UserTechnologyLevel'] // UserTechnologyLevel!
+    name: string // String!
+  }
+  LearnStrategyListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
+    none?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
+    some?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
+  }
+  LearnStrategyOrderByInput: {
+    // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdById?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  LearnStrategyStageCreateInput: {
+    // input type
+    LearnStrategy: NexusGenInputs['LearnStrategyStageCreateLearnStrategyInput'] // LearnStrategyStageCreateLearnStrategyInput!
+    LearnStrategyTarget?:
+      | NexusGenInputs['LearnStrategyStageCreateLearnStrategyInput']
+      | null // LearnStrategyStageCreateLearnStrategyInput
+    TechnologyTarget?:
+      | NexusGenInputs['LearnStrategyStageCreateTechnologyInput']
+      | null // LearnStrategyStageCreateTechnologyInput
+  }
+  LearnStrategyStageCreateLearnStrategyInput: {
+    // input type
+    id: string // ID!
+  }
+  LearnStrategyStageCreateTechnologyInput: {
+    // input type
+    id: string // ID!
+    level: NexusGenScalars['UserTechnologyLevel'] // UserTechnologyLevel!
+  }
+  LearnStrategyStageListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
+    none?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
+    some?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
+  }
+  LearnStrategyStageOrderByInput: {
+    // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    learnStrategyId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    learnStrategyTargetId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level?: NexusGenEnums['SortOrder'] | null // SortOrder
+    technologyId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  LearnStrategyStageWhereInput: {
+    // input type
+    AND?: NexusGenInputs['LearnStrategyStageWhereInput'][] | null // [LearnStrategyStageWhereInput!]
+    LearnStrategy?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
+    LearnStrategyTarget?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
+    NOT?: NexusGenInputs['LearnStrategyStageWhereInput'][] | null // [LearnStrategyStageWhereInput!]
+    OR?: NexusGenInputs['LearnStrategyStageWhereInput'][] | null // [LearnStrategyStageWhereInput!]
+    Technology?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    learnStrategyId?: NexusGenInputs['StringFilter'] | null // StringFilter
+    learnStrategyTargetId?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    level?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    technologyId?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  LearnStrategyStageWhereUniqueInput: {
+    // input type
+    id: string // ID!
+  }
+  LearnStrategyUpdateInput: {
+    // input type
+    description?: string | null // String
+    name?: string | null // String
+  }
+  LearnStrategyWhereInput: {
+    // input type
+    AND?: NexusGenInputs['LearnStrategyWhereInput'][] | null // [LearnStrategyWhereInput!]
+    CreatedBy?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    LearnStrategyStages?:
+      | NexusGenInputs['LearnStrategyStageListRelationFilter']
+      | null // LearnStrategyStageListRelationFilter
+    LearnStrategyStagesTargets?:
+      | NexusGenInputs['LearnStrategyStageListRelationFilter']
+      | null // LearnStrategyStageListRelationFilter
+    NOT?: NexusGenInputs['LearnStrategyWhereInput'][] | null // [LearnStrategyWhereInput!]
+    OR?: NexusGenInputs['LearnStrategyWhereInput'][] | null // [LearnStrategyWhereInput!]
+    UserLearnStrategies?:
+      | NexusGenInputs['UserLearnStrategyListRelationFilter']
+      | null // UserLearnStrategyListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    createdById?: NexusGenInputs['StringFilter'] | null // StringFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    level?: NexusGenInputs['IntFilter'] | null // IntFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  LearnStrategyWhereUniqueInput: {
+    // input type
+    id?: string | null // String
   }
   LetsadsSmsMessageStatusItemListRelationFilter: {
     // input type
@@ -2292,8 +2418,10 @@ export interface NexusGenInputs {
   }
   TaskTechnologyUpdateInput: {
     // input type
-    Task: NexusGenInputs['TaskCreateOneWithoutTaskTechnologiesInput'] // TaskCreateOneWithoutTaskTechnologiesInput!
-    Technology: NexusGenInputs['TechnologyCreateOneWithoutTaskTechnologiesInput'] // TechnologyCreateOneWithoutTaskTechnologiesInput!
+    Task?: NexusGenInputs['TaskCreateOneWithoutTaskTechnologiesInput'] | null // TaskCreateOneWithoutTaskTechnologiesInput
+    Technology?:
+      | NexusGenInputs['TechnologyCreateOneWithoutTaskTechnologiesInput']
+      | null // TechnologyCreateOneWithoutTaskTechnologiesInput
     level?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
   }
   TaskTechnologyWhereInput: {
@@ -2496,6 +2624,11 @@ export interface NexusGenInputs {
     contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level1hours?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level2hours?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level3hours?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level4hours?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level5hours?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
     site_url?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -2504,6 +2637,9 @@ export interface NexusGenInputs {
     // input type
     AND?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    LearnStrategyStages?:
+      | NexusGenInputs['LearnStrategyStageListRelationFilter']
+      | null // LearnStrategyStageListRelationFilter
     NOT?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
     OR?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
     TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
@@ -2516,6 +2652,11 @@ export interface NexusGenInputs {
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    level1hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    level2hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    level3hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    level4hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    level5hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     site_url?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -2776,6 +2917,49 @@ export interface NexusGenInputs {
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
+  UserLearnStrategyCreateInput: {
+    // input type
+    LearnStrategy: NexusGenInputs['LearnStrategyWhereUniqueInput'] // LearnStrategyWhereUniqueInput!
+  }
+  UserLearnStrategyCreatedByIdLearnStrategyIdCompoundUniqueInput: {
+    // input type
+    createdById: string // String!
+    learnStrategyId: string // String!
+  }
+  UserLearnStrategyListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['UserLearnStrategyWhereInput'] | null // UserLearnStrategyWhereInput
+    none?: NexusGenInputs['UserLearnStrategyWhereInput'] | null // UserLearnStrategyWhereInput
+    some?: NexusGenInputs['UserLearnStrategyWhereInput'] | null // UserLearnStrategyWhereInput
+  }
+  UserLearnStrategyOrderByInput: {
+    // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdById?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    learnStrategyId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  UserLearnStrategyWhereInput: {
+    // input type
+    AND?: NexusGenInputs['UserLearnStrategyWhereInput'][] | null // [UserLearnStrategyWhereInput!]
+    CreatedBy?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    LearnStrategy?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
+    NOT?: NexusGenInputs['UserLearnStrategyWhereInput'][] | null // [UserLearnStrategyWhereInput!]
+    OR?: NexusGenInputs['UserLearnStrategyWhereInput'][] | null // [UserLearnStrategyWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    createdById?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    learnStrategyId?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  UserLearnStrategyWhereUniqueInput: {
+    // input type
+    createdById_learnStrategyId?:
+      | NexusGenInputs['UserLearnStrategyCreatedByIdLearnStrategyIdCompoundUniqueInput']
+      | null // UserLearnStrategyCreatedByIdLearnStrategyIdCompoundUniqueInput
+    id?: string | null // String
+  }
   UserListRelationFilter: {
     // input type
     every?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
@@ -2807,6 +2991,7 @@ export interface NexusGenInputs {
     showFullname?: NexusGenEnums['SortOrder'] | null // SortOrder
     showPhone?: NexusGenEnums['SortOrder'] | null // SortOrder
     sudo?: NexusGenEnums['SortOrder'] | null // SortOrder
+    technologyLevel?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     username?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
@@ -2906,6 +3091,7 @@ export interface NexusGenInputs {
     image?: string | null // String
     password?: string | null // String
     phone?: string | null // String
+    technologyLevel?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     username?: string | null // String
   }
   UserWhereInput: {
@@ -2964,6 +3150,7 @@ export interface NexusGenInputs {
     Game_GameToUser?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
     Game_GameUsers?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
     Import?: NexusGenInputs['ImportListRelationFilter'] | null // ImportListRelationFilter
+    LearnStrategies?: NexusGenInputs['LearnStrategyListRelationFilter'] | null // LearnStrategyListRelationFilter
     Letter?: NexusGenInputs['LetterListRelationFilter'] | null // LetterListRelationFilter
     LogedIn?: NexusGenInputs['LogedInListRelationFilter'] | null // LogedInListRelationFilter
     NOT?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
@@ -3037,6 +3224,9 @@ export interface NexusGenInputs {
     TourneyPlayer?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null // TourneyPlayerListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     UserGroup?: NexusGenInputs['UserGroupListRelationFilter'] | null // UserGroupListRelationFilter
+    UserLearnStrategies?:
+      | NexusGenInputs['UserLearnStrategyListRelationFilter']
+      | null // UserLearnStrategyListRelationFilter
     UserTechnology?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
     Vote?: NexusGenInputs['VoteListRelationFilter'] | null // VoteListRelationFilter
     World?: NexusGenInputs['WorldListRelationFilter'] | null // WorldListRelationFilter
@@ -3062,6 +3252,7 @@ export interface NexusGenInputs {
     showFullname?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     showPhone?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     sudo?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
+    technologyLevel?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     username?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
@@ -3238,7 +3429,7 @@ export interface NexusGenScalars {
   JSON: any
   Json: any
   Upload: any
-  UserTechnologyLevel: any
+  UserTechnologyLevel: 1 | 2 | 3 | 4 | 5
 }
 
 export interface NexusGenObjects {
@@ -3263,10 +3454,6 @@ export interface NexusGenObjects {
     count: number // Int!
   }
   AggregateTask: {
-    // root type
-    count: number // Int!
-  }
-  AggregateTechnology: {
     // root type
     count: number // Int!
   }
@@ -3317,6 +3504,8 @@ export interface NexusGenObjects {
   }
   EthAccount: EthAccount
   File: File
+  LearnStrategy: LearnStrategy
+  LearnStrategyStage: LearnStrategyStage
   Mutation: {}
   Notice: Notice
   NoticeConnection: {
@@ -3417,15 +3606,6 @@ export interface NexusGenObjects {
     success: boolean // Boolean!
   }
   Technology: Technology
-  TechnologyConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateTechnology'] // AggregateTechnology!
-    edges: Array<NexusGenRootTypes['TechnologyEdge'] | null> // [TechnologyEdge]!
-  }
-  TechnologyEdge: {
-    // root type
-    node: NexusGenRootTypes['Technology'] // Technology!
-  }
   Timer: Timer
   TimerConnection: {
     // root type
@@ -3453,6 +3633,7 @@ export interface NexusGenObjects {
     // root type
     node: NexusGenRootTypes['User'] // User!
   }
+  UserLearnStrategy: UserLearnStrategy
   UserResponse: {
     // root type
     data?: NexusGenRootTypes['User'] | null // User
@@ -3502,10 +3683,6 @@ export interface NexusGenFieldTypes {
     count: number // Int!
   }
   AggregateTask: {
-    // field return type
-    count: number // Int!
-  }
-  AggregateTechnology: {
     // field return type
     count: number // Int!
   }
@@ -3665,19 +3842,49 @@ export interface NexusGenFieldTypes {
     size: number | null // Float
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
+  LearnStrategy: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    LearnStrategyStages: NexusGenRootTypes['LearnStrategyStage'][] | null // [LearnStrategyStage!]
+    UserLearnStrategies: NexusGenRootTypes['UserLearnStrategy'][] | null // [UserLearnStrategy!]
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    createdById: string // String!
+    description: string | null // String
+    id: string // ID!
+    level: NexusGenScalars['UserTechnologyLevel'] // UserTechnologyLevel!
+    name: string // String!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
+  }
+  LearnStrategyStage: {
+    // field return type
+    LearnStrategy: NexusGenRootTypes['LearnStrategy'] | null // LearnStrategy
+    LearnStrategyTarget: NexusGenRootTypes['LearnStrategy'] | null // LearnStrategy
+    Technology: NexusGenRootTypes['Technology'] | null // Technology
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    learnStrategyId: string // String!
+    learnStrategyTargetId: string | null // String
+    level: number | null // Int
+    technologyId: string | null // String
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
+  }
   Mutation: {
     // field return type
     createBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse'] // ChatMessageResponse!
     createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     createCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    createLearnStrategy: NexusGenRootTypes['LearnStrategy'] // LearnStrategy!
+    createLearnStrategyStage: NexusGenRootTypes['LearnStrategyStage'] // LearnStrategyStage!
     createProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
     createResetPasswordProcessor: NexusGenRootTypes['ResetPasswordResponse'] // ResetPasswordResponse!
     createTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
     createTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse'] // TaskTechnologyResponse!
     createTimerProcessor: NexusGenRootTypes['TimerResponse'] // TimerResponse!
     createTopicProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    createUserLearnStrategy: NexusGenRootTypes['UserLearnStrategy'] // UserLearnStrategy!
     createUserTechnologyProcessor: NexusGenRootTypes['UserTechnologyResponse'] // UserTechnologyResponse!
+    deleteLearnStrategyStage: NexusGenRootTypes['LearnStrategyStage'] // LearnStrategyStage!
     deleteNotice: NexusGenRootTypes['Notice'] | null // Notice
     resetPasswordProcessor: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
@@ -3686,6 +3893,7 @@ export interface NexusGenFieldTypes {
     updateBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     updateCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     updateCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    updateLearnStrategy: NexusGenRootTypes['LearnStrategy'] // LearnStrategy!
     updateProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
     updateTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
     updateTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse'] // TaskTechnologyResponse!
@@ -3798,6 +4006,12 @@ export interface NexusGenFieldTypes {
     file: NexusGenRootTypes['File'] | null // File
     files: NexusGenRootTypes['File'][] // [File!]!
     filesCount: number // Int!
+    learnStrategies: NexusGenRootTypes['LearnStrategy'][] // [LearnStrategy!]!
+    learnStrategiesCount: number // Int!
+    learnStrategy: NexusGenRootTypes['LearnStrategy'] | null // LearnStrategy
+    learnStrategyStage: NexusGenRootTypes['LearnStrategyStage'] | null // LearnStrategyStage
+    learnStrategyStages: NexusGenRootTypes['LearnStrategyStage'][] // [LearnStrategyStage!]!
+    learnStrategyStagesCount: number // Int!
     me: NexusGenRootTypes['User'] | null // User
     notice: NexusGenRootTypes['Notice'] | null // Notice
     notices: NexusGenRootTypes['Notice'][] // [Notice!]!
@@ -3823,13 +4037,15 @@ export interface NexusGenFieldTypes {
     tasksConnection: NexusGenRootTypes['TaskConnection'] // TaskConnection!
     tasksCount: number // Int!
     technologies: NexusGenRootTypes['Technology'][] // [Technology!]!
-    technologiesConnection: NexusGenRootTypes['TechnologyConnection'] // TechnologyConnection!
+    technologiesCount: number // Int!
     technology: NexusGenRootTypes['Technology'] | null // Technology
-    technologysCount: number // Int!
     timer: NexusGenRootTypes['Timer'] | null // Timer
     timers: NexusGenRootTypes['Timer'][] // [Timer!]!
     timersConnection: NexusGenRootTypes['TimerConnection'] // TimerConnection!
     user: NexusGenRootTypes['User'] | null // User
+    userLearnStrategies: NexusGenRootTypes['UserLearnStrategy'][] // [UserLearnStrategy!]!
+    userLearnStrategiesCount: number // Int!
+    userLearnStrategy: NexusGenRootTypes['UserLearnStrategy'] | null // UserLearnStrategy
     userTechnologies: NexusGenRootTypes['UserTechnology'][] // [UserTechnology!]!
     userTechnology: NexusGenRootTypes['UserTechnology'] | null // UserTechnology
     userTechnologysCount: number // Int!
@@ -4003,18 +4219,14 @@ export interface NexusGenFieldTypes {
     contentText: string | null // String
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     id: string // ID!
+    level1hours: number | null // Int
+    level2hours: number | null // Int
+    level3hours: number | null // Int
+    level4hours: number | null // Int
+    level5hours: number | null // Int
     name: string | null // String
     site_url: string | null // String
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
-  }
-  TechnologyConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateTechnology'] // AggregateTechnology!
-    edges: Array<NexusGenRootTypes['TechnologyEdge'] | null> // [TechnologyEdge]!
-  }
-  TechnologyEdge: {
-    // field return type
-    node: NexusGenRootTypes['Technology'] // Technology!
   }
   Timer: {
     // field return type
@@ -4070,6 +4282,7 @@ export interface NexusGenFieldTypes {
     showEmail: boolean | null // Boolean
     showPhone: boolean | null // Boolean
     sudo: boolean | null // Boolean
+    technologyLevel: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
     username: string | null // String
   }
@@ -4081,6 +4294,16 @@ export interface NexusGenFieldTypes {
   UserEdge: {
     // field return type
     node: NexusGenRootTypes['User'] // User!
+  }
+  UserLearnStrategy: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    LearnStrategy: NexusGenRootTypes['LearnStrategy'] | null // LearnStrategy
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    createdById: string | null // String
+    id: string // ID!
+    learnStrategyId: string | null // String
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
   UserResponse: {
     // field return type
@@ -4101,6 +4324,7 @@ export interface NexusGenFieldTypes {
     id: string // ID!
     level: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     status: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
+    technologyId: string // String!
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
   UserTechnologyResponse: {
@@ -4134,10 +4358,6 @@ export interface NexusGenFieldTypeNames {
     count: 'Int'
   }
   AggregateTask: {
-    // field return type name
-    count: 'Int'
-  }
-  AggregateTechnology: {
     // field return type name
     count: 'Int'
   }
@@ -4295,19 +4515,49 @@ export interface NexusGenFieldTypeNames {
     size: 'Float'
     updatedAt: 'DateTime'
   }
+  LearnStrategy: {
+    // field return type name
+    CreatedBy: 'User'
+    LearnStrategyStages: 'LearnStrategyStage'
+    UserLearnStrategies: 'UserLearnStrategy'
+    createdAt: 'DateTime'
+    createdById: 'String'
+    description: 'String'
+    id: 'ID'
+    level: 'UserTechnologyLevel'
+    name: 'String'
+    updatedAt: 'DateTime'
+  }
+  LearnStrategyStage: {
+    // field return type name
+    LearnStrategy: 'LearnStrategy'
+    LearnStrategyTarget: 'LearnStrategy'
+    Technology: 'Technology'
+    createdAt: 'DateTime'
+    id: 'ID'
+    learnStrategyId: 'String'
+    learnStrategyTargetId: 'String'
+    level: 'Int'
+    technologyId: 'String'
+    updatedAt: 'DateTime'
+  }
   Mutation: {
     // field return type name
     createBlogProcessor: 'ResourceResponse'
     createChatMessageProcessor: 'ChatMessageResponse'
     createCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     createCommentProcessor: 'ResourceResponse'
+    createLearnStrategy: 'LearnStrategy'
+    createLearnStrategyStage: 'LearnStrategyStage'
     createProjectProcessor: 'ProjectResponse'
     createResetPasswordProcessor: 'ResetPasswordResponse'
     createTaskProcessor: 'TaskResponse'
     createTaskTechnologyProcessor: 'TaskTechnologyResponse'
     createTimerProcessor: 'TimerResponse'
     createTopicProcessor: 'ResourceResponse'
+    createUserLearnStrategy: 'UserLearnStrategy'
     createUserTechnologyProcessor: 'UserTechnologyResponse'
+    deleteLearnStrategyStage: 'LearnStrategyStage'
     deleteNotice: 'Notice'
     resetPasswordProcessor: 'AuthPayload'
     signin: 'AuthPayload'
@@ -4316,6 +4566,7 @@ export interface NexusGenFieldTypeNames {
     updateBlogProcessor: 'ResourceResponse'
     updateCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     updateCommentProcessor: 'ResourceResponse'
+    updateLearnStrategy: 'LearnStrategy'
     updateProjectProcessor: 'ProjectResponse'
     updateTaskProcessor: 'TaskResponse'
     updateTaskTechnologyProcessor: 'TaskTechnologyResponse'
@@ -4428,6 +4679,12 @@ export interface NexusGenFieldTypeNames {
     file: 'File'
     files: 'File'
     filesCount: 'Int'
+    learnStrategies: 'LearnStrategy'
+    learnStrategiesCount: 'Int'
+    learnStrategy: 'LearnStrategy'
+    learnStrategyStage: 'LearnStrategyStage'
+    learnStrategyStages: 'LearnStrategyStage'
+    learnStrategyStagesCount: 'Int'
     me: 'User'
     notice: 'Notice'
     notices: 'Notice'
@@ -4453,13 +4710,15 @@ export interface NexusGenFieldTypeNames {
     tasksConnection: 'TaskConnection'
     tasksCount: 'Int'
     technologies: 'Technology'
-    technologiesConnection: 'TechnologyConnection'
+    technologiesCount: 'Int'
     technology: 'Technology'
-    technologysCount: 'Int'
     timer: 'Timer'
     timers: 'Timer'
     timersConnection: 'TimerConnection'
     user: 'User'
+    userLearnStrategies: 'UserLearnStrategy'
+    userLearnStrategiesCount: 'Int'
+    userLearnStrategy: 'UserLearnStrategy'
     userTechnologies: 'UserTechnology'
     userTechnology: 'UserTechnology'
     userTechnologysCount: 'Int'
@@ -4633,18 +4892,14 @@ export interface NexusGenFieldTypeNames {
     contentText: 'String'
     createdAt: 'DateTime'
     id: 'ID'
+    level1hours: 'Int'
+    level2hours: 'Int'
+    level3hours: 'Int'
+    level4hours: 'Int'
+    level5hours: 'Int'
     name: 'String'
     site_url: 'String'
     updatedAt: 'DateTime'
-  }
-  TechnologyConnection: {
-    // field return type name
-    aggregate: 'AggregateTechnology'
-    edges: 'TechnologyEdge'
-  }
-  TechnologyEdge: {
-    // field return type name
-    node: 'Technology'
   }
   Timer: {
     // field return type name
@@ -4698,6 +4953,7 @@ export interface NexusGenFieldTypeNames {
     showEmail: 'Boolean'
     showPhone: 'Boolean'
     sudo: 'Boolean'
+    technologyLevel: 'UserTechnologyLevel'
     updatedAt: 'DateTime'
     username: 'String'
   }
@@ -4709,6 +4965,16 @@ export interface NexusGenFieldTypeNames {
   UserEdge: {
     // field return type name
     node: 'User'
+  }
+  UserLearnStrategy: {
+    // field return type name
+    CreatedBy: 'User'
+    LearnStrategy: 'LearnStrategy'
+    createdAt: 'DateTime'
+    createdById: 'String'
+    id: 'ID'
+    learnStrategyId: 'String'
+    updatedAt: 'DateTime'
   }
   UserResponse: {
     // field return type name
@@ -4729,6 +4995,7 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     level: 'UserTechnologyLevel'
     status: 'UserTechnologyStatus'
+    technologyId: 'String'
     updatedAt: 'DateTime'
   }
   UserTechnologyResponse: {
@@ -4783,6 +5050,14 @@ export interface NexusGenArgTypes {
       // args
       data: NexusGenInputs['CommentCreateInput'] // CommentCreateInput!
     }
+    createLearnStrategy: {
+      // args
+      data: NexusGenInputs['LearnStrategyCreateInput'] // LearnStrategyCreateInput!
+    }
+    createLearnStrategyStage: {
+      // args
+      data: NexusGenInputs['LearnStrategyStageCreateInput'] // LearnStrategyStageCreateInput!
+    }
     createProjectProcessor: {
       // args
       data: NexusGenInputs['ProjectCreateInput'] // ProjectCreateInput!
@@ -4807,9 +5082,17 @@ export interface NexusGenArgTypes {
       // args
       data: NexusGenInputs['TopicCreateInput'] // TopicCreateInput!
     }
+    createUserLearnStrategy: {
+      // args
+      data: NexusGenInputs['UserLearnStrategyCreateInput'] // UserLearnStrategyCreateInput!
+    }
     createUserTechnologyProcessor: {
       // args
       data: NexusGenInputs['UserTechnologyCreateInput'] // UserTechnologyCreateInput!
+    }
+    deleteLearnStrategyStage: {
+      // args
+      where: NexusGenInputs['LearnStrategyStageWhereUniqueInput'] // LearnStrategyStageWhereUniqueInput!
     }
     deleteNotice: {
       // args
@@ -4847,6 +5130,11 @@ export interface NexusGenArgTypes {
       // args
       data: NexusGenInputs['CommentUpdateInput'] // CommentUpdateInput!
       where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
+    }
+    updateLearnStrategy: {
+      // args
+      data: NexusGenInputs['LearnStrategyUpdateInput'] // LearnStrategyUpdateInput!
+      where: NexusGenInputs['LearnStrategyWhereUniqueInput'] // LearnStrategyWhereUniqueInput!
     }
     updateProjectProcessor: {
       // args
@@ -4984,6 +5272,38 @@ export interface NexusGenArgTypes {
     filesCount: {
       // args
       where?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
+    }
+    learnStrategies: {
+      // args
+      cursor?: NexusGenInputs['LearnStrategyWhereUniqueInput'] | null // LearnStrategyWhereUniqueInput
+      orderBy?: NexusGenInputs['LearnStrategyOrderByInput'][] | null // [LearnStrategyOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
+    }
+    learnStrategiesCount: {
+      // args
+      where?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
+    }
+    learnStrategy: {
+      // args
+      where: NexusGenInputs['LearnStrategyWhereUniqueInput'] // LearnStrategyWhereUniqueInput!
+    }
+    learnStrategyStage: {
+      // args
+      where: NexusGenInputs['LearnStrategyStageWhereUniqueInput'] // LearnStrategyStageWhereUniqueInput!
+    }
+    learnStrategyStages: {
+      // args
+      cursor?: NexusGenInputs['LearnStrategyStageWhereUniqueInput'] | null // LearnStrategyStageWhereUniqueInput
+      orderBy?: NexusGenInputs['LearnStrategyStageOrderByInput'][] | null // [LearnStrategyStageOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
+    }
+    learnStrategyStagesCount: {
+      // args
+      where?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
     }
     notice: {
       // args
@@ -5132,20 +5452,13 @@ export interface NexusGenArgTypes {
       take?: number | null // Int
       where?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
     }
-    technologiesConnection: {
+    technologiesCount: {
       // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['TechnologyOrderByInput'] | null // TechnologyOrderByInput
-      skip?: number | null // Int
       where?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
     }
     technology: {
       // args
       where: NexusGenInputs['TechnologyWhereUniqueInput'] // TechnologyWhereUniqueInput!
-    }
-    technologysCount: {
-      // args
-      where?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
     }
     timer: {
       // args
@@ -5169,6 +5482,22 @@ export interface NexusGenArgTypes {
     user: {
       // args
       where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
+    }
+    userLearnStrategies: {
+      // args
+      cursor?: NexusGenInputs['UserLearnStrategyWhereUniqueInput'] | null // UserLearnStrategyWhereUniqueInput
+      orderBy?: NexusGenInputs['UserLearnStrategyOrderByInput'][] | null // [UserLearnStrategyOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['UserLearnStrategyWhereInput'] | null // UserLearnStrategyWhereInput
+    }
+    userLearnStrategiesCount: {
+      // args
+      where?: NexusGenInputs['UserLearnStrategyWhereInput'] | null // UserLearnStrategyWhereInput
+    }
+    userLearnStrategy: {
+      // args
+      where: NexusGenInputs['UserLearnStrategyWhereUniqueInput'] // UserLearnStrategyWhereUniqueInput!
     }
     userTechnologies: {
       // args

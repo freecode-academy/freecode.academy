@@ -25,7 +25,7 @@ const scalars = {
   Json: 'globalThis.Record<string, any> | globalThis.Array<any>',
   Long: 'number',
   Upload: 'globalThis.File',
-  UserTechnologyLevel: '1 | 2 | 3 | 4 | 5 |null',
+  UserTechnologyLevel: '1 | 2 | 3 | 4 | 5',
 }
 
 const globPromisify = util.promisify(glob)

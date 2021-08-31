@@ -44,9 +44,9 @@ export default class MyDocument extends Document {
                   try {
                     w.yaCounter53203621 = new Ya.Metrika({
                       id: 53203621,
-                      clickmap: true,
-                      trackLinks: true,
-                      accurateTrackBounce: true
+                      clickmap: false,
+                      trackLinks: false,
+                      accurateTrackBounce: false
                     });
                   } catch (e) { }
                 });
@@ -55,7 +55,7 @@ export default class MyDocument extends Document {
                         s = d.createElement("script"),
                         f = function () {n.parentNode.insertBefore(s, n); };
                     s.type = "text/javascript";
-                    s.async = true;
+                    s.async = false;
                     s.src = "https://mc.yandex.ru/metrika/watch.js";
   
                     if (w.opera == "[object Opera]") {
@@ -65,7 +65,7 @@ export default class MyDocument extends Document {
             }}
           />
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-          <script
+          {/* <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-XTTFFVVKKS"
           ></script>
@@ -77,7 +77,7 @@ export default class MyDocument extends Document {
     
                 gtag('config', 'G-XTTFFVVKKS');`,
             }}
-          />
+          /> */}
         </Head>
         <body>
           <Main />

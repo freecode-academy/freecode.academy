@@ -37,18 +37,7 @@ export const updateUserTechnologyProcessor: FieldResolver<
     components,
     hiring_status,
     status,
-  }
-
-  if (level !== undefined && level !== null) {
-    if (typeof level !== 'number') {
-      throw new Error('Уровень должен быть в диапазоне от 1 до 5')
-    } else if (level < 1) {
-      throw new Error('Не должно быть меньше 1')
-    } else if (level > 5) {
-      throw new Error('Не должно быть больше 5')
-    }
-
-    updateData.level = level as 1 | 2 | 3 | 4 | 5
+    level,
   }
 
   if (date_from !== undefined || date_till !== undefined) {

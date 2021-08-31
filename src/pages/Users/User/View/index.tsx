@@ -8,6 +8,7 @@ import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import UserNotifications from './Notifications'
 import Grid from 'src/uikit/Grid'
 import {
+  Scalars,
   UserUpdateInput,
   useUpdateUserProcessorMutation,
 } from 'src/modules/gql/generated'
@@ -21,6 +22,9 @@ import UserViewTechnologies from './Technologies'
 import useStore from 'src/hooks/useStore'
 import UserChatSettings from './ChatSettings'
 import UserChatRooms from './ChatRooms'
+import UserTechnologyLevel from 'src/pages/Technologies/Technology/View/UserTechnologyRow/UserTechnologyLevel'
+import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
+// import { UserProgress } from './Progress'
 
 const UserView: React.FC<UserViewProps> = (props) => {
   const user = props.object
@@ -60,10 +64,19 @@ const UserView: React.FC<UserViewProps> = (props) => {
 
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = event.target
+      const name = event.target.name as keyof UserUpdateInput
+      let value: string | Scalars['UserTechnologyLevel'] = event.target.value
 
       if (!name) {
         return
+      }
+
+      switch (name) {
+        case 'technologyLevel':
+          value = parseInt(value) as Scalars['UserTechnologyLevel']
+          break
+
+        default:
       }
 
       setData({
@@ -243,6 +256,32 @@ const UserView: React.FC<UserViewProps> = (props) => {
     )
   }, [data, onChange, userEdited?.fullname])
 
+  const technologyLevel = useMemo(() => {
+    if (!data) {
+      return null
+    }
+
+    return (
+      <UserTechnologyLevel
+        inEditMode={inEditMode}
+        error={undefined}
+        value={userEdited?.technologyLevel}
+        onChange={onChange}
+        name="technologyLevel"
+      />
+    )
+
+    // return (
+    //   <TextField
+    //     name="technologyLevel"
+    //     value={userEdited?.technologyLevel || ''}
+    //     onChange={onChange}
+    //     label="Технологический уровень"
+    //     fullWidth
+    //   />
+    // )
+  }, [data, inEditMode, onChange, userEdited?.technologyLevel])
+
   /**
    * Обработчик на загрузку картинки
    */
@@ -296,19 +335,25 @@ const UserView: React.FC<UserViewProps> = (props) => {
             </Grid>
 
             {fullname ? (
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={6} lg={4}>
                 {fullname}
               </Grid>
             ) : null}
 
             {email ? (
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={6} lg={4}>
                 {email}
               </Grid>
             ) : null}
 
+            {technologyLevel ? (
+              <Grid item xs={12} md={6} lg={4}>
+                {technologyLevel}
+              </Grid>
+            ) : null}
+
             {password ? (
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={6} lg={4}>
                 {password}
               </Grid>
             ) : null}
@@ -337,6 +382,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
     notifications,
     password,
     save,
+    technologyLevel,
     userEdited?.fullname,
     userEdited?.username,
   ])
@@ -353,15 +399,39 @@ const UserView: React.FC<UserViewProps> = (props) => {
     return <UserViewTechnologies objects={user.UserTechnologies} />
   }, [user.UserTechnologies])
 
+  // TODO Restore
+  // const userProgress = useMemo(() => {
+  //   if (!user.UserTechnologies?.length) {
+  //     return null
+  //   }
+
+  //   return <UserProgress userTechnologies={user.UserTechnologies} />
+  // }, [user.UserTechnologies])
+
+  const level = useMemo(() => {
+    if (!user.technologyLevel) {
+      return null
+    }
+
+    return (
+      <div>
+        Технологический уровень:{' '}
+        {getUserTechnologyLevelText(user.technologyLevel)}
+      </div>
+    )
+  }, [user.technologyLevel])
+
   return useMemo(() => {
     return (
       <>
         {form}
         {chatRooms}
+        {/* {userProgress} */}
+        {level}
         {technologies}
       </>
     )
-  }, [chatRooms, form, technologies])
+  }, [chatRooms, form, level, technologies])
 }
 
 export default UserView

@@ -4,7 +4,6 @@ import {
   TechnologiesConnectionDocument,
   TechnologiesConnectionQueryVariables,
   useTechnologiesConnectionQuery,
-  TechnologiesConnectionTechnologyFragment,
   SortOrder,
 } from 'src/modules/gql/generated'
 
@@ -18,7 +17,7 @@ const first = 10
 
 const defaultVariables: TechnologiesConnectionQueryVariables = {
   where: {},
-  first,
+  take: first,
   orderBy: {
     name: SortOrder.ASC,
   },
@@ -58,19 +57,19 @@ const TechnologiesPage: Page = () => {
     onError: console.error,
   })
 
-  const objects = useMemo(() => {
-    const objects: TechnologiesConnectionTechnologyFragment[] = []
+  // const objects = useMemo(() => {
+  //   const objects: TechnologiesConnectionTechnologyFragment[] = []
 
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
+  //   return (
+  //     response.data?.objectsConnection.edges.reduce((curr, next) => {
+  //       if (next?.node) {
+  //         curr.push(next.node)
+  //       }
 
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
+  //       return curr
+  //     }, objects) ?? []
+  //   )
+  // }, [response.data?.objectsConnection.edges])
 
   const { variables, loading } = response
 
@@ -88,8 +87,8 @@ const TechnologiesPage: Page = () => {
         // {...queryResult}
         loading={loading}
         // data={response || null}
-        objects={objects}
-        count={response.data?.objectsConnection.aggregate.count}
+        objects={response.data?.technologies || []}
+        count={response.data?.technologiesCount}
         variables={variables}
         page={page}
       />

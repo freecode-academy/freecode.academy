@@ -261,7 +261,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
   }, [errors, getValue, inEditMode, onChange])
 
   /**
-   * Уровень знания
+   * Технологический уровень
    */
   const level = useMemo(() => {
     const fieldName: Name = 'level'
@@ -275,6 +275,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
         error={error}
         onChange={onChange}
         value={value}
+        name="level"
       />
     )
   }, [errors, getValue, inEditMode, onChange])
@@ -330,7 +331,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
   //         value={value || ''}
   //         onChange={onChange}
   //         error={!!error}
-  //         label="Уровень знания"
+  //         label="Технологический уровень"
   //         helperText={error?.message || title || 'Укажите от 1 до 5'}
   //         type="number"
   //         fullWidth

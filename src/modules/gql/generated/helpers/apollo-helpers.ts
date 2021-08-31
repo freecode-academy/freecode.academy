@@ -23,10 +23,6 @@ export type AggregateTaskKeySpecifier = ('count' | AggregateTaskKeySpecifier)[];
 export type AggregateTaskFieldPolicy = {
 	count?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type AggregateTechnologyKeySpecifier = ('count' | AggregateTechnologyKeySpecifier)[];
-export type AggregateTechnologyFieldPolicy = {
-	count?: FieldPolicy<any> | FieldReadFunction<any>
-};
 export type AggregateTimerKeySpecifier = ('count' | AggregateTimerKeySpecifier)[];
 export type AggregateTimerFieldPolicy = {
 	count?: FieldPolicy<any> | FieldReadFunction<any>
@@ -181,19 +177,49 @@ export type FileFieldPolicy = {
 	size?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserTechnologyProcessor' | 'deleteNotice' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
+export type LearnStrategyKeySpecifier = ('CreatedBy' | 'LearnStrategyStages' | 'UserLearnStrategies' | 'createdAt' | 'createdById' | 'description' | 'id' | 'level' | 'name' | 'updatedAt' | LearnStrategyKeySpecifier)[];
+export type LearnStrategyFieldPolicy = {
+	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
+	LearnStrategyStages?: FieldPolicy<any> | FieldReadFunction<any>,
+	UserLearnStrategies?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdById?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	level?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type LearnStrategyStageKeySpecifier = ('LearnStrategy' | 'LearnStrategyTarget' | 'Technology' | 'createdAt' | 'id' | 'learnStrategyId' | 'learnStrategyTargetId' | 'level' | 'technologyId' | 'updatedAt' | LearnStrategyStageKeySpecifier)[];
+export type LearnStrategyStageFieldPolicy = {
+	LearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
+	LearnStrategyTarget?: FieldPolicy<any> | FieldReadFunction<any>,
+	Technology?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategyId?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategyTargetId?: FieldPolicy<any> | FieldReadFunction<any>,
+	level?: FieldPolicy<any> | FieldReadFunction<any>,
+	technologyId?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateLearnStrategy' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	createBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createChatMessageProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createCodeChallengeCompletionProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createCommentProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
+	createLearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
+	createLearnStrategyStage?: FieldPolicy<any> | FieldReadFunction<any>,
 	createProjectProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createResetPasswordProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTaskProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTaskTechnologyProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTimerProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTopicProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
+	createUserLearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
 	createUserTechnologyProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
+	deleteLearnStrategyStage?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteNotice?: FieldPolicy<any> | FieldReadFunction<any>,
 	resetPasswordProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	signin?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -202,6 +228,7 @@ export type MutationFieldPolicy = {
 	updateBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateCodeChallengeCompletionProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateCommentProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateLearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateProjectProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateTaskProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateTaskTechnologyProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -295,7 +322,7 @@ export type ProjectTaskFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('chatMessage' | 'chatMessages' | 'chatMessagesConnection' | 'chatMessagesCount' | 'chatRoom' | 'chatRooms' | 'chatRoomsCount' | 'codeChallenge' | 'codeChallengeBlock' | 'codeChallengeBlocks' | 'codeChallengeBlocksCount' | 'codeChallengeCompletion' | 'codeChallengeCompletions' | 'codeChallenges' | 'file' | 'files' | 'filesCount' | 'me' | 'notice' | 'notices' | 'noticesConnection' | 'noticesCount' | 'notificationTypes' | 'notificationTypesCount' | 'project' | 'projectTasks' | 'projects' | 'projectsConnection' | 'resource' | 'resources' | 'resourcesConnection' | 'tag' | 'tags' | 'tagsConnection' | 'task' | 'taskTechnologies' | 'taskTechnology' | 'taskTechnologysCount' | 'tasks' | 'tasksConnection' | 'tasksCount' | 'technologies' | 'technologiesConnection' | 'technology' | 'technologysCount' | 'timer' | 'timers' | 'timersConnection' | 'user' | 'userTechnologies' | 'userTechnology' | 'userTechnologysCount' | 'users' | 'usersConnection' | 'usersCount' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('chatMessage' | 'chatMessages' | 'chatMessagesConnection' | 'chatMessagesCount' | 'chatRoom' | 'chatRooms' | 'chatRoomsCount' | 'codeChallenge' | 'codeChallengeBlock' | 'codeChallengeBlocks' | 'codeChallengeBlocksCount' | 'codeChallengeCompletion' | 'codeChallengeCompletions' | 'codeChallenges' | 'file' | 'files' | 'filesCount' | 'learnStrategies' | 'learnStrategiesCount' | 'learnStrategy' | 'learnStrategyStage' | 'learnStrategyStages' | 'learnStrategyStagesCount' | 'me' | 'notice' | 'notices' | 'noticesConnection' | 'noticesCount' | 'notificationTypes' | 'notificationTypesCount' | 'project' | 'projectTasks' | 'projects' | 'projectsConnection' | 'resource' | 'resources' | 'resourcesConnection' | 'tag' | 'tags' | 'tagsConnection' | 'task' | 'taskTechnologies' | 'taskTechnology' | 'taskTechnologysCount' | 'tasks' | 'tasksConnection' | 'tasksCount' | 'technologies' | 'technologiesCount' | 'technology' | 'timer' | 'timers' | 'timersConnection' | 'user' | 'userLearnStrategies' | 'userLearnStrategiesCount' | 'userLearnStrategy' | 'userTechnologies' | 'userTechnology' | 'userTechnologysCount' | 'users' | 'usersConnection' | 'usersCount' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	chatMessage?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatMessages?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -314,6 +341,12 @@ export type QueryFieldPolicy = {
 	file?: FieldPolicy<any> | FieldReadFunction<any>,
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	filesCount?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategies?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategiesCount?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategyStage?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategyStages?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategyStagesCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	me?: FieldPolicy<any> | FieldReadFunction<any>,
 	notice?: FieldPolicy<any> | FieldReadFunction<any>,
 	notices?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -339,13 +372,15 @@ export type QueryFieldPolicy = {
 	tasksConnection?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasksCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	technologies?: FieldPolicy<any> | FieldReadFunction<any>,
-	technologiesConnection?: FieldPolicy<any> | FieldReadFunction<any>,
+	technologiesCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	technology?: FieldPolicy<any> | FieldReadFunction<any>,
-	technologysCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	timer?: FieldPolicy<any> | FieldReadFunction<any>,
 	timers?: FieldPolicy<any> | FieldReadFunction<any>,
 	timersConnection?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
+	userLearnStrategies?: FieldPolicy<any> | FieldReadFunction<any>,
+	userLearnStrategiesCount?: FieldPolicy<any> | FieldReadFunction<any>,
+	userLearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
 	userTechnologies?: FieldPolicy<any> | FieldReadFunction<any>,
 	userTechnology?: FieldPolicy<any> | FieldReadFunction<any>,
 	userTechnologysCount?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -511,7 +546,7 @@ export type TaskTechnologyResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type TechnologyKeySpecifier = ('CreatedBy' | 'UserTechnologies' | 'components' | 'contentText' | 'createdAt' | 'id' | 'name' | 'site_url' | 'updatedAt' | TechnologyKeySpecifier)[];
+export type TechnologyKeySpecifier = ('CreatedBy' | 'UserTechnologies' | 'components' | 'contentText' | 'createdAt' | 'id' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'name' | 'site_url' | 'updatedAt' | TechnologyKeySpecifier)[];
 export type TechnologyFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	UserTechnologies?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -519,18 +554,14 @@ export type TechnologyFieldPolicy = {
 	contentText?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	level1hours?: FieldPolicy<any> | FieldReadFunction<any>,
+	level2hours?: FieldPolicy<any> | FieldReadFunction<any>,
+	level3hours?: FieldPolicy<any> | FieldReadFunction<any>,
+	level4hours?: FieldPolicy<any> | FieldReadFunction<any>,
+	level5hours?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	site_url?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
-};
-export type TechnologyConnectionKeySpecifier = ('aggregate' | 'edges' | TechnologyConnectionKeySpecifier)[];
-export type TechnologyConnectionFieldPolicy = {
-	aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
-	edges?: FieldPolicy<any> | FieldReadFunction<any>
-};
-export type TechnologyEdgeKeySpecifier = ('node' | TechnologyEdgeKeySpecifier)[];
-export type TechnologyEdgeFieldPolicy = {
-	node?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type TimerKeySpecifier = ('CreatedBy' | 'Task' | 'createdAt' | 'id' | 'stopedAt' | 'updatedAt' | TimerKeySpecifier)[];
 export type TimerFieldPolicy = {
@@ -557,7 +588,7 @@ export type TimerResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserKeySpecifier = ('CodeChallengeCompletions' | 'EthAccounts' | 'NotificationTypes' | 'Projects' | 'ProjectsCreated' | 'Timers' | 'UserTechnologies' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoom' | 'acceptNewChatRoomAnonymous' | 'activated' | 'active' | 'address' | 'createdAt' | 'deleted' | 'email' | 'fullname' | 'hasEmail' | 'hasPhone' | 'id' | 'image' | 'phone' | 'showEmail' | 'showPhone' | 'sudo' | 'updatedAt' | 'username' | UserKeySpecifier)[];
+export type UserKeySpecifier = ('CodeChallengeCompletions' | 'EthAccounts' | 'NotificationTypes' | 'Projects' | 'ProjectsCreated' | 'Timers' | 'UserTechnologies' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoom' | 'acceptNewChatRoomAnonymous' | 'activated' | 'active' | 'address' | 'createdAt' | 'deleted' | 'email' | 'fullname' | 'hasEmail' | 'hasPhone' | 'id' | 'image' | 'phone' | 'showEmail' | 'showPhone' | 'sudo' | 'technologyLevel' | 'updatedAt' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
 	CodeChallengeCompletions?: FieldPolicy<any> | FieldReadFunction<any>,
 	EthAccounts?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -584,6 +615,7 @@ export type UserFieldPolicy = {
 	showEmail?: FieldPolicy<any> | FieldReadFunction<any>,
 	showPhone?: FieldPolicy<any> | FieldReadFunction<any>,
 	sudo?: FieldPolicy<any> | FieldReadFunction<any>,
+	technologyLevel?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	username?: FieldPolicy<any> | FieldReadFunction<any>
 };
@@ -596,6 +628,16 @@ export type UserEdgeKeySpecifier = ('node' | UserEdgeKeySpecifier)[];
 export type UserEdgeFieldPolicy = {
 	node?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type UserLearnStrategyKeySpecifier = ('CreatedBy' | 'LearnStrategy' | 'createdAt' | 'createdById' | 'id' | 'learnStrategyId' | 'updatedAt' | UserLearnStrategyKeySpecifier)[];
+export type UserLearnStrategyFieldPolicy = {
+	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
+	LearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdById?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	learnStrategyId?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type UserResponseKeySpecifier = ('data' | 'errors' | 'message' | 'success' | UserResponseKeySpecifier)[];
 export type UserResponseFieldPolicy = {
 	data?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -603,7 +645,7 @@ export type UserResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserTechnologyKeySpecifier = ('CreatedBy' | 'Technology' | 'components' | 'createdAt' | 'date_from' | 'date_till' | 'hiring_status' | 'id' | 'level' | 'status' | 'updatedAt' | UserTechnologyKeySpecifier)[];
+export type UserTechnologyKeySpecifier = ('CreatedBy' | 'Technology' | 'components' | 'createdAt' | 'date_from' | 'date_till' | 'hiring_status' | 'id' | 'level' | 'status' | 'technologyId' | 'updatedAt' | UserTechnologyKeySpecifier)[];
 export type UserTechnologyFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	Technology?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -615,6 +657,7 @@ export type UserTechnologyFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	level?: FieldPolicy<any> | FieldReadFunction<any>,
 	status?: FieldPolicy<any> | FieldReadFunction<any>,
+	technologyId?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type UserTechnologyResponseKeySpecifier = ('data' | 'errors' | 'message' | 'success' | UserTechnologyResponseKeySpecifier)[];
@@ -648,10 +691,6 @@ export type TypedTypePolicies = TypePolicies & {
 	AggregateTask?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | AggregateTaskKeySpecifier | (() => undefined | AggregateTaskKeySpecifier),
 		fields?: AggregateTaskFieldPolicy,
-	},
-	AggregateTechnology?: Omit<TypePolicy, "fields" | "keyFields"> & {
-		keyFields?: false | AggregateTechnologyKeySpecifier | (() => undefined | AggregateTechnologyKeySpecifier),
-		fields?: AggregateTechnologyFieldPolicy,
 	},
 	AggregateTimer?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | AggregateTimerKeySpecifier | (() => undefined | AggregateTimerKeySpecifier),
@@ -712,6 +751,14 @@ export type TypedTypePolicies = TypePolicies & {
 	File?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | FileKeySpecifier | (() => undefined | FileKeySpecifier),
 		fields?: FileFieldPolicy,
+	},
+	LearnStrategy?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | LearnStrategyKeySpecifier | (() => undefined | LearnStrategyKeySpecifier),
+		fields?: LearnStrategyFieldPolicy,
+	},
+	LearnStrategyStage?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | LearnStrategyStageKeySpecifier | (() => undefined | LearnStrategyStageKeySpecifier),
+		fields?: LearnStrategyStageFieldPolicy,
 	},
 	Mutation?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | MutationKeySpecifier | (() => undefined | MutationKeySpecifier),
@@ -837,14 +884,6 @@ export type TypedTypePolicies = TypePolicies & {
 		keyFields?: false | TechnologyKeySpecifier | (() => undefined | TechnologyKeySpecifier),
 		fields?: TechnologyFieldPolicy,
 	},
-	TechnologyConnection?: Omit<TypePolicy, "fields" | "keyFields"> & {
-		keyFields?: false | TechnologyConnectionKeySpecifier | (() => undefined | TechnologyConnectionKeySpecifier),
-		fields?: TechnologyConnectionFieldPolicy,
-	},
-	TechnologyEdge?: Omit<TypePolicy, "fields" | "keyFields"> & {
-		keyFields?: false | TechnologyEdgeKeySpecifier | (() => undefined | TechnologyEdgeKeySpecifier),
-		fields?: TechnologyEdgeFieldPolicy,
-	},
 	Timer?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | TimerKeySpecifier | (() => undefined | TimerKeySpecifier),
 		fields?: TimerFieldPolicy,
@@ -872,6 +911,10 @@ export type TypedTypePolicies = TypePolicies & {
 	UserEdge?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | UserEdgeKeySpecifier | (() => undefined | UserEdgeKeySpecifier),
 		fields?: UserEdgeFieldPolicy,
+	},
+	UserLearnStrategy?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | UserLearnStrategyKeySpecifier | (() => undefined | UserLearnStrategyKeySpecifier),
+		fields?: UserLearnStrategyFieldPolicy,
 	},
 	UserResponse?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | UserResponseKeySpecifier | (() => undefined | UserResponseKeySpecifier),

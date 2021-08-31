@@ -1,0 +1,110 @@
+query technology($where: TechnologyWhereUniqueInput!) {
+  object: technology(where: $where) {
+    ...technology_
+  }
+}
+
+query technologies(
+  $take: Int
+  $skip: Int
+  $where: TechnologyWhereInput
+  $orderBy: [TechnologyOrderByInput!] = { createdAt: desc }
+) {
+  technologies(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {
+    ...technologiesConnectionTechnology
+  }
+}
+
+query technologiesConnection(
+  $take: Int
+  $skip: Int
+  $where: TechnologyWhereInput
+  $orderBy: [TechnologyOrderByInput!] = { createdAt: desc }
+) {
+  technologiesCount(where: $where)
+  technologies(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {
+    ...technologiesConnectionTechnology
+  }
+}
+
+# query technologiesConnection(
+#   $first: Int
+#   $skip: Int
+#   $where: TechnologyWhereInput
+#   $orderBy: TechnologyOrderByInput = { createdAt: desc }
+# ) {
+#   objectsConnection: technologiesConnection(
+#     first: $first
+#     skip: $skip
+#     where: $where
+#     orderBy: $orderBy
+#   ) {
+#     aggregate {
+#       count
+#     }
+#     edges {
+#       node {
+#         ...technologiesConnectionTechnology
+#       }
+#     }
+#   }
+# }
+
+fragment technologiesConnectionTechnology on Technology {
+  ...TechnologyNoNesting
+  CreatedBy {
+    ...technologiesConnectionUser
+  }
+  UserTechnologies {
+    ...technologiesConnectionUserTechnology
+    CreatedBy {
+      ...technologiesConnectionUser
+    }
+  }
+}
+
+fragment technologiesConnectionUser on User {
+  ...UserNoNesting
+}
+
+fragment technologiesConnectionUserTechnology on UserTechnology {
+  id
+  createdAt
+  updatedAt
+  components
+  date_from
+  date_till
+  status
+}
+
+fragment technology_ on Technology {
+  ...TechnologyNoNesting
+  CreatedBy {
+    ...UserNoNesting
+  }
+  UserTechnologies {
+    ...technology_UserTechnology
+  }
+}
+
+fragment TechnologyNoNesting on Technology {
+  id
+  createdAt
+  updatedAt
+  name
+  components
+  # contentText
+  site_url
+  level1hours
+  level2hours
+  level3hours
+  level4hours
+  level5hours
+}
+
+fragment technology_UserTechnology on UserTechnology {
+  ...UserTechnologyNoNesting
+  CreatedBy {
+    ...UserNoNesting
+  }
+}

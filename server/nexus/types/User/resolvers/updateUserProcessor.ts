@@ -25,6 +25,7 @@ export const updateUserProcessor: FieldResolver<
       phone,
       username,
       NotificationTypes,
+      technologyLevel,
     },
   } = args
 
@@ -48,6 +49,7 @@ export const updateUserProcessor: FieldResolver<
     image,
     phone,
     username,
+    technologyLevel,
     NotificationType_UserNotificationTypes,
   }
 

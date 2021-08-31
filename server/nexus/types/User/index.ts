@@ -211,6 +211,7 @@ export const User = objectType({
     t.boolean('acceptChatMessageAnonymous')
     t.boolean('acceptNewChatRoomAnonymous')
     t.boolean('acceptNewChatRoom')
+    t.technologyLevel('technologyLevel')
 
     t.list.nonNull.field('CodeChallengeCompletions', {
       type: 'CodeChallengeCompletion',
@@ -347,6 +348,7 @@ export const UserUpdateInput = inputObjectType({
     t.boolean('acceptChatMessageAnonymous')
     t.boolean('acceptNewChatRoomAnonymous')
     t.boolean('acceptNewChatRoom')
+    t.technologyLevel('technologyLevel')
     t.field('NotificationTypes', {
       type: 'NotificationType_UserNotificationTypes_UpdateInput',
     })

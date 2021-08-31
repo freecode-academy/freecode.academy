@@ -142,10 +142,10 @@ export const TaskTechnologyUpdateInput = inputObjectType({
     t.field('level', {
       type: 'UserTechnologyLevel',
     })
-    t.nonNull.field('Task', {
+    t.field('Task', {
       type: 'TaskCreateOneWithoutTaskTechnologiesInput',
     })
-    t.nonNull.field('Technology', {
+    t.field('Technology', {
       type: 'TechnologyCreateOneWithoutTaskTechnologiesInput',
     })
   },

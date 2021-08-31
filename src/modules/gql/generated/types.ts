@@ -25,7 +25,7 @@ export type Scalars = {
   /** desc */
   Upload: globalThis.File;
   /** UserTechnologyLevel from 1 to 5 */
-  UserTechnologyLevel: 1 | 2 | 3 | 4 | 5 |null;
+  UserTechnologyLevel: 1 | 2 | 3 | 4 | 5;
 };
 
 export interface AggregateChatMessage {
@@ -55,11 +55,6 @@ export interface AggregateTag {
 
 export interface AggregateTask {
   __typename?: 'AggregateTask';
-  count: Scalars['Int'];
-}
-
-export interface AggregateTechnology {
-  __typename?: 'AggregateTechnology';
   count: Scalars['Int'];
 }
 
@@ -1281,6 +1276,140 @@ export interface JsonNullableFilter {
   not?: Maybe<Scalars['Json']>;
 }
 
+export interface LearnStrategy {
+  __typename?: 'LearnStrategy';
+  CreatedBy?: Maybe<User>;
+  LearnStrategyStages?: Maybe<Array<LearnStrategyStage>>;
+  UserLearnStrategies?: Maybe<Array<UserLearnStrategy>>;
+  createdAt: Scalars['DateTime'];
+  createdById: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  level: Scalars['UserTechnologyLevel'];
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+}
+
+export interface LearnStrategyCreateInput {
+  description?: Maybe<Scalars['String']>;
+  level: Scalars['UserTechnologyLevel'];
+  name: Scalars['String'];
+}
+
+export interface LearnStrategyListRelationFilter {
+  every?: Maybe<LearnStrategyWhereInput>;
+  none?: Maybe<LearnStrategyWhereInput>;
+  some?: Maybe<LearnStrategyWhereInput>;
+}
+
+export interface LearnStrategyOrderByInput {
+  createdAt?: Maybe<SortOrder>;
+  createdById?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  level?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
+}
+
+export interface LearnStrategyStage {
+  __typename?: 'LearnStrategyStage';
+  LearnStrategy?: Maybe<LearnStrategy>;
+  LearnStrategyTarget?: Maybe<LearnStrategy>;
+  Technology?: Maybe<Technology>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  learnStrategyId: Scalars['String'];
+  learnStrategyTargetId?: Maybe<Scalars['String']>;
+  /** Если цель освоить технологию, то до какого уровня */
+  level?: Maybe<Scalars['Int']>;
+  technologyId?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+}
+
+/** Этапом развития может быть или технология, или другая стратегия развития */
+export interface LearnStrategyStageCreateInput {
+  /** Стратегия развития, для которой создается этап */
+  LearnStrategy: LearnStrategyStageCreateLearnStrategyInput;
+  /** Стратегия развития */
+  LearnStrategyTarget?: Maybe<LearnStrategyStageCreateLearnStrategyInput>;
+  /** Технология */
+  TechnologyTarget?: Maybe<LearnStrategyStageCreateTechnologyInput>;
+}
+
+/** Стратегия развития */
+export interface LearnStrategyStageCreateLearnStrategyInput {
+  id: Scalars['ID'];
+}
+
+/** Технология */
+export interface LearnStrategyStageCreateTechnologyInput {
+  id: Scalars['ID'];
+  level: Scalars['UserTechnologyLevel'];
+}
+
+export interface LearnStrategyStageListRelationFilter {
+  every?: Maybe<LearnStrategyStageWhereInput>;
+  none?: Maybe<LearnStrategyStageWhereInput>;
+  some?: Maybe<LearnStrategyStageWhereInput>;
+}
+
+export interface LearnStrategyStageOrderByInput {
+  createdAt?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  learnStrategyId?: Maybe<SortOrder>;
+  learnStrategyTargetId?: Maybe<SortOrder>;
+  level?: Maybe<SortOrder>;
+  technologyId?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
+}
+
+export interface LearnStrategyStageWhereInput {
+  AND?: Maybe<Array<LearnStrategyStageWhereInput>>;
+  LearnStrategy?: Maybe<LearnStrategyWhereInput>;
+  LearnStrategyTarget?: Maybe<LearnStrategyWhereInput>;
+  NOT?: Maybe<Array<LearnStrategyStageWhereInput>>;
+  OR?: Maybe<Array<LearnStrategyStageWhereInput>>;
+  Technology?: Maybe<TechnologyWhereInput>;
+  createdAt?: Maybe<DateTimeFilter>;
+  id?: Maybe<StringFilter>;
+  learnStrategyId?: Maybe<StringFilter>;
+  learnStrategyTargetId?: Maybe<StringNullableFilter>;
+  level?: Maybe<IntNullableFilter>;
+  technologyId?: Maybe<StringNullableFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface LearnStrategyStageWhereUniqueInput {
+  id: Scalars['ID'];
+}
+
+export interface LearnStrategyUpdateInput {
+  description?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+}
+
+export interface LearnStrategyWhereInput {
+  AND?: Maybe<Array<LearnStrategyWhereInput>>;
+  CreatedBy?: Maybe<UserWhereInput>;
+  LearnStrategyStages?: Maybe<LearnStrategyStageListRelationFilter>;
+  LearnStrategyStagesTargets?: Maybe<LearnStrategyStageListRelationFilter>;
+  NOT?: Maybe<Array<LearnStrategyWhereInput>>;
+  OR?: Maybe<Array<LearnStrategyWhereInput>>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyListRelationFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
+  createdById?: Maybe<StringFilter>;
+  description?: Maybe<StringNullableFilter>;
+  id?: Maybe<StringFilter>;
+  level?: Maybe<IntFilter>;
+  name?: Maybe<StringFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface LearnStrategyWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export enum LetsadsSmsMessageStatusEnum {
   COMPLETE = 'Complete',
   ERROR = 'Error'
@@ -1445,13 +1574,17 @@ export interface Mutation {
   createChatMessageProcessor: ChatMessageResponse;
   createCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
   createCommentProcessor: ResourceResponse;
+  createLearnStrategy: LearnStrategy;
+  createLearnStrategyStage: LearnStrategyStage;
   createProjectProcessor: ProjectResponse;
   createResetPasswordProcessor: ResetPasswordResponse;
   createTaskProcessor: TaskResponse;
   createTaskTechnologyProcessor: TaskTechnologyResponse;
   createTimerProcessor: TimerResponse;
   createTopicProcessor: ResourceResponse;
+  createUserLearnStrategy: UserLearnStrategy;
   createUserTechnologyProcessor: UserTechnologyResponse;
+  deleteLearnStrategyStage: LearnStrategyStage;
   deleteNotice?: Maybe<Notice>;
   resetPasswordProcessor: AuthPayload;
   /** Авторизация */
@@ -1463,6 +1596,7 @@ export interface Mutation {
   updateBlogProcessor: ResourceResponse;
   updateCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
   updateCommentProcessor: ResourceResponse;
+  updateLearnStrategy: LearnStrategy;
   updateProjectProcessor: ProjectResponse;
   updateTaskProcessor: TaskResponse;
   updateTaskTechnologyProcessor: TaskTechnologyResponse;
@@ -1490,6 +1624,16 @@ export type MutationCreateCodeChallengeCompletionProcessorArgs = {
 
 export type MutationCreateCommentProcessorArgs = {
   data: CommentCreateInput;
+};
+
+
+export type MutationCreateLearnStrategyArgs = {
+  data: LearnStrategyCreateInput;
+};
+
+
+export type MutationCreateLearnStrategyStageArgs = {
+  data: LearnStrategyStageCreateInput;
 };
 
 
@@ -1523,8 +1667,18 @@ export type MutationCreateTopicProcessorArgs = {
 };
 
 
+export type MutationCreateUserLearnStrategyArgs = {
+  data: UserLearnStrategyCreateInput;
+};
+
+
 export type MutationCreateUserTechnologyProcessorArgs = {
   data: UserTechnologyCreateInput;
+};
+
+
+export type MutationDeleteLearnStrategyStageArgs = {
+  where: LearnStrategyStageWhereUniqueInput;
 };
 
 
@@ -1570,6 +1724,12 @@ export type MutationUpdateCodeChallengeCompletionProcessorArgs = {
 export type MutationUpdateCommentProcessorArgs = {
   data: CommentUpdateInput;
   where: ResourceWhereUniqueInput;
+};
+
+
+export type MutationUpdateLearnStrategyArgs = {
+  data: LearnStrategyUpdateInput;
+  where: LearnStrategyWhereUniqueInput;
 };
 
 
@@ -2324,6 +2484,12 @@ export interface Query {
   files: Array<File>;
   /** Количество файлов */
   filesCount: Scalars['Int'];
+  learnStrategies: Array<LearnStrategy>;
+  learnStrategiesCount: Scalars['Int'];
+  learnStrategy?: Maybe<LearnStrategy>;
+  learnStrategyStage?: Maybe<LearnStrategyStage>;
+  learnStrategyStages: Array<LearnStrategyStage>;
+  learnStrategyStagesCount: Scalars['Int'];
   me?: Maybe<User>;
   /** Уведомление */
   notice?: Maybe<Notice>;
@@ -2354,14 +2520,16 @@ export interface Query {
   tasksConnection: TaskConnection;
   tasksCount: Scalars['Int'];
   technologies: Array<Technology>;
-  technologiesConnection: TechnologyConnection;
+  technologiesCount: Scalars['Int'];
   technology?: Maybe<Technology>;
-  technologysCount: Scalars['Int'];
   timer?: Maybe<Timer>;
   timers: Array<Timer>;
   timersConnection: TimerConnection;
   /** Пользователь */
   user?: Maybe<User>;
+  userLearnStrategies: Array<UserLearnStrategy>;
+  userLearnStrategiesCount: Scalars['Int'];
+  userLearnStrategy?: Maybe<UserLearnStrategy>;
   userTechnologies: Array<UserTechnology>;
   userTechnology?: Maybe<UserTechnology>;
   userTechnologysCount: Scalars['Int'];
@@ -2482,6 +2650,44 @@ export type QueryFilesArgs = {
 
 export type QueryFilesCountArgs = {
   where?: Maybe<FileWhereInput>;
+};
+
+
+export type QueryLearnStrategiesArgs = {
+  cursor?: Maybe<LearnStrategyWhereUniqueInput>;
+  orderBy?: Maybe<Array<LearnStrategyOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<LearnStrategyWhereInput>;
+};
+
+
+export type QueryLearnStrategiesCountArgs = {
+  where?: Maybe<LearnStrategyWhereInput>;
+};
+
+
+export type QueryLearnStrategyArgs = {
+  where: LearnStrategyWhereUniqueInput;
+};
+
+
+export type QueryLearnStrategyStageArgs = {
+  where: LearnStrategyStageWhereUniqueInput;
+};
+
+
+export type QueryLearnStrategyStagesArgs = {
+  cursor?: Maybe<LearnStrategyStageWhereUniqueInput>;
+  orderBy?: Maybe<Array<LearnStrategyStageOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<LearnStrategyStageWhereInput>;
+};
+
+
+export type QueryLearnStrategyStagesCountArgs = {
+  where?: Maybe<LearnStrategyStageWhereInput>;
 };
 
 
@@ -2656,21 +2862,13 @@ export type QueryTechnologiesArgs = {
 };
 
 
-export type QueryTechnologiesConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<TechnologyOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
+export type QueryTechnologiesCountArgs = {
   where?: Maybe<TechnologyWhereInput>;
 };
 
 
 export type QueryTechnologyArgs = {
   where: TechnologyWhereUniqueInput;
-};
-
-
-export type QueryTechnologysCountArgs = {
-  where?: Maybe<TechnologyWhereInput>;
 };
 
 
@@ -2698,6 +2896,25 @@ export type QueryTimersConnectionArgs = {
 
 export type QueryUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type QueryUserLearnStrategiesArgs = {
+  cursor?: Maybe<UserLearnStrategyWhereUniqueInput>;
+  orderBy?: Maybe<Array<UserLearnStrategyOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<UserLearnStrategyWhereInput>;
+};
+
+
+export type QueryUserLearnStrategiesCountArgs = {
+  where?: Maybe<UserLearnStrategyWhereInput>;
+};
+
+
+export type QueryUserLearnStrategyArgs = {
+  where: UserLearnStrategyWhereUniqueInput;
 };
 
 
@@ -3485,8 +3702,8 @@ export interface TaskTechnologyResponse {
 }
 
 export interface TaskTechnologyUpdateInput {
-  Task: TaskCreateOneWithoutTaskTechnologiesInput;
-  Technology: TechnologyCreateOneWithoutTaskTechnologiesInput;
+  Task?: Maybe<TaskCreateOneWithoutTaskTechnologiesInput>;
+  Technology?: Maybe<TechnologyCreateOneWithoutTaskTechnologiesInput>;
   level?: Maybe<Scalars['UserTechnologyLevel']>;
 }
 
@@ -3635,15 +3852,19 @@ export interface Technology {
   contentText?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
+  /** Примерное количество часов на освоение уровня */
+  level1hours?: Maybe<Scalars['Int']>;
+  /** Примерное количество часов на освоение уровня */
+  level2hours?: Maybe<Scalars['Int']>;
+  /** Примерное количество часов на освоение уровня */
+  level3hours?: Maybe<Scalars['Int']>;
+  /** Примерное количество часов на освоение уровня */
+  level4hours?: Maybe<Scalars['Int']>;
+  /** Примерное количество часов на освоение уровня */
+  level5hours?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
   site_url?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
-}
-
-export interface TechnologyConnection {
-  __typename?: 'TechnologyConnection';
-  aggregate: AggregateTechnology;
-  edges: Array<Maybe<TechnologyEdge>>;
 }
 
 export interface TechnologyCreateOneWithoutTaskTechnologiesInput {
@@ -3652,11 +3873,6 @@ export interface TechnologyCreateOneWithoutTaskTechnologiesInput {
 
 export interface TechnologyCreateOneWithoutUserTechnologiesInput {
   connect?: Maybe<TechnologyWhereUniqueInput>;
-}
-
-export interface TechnologyEdge {
-  __typename?: 'TechnologyEdge';
-  node: Technology;
 }
 
 export interface TechnologyLessonListRelationFilter {
@@ -3719,6 +3935,11 @@ export interface TechnologyOrderByInput {
   contentText?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  level1hours?: Maybe<SortOrder>;
+  level2hours?: Maybe<SortOrder>;
+  level3hours?: Maybe<SortOrder>;
+  level4hours?: Maybe<SortOrder>;
+  level5hours?: Maybe<SortOrder>;
   name?: Maybe<SortOrder>;
   site_url?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
@@ -3727,6 +3948,7 @@ export interface TechnologyOrderByInput {
 export interface TechnologyWhereInput {
   AND?: Maybe<Array<TechnologyWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
+  LearnStrategyStages?: Maybe<LearnStrategyStageListRelationFilter>;
   NOT?: Maybe<Array<TechnologyWhereInput>>;
   OR?: Maybe<Array<TechnologyWhereInput>>;
   TaskTechnology?: Maybe<TaskTechnologyListRelationFilter>;
@@ -3737,6 +3959,11 @@ export interface TechnologyWhereInput {
   contentText?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
+  level1hours?: Maybe<IntNullableFilter>;
+  level2hours?: Maybe<IntNullableFilter>;
+  level3hours?: Maybe<IntNullableFilter>;
+  level4hours?: Maybe<IntNullableFilter>;
+  level5hours?: Maybe<IntNullableFilter>;
   name?: Maybe<StringNullableFilter>;
   site_url?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
@@ -4032,6 +4259,7 @@ export interface User {
   showEmail?: Maybe<Scalars['Boolean']>;
   showPhone?: Maybe<Scalars['Boolean']>;
   sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['UserTechnologyLevel']>;
   /** Когда обновлен */
   updatedAt: Scalars['DateTime'];
   username?: Maybe<Scalars['String']>;
@@ -4076,6 +4304,58 @@ export interface UserGroupWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface UserLearnStrategy {
+  __typename?: 'UserLearnStrategy';
+  CreatedBy?: Maybe<User>;
+  LearnStrategy?: Maybe<LearnStrategy>;
+  createdAt: Scalars['DateTime'];
+  createdById?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  learnStrategyId?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+}
+
+export interface UserLearnStrategyCreateInput {
+  LearnStrategy: LearnStrategyWhereUniqueInput;
+}
+
+export interface UserLearnStrategyCreatedByIdLearnStrategyIdCompoundUniqueInput {
+  createdById: Scalars['String'];
+  learnStrategyId: Scalars['String'];
+}
+
+export interface UserLearnStrategyListRelationFilter {
+  every?: Maybe<UserLearnStrategyWhereInput>;
+  none?: Maybe<UserLearnStrategyWhereInput>;
+  some?: Maybe<UserLearnStrategyWhereInput>;
+}
+
+export interface UserLearnStrategyOrderByInput {
+  createdAt?: Maybe<SortOrder>;
+  createdById?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  learnStrategyId?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
+}
+
+export interface UserLearnStrategyWhereInput {
+  AND?: Maybe<Array<UserLearnStrategyWhereInput>>;
+  CreatedBy?: Maybe<UserWhereInput>;
+  LearnStrategy?: Maybe<LearnStrategyWhereInput>;
+  NOT?: Maybe<Array<UserLearnStrategyWhereInput>>;
+  OR?: Maybe<Array<UserLearnStrategyWhereInput>>;
+  createdAt?: Maybe<DateTimeFilter>;
+  createdById?: Maybe<StringFilter>;
+  id?: Maybe<StringFilter>;
+  learnStrategyId?: Maybe<StringFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface UserLearnStrategyWhereUniqueInput {
+  createdById_learnStrategyId?: Maybe<UserLearnStrategyCreatedByIdLearnStrategyIdCompoundUniqueInput>;
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface UserListRelationFilter {
   every?: Maybe<UserWhereInput>;
   none?: Maybe<UserWhereInput>;
@@ -4106,6 +4386,7 @@ export interface UserOrderByInput {
   showFullname?: Maybe<SortOrder>;
   showPhone?: Maybe<SortOrder>;
   sudo?: Maybe<SortOrder>;
+  technologyLevel?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
   username?: Maybe<SortOrder>;
 }
@@ -4146,6 +4427,7 @@ export interface UserTechnology {
   id: Scalars['ID'];
   level?: Maybe<Scalars['UserTechnologyLevel']>;
   status?: Maybe<UserTechnologyStatus>;
+  technologyId: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 }
 
@@ -4256,6 +4538,7 @@ export interface UserUpdateInput {
   image?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
+  technologyLevel?: Maybe<Scalars['UserTechnologyLevel']>;
   username?: Maybe<Scalars['String']>;
 }
 
@@ -4286,6 +4569,7 @@ export interface UserWhereInput {
   Game_GameToUser?: Maybe<GameListRelationFilter>;
   Game_GameUsers?: Maybe<GameListRelationFilter>;
   Import?: Maybe<ImportListRelationFilter>;
+  LearnStrategies?: Maybe<LearnStrategyListRelationFilter>;
   Letter?: Maybe<LetterListRelationFilter>;
   LogedIn?: Maybe<LogedInListRelationFilter>;
   NOT?: Maybe<Array<UserWhereInput>>;
@@ -4333,6 +4617,7 @@ export interface UserWhereInput {
   TourneyPlayer?: Maybe<TourneyPlayerListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   UserGroup?: Maybe<UserGroupListRelationFilter>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyListRelationFilter>;
   UserTechnology?: Maybe<UserTechnologyListRelationFilter>;
   Vote?: Maybe<VoteListRelationFilter>;
   World?: Maybe<WorldListRelationFilter>;
@@ -4358,6 +4643,7 @@ export interface UserWhereInput {
   showFullname?: Maybe<BoolFilter>;
   showPhone?: Maybe<BoolFilter>;
   sudo?: Maybe<BoolNullableFilter>;
+  technologyLevel?: Maybe<IntNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   username?: Maybe<StringNullableFilter>;
 }

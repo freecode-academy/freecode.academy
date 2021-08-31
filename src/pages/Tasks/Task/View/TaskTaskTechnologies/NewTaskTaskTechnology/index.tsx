@@ -3,7 +3,7 @@ import Button from 'material-ui/Button'
 import {
   CreateTaskTechnologyProcessorMutationVariables,
   SortOrder,
-  TechnologiesConnectionTechnologyFragment,
+  // TechnologiesConnectionTechnologyFragment,
   useCreateTaskTechnologyProcessorMutation,
   useTechnologiesConnectionQuery,
 } from 'src/modules/gql/generated'
@@ -79,21 +79,10 @@ const NewTaskTaskTechnology: React.FC<NewTaskTaskTechnologyProps> = ({
   )
 
   const technology = useMemo(() => {
-    const technologies =
-      technologiesConnection.data?.objectsConnection.edges.reduce<
-        TechnologiesConnectionTechnologyFragment[]
-      >((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, []) || []
-
     return (
       <>
         <div className="technologies-buttons">
-          {technologies.map((n) => {
+          {technologiesConnection.data?.technologies.map((n) => {
             return (
               <Button
                 key={n.id}
@@ -116,7 +105,7 @@ const NewTaskTaskTechnology: React.FC<NewTaskTaskTechnologyProps> = ({
   }, [
     data.Technology.connect?.id,
     setTechnology,
-    technologiesConnection.data?.objectsConnection.edges,
+    technologiesConnection.data?.technologies,
   ])
 
   /**
@@ -197,6 +186,7 @@ const NewTaskTaskTechnology: React.FC<NewTaskTaskTechnologyProps> = ({
         error={error}
         onChange={onChange}
         value={value}
+        name="level"
       />
     )
   }, [data.level, errors, onChange])

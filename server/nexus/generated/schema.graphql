@@ -25,10 +25,6 @@ type AggregateTask {
   count: Int!
 }
 
-type AggregateTechnology {
-  count: Int!
-}
-
 type AggregateTimer {
   count: Int!
 }
@@ -1251,6 +1247,155 @@ input JsonNullableFilter {
   not: Json
 }
 
+type LearnStrategy {
+  CreatedBy: User
+  LearnStrategyStages: [LearnStrategyStage!]
+  UserLearnStrategies: [UserLearnStrategy!]
+  createdAt: DateTime!
+  createdById: String!
+  description: String
+  id: ID!
+  level: UserTechnologyLevel!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input LearnStrategyCreateInput {
+  description: String
+  level: UserTechnologyLevel!
+  name: String!
+}
+
+input LearnStrategyListRelationFilter {
+  every: LearnStrategyWhereInput
+  none: LearnStrategyWhereInput
+  some: LearnStrategyWhereInput
+}
+
+input LearnStrategyOrderByInput {
+  createdAt: SortOrder
+  createdById: SortOrder
+  description: SortOrder
+  id: SortOrder
+  level: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+type LearnStrategyStage {
+  LearnStrategy: LearnStrategy
+  LearnStrategyTarget: LearnStrategy
+  Technology: Technology
+  createdAt: DateTime!
+  id: ID!
+  learnStrategyId: String!
+  learnStrategyTargetId: String
+
+  """
+  Если цель освоить технологию, то до какого уровня
+  """
+  level: Int
+  technologyId: String
+  updatedAt: DateTime!
+}
+
+"""
+Этапом развития может быть или технология, или другая стратегия развития
+"""
+input LearnStrategyStageCreateInput {
+  """
+  Стратегия развития, для которой создается этап
+  """
+  LearnStrategy: LearnStrategyStageCreateLearnStrategyInput!
+
+  """
+  Стратегия развития
+  """
+  LearnStrategyTarget: LearnStrategyStageCreateLearnStrategyInput
+
+  """
+  Технология
+  """
+  TechnologyTarget: LearnStrategyStageCreateTechnologyInput
+}
+
+"""
+Стратегия развития
+"""
+input LearnStrategyStageCreateLearnStrategyInput {
+  id: ID!
+}
+
+"""
+Технология
+"""
+input LearnStrategyStageCreateTechnologyInput {
+  id: ID!
+  level: UserTechnologyLevel!
+}
+
+input LearnStrategyStageListRelationFilter {
+  every: LearnStrategyStageWhereInput
+  none: LearnStrategyStageWhereInput
+  some: LearnStrategyStageWhereInput
+}
+
+input LearnStrategyStageOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  learnStrategyId: SortOrder
+  learnStrategyTargetId: SortOrder
+  level: SortOrder
+  technologyId: SortOrder
+  updatedAt: SortOrder
+}
+
+input LearnStrategyStageWhereInput {
+  AND: [LearnStrategyStageWhereInput!]
+  LearnStrategy: LearnStrategyWhereInput
+  LearnStrategyTarget: LearnStrategyWhereInput
+  NOT: [LearnStrategyStageWhereInput!]
+  OR: [LearnStrategyStageWhereInput!]
+  Technology: TechnologyWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  learnStrategyId: StringFilter
+  learnStrategyTargetId: StringNullableFilter
+  level: IntNullableFilter
+  technologyId: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input LearnStrategyStageWhereUniqueInput {
+  id: ID!
+}
+
+input LearnStrategyUpdateInput {
+  description: String
+  name: String
+}
+
+input LearnStrategyWhereInput {
+  AND: [LearnStrategyWhereInput!]
+  CreatedBy: UserWhereInput
+  LearnStrategyStages: LearnStrategyStageListRelationFilter
+  LearnStrategyStagesTargets: LearnStrategyStageListRelationFilter
+  NOT: [LearnStrategyWhereInput!]
+  OR: [LearnStrategyWhereInput!]
+  UserLearnStrategies: UserLearnStrategyListRelationFilter
+  createdAt: DateTimeFilter
+  createdById: StringFilter
+  description: StringNullableFilter
+  id: StringFilter
+  level: IntFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input LearnStrategyWhereUniqueInput {
+  id: String
+}
+
 enum LetsadsSmsMessageStatusEnum {
   Complete
   Error
@@ -1418,6 +1563,10 @@ type Mutation {
     data: CodeChallengeCompletionCreateInput!
   ): CodeChallengeCompletionResponse!
   createCommentProcessor(data: CommentCreateInput!): ResourceResponse!
+  createLearnStrategy(data: LearnStrategyCreateInput!): LearnStrategy!
+  createLearnStrategyStage(
+    data: LearnStrategyStageCreateInput!
+  ): LearnStrategyStage!
   createProjectProcessor(data: ProjectCreateInput!): ProjectResponse!
   createResetPasswordProcessor(
     where: UserWhereUniqueInput!
@@ -1428,9 +1577,15 @@ type Mutation {
   ): TaskTechnologyResponse!
   createTimerProcessor(data: TimerCreateInput!): TimerResponse!
   createTopicProcessor(data: TopicCreateInput!): ResourceResponse!
+  createUserLearnStrategy(
+    data: UserLearnStrategyCreateInput!
+  ): UserLearnStrategy!
   createUserTechnologyProcessor(
     data: UserTechnologyCreateInput!
   ): UserTechnologyResponse!
+  deleteLearnStrategyStage(
+    where: LearnStrategyStageWhereUniqueInput!
+  ): LearnStrategyStage!
   deleteNotice(where: NoticeWhereUniqueInput!): Notice
   resetPasswordProcessor(where: ResetPasswordProcessorWhereInput!): AuthPayload!
 
@@ -1467,6 +1622,10 @@ type Mutation {
     data: CommentUpdateInput!
     where: ResourceWhereUniqueInput!
   ): ResourceResponse!
+  updateLearnStrategy(
+    data: LearnStrategyUpdateInput!
+    where: LearnStrategyWhereUniqueInput!
+  ): LearnStrategy!
   updateProjectProcessor(
     data: ProjectUpdateInput!
     where: ProjectWhereUniqueInput!
@@ -2246,6 +2405,26 @@ type Query {
   Количество файлов
   """
   filesCount(where: FileWhereInput): Int!
+  learnStrategies(
+    cursor: LearnStrategyWhereUniqueInput
+    orderBy: [LearnStrategyOrderByInput!]
+    skip: Int
+    take: Int
+    where: LearnStrategyWhereInput
+  ): [LearnStrategy!]!
+  learnStrategiesCount(where: LearnStrategyWhereInput): Int!
+  learnStrategy(where: LearnStrategyWhereUniqueInput!): LearnStrategy
+  learnStrategyStage(
+    where: LearnStrategyStageWhereUniqueInput!
+  ): LearnStrategyStage
+  learnStrategyStages(
+    cursor: LearnStrategyStageWhereUniqueInput
+    orderBy: [LearnStrategyStageOrderByInput!]
+    skip: Int
+    take: Int
+    where: LearnStrategyStageWhereInput
+  ): [LearnStrategyStage!]!
+  learnStrategyStagesCount(where: LearnStrategyStageWhereInput): Int!
   me: User
 
   """
@@ -2370,14 +2549,8 @@ type Query {
     take: Int
     where: TechnologyWhereInput
   ): [Technology!]!
-  technologiesConnection(
-    first: Int
-    orderBy: TechnologyOrderByInput
-    skip: Int
-    where: TechnologyWhereInput
-  ): TechnologyConnection!
+  technologiesCount(where: TechnologyWhereInput): Int!
   technology(where: TechnologyWhereUniqueInput!): Technology
-  technologysCount(where: TechnologyWhereInput): Int!
   timer(where: TimerWhereUniqueInput!): Timer
   timers(
     cursor: TimerWhereUniqueInput
@@ -2397,6 +2570,17 @@ type Query {
   Пользователь
   """
   user(where: UserWhereUniqueInput!): User
+  userLearnStrategies(
+    cursor: UserLearnStrategyWhereUniqueInput
+    orderBy: [UserLearnStrategyOrderByInput!]
+    skip: Int
+    take: Int
+    where: UserLearnStrategyWhereInput
+  ): [UserLearnStrategy!]!
+  userLearnStrategiesCount(where: UserLearnStrategyWhereInput): Int!
+  userLearnStrategy(
+    where: UserLearnStrategyWhereUniqueInput!
+  ): UserLearnStrategy
   userTechnologies(
     cursor: UserTechnologyWhereUniqueInput
     orderBy: [UserTechnologyOrderByInput!]
@@ -3152,8 +3336,8 @@ type TaskTechnologyResponse {
 }
 
 input TaskTechnologyUpdateInput {
-  Task: TaskCreateOneWithoutTaskTechnologiesInput!
-  Technology: TechnologyCreateOneWithoutTaskTechnologiesInput!
+  Task: TaskCreateOneWithoutTaskTechnologiesInput
+  Technology: TechnologyCreateOneWithoutTaskTechnologiesInput
   level: UserTechnologyLevel
 }
 
@@ -3301,14 +3485,34 @@ type Technology {
   contentText: String
   createdAt: DateTime!
   id: ID!
+
+  """
+  Примерное количество часов на освоение уровня
+  """
+  level1hours: Int
+
+  """
+  Примерное количество часов на освоение уровня
+  """
+  level2hours: Int
+
+  """
+  Примерное количество часов на освоение уровня
+  """
+  level3hours: Int
+
+  """
+  Примерное количество часов на освоение уровня
+  """
+  level4hours: Int
+
+  """
+  Примерное количество часов на освоение уровня
+  """
+  level5hours: Int
   name: String
   site_url: String
   updatedAt: DateTime!
-}
-
-type TechnologyConnection {
-  aggregate: AggregateTechnology!
-  edges: [TechnologyEdge]!
 }
 
 input TechnologyCreateOneWithoutTaskTechnologiesInput {
@@ -3317,10 +3521,6 @@ input TechnologyCreateOneWithoutTaskTechnologiesInput {
 
 input TechnologyCreateOneWithoutUserTechnologiesInput {
   connect: TechnologyWhereUniqueInput
-}
-
-type TechnologyEdge {
-  node: Technology!
 }
 
 input TechnologyLessonListRelationFilter {
@@ -3383,6 +3583,11 @@ input TechnologyOrderByInput {
   contentText: SortOrder
   createdAt: SortOrder
   id: SortOrder
+  level1hours: SortOrder
+  level2hours: SortOrder
+  level3hours: SortOrder
+  level4hours: SortOrder
+  level5hours: SortOrder
   name: SortOrder
   site_url: SortOrder
   updatedAt: SortOrder
@@ -3391,6 +3596,7 @@ input TechnologyOrderByInput {
 input TechnologyWhereInput {
   AND: [TechnologyWhereInput!]
   CreatedBy: StringNullableFilter
+  LearnStrategyStages: LearnStrategyStageListRelationFilter
   NOT: [TechnologyWhereInput!]
   OR: [TechnologyWhereInput!]
   TaskTechnology: TaskTechnologyListRelationFilter
@@ -3401,6 +3607,11 @@ input TechnologyWhereInput {
   contentText: StringNullableFilter
   createdAt: DateTimeFilter
   id: StringFilter
+  level1hours: IntNullableFilter
+  level2hours: IntNullableFilter
+  level3hours: IntNullableFilter
+  level4hours: IntNullableFilter
+  level5hours: IntNullableFilter
   name: StringNullableFilter
   site_url: StringNullableFilter
   updatedAt: DateTimeFilter
@@ -3712,6 +3923,7 @@ type User {
   showEmail: Boolean
   showPhone: Boolean
   sudo: Boolean
+  technologyLevel: UserTechnologyLevel
 
   """
   Когда обновлен
@@ -3750,6 +3962,57 @@ input UserGroupWhereInput {
   updatedAt: DateTimeFilter
 }
 
+type UserLearnStrategy {
+  CreatedBy: User
+  LearnStrategy: LearnStrategy
+  createdAt: DateTime!
+  createdById: String
+  id: ID!
+  learnStrategyId: String
+  updatedAt: DateTime!
+}
+
+input UserLearnStrategyCreateInput {
+  LearnStrategy: LearnStrategyWhereUniqueInput!
+}
+
+input UserLearnStrategyCreatedByIdLearnStrategyIdCompoundUniqueInput {
+  createdById: String!
+  learnStrategyId: String!
+}
+
+input UserLearnStrategyListRelationFilter {
+  every: UserLearnStrategyWhereInput
+  none: UserLearnStrategyWhereInput
+  some: UserLearnStrategyWhereInput
+}
+
+input UserLearnStrategyOrderByInput {
+  createdAt: SortOrder
+  createdById: SortOrder
+  id: SortOrder
+  learnStrategyId: SortOrder
+  updatedAt: SortOrder
+}
+
+input UserLearnStrategyWhereInput {
+  AND: [UserLearnStrategyWhereInput!]
+  CreatedBy: UserWhereInput
+  LearnStrategy: LearnStrategyWhereInput
+  NOT: [UserLearnStrategyWhereInput!]
+  OR: [UserLearnStrategyWhereInput!]
+  createdAt: DateTimeFilter
+  createdById: StringFilter
+  id: StringFilter
+  learnStrategyId: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input UserLearnStrategyWhereUniqueInput {
+  createdById_learnStrategyId: UserLearnStrategyCreatedByIdLearnStrategyIdCompoundUniqueInput
+  id: String
+}
+
 input UserListRelationFilter {
   every: UserWhereInput
   none: UserWhereInput
@@ -3780,6 +4043,7 @@ input UserOrderByInput {
   showFullname: SortOrder
   showPhone: SortOrder
   sudo: SortOrder
+  technologyLevel: SortOrder
   updatedAt: SortOrder
   username: SortOrder
 }
@@ -3824,6 +4088,7 @@ type UserTechnology {
   id: ID!
   level: UserTechnologyLevel
   status: UserTechnologyStatus
+  technologyId: String!
   updatedAt: DateTime!
 }
 
@@ -3964,6 +4229,7 @@ input UserUpdateInput {
   image: String
   password: String
   phone: String
+  technologyLevel: UserTechnologyLevel
   username: String
 }
 
@@ -3994,6 +4260,7 @@ input UserWhereInput {
   Game_GameToUser: GameListRelationFilter
   Game_GameUsers: GameListRelationFilter
   Import: ImportListRelationFilter
+  LearnStrategies: LearnStrategyListRelationFilter
   Letter: LetterListRelationFilter
   LogedIn: LogedInListRelationFilter
   NOT: [UserWhereInput!]
@@ -4041,6 +4308,7 @@ input UserWhereInput {
   TourneyPlayer: TourneyPlayerListRelationFilter
   User: UserWhereInput
   UserGroup: UserGroupListRelationFilter
+  UserLearnStrategies: UserLearnStrategyListRelationFilter
   UserTechnology: UserTechnologyListRelationFilter
   Vote: VoteListRelationFilter
   World: WorldListRelationFilter
@@ -4066,6 +4334,7 @@ input UserWhereInput {
   showFullname: BoolFilter
   showPhone: BoolFilter
   sudo: BoolNullableFilter
+  technologyLevel: IntNullableFilter
   updatedAt: DateTimeFilter
   username: StringNullableFilter
 }

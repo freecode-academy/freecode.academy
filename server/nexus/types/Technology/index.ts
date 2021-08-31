@@ -11,7 +11,7 @@ export const TechnologyExtendQuery = extendType({
       ordering: true,
     })
 
-    t.nonNull.int('technologysCount', {
+    t.nonNull.int('technologiesCount', {
       args: {
         where: 'TechnologyWhereInput',
       },
@@ -24,47 +24,47 @@ export const TechnologyExtendQuery = extendType({
       },
     })
 
-    t.nonNull.field('technologiesConnection', {
-      type: 'TechnologyConnection',
-      args: {
-        where: 'TechnologyWhereInput',
-        orderBy: 'TechnologyOrderByInput',
-        first: 'Int',
-        skip: 'Int',
-      },
-      resolve: async (_, args, ctx) => {
-        const where = args.where as Prisma.TechnologyWhereInput
-        const orderBy = args.orderBy as Prisma.TechnologyOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
+    // t.nonNull.field('technologiesConnection', {
+    //   type: 'TechnologyConnection',
+    //   args: {
+    //     where: 'TechnologyWhereInput',
+    //     orderBy: 'TechnologyOrderByInput',
+    //     first: 'Int',
+    //     skip: 'Int',
+    //   },
+    //   resolve: async (_, args, ctx) => {
+    //     const where = args.where as Prisma.TechnologyWhereInput
+    //     const orderBy = args.orderBy as Prisma.TechnologyOrderByInput
+    //     const take = args.first || undefined
+    //     const skip = args.skip || undefined
 
-        const countPromise = ctx.prisma.technology.count({
-          where,
-        })
+    //     const countPromise = ctx.prisma.technology.count({
+    //       where,
+    //     })
 
-        const technologysPromise = ctx.prisma.technology.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
+    //     const technologysPromise = ctx.prisma.technology.findMany({
+    //       where,
+    //       orderBy: orderBy ? [orderBy] : undefined,
+    //       take,
+    //       skip,
+    //     })
 
-        return Promise.all([countPromise, technologysPromise]).then(
-          (results) => {
-            return {
-              aggregate: {
-                count: results[0],
-              },
-              edges: results[1].map((n) => {
-                return {
-                  node: n,
-                }
-              }),
-            }
-          }
-        )
-      },
-    })
+    //     return Promise.all([countPromise, technologysPromise]).then(
+    //       (results) => {
+    //         return {
+    //           aggregate: {
+    //             count: results[0],
+    //           },
+    //           edges: results[1].map((n) => {
+    //             return {
+    //               node: n,
+    //             }
+    //           }),
+    //         }
+    //       }
+    //     )
+    //   },
+    // })
   },
 })
 
@@ -82,6 +82,21 @@ export const Technology = objectType({
     t.field('components', { type: 'JSON' })
     t.string('contentText')
     t.string('site_url')
+    t.int('level1hours', {
+      description: 'Примерное количество часов на освоение уровня',
+    })
+    t.int('level2hours', {
+      description: 'Примерное количество часов на освоение уровня',
+    })
+    t.int('level3hours', {
+      description: 'Примерное количество часов на освоение уровня',
+    })
+    t.int('level4hours', {
+      description: 'Примерное количество часов на освоение уровня',
+    })
+    t.int('level5hours', {
+      description: 'Примерное количество часов на освоение уровня',
+    })
     t.field('CreatedBy', {
       type: 'User',
       resolve({ CreatedBy }, _, ctx) {
@@ -103,30 +118,30 @@ export const Technology = objectType({
   },
 })
 
-export const AggregateTechnology = objectType({
-  name: 'AggregateTechnology',
-  definition(t) {
-    t.nonNull.int('count')
-  },
-})
+// export const AggregateTechnology = objectType({
+//   name: 'AggregateTechnology',
+//   definition(t) {
+//     t.nonNull.int('count')
+//   },
+// })
 
-export const TechnologyEdge = objectType({
-  name: 'TechnologyEdge',
-  definition(t) {
-    t.nonNull.field('node', {
-      type: 'Technology',
-    })
-  },
-})
+// export const TechnologyEdge = objectType({
+//   name: 'TechnologyEdge',
+//   definition(t) {
+//     t.nonNull.field('node', {
+//       type: 'Technology',
+//     })
+//   },
+// })
 
-export const TechnologyConnection = objectType({
-  name: 'TechnologyConnection',
-  definition(t) {
-    t.nonNull.list.field('edges', {
-      type: 'TechnologyEdge',
-    })
-    t.nonNull.field('aggregate', {
-      type: 'AggregateTechnology',
-    })
-  },
-})
+// export const TechnologyConnection = objectType({
+//   name: 'TechnologyConnection',
+//   definition(t) {
+//     t.nonNull.list.field('edges', {
+//       type: 'TechnologyEdge',
+//     })
+//     t.nonNull.field('aggregate', {
+//       type: 'AggregateTechnology',
+//     })
+//   },
+// })

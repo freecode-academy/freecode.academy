@@ -80,14 +80,17 @@ interface PrismaModels {
   World: Prisma.World
   Letter: Prisma.Letter
   Log: Prisma.Log
+  LearnStrategy: Prisma.LearnStrategy
+  LearnStrategyStage: Prisma.LearnStrategyStage
+  UserLearnStrategy: Prisma.UserLearnStrategy
 }
 
 // Prisma input types metadata
 interface NexusPrismaInputs {
   Query: {
     users: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
     tokens: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'expiredAt' | 'userId' | 'User'
@@ -290,8 +293,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt'
     }
     technologies: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'CreatedBy' | 'User' | 'TaskTechnology' | 'TechnologyLesson' | 'UserTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'CreatedBy'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnology' | 'TechnologyLesson' | 'UserTechnology' | 'LearnStrategyStages'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy'
     }
     technologyLessons: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'components' | 'contentText' | 'Technology' | 'CreatedBy' | 'User' | 'Technology_TechnologyToTechnologyLesson' | 'Comment' | 'TechnologyLessonUser'
@@ -352,6 +355,18 @@ interface NexusPrismaInputs {
     logs: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt' | 'Import_ImportToLog'
       ordering: 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt'
+    }
+    learnStrategies: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById' | 'CreatedBy' | 'LearnStrategyStages' | 'LearnStrategyStagesTargets' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById'
+    }
+    learnStrategyStages: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'learnStrategyTargetId' | 'technologyId' | 'level'
+    }
+    userLearnStrategies: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'learnStrategyId'
     }
   },
   User: {
@@ -552,8 +567,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt'
     }
     Technology: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'CreatedBy' | 'User' | 'TaskTechnology' | 'TechnologyLesson' | 'UserTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'CreatedBy'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnology' | 'TechnologyLesson' | 'UserTechnology' | 'LearnStrategyStages'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy'
     }
     TechnologyLesson: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'components' | 'contentText' | 'Technology' | 'CreatedBy' | 'User' | 'Technology_TechnologyToTechnologyLesson' | 'Comment' | 'TechnologyLessonUser'
@@ -592,8 +607,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'User' | 'Tourney'
     }
     other_User: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
     UserTechnology: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level' | 'User' | 'Technology_TechnologyToUserTechnology'
@@ -634,6 +649,14 @@ interface NexusPrismaInputs {
     Tokens: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'expiredAt' | 'userId' | 'User'
       ordering: 'id' | 'createdAt' | 'expiredAt' | 'userId'
+    }
+    LearnStrategies: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById' | 'CreatedBy' | 'LearnStrategyStages' | 'LearnStrategyStagesTargets' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById'
+    }
+    UserLearnStrategies: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'learnStrategyId'
     }
   }
   Token: {
@@ -689,8 +712,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp'
     }
     User_ChatRoomsMembers: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
   }
   ChatRoomInvitation: {
@@ -740,8 +763,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
     }
     User_EthAccountToUser_EthAccountAuthed: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
   }
   EthBlock: {
@@ -787,8 +810,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'CreatedBy' | 'Parent' | 'createdAt' | 'updatedAt'
     }
     User_GameUsers: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
   }
   GameResult: {
@@ -833,8 +856,8 @@ interface NexusPrismaInputs {
   }
   NotificationType: {
     User_UserNotificationTypes: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
   }
   Player: {
@@ -842,8 +865,8 @@ interface NexusPrismaInputs {
   }
   Position: {
     User_PositionUsers: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
   }
   Project: {
@@ -872,8 +895,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy'
     }
     User_PrismaProjectUsers: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
     Team_ProjectCustomers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'CreatedBy' | 'Parent' | 'createdAt' | 'updatedAt' | 'User' | 'Team' | 'GameResult' | 'Project_ProjectToTeam' | 'Resource' | 'other_Team' | 'TeamMember' | 'Game' | 'Project_ProjectCustomers'
@@ -1084,6 +1107,10 @@ interface NexusPrismaInputs {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level' | 'User' | 'Technology_TechnologyToUserTechnology'
       ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'CreatedBy' | 'Technology' | 'level'
     }
+    LearnStrategyStages: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'learnStrategyTargetId' | 'technologyId' | 'level'
+    }
   }
   TechnologyLesson: {
     Comment: {
@@ -1137,8 +1164,8 @@ interface NexusPrismaInputs {
   }
   UserGroup: {
     User: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequest_CallRequest_CalledToUser' | 'CallRequest_CallRequest_CallerToUser' | 'Career' | 'ChatMessage' | 'ChatMessageReaded' | 'ChatRoom_ChatRoomToUser' | 'ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitation_ChatRoomInvitation_UserToUser' | 'CodeChallenge' | 'CodeChallengeBlock' | 'CodeChallengeCompletion' | 'Comment' | 'EthAccount_EthAccount_CreatedByToUser' | 'EthContractSource' | 'File' | 'Gallery' | 'Game_GameToUser' | 'GameResult_GameResult_CreatedByToUser' | 'GameResult_GameResult_UserToUser' | 'Import' | 'Letter' | 'LogedIn' | 'Notice_Notice_CreatedByToUser' | 'Notice_Notice_UserToUser' | 'NotificationType_NotificationTypeToUser' | 'Player' | 'Position_PositionToUser' | 'Project_ProjectToUser' | 'ProjectMember_ProjectMember_CreatedByToUser' | 'ProjectMember_ProjectMember_UserToUser' | 'ProjectTask' | 'ResetPasswords' | 'Resource' | 'ResourceTag' | 'Route' | 'Service' | 'ServiceCategory' | 'Settings' | 'SmsMessage' | 'SmsProvider' | 'Tag' | 'Task' | 'TaskMember_TaskMember_CreatedByToUser' | 'TaskMember_TaskMember_UserToUser' | 'TaskReaction' | 'TaskTechnology' | 'Team' | 'TeamMember_TeamMember_CreatedByToUser' | 'TeamMember_TeamMember_UserToUser' | 'Technology' | 'TechnologyLesson' | 'TechnologyLessonUser' | 'Template' | 'Test' | 'Timer' | 'Tournament' | 'TournamentGroup' | 'Tourney' | 'TourneyPlayer' | 'other_User' | 'UserTechnology' | 'Vote' | 'World' | 'ChatRoom_ChatRoomsMembers' | 'Game_GameUsers' | 'Position_PositionUsers' | 'Project_PrismaProjectUsers' | 'UserGroup' | 'NotificationType_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'technologyLevel'
     }
   }
   UserTechnology: {
@@ -1165,6 +1192,26 @@ interface NexusPrismaInputs {
 
   }
   Log: {
+
+  }
+  LearnStrategy: {
+    LearnStrategyStages: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'learnStrategyTargetId' | 'technologyId' | 'level'
+    }
+    LearnStrategyStagesTargets: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'learnStrategyTargetId' | 'technologyId' | 'level'
+    }
+    UserLearnStrategies: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'learnStrategyId'
+    }
+  }
+  LearnStrategyStage: {
+
+  }
+  UserLearnStrategy: {
 
   }
 }
@@ -1306,6 +1353,12 @@ interface NexusPrismaOutputs {
     letters: 'Letter'
     log: 'Log'
     logs: 'Log'
+    learnStrategy: 'LearnStrategy'
+    learnStrategies: 'LearnStrategy'
+    learnStrategyStage: 'LearnStrategyStage'
+    learnStrategyStages: 'LearnStrategyStage'
+    userLearnStrategy: 'UserLearnStrategy'
+    userLearnStrategies: 'UserLearnStrategy'
   },
   Mutation: {
     createOneUser: 'User'
@@ -1710,6 +1763,24 @@ interface NexusPrismaOutputs {
     deleteOneLog: 'Log'
     deleteManyLog: 'AffectedRowsOutput'
     upsertOneLog: 'Log'
+    createOneLearnStrategy: 'LearnStrategy'
+    updateOneLearnStrategy: 'LearnStrategy'
+    updateManyLearnStrategy: 'AffectedRowsOutput'
+    deleteOneLearnStrategy: 'LearnStrategy'
+    deleteManyLearnStrategy: 'AffectedRowsOutput'
+    upsertOneLearnStrategy: 'LearnStrategy'
+    createOneLearnStrategyStage: 'LearnStrategyStage'
+    updateOneLearnStrategyStage: 'LearnStrategyStage'
+    updateManyLearnStrategyStage: 'AffectedRowsOutput'
+    deleteOneLearnStrategyStage: 'LearnStrategyStage'
+    deleteManyLearnStrategyStage: 'AffectedRowsOutput'
+    upsertOneLearnStrategyStage: 'LearnStrategyStage'
+    createOneUserLearnStrategy: 'UserLearnStrategy'
+    updateOneUserLearnStrategy: 'UserLearnStrategy'
+    updateManyUserLearnStrategy: 'AffectedRowsOutput'
+    deleteOneUserLearnStrategy: 'UserLearnStrategy'
+    deleteManyUserLearnStrategy: 'AffectedRowsOutput'
+    upsertOneUserLearnStrategy: 'UserLearnStrategy'
   },
   User: {
     id: 'String'
@@ -1737,6 +1808,7 @@ interface NexusPrismaOutputs {
     acceptChatMessageAnonymous: 'Boolean'
     acceptNewChatRoomAnonymous: 'Boolean'
     acceptNewChatRoom: 'Boolean'
+    technologyLevel: 'Int'
     User: 'User'
     EthAccount_EthAccountToUser_EthAccountAuthed: 'EthAccount'
     CallRequest_CallRequest_CalledToUser: 'CallRequest'
@@ -1809,6 +1881,8 @@ interface NexusPrismaOutputs {
     UserGroup: 'UserGroup'
     NotificationType_UserNotificationTypes: 'NotificationType'
     Tokens: 'Token'
+    LearnStrategies: 'LearnStrategy'
+    UserLearnStrategies: 'UserLearnStrategy'
   }
   Token: {
     id: 'String'
@@ -2568,11 +2642,17 @@ interface NexusPrismaOutputs {
     components: 'Json'
     contentText: 'String'
     site_url: 'String'
+    level1hours: 'Int'
+    level2hours: 'Int'
+    level3hours: 'Int'
+    level4hours: 'Int'
+    level5hours: 'Int'
     CreatedBy: 'String'
     User: 'User'
     TaskTechnology: 'TaskTechnology'
     TechnologyLesson: 'TechnologyLesson'
     UserTechnology: 'UserTechnology'
+    LearnStrategyStages: 'LearnStrategyStage'
   }
   TechnologyLesson: {
     id: 'String'
@@ -2760,6 +2840,40 @@ interface NexusPrismaOutputs {
     updatedAt: 'DateTime'
     Import_ImportToLog: 'Import'
   }
+  LearnStrategy: {
+    id: 'String'
+    createdAt: 'DateTime'
+    updatedAt: 'DateTime'
+    name: 'String'
+    description: 'String'
+    level: 'Int'
+    createdById: 'String'
+    CreatedBy: 'User'
+    LearnStrategyStages: 'LearnStrategyStage'
+    LearnStrategyStagesTargets: 'LearnStrategyStage'
+    UserLearnStrategies: 'UserLearnStrategy'
+  }
+  LearnStrategyStage: {
+    id: 'String'
+    createdAt: 'DateTime'
+    updatedAt: 'DateTime'
+    learnStrategyId: 'String'
+    LearnStrategy: 'LearnStrategy'
+    learnStrategyTargetId: 'String'
+    LearnStrategyTarget: 'LearnStrategy'
+    technologyId: 'String'
+    Technology: 'Technology'
+    level: 'Int'
+  }
+  UserLearnStrategy: {
+    id: 'String'
+    createdAt: 'DateTime'
+    updatedAt: 'DateTime'
+    createdById: 'String'
+    CreatedBy: 'User'
+    learnStrategyId: 'String'
+    LearnStrategy: 'LearnStrategy'
+  }
 }
 
 // Helper to gather all methods relative to a model
@@ -2831,6 +2945,9 @@ interface NexusPrismaMethods {
   World: Typegen.NexusPrismaFields<'World'>
   Letter: Typegen.NexusPrismaFields<'Letter'>
   Log: Typegen.NexusPrismaFields<'Log'>
+  LearnStrategy: Typegen.NexusPrismaFields<'LearnStrategy'>
+  LearnStrategyStage: Typegen.NexusPrismaFields<'LearnStrategyStage'>
+  UserLearnStrategy: Typegen.NexusPrismaFields<'UserLearnStrategy'>
   Query: Typegen.NexusPrismaFields<'Query'>
   Mutation: Typegen.NexusPrismaFields<'Mutation'>
 }

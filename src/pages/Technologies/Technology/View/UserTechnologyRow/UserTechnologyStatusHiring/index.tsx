@@ -1,4 +1,5 @@
 import React, { useMemo, useCallback } from 'react'
+import { getUserTechnologyHiringStatusText } from 'src/helpers/getUserTechnologyHiringStatusText'
 import { UserTechnologyHiringStatus } from 'src/modules/gql/generated'
 import { Autocomplete } from 'src/uikit/Autocomplete'
 import { UserTechnologyHiringStatusViewProps } from './interfaces'
@@ -24,7 +25,9 @@ const UserTechnologyHiringStatusView: React.FC<UserTechnologyHiringStatusViewPro
         >
         const items = keys.map((key) => ({
           value: key,
-          label: UserTechnologyHiringStatus[key],
+          label: getUserTechnologyHiringStatusText(
+            UserTechnologyHiringStatus[key]
+          ),
         }))
 
         return (
@@ -45,7 +48,7 @@ const UserTechnologyHiringStatusView: React.FC<UserTechnologyHiringStatusViewPro
         )
       }
 
-      return <>{value}</>
+      return <>{value ? getUserTechnologyHiringStatusText(value) : null}</>
     }, [error, inEditMode, onStatusChange, value])
   }
 

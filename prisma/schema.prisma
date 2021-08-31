@@ -33,6 +33,7 @@ model User {
   acceptChatMessageAnonymous                            Boolean?
   acceptNewChatRoomAnonymous                            Boolean?
   acceptNewChatRoom                                     Boolean?
+  technologyLevel                                       Int?                      @db.UnsignedTinyInt
   User                                                  User?                     @relation("UserToUser_CreatedBy", fields: [CreatedBy], references: [id])
   EthAccount_EthAccountToUser_EthAccountAuthed          EthAccount?               @relation("EthAccountToUser_EthAccountAuthed", fields: [EthAccountAuthed], references: [id])
   CallRequest_CallRequest_CalledToUser                  CallRequest[]             @relation("CallRequest_CalledToUser")
@@ -105,6 +106,10 @@ model User {
   UserGroup                                             UserGroup[]               @relation("UserGroups")
   NotificationType_UserNotificationTypes                NotificationType[]        @relation("UserNotificationTypes")
   Tokens                                                Token[]
+  // Созданные пользователем стратегии развития
+  LearnStrategies                                       LearnStrategy[]
+  // Выбранные пользователем стратегии развития
+  UserLearnStrategies                                   UserLearnStrategy[]
 
   @@unique([email])
   @@unique([username])
@@ -1160,7 +1165,7 @@ model TaskTechnology {
   id                                    String      @id @default(cuid()) @db.VarChar(32)
   createdAt                             DateTime    @default(now("0")) @db.DateTime(0)
   updatedAt                             DateTime    @default(now("0")) @updatedAt @db.DateTime(0)
-  level                                 Int?
+  level                                 Int?        @db.UnsignedTinyInt
   Technology                            String?     @db.VarChar(32)
   Task                                  String?     @db.VarChar(32)
   CreatedBy                             String?     @db.VarChar(32)
@@ -1229,18 +1234,25 @@ enum TeamMemberStatus {
 }
 
 model Technology {
-  id               String             @id @default(cuid()) @db.VarChar(32)
-  createdAt        DateTime           @default(now("0")) @db.DateTime(0)
-  updatedAt        DateTime           @default(now("0")) @updatedAt @db.DateTime(0)
-  name             String?            @db.MediumText
-  components       Json?
-  contentText      String?            @db.MediumText
-  site_url         String?            @db.MediumText
-  CreatedBy        String?            @db.VarChar(32)
-  User             User?              @relation(fields: [CreatedBy], references: [id])
-  TaskTechnology   TaskTechnology[]
-  TechnologyLesson TechnologyLesson[]
-  UserTechnology   UserTechnology[]
+  id                  String               @id @default(cuid()) @db.VarChar(32)
+  createdAt           DateTime             @default(now("0")) @db.DateTime(0)
+  updatedAt           DateTime             @default(now("0")) @updatedAt @db.DateTime(0)
+  name                String?              @db.MediumText
+  components          Json?
+  contentText         String?              @db.MediumText
+  site_url            String?              @db.MediumText
+  // Примерное количество часов на освоение уровня
+  level1hours         Int?                 @db.UnsignedInt
+  level2hours         Int?                 @db.UnsignedInt
+  level3hours         Int?                 @db.UnsignedInt
+  level4hours         Int?                 @db.UnsignedInt
+  level5hours         Int?                 @db.UnsignedInt
+  CreatedBy           String?              @db.VarChar(32)
+  User                User?                @relation(fields: [CreatedBy], references: [id])
+  TaskTechnology      TaskTechnology[]
+  TechnologyLesson    TechnologyLesson[]
+  UserTechnology      UserTechnology[]
+  LearnStrategyStages LearnStrategyStage[]
 
   @@index([CreatedBy], name: "CreatedBy")
 }
@@ -1416,7 +1428,7 @@ model UserTechnology {
   hiring_status                         UserTechnologyHiringStatus?
   CreatedBy                             String                      @db.VarChar(32)
   Technology                            String                      @db.VarChar(32)
-  level                                 Int?
+  level                                 Int?                        @db.UnsignedTinyInt
   User                                  User?                       @relation(fields: [CreatedBy], references: [id])
   Technology_TechnologyToUserTechnology Technology?                 @relation(fields: [Technology], references: [id])
 
@@ -1520,4 +1532,71 @@ enum LogLevel {
   Warning
   Error
   Fatal
+}
+
+// Стратегия развития
+model LearnStrategy {
+  id                  String               @id @default(cuid()) @db.VarChar(32)
+  createdAt           DateTime             @default(now("0")) @db.DateTime(0)
+  updatedAt           DateTime             @default(now("0")) @updatedAt @db.DateTime(0)
+  name                String
+  description         String?
+  level               Int                  @db.UnsignedTinyInt
+  createdById         String               @db.VarChar(32)
+  CreatedBy           User                 @relation(fields: [createdById], references: [id])
+  // Этапы в рамках текущей стратегии
+  LearnStrategyStages LearnStrategyStage[] @relation("LearnStrategyStages")
+
+  // В каких этапах необходимо пройти данную стратегию
+  LearnStrategyStagesTargets LearnStrategyStage[] @relation("LearnStrategyStagesTargets")
+
+  // В каких пользовательских стратегиях есть эта стратегия
+  UserLearnStrategies UserLearnStrategy[]
+}
+
+// Этап стратегии развития
+model LearnStrategyStage {
+  id        String   @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime @default(now("0")) @db.DateTime(0)
+  updatedAt DateTime @default(now("0")) @updatedAt @db.DateTime(0)
+
+  // type LearnStrategyStageType
+
+  // В рамках какой стратегии выполняется этап
+  learnStrategyId String        @db.VarChar(32)
+  LearnStrategy   LearnStrategy @relation("LearnStrategyStages", fields: [learnStrategyId], references: [id])
+
+  // Какую стратегию необходимо пройти в рамках данного этапа
+  learnStrategyTargetId String?        @db.VarChar(32)
+  LearnStrategyTarget   LearnStrategy? @relation("LearnStrategyStagesTargets", fields: [learnStrategyTargetId], references: [id])
+
+  // Какую технологию надо освоить в рамках этого этапа
+  technologyId String?     @db.VarChar(32)
+  Technology   Technology? @relation(fields: [technologyId], references: [id])
+  // До какого уровня надо освоить
+  level        Int?        @db.UnsignedTinyInt
+
+  // UserLearnStrategy UserLearnStrategy[]
+
+  @@unique([learnStrategyId, learnStrategyTargetId])
+  @@unique([learnStrategyId, technologyId])
+}
+
+// Какой тип этапа развития
+// enum LearnStrategyStageType {
+//   Technology
+//   LearnStrategy
+// }
+
+// Выбранная пользователем стратегия развития
+model UserLearnStrategy {
+  id              String        @id @default(cuid()) @db.VarChar(32)
+  createdAt       DateTime      @default(now("0")) @db.DateTime(0)
+  updatedAt       DateTime      @default(now("0")) @updatedAt @db.DateTime(0)
+  createdById     String        @db.VarChar(32)
+  CreatedBy       User          @relation(fields: [createdById], references: [id])
+  learnStrategyId String        @db.VarChar(32)
+  LearnStrategy   LearnStrategy @relation(fields: [learnStrategyId], references: [id])
+
+  @@unique([createdById, learnStrategyId])
 }

@@ -1,5 +1,5 @@
 import { UserFragment } from 'src/modules/gql/generated'
 
-export interface UserViewProps {
+export type UserViewProps = {
   object: UserFragment & { password?: string }
 }

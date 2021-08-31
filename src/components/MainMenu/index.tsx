@@ -109,6 +109,7 @@ export const locales = {
       Technologies: 'Технологии',
       Learn: 'Уроки',
       About: 'О проекте',
+      LearnStrategies: 'Стратегии обучения',
     },
   },
 }
@@ -190,26 +191,18 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               </Typography>
             </Grid>
 
-            <Grid item>
-              <Link href="/office/">
+            {/* <Grid item>
+              <Link href="/learnstrategies/">
                 <a>
-                  <Typography>{this.lexicon('Office')}</Typography>
+                  <Typography>{this.lexicon('LearnStrategies')}</Typography>
                 </a>
               </Link>
-            </Grid>
+            </Grid> */}
 
             <Grid item>
               <Link href="/learn/sections">
                 <a title={this.lexicon('Learn')}>
                   <Typography>{this.lexicon('Learn')}</Typography>
-                </a>
-              </Link>
-            </Grid>
-
-            <Grid item>
-              <Link href="/topics/">
-                <a title={this.lexicon('Topics')}>
-                  <Typography>{this.lexicon('Topics')}</Typography>
                 </a>
               </Link>
             </Grid>
@@ -222,13 +215,6 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               </Link>
             </Grid>
 
-            <Grid item>
-              <Link href="/blogs/">
-                <a>
-                  <Typography>{this.lexicon('Blogs')}</Typography>
-                </a>
-              </Link>
-            </Grid>
             {/* 
             <Grid item>
               <Link href="/chat-rooms/">
@@ -264,6 +250,22 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               </Link>
             </Grid>
 
+            <Grid item>
+              <Link href="/topics/">
+                <a title={this.lexicon('Topics')}>
+                  <Typography>{this.lexicon('Topics')}</Typography>
+                </a>
+              </Link>
+            </Grid>
+
+            <Grid item>
+              <Link href="/blogs/">
+                <a>
+                  <Typography>{this.lexicon('Blogs')}</Typography>
+                </a>
+              </Link>
+            </Grid>
+
             {/* <Grid item>
               <a
                 href="/graphql-voyager/"
@@ -275,6 +277,14 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               </Grid> */}
 
             <Grid item>
+              <Link href="/office/">
+                <a>
+                  <Typography>{this.lexicon('Office')}</Typography>
+                </a>
+              </Link>
+            </Grid>
+
+            {/* <Grid item>
               <a
                 href="https://api.prisma-cms.com"
                 rel="noindex nofollow noopener noreferrer"
@@ -282,7 +292,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               >
                 <Typography>{this.lexicon('API')}</Typography>
               </a>
-            </Grid>
+            </Grid> */}
 
             <Grid item>
               <Link href="/about/">

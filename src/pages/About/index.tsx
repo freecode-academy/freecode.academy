@@ -2,6 +2,7 @@ import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import React from 'react'
 import { Page } from '../_App/interfaces'
+import { DonateForm } from './DonateForm'
 
 /**
  * Страница О проекте
@@ -53,6 +54,10 @@ export const AboutPage: Page = () => {
           Любые вопросы/предложения можно слать на почту{' '}
           <a href="mailto:info@freecode.academy">info@freecode.academy</a>
         </p>
+
+        <div>
+          <DonateForm />
+        </div>
       </div>
     </>
   )

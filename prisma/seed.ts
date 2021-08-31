@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client'
 import { createPassword } from '../server/nexus/types/User/resolvers'
+// import { devSeed } from './dev_seed'
 
 const prisma = new PrismaClient()
 
@@ -31,6 +32,10 @@ async function main() {
       })
       .catch(console.error)
   }
+
+  // Dev seed
+  // await devSeed(prisma)
+
   // eslint-disable-next-line no-console
   console.log(`Seeding finished.`)
 }

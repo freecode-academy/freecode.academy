@@ -33,4 +33,16 @@ export const GlobalStyle = createGlobalStyle`
     margin-bottom: 1rem;
   }
 
+  .flex {
+    display: flex;
+
+    &.align-items-center {
+      align-items: center;
+    }
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+
 `

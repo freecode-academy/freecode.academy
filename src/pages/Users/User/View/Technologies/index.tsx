@@ -20,7 +20,9 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
       <GridTableItemStyled>
         <GridTableAttributeStyled>Технология</GridTableAttributeStyled>
 
-        <GridTableAttributeStyled>Уровень знания</GridTableAttributeStyled>
+        <GridTableAttributeStyled>
+          Технологический уровень
+        </GridTableAttributeStyled>
         <GridTableAttributeStyled>Статус</GridTableAttributeStyled>
 
         <GridTableAttributesContainerStyled>
@@ -47,6 +49,7 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
               value={n.level}
               error={undefined}
               inEditMode={false}
+              name="level"
             />
           </GridTableAttributeStyled>
           <GridTableAttributeStyled>

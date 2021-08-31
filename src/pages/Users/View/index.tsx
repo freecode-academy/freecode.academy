@@ -10,6 +10,7 @@ import moment from 'moment'
 import ProjectLink from 'src/uikit/Link/Project'
 import Link from 'next/link'
 import Typography from 'material-ui/Typography'
+import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
 
 class UsersView<
   P extends UsersViewProps = UsersViewProps
@@ -30,11 +31,11 @@ class UsersView<
         },
       },
       {
-        id: 'createdAt',
-        key: 'createdAt',
-        label: 'Дата регистрации',
-        renderer: (value: UsersConnectionUserFragment['createdAt']) => {
-          return moment(value).format('ll')
+        id: 'technologyLevel',
+        key: 'technologyLevel',
+        label: 'Технологический уровень',
+        renderer: (value: UsersConnectionUserFragment['technologyLevel']) => {
+          return value ? getUserTechnologyLevelText(value) : null
         },
       },
       {
@@ -126,6 +127,22 @@ class UsersView<
           }
 
           return output
+        },
+      },
+      {
+        id: 'createdAt',
+        key: 'createdAt',
+        label: 'Дата регистрации',
+        renderer: (value: UsersConnectionUserFragment['createdAt']) => {
+          return (
+            <span
+              style={{
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {moment(value).format('ll')}
+            </span>
+          )
         },
       },
     ]

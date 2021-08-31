@@ -14,35 +14,24 @@ import { TechnologiesConnectionTechnologyFragmentDoc } from './technologiesConne
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type TechnologiesConnectionQueryVariables = Types.Exact<{
-  first?: Types.Maybe<Types.Scalars['Int']>;
+  take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.TechnologyWhereInput>;
-  orderBy?: Types.Maybe<Types.TechnologyOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TechnologyOrderByInput> | Types.TechnologyOrderByInput>;
 }>;
 
 
-export type TechnologiesConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'TechnologyConnection', aggregate: { __typename?: 'AggregateTechnology', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TechnologyEdge', node: (
-        { __typename?: 'Technology' }
-        & TechnologiesConnectionTechnologyFragment
-      ) }>> } };
+export type TechnologiesConnectionQuery = { __typename?: 'Query', technologiesCount: number, technologies: Array<(
+    { __typename?: 'Technology' }
+    & TechnologiesConnectionTechnologyFragment
+  )> };
 
 
 export const TechnologiesConnectionDocument = gql`
-    query technologiesConnection($first: Int, $skip: Int, $where: TechnologyWhereInput, $orderBy: TechnologyOrderByInput = {createdAt: desc}) {
-  objectsConnection: technologiesConnection(
-    first: $first
-    skip: $skip
-    where: $where
-    orderBy: $orderBy
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...technologiesConnectionTechnology
-      }
-    }
+    query technologiesConnection($take: Int, $skip: Int, $where: TechnologyWhereInput, $orderBy: [TechnologyOrderByInput!] = {createdAt: desc}) {
+  technologiesCount(where: $where)
+  technologies(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {
+    ...technologiesConnectionTechnology
   }
 }
     ${TechnologiesConnectionTechnologyFragmentDoc}`;
@@ -59,7 +48,7 @@ export const TechnologiesConnectionDocument = gql`
  * @example
  * const { data, loading, error } = useTechnologiesConnectionQuery({
  *   variables: {
- *      first: // value for 'first'
+ *      take: // value for 'take'
  *      skip: // value for 'skip'
  *      where: // value for 'where'
  *      orderBy: // value for 'orderBy'

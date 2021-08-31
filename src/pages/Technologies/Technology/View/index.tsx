@@ -28,7 +28,9 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
 
         <GridTableAttributeStyled>Пользователь</GridTableAttributeStyled>
 
-        <GridTableAttributeStyled>Уровень знания</GridTableAttributeStyled>
+        <GridTableAttributeStyled>
+          Технологический уровень
+        </GridTableAttributeStyled>
         <GridTableAttributeStyled>Статус</GridTableAttributeStyled>
         <GridTableAttributeStyled>Готовность к найму</GridTableAttributeStyled>
 

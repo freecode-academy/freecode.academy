@@ -87,6 +87,11 @@ export const UserTechnology = objectType({
           : null
       },
     })
+    t.nonNull.string('technologyId', {
+      resolve({ Technology }) {
+        return Technology
+      },
+    })
     t.field('Technology', {
       type: 'Technology',
       resolve({ Technology }, _, ctx) {

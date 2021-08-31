@@ -1,4 +1,5 @@
 import React, { useMemo, useCallback } from 'react'
+import { getUserTechnologyStatusText } from 'src/helpers/getUserTechnologyStatusText'
 import { UserTechnologyStatus } from 'src/modules/gql/generated'
 import { Autocomplete } from 'src/uikit/Autocomplete'
 import { UserTechnologyStatusViewProps } from './interfaces'
@@ -28,7 +29,7 @@ const UserTechnologyStatusView: React.FC<UserTechnologyStatusViewProps> = ({
       >
       const items = keys.map((key) => ({
         value: key,
-        label: UserTechnologyStatus[key],
+        label: getUserTechnologyStatusText(UserTechnologyStatus[key]),
       }))
 
       return (
@@ -49,7 +50,7 @@ const UserTechnologyStatusView: React.FC<UserTechnologyStatusViewProps> = ({
       )
     }
 
-    return <>{value}</>
+    return <>{value ? getUserTechnologyStatusText(value) : null}</>
   }, [error, inEditMode, onStatusChange, value])
 }
 

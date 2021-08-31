@@ -107,7 +107,7 @@ const TaskTaskTechnologies: React.FC<TaskTaskTechnologiesProps> = ({
         <GridTableAttributeStyled>Технология</GridTableAttributeStyled>
         <GridTableAttributeStyled>Требуемый уровень</GridTableAttributeStyled>
 
-        {/* <GridTableAttributeStyled>Уровень знания</GridTableAttributeStyled>
+        {/* <GridTableAttributeStyled>Технологический уровень</GridTableAttributeStyled>
             <GridTableAttributeStyled>Статус</GridTableAttributeStyled> */}
         {/* 
             <GridTableAttributesContainerStyled>

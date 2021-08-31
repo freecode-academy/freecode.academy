@@ -1,5 +1,8 @@
 /* eslint-disable no-redeclare */
 /* eslint-disable @typescript-eslint/no-namespace */
+
+// TODO Сейчас работает только с react@16. С 17+ ломается.
+
 import 'cypress-graphql-mock-network'
 import { expect } from 'chai'
 

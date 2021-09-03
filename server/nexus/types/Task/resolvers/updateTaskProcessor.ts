@@ -50,9 +50,9 @@ export const updateTaskProcessor: FieldResolver<
   }
 
   if (Timers) {
-    const TimersUpdate = Timers as Prisma.TaskUpdateArgs['data']['Timer']
+    const TimersUpdate = Timers as Prisma.TaskUpdateArgs['data']['Timers']
 
-    updateData.Timer = TimersUpdate
+    updateData.Timers = TimersUpdate
   }
 
   if (nameProps !== undefined) {

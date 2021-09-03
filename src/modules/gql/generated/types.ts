@@ -246,11 +246,11 @@ export interface ChatMessageResponse {
 
 export interface ChatMessageWhereInput {
   AND?: Maybe<Array<ChatMessageWhereInput>>;
-  ChatMessageReaded?: Maybe<ChatMessageReadedListRelationFilter>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedListRelationFilter>;
   ChatRoom?: Maybe<ChatRoomWhereInput>;
   CreatedBy?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<ChatMessageWhereInput>>;
-  Notice?: Maybe<NoticeListRelationFilter>;
+  Notices?: Maybe<NoticeListRelationFilter>;
   OR?: Maybe<Array<ChatMessageWhereInput>>;
   Room?: Maybe<StringNullableFilter>;
   User?: Maybe<UserWhereInput>;
@@ -341,14 +341,14 @@ export interface ChatRoomOrderByInput {
 
 export interface ChatRoomWhereInput {
   AND?: Maybe<Array<ChatRoomWhereInput>>;
-  CallRequest?: Maybe<CallRequestListRelationFilter>;
-  ChatMessage?: Maybe<ChatMessageListRelationFilter>;
-  ChatRoomInvitation?: Maybe<ChatRoomInvitationListRelationFilter>;
+  CallRequests?: Maybe<CallRequestListRelationFilter>;
+  ChatMessages?: Maybe<ChatMessageListRelationFilter>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationListRelationFilter>;
   CreatedBy?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<ChatRoomWhereInput>>;
   OR?: Maybe<Array<ChatRoomWhereInput>>;
-  Project?: Maybe<ProjectListRelationFilter>;
-  Task?: Maybe<TaskListRelationFilter>;
+  Projects?: Maybe<ProjectListRelationFilter>;
+  Tasks?: Maybe<TaskListRelationFilter>;
   User_ChatRoomToUser?: Maybe<UserWhereInput>;
   User_ChatRoomsMembers?: Maybe<UserListRelationFilter>;
   allowAnonymous?: Maybe<BoolNullableFilter>;
@@ -1106,7 +1106,7 @@ export interface FileWhereInput {
   ImageResource?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<FileWhereInput>>;
   OR?: Maybe<Array<FileWhereInput>>;
-  Project?: Maybe<ProjectListRelationFilter>;
+  Projects?: Maybe<ProjectListRelationFilter>;
   Resource?: Maybe<ResourceWhereInput>;
   User?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
@@ -1134,8 +1134,8 @@ export interface GalleryListRelationFilter {
 
 export interface GalleryWhereInput {
   AND?: Maybe<Array<GalleryWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
-  File?: Maybe<FileListRelationFilter>;
+  CreatedBy?: Maybe<StringFilter>;
+  Files?: Maybe<FileListRelationFilter>;
   NOT?: Maybe<Array<GalleryWhereInput>>;
   OR?: Maybe<Array<GalleryWhereInput>>;
   Resource?: Maybe<StringNullableFilter>;
@@ -1580,6 +1580,7 @@ export interface Mutation {
   createResetPasswordProcessor: ResetPasswordResponse;
   createTaskProcessor: TaskResponse;
   createTaskTechnologyProcessor: TaskTechnologyResponse;
+  createTechnology: Technology;
   createTimerProcessor: TimerResponse;
   createTopicProcessor: ResourceResponse;
   createUserLearnStrategy: UserLearnStrategy;
@@ -1654,6 +1655,11 @@ export type MutationCreateTaskProcessorArgs = {
 
 export type MutationCreateTaskTechnologyProcessorArgs = {
   data: TaskTechnologyCreateInput;
+};
+
+
+export type MutationCreateTechnologyArgs = {
+  data: TechnologyCreateInput;
 };
 
 
@@ -2102,7 +2108,7 @@ export interface NoticeWhereInput {
   AND?: Maybe<Array<NoticeWhereInput>>;
   ChatMessage?: Maybe<StringNullableFilter>;
   ChatMessage_ChatMessageToNotice?: Maybe<ChatMessageWhereInput>;
-  ChatRoomInvitation?: Maybe<ChatRoomInvitationListRelationFilter>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationListRelationFilter>;
   CreatedBy?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<NoticeWhereInput>>;
   OR?: Maybe<Array<NoticeWhereInput>>;
@@ -2305,7 +2311,7 @@ export interface ProjectMemberWhereInput {
   OR?: Maybe<Array<ProjectMemberWhereInput>>;
   Project?: Maybe<StringNullableFilter>;
   Project_ProjectToProjectMember?: Maybe<ProjectWhereInput>;
-  Service?: Maybe<ServiceListRelationFilter>;
+  Services?: Maybe<ServiceListRelationFilter>;
   User?: Maybe<StringNullableFilter>;
   User_ProjectMember_CreatedByToUser?: Maybe<UserWhereInput>;
   User_ProjectMember_UserToUser?: Maybe<UserWhereInput>;
@@ -2422,21 +2428,21 @@ export interface ProjectWhereInput {
   ChatRoom?: Maybe<StringNullableFilter>;
   ChatRoom_ChatRoomToProject?: Maybe<ChatRoomWhereInput>;
   CreatedBy?: Maybe<StringNullableFilter>;
-  EthAccount?: Maybe<EthAccountListRelationFilter>;
+  EthAccounts?: Maybe<EthAccountListRelationFilter>;
   File?: Maybe<FileWhereInput>;
   Image?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<ProjectWhereInput>>;
   OR?: Maybe<Array<ProjectWhereInput>>;
-  ProjectMember?: Maybe<ProjectMemberListRelationFilter>;
-  ProjectTask?: Maybe<ProjectTaskListRelationFilter>;
+  ProjectMembers?: Maybe<ProjectMemberListRelationFilter>;
+  ProjectTasks?: Maybe<ProjectTaskListRelationFilter>;
   Resource?: Maybe<StringNullableFilter>;
-  Resource_ProjectToResource_PrismaProject?: Maybe<ResourceListRelationFilter>;
   Resource_Project_ResourceToResource?: Maybe<ResourceWhereInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceListRelationFilter>;
   Team?: Maybe<StringNullableFilter>;
   Team_ProjectCustomers?: Maybe<TeamListRelationFilter>;
   Team_ProjectToTeam?: Maybe<TeamWhereInput>;
-  Template_ProjectToTemplate_PrismaProject?: Maybe<TemplateListRelationFilter>;
-  Template_ProjectToTemplate_Project?: Maybe<TemplateListRelationFilter>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateListRelationFilter>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateListRelationFilter>;
   User_PrismaProjectUsers?: Maybe<UserListRelationFilter>;
   User_ProjectToUser?: Maybe<UserWhereInput>;
   content?: Maybe<JsonNullableFilter>;
@@ -3159,19 +3165,19 @@ export enum ResourceType {
 export interface ResourceWhereInput {
   AND?: Maybe<Array<ResourceWhereInput>>;
   Blog?: Maybe<StringNullableFilter>;
-  CodeChallenge?: Maybe<CodeChallengeListRelationFilter>;
+  CodeChallenges?: Maybe<CodeChallengeListRelationFilter>;
   CreatedBy?: Maybe<StringNullableFilter>;
   EthAccount?: Maybe<StringNullableFilter>;
   EthAccount_EthAccountToResource?: Maybe<EthAccountWhereInput>;
-  File?: Maybe<FileListRelationFilter>;
-  Gallery?: Maybe<GalleryListRelationFilter>;
+  Files?: Maybe<FileListRelationFilter>;
+  Galleries?: Maybe<GalleryListRelationFilter>;
   NOT?: Maybe<Array<ResourceWhereInput>>;
   OR?: Maybe<Array<ResourceWhereInput>>;
   Parent?: Maybe<StringNullableFilter>;
   PrismaProject?: Maybe<StringNullableFilter>;
   Project_ProjectToResource_PrismaProject?: Maybe<ProjectWhereInput>;
-  Project_Project_ResourceToResource?: Maybe<ProjectListRelationFilter>;
-  ResourceTag?: Maybe<ResourceTagListRelationFilter>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectListRelationFilter>;
+  ResourceTags?: Maybe<ResourceTagListRelationFilter>;
   Resource_ResourceToResource_Blog?: Maybe<ResourceWhereInput>;
   Resource_ResourceToResource_Parent?: Maybe<ResourceWhereInput>;
   Resource_ResourceToResource_Topic?: Maybe<ResourceWhereInput>;
@@ -3183,7 +3189,7 @@ export interface ResourceWhereInput {
   Team_ResourceToTeam?: Maybe<TeamWhereInput>;
   Topic?: Maybe<StringNullableFilter>;
   User?: Maybe<UserWhereInput>;
-  Vote?: Maybe<VoteListRelationFilter>;
+  Votes?: Maybe<VoteListRelationFilter>;
   class_key?: Maybe<StringNullableFilter>;
   code?: Maybe<StringNullableFilter>;
   commentOldID?: Maybe<IntNullableFilter>;
@@ -3201,9 +3207,9 @@ export interface ResourceWhereInput {
   negativeVotesCount?: Maybe<IntNullableFilter>;
   neutralVotesCount?: Maybe<IntNullableFilter>;
   oldID?: Maybe<IntNullableFilter>;
-  other_Resource_ResourceToResource_Blog?: Maybe<ResourceListRelationFilter>;
-  other_Resource_ResourceToResource_Parent?: Maybe<ResourceListRelationFilter>;
-  other_Resource_ResourceToResource_Topic?: Maybe<ResourceListRelationFilter>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceListRelationFilter>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceListRelationFilter>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceListRelationFilter>;
   positiveVotesCount?: Maybe<IntNullableFilter>;
   published?: Maybe<BoolFilter>;
   rating?: Maybe<DecimalNullableFilter>;
@@ -3240,7 +3246,7 @@ export interface RouteWhereInput {
   exact?: Maybe<BoolFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
-  other_Route?: Maybe<RouteListRelationFilter>;
+  other_Routes?: Maybe<RouteListRelationFilter>;
   path?: Maybe<StringFilter>;
 }
 
@@ -3256,15 +3262,15 @@ export interface ServiceCategoryWhereInput {
   NOT?: Maybe<Array<ServiceCategoryWhereInput>>;
   OR?: Maybe<Array<ServiceCategoryWhereInput>>;
   Parent?: Maybe<StringNullableFilter>;
-  Service?: Maybe<ServiceListRelationFilter>;
   ServiceCategory?: Maybe<ServiceCategoryWhereInput>;
+  Services?: Maybe<ServiceListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   code?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   description?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
-  other_ServiceCategory?: Maybe<ServiceCategoryListRelationFilter>;
+  other_ServiceCategories?: Maybe<ServiceCategoryListRelationFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -3281,8 +3287,8 @@ export interface ServiceWhereInput {
   NOT?: Maybe<Array<ServiceWhereInput>>;
   OR?: Maybe<Array<ServiceWhereInput>>;
   Parent?: Maybe<StringNullableFilter>;
-  ProjectMember?: Maybe<ProjectMemberListRelationFilter>;
-  Resource?: Maybe<ResourceListRelationFilter>;
+  ProjectMembers?: Maybe<ProjectMemberListRelationFilter>;
+  Resources?: Maybe<ResourceListRelationFilter>;
   Service?: Maybe<ServiceWhereInput>;
   ServiceCategory?: Maybe<ServiceCategoryWhereInput>;
   User?: Maybe<UserWhereInput>;
@@ -3292,7 +3298,7 @@ export interface ServiceWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
   oldID?: Maybe<IntNullableFilter>;
-  other_Service?: Maybe<ServiceListRelationFilter>;
+  other_Services?: Maybe<ServiceListRelationFilter>;
   rank?: Maybe<IntNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
@@ -3373,7 +3379,7 @@ export interface SmsProviderWhereInput {
   CreatedBy?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<SmsProviderWhereInput>>;
   OR?: Maybe<Array<SmsProviderWhereInput>>;
-  SmsMessage?: Maybe<SmsMessageListRelationFilter>;
+  SmsMessages?: Maybe<SmsMessageListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   credentials?: Maybe<JsonNullableFilter>;
@@ -3462,7 +3468,7 @@ export interface TagWhereInput {
   CreatedBy?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<TagWhereInput>>;
   OR?: Maybe<Array<TagWhereInput>>;
-  ResourceTag?: Maybe<ResourceTagListRelationFilter>;
+  ResourceTags?: Maybe<ResourceTagListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
@@ -3626,7 +3632,7 @@ export enum TaskReactionType {
 
 export interface TaskReactionWhereInput {
   AND?: Maybe<Array<TaskReactionWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   NOT?: Maybe<Array<TaskReactionWhereInput>>;
   OR?: Maybe<Array<TaskReactionWhereInput>>;
   Task?: Maybe<StringNullableFilter>;
@@ -3709,7 +3715,7 @@ export interface TaskTechnologyUpdateInput {
 
 export interface TaskTechnologyWhereInput {
   AND?: Maybe<Array<TaskTechnologyWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   NOT?: Maybe<Array<TaskTechnologyWhereInput>>;
   OR?: Maybe<Array<TaskTechnologyWhereInput>>;
   Task?: Maybe<StringNullableFilter>;
@@ -3744,20 +3750,20 @@ export interface TaskWhereInput {
   AND?: Maybe<Array<TaskWhereInput>>;
   ChatRoom?: Maybe<StringNullableFilter>;
   ChatRoom_ChatRoomToTask?: Maybe<ChatRoomWhereInput>;
-  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionListRelationFilter>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionListRelationFilter>;
   CreatedBy?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<TaskWhereInput>>;
   OR?: Maybe<Array<TaskWhereInput>>;
   Parent?: Maybe<StringNullableFilter>;
-  ProjectTask?: Maybe<ProjectTaskListRelationFilter>;
-  Resource?: Maybe<ResourceListRelationFilter>;
+  ProjectTasks?: Maybe<ProjectTaskListRelationFilter>;
+  Resources?: Maybe<ResourceListRelationFilter>;
   Task?: Maybe<TaskWhereInput>;
-  TaskMember?: Maybe<TaskMemberListRelationFilter>;
-  TaskReaction?: Maybe<TaskReactionListRelationFilter>;
-  TaskTechnology?: Maybe<TaskTechnologyListRelationFilter>;
-  Task_A?: Maybe<TaskListRelationFilter>;
-  Task_B?: Maybe<TaskListRelationFilter>;
-  Timer?: Maybe<TimerListRelationFilter>;
+  TaskMembers?: Maybe<TaskMemberListRelationFilter>;
+  TaskReactions?: Maybe<TaskReactionListRelationFilter>;
+  TaskTechnologies?: Maybe<TaskTechnologyListRelationFilter>;
+  Tasks_A?: Maybe<TaskListRelationFilter>;
+  Tasks_B?: Maybe<TaskListRelationFilter>;
+  Timers?: Maybe<TimerListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   content?: Maybe<JsonNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
@@ -3767,7 +3773,7 @@ export interface TaskWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
   needHelp?: Maybe<BoolNullableFilter>;
-  other_Task?: Maybe<TaskListRelationFilter>;
+  other_Tasks?: Maybe<TaskListRelationFilter>;
   startDate?: Maybe<DateTimeNullableFilter>;
   startDatePlaning?: Maybe<DateTimeNullableFilter>;
   status?: Maybe<EnumTaskStatusFilter>;
@@ -3798,7 +3804,7 @@ export enum TeamMemberStatus {
 
 export interface TeamMemberWhereInput {
   AND?: Maybe<Array<TeamMemberWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   NOT?: Maybe<Array<TeamMemberWhereInput>>;
   OR?: Maybe<Array<TeamMemberWhereInput>>;
   Team?: Maybe<StringNullableFilter>;
@@ -3819,17 +3825,17 @@ export enum TeamStatus {
 
 export interface TeamWhereInput {
   AND?: Maybe<Array<TeamWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
-  Game?: Maybe<GameListRelationFilter>;
-  GameResult?: Maybe<GameResultListRelationFilter>;
+  CreatedBy?: Maybe<StringFilter>;
+  GameResults?: Maybe<GameResultListRelationFilter>;
+  Games?: Maybe<GameListRelationFilter>;
   NOT?: Maybe<Array<TeamWhereInput>>;
   OR?: Maybe<Array<TeamWhereInput>>;
   Parent?: Maybe<StringNullableFilter>;
   Project_ProjectCustomers?: Maybe<ProjectListRelationFilter>;
-  Project_ProjectToTeam?: Maybe<ProjectListRelationFilter>;
-  Resource?: Maybe<ResourceListRelationFilter>;
+  Projects_ProjectToTeam?: Maybe<ProjectListRelationFilter>;
+  Resources?: Maybe<ResourceListRelationFilter>;
   Team?: Maybe<TeamWhereInput>;
-  TeamMember?: Maybe<TeamMemberListRelationFilter>;
+  TeamMembers?: Maybe<TeamMemberListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   address?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
@@ -3837,7 +3843,7 @@ export interface TeamWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
   oldID?: Maybe<IntNullableFilter>;
-  other_Team?: Maybe<TeamListRelationFilter>;
+  other_Teams?: Maybe<TeamListRelationFilter>;
   phone?: Maybe<StringNullableFilter>;
   status?: Maybe<EnumTeamStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
@@ -3867,6 +3873,10 @@ export interface Technology {
   updatedAt: Scalars['DateTime'];
 }
 
+export interface TechnologyCreateInput {
+  name: Scalars['String'];
+}
+
 export interface TechnologyCreateOneWithoutTaskTechnologiesInput {
   connect?: Maybe<TechnologyWhereUniqueInput>;
 }
@@ -3894,8 +3904,8 @@ export enum TechnologyLessonUserStatus {
 
 export interface TechnologyLessonUserWhereInput {
   AND?: Maybe<Array<TechnologyLessonUserWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
-  Lesson?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
+  Lesson?: Maybe<StringFilter>;
   NOT?: Maybe<Array<TechnologyLessonUserWhereInput>>;
   OR?: Maybe<Array<TechnologyLessonUserWhereInput>>;
   TechnologyLesson?: Maybe<TechnologyLessonWhereInput>;
@@ -3909,12 +3919,12 @@ export interface TechnologyLessonUserWhereInput {
 
 export interface TechnologyLessonWhereInput {
   AND?: Maybe<Array<TechnologyLessonWhereInput>>;
-  Comment?: Maybe<CommentListRelationFilter>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  Comments?: Maybe<CommentListRelationFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   NOT?: Maybe<Array<TechnologyLessonWhereInput>>;
   OR?: Maybe<Array<TechnologyLessonWhereInput>>;
-  Technology?: Maybe<StringNullableFilter>;
-  TechnologyLessonUser?: Maybe<TechnologyLessonUserListRelationFilter>;
+  Technology?: Maybe<StringFilter>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserListRelationFilter>;
   Technology_TechnologyToTechnologyLesson?: Maybe<TechnologyWhereInput>;
   User?: Maybe<UserWhereInput>;
   components?: Maybe<JsonNullableFilter>;
@@ -3947,14 +3957,14 @@ export interface TechnologyOrderByInput {
 
 export interface TechnologyWhereInput {
   AND?: Maybe<Array<TechnologyWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   LearnStrategyStages?: Maybe<LearnStrategyStageListRelationFilter>;
   NOT?: Maybe<Array<TechnologyWhereInput>>;
   OR?: Maybe<Array<TechnologyWhereInput>>;
-  TaskTechnology?: Maybe<TaskTechnologyListRelationFilter>;
-  TechnologyLesson?: Maybe<TechnologyLessonListRelationFilter>;
+  TaskTechnologies?: Maybe<TaskTechnologyListRelationFilter>;
+  TechnologyLessons?: Maybe<TechnologyLessonListRelationFilter>;
   User?: Maybe<UserWhereInput>;
-  UserTechnology?: Maybe<UserTechnologyListRelationFilter>;
+  UserTechnologies?: Maybe<UserTechnologyListRelationFilter>;
   components?: Maybe<JsonNullableFilter>;
   contentText?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
@@ -3964,7 +3974,7 @@ export interface TechnologyWhereInput {
   level3hours?: Maybe<IntNullableFilter>;
   level4hours?: Maybe<IntNullableFilter>;
   level5hours?: Maybe<IntNullableFilter>;
-  name?: Maybe<StringNullableFilter>;
+  name?: Maybe<StringFilter>;
   site_url?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
@@ -3981,7 +3991,7 @@ export interface TemplateListRelationFilter {
 
 export interface TemplateWhereInput {
   AND?: Maybe<Array<TemplateWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   NOT?: Maybe<Array<TemplateWhereInput>>;
   OR?: Maybe<Array<TemplateWhereInput>>;
   Parent?: Maybe<StringNullableFilter>;
@@ -3997,31 +4007,10 @@ export interface TemplateWhereInput {
   externalKey?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
-  other_Template?: Maybe<TemplateListRelationFilter>;
+  other_Templates?: Maybe<TemplateListRelationFilter>;
   rank?: Maybe<IntNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   vars?: Maybe<JsonNullableFilter>;
-}
-
-export interface TestListRelationFilter {
-  every?: Maybe<TestWhereInput>;
-  none?: Maybe<TestWhereInput>;
-  some?: Maybe<TestWhereInput>;
-}
-
-export interface TestWhereInput {
-  AND?: Maybe<Array<TestWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
-  NOT?: Maybe<Array<TestWhereInput>>;
-  OR?: Maybe<Array<TestWhereInput>>;
-  User?: Maybe<UserWhereInput>;
-  createdAt?: Maybe<DateTimeFilter>;
-  date?: Maybe<DateTimeNullableFilter>;
-  id?: Maybe<StringFilter>;
-  name?: Maybe<StringNullableFilter>;
-  quantity?: Maybe<DecimalNullableFilter>;
-  text?: Maybe<StringNullableFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
 }
 
 export interface Timer {
@@ -4149,10 +4138,10 @@ export interface TournamentGroupListRelationFilter {
 
 export interface TournamentGroupWhereInput {
   AND?: Maybe<Array<TournamentGroupWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   NOT?: Maybe<Array<TournamentGroupWhereInput>>;
   OR?: Maybe<Array<TournamentGroupWhereInput>>;
-  Tournament?: Maybe<TournamentListRelationFilter>;
+  Tournaments?: Maybe<TournamentListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   code?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
@@ -4169,12 +4158,12 @@ export interface TournamentListRelationFilter {
 
 export interface TournamentWhereInput {
   AND?: Maybe<Array<TournamentWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
+  CreatedBy?: Maybe<StringFilter>;
   Group?: Maybe<StringNullableFilter>;
   NOT?: Maybe<Array<TournamentWhereInput>>;
   OR?: Maybe<Array<TournamentWhereInput>>;
   TournamentGroup?: Maybe<TournamentGroupWhereInput>;
-  Tourney?: Maybe<TourneyListRelationFilter>;
+  Tourneys?: Maybe<TourneyListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   code?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
@@ -4208,13 +4197,13 @@ export interface TourneyPlayerWhereInput {
 
 export interface TourneyWhereInput {
   AND?: Maybe<Array<TourneyWhereInput>>;
-  CreatedBy?: Maybe<StringNullableFilter>;
-  Game?: Maybe<GameListRelationFilter>;
+  CreatedBy?: Maybe<StringFilter>;
+  Games?: Maybe<GameListRelationFilter>;
   NOT?: Maybe<Array<TourneyWhereInput>>;
   OR?: Maybe<Array<TourneyWhereInput>>;
   Tournament?: Maybe<StringNullableFilter>;
   Tournament_TournamentToTourney?: Maybe<TournamentWhereInput>;
-  TourneyPlayer?: Maybe<TourneyPlayerListRelationFilter>;
+  TourneyPlayers?: Maybe<TourneyPlayerListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   code?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
@@ -4297,7 +4286,7 @@ export interface UserGroupWhereInput {
   AND?: Maybe<Array<UserGroupWhereInput>>;
   NOT?: Maybe<Array<UserGroupWhereInput>>;
   OR?: Maybe<Array<UserGroupWhereInput>>;
-  User?: Maybe<UserListRelationFilter>;
+  Users?: Maybe<UserListRelationFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
@@ -4544,83 +4533,82 @@ export interface UserUpdateInput {
 
 export interface UserWhereInput {
   AND?: Maybe<Array<UserWhereInput>>;
-  CallRequest_CallRequest_CalledToUser?: Maybe<CallRequestListRelationFilter>;
-  CallRequest_CallRequest_CallerToUser?: Maybe<CallRequestListRelationFilter>;
-  Career?: Maybe<CareerListRelationFilter>;
-  ChatMessage?: Maybe<ChatMessageListRelationFilter>;
-  ChatMessageReaded?: Maybe<ChatMessageReadedListRelationFilter>;
-  ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationListRelationFilter>;
-  ChatRoomInvitation_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationListRelationFilter>;
-  ChatRoom_ChatRoomToUser?: Maybe<ChatRoomListRelationFilter>;
-  ChatRoom_ChatRoomsMembers?: Maybe<ChatRoomListRelationFilter>;
-  CodeChallenge?: Maybe<CodeChallengeListRelationFilter>;
-  CodeChallengeBlock?: Maybe<CodeChallengeBlockListRelationFilter>;
-  CodeChallengeCompletion?: Maybe<CodeChallengeCompletionListRelationFilter>;
-  Comment?: Maybe<CommentListRelationFilter>;
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestListRelationFilter>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestListRelationFilter>;
+  Careers?: Maybe<CareerListRelationFilter>;
+  ChatMessages?: Maybe<ChatMessageListRelationFilter>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedListRelationFilter>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationListRelationFilter>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationListRelationFilter>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomListRelationFilter>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomListRelationFilter>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockListRelationFilter>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionListRelationFilter>;
+  CodeChallenges?: Maybe<CodeChallengeListRelationFilter>;
+  Comments?: Maybe<CommentListRelationFilter>;
   CreatedBy?: Maybe<StringNullableFilter>;
   EthAccountAuthed?: Maybe<StringNullableFilter>;
   EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountWhereInput>;
-  EthAccount_EthAccount_CreatedByToUser?: Maybe<EthAccountListRelationFilter>;
-  EthContractSource?: Maybe<EthContractSourceListRelationFilter>;
-  File?: Maybe<FileListRelationFilter>;
-  Gallery?: Maybe<GalleryListRelationFilter>;
-  GameResult_GameResult_CreatedByToUser?: Maybe<GameResultListRelationFilter>;
-  GameResult_GameResult_UserToUser?: Maybe<GameResultListRelationFilter>;
-  Game_GameToUser?: Maybe<GameListRelationFilter>;
-  Game_GameUsers?: Maybe<GameListRelationFilter>;
-  Import?: Maybe<ImportListRelationFilter>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountListRelationFilter>;
+  EthContractSources?: Maybe<EthContractSourceListRelationFilter>;
+  Files?: Maybe<FileListRelationFilter>;
+  Galleries?: Maybe<GalleryListRelationFilter>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultListRelationFilter>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultListRelationFilter>;
+  Games_GameToUser?: Maybe<GameListRelationFilter>;
+  Games_GameUsers?: Maybe<GameListRelationFilter>;
+  Imports?: Maybe<ImportListRelationFilter>;
   LearnStrategies?: Maybe<LearnStrategyListRelationFilter>;
-  Letter?: Maybe<LetterListRelationFilter>;
-  LogedIn?: Maybe<LogedInListRelationFilter>;
+  Letters?: Maybe<LetterListRelationFilter>;
+  LogedIns?: Maybe<LogedInListRelationFilter>;
   NOT?: Maybe<Array<UserWhereInput>>;
-  Notice_Notice_CreatedByToUser?: Maybe<NoticeListRelationFilter>;
-  Notice_Notice_UserToUser?: Maybe<NoticeListRelationFilter>;
-  NotificationType_NotificationTypeToUser?: Maybe<NotificationTypeListRelationFilter>;
-  NotificationType_UserNotificationTypes?: Maybe<NotificationTypeListRelationFilter>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeListRelationFilter>;
+  Notices_Notice_UserToUser?: Maybe<NoticeListRelationFilter>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeListRelationFilter>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeListRelationFilter>;
   OR?: Maybe<Array<UserWhereInput>>;
-  Player?: Maybe<PlayerListRelationFilter>;
-  Position_PositionToUser?: Maybe<PositionListRelationFilter>;
-  Position_PositionUsers?: Maybe<PositionListRelationFilter>;
-  ProjectMember_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberListRelationFilter>;
-  ProjectMember_ProjectMember_UserToUser?: Maybe<ProjectMemberListRelationFilter>;
-  ProjectTask?: Maybe<ProjectTaskListRelationFilter>;
-  Project_PrismaProjectUsers?: Maybe<ProjectListRelationFilter>;
-  Project_ProjectToUser?: Maybe<ProjectListRelationFilter>;
+  Players?: Maybe<PlayerListRelationFilter>;
+  Positions_PositionToUser?: Maybe<PositionListRelationFilter>;
+  Positions_PositionUsers?: Maybe<PositionListRelationFilter>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberListRelationFilter>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberListRelationFilter>;
+  ProjectTasks?: Maybe<ProjectTaskListRelationFilter>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectListRelationFilter>;
+  Projects_ProjectToUser?: Maybe<ProjectListRelationFilter>;
   ResetPasswords?: Maybe<ResetPasswordListRelationFilter>;
-  Resource?: Maybe<ResourceListRelationFilter>;
-  ResourceTag?: Maybe<ResourceTagListRelationFilter>;
-  Route?: Maybe<RouteListRelationFilter>;
-  Service?: Maybe<ServiceListRelationFilter>;
-  ServiceCategory?: Maybe<ServiceCategoryListRelationFilter>;
+  ResourceTags?: Maybe<ResourceTagListRelationFilter>;
+  Resources?: Maybe<ResourceListRelationFilter>;
+  Routes?: Maybe<RouteListRelationFilter>;
+  ServiceCategories?: Maybe<ServiceCategoryListRelationFilter>;
+  Services?: Maybe<ServiceListRelationFilter>;
   Settings?: Maybe<SettingsListRelationFilter>;
-  SmsMessage?: Maybe<SmsMessageListRelationFilter>;
-  SmsProvider?: Maybe<SmsProviderListRelationFilter>;
-  Tag?: Maybe<TagListRelationFilter>;
-  Task?: Maybe<TaskListRelationFilter>;
-  TaskMember_TaskMember_CreatedByToUser?: Maybe<TaskMemberListRelationFilter>;
-  TaskMember_TaskMember_UserToUser?: Maybe<TaskMemberListRelationFilter>;
-  TaskReaction?: Maybe<TaskReactionListRelationFilter>;
-  TaskTechnology?: Maybe<TaskTechnologyListRelationFilter>;
-  Team?: Maybe<TeamListRelationFilter>;
-  TeamMember_TeamMember_CreatedByToUser?: Maybe<TeamMemberListRelationFilter>;
-  TeamMember_TeamMember_UserToUser?: Maybe<TeamMemberListRelationFilter>;
-  Technology?: Maybe<TechnologyListRelationFilter>;
-  TechnologyLesson?: Maybe<TechnologyLessonListRelationFilter>;
-  TechnologyLessonUser?: Maybe<TechnologyLessonUserListRelationFilter>;
-  Template?: Maybe<TemplateListRelationFilter>;
-  Test?: Maybe<TestListRelationFilter>;
-  Timer?: Maybe<TimerListRelationFilter>;
+  SmsMessages?: Maybe<SmsMessageListRelationFilter>;
+  SmsProviders?: Maybe<SmsProviderListRelationFilter>;
+  Tags?: Maybe<TagListRelationFilter>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberListRelationFilter>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberListRelationFilter>;
+  TaskReactions?: Maybe<TaskReactionListRelationFilter>;
+  TaskTechnologies?: Maybe<TaskTechnologyListRelationFilter>;
+  Tasks?: Maybe<TaskListRelationFilter>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberListRelationFilter>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberListRelationFilter>;
+  Teams?: Maybe<TeamListRelationFilter>;
+  Technologies?: Maybe<TechnologyListRelationFilter>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserListRelationFilter>;
+  TechnologyLessons?: Maybe<TechnologyLessonListRelationFilter>;
+  Templates?: Maybe<TemplateListRelationFilter>;
+  Timers?: Maybe<TimerListRelationFilter>;
   Tokens?: Maybe<TokenListRelationFilter>;
-  Tournament?: Maybe<TournamentListRelationFilter>;
-  TournamentGroup?: Maybe<TournamentGroupListRelationFilter>;
-  Tourney?: Maybe<TourneyListRelationFilter>;
-  TourneyPlayer?: Maybe<TourneyPlayerListRelationFilter>;
+  TournamentGroups?: Maybe<TournamentGroupListRelationFilter>;
+  Tournaments?: Maybe<TournamentListRelationFilter>;
+  TourneyPlayers?: Maybe<TourneyPlayerListRelationFilter>;
+  Tourneys?: Maybe<TourneyListRelationFilter>;
   User?: Maybe<UserWhereInput>;
-  UserGroup?: Maybe<UserGroupListRelationFilter>;
+  UserGroups?: Maybe<UserGroupListRelationFilter>;
   UserLearnStrategies?: Maybe<UserLearnStrategyListRelationFilter>;
-  UserTechnology?: Maybe<UserTechnologyListRelationFilter>;
-  Vote?: Maybe<VoteListRelationFilter>;
-  World?: Maybe<WorldListRelationFilter>;
+  UserTechnologies?: Maybe<UserTechnologyListRelationFilter>;
+  Votes?: Maybe<VoteListRelationFilter>;
+  Worlds?: Maybe<WorldListRelationFilter>;
   acceptChatMessageAnonymous?: Maybe<BoolNullableFilter>;
   acceptNewChatRoom?: Maybe<BoolNullableFilter>;
   acceptNewChatRoomAnonymous?: Maybe<BoolNullableFilter>;
@@ -4636,7 +4624,7 @@ export interface UserWhereInput {
   image?: Maybe<StringNullableFilter>;
   marketplaceToken?: Maybe<StringNullableFilter>;
   oldID?: Maybe<IntNullableFilter>;
-  other_User?: Maybe<UserListRelationFilter>;
+  other_Users?: Maybe<UserListRelationFilter>;
   password?: Maybe<StringNullableFilter>;
   phone?: Maybe<StringNullableFilter>;
   showEmail?: Maybe<BoolFilter>;
@@ -4667,7 +4655,7 @@ export interface VoteWhereInput {
   OR?: Maybe<Array<VoteWhereInput>>;
   Resource?: Maybe<StringNullableFilter>;
   Resource_ResourceToVote?: Maybe<ResourceWhereInput>;
-  User?: Maybe<StringNullableFilter>;
+  User?: Maybe<StringFilter>;
   User_UserToVote?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
@@ -4688,12 +4676,12 @@ export enum WorldType {
 
 export interface WorldWhereInput {
   AND?: Maybe<Array<WorldWhereInput>>;
-  Block?: Maybe<BlockListRelationFilter>;
-  CreatedBy?: Maybe<StringNullableFilter>;
-  Message?: Maybe<MessageListRelationFilter>;
+  Blocks?: Maybe<BlockListRelationFilter>;
+  CreatedBy?: Maybe<StringFilter>;
+  Messages?: Maybe<MessageListRelationFilter>;
   NOT?: Maybe<Array<WorldWhereInput>>;
   OR?: Maybe<Array<WorldWhereInput>>;
-  Player?: Maybe<PlayerListRelationFilter>;
+  Players?: Maybe<PlayerListRelationFilter>;
   User?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
   days?: Maybe<IntFilter>;

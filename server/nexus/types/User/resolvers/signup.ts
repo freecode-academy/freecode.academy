@@ -44,7 +44,7 @@ export const signup: FieldResolver<'Mutation', 'signup'> = async (
     fullname,
     phone,
     username,
-    NotificationType_UserNotificationTypes: {
+    NotificationTypes_UserNotificationTypes: {
       connect: NotificationType_UserNotificationTypesConnect,
     },
   }

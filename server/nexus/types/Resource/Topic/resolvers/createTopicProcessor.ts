@@ -15,7 +15,7 @@ export const createTopicProcessor: FieldResolver<
     // CodeChallenge,
   } = args.data
 
-  const CodeChallenge = args.data.CodeChallenge as
+  const CodeChallenges = args.data.CodeChallenge as
     | Prisma.CodeChallengeCreateNestedManyWithoutResourceInput
     | undefined
 
@@ -27,7 +27,7 @@ export const createTopicProcessor: FieldResolver<
     id: id === null ? undefined : id,
     name,
     components,
-    CodeChallenge,
+    CodeChallenges,
     Resource_ResourceToResource_Blog: blogID
       ? { connect: { id: blogID } }
       : undefined,

@@ -124,7 +124,7 @@ export async function createNotifications(
             /**
              * Кто создал этот топик или написал в нем хоть один комментарий
              */
-            Resource: {
+            Resources: {
               some: {
                 OR: [
                   {
@@ -138,7 +138,7 @@ export async function createNotifications(
                 ],
               },
             },
-            NotificationType_UserNotificationTypes: {
+            NotificationTypes_UserNotificationTypes: {
               some: {
                 name: {
                   in: ['new_comment', 'new_reply', 'new_comments_in_my_topics'],
@@ -191,9 +191,9 @@ export async function createNotifications(
                 //     },
                 //   },
                 // },
-                Project_PrismaProjectUsers: {
+                Projects_PrismaProjectUsers: {
                   some: {
-                    ProjectTask: {
+                    ProjectTasks: {
                       some: {
                         Task: {
                           in: taskId,
@@ -214,10 +214,10 @@ export async function createNotifications(
                 //     },
                 //   },
                 // },
-                ProjectMember_ProjectMember_CreatedByToUser: {
+                ProjectMembers_ProjectMember_CreatedByToUser: {
                   some: {
                     Project_ProjectToProjectMember: {
-                      ProjectTask: {
+                      ProjectTasks: {
                         some: {
                           Task: taskId,
                         },
@@ -231,7 +231,7 @@ export async function createNotifications(
                 // TasksCreated_some: {
                 //   id: taskId
                 // }
-                Task: {
+                Tasks: {
                   some: {
                     id: taskId,
                   },
@@ -244,7 +244,7 @@ export async function createNotifications(
                 //     id: taskId
                 //   },
                 // }
-                TaskMember_TaskMember_CreatedByToUser: {
+                TaskMembers_TaskMember_CreatedByToUser: {
                   some: {
                     Task: taskId,
                   },
@@ -257,7 +257,7 @@ export async function createNotifications(
                 //     id: taskId
                 //   }
                 // }
-                Timer: {
+                Timers: {
                   some: {
                     Task_TaskToTimer: {
                       id: taskId,
@@ -272,14 +272,14 @@ export async function createNotifications(
                 //     id: taskId
                 //   }
                 // },
-                Resource: {
+                Resources: {
                   some: {
                     Task: taskId,
                   },
                 },
               },
             ],
-            NotificationType_UserNotificationTypes: {
+            NotificationTypes_UserNotificationTypes: {
               some: {
                 name: {
                   in: ['new_comment', 'new_reply', 'new_comments_in_my_topics'],
@@ -332,7 +332,7 @@ export async function createNotifications(
             // NotificationTypes_some: {
             //   name: "new_topic",
             // },
-            NotificationType_UserNotificationTypes: {
+            NotificationTypes_UserNotificationTypes: {
               some: {
                 name: 'new_topic',
               },

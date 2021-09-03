@@ -74,10 +74,9 @@ export const createTaskProcessor: FieldResolver<
     //   },
     // });
 
-    const ProjectConnect =
-      Project.connect as Prisma.ProjectCreateNestedOneWithoutProjectTaskInput['connect']
+    const ProjectConnect = Project.connect as Prisma.ProjectWhereUniqueInput
 
-    createdData.ProjectTask = {
+    createdData.ProjectTasks = {
       create: {
         Project_ProjectToProjectTask: {
           connect: ProjectConnect,

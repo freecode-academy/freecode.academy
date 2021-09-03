@@ -55,7 +55,7 @@ const useOfficeData = (props: useOfficeDataProps) => {
                 //     ],
                 //   },
                 // },
-                ProjectTask: {
+                ProjectTasks: {
                   some: {
                     Task_ProjectTaskToTask: {
                       OR: [
@@ -69,7 +69,7 @@ const useOfficeData = (props: useOfficeDataProps) => {
                           /**
                            * Или которые пользователь выполнял
                            */
-                          Timer: {
+                          Timers: {
                             some: {
                               CreatedBy: {
                                 equals: currentUserId,
@@ -126,7 +126,7 @@ const useOfficeData = (props: useOfficeDataProps) => {
         //     id_in: projectsIds,
         //   },
         // },
-        ProjectTask: {
+        ProjectTasks: {
           some: {
             Project: {
               in: projectsIds,

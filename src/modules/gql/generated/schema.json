@@ -1920,7 +1920,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatMessageReaded",
+            "name": "ChatMessagesReaded",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -1976,7 +1976,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Notice",
+            "name": "Notices",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -2911,7 +2911,7 @@
             "deprecationReason": null
           },
           {
-            "name": "CallRequest",
+            "name": "CallRequests",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -2923,7 +2923,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatMessage",
+            "name": "ChatMessages",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -2935,7 +2935,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatRoomInvitation",
+            "name": "ChatRoomInvitations",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -2999,7 +2999,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Project",
+            "name": "Projects",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -3011,7 +3011,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Task",
+            "name": "Tasks",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -10693,7 +10693,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Project",
+            "name": "Projects",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -10966,7 +10966,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -10974,7 +10974,7 @@
             "deprecationReason": null
           },
           {
-            "name": "File",
+            "name": "Files",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -15497,6 +15497,39 @@
             "deprecationReason": null
           },
           {
+            "name": "createTechnology",
+            "description": null,
+            "args": [
+              {
+                "name": "data",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TechnologyCreateInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Technology",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createTimerProcessor",
             "description": null,
             "args": [
@@ -19797,7 +19830,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatRoomInvitation",
+            "name": "ChatRoomInvitations",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -21769,7 +21802,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Service",
+            "name": "Services",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -22823,7 +22856,7 @@
             "deprecationReason": null
           },
           {
-            "name": "EthAccount",
+            "name": "EthAccounts",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -22899,7 +22932,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProjectMember",
+            "name": "ProjectMembers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -22911,7 +22944,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProjectTask",
+            "name": "ProjectTasks",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -22935,11 +22968,11 @@
             "deprecationReason": null
           },
           {
-            "name": "Resource_ProjectToResource_PrismaProject",
+            "name": "Resource_Project_ResourceToResource",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ResourceListRelationFilter",
+              "name": "ResourceWhereInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -22947,11 +22980,11 @@
             "deprecationReason": null
           },
           {
-            "name": "Resource_Project_ResourceToResource",
+            "name": "Resources_ProjectToResource_PrismaProject",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ResourceWhereInput",
+              "name": "ResourceListRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -22995,7 +23028,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Template_ProjectToTemplate_PrismaProject",
+            "name": "Templates_ProjectToTemplate_PrismaProject",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -23007,7 +23040,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Template_ProjectToTemplate_Project",
+            "name": "Templates_ProjectToTemplate_Project",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -28682,7 +28715,7 @@
             "deprecationReason": null
           },
           {
-            "name": "CodeChallenge",
+            "name": "CodeChallenges",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -28730,7 +28763,7 @@
             "deprecationReason": null
           },
           {
-            "name": "File",
+            "name": "Files",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -28742,7 +28775,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Gallery",
+            "name": "Galleries",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -28830,7 +28863,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Project_Project_ResourceToResource",
+            "name": "Projects_Project_ResourceToResource",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -28842,7 +28875,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ResourceTag",
+            "name": "ResourceTags",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -28986,7 +29019,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Vote",
+            "name": "Votes",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -29202,7 +29235,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_Resource_ResourceToResource_Blog",
+            "name": "other_Resource_ResourceToResource_Blogs",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -29214,7 +29247,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_Resource_ResourceToResource_Parent",
+            "name": "other_Resource_ResourceToResource_Parents",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -29226,7 +29259,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_Resource_ResourceToResource_Topic",
+            "name": "other_Resource_ResourceToResource_Topics",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -29619,7 +29652,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_Route",
+            "name": "other_Routes",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -29785,11 +29818,11 @@
             "deprecationReason": null
           },
           {
-            "name": "Service",
+            "name": "ServiceCategory",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ServiceListRelationFilter",
+              "name": "ServiceCategoryWhereInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -29797,11 +29830,11 @@
             "deprecationReason": null
           },
           {
-            "name": "ServiceCategory",
+            "name": "Services",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ServiceCategoryWhereInput",
+              "name": "ServiceListRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -29881,7 +29914,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_ServiceCategory",
+            "name": "other_ServiceCategories",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -30059,7 +30092,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProjectMember",
+            "name": "ProjectMembers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -30071,7 +30104,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Resource",
+            "name": "Resources",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -30191,7 +30224,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_Service",
+            "name": "other_Services",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -31014,7 +31047,7 @@
             "deprecationReason": null
           },
           {
-            "name": "SmsMessage",
+            "name": "SmsMessages",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -31862,7 +31895,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ResourceTag",
+            "name": "ResourceTags",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -33328,7 +33361,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -34087,7 +34120,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -34452,7 +34485,7 @@
             "deprecationReason": null
           },
           {
-            "name": "CodeChallengeCompletion",
+            "name": "CodeChallengeCompletions",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34528,7 +34561,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProjectTask",
+            "name": "ProjectTasks",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34540,7 +34573,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Resource",
+            "name": "Resources",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34564,7 +34597,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TaskMember",
+            "name": "TaskMembers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34576,7 +34609,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TaskReaction",
+            "name": "TaskReactions",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34588,7 +34621,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TaskTechnology",
+            "name": "TaskTechnologies",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34600,7 +34633,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Task_A",
+            "name": "Tasks_A",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34612,7 +34645,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Task_B",
+            "name": "Tasks_B",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34624,7 +34657,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Timer",
+            "name": "Timers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34744,7 +34777,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_Task",
+            "name": "other_Tasks",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -34985,7 +35018,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -35199,7 +35232,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -35207,23 +35240,23 @@
             "deprecationReason": null
           },
           {
-            "name": "Game",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "GameListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "GameResult",
+            "name": "GameResults",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "GameResultListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Games",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "GameListRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -35295,7 +35328,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Project_ProjectToTeam",
+            "name": "Projects_ProjectToTeam",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -35307,7 +35340,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Resource",
+            "name": "Resources",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -35331,7 +35364,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TeamMember",
+            "name": "TeamMembers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -35427,7 +35460,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_Team",
+            "name": "other_Teams",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -35692,6 +35725,33 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "TechnologyCreateInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "TechnologyCreateOneWithoutTaskTechnologiesInput",
         "description": null,
         "fields": null,
@@ -35884,7 +35944,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -35896,7 +35956,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -36059,7 +36119,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Comment",
+            "name": "Comments",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -36075,7 +36135,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -36127,7 +36187,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -36135,7 +36195,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TechnologyLessonUser",
+            "name": "TechnologyLessonUsers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -36468,7 +36528,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -36528,7 +36588,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TaskTechnology",
+            "name": "TaskTechnologies",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -36540,7 +36600,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TechnologyLesson",
+            "name": "TechnologyLessons",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -36564,7 +36624,7 @@
             "deprecationReason": null
           },
           {
-            "name": "UserTechnology",
+            "name": "UserTechnologies",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -36688,7 +36748,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -36825,7 +36885,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -37029,7 +37089,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_Template",
+            "name": "other_Templates",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -37070,232 +37130,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "JsonNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "TestListRelationFilter",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "every",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TestWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "none",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TestWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "some",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TestWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "TestWhereInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "AND",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "TestWhereInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "CreatedBy",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "NOT",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "TestWhereInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "OR",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "TestWhereInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "User",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "DateTimeFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "date",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "DateTimeNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "quantity",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "DecimalNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "text",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "DateTimeFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -38428,7 +38262,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -38476,7 +38310,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Tournament",
+            "name": "Tournaments",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -38642,7 +38476,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -38714,7 +38548,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Tourney",
+            "name": "Tourneys",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -39058,7 +38892,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -39066,7 +38900,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Game",
+            "name": "Games",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -39142,7 +38976,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TourneyPlayer",
+            "name": "TourneyPlayers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -39915,7 +39749,7 @@
             "deprecationReason": null
           },
           {
-            "name": "User",
+            "name": "Users",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42162,7 +41996,7 @@
             "deprecationReason": null
           },
           {
-            "name": "CallRequest_CallRequest_CalledToUser",
+            "name": "CallRequests_CallRequest_CalledToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42174,7 +42008,7 @@
             "deprecationReason": null
           },
           {
-            "name": "CallRequest_CallRequest_CallerToUser",
+            "name": "CallRequests_CallRequest_CallerToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42186,7 +42020,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Career",
+            "name": "Careers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42198,7 +42032,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatMessage",
+            "name": "ChatMessages",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42210,7 +42044,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatMessageReaded",
+            "name": "ChatMessagesReaded",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42222,7 +42056,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser",
+            "name": "ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42234,7 +42068,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatRoomInvitation_ChatRoomInvitation_UserToUser",
+            "name": "ChatRoomInvitations_ChatRoomInvitation_UserToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42246,7 +42080,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatRoom_ChatRoomToUser",
+            "name": "ChatRooms_ChatRoomToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42258,7 +42092,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ChatRoom_ChatRoomsMembers",
+            "name": "ChatRooms_ChatRoomsMembers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42270,19 +42104,7 @@
             "deprecationReason": null
           },
           {
-            "name": "CodeChallenge",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "CodeChallengeListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "CodeChallengeBlock",
+            "name": "CodeChallengeBlocks",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42294,7 +42116,7 @@
             "deprecationReason": null
           },
           {
-            "name": "CodeChallengeCompletion",
+            "name": "CodeChallengeCompletions",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42306,7 +42128,19 @@
             "deprecationReason": null
           },
           {
-            "name": "Comment",
+            "name": "CodeChallenges",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CodeChallengeListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Comments",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42354,7 +42188,7 @@
             "deprecationReason": null
           },
           {
-            "name": "EthAccount_EthAccount_CreatedByToUser",
+            "name": "EthAccounts_EthAccount_CreatedByToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42366,7 +42200,7 @@
             "deprecationReason": null
           },
           {
-            "name": "EthContractSource",
+            "name": "EthContractSources",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42378,7 +42212,7 @@
             "deprecationReason": null
           },
           {
-            "name": "File",
+            "name": "Files",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42390,7 +42224,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Gallery",
+            "name": "Galleries",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42402,7 +42236,7 @@
             "deprecationReason": null
           },
           {
-            "name": "GameResult_GameResult_CreatedByToUser",
+            "name": "GameResults_GameResult_CreatedByToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42414,7 +42248,7 @@
             "deprecationReason": null
           },
           {
-            "name": "GameResult_GameResult_UserToUser",
+            "name": "GameResults_GameResult_UserToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42426,7 +42260,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Game_GameToUser",
+            "name": "Games_GameToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42438,7 +42272,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Game_GameUsers",
+            "name": "Games_GameUsers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42450,7 +42284,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Import",
+            "name": "Imports",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42474,7 +42308,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Letter",
+            "name": "Letters",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42486,7 +42320,7 @@
             "deprecationReason": null
           },
           {
-            "name": "LogedIn",
+            "name": "LogedIns",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42518,7 +42352,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Notice_Notice_CreatedByToUser",
+            "name": "Notices_Notice_CreatedByToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42530,7 +42364,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Notice_Notice_UserToUser",
+            "name": "Notices_Notice_UserToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42542,7 +42376,7 @@
             "deprecationReason": null
           },
           {
-            "name": "NotificationType_NotificationTypeToUser",
+            "name": "NotificationTypes_NotificationTypeToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42554,7 +42388,7 @@
             "deprecationReason": null
           },
           {
-            "name": "NotificationType_UserNotificationTypes",
+            "name": "NotificationTypes_UserNotificationTypes",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42586,7 +42420,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Player",
+            "name": "Players",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42598,7 +42432,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Position_PositionToUser",
+            "name": "Positions_PositionToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42610,7 +42444,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Position_PositionUsers",
+            "name": "Positions_PositionUsers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42622,7 +42456,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProjectMember_ProjectMember_CreatedByToUser",
+            "name": "ProjectMembers_ProjectMember_CreatedByToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42634,7 +42468,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProjectMember_ProjectMember_UserToUser",
+            "name": "ProjectMembers_ProjectMember_UserToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42646,7 +42480,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProjectTask",
+            "name": "ProjectTasks",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42658,7 +42492,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Project_PrismaProjectUsers",
+            "name": "Projects_PrismaProjectUsers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42670,7 +42504,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Project_ProjectToUser",
+            "name": "Projects_ProjectToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42694,19 +42528,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Resource",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ResourceListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ResourceTag",
+            "name": "ResourceTags",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42718,7 +42540,19 @@
             "deprecationReason": null
           },
           {
-            "name": "Route",
+            "name": "Resources",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ResourceListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Routes",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42730,11 +42564,11 @@
             "deprecationReason": null
           },
           {
-            "name": "Service",
+            "name": "ServiceCategories",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ServiceListRelationFilter",
+              "name": "ServiceCategoryListRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -42742,11 +42576,11 @@
             "deprecationReason": null
           },
           {
-            "name": "ServiceCategory",
+            "name": "Services",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ServiceCategoryListRelationFilter",
+              "name": "ServiceListRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -42766,7 +42600,7 @@
             "deprecationReason": null
           },
           {
-            "name": "SmsMessage",
+            "name": "SmsMessages",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42778,7 +42612,7 @@
             "deprecationReason": null
           },
           {
-            "name": "SmsProvider",
+            "name": "SmsProviders",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42790,7 +42624,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Tag",
+            "name": "Tags",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42802,19 +42636,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Task",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TaskListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "TaskMember_TaskMember_CreatedByToUser",
+            "name": "TaskMembers_TaskMember_CreatedByToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42826,7 +42648,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TaskMember_TaskMember_UserToUser",
+            "name": "TaskMembers_TaskMember_UserToUser",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42838,7 +42660,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TaskReaction",
+            "name": "TaskReactions",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42850,7 +42672,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TaskTechnology",
+            "name": "TaskTechnologies",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42862,7 +42684,43 @@
             "deprecationReason": null
           },
           {
-            "name": "Team",
+            "name": "Tasks",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TaskListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TeamMembers_TeamMember_CreatedByToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TeamMemberListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TeamMembers_TeamMember_UserToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TeamMemberListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Teams",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42874,31 +42732,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TeamMember_TeamMember_CreatedByToUser",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TeamMemberListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "TeamMember_TeamMember_UserToUser",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TeamMemberListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "Technology",
+            "name": "Technologies",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42910,19 +42744,7 @@
             "deprecationReason": null
           },
           {
-            "name": "TechnologyLesson",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TechnologyLessonListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "TechnologyLessonUser",
+            "name": "TechnologyLessonUsers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42934,7 +42756,19 @@
             "deprecationReason": null
           },
           {
-            "name": "Template",
+            "name": "TechnologyLessons",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TechnologyLessonListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Templates",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42946,19 +42780,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Test",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TestListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "Timer",
+            "name": "Timers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -42982,19 +42804,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Tournament",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "TournamentListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "TournamentGroup",
+            "name": "TournamentGroups",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -43006,11 +42816,11 @@
             "deprecationReason": null
           },
           {
-            "name": "Tourney",
+            "name": "Tournaments",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "TourneyListRelationFilter",
+              "name": "TournamentListRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -43018,11 +42828,23 @@
             "deprecationReason": null
           },
           {
-            "name": "TourneyPlayer",
+            "name": "TourneyPlayers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "TourneyPlayerListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Tourneys",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TourneyListRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -43042,7 +42864,7 @@
             "deprecationReason": null
           },
           {
-            "name": "UserGroup",
+            "name": "UserGroups",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -43066,7 +42888,7 @@
             "deprecationReason": null
           },
           {
-            "name": "UserTechnology",
+            "name": "UserTechnologies",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -43078,7 +42900,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Vote",
+            "name": "Votes",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -43090,7 +42912,7 @@
             "deprecationReason": null
           },
           {
-            "name": "World",
+            "name": "Worlds",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -43282,7 +43104,7 @@
             "deprecationReason": null
           },
           {
-            "name": "other_User",
+            "name": "other_Users",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -43607,7 +43429,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -43776,7 +43598,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Block",
+            "name": "Blocks",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -43792,7 +43614,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -43800,7 +43622,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Message",
+            "name": "Messages",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -43852,7 +43674,7 @@
             "deprecationReason": null
           },
           {
-            "name": "Player",
+            "name": "Players",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",

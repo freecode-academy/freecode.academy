@@ -223,13 +223,13 @@ export interface NexusGenInputs {
   ChatMessageWhereInput: {
     // input type
     AND?: NexusGenInputs['ChatMessageWhereInput'][] | null // [ChatMessageWhereInput!]
-    ChatMessageReaded?:
+    ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedListRelationFilter']
       | null // ChatMessageReadedListRelationFilter
     ChatRoom?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     NOT?: NexusGenInputs['ChatMessageWhereInput'][] | null // [ChatMessageWhereInput!]
-    Notice?: NexusGenInputs['NoticeListRelationFilter'] | null // NoticeListRelationFilter
+    Notices?: NexusGenInputs['NoticeListRelationFilter'] | null // NoticeListRelationFilter
     OR?: NexusGenInputs['ChatMessageWhereInput'][] | null // [ChatMessageWhereInput!]
     Room?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
@@ -300,16 +300,16 @@ export interface NexusGenInputs {
   ChatRoomWhereInput: {
     // input type
     AND?: NexusGenInputs['ChatRoomWhereInput'][] | null // [ChatRoomWhereInput!]
-    CallRequest?: NexusGenInputs['CallRequestListRelationFilter'] | null // CallRequestListRelationFilter
-    ChatMessage?: NexusGenInputs['ChatMessageListRelationFilter'] | null // ChatMessageListRelationFilter
-    ChatRoomInvitation?:
+    CallRequests?: NexusGenInputs['CallRequestListRelationFilter'] | null // CallRequestListRelationFilter
+    ChatMessages?: NexusGenInputs['ChatMessageListRelationFilter'] | null // ChatMessageListRelationFilter
+    ChatRoomInvitations?:
       | NexusGenInputs['ChatRoomInvitationListRelationFilter']
       | null // ChatRoomInvitationListRelationFilter
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     NOT?: NexusGenInputs['ChatRoomWhereInput'][] | null // [ChatRoomWhereInput!]
     OR?: NexusGenInputs['ChatRoomWhereInput'][] | null // [ChatRoomWhereInput!]
-    Project?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
-    Task?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    Projects?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
+    Tasks?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
     User_ChatRoomToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     User_ChatRoomsMembers?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
     allowAnonymous?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
@@ -940,7 +940,7 @@ export interface NexusGenInputs {
     ImageResource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     NOT?: NexusGenInputs['FileWhereInput'][] | null // [FileWhereInput!]
     OR?: NexusGenInputs['FileWhereInput'][] | null // [FileWhereInput!]
-    Project?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
+    Projects?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
     Resource?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -968,8 +968,8 @@ export interface NexusGenInputs {
   GalleryWhereInput: {
     // input type
     AND?: NexusGenInputs['GalleryWhereInput'][] | null // [GalleryWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    File?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
+    Files?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
     NOT?: NexusGenInputs['GalleryWhereInput'][] | null // [GalleryWhereInput!]
     OR?: NexusGenInputs['GalleryWhereInput'][] | null // [GalleryWhereInput!]
     Resource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -1632,7 +1632,7 @@ export interface NexusGenInputs {
     ChatMessage_ChatMessageToNotice?:
       | NexusGenInputs['ChatMessageWhereInput']
       | null // ChatMessageWhereInput
-    ChatRoomInvitation?:
+    ChatRoomInvitations?:
       | NexusGenInputs['ChatRoomInvitationListRelationFilter']
       | null // ChatRoomInvitationListRelationFilter
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -1771,7 +1771,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['ProjectMemberWhereInput'][] | null // [ProjectMemberWhereInput!]
     Project?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     Project_ProjectToProjectMember?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
-    Service?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
+    Services?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
     User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     User_ProjectMember_CreatedByToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     User_ProjectMember_UserToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
@@ -1846,27 +1846,27 @@ export interface NexusGenInputs {
     ChatRoom?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     ChatRoom_ChatRoomToProject?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    EthAccount?: NexusGenInputs['EthAccountListRelationFilter'] | null // EthAccountListRelationFilter
+    EthAccounts?: NexusGenInputs['EthAccountListRelationFilter'] | null // EthAccountListRelationFilter
     File?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
     Image?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     NOT?: NexusGenInputs['ProjectWhereInput'][] | null // [ProjectWhereInput!]
     OR?: NexusGenInputs['ProjectWhereInput'][] | null // [ProjectWhereInput!]
-    ProjectMember?: NexusGenInputs['ProjectMemberListRelationFilter'] | null // ProjectMemberListRelationFilter
-    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
+    ProjectMembers?: NexusGenInputs['ProjectMemberListRelationFilter'] | null // ProjectMemberListRelationFilter
+    ProjectTasks?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
     Resource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    Resource_ProjectToResource_PrismaProject?:
-      | NexusGenInputs['ResourceListRelationFilter']
-      | null // ResourceListRelationFilter
     Resource_Project_ResourceToResource?:
       | NexusGenInputs['ResourceWhereInput']
       | null // ResourceWhereInput
+    Resources_ProjectToResource_PrismaProject?:
+      | NexusGenInputs['ResourceListRelationFilter']
+      | null // ResourceListRelationFilter
     Team?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     Team_ProjectCustomers?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
     Team_ProjectToTeam?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
-    Template_ProjectToTemplate_PrismaProject?:
+    Templates_ProjectToTemplate_PrismaProject?:
       | NexusGenInputs['TemplateListRelationFilter']
       | null // TemplateListRelationFilter
-    Template_ProjectToTemplate_Project?:
+    Templates_ProjectToTemplate_Project?:
       | NexusGenInputs['TemplateListRelationFilter']
       | null // TemplateListRelationFilter
     User_PrismaProjectUsers?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
@@ -1990,14 +1990,14 @@ export interface NexusGenInputs {
     // input type
     AND?: NexusGenInputs['ResourceWhereInput'][] | null // [ResourceWhereInput!]
     Blog?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    CodeChallenge?: NexusGenInputs['CodeChallengeListRelationFilter'] | null // CodeChallengeListRelationFilter
+    CodeChallenges?: NexusGenInputs['CodeChallengeListRelationFilter'] | null // CodeChallengeListRelationFilter
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     EthAccount?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     EthAccount_EthAccountToResource?:
       | NexusGenInputs['EthAccountWhereInput']
       | null // EthAccountWhereInput
-    File?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
-    Gallery?: NexusGenInputs['GalleryListRelationFilter'] | null // GalleryListRelationFilter
+    Files?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
+    Galleries?: NexusGenInputs['GalleryListRelationFilter'] | null // GalleryListRelationFilter
     NOT?: NexusGenInputs['ResourceWhereInput'][] | null // [ResourceWhereInput!]
     OR?: NexusGenInputs['ResourceWhereInput'][] | null // [ResourceWhereInput!]
     Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -2005,10 +2005,10 @@ export interface NexusGenInputs {
     Project_ProjectToResource_PrismaProject?:
       | NexusGenInputs['ProjectWhereInput']
       | null // ProjectWhereInput
-    Project_Project_ResourceToResource?:
+    Projects_Project_ResourceToResource?:
       | NexusGenInputs['ProjectListRelationFilter']
       | null // ProjectListRelationFilter
-    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
+    ResourceTags?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
     Resource_ResourceToResource_Blog?:
       | NexusGenInputs['ResourceWhereInput']
       | null // ResourceWhereInput
@@ -2026,7 +2026,7 @@ export interface NexusGenInputs {
     Team_ResourceToTeam?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
     Topic?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    Vote?: NexusGenInputs['VoteListRelationFilter'] | null // VoteListRelationFilter
+    Votes?: NexusGenInputs['VoteListRelationFilter'] | null // VoteListRelationFilter
     class_key?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     commentOldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
@@ -2044,13 +2044,13 @@ export interface NexusGenInputs {
     negativeVotesCount?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     neutralVotesCount?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    other_Resource_ResourceToResource_Blog?:
+    other_Resource_ResourceToResource_Blogs?:
       | NexusGenInputs['ResourceListRelationFilter']
       | null // ResourceListRelationFilter
-    other_Resource_ResourceToResource_Parent?:
+    other_Resource_ResourceToResource_Parents?:
       | NexusGenInputs['ResourceListRelationFilter']
       | null // ResourceListRelationFilter
-    other_Resource_ResourceToResource_Topic?:
+    other_Resource_ResourceToResource_Topics?:
       | NexusGenInputs['ResourceListRelationFilter']
       | null // ResourceListRelationFilter
     positiveVotesCount?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
@@ -2089,7 +2089,7 @@ export interface NexusGenInputs {
     exact?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    other_Route?: NexusGenInputs['RouteListRelationFilter'] | null // RouteListRelationFilter
+    other_Routes?: NexusGenInputs['RouteListRelationFilter'] | null // RouteListRelationFilter
     path?: NexusGenInputs['StringFilter'] | null // StringFilter
   }
   ServiceCategoryListRelationFilter: {
@@ -2105,15 +2105,15 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['ServiceCategoryWhereInput'][] | null // [ServiceCategoryWhereInput!]
     OR?: NexusGenInputs['ServiceCategoryWhereInput'][] | null // [ServiceCategoryWhereInput!]
     Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    Service?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
     ServiceCategory?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
+    Services?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
-    other_ServiceCategory?:
+    other_ServiceCategories?:
       | NexusGenInputs['ServiceCategoryListRelationFilter']
       | null // ServiceCategoryListRelationFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -2132,8 +2132,8 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['ServiceWhereInput'][] | null // [ServiceWhereInput!]
     OR?: NexusGenInputs['ServiceWhereInput'][] | null // [ServiceWhereInput!]
     Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    ProjectMember?: NexusGenInputs['ProjectMemberListRelationFilter'] | null // ProjectMemberListRelationFilter
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    ProjectMembers?: NexusGenInputs['ProjectMemberListRelationFilter'] | null // ProjectMemberListRelationFilter
+    Resources?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
     Service?: NexusGenInputs['ServiceWhereInput'] | null // ServiceWhereInput
     ServiceCategory?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
@@ -2143,7 +2143,7 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    other_Service?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
+    other_Services?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
     rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
@@ -2226,7 +2226,7 @@ export interface NexusGenInputs {
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     NOT?: NexusGenInputs['SmsProviderWhereInput'][] | null // [SmsProviderWhereInput!]
     OR?: NexusGenInputs['SmsProviderWhereInput'][] | null // [SmsProviderWhereInput!]
-    SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
+    SmsMessages?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     credentials?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
@@ -2283,7 +2283,7 @@ export interface NexusGenInputs {
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     NOT?: NexusGenInputs['TagWhereInput'][] | null // [TagWhereInput!]
     OR?: NexusGenInputs['TagWhereInput'][] | null // [TagWhereInput!]
-    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
+    ResourceTags?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
@@ -2382,7 +2382,7 @@ export interface NexusGenInputs {
   TaskReactionWhereInput: {
     // input type
     AND?: NexusGenInputs['TaskReactionWhereInput'][] | null // [TaskReactionWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     NOT?: NexusGenInputs['TaskReactionWhereInput'][] | null // [TaskReactionWhereInput!]
     OR?: NexusGenInputs['TaskReactionWhereInput'][] | null // [TaskReactionWhereInput!]
     Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -2427,7 +2427,7 @@ export interface NexusGenInputs {
   TaskTechnologyWhereInput: {
     // input type
     AND?: NexusGenInputs['TaskTechnologyWhereInput'][] | null // [TaskTechnologyWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     NOT?: NexusGenInputs['TaskTechnologyWhereInput'][] | null // [TaskTechnologyWhereInput!]
     OR?: NexusGenInputs['TaskTechnologyWhereInput'][] | null // [TaskTechnologyWhereInput!]
     Task?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -2464,22 +2464,22 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['TaskWhereInput'][] | null // [TaskWhereInput!]
     ChatRoom?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     ChatRoom_ChatRoomToTask?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
-    CodeChallengeCompletion?:
+    CodeChallengeCompletions?:
       | NexusGenInputs['CodeChallengeCompletionListRelationFilter']
       | null // CodeChallengeCompletionListRelationFilter
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     NOT?: NexusGenInputs['TaskWhereInput'][] | null // [TaskWhereInput!]
     OR?: NexusGenInputs['TaskWhereInput'][] | null // [TaskWhereInput!]
     Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    ProjectTasks?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
+    Resources?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
     Task?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
-    TaskMember?: NexusGenInputs['TaskMemberListRelationFilter'] | null // TaskMemberListRelationFilter
-    TaskReaction?: NexusGenInputs['TaskReactionListRelationFilter'] | null // TaskReactionListRelationFilter
-    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
-    Task_A?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
-    Task_B?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
-    Timer?: NexusGenInputs['TimerListRelationFilter'] | null // TimerListRelationFilter
+    TaskMembers?: NexusGenInputs['TaskMemberListRelationFilter'] | null // TaskMemberListRelationFilter
+    TaskReactions?: NexusGenInputs['TaskReactionListRelationFilter'] | null // TaskReactionListRelationFilter
+    TaskTechnologies?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
+    Tasks_A?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    Tasks_B?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    Timers?: NexusGenInputs['TimerListRelationFilter'] | null // TimerListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     content?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -2489,7 +2489,7 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
     needHelp?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
-    other_Task?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    other_Tasks?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
     startDate?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     startDatePlaning?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
     status?: NexusGenInputs['EnumTaskStatusFilter'] | null // EnumTaskStatusFilter
@@ -2514,7 +2514,7 @@ export interface NexusGenInputs {
   TeamMemberWhereInput: {
     // input type
     AND?: NexusGenInputs['TeamMemberWhereInput'][] | null // [TeamMemberWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     NOT?: NexusGenInputs['TeamMemberWhereInput'][] | null // [TeamMemberWhereInput!]
     OR?: NexusGenInputs['TeamMemberWhereInput'][] | null // [TeamMemberWhereInput!]
     Team?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -2530,19 +2530,19 @@ export interface NexusGenInputs {
   TeamWhereInput: {
     // input type
     AND?: NexusGenInputs['TeamWhereInput'][] | null // [TeamWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    Game?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
-    GameResult?: NexusGenInputs['GameResultListRelationFilter'] | null // GameResultListRelationFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
+    GameResults?: NexusGenInputs['GameResultListRelationFilter'] | null // GameResultListRelationFilter
+    Games?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
     NOT?: NexusGenInputs['TeamWhereInput'][] | null // [TeamWhereInput!]
     OR?: NexusGenInputs['TeamWhereInput'][] | null // [TeamWhereInput!]
     Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     Project_ProjectCustomers?:
       | NexusGenInputs['ProjectListRelationFilter']
       | null // ProjectListRelationFilter
-    Project_ProjectToTeam?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    Projects_ProjectToTeam?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
+    Resources?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
     Team?: NexusGenInputs['TeamWhereInput'] | null // TeamWhereInput
-    TeamMember?: NexusGenInputs['TeamMemberListRelationFilter'] | null // TeamMemberListRelationFilter
+    TeamMembers?: NexusGenInputs['TeamMemberListRelationFilter'] | null // TeamMemberListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     address?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -2550,11 +2550,15 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
     oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    other_Team?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
+    other_Teams?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
     phone?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     status?: NexusGenInputs['EnumTeamStatusFilter'] | null // EnumTeamStatusFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     website?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+  }
+  TechnologyCreateInput: {
+    // input type
+    name: string // String!
   }
   TechnologyCreateOneWithoutTaskTechnologiesInput: {
     // input type
@@ -2579,8 +2583,8 @@ export interface NexusGenInputs {
   TechnologyLessonUserWhereInput: {
     // input type
     AND?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null // [TechnologyLessonUserWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    Lesson?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
+    Lesson?: NexusGenInputs['StringFilter'] | null // StringFilter
     NOT?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null // [TechnologyLessonUserWhereInput!]
     OR?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null // [TechnologyLessonUserWhereInput!]
     TechnologyLesson?: NexusGenInputs['TechnologyLessonWhereInput'] | null // TechnologyLessonWhereInput
@@ -2594,12 +2598,12 @@ export interface NexusGenInputs {
   TechnologyLessonWhereInput: {
     // input type
     AND?: NexusGenInputs['TechnologyLessonWhereInput'][] | null // [TechnologyLessonWhereInput!]
-    Comment?: NexusGenInputs['CommentListRelationFilter'] | null // CommentListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    Comments?: NexusGenInputs['CommentListRelationFilter'] | null // CommentListRelationFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     NOT?: NexusGenInputs['TechnologyLessonWhereInput'][] | null // [TechnologyLessonWhereInput!]
     OR?: NexusGenInputs['TechnologyLessonWhereInput'][] | null // [TechnologyLessonWhereInput!]
-    Technology?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    TechnologyLessonUser?:
+    Technology?: NexusGenInputs['StringFilter'] | null // StringFilter
+    TechnologyLessonUsers?:
       | NexusGenInputs['TechnologyLessonUserListRelationFilter']
       | null // TechnologyLessonUserListRelationFilter
     Technology_TechnologyToTechnologyLesson?:
@@ -2636,18 +2640,18 @@ export interface NexusGenInputs {
   TechnologyWhereInput: {
     // input type
     AND?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     LearnStrategyStages?:
       | NexusGenInputs['LearnStrategyStageListRelationFilter']
       | null // LearnStrategyStageListRelationFilter
     NOT?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
     OR?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
-    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
-    TechnologyLesson?:
+    TaskTechnologies?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
+    TechnologyLessons?:
       | NexusGenInputs['TechnologyLessonListRelationFilter']
       | null // TechnologyLessonListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    UserTechnology?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
+    UserTechnologies?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
     components?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -2657,7 +2661,7 @@ export interface NexusGenInputs {
     level3hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     level4hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     level5hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    name?: NexusGenInputs['StringFilter'] | null // StringFilter
     site_url?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
@@ -2674,7 +2678,7 @@ export interface NexusGenInputs {
   TemplateWhereInput: {
     // input type
     AND?: NexusGenInputs['TemplateWhereInput'][] | null // [TemplateWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     NOT?: NexusGenInputs['TemplateWhereInput'][] | null // [TemplateWhereInput!]
     OR?: NexusGenInputs['TemplateWhereInput'][] | null // [TemplateWhereInput!]
     Parent?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -2694,31 +2698,10 @@ export interface NexusGenInputs {
     externalKey?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    other_Template?: NexusGenInputs['TemplateListRelationFilter'] | null // TemplateListRelationFilter
+    other_Templates?: NexusGenInputs['TemplateListRelationFilter'] | null // TemplateListRelationFilter
     rank?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     vars?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
-  }
-  TestListRelationFilter: {
-    // input type
-    every?: NexusGenInputs['TestWhereInput'] | null // TestWhereInput
-    none?: NexusGenInputs['TestWhereInput'] | null // TestWhereInput
-    some?: NexusGenInputs['TestWhereInput'] | null // TestWhereInput
-  }
-  TestWhereInput: {
-    // input type
-    AND?: NexusGenInputs['TestWhereInput'][] | null // [TestWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    NOT?: NexusGenInputs['TestWhereInput'][] | null // [TestWhereInput!]
-    OR?: NexusGenInputs['TestWhereInput'][] | null // [TestWhereInput!]
-    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-    date?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    name?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    quantity?: NexusGenInputs['DecimalNullableFilter'] | null // DecimalNullableFilter
-    text?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   TimerCreateInput: {
     // input type
@@ -2819,10 +2802,10 @@ export interface NexusGenInputs {
   TournamentGroupWhereInput: {
     // input type
     AND?: NexusGenInputs['TournamentGroupWhereInput'][] | null // [TournamentGroupWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     NOT?: NexusGenInputs['TournamentGroupWhereInput'][] | null // [TournamentGroupWhereInput!]
     OR?: NexusGenInputs['TournamentGroupWhereInput'][] | null // [TournamentGroupWhereInput!]
-    Tournament?: NexusGenInputs['TournamentListRelationFilter'] | null // TournamentListRelationFilter
+    Tournaments?: NexusGenInputs['TournamentListRelationFilter'] | null // TournamentListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -2839,12 +2822,12 @@ export interface NexusGenInputs {
   TournamentWhereInput: {
     // input type
     AND?: NexusGenInputs['TournamentWhereInput'][] | null // [TournamentWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
     Group?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     NOT?: NexusGenInputs['TournamentWhereInput'][] | null // [TournamentWhereInput!]
     OR?: NexusGenInputs['TournamentWhereInput'][] | null // [TournamentWhereInput!]
     TournamentGroup?: NexusGenInputs['TournamentGroupWhereInput'] | null // TournamentGroupWhereInput
-    Tourney?: NexusGenInputs['TourneyListRelationFilter'] | null // TourneyListRelationFilter
+    Tourneys?: NexusGenInputs['TourneyListRelationFilter'] | null // TourneyListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -2878,15 +2861,15 @@ export interface NexusGenInputs {
   TourneyWhereInput: {
     // input type
     AND?: NexusGenInputs['TourneyWhereInput'][] | null // [TourneyWhereInput!]
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    Game?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
+    Games?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
     NOT?: NexusGenInputs['TourneyWhereInput'][] | null // [TourneyWhereInput!]
     OR?: NexusGenInputs['TourneyWhereInput'][] | null // [TourneyWhereInput!]
     Tournament?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     Tournament_TournamentToTourney?:
       | NexusGenInputs['TournamentWhereInput']
       | null // TournamentWhereInput
-    TourneyPlayer?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null // TourneyPlayerListRelationFilter
+    TourneyPlayers?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null // TourneyPlayerListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     code?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -2911,7 +2894,7 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['UserGroupWhereInput'][] | null // [UserGroupWhereInput!]
     NOT?: NexusGenInputs['UserGroupWhereInput'][] | null // [UserGroupWhereInput!]
     OR?: NexusGenInputs['UserGroupWhereInput'][] | null // [UserGroupWhereInput!]
-    User?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    Users?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     name?: NexusGenInputs['StringFilter'] | null // StringFilter
@@ -3097,139 +3080,146 @@ export interface NexusGenInputs {
   UserWhereInput: {
     // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
-    CallRequest_CallRequest_CalledToUser?:
+    CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestListRelationFilter']
       | null // CallRequestListRelationFilter
-    CallRequest_CallRequest_CallerToUser?:
+    CallRequests_CallRequest_CallerToUser?:
       | NexusGenInputs['CallRequestListRelationFilter']
       | null // CallRequestListRelationFilter
-    Career?: NexusGenInputs['CareerListRelationFilter'] | null // CareerListRelationFilter
-    ChatMessage?: NexusGenInputs['ChatMessageListRelationFilter'] | null // ChatMessageListRelationFilter
-    ChatMessageReaded?:
+    Careers?: NexusGenInputs['CareerListRelationFilter'] | null // CareerListRelationFilter
+    ChatMessages?: NexusGenInputs['ChatMessageListRelationFilter'] | null // ChatMessageListRelationFilter
+    ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedListRelationFilter']
       | null // ChatMessageReadedListRelationFilter
-    ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser?:
+    ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?:
       | NexusGenInputs['ChatRoomInvitationListRelationFilter']
       | null // ChatRoomInvitationListRelationFilter
-    ChatRoomInvitation_ChatRoomInvitation_UserToUser?:
+    ChatRoomInvitations_ChatRoomInvitation_UserToUser?:
       | NexusGenInputs['ChatRoomInvitationListRelationFilter']
       | null // ChatRoomInvitationListRelationFilter
-    ChatRoom_ChatRoomToUser?:
+    ChatRooms_ChatRoomToUser?:
       | NexusGenInputs['ChatRoomListRelationFilter']
       | null // ChatRoomListRelationFilter
-    ChatRoom_ChatRoomsMembers?:
+    ChatRooms_ChatRoomsMembers?:
       | NexusGenInputs['ChatRoomListRelationFilter']
       | null // ChatRoomListRelationFilter
-    CodeChallenge?: NexusGenInputs['CodeChallengeListRelationFilter'] | null // CodeChallengeListRelationFilter
-    CodeChallengeBlock?:
+    CodeChallengeBlocks?:
       | NexusGenInputs['CodeChallengeBlockListRelationFilter']
       | null // CodeChallengeBlockListRelationFilter
-    CodeChallengeCompletion?:
+    CodeChallengeCompletions?:
       | NexusGenInputs['CodeChallengeCompletionListRelationFilter']
       | null // CodeChallengeCompletionListRelationFilter
-    Comment?: NexusGenInputs['CommentListRelationFilter'] | null // CommentListRelationFilter
+    CodeChallenges?: NexusGenInputs['CodeChallengeListRelationFilter'] | null // CodeChallengeListRelationFilter
+    Comments?: NexusGenInputs['CommentListRelationFilter'] | null // CommentListRelationFilter
     CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     EthAccountAuthed?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     EthAccount_EthAccountToUser_EthAccountAuthed?:
       | NexusGenInputs['EthAccountWhereInput']
       | null // EthAccountWhereInput
-    EthAccount_EthAccount_CreatedByToUser?:
+    EthAccounts_EthAccount_CreatedByToUser?:
       | NexusGenInputs['EthAccountListRelationFilter']
       | null // EthAccountListRelationFilter
-    EthContractSource?:
+    EthContractSources?:
       | NexusGenInputs['EthContractSourceListRelationFilter']
       | null // EthContractSourceListRelationFilter
-    File?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
-    Gallery?: NexusGenInputs['GalleryListRelationFilter'] | null // GalleryListRelationFilter
-    GameResult_GameResult_CreatedByToUser?:
+    Files?: NexusGenInputs['FileListRelationFilter'] | null // FileListRelationFilter
+    Galleries?: NexusGenInputs['GalleryListRelationFilter'] | null // GalleryListRelationFilter
+    GameResults_GameResult_CreatedByToUser?:
       | NexusGenInputs['GameResultListRelationFilter']
       | null // GameResultListRelationFilter
-    GameResult_GameResult_UserToUser?:
+    GameResults_GameResult_UserToUser?:
       | NexusGenInputs['GameResultListRelationFilter']
       | null // GameResultListRelationFilter
-    Game_GameToUser?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
-    Game_GameUsers?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
-    Import?: NexusGenInputs['ImportListRelationFilter'] | null // ImportListRelationFilter
+    Games_GameToUser?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
+    Games_GameUsers?: NexusGenInputs['GameListRelationFilter'] | null // GameListRelationFilter
+    Imports?: NexusGenInputs['ImportListRelationFilter'] | null // ImportListRelationFilter
     LearnStrategies?: NexusGenInputs['LearnStrategyListRelationFilter'] | null // LearnStrategyListRelationFilter
-    Letter?: NexusGenInputs['LetterListRelationFilter'] | null // LetterListRelationFilter
-    LogedIn?: NexusGenInputs['LogedInListRelationFilter'] | null // LogedInListRelationFilter
+    Letters?: NexusGenInputs['LetterListRelationFilter'] | null // LetterListRelationFilter
+    LogedIns?: NexusGenInputs['LogedInListRelationFilter'] | null // LogedInListRelationFilter
     NOT?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
-    Notice_Notice_CreatedByToUser?:
+    Notices_Notice_CreatedByToUser?:
       | NexusGenInputs['NoticeListRelationFilter']
       | null // NoticeListRelationFilter
-    Notice_Notice_UserToUser?: NexusGenInputs['NoticeListRelationFilter'] | null // NoticeListRelationFilter
-    NotificationType_NotificationTypeToUser?:
+    Notices_Notice_UserToUser?:
+      | NexusGenInputs['NoticeListRelationFilter']
+      | null // NoticeListRelationFilter
+    NotificationTypes_NotificationTypeToUser?:
       | NexusGenInputs['NotificationTypeListRelationFilter']
       | null // NotificationTypeListRelationFilter
-    NotificationType_UserNotificationTypes?:
+    NotificationTypes_UserNotificationTypes?:
       | NexusGenInputs['NotificationTypeListRelationFilter']
       | null // NotificationTypeListRelationFilter
     OR?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
-    Player?: NexusGenInputs['PlayerListRelationFilter'] | null // PlayerListRelationFilter
-    Position_PositionToUser?:
+    Players?: NexusGenInputs['PlayerListRelationFilter'] | null // PlayerListRelationFilter
+    Positions_PositionToUser?:
       | NexusGenInputs['PositionListRelationFilter']
       | null // PositionListRelationFilter
-    Position_PositionUsers?: NexusGenInputs['PositionListRelationFilter'] | null // PositionListRelationFilter
-    ProjectMember_ProjectMember_CreatedByToUser?:
+    Positions_PositionUsers?:
+      | NexusGenInputs['PositionListRelationFilter']
+      | null // PositionListRelationFilter
+    ProjectMembers_ProjectMember_CreatedByToUser?:
       | NexusGenInputs['ProjectMemberListRelationFilter']
       | null // ProjectMemberListRelationFilter
-    ProjectMember_ProjectMember_UserToUser?:
+    ProjectMembers_ProjectMember_UserToUser?:
       | NexusGenInputs['ProjectMemberListRelationFilter']
       | null // ProjectMemberListRelationFilter
-    ProjectTask?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
-    Project_PrismaProjectUsers?:
+    ProjectTasks?: NexusGenInputs['ProjectTaskListRelationFilter'] | null // ProjectTaskListRelationFilter
+    Projects_PrismaProjectUsers?:
       | NexusGenInputs['ProjectListRelationFilter']
       | null // ProjectListRelationFilter
-    Project_ProjectToUser?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
+    Projects_ProjectToUser?: NexusGenInputs['ProjectListRelationFilter'] | null // ProjectListRelationFilter
     ResetPasswords?: NexusGenInputs['ResetPasswordListRelationFilter'] | null // ResetPasswordListRelationFilter
-    Resource?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
-    ResourceTag?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
-    Route?: NexusGenInputs['RouteListRelationFilter'] | null // RouteListRelationFilter
-    Service?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
-    ServiceCategory?: NexusGenInputs['ServiceCategoryListRelationFilter'] | null // ServiceCategoryListRelationFilter
+    ResourceTags?: NexusGenInputs['ResourceTagListRelationFilter'] | null // ResourceTagListRelationFilter
+    Resources?: NexusGenInputs['ResourceListRelationFilter'] | null // ResourceListRelationFilter
+    Routes?: NexusGenInputs['RouteListRelationFilter'] | null // RouteListRelationFilter
+    ServiceCategories?:
+      | NexusGenInputs['ServiceCategoryListRelationFilter']
+      | null // ServiceCategoryListRelationFilter
+    Services?: NexusGenInputs['ServiceListRelationFilter'] | null // ServiceListRelationFilter
     Settings?: NexusGenInputs['SettingsListRelationFilter'] | null // SettingsListRelationFilter
-    SmsMessage?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
-    SmsProvider?: NexusGenInputs['SmsProviderListRelationFilter'] | null // SmsProviderListRelationFilter
-    Tag?: NexusGenInputs['TagListRelationFilter'] | null // TagListRelationFilter
-    Task?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
-    TaskMember_TaskMember_CreatedByToUser?:
+    SmsMessages?: NexusGenInputs['SmsMessageListRelationFilter'] | null // SmsMessageListRelationFilter
+    SmsProviders?: NexusGenInputs['SmsProviderListRelationFilter'] | null // SmsProviderListRelationFilter
+    Tags?: NexusGenInputs['TagListRelationFilter'] | null // TagListRelationFilter
+    TaskMembers_TaskMember_CreatedByToUser?:
       | NexusGenInputs['TaskMemberListRelationFilter']
       | null // TaskMemberListRelationFilter
-    TaskMember_TaskMember_UserToUser?:
+    TaskMembers_TaskMember_UserToUser?:
       | NexusGenInputs['TaskMemberListRelationFilter']
       | null // TaskMemberListRelationFilter
-    TaskReaction?: NexusGenInputs['TaskReactionListRelationFilter'] | null // TaskReactionListRelationFilter
-    TaskTechnology?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
-    Team?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
-    TeamMember_TeamMember_CreatedByToUser?:
+    TaskReactions?: NexusGenInputs['TaskReactionListRelationFilter'] | null // TaskReactionListRelationFilter
+    TaskTechnologies?: NexusGenInputs['TaskTechnologyListRelationFilter'] | null // TaskTechnologyListRelationFilter
+    Tasks?: NexusGenInputs['TaskListRelationFilter'] | null // TaskListRelationFilter
+    TeamMembers_TeamMember_CreatedByToUser?:
       | NexusGenInputs['TeamMemberListRelationFilter']
       | null // TeamMemberListRelationFilter
-    TeamMember_TeamMember_UserToUser?:
+    TeamMembers_TeamMember_UserToUser?:
       | NexusGenInputs['TeamMemberListRelationFilter']
       | null // TeamMemberListRelationFilter
-    Technology?: NexusGenInputs['TechnologyListRelationFilter'] | null // TechnologyListRelationFilter
-    TechnologyLesson?:
-      | NexusGenInputs['TechnologyLessonListRelationFilter']
-      | null // TechnologyLessonListRelationFilter
-    TechnologyLessonUser?:
+    Teams?: NexusGenInputs['TeamListRelationFilter'] | null // TeamListRelationFilter
+    Technologies?: NexusGenInputs['TechnologyListRelationFilter'] | null // TechnologyListRelationFilter
+    TechnologyLessonUsers?:
       | NexusGenInputs['TechnologyLessonUserListRelationFilter']
       | null // TechnologyLessonUserListRelationFilter
-    Template?: NexusGenInputs['TemplateListRelationFilter'] | null // TemplateListRelationFilter
-    Test?: NexusGenInputs['TestListRelationFilter'] | null // TestListRelationFilter
-    Timer?: NexusGenInputs['TimerListRelationFilter'] | null // TimerListRelationFilter
+    TechnologyLessons?:
+      | NexusGenInputs['TechnologyLessonListRelationFilter']
+      | null // TechnologyLessonListRelationFilter
+    Templates?: NexusGenInputs['TemplateListRelationFilter'] | null // TemplateListRelationFilter
+    Timers?: NexusGenInputs['TimerListRelationFilter'] | null // TimerListRelationFilter
     Tokens?: NexusGenInputs['TokenListRelationFilter'] | null // TokenListRelationFilter
-    Tournament?: NexusGenInputs['TournamentListRelationFilter'] | null // TournamentListRelationFilter
-    TournamentGroup?: NexusGenInputs['TournamentGroupListRelationFilter'] | null // TournamentGroupListRelationFilter
-    Tourney?: NexusGenInputs['TourneyListRelationFilter'] | null // TourneyListRelationFilter
-    TourneyPlayer?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null // TourneyPlayerListRelationFilter
+    TournamentGroups?:
+      | NexusGenInputs['TournamentGroupListRelationFilter']
+      | null // TournamentGroupListRelationFilter
+    Tournaments?: NexusGenInputs['TournamentListRelationFilter'] | null // TournamentListRelationFilter
+    TourneyPlayers?: NexusGenInputs['TourneyPlayerListRelationFilter'] | null // TourneyPlayerListRelationFilter
+    Tourneys?: NexusGenInputs['TourneyListRelationFilter'] | null // TourneyListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    UserGroup?: NexusGenInputs['UserGroupListRelationFilter'] | null // UserGroupListRelationFilter
+    UserGroups?: NexusGenInputs['UserGroupListRelationFilter'] | null // UserGroupListRelationFilter
     UserLearnStrategies?:
       | NexusGenInputs['UserLearnStrategyListRelationFilter']
       | null // UserLearnStrategyListRelationFilter
-    UserTechnology?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
-    Vote?: NexusGenInputs['VoteListRelationFilter'] | null // VoteListRelationFilter
-    World?: NexusGenInputs['WorldListRelationFilter'] | null // WorldListRelationFilter
+    UserTechnologies?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
+    Votes?: NexusGenInputs['VoteListRelationFilter'] | null // VoteListRelationFilter
+    Worlds?: NexusGenInputs['WorldListRelationFilter'] | null // WorldListRelationFilter
     acceptChatMessageAnonymous?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     acceptNewChatRoom?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     acceptNewChatRoomAnonymous?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
@@ -3245,7 +3235,7 @@ export interface NexusGenInputs {
     image?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     marketplaceToken?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
-    other_User?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
+    other_Users?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
     password?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     phone?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     showEmail?: NexusGenInputs['BoolFilter'] | null // BoolFilter
@@ -3276,7 +3266,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['VoteWhereInput'][] | null // [VoteWhereInput!]
     Resource?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     Resource_ResourceToVote?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
-    User?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    User?: NexusGenInputs['StringFilter'] | null // StringFilter
     User_UserToVote?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
@@ -3292,12 +3282,12 @@ export interface NexusGenInputs {
   WorldWhereInput: {
     // input type
     AND?: NexusGenInputs['WorldWhereInput'][] | null // [WorldWhereInput!]
-    Block?: NexusGenInputs['BlockListRelationFilter'] | null // BlockListRelationFilter
-    CreatedBy?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
-    Message?: NexusGenInputs['MessageListRelationFilter'] | null // MessageListRelationFilter
+    Blocks?: NexusGenInputs['BlockListRelationFilter'] | null // BlockListRelationFilter
+    CreatedBy?: NexusGenInputs['StringFilter'] | null // StringFilter
+    Messages?: NexusGenInputs['MessageListRelationFilter'] | null // MessageListRelationFilter
     NOT?: NexusGenInputs['WorldWhereInput'][] | null // [WorldWhereInput!]
     OR?: NexusGenInputs['WorldWhereInput'][] | null // [WorldWhereInput!]
-    Player?: NexusGenInputs['PlayerListRelationFilter'] | null // PlayerListRelationFilter
+    Players?: NexusGenInputs['PlayerListRelationFilter'] | null // PlayerListRelationFilter
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     days?: NexusGenInputs['IntFilter'] | null // IntFilter
@@ -3880,6 +3870,7 @@ export interface NexusGenFieldTypes {
     createResetPasswordProcessor: NexusGenRootTypes['ResetPasswordResponse'] // ResetPasswordResponse!
     createTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
     createTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse'] // TaskTechnologyResponse!
+    createTechnology: NexusGenRootTypes['Technology'] // Technology!
     createTimerProcessor: NexusGenRootTypes['TimerResponse'] // TimerResponse!
     createTopicProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createUserLearnStrategy: NexusGenRootTypes['UserLearnStrategy'] // UserLearnStrategy!
@@ -4553,6 +4544,7 @@ export interface NexusGenFieldTypeNames {
     createResetPasswordProcessor: 'ResetPasswordResponse'
     createTaskProcessor: 'TaskResponse'
     createTaskTechnologyProcessor: 'TaskTechnologyResponse'
+    createTechnology: 'Technology'
     createTimerProcessor: 'TimerResponse'
     createTopicProcessor: 'ResourceResponse'
     createUserLearnStrategy: 'UserLearnStrategy'
@@ -5073,6 +5065,10 @@ export interface NexusGenArgTypes {
     createTaskTechnologyProcessor: {
       // args
       data: NexusGenInputs['TaskTechnologyCreateInput'] // TaskTechnologyCreateInput!
+    }
+    createTechnology: {
+      // args
+      data: NexusGenInputs['TechnologyCreateInput'] // TechnologyCreateInput!
     }
     createTimerProcessor: {
       // args

@@ -35,7 +35,7 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
       id: currentUserId,
     },
     include: {
-      Project_ProjectToUser: {
+      Projects_ProjectToUser: {
         where: {
           type: 'Education',
         },
@@ -53,7 +53,7 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
    * Созданные пользователем проекты по обучению.
    */
   // const ProjectsCreated = user.ProjectsCreated;
-  const ProjectsCreated = user.Project_ProjectToUser
+  const ProjectsCreated = user.Projects_ProjectToUser
 
   const codeChallengeCondition = args.data.CodeChallenge.connect as
     | Prisma.CodeChallengeWhereUniqueInput
@@ -106,7 +106,7 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
   //   },
   // }
 
-  let Project: Prisma.ProjectCreateNestedOneWithoutProjectTaskInput | undefined
+  let Project: Prisma.ProjectCreateNestedOneWithoutProjectTasksInput | undefined
 
   /**
    * Если у пользователя есть проекты по обучению, то добавляем в первый же проект
@@ -161,15 +161,15 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
       create: {
         name: `Выполнение задания "${codeChallenge.name}"`,
         status: 'Progress',
-        CreatedBy: currentUserId,
-        // TaskProjects,
-        // ProjectTask: TaskProject,
-        ProjectTask: TaskProject,
-        Timer: {
+        ProjectTasks: TaskProject,
+        Timers: {
           create: {
             CreatedBy: currentUserId,
           },
         },
+        CreatedBy: currentUserId,
+        // TaskProjects,
+        // ProjectTask: TaskProject,
       },
     },
   }

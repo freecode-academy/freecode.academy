@@ -44,7 +44,7 @@ export const MainPageDocument = gql`
   students: users(
     take: 4
     orderBy: {createdAt: desc}
-    where: {Project_ProjectToUser: {some: {type: {equals: Education}}}}
+    where: {Projects_ProjectToUser: {some: {type: {equals: Education}}}}
   ) {
     ...UserNoNesting
   }

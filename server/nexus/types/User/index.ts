@@ -269,7 +269,7 @@ export const User = objectType({
 
         return ctx.prisma.user
           .findUnique({ where: { id } })
-          .NotificationType_UserNotificationTypes()
+          .NotificationTypes_UserNotificationTypes()
       },
     })
 

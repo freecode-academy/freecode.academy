@@ -23,7 +23,7 @@ export const createUserTechnologyProcessor: FieldResolver<
   } = args.data
 
   const Technology_TechnologyToUserTechnology =
-    Technology as Prisma.TechnologyCreateNestedOneWithoutUserTechnologyInput
+    Technology as Prisma.TechnologyCreateNestedOneWithoutUserTechnologiesInput
 
   const createData: Prisma.UserTechnologyCreateInput = {
     // date_from,

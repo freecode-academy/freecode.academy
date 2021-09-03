@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client'
-import { extendType, objectType } from 'nexus'
+import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
+import { createTechnology } from './resolvers/createTechnology'
 
 export const TechnologyExtendQuery = extendType({
   type: 'Query',
@@ -65,6 +66,19 @@ export const TechnologyExtendQuery = extendType({
     //     )
     //   },
     // })
+  },
+})
+
+export const TechnologyExtendMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createTechnology', {
+      type: 'Technology',
+      args: {
+        data: nonNull('TechnologyCreateInput'),
+      },
+      resolve: createTechnology,
+    })
   },
 })
 
@@ -145,3 +159,10 @@ export const Technology = objectType({
 //     })
 //   },
 // })
+
+export const TechnologyCreateInput = inputObjectType({
+  name: 'TechnologyCreateInput',
+  definition(t) {
+    t.nonNull.string('name')
+  },
+})

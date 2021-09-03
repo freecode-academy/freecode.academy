@@ -208,11 +208,11 @@ type ChatMessageResponse {
 
 input ChatMessageWhereInput {
   AND: [ChatMessageWhereInput!]
-  ChatMessageReaded: ChatMessageReadedListRelationFilter
+  ChatMessagesReaded: ChatMessageReadedListRelationFilter
   ChatRoom: ChatRoomWhereInput
   CreatedBy: StringNullableFilter
   NOT: [ChatMessageWhereInput!]
-  Notice: NoticeListRelationFilter
+  Notices: NoticeListRelationFilter
   OR: [ChatMessageWhereInput!]
   Room: StringNullableFilter
   User: UserWhereInput
@@ -301,14 +301,14 @@ input ChatRoomOrderByInput {
 
 input ChatRoomWhereInput {
   AND: [ChatRoomWhereInput!]
-  CallRequest: CallRequestListRelationFilter
-  ChatMessage: ChatMessageListRelationFilter
-  ChatRoomInvitation: ChatRoomInvitationListRelationFilter
+  CallRequests: CallRequestListRelationFilter
+  ChatMessages: ChatMessageListRelationFilter
+  ChatRoomInvitations: ChatRoomInvitationListRelationFilter
   CreatedBy: StringNullableFilter
   NOT: [ChatRoomWhereInput!]
   OR: [ChatRoomWhereInput!]
-  Project: ProjectListRelationFilter
-  Task: TaskListRelationFilter
+  Projects: ProjectListRelationFilter
+  Tasks: TaskListRelationFilter
   User_ChatRoomToUser: UserWhereInput
   User_ChatRoomsMembers: UserListRelationFilter
   allowAnonymous: BoolNullableFilter
@@ -1075,7 +1075,7 @@ input FileWhereInput {
   ImageResource: StringNullableFilter
   NOT: [FileWhereInput!]
   OR: [FileWhereInput!]
-  Project: ProjectListRelationFilter
+  Projects: ProjectListRelationFilter
   Resource: ResourceWhereInput
   User: UserWhereInput
   createdAt: DateTimeFilter
@@ -1103,8 +1103,8 @@ input GalleryListRelationFilter {
 
 input GalleryWhereInput {
   AND: [GalleryWhereInput!]
-  CreatedBy: StringNullableFilter
-  File: FileListRelationFilter
+  CreatedBy: StringFilter
+  Files: FileListRelationFilter
   NOT: [GalleryWhereInput!]
   OR: [GalleryWhereInput!]
   Resource: StringNullableFilter
@@ -1575,6 +1575,7 @@ type Mutation {
   createTaskTechnologyProcessor(
     data: TaskTechnologyCreateInput!
   ): TaskTechnologyResponse!
+  createTechnology(data: TechnologyCreateInput!): Technology!
   createTimerProcessor(data: TimerCreateInput!): TimerResponse!
   createTopicProcessor(data: TopicCreateInput!): ResourceResponse!
   createUserLearnStrategy(
@@ -1979,7 +1980,7 @@ input NoticeWhereInput {
   AND: [NoticeWhereInput!]
   ChatMessage: StringNullableFilter
   ChatMessage_ChatMessageToNotice: ChatMessageWhereInput
-  ChatRoomInvitation: ChatRoomInvitationListRelationFilter
+  ChatRoomInvitations: ChatRoomInvitationListRelationFilter
   CreatedBy: StringNullableFilter
   NOT: [NoticeWhereInput!]
   OR: [NoticeWhereInput!]
@@ -2172,7 +2173,7 @@ input ProjectMemberWhereInput {
   OR: [ProjectMemberWhereInput!]
   Project: StringNullableFilter
   Project_ProjectToProjectMember: ProjectWhereInput
-  Service: ServiceListRelationFilter
+  Services: ServiceListRelationFilter
   User: StringNullableFilter
   User_ProjectMember_CreatedByToUser: UserWhereInput
   User_ProjectMember_UserToUser: UserWhereInput
@@ -2287,21 +2288,21 @@ input ProjectWhereInput {
   ChatRoom: StringNullableFilter
   ChatRoom_ChatRoomToProject: ChatRoomWhereInput
   CreatedBy: StringNullableFilter
-  EthAccount: EthAccountListRelationFilter
+  EthAccounts: EthAccountListRelationFilter
   File: FileWhereInput
   Image: StringNullableFilter
   NOT: [ProjectWhereInput!]
   OR: [ProjectWhereInput!]
-  ProjectMember: ProjectMemberListRelationFilter
-  ProjectTask: ProjectTaskListRelationFilter
+  ProjectMembers: ProjectMemberListRelationFilter
+  ProjectTasks: ProjectTaskListRelationFilter
   Resource: StringNullableFilter
-  Resource_ProjectToResource_PrismaProject: ResourceListRelationFilter
   Resource_Project_ResourceToResource: ResourceWhereInput
+  Resources_ProjectToResource_PrismaProject: ResourceListRelationFilter
   Team: StringNullableFilter
   Team_ProjectCustomers: TeamListRelationFilter
   Team_ProjectToTeam: TeamWhereInput
-  Template_ProjectToTemplate_PrismaProject: TemplateListRelationFilter
-  Template_ProjectToTemplate_Project: TemplateListRelationFilter
+  Templates_ProjectToTemplate_PrismaProject: TemplateListRelationFilter
+  Templates_ProjectToTemplate_Project: TemplateListRelationFilter
   User_PrismaProjectUsers: UserListRelationFilter
   User_ProjectToUser: UserWhereInput
   content: JsonNullableFilter
@@ -2807,19 +2808,19 @@ enum ResourceType {
 input ResourceWhereInput {
   AND: [ResourceWhereInput!]
   Blog: StringNullableFilter
-  CodeChallenge: CodeChallengeListRelationFilter
+  CodeChallenges: CodeChallengeListRelationFilter
   CreatedBy: StringNullableFilter
   EthAccount: StringNullableFilter
   EthAccount_EthAccountToResource: EthAccountWhereInput
-  File: FileListRelationFilter
-  Gallery: GalleryListRelationFilter
+  Files: FileListRelationFilter
+  Galleries: GalleryListRelationFilter
   NOT: [ResourceWhereInput!]
   OR: [ResourceWhereInput!]
   Parent: StringNullableFilter
   PrismaProject: StringNullableFilter
   Project_ProjectToResource_PrismaProject: ProjectWhereInput
-  Project_Project_ResourceToResource: ProjectListRelationFilter
-  ResourceTag: ResourceTagListRelationFilter
+  Projects_Project_ResourceToResource: ProjectListRelationFilter
+  ResourceTags: ResourceTagListRelationFilter
   Resource_ResourceToResource_Blog: ResourceWhereInput
   Resource_ResourceToResource_Parent: ResourceWhereInput
   Resource_ResourceToResource_Topic: ResourceWhereInput
@@ -2831,7 +2832,7 @@ input ResourceWhereInput {
   Team_ResourceToTeam: TeamWhereInput
   Topic: StringNullableFilter
   User: UserWhereInput
-  Vote: VoteListRelationFilter
+  Votes: VoteListRelationFilter
   class_key: StringNullableFilter
   code: StringNullableFilter
   commentOldID: IntNullableFilter
@@ -2849,9 +2850,9 @@ input ResourceWhereInput {
   negativeVotesCount: IntNullableFilter
   neutralVotesCount: IntNullableFilter
   oldID: IntNullableFilter
-  other_Resource_ResourceToResource_Blog: ResourceListRelationFilter
-  other_Resource_ResourceToResource_Parent: ResourceListRelationFilter
-  other_Resource_ResourceToResource_Topic: ResourceListRelationFilter
+  other_Resource_ResourceToResource_Blogs: ResourceListRelationFilter
+  other_Resource_ResourceToResource_Parents: ResourceListRelationFilter
+  other_Resource_ResourceToResource_Topics: ResourceListRelationFilter
   positiveVotesCount: IntNullableFilter
   published: BoolFilter
   rating: DecimalNullableFilter
@@ -2888,7 +2889,7 @@ input RouteWhereInput {
   exact: BoolFilter
   id: StringFilter
   name: StringNullableFilter
-  other_Route: RouteListRelationFilter
+  other_Routes: RouteListRelationFilter
   path: StringFilter
 }
 
@@ -2904,15 +2905,15 @@ input ServiceCategoryWhereInput {
   NOT: [ServiceCategoryWhereInput!]
   OR: [ServiceCategoryWhereInput!]
   Parent: StringNullableFilter
-  Service: ServiceListRelationFilter
   ServiceCategory: ServiceCategoryWhereInput
+  Services: ServiceListRelationFilter
   User: UserWhereInput
   code: StringNullableFilter
   createdAt: DateTimeFilter
   description: StringNullableFilter
   id: StringFilter
   name: StringFilter
-  other_ServiceCategory: ServiceCategoryListRelationFilter
+  other_ServiceCategories: ServiceCategoryListRelationFilter
   updatedAt: DateTimeFilter
 }
 
@@ -2929,8 +2930,8 @@ input ServiceWhereInput {
   NOT: [ServiceWhereInput!]
   OR: [ServiceWhereInput!]
   Parent: StringNullableFilter
-  ProjectMember: ProjectMemberListRelationFilter
-  Resource: ResourceListRelationFilter
+  ProjectMembers: ProjectMemberListRelationFilter
+  Resources: ResourceListRelationFilter
   Service: ServiceWhereInput
   ServiceCategory: ServiceCategoryWhereInput
   User: UserWhereInput
@@ -2940,7 +2941,7 @@ input ServiceWhereInput {
   id: StringFilter
   name: StringNullableFilter
   oldID: IntNullableFilter
-  other_Service: ServiceListRelationFilter
+  other_Services: ServiceListRelationFilter
   rank: IntNullableFilter
   updatedAt: DateTimeFilter
 }
@@ -3026,7 +3027,7 @@ input SmsProviderWhereInput {
   CreatedBy: StringNullableFilter
   NOT: [SmsProviderWhereInput!]
   OR: [SmsProviderWhereInput!]
-  SmsMessage: SmsMessageListRelationFilter
+  SmsMessages: SmsMessageListRelationFilter
   User: UserWhereInput
   createdAt: DateTimeFilter
   credentials: JsonNullableFilter
@@ -3112,7 +3113,7 @@ input TagWhereInput {
   CreatedBy: StringNullableFilter
   NOT: [TagWhereInput!]
   OR: [TagWhereInput!]
-  ResourceTag: ResourceTagListRelationFilter
+  ResourceTags: ResourceTagListRelationFilter
   User: UserWhereInput
   createdAt: DateTimeFilter
   id: StringFilter
@@ -3263,7 +3264,7 @@ enum TaskReactionType {
 
 input TaskReactionWhereInput {
   AND: [TaskReactionWhereInput!]
-  CreatedBy: StringNullableFilter
+  CreatedBy: StringFilter
   NOT: [TaskReactionWhereInput!]
   OR: [TaskReactionWhereInput!]
   Task: StringNullableFilter
@@ -3343,7 +3344,7 @@ input TaskTechnologyUpdateInput {
 
 input TaskTechnologyWhereInput {
   AND: [TaskTechnologyWhereInput!]
-  CreatedBy: StringNullableFilter
+  CreatedBy: StringFilter
   NOT: [TaskTechnologyWhereInput!]
   OR: [TaskTechnologyWhereInput!]
   Task: StringNullableFilter
@@ -3378,20 +3379,20 @@ input TaskWhereInput {
   AND: [TaskWhereInput!]
   ChatRoom: StringNullableFilter
   ChatRoom_ChatRoomToTask: ChatRoomWhereInput
-  CodeChallengeCompletion: CodeChallengeCompletionListRelationFilter
+  CodeChallengeCompletions: CodeChallengeCompletionListRelationFilter
   CreatedBy: StringNullableFilter
   NOT: [TaskWhereInput!]
   OR: [TaskWhereInput!]
   Parent: StringNullableFilter
-  ProjectTask: ProjectTaskListRelationFilter
-  Resource: ResourceListRelationFilter
+  ProjectTasks: ProjectTaskListRelationFilter
+  Resources: ResourceListRelationFilter
   Task: TaskWhereInput
-  TaskMember: TaskMemberListRelationFilter
-  TaskReaction: TaskReactionListRelationFilter
-  TaskTechnology: TaskTechnologyListRelationFilter
-  Task_A: TaskListRelationFilter
-  Task_B: TaskListRelationFilter
-  Timer: TimerListRelationFilter
+  TaskMembers: TaskMemberListRelationFilter
+  TaskReactions: TaskReactionListRelationFilter
+  TaskTechnologies: TaskTechnologyListRelationFilter
+  Tasks_A: TaskListRelationFilter
+  Tasks_B: TaskListRelationFilter
+  Timers: TimerListRelationFilter
   User: UserWhereInput
   content: JsonNullableFilter
   createdAt: DateTimeFilter
@@ -3401,7 +3402,7 @@ input TaskWhereInput {
   id: StringFilter
   name: StringFilter
   needHelp: BoolNullableFilter
-  other_Task: TaskListRelationFilter
+  other_Tasks: TaskListRelationFilter
   startDate: DateTimeNullableFilter
   startDatePlaning: DateTimeNullableFilter
   status: EnumTaskStatusFilter
@@ -3432,7 +3433,7 @@ enum TeamMemberStatus {
 
 input TeamMemberWhereInput {
   AND: [TeamMemberWhereInput!]
-  CreatedBy: StringNullableFilter
+  CreatedBy: StringFilter
   NOT: [TeamMemberWhereInput!]
   OR: [TeamMemberWhereInput!]
   Team: StringNullableFilter
@@ -3453,17 +3454,17 @@ enum TeamStatus {
 
 input TeamWhereInput {
   AND: [TeamWhereInput!]
-  CreatedBy: StringNullableFilter
-  Game: GameListRelationFilter
-  GameResult: GameResultListRelationFilter
+  CreatedBy: StringFilter
+  GameResults: GameResultListRelationFilter
+  Games: GameListRelationFilter
   NOT: [TeamWhereInput!]
   OR: [TeamWhereInput!]
   Parent: StringNullableFilter
   Project_ProjectCustomers: ProjectListRelationFilter
-  Project_ProjectToTeam: ProjectListRelationFilter
-  Resource: ResourceListRelationFilter
+  Projects_ProjectToTeam: ProjectListRelationFilter
+  Resources: ResourceListRelationFilter
   Team: TeamWhereInput
-  TeamMember: TeamMemberListRelationFilter
+  TeamMembers: TeamMemberListRelationFilter
   User: UserWhereInput
   address: StringNullableFilter
   createdAt: DateTimeFilter
@@ -3471,7 +3472,7 @@ input TeamWhereInput {
   id: StringFilter
   name: StringFilter
   oldID: IntNullableFilter
-  other_Team: TeamListRelationFilter
+  other_Teams: TeamListRelationFilter
   phone: StringNullableFilter
   status: EnumTeamStatusFilter
   updatedAt: DateTimeFilter
@@ -3515,6 +3516,10 @@ type Technology {
   updatedAt: DateTime!
 }
 
+input TechnologyCreateInput {
+  name: String!
+}
+
 input TechnologyCreateOneWithoutTaskTechnologiesInput {
   connect: TechnologyWhereUniqueInput
 }
@@ -3542,8 +3547,8 @@ enum TechnologyLessonUserStatus {
 
 input TechnologyLessonUserWhereInput {
   AND: [TechnologyLessonUserWhereInput!]
-  CreatedBy: StringNullableFilter
-  Lesson: StringNullableFilter
+  CreatedBy: StringFilter
+  Lesson: StringFilter
   NOT: [TechnologyLessonUserWhereInput!]
   OR: [TechnologyLessonUserWhereInput!]
   TechnologyLesson: TechnologyLessonWhereInput
@@ -3557,12 +3562,12 @@ input TechnologyLessonUserWhereInput {
 
 input TechnologyLessonWhereInput {
   AND: [TechnologyLessonWhereInput!]
-  Comment: CommentListRelationFilter
-  CreatedBy: StringNullableFilter
+  Comments: CommentListRelationFilter
+  CreatedBy: StringFilter
   NOT: [TechnologyLessonWhereInput!]
   OR: [TechnologyLessonWhereInput!]
-  Technology: StringNullableFilter
-  TechnologyLessonUser: TechnologyLessonUserListRelationFilter
+  Technology: StringFilter
+  TechnologyLessonUsers: TechnologyLessonUserListRelationFilter
   Technology_TechnologyToTechnologyLesson: TechnologyWhereInput
   User: UserWhereInput
   components: JsonNullableFilter
@@ -3595,14 +3600,14 @@ input TechnologyOrderByInput {
 
 input TechnologyWhereInput {
   AND: [TechnologyWhereInput!]
-  CreatedBy: StringNullableFilter
+  CreatedBy: StringFilter
   LearnStrategyStages: LearnStrategyStageListRelationFilter
   NOT: [TechnologyWhereInput!]
   OR: [TechnologyWhereInput!]
-  TaskTechnology: TaskTechnologyListRelationFilter
-  TechnologyLesson: TechnologyLessonListRelationFilter
+  TaskTechnologies: TaskTechnologyListRelationFilter
+  TechnologyLessons: TechnologyLessonListRelationFilter
   User: UserWhereInput
-  UserTechnology: UserTechnologyListRelationFilter
+  UserTechnologies: UserTechnologyListRelationFilter
   components: JsonNullableFilter
   contentText: StringNullableFilter
   createdAt: DateTimeFilter
@@ -3612,7 +3617,7 @@ input TechnologyWhereInput {
   level3hours: IntNullableFilter
   level4hours: IntNullableFilter
   level5hours: IntNullableFilter
-  name: StringNullableFilter
+  name: StringFilter
   site_url: StringNullableFilter
   updatedAt: DateTimeFilter
 }
@@ -3629,7 +3634,7 @@ input TemplateListRelationFilter {
 
 input TemplateWhereInput {
   AND: [TemplateWhereInput!]
-  CreatedBy: StringNullableFilter
+  CreatedBy: StringFilter
   NOT: [TemplateWhereInput!]
   OR: [TemplateWhereInput!]
   Parent: StringNullableFilter
@@ -3645,31 +3650,10 @@ input TemplateWhereInput {
   externalKey: StringNullableFilter
   id: StringFilter
   name: StringNullableFilter
-  other_Template: TemplateListRelationFilter
+  other_Templates: TemplateListRelationFilter
   rank: IntNullableFilter
   updatedAt: DateTimeFilter
   vars: JsonNullableFilter
-}
-
-input TestListRelationFilter {
-  every: TestWhereInput
-  none: TestWhereInput
-  some: TestWhereInput
-}
-
-input TestWhereInput {
-  AND: [TestWhereInput!]
-  CreatedBy: StringNullableFilter
-  NOT: [TestWhereInput!]
-  OR: [TestWhereInput!]
-  User: UserWhereInput
-  createdAt: DateTimeFilter
-  date: DateTimeNullableFilter
-  id: StringFilter
-  name: StringNullableFilter
-  quantity: DecimalNullableFilter
-  text: StringNullableFilter
-  updatedAt: DateTimeFilter
 }
 
 type Timer {
@@ -3793,10 +3777,10 @@ input TournamentGroupListRelationFilter {
 
 input TournamentGroupWhereInput {
   AND: [TournamentGroupWhereInput!]
-  CreatedBy: StringNullableFilter
+  CreatedBy: StringFilter
   NOT: [TournamentGroupWhereInput!]
   OR: [TournamentGroupWhereInput!]
-  Tournament: TournamentListRelationFilter
+  Tournaments: TournamentListRelationFilter
   User: UserWhereInput
   code: StringNullableFilter
   createdAt: DateTimeFilter
@@ -3813,12 +3797,12 @@ input TournamentListRelationFilter {
 
 input TournamentWhereInput {
   AND: [TournamentWhereInput!]
-  CreatedBy: StringNullableFilter
+  CreatedBy: StringFilter
   Group: StringNullableFilter
   NOT: [TournamentWhereInput!]
   OR: [TournamentWhereInput!]
   TournamentGroup: TournamentGroupWhereInput
-  Tourney: TourneyListRelationFilter
+  Tourneys: TourneyListRelationFilter
   User: UserWhereInput
   code: StringNullableFilter
   createdAt: DateTimeFilter
@@ -3852,13 +3836,13 @@ input TourneyPlayerWhereInput {
 
 input TourneyWhereInput {
   AND: [TourneyWhereInput!]
-  CreatedBy: StringNullableFilter
-  Game: GameListRelationFilter
+  CreatedBy: StringFilter
+  Games: GameListRelationFilter
   NOT: [TourneyWhereInput!]
   OR: [TourneyWhereInput!]
   Tournament: StringNullableFilter
   Tournament_TournamentToTourney: TournamentWhereInput
-  TourneyPlayer: TourneyPlayerListRelationFilter
+  TourneyPlayers: TourneyPlayerListRelationFilter
   User: UserWhereInput
   code: StringNullableFilter
   createdAt: DateTimeFilter
@@ -3955,7 +3939,7 @@ input UserGroupWhereInput {
   AND: [UserGroupWhereInput!]
   NOT: [UserGroupWhereInput!]
   OR: [UserGroupWhereInput!]
-  User: UserListRelationFilter
+  Users: UserListRelationFilter
   createdAt: DateTimeFilter
   id: StringFilter
   name: StringFilter
@@ -4235,83 +4219,82 @@ input UserUpdateInput {
 
 input UserWhereInput {
   AND: [UserWhereInput!]
-  CallRequest_CallRequest_CalledToUser: CallRequestListRelationFilter
-  CallRequest_CallRequest_CallerToUser: CallRequestListRelationFilter
-  Career: CareerListRelationFilter
-  ChatMessage: ChatMessageListRelationFilter
-  ChatMessageReaded: ChatMessageReadedListRelationFilter
-  ChatRoomInvitation_ChatRoomInvitation_CreatedByToUser: ChatRoomInvitationListRelationFilter
-  ChatRoomInvitation_ChatRoomInvitation_UserToUser: ChatRoomInvitationListRelationFilter
-  ChatRoom_ChatRoomToUser: ChatRoomListRelationFilter
-  ChatRoom_ChatRoomsMembers: ChatRoomListRelationFilter
-  CodeChallenge: CodeChallengeListRelationFilter
-  CodeChallengeBlock: CodeChallengeBlockListRelationFilter
-  CodeChallengeCompletion: CodeChallengeCompletionListRelationFilter
-  Comment: CommentListRelationFilter
+  CallRequests_CallRequest_CalledToUser: CallRequestListRelationFilter
+  CallRequests_CallRequest_CallerToUser: CallRequestListRelationFilter
+  Careers: CareerListRelationFilter
+  ChatMessages: ChatMessageListRelationFilter
+  ChatMessagesReaded: ChatMessageReadedListRelationFilter
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser: ChatRoomInvitationListRelationFilter
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser: ChatRoomInvitationListRelationFilter
+  ChatRooms_ChatRoomToUser: ChatRoomListRelationFilter
+  ChatRooms_ChatRoomsMembers: ChatRoomListRelationFilter
+  CodeChallengeBlocks: CodeChallengeBlockListRelationFilter
+  CodeChallengeCompletions: CodeChallengeCompletionListRelationFilter
+  CodeChallenges: CodeChallengeListRelationFilter
+  Comments: CommentListRelationFilter
   CreatedBy: StringNullableFilter
   EthAccountAuthed: StringNullableFilter
   EthAccount_EthAccountToUser_EthAccountAuthed: EthAccountWhereInput
-  EthAccount_EthAccount_CreatedByToUser: EthAccountListRelationFilter
-  EthContractSource: EthContractSourceListRelationFilter
-  File: FileListRelationFilter
-  Gallery: GalleryListRelationFilter
-  GameResult_GameResult_CreatedByToUser: GameResultListRelationFilter
-  GameResult_GameResult_UserToUser: GameResultListRelationFilter
-  Game_GameToUser: GameListRelationFilter
-  Game_GameUsers: GameListRelationFilter
-  Import: ImportListRelationFilter
+  EthAccounts_EthAccount_CreatedByToUser: EthAccountListRelationFilter
+  EthContractSources: EthContractSourceListRelationFilter
+  Files: FileListRelationFilter
+  Galleries: GalleryListRelationFilter
+  GameResults_GameResult_CreatedByToUser: GameResultListRelationFilter
+  GameResults_GameResult_UserToUser: GameResultListRelationFilter
+  Games_GameToUser: GameListRelationFilter
+  Games_GameUsers: GameListRelationFilter
+  Imports: ImportListRelationFilter
   LearnStrategies: LearnStrategyListRelationFilter
-  Letter: LetterListRelationFilter
-  LogedIn: LogedInListRelationFilter
+  Letters: LetterListRelationFilter
+  LogedIns: LogedInListRelationFilter
   NOT: [UserWhereInput!]
-  Notice_Notice_CreatedByToUser: NoticeListRelationFilter
-  Notice_Notice_UserToUser: NoticeListRelationFilter
-  NotificationType_NotificationTypeToUser: NotificationTypeListRelationFilter
-  NotificationType_UserNotificationTypes: NotificationTypeListRelationFilter
+  Notices_Notice_CreatedByToUser: NoticeListRelationFilter
+  Notices_Notice_UserToUser: NoticeListRelationFilter
+  NotificationTypes_NotificationTypeToUser: NotificationTypeListRelationFilter
+  NotificationTypes_UserNotificationTypes: NotificationTypeListRelationFilter
   OR: [UserWhereInput!]
-  Player: PlayerListRelationFilter
-  Position_PositionToUser: PositionListRelationFilter
-  Position_PositionUsers: PositionListRelationFilter
-  ProjectMember_ProjectMember_CreatedByToUser: ProjectMemberListRelationFilter
-  ProjectMember_ProjectMember_UserToUser: ProjectMemberListRelationFilter
-  ProjectTask: ProjectTaskListRelationFilter
-  Project_PrismaProjectUsers: ProjectListRelationFilter
-  Project_ProjectToUser: ProjectListRelationFilter
+  Players: PlayerListRelationFilter
+  Positions_PositionToUser: PositionListRelationFilter
+  Positions_PositionUsers: PositionListRelationFilter
+  ProjectMembers_ProjectMember_CreatedByToUser: ProjectMemberListRelationFilter
+  ProjectMembers_ProjectMember_UserToUser: ProjectMemberListRelationFilter
+  ProjectTasks: ProjectTaskListRelationFilter
+  Projects_PrismaProjectUsers: ProjectListRelationFilter
+  Projects_ProjectToUser: ProjectListRelationFilter
   ResetPasswords: ResetPasswordListRelationFilter
-  Resource: ResourceListRelationFilter
-  ResourceTag: ResourceTagListRelationFilter
-  Route: RouteListRelationFilter
-  Service: ServiceListRelationFilter
-  ServiceCategory: ServiceCategoryListRelationFilter
+  ResourceTags: ResourceTagListRelationFilter
+  Resources: ResourceListRelationFilter
+  Routes: RouteListRelationFilter
+  ServiceCategories: ServiceCategoryListRelationFilter
+  Services: ServiceListRelationFilter
   Settings: SettingsListRelationFilter
-  SmsMessage: SmsMessageListRelationFilter
-  SmsProvider: SmsProviderListRelationFilter
-  Tag: TagListRelationFilter
-  Task: TaskListRelationFilter
-  TaskMember_TaskMember_CreatedByToUser: TaskMemberListRelationFilter
-  TaskMember_TaskMember_UserToUser: TaskMemberListRelationFilter
-  TaskReaction: TaskReactionListRelationFilter
-  TaskTechnology: TaskTechnologyListRelationFilter
-  Team: TeamListRelationFilter
-  TeamMember_TeamMember_CreatedByToUser: TeamMemberListRelationFilter
-  TeamMember_TeamMember_UserToUser: TeamMemberListRelationFilter
-  Technology: TechnologyListRelationFilter
-  TechnologyLesson: TechnologyLessonListRelationFilter
-  TechnologyLessonUser: TechnologyLessonUserListRelationFilter
-  Template: TemplateListRelationFilter
-  Test: TestListRelationFilter
-  Timer: TimerListRelationFilter
+  SmsMessages: SmsMessageListRelationFilter
+  SmsProviders: SmsProviderListRelationFilter
+  Tags: TagListRelationFilter
+  TaskMembers_TaskMember_CreatedByToUser: TaskMemberListRelationFilter
+  TaskMembers_TaskMember_UserToUser: TaskMemberListRelationFilter
+  TaskReactions: TaskReactionListRelationFilter
+  TaskTechnologies: TaskTechnologyListRelationFilter
+  Tasks: TaskListRelationFilter
+  TeamMembers_TeamMember_CreatedByToUser: TeamMemberListRelationFilter
+  TeamMembers_TeamMember_UserToUser: TeamMemberListRelationFilter
+  Teams: TeamListRelationFilter
+  Technologies: TechnologyListRelationFilter
+  TechnologyLessonUsers: TechnologyLessonUserListRelationFilter
+  TechnologyLessons: TechnologyLessonListRelationFilter
+  Templates: TemplateListRelationFilter
+  Timers: TimerListRelationFilter
   Tokens: TokenListRelationFilter
-  Tournament: TournamentListRelationFilter
-  TournamentGroup: TournamentGroupListRelationFilter
-  Tourney: TourneyListRelationFilter
-  TourneyPlayer: TourneyPlayerListRelationFilter
+  TournamentGroups: TournamentGroupListRelationFilter
+  Tournaments: TournamentListRelationFilter
+  TourneyPlayers: TourneyPlayerListRelationFilter
+  Tourneys: TourneyListRelationFilter
   User: UserWhereInput
-  UserGroup: UserGroupListRelationFilter
+  UserGroups: UserGroupListRelationFilter
   UserLearnStrategies: UserLearnStrategyListRelationFilter
-  UserTechnology: UserTechnologyListRelationFilter
-  Vote: VoteListRelationFilter
-  World: WorldListRelationFilter
+  UserTechnologies: UserTechnologyListRelationFilter
+  Votes: VoteListRelationFilter
+  Worlds: WorldListRelationFilter
   acceptChatMessageAnonymous: BoolNullableFilter
   acceptNewChatRoom: BoolNullableFilter
   acceptNewChatRoomAnonymous: BoolNullableFilter
@@ -4327,7 +4310,7 @@ input UserWhereInput {
   image: StringNullableFilter
   marketplaceToken: StringNullableFilter
   oldID: IntNullableFilter
-  other_User: UserListRelationFilter
+  other_Users: UserListRelationFilter
   password: StringNullableFilter
   phone: StringNullableFilter
   showEmail: BoolFilter
@@ -4358,7 +4341,7 @@ input VoteWhereInput {
   OR: [VoteWhereInput!]
   Resource: StringNullableFilter
   Resource_ResourceToVote: ResourceWhereInput
-  User: StringNullableFilter
+  User: StringFilter
   User_UserToVote: UserWhereInput
   createdAt: DateTimeFilter
   id: StringFilter
@@ -4379,12 +4362,12 @@ enum WorldType {
 
 input WorldWhereInput {
   AND: [WorldWhereInput!]
-  Block: BlockListRelationFilter
-  CreatedBy: StringNullableFilter
-  Message: MessageListRelationFilter
+  Blocks: BlockListRelationFilter
+  CreatedBy: StringFilter
+  Messages: MessageListRelationFilter
   NOT: [WorldWhereInput!]
   OR: [WorldWhereInput!]
-  Player: PlayerListRelationFilter
+  Players: PlayerListRelationFilter
   User: UserWhereInput
   createdAt: DateTimeFilter
   days: IntFilter

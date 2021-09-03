@@ -82,9 +82,7 @@ export const TaskTechnology = objectType({
     t.field('CreatedBy', {
       type: 'User',
       resolve({ CreatedBy }, _, ctx) {
-        return CreatedBy
-          ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
-          : null
+        return ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
       },
     })
 

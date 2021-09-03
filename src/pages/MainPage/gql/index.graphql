@@ -5,7 +5,7 @@ query mainPage($timersWhere: TimerWhereInput) {
 
     # TODO Check logic
     # where: { ProjectsCreated_some: { type: Education } }
-    where: { Project_ProjectToUser: { some: { type: { equals: Education } } } }
+    where: { Projects_ProjectToUser: { some: { type: { equals: Education } } } }
   ) {
     ...UserNoNesting
   }

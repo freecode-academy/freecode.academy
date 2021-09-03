@@ -106,7 +106,7 @@ export class ForumView<
 
     // const activeTag = variables?.where?.Tags_some?.Tag
     // TODO Check relation
-    const activeTag = variables?.where?.ResourceTag?.some?.Tag
+    const activeTag = variables?.where?.ResourceTags?.some?.Tag
 
     return [
       {

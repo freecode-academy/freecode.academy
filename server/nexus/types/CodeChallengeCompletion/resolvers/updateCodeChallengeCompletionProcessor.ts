@@ -37,7 +37,7 @@ export const updateCodeChallengeCompletionProcessor: FieldResolver<
       include: {
         Task_CodeChallengeCompletionToTask: {
           include: {
-            Timer: {
+            Timers: {
               orderBy: {
                 createdAt: 'desc',
               },
@@ -62,7 +62,7 @@ export const updateCodeChallengeCompletionProcessor: FieldResolver<
       currentCodeChallengeCompletion.Task_CodeChallengeCompletionToTask
 
     if (task) {
-      const [timer] = task.Timer || []
+      const [timer] = task.Timers || []
 
       let Timers: Prisma.TimerUpdateManyWithoutTask_TaskToTimerInput | undefined
 
@@ -79,10 +79,10 @@ export const updateCodeChallengeCompletionProcessor: FieldResolver<
         }
       }
 
-      const Task: Prisma.TaskUpdateOneWithoutCodeChallengeCompletionInput = {
+      const Task: Prisma.TaskUpdateOneWithoutCodeChallengeCompletionsInput = {
         update: {
           status: 'Completed',
-          Timer: Timers,
+          Timers,
         },
       }
 

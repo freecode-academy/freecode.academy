@@ -15,11 +15,14 @@ import {
 import UserTechnologyRow from './UserTechnologyRow'
 import SiteFrontEditor from 'src/components/SiteFrontEditor'
 import Link from 'src/uikit/Link'
+import { useCurrentUser } from 'src/hooks/useCurrentUser'
 
 const TechnologyView: React.FC<TechnologyViewProps> = ({
   object: technology,
 }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
+
+  const currentUser = useCurrentUser()
 
   const header = useMemo(() => {
     return (
@@ -70,14 +73,15 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
     )
   }, [technology.components])
 
-  // const canEdit = useMemo(() => {
-
-  //   return currentUser?.sudo === true
-  // }, [])
+  const canEdit = useMemo(() => {
+    return currentUser?.sudo === true
+  }, [currentUser?.sudo])
 
   const editForm = useMemo(() => {
-    //
-  }, [])
+    if (!canEdit) {
+      return null
+    }
+  }, [canEdit])
 
   return useMemo(() => {
     return (

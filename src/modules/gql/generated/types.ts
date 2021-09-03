@@ -1601,6 +1601,7 @@ export interface Mutation {
   updateProjectProcessor: ProjectResponse;
   updateTaskProcessor: TaskResponse;
   updateTaskTechnologyProcessor: TaskTechnologyResponse;
+  updateTechnology: Technology;
   updateTimerProcessor: TimerResponse;
   updateTopicProcessor: ResourceResponse;
   updateUserProcessor: UserResponse;
@@ -1754,6 +1755,12 @@ export type MutationUpdateTaskProcessorArgs = {
 export type MutationUpdateTaskTechnologyProcessorArgs = {
   data: TaskTechnologyUpdateInput;
   where: TaskTechnologyWhereUniqueInput;
+};
+
+
+export type MutationUpdateTechnologyArgs = {
+  data: TechnologyUpdateInput;
+  where: TechnologyWhereUniqueInput;
 };
 
 
@@ -3953,6 +3960,15 @@ export interface TechnologyOrderByInput {
   name?: Maybe<SortOrder>;
   site_url?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
+}
+
+export interface TechnologyUpdateInput {
+  level1hours?: Maybe<Scalars['Int']>;
+  level2hours?: Maybe<Scalars['Int']>;
+  level3hours?: Maybe<Scalars['Int']>;
+  level4hours?: Maybe<Scalars['Int']>;
+  level5hours?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 }
 
 export interface TechnologyWhereInput {

@@ -70,6 +70,15 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
     )
   }, [technology.components])
 
+  // const canEdit = useMemo(() => {
+
+  //   return currentUser?.sudo === true
+  // }, [])
+
+  const editForm = useMemo(() => {
+    //
+  }, [])
+
   return useMemo(() => {
     return (
       <>
@@ -98,6 +107,8 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
             </Grid>
           </Grid>
 
+          {editForm}
+
           <div className="technology--used-by">
             <Grid container spacing={8}>
               <Grid item xs>
@@ -119,7 +130,7 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
         </TechnologyViewStyled>
       </>
     )
-  }, [technology, content, context.user, header, items])
+  }, [technology, content, editForm, context.user, header, items])
 }
 
 export default TechnologyView

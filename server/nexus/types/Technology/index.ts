@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
 import { createTechnology } from './resolvers/createTechnology'
+import { updateTechnology } from './resolvers/updateTechnology'
 
 export const TechnologyExtendQuery = extendType({
   type: 'Query',
@@ -24,48 +25,6 @@ export const TechnologyExtendQuery = extendType({
         })
       },
     })
-
-    // t.nonNull.field('technologiesConnection', {
-    //   type: 'TechnologyConnection',
-    //   args: {
-    //     where: 'TechnologyWhereInput',
-    //     orderBy: 'TechnologyOrderByInput',
-    //     first: 'Int',
-    //     skip: 'Int',
-    //   },
-    //   resolve: async (_, args, ctx) => {
-    //     const where = args.where as Prisma.TechnologyWhereInput
-    //     const orderBy = args.orderBy as Prisma.TechnologyOrderByInput
-    //     const take = args.first || undefined
-    //     const skip = args.skip || undefined
-
-    //     const countPromise = ctx.prisma.technology.count({
-    //       where,
-    //     })
-
-    //     const technologysPromise = ctx.prisma.technology.findMany({
-    //       where,
-    //       orderBy: orderBy ? [orderBy] : undefined,
-    //       take,
-    //       skip,
-    //     })
-
-    //     return Promise.all([countPromise, technologysPromise]).then(
-    //       (results) => {
-    //         return {
-    //           aggregate: {
-    //             count: results[0],
-    //           },
-    //           edges: results[1].map((n) => {
-    //             return {
-    //               node: n,
-    //             }
-    //           }),
-    //         }
-    //       }
-    //     )
-    //   },
-    // })
   },
 })
 
@@ -78,6 +37,14 @@ export const TechnologyExtendMutation = extendType({
         data: nonNull('TechnologyCreateInput'),
       },
       resolve: createTechnology,
+    })
+    t.nonNull.field('updateTechnology', {
+      type: 'Technology',
+      args: {
+        data: nonNull('TechnologyUpdateInput'),
+        where: nonNull('TechnologyWhereUniqueInput'),
+      },
+      resolve: updateTechnology,
     })
   },
 })
@@ -132,37 +99,21 @@ export const Technology = objectType({
   },
 })
 
-// export const AggregateTechnology = objectType({
-//   name: 'AggregateTechnology',
-//   definition(t) {
-//     t.nonNull.int('count')
-//   },
-// })
-
-// export const TechnologyEdge = objectType({
-//   name: 'TechnologyEdge',
-//   definition(t) {
-//     t.nonNull.field('node', {
-//       type: 'Technology',
-//     })
-//   },
-// })
-
-// export const TechnologyConnection = objectType({
-//   name: 'TechnologyConnection',
-//   definition(t) {
-//     t.nonNull.list.field('edges', {
-//       type: 'TechnologyEdge',
-//     })
-//     t.nonNull.field('aggregate', {
-//       type: 'AggregateTechnology',
-//     })
-//   },
-// })
-
 export const TechnologyCreateInput = inputObjectType({
   name: 'TechnologyCreateInput',
   definition(t) {
     t.nonNull.string('name')
+  },
+})
+
+export const TechnologyUpdateInput = inputObjectType({
+  name: 'TechnologyUpdateInput',
+  definition(t) {
+    t.string('name')
+    t.int('level1hours')
+    t.int('level2hours')
+    t.int('level3hours')
+    t.int('level4hours')
+    t.int('level5hours')
   },
 })

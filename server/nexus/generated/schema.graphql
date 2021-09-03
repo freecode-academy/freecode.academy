@@ -1639,6 +1639,10 @@ type Mutation {
     data: TaskTechnologyUpdateInput!
     where: TaskTechnologyWhereUniqueInput!
   ): TaskTechnologyResponse!
+  updateTechnology(
+    data: TechnologyUpdateInput!
+    where: TechnologyWhereUniqueInput!
+  ): Technology!
   updateTimerProcessor(
     data: TimerUpdateInput!
     where: TimerWhereUniqueInput!
@@ -3596,6 +3600,15 @@ input TechnologyOrderByInput {
   name: SortOrder
   site_url: SortOrder
   updatedAt: SortOrder
+}
+
+input TechnologyUpdateInput {
+  level1hours: Int
+  level2hours: Int
+  level3hours: Int
+  level4hours: Int
+  level5hours: Int
+  name: String
 }
 
 input TechnologyWhereInput {

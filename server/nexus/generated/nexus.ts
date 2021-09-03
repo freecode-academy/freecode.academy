@@ -2637,6 +2637,15 @@ export interface NexusGenInputs {
     site_url?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
+  TechnologyUpdateInput: {
+    // input type
+    level1hours?: number | null // Int
+    level2hours?: number | null // Int
+    level3hours?: number | null // Int
+    level4hours?: number | null // Int
+    level5hours?: number | null // Int
+    name?: string | null // String
+  }
   TechnologyWhereInput: {
     // input type
     AND?: NexusGenInputs['TechnologyWhereInput'][] | null // [TechnologyWhereInput!]
@@ -3888,6 +3897,7 @@ export interface NexusGenFieldTypes {
     updateProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
     updateTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
     updateTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse'] // TaskTechnologyResponse!
+    updateTechnology: NexusGenRootTypes['Technology'] // Technology!
     updateTimerProcessor: NexusGenRootTypes['TimerResponse'] // TimerResponse!
     updateTopicProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     updateUserProcessor: NexusGenRootTypes['UserResponse'] // UserResponse!
@@ -4562,6 +4572,7 @@ export interface NexusGenFieldTypeNames {
     updateProjectProcessor: 'ProjectResponse'
     updateTaskProcessor: 'TaskResponse'
     updateTaskTechnologyProcessor: 'TaskTechnologyResponse'
+    updateTechnology: 'Technology'
     updateTimerProcessor: 'TimerResponse'
     updateTopicProcessor: 'ResourceResponse'
     updateUserProcessor: 'UserResponse'
@@ -5146,6 +5157,11 @@ export interface NexusGenArgTypes {
       // args
       data: NexusGenInputs['TaskTechnologyUpdateInput'] // TaskTechnologyUpdateInput!
       where: NexusGenInputs['TaskTechnologyWhereUniqueInput'] // TaskTechnologyWhereUniqueInput!
+    }
+    updateTechnology: {
+      // args
+      data: NexusGenInputs['TechnologyUpdateInput'] // TechnologyUpdateInput!
+      where: NexusGenInputs['TechnologyWhereUniqueInput'] // TechnologyWhereUniqueInput!
     }
     updateTimerProcessor: {
       // args

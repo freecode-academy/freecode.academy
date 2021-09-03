@@ -27,28 +27,20 @@ query technologiesConnection(
   }
 }
 
-# query technologiesConnection(
-#   $first: Int
-#   $skip: Int
-#   $where: TechnologyWhereInput
-#   $orderBy: TechnologyOrderByInput = { createdAt: desc }
-# ) {
-#   objectsConnection: technologiesConnection(
-#     first: $first
-#     skip: $skip
-#     where: $where
-#     orderBy: $orderBy
-#   ) {
-#     aggregate {
-#       count
-#     }
-#     edges {
-#       node {
-#         ...technologiesConnectionTechnology
-#       }
-#     }
-#   }
-# }
+mutation createTechnology($data: TechnologyCreateInput!) {
+  createTechnology(data: $data) {
+    ...technology_
+  }
+}
+
+mutation updateTechnology(
+  $data: TechnologyUpdateInput!
+  $where: TechnologyWhereUniqueInput!
+) {
+  updateTechnology(data: $data, where: $where) {
+    ...technology_
+  }
+}
 
 fragment technologiesConnectionTechnology on Technology {
   ...TechnologyNoNesting

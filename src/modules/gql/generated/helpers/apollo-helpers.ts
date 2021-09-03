@@ -203,7 +203,7 @@ export type LearnStrategyStageFieldPolicy = {
 	technologyId?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateLearnStrategy' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateLearnStrategy' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	createBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createChatMessageProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -233,6 +233,7 @@ export type MutationFieldPolicy = {
 	updateProjectProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateTaskProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateTaskTechnologyProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateTechnology?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateTimerProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateTopicProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateUserProcessor?: FieldPolicy<any> | FieldReadFunction<any>,

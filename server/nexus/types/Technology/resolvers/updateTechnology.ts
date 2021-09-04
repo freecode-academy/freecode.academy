@@ -1,7 +1,22 @@
 import { Prisma } from '.prisma/client'
 import { FieldResolver } from 'nexus'
-import { validateTechnology } from './index'
+import { NexusGenInputs } from 'server/nexus/generated/nexus'
+// import { validateTechnology } from './validateTechnology'
 import { getCurrentUser } from '../../../helpers/getCurrentUser'
+
+const validateTechnology = (
+  data:
+    | NexusGenInputs['TechnologyCreateInput']
+    | NexusGenInputs['TechnologyUpdateInput']
+) => {
+  if (data.name !== undefined) {
+    if (!data.name) {
+      throw new Error('Не заполнено название')
+    }
+  }
+
+  return data
+}
 
 export const updateTechnology: FieldResolver<'Mutation', 'updateTechnology'> =
   async (_, args, ctx) => {

@@ -1,5 +1,9 @@
 import { NexusGenInputs } from 'server/nexus/generated/nexus'
 
+// TODO Разобраться в правильном подключении зависимости
+// Сейчас, если подгружать сразу из ./createTechnology.ts и ./updateTechnology.ts
+// Не запускает прод
+
 export const validateTechnology = (
   data:
     | NexusGenInputs['TechnologyCreateInput']

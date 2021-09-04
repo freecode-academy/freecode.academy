@@ -191,13 +191,13 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               </Typography>
             </Grid>
 
-            {/* <Grid item>
+            <Grid item>
               <Link href="/learnstrategies/">
                 <a>
                   <Typography>{this.lexicon('LearnStrategies')}</Typography>
                 </a>
               </Link>
-            </Grid> */}
+            </Grid>
 
             <Grid item>
               <Link href="/learn/sections">

@@ -1,6 +1,6 @@
 import { Prisma } from '.prisma/client'
 import { FieldResolver } from 'nexus'
-import { validateTechnology } from '.'
+import { validateTechnology } from './index'
 import { getCurrentUser } from '../../../helpers/getCurrentUser'
 
 export const updateTechnology: FieldResolver<'Mutation', 'updateTechnology'> =

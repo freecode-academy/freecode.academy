@@ -1,7 +1,7 @@
 import { FieldResolver } from 'nexus'
 import { Prisma } from '@prisma/client'
 import { getCurrentUser } from '../../../helpers/getCurrentUser'
-import { validateTechnology } from '.'
+import { validateTechnology } from './index'
 
 export const createTechnology: FieldResolver<'Mutation', 'createTechnology'> =
   async (_, args, ctx) => {

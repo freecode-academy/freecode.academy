@@ -3489,6 +3489,7 @@ type Technology {
   components: JSON
   contentText: String
   createdAt: DateTime!
+  description: String
   id: ID!
 
   """
@@ -3515,12 +3516,13 @@ type Technology {
   Примерное количество часов на освоение уровня
   """
   level5hours: Int
-  name: String
+  name: String!
   site_url: String
   updatedAt: DateTime!
 }
 
 input TechnologyCreateInput {
+  description: String
   name: String!
 }
 
@@ -3591,6 +3593,7 @@ input TechnologyOrderByInput {
   components: SortOrder
   contentText: SortOrder
   createdAt: SortOrder
+  description: SortOrder
   id: SortOrder
   level1hours: SortOrder
   level2hours: SortOrder
@@ -3603,6 +3606,7 @@ input TechnologyOrderByInput {
 }
 
 input TechnologyUpdateInput {
+  description: String
   level1hours: Int
   level2hours: Int
   level3hours: Int
@@ -3624,6 +3628,7 @@ input TechnologyWhereInput {
   components: JsonNullableFilter
   contentText: StringNullableFilter
   createdAt: DateTimeFilter
+  description: StringNullableFilter
   id: StringFilter
   level1hours: IntNullableFilter
   level2hours: IntNullableFilter
@@ -3637,6 +3642,7 @@ input TechnologyWhereInput {
 
 input TechnologyWhereUniqueInput {
   id: String
+  name: String
 }
 
 input TemplateListRelationFilter {

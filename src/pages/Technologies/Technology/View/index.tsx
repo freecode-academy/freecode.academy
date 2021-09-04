@@ -1,4 +1,5 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
+import ReactDecliner from 'react-decliner'
 import { TechnologyViewProps } from './interfaces'
 import { TechnologyGridTableStyled, TechnologyViewStyled } from './styles'
 // import Link from 'next/link'
@@ -16,10 +17,10 @@ import UserTechnologyRow from './UserTechnologyRow'
 import SiteFrontEditor from 'src/components/SiteFrontEditor'
 import Link from 'src/uikit/Link'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
+import Button from 'src/components/ui/Button'
+import { TechnologyUpdateForm } from './UpdateForm'
 
-const TechnologyView: React.FC<TechnologyViewProps> = ({
-  object: technology,
-}) => {
+const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
 
   const currentUser = useCurrentUser()
@@ -77,41 +78,106 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
     return currentUser?.sudo === true
   }, [currentUser?.sudo])
 
-  const editForm = useMemo(() => {
+  const [editFormOpened, editFormOpenedSetter] = useState(false)
+
+  const editFormOpenedToggle = useCallback(() => {
+    editFormOpenedSetter(!editFormOpened)
+  }, [editFormOpened])
+
+  const editButton = useMemo(() => {
     if (!canEdit) {
       return null
     }
-  }, [canEdit])
+
+    return (
+      <Button size="small" onClick={editFormOpenedToggle}>
+        {editFormOpened ? 'Закрыть' : 'Редактировать'}
+      </Button>
+    )
+  }, [canEdit, editFormOpened, editFormOpenedToggle])
+
+  /**
+   * Примерное время освоения технологии
+   */
+  const learnTimes = useMemo(() => {
+    const items: JSX.Element[] = []
+
+    // if(technology.level1hours)
+
+    const levels: number[] = [1, 2, 3, 4, 5]
+
+    levels.forEach((level) => {
+      const time = technology[`level${level}hours` as keyof typeof technology]
+
+      if (time) {
+        items.push(
+          <Grid key={level} item xs={12}>
+            Уровень {level}: {time}{' '}
+            <ReactDecliner num={time} one="час" two="часа" many="часов" />
+          </Grid>
+        )
+      }
+    })
+
+    if (items.length) {
+      return (
+        <Grid container spacing={8}>
+          <Grid item xs>
+            <Typography variant="subheading">
+              Примерно время освоения
+            </Typography>
+          </Grid>
+          <Grid item xs={12}></Grid>
+
+          {items}
+        </Grid>
+      )
+    }
+  }, [technology])
 
   return useMemo(() => {
     return (
       <>
         <NextSeo
           title={technology.name || ''}
-          description={`Технология "${technology.name}"`}
+          description={
+            technology.description || `Технология "${technology.name}"`
+          }
         />
 
+        {editButton}
+
         <TechnologyViewStyled>
-          <Grid container spacing={8}>
-            <Grid item xs>
-              <Typography variant="title">{technology.name}</Typography>
-            </Grid>
-            <Grid item></Grid>
-
-            {technology.site_url ? (
-              <Grid item xs={12}>
-                <Link href={technology.site_url} target="_blank">
-                  {technology.site_url}
-                </Link>
+          {editFormOpened ? (
+            <TechnologyUpdateForm
+              technology={technology}
+              editFormOpenedSetter={editFormOpenedSetter}
+            />
+          ) : (
+            <Grid container spacing={8}>
+              <Grid item xs>
+                <Typography variant="title">{technology.name}</Typography>
+                {technology.description ? (
+                  <Typography variant="caption">{technology.name}</Typography>
+                ) : null}
               </Grid>
-            ) : null}
+              <Grid item></Grid>
 
-            <Grid item xs={12}>
-              {content}
+              {technology.site_url ? (
+                <Grid item xs={12}>
+                  <Link href={technology.site_url} target="_blank">
+                    {technology.site_url}
+                  </Link>
+                </Grid>
+              ) : null}
+
+              <Grid item xs={12}>
+                {content}
+              </Grid>
             </Grid>
-          </Grid>
+          )}
 
-          {editForm}
+          {learnTimes}
 
           <div className="technology--used-by">
             <Grid container spacing={8}>
@@ -134,7 +200,16 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({
         </TechnologyViewStyled>
       </>
     )
-  }, [technology, content, editForm, context.user, header, items])
+  }, [
+    technology,
+    editButton,
+    editFormOpened,
+    content,
+    learnTimes,
+    context.user,
+    header,
+    items,
+  ])
 }
 
 export default TechnologyView

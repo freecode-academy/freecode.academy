@@ -2558,6 +2558,7 @@ export interface NexusGenInputs {
   }
   TechnologyCreateInput: {
     // input type
+    description?: string | null // String
     name: string // String!
   }
   TechnologyCreateOneWithoutTaskTechnologiesInput: {
@@ -2627,6 +2628,7 @@ export interface NexusGenInputs {
     components?: NexusGenEnums['SortOrder'] | null // SortOrder
     contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     level1hours?: NexusGenEnums['SortOrder'] | null // SortOrder
     level2hours?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -2639,6 +2641,7 @@ export interface NexusGenInputs {
   }
   TechnologyUpdateInput: {
     // input type
+    description?: string | null // String
     level1hours?: number | null // Int
     level2hours?: number | null // Int
     level3hours?: number | null // Int
@@ -2664,6 +2667,7 @@ export interface NexusGenInputs {
     components?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     level1hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     level2hours?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
@@ -2677,6 +2681,7 @@ export interface NexusGenInputs {
   TechnologyWhereUniqueInput: {
     // input type
     id?: string | null // String
+    name?: string | null // String
   }
   TemplateListRelationFilter: {
     // input type
@@ -4219,13 +4224,14 @@ export interface NexusGenFieldTypes {
     components: NexusGenScalars['JSON'] | null // JSON
     contentText: string | null // String
     createdAt: NexusGenScalars['DateTime'] // DateTime!
+    description: string | null // String
     id: string // ID!
     level1hours: number | null // Int
     level2hours: number | null // Int
     level3hours: number | null // Int
     level4hours: number | null // Int
     level5hours: number | null // Int
-    name: string | null // String
+    name: string // String!
     site_url: string | null // String
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
@@ -4894,6 +4900,7 @@ export interface NexusGenFieldTypeNames {
     components: 'JSON'
     contentText: 'String'
     createdAt: 'DateTime'
+    description: 'String'
     id: 'ID'
     level1hours: 'Int'
     level2hours: 'Int'

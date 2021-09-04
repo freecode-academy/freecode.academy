@@ -10,11 +10,12 @@ export const createTechnology: FieldResolver<'Mutation', 'createTechnology'> =
     validateTechnology(args.data)
 
     const {
-      data: { name },
+      data: { name, description },
     } = args
 
     const createData: Prisma.TechnologyCreateInput = {
       name,
+      description,
       User: {
         connect: {
           id: currentUserId,

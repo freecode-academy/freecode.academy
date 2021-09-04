@@ -1236,7 +1236,8 @@ model Technology {
   id                  String               @id @default(cuid()) @db.VarChar(32)
   createdAt           DateTime             @default(now("0")) @db.DateTime(0)
   updatedAt           DateTime             @default(now("0")) @updatedAt @db.DateTime(0)
-  name                String               @db.MediumText
+  name                String
+  description         String?              @db.Text
   components          Json?
   contentText         String?              @db.MediumText
   site_url            String?              @db.MediumText
@@ -1253,6 +1254,7 @@ model Technology {
   UserTechnologies    UserTechnology[]
   LearnStrategyStages LearnStrategyStage[]
 
+  @@unique([name])
   @@index([CreatedBy], name: "CreatedBy")
 }
 

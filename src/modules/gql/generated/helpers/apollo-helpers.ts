@@ -548,13 +548,14 @@ export type TaskTechnologyResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type TechnologyKeySpecifier = ('CreatedBy' | 'UserTechnologies' | 'components' | 'contentText' | 'createdAt' | 'id' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'name' | 'site_url' | 'updatedAt' | TechnologyKeySpecifier)[];
+export type TechnologyKeySpecifier = ('CreatedBy' | 'UserTechnologies' | 'components' | 'contentText' | 'createdAt' | 'description' | 'id' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'name' | 'site_url' | 'updatedAt' | TechnologyKeySpecifier)[];
 export type TechnologyFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	UserTechnologies?: FieldPolicy<any> | FieldReadFunction<any>,
 	components?: FieldPolicy<any> | FieldReadFunction<any>,
 	contentText?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	level1hours?: FieldPolicy<any> | FieldReadFunction<any>,
 	level2hours?: FieldPolicy<any> | FieldReadFunction<any>,

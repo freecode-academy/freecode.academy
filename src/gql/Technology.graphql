@@ -84,6 +84,7 @@ fragment TechnologyNoNesting on Technology {
   createdAt
   updatedAt
   name
+  description
   components
   # contentText
   site_url

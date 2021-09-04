@@ -44,7 +44,7 @@ const TechnologyPage: Page = () => {
 
     return (
       <>
-        <View object={response.data?.object} />
+        <View technology={response.data?.object} />
       </>
     )
   }, [response.data?.object])

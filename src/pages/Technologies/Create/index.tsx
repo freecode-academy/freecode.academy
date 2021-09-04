@@ -32,6 +32,7 @@ export const CreateTechnologyPage: Page = () => {
     const schema: SchemaOf<DateType> = yup
       .object({
         name: yup.string().required('Не заполнено название'),
+        description: yup.string().nullable(),
       })
       .defined()
 
@@ -102,6 +103,21 @@ export const CreateTechnologyPage: Page = () => {
       )
     }, [])
 
+  const descriptionFieldRender: ControllerProps<
+    DateType,
+    'description'
+  >['render'] = useCallback(({ field, formState }) => {
+    return (
+      <TextField
+        {...field}
+        type="text"
+        title="Описание"
+        value={field.value || ''}
+        error={formState.errors[field.name]}
+      />
+    )
+  }, [])
+
   return useMemo(() => {
     return (
       <>
@@ -111,6 +127,11 @@ export const CreateTechnologyPage: Page = () => {
           <h2>Новая технология</h2>
 
           <Controller name="name" control={control} render={nameFieldRender} />
+          <Controller
+            name="description"
+            control={control}
+            render={descriptionFieldRender}
+          />
 
           <Button
             type="submit"
@@ -122,5 +143,12 @@ export const CreateTechnologyPage: Page = () => {
         </CreateTechnologyForm>
       </>
     )
-  }, [control, formState.isValid, mutation, nameFieldRender, onSubmit])
+  }, [
+    control,
+    descriptionFieldRender,
+    formState.isValid,
+    mutation,
+    nameFieldRender,
+    onSubmit,
+  ])
 }

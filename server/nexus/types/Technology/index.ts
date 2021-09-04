@@ -59,7 +59,8 @@ export const Technology = objectType({
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
-    t.string('name')
+    t.nonNull.string('name')
+    t.string('description')
     t.field('components', { type: 'JSON' })
     t.string('contentText')
     t.string('site_url')
@@ -103,6 +104,7 @@ export const TechnologyCreateInput = inputObjectType({
   name: 'TechnologyCreateInput',
   definition(t) {
     t.nonNull.string('name')
+    t.string('description')
   },
 })
 
@@ -110,6 +112,7 @@ export const TechnologyUpdateInput = inputObjectType({
   name: 'TechnologyUpdateInput',
   definition(t) {
     t.string('name')
+    t.string('description')
     t.int('level1hours')
     t.int('level2hours')
     t.int('level3hours')

@@ -3864,6 +3864,7 @@ export interface Technology {
   components?: Maybe<Scalars['JSON']>;
   contentText?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   /** Примерное количество часов на освоение уровня */
   level1hours?: Maybe<Scalars['Int']>;
@@ -3875,12 +3876,13 @@ export interface Technology {
   level4hours?: Maybe<Scalars['Int']>;
   /** Примерное количество часов на освоение уровня */
   level5hours?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
   site_url?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 }
 
 export interface TechnologyCreateInput {
+  description?: Maybe<Scalars['String']>;
   name: Scalars['String'];
 }
 
@@ -3951,6 +3953,7 @@ export interface TechnologyOrderByInput {
   components?: Maybe<SortOrder>;
   contentText?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   level1hours?: Maybe<SortOrder>;
   level2hours?: Maybe<SortOrder>;
@@ -3963,6 +3966,7 @@ export interface TechnologyOrderByInput {
 }
 
 export interface TechnologyUpdateInput {
+  description?: Maybe<Scalars['String']>;
   level1hours?: Maybe<Scalars['Int']>;
   level2hours?: Maybe<Scalars['Int']>;
   level3hours?: Maybe<Scalars['Int']>;
@@ -3984,6 +3988,7 @@ export interface TechnologyWhereInput {
   components?: Maybe<JsonNullableFilter>;
   contentText?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
+  description?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
   level1hours?: Maybe<IntNullableFilter>;
   level2hours?: Maybe<IntNullableFilter>;
@@ -3997,6 +4002,7 @@ export interface TechnologyWhereInput {
 
 export interface TechnologyWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 }
 
 export interface TemplateListRelationFilter {

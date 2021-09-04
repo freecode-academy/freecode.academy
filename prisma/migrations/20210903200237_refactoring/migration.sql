@@ -167,3 +167,16 @@ ALTER TABLE `Vote` ADD FOREIGN KEY (`User`) REFERENCES `User`(`id`) ON DELETE CA
 
 -- AddForeignKey
 ALTER TABLE `World` ADD FOREIGN KEY (`CreatedBy`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*
+  Warnings:
+
+  - A unique constraint covering the columns `[name]` on the table `Technology` will be added. If there are existing duplicate values, this will fail.
+
+*/
+-- AlterTable
+ALTER TABLE `Technology` ADD COLUMN `description` TEXT,
+    MODIFY `name` VARCHAR(191) NOT NULL;
+
+-- CreateIndex
+CREATE UNIQUE INDEX `Technology.name_unique` ON `Technology`(`name`);

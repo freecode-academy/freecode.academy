@@ -292,8 +292,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt'
     }
     technologies: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnologies' | 'TechnologyLessons' | 'UserTechnologies' | 'LearnStrategyStages'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnologies' | 'TechnologyLessons' | 'UserTechnologies' | 'LearnStrategyStages'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy'
     }
     technologyLessons: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToTechnologyLesson' | 'Comments' | 'TechnologyLessonUsers'
@@ -562,8 +562,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt'
     }
     Technologies: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnologies' | 'TechnologyLessons' | 'UserTechnologies' | 'LearnStrategyStages'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnologies' | 'TechnologyLessons' | 'UserTechnologies' | 'LearnStrategyStages'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy'
     }
     TechnologyLessons: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToTechnologyLesson' | 'Comments' | 'TechnologyLessonUsers'
@@ -2618,6 +2618,7 @@ interface NexusPrismaOutputs {
     createdAt: 'DateTime'
     updatedAt: 'DateTime'
     name: 'String'
+    description: 'String'
     components: 'Json'
     contentText: 'String'
     site_url: 'String'

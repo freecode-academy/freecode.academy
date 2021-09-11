@@ -28,7 +28,7 @@ export interface UikitUserLinkProps {
 
   size?: UserAvatarProps['size']
 
-  avatarProps?: any
+  avatarProps?: Partial<UserAvatarProps>
 
   // TODO: заменить на какую-то универсальную сущность типа secondaryText
   /**

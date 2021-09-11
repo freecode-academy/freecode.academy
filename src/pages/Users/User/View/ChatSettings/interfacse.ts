@@ -2,6 +2,6 @@ import { UserViewProps } from '../interfaces'
 import { ChatSettingProps } from './ChatSetting/interfacse'
 
 export type UserChatSettingsProps = {
-  user: UserViewProps['object']
+  user: UserViewProps['user']
   setValue: ChatSettingProps['setValue']
 }

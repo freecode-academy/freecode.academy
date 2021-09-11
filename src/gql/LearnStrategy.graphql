@@ -59,12 +59,22 @@ fragment learnStrategy_ on LearnStrategy {
   }
   LearnStrategyStages {
     Technology {
-      ...TechnologyNoNesting
+      ...learnStrategyStageTechnology
     }
     ...learnStrategyStageNoNesting
   }
   UserLearnStrategies {
     ...UserLearnStrategyNoNesting
+    CreatedBy {
+      ...UserNoNesting
+    }
+  }
+}
+
+fragment learnStrategyStageTechnology on Technology {
+  ...TechnologyNoNesting
+  UserTechnologies {
+    ...UserTechnologyNoNesting
     CreatedBy {
       ...UserNoNesting
     }

@@ -89,11 +89,17 @@ export const Technology = objectType({
     })
     t.list.nonNull.field('UserTechnologies', {
       type: 'UserTechnology',
-      resolve({ id }, _, ctx) {
+      args: {
+        orderBy: 'UserTechnologyOrderByInput',
+      },
+      resolve({ id }, args, ctx) {
+        const orderBy = args.orderBy as Prisma.UserTechnologyOrderByInput
+
         return ctx.prisma.userTechnology.findMany({
           where: {
             Technology: id,
           },
+          orderBy,
         })
       },
     })

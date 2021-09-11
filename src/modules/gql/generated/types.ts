@@ -3728,6 +3728,11 @@ export interface Technology {
   updatedAt: Scalars['DateTime'];
 }
 
+
+export type TechnologyUserTechnologiesArgs = {
+  orderBy?: Maybe<UserTechnologyOrderByInput>;
+};
+
 export interface TechnologyCreateInput {
   description?: Maybe<Scalars['String']>;
   name: Scalars['String'];
@@ -4101,6 +4106,8 @@ export interface User {
   id: Scalars['String'];
   /** Avatar */
   image?: Maybe<Scalars['String']>;
+  /** Готов быть ментором */
+  isMentor?: Maybe<Scalars['Boolean']>;
   phone?: Maybe<Scalars['String']>;
   /** Показывать емейл другим пользователям */
   showEmail?: Maybe<Scalars['Boolean']>;
@@ -4214,6 +4221,7 @@ export interface UserOrderByInput {
   hidden?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   image?: Maybe<SortOrder>;
+  isMentor?: Maybe<SortOrder>;
   marketplaceToken?: Maybe<SortOrder>;
   oldID?: Maybe<SortOrder>;
   password?: Maybe<SortOrder>;
@@ -4261,6 +4269,8 @@ export interface UserTechnology {
   date_till?: Maybe<Scalars['DateTime']>;
   hiring_status?: Maybe<UserTechnologyHiringStatus>;
   id: Scalars['ID'];
+  /** Готов быть ментором */
+  isMentor?: Maybe<Scalars['Boolean']>;
   level?: Maybe<Scalars['UserTechnologyLevel']>;
   status?: Maybe<UserTechnologyStatus>;
   technologyId: Scalars['String'];
@@ -4302,6 +4312,7 @@ export interface UserTechnologyOrderByInput {
   date_till?: Maybe<SortOrder>;
   hiring_status?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  isMentor?: Maybe<SortOrder>;
   level?: Maybe<SortOrder>;
   status?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
@@ -4335,6 +4346,8 @@ export interface UserTechnologyUpdateInput {
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
   hiring_status?: Maybe<UserTechnologyHiringStatus>;
+  /** Готов быть ментором */
+  isMentor?: Maybe<Scalars['Boolean']>;
   level?: Maybe<Scalars['UserTechnologyLevel']>;
   status?: Maybe<UserTechnologyStatus>;
 }
@@ -4353,6 +4366,7 @@ export interface UserTechnologyWhereInput {
   date_till?: Maybe<DateTimeNullableFilter>;
   hiring_status?: Maybe<EnumUserTechnologyHiringStatusNullableFilter>;
   id?: Maybe<StringFilter>;
+  isMentor?: Maybe<BoolFilter>;
   level?: Maybe<IntNullableFilter>;
   status?: Maybe<EnumUserTechnologyStatusNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
@@ -4372,6 +4386,8 @@ export interface UserUpdateInput {
   email?: Maybe<Scalars['String']>;
   fullname?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['String']>;
+  /** Готов быть ментором */
+  isMentor?: Maybe<Scalars['Boolean']>;
   password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   technologyLevel?: Maybe<Scalars['UserTechnologyLevel']>;
@@ -4469,6 +4485,7 @@ export interface UserWhereInput {
   hidden?: Maybe<BoolNullableFilter>;
   id?: Maybe<StringFilter>;
   image?: Maybe<StringNullableFilter>;
+  isMentor?: Maybe<BoolFilter>;
   marketplaceToken?: Maybe<StringNullableFilter>;
   oldID?: Maybe<IntNullableFilter>;
   other_Users?: Maybe<UserListRelationFilter>;

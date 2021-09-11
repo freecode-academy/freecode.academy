@@ -24,16 +24,16 @@ import UserChatSettings from './ChatSettings'
 import UserChatRooms from './ChatRooms'
 import UserTechnologyLevel from 'src/pages/Technologies/Technology/View/UserTechnologyRow/UserTechnologyLevel'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
+import CheckBox from 'src/uikit/CheckBox'
 // import { UserProgress } from './Progress'
 
-const UserView: React.FC<UserViewProps> = (props) => {
-  const user = props.object
-
+const UserView: React.FC<UserViewProps> = ({ user }) => {
   const context = useContext(Context) as PrismaCmsContext
 
   const currentUser = context.user
 
   const isCurrentUser = user ? user.id === currentUser?.id : false
+  const canEdit = isCurrentUser
 
   /**
    * Измененные данные пользователя
@@ -59,7 +59,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
             ...data,
           }
         : user
-    ) as UserViewProps['object']
+    ) as UserViewProps['user']
   }, [data, user])
 
   const onChange = useCallback(
@@ -223,6 +223,38 @@ const UserView: React.FC<UserViewProps> = (props) => {
     )
   }, [data, onChange, userEdited?.password])
 
+  const onCheckBoxChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+      const name = event.target.name as keyof UserUpdateInput | null
+
+      name && setValue(name, checked)
+    },
+    [setValue]
+  )
+
+  const isMentor = useMemo(() => {
+    if (!data) {
+      return null
+    }
+
+    return (
+      // <TextField
+      //   name="password"
+      //   value={userEdited?.password || ''}
+      //   onChange={onChange}
+      //   label="Новый пароль"
+      //   type="password"
+      //   fullWidth
+      // />
+      <CheckBox
+        checked={userEdited.isMentor ? true : false}
+        label="Готов быть ментором"
+        name="isMentor"
+        onChange={onCheckBoxChange}
+      />
+    )
+  }, [data, onCheckBoxChange, userEdited.isMentor])
+
   const email = useMemo(() => {
     if (!data) {
       return null
@@ -352,6 +384,12 @@ const UserView: React.FC<UserViewProps> = (props) => {
               </Grid>
             ) : null}
 
+            {isMentor ? (
+              <Grid item xs={12} md={6} lg={4}>
+                {isMentor}
+              </Grid>
+            ) : null}
+
             {password ? (
               <Grid item xs={12} md={6} lg={4}>
                 {password}
@@ -379,6 +417,7 @@ const UserView: React.FC<UserViewProps> = (props) => {
     chatSettings,
     email,
     fullname,
+    isMentor,
     notifications,
     password,
     save,
@@ -396,8 +435,14 @@ const UserView: React.FC<UserViewProps> = (props) => {
       return null
     }
 
-    return <UserViewTechnologies objects={user.UserTechnologies} />
-  }, [user.UserTechnologies])
+    return (
+      <UserViewTechnologies
+        canEdit={canEdit}
+        userTechnologies={user.UserTechnologies}
+        currentUser={currentUser}
+      />
+    )
+  }, [user.UserTechnologies, canEdit, currentUser])
 
   // TODO Restore
   // const userProgress = useMemo(() => {
@@ -428,10 +473,11 @@ const UserView: React.FC<UserViewProps> = (props) => {
         {chatRooms}
         {/* {userProgress} */}
         {level}
+        {user.isMentor ? <div>Готов быть ментором</div> : null}
         {technologies}
       </>
     )
-  }, [chatRooms, form, level, technologies])
+  }, [chatRooms, form, level, technologies, user.isMentor])
 }
 
 export default UserView

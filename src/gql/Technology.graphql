@@ -74,7 +74,7 @@ fragment technology_ on Technology {
   CreatedBy {
     ...UserNoNesting
   }
-  UserTechnologies {
+  UserTechnologies(orderBy: { createdAt: desc }) {
     ...technology_UserTechnology
   }
 }

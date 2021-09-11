@@ -3,6 +3,7 @@ import {
   useTechnologyQuery,
   TechnologyDocument,
   TechnologyQuery,
+  TechnologyQueryVariables,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -11,7 +12,7 @@ import { Page } from '../../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 
-function getQueryParams(query: ParsedUrlQuery) {
+function getQueryParams(query: ParsedUrlQuery): TechnologyQueryVariables {
   const id = query.id
 
   return {

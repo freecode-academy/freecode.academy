@@ -44,4 +44,5 @@ fragment UserTechnologyNoNesting on UserTechnology {
   hiring_status
   level
   technologyId
+  isMentor
 }

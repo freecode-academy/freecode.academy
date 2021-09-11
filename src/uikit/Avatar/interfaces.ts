@@ -10,4 +10,6 @@ export interface UserAvatarProps {
   user: Partial<UserNoNestingFragment> & {
     __typename?: 'User'
   }
+
+  className?: string
 }

@@ -65,6 +65,7 @@ fragment UserNoNesting on User {
   acceptNewChatRoomAnonymous
   acceptNewChatRoom
   technologyLevel
+  isMentor
 }
 
 fragment meUser on User {

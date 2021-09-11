@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useMemo } from 'react'
 import Context from 'src/pages/learn/CodeChallenge/Context'
-import { UikitUserLink } from 'src/uikit/Link/User'
+import UikitUserLink from 'src/uikit/Link/User'
 import { ToolPanelCompletionProps } from './interfaces'
 import { ToolPanelCompletionStyled } from './styles'
 

@@ -26,7 +26,7 @@ export const createUserTechnologyProcessor: FieldResolver<
     Technology as Prisma.TechnologyCreateNestedOneWithoutUserTechnologiesInput
 
   const createData: Prisma.UserTechnologyCreateInput = {
-    // date_from,
+    date_from: new Date(),
     // date_till,
     // level,
     // components,

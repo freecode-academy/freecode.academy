@@ -72,6 +72,7 @@ export * from './learnStrategies';
 export * from './learnStrategiesConnection';
 export * from './learnStrategy';
 export * from './learnStrategyStageNoNesting';
+export * from './learnStrategyStageTechnology';
 export * from './learnStrategy_';
 export * from './mainPage';
 export * from './mainPageCodeChallengeCompletion';

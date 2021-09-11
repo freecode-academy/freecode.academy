@@ -10,6 +10,7 @@ import moment from 'moment'
 import {
   Scalars,
   UserTechnologyUpdateInput,
+  UserUpdateInput,
   useUpdateUserTechnologyProcessorMutation,
 } from 'src/modules/gql/generated'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
@@ -21,10 +22,16 @@ import TextField from 'material-ui/TextField'
 import UserTechnologyLevel from './UserTechnologyLevel'
 import UserTechnologyStatusView from './UserTechnologyStatus'
 import UserTechnologyHiringStatusView from './UserTechnologyStatusHiring'
+import CheckBox from 'src/uikit/CheckBox'
+import TechnologyLink from 'src/uikit/Link/Technology'
 
 const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
-  object,
-  user,
+  userTechnology,
+  currentUser,
+  showActions,
+  showCreateBy,
+  showTechnology,
+  technology,
 }) => {
   const mutationTuple = useUpdateUserTechnologyProcessorMutation()
 
@@ -39,10 +46,10 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
 
   const dataWithMutations = useMemo(() => {
     return {
-      ...object,
+      ...userTechnology,
       ...data,
     }
-  }, [object, data])
+  }, [userTechnology, data])
 
   /**
    * Получаем текущее значение объекта
@@ -68,7 +75,12 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
   )
 
   const onChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (
+      event: React.ChangeEvent<HTMLInputElement>,
+      additionalValue?:
+        | UserUpdateInput['technologyLevel']
+        | UserUpdateInput['isMentor']
+    ) => {
       const name = event.target.name as Name
 
       if (!name) {
@@ -110,6 +122,12 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
 
           return
 
+        case 'isMentor':
+          if (typeof additionalValue === 'boolean') {
+            setValue(name, additionalValue)
+          }
+          return
+
         // case 'CreatedBy':
         // case 'Technology':
         case 'components':
@@ -148,7 +166,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
           variables: {
             data,
             where: {
-              id: object.id,
+              id: userTechnology.id,
             },
           },
         }).then((result) => {
@@ -162,13 +180,13 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
           return result
         })
     },
-    [data, mutation, object.id, resetData]
+    [data, mutation, userTechnology.id, resetData]
   )
 
   const buttons = useMemo(() => {
     const buttons: JSX.Element[] = []
 
-    if (user?.id && user?.id === object.CreatedBy?.id) {
+    if (currentUser?.id && currentUser?.id === userTechnology.CreatedBy?.id) {
       if (data) {
         buttons.push(
           <IconButton key="resetData" disabled={loading} onClick={resetData}>
@@ -198,7 +216,14 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     }
 
     return buttons
-  }, [data, loading, object.CreatedBy?.id, resetData, startEdit, user?.id])
+  }, [
+    data,
+    loading,
+    userTechnology.CreatedBy?.id,
+    resetData,
+    startEdit,
+    currentUser?.id,
+  ])
 
   /**
    * Дата С
@@ -312,6 +337,24 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     )
   }, [errors, getValue, inEditMode, setValue])
 
+  const isMentor = useMemo(() => {
+    const fieldName: Name = 'isMentor'
+    const checked = getValue(fieldName) || false
+
+    if (inEditMode) {
+      return (
+        <CheckBox
+          name="isMentor"
+          onChange={onChange}
+          label={checked ? 'Да' : 'Нет'}
+          checked={checked}
+        />
+      )
+    }
+
+    return checked ? 'Да' : null
+  }, [getValue, inEditMode, onChange])
+
   // const level = useMemo(() => {
   //   const fieldName: Name = 'level'
   //   const value = getValue(fieldName)
@@ -348,16 +391,27 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
         {snakbar}
 
         <GridTableItemStyled as="form" onSubmit={onSubmit}>
-          <GridTableAttributeStyled>{buttons}</GridTableAttributeStyled>
+          {showActions ? (
+            <GridTableAttributeStyled>{buttons}</GridTableAttributeStyled>
+          ) : null}
 
-          <GridTableAttributeStyled>
-            <UikitUserLink user={object.CreatedBy} />
-          </GridTableAttributeStyled>
+          {showTechnology && technology ? (
+            <GridTableAttributeStyled>
+              <TechnologyLink object={technology} />
+            </GridTableAttributeStyled>
+          ) : null}
+
+          {showCreateBy ? (
+            <GridTableAttributeStyled>
+              <UikitUserLink user={userTechnology.CreatedBy} />
+            </GridTableAttributeStyled>
+          ) : null}
 
           <GridTableAttributeStyled>{level}</GridTableAttributeStyled>
 
           <GridTableAttributeStyled>{status}</GridTableAttributeStyled>
           <GridTableAttributeStyled>{hiring_status}</GridTableAttributeStyled>
+          <GridTableAttributeStyled>{isMentor}</GridTableAttributeStyled>
 
           <GridTableAttributesContainerStyled>
             <GridTableAttributeStyled>{dateFrom}</GridTableAttributeStyled>
@@ -368,15 +422,20 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
       </>
     )
   }, [
+    snakbar,
+    onSubmit,
+    showActions,
     buttons,
+    showTechnology,
+    technology,
+    showCreateBy,
+    userTechnology.CreatedBy,
+    level,
+    status,
+    hiring_status,
+    isMentor,
     dateFrom,
     dateTill,
-    hiring_status,
-    level,
-    object.CreatedBy,
-    onSubmit,
-    snakbar,
-    status,
   ])
 }
 

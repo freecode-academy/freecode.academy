@@ -75,9 +75,7 @@ export const TaskTechnology = objectType({
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
-    t.field('level', {
-      type: 'UserTechnologyLevel',
-    })
+    t.technologyLevel('level')
 
     t.field('CreatedBy', {
       type: 'User',

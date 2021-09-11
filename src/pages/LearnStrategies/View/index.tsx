@@ -3,13 +3,20 @@ import Link from 'next/link'
 import React, { useContext } from 'react'
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
-import { UikitUserLink } from 'src/uikit/Link/User'
+import UikitUserLink from 'src/uikit/Link/User'
+import {
+  GridTableStyled,
+  GridTableAttributeStyled,
+  GridTableItemStyled,
+  // GridTableAttributesContainerStyled,
+} from 'src/components/GridTable/styles'
+
 import { LearnStrategiesViewProps } from './interfaces'
 import { LearnStrategiesViewMembers } from './Members'
 import {
   LearnStrategiesViewHeaderStyled,
   LearnStrategiesViewStyled,
-  LearnStrategiesViewTableStyled,
+  // LearnStrategiesViewTableStyled,
 } from './styles'
 
 export const LearnStrategiesView: React.FC<LearnStrategiesViewProps> = ({
@@ -22,40 +29,51 @@ export const LearnStrategiesView: React.FC<LearnStrategiesViewProps> = ({
     <>
       <LearnStrategiesViewStyled>
         <LearnStrategiesViewHeaderStyled className="flex align-items-center">
-          <Typography variant="title">Стратегии развития</Typography>
-          <div className="flex-1" />
+          <Typography variant="title"></Typography>
           <Link href="/learnstrategies/create">
             <a rel="nofollow noindex">Создать стратегию развития</a>
           </Link>
+          <div className="flex-1" />
         </LearnStrategiesViewHeaderStyled>
 
-        <LearnStrategiesViewTableStyled>
-          <div>Название стратегии</div>
-          <div>Технологический уровень</div>
-
-          <div>Кто создал</div>
-          <div>Участники</div>
+        <GridTableStyled>
+          <GridTableItemStyled>
+            <GridTableAttributeStyled>
+              Название стратегии
+            </GridTableAttributeStyled>
+            <GridTableAttributeStyled>
+              Технологический уровень
+            </GridTableAttributeStyled>
+            <GridTableAttributeStyled>Кто создал</GridTableAttributeStyled>
+            <GridTableAttributeStyled>Участники</GridTableAttributeStyled>
+          </GridTableItemStyled>
 
           {learnStrategies.map((n) => {
             return (
-              <React.Fragment key={n.id}>
-                <div>
+              <GridTableItemStyled key={n.id}>
+                <GridTableAttributeStyled>
                   <Link href={`/learnstrategies/${n.id}`}>{n.name}</Link>
 
                   <div>{n.description}</div>
-                </div>
-                <span>{getUserTechnologyLevelText(n.level)}</span>
-                <UikitUserLink user={n.CreatedBy} />
-                <div>
+                </GridTableAttributeStyled>
+                <GridTableAttributeStyled>
+                  {getUserTechnologyLevelText(n.level)}
+                </GridTableAttributeStyled>
+                <GridTableAttributeStyled>
+                  {' '}
+                  <UikitUserLink user={n.CreatedBy} />
+                </GridTableAttributeStyled>
+                <GridTableAttributeStyled>
+                  {' '}
                   <LearnStrategiesViewMembers
                     learnStrategy={n}
                     currentUser={currentUser}
                   />
-                </div>
-              </React.Fragment>
+                </GridTableAttributeStyled>
+              </GridTableItemStyled>
             )
           })}
-        </LearnStrategiesViewTableStyled>
+        </GridTableStyled>
       </LearnStrategiesViewStyled>
     </>
   )

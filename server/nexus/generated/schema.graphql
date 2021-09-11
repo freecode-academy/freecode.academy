@@ -3359,7 +3359,7 @@ input TeamWhereInput {
 
 type Technology {
   CreatedBy: User
-  UserTechnologies: [UserTechnology!]
+  UserTechnologies(orderBy: UserTechnologyOrderByInput): [UserTechnology!]
   components: JSON
   contentText: String
   createdAt: DateTime!
@@ -3783,6 +3783,11 @@ type User {
   Avatar
   """
   image: String
+
+  """
+  Готов быть ментором
+  """
+  isMentor: Boolean
   phone: String
 
   """
@@ -3894,6 +3899,7 @@ input UserOrderByInput {
   hidden: SortOrder
   id: SortOrder
   image: SortOrder
+  isMentor: SortOrder
   marketplaceToken: SortOrder
   oldID: SortOrder
   password: SortOrder
@@ -3945,6 +3951,11 @@ type UserTechnology {
   date_till: DateTime
   hiring_status: UserTechnologyHiringStatus
   id: ID!
+
+  """
+  Готов быть ментором
+  """
+  isMentor: Boolean
   level: UserTechnologyLevel
   status: UserTechnologyStatus
   technologyId: String!
@@ -4000,6 +4011,7 @@ input UserTechnologyOrderByInput {
   date_till: SortOrder
   hiring_status: SortOrder
   id: SortOrder
+  isMentor: SortOrder
   level: SortOrder
   status: SortOrder
   updatedAt: SortOrder
@@ -4049,6 +4061,11 @@ input UserTechnologyUpdateInput {
   date_from: DateTime
   date_till: DateTime
   hiring_status: UserTechnologyHiringStatus
+
+  """
+  Готов быть ментором
+  """
+  isMentor: Boolean
   level: UserTechnologyLevel
   status: UserTechnologyStatus
 }
@@ -4067,6 +4084,7 @@ input UserTechnologyWhereInput {
   date_till: DateTimeNullableFilter
   hiring_status: EnumUserTechnologyHiringStatusNullableFilter
   id: StringFilter
+  isMentor: BoolFilter
   level: IntNullableFilter
   status: EnumUserTechnologyStatusNullableFilter
   updatedAt: DateTimeFilter
@@ -4086,6 +4104,11 @@ input UserUpdateInput {
   email: String
   fullname: String
   image: String
+
+  """
+  Готов быть ментором
+  """
+  isMentor: Boolean
   password: String
   phone: String
   technologyLevel: UserTechnologyLevel
@@ -4183,6 +4206,7 @@ input UserWhereInput {
   hidden: BoolNullableFilter
   id: StringFilter
   image: StringNullableFilter
+  isMentor: BoolFilter
   marketplaceToken: StringNullableFilter
   oldID: IntNullableFilter
   other_Users: UserListRelationFilter

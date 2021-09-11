@@ -8,6 +8,7 @@ import {
   UserTechnologyStatus,
 } from 'src/modules/gql/generated'
 import TechnologyLink from 'src/uikit/Link/Technology'
+import UikitUserLink from 'src/uikit/Link/User'
 import { LearnStageTechnologyProps } from './interfaces'
 import { LearnStageTechnologyStyled } from './styles'
 
@@ -24,7 +25,7 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
   inEditMode,
 }) => {
   // Получаем текущий уровень знания технологии пользователем
-  const userTechnology = useMemo(() => {
+  const currentUserUserTechnology = useMemo(() => {
     return currentUser?.UserTechnologies?.find(
       (n) => n.technologyId === technology.id
     )
@@ -34,10 +35,10 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
    * Статус использования технологии
    */
   const userTechnologyStatus = useMemo(() => {
-    if (userTechnology?.status) {
+    if (currentUserUserTechnology?.status) {
       let className: StatusClassName = undefined
 
-      switch (userTechnology.status) {
+      switch (currentUserUserTechnology.status) {
         case UserTechnologyStatus.NOLONGERUSE:
         case UserTechnologyStatus.REFUSEDTOSTUDY:
           className = 'failure'
@@ -55,22 +56,22 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
 
       return (
         <span className={className}>
-          {getUserTechnologyStatusText(userTechnology?.status)}
+          {getUserTechnologyStatusText(currentUserUserTechnology?.status)}
         </span>
       )
     } else {
       return <span className="failure">Не указан</span>
     }
-  }, [userTechnology?.status])
+  }, [currentUserUserTechnology?.status])
 
   /**
    * Статус заинтересованности в трудоустройстве по данной технологии
    */
   const userTechnologyHiringStatus = useMemo(() => {
-    if (userTechnology?.hiring_status) {
+    if (currentUserUserTechnology?.hiring_status) {
       let className: StatusClassName = undefined
 
-      switch (userTechnology.hiring_status) {
+      switch (currentUserUserTechnology.hiring_status) {
         case UserTechnologyHiringStatus.NEGATIVE:
           className = 'failure'
           break
@@ -86,13 +87,15 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
 
       return (
         <span className={className}>
-          {getUserTechnologyHiringStatusText(userTechnology?.hiring_status)}
+          {getUserTechnologyHiringStatusText(
+            currentUserUserTechnology?.hiring_status
+          )}
         </span>
       )
     } else {
       return <span className="failure">Не указан</span>
     }
-  }, [userTechnology?.hiring_status])
+  }, [currentUserUserTechnology?.hiring_status])
 
   /**
    * Имеет ли право пользователь редактировать объект
@@ -150,6 +153,18 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
   }, [canEdit, deleteStage, inEditMode])
 
   /**
+   * Менторы
+   */
+  const mentors = useMemo(() => {
+    const mentors =
+      technology.UserTechnologies?.filter((n) => n.isMentor === true) || []
+
+    return mentors.map((n) => {
+      return <UikitUserLink key={n.id} user={n.CreatedBy} size="small" />
+    })
+  }, [technology.UserTechnologies])
+
+  /**
    * Конечный вывод
    */
   return useMemo(() => {
@@ -172,10 +187,10 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
 
         <p>
           Ваш уровень:{' '}
-          {userTechnology?.level ? (
+          {currentUserUserTechnology?.level ? (
             <>
-              {userTechnology?.level}.{' '}
-              {userTechnology?.level >= (level || 0) ? (
+              {currentUserUserTechnology?.level}.{' '}
+              {currentUserUserTechnology?.level >= (level || 0) ? (
                 <span className="success">Достаточный</span>
               ) : (
                 <span className="failure">Недостаточный</span>
@@ -196,17 +211,20 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
         {/* 
         Если уровень пользователя ниже, то выводим информацию примерно сколько часов осваивать
         */}
-        {hours && level && (userTechnology?.level || 0) < level ? (
+        {hours && level && (currentUserUserTechnology?.level || 0) < level ? (
           <p>{`Приблизительное время освоения: ${hours} часов`}</p>
         ) : null}
+
+        {mentors.length ? <div> Менторы: {mentors} </div> : null}
       </LearnStageTechnologyStyled>
     )
   }, [
-    buttons,
     learnStrategyStage.level,
     technology,
-    userTechnology?.level,
-    userTechnologyHiringStatus,
+    buttons,
+    currentUserUserTechnology?.level,
     userTechnologyStatus,
+    userTechnologyHiringStatus,
+    mentors,
   ])
 }

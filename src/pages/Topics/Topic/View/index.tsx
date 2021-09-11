@@ -84,9 +84,9 @@ class TopicView extends EditableView<TopicViewProps> {
               <UserLink
                 user={CreatedBy}
                 showName={false}
-                avatarProps={{
-                  size: 'medium',
-                }}
+                // avatarProps={{
+                //   size: 'normal',
+                // }}
               />
             </Grid>
           ) : null}

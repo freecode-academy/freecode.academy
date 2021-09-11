@@ -1,8 +1,25 @@
 import { PrismaCmsContext } from '@prisma-cms/context'
-import { TechnologyUserTechnologyFragment } from 'src/modules/gql/generated'
+import {
+  TechnologyNoNestingFragment,
+  TechnologyUserTechnologyFragment,
+} from 'src/modules/gql/generated'
 
 export type UserTechnologyRowProps = {
-  object: TechnologyUserTechnologyFragment
+  userTechnology: TechnologyUserTechnologyFragment
 
-  user: PrismaCmsContext['user']
+  currentUser: PrismaCmsContext['user']
+
+  showActions: boolean
+
+  /**
+   * Выводить ли технологию
+   */
+  showTechnology: boolean
+  technology?: TechnologyNoNestingFragment | null
+
+  /**
+   * Показывать ли колонку владельца.
+   * На странице пользователя эта колонка не выводится.
+   */
+  showCreateBy: boolean
 }

@@ -2,7 +2,7 @@ import {
   GridTableItemStyled,
   GridTableStyled,
 } from 'src/components/GridTable/styles'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const TechnologyViewStyled = styled.section`
   .technology--used-by {
@@ -10,16 +10,25 @@ export const TechnologyViewStyled = styled.section`
   }
 `
 
-export const TechnologyGridTableStyled = styled(GridTableStyled)`
+type TechnologyGridTableStyledProps = {
+  showActions: boolean
+  showCreateBy: boolean
+  showTechnology: boolean
+}
+
+export const TechnologyGridTableStyled = styled(
+  GridTableStyled
+)<TechnologyGridTableStyledProps>`
   @media screen and (min-width: ${({ theme }) => `${theme.breakpoints.sm}px`}) {
     > ${GridTableItemStyled} {
       display: grid;
-      /* grid-template-columns: 54px minmax(100px, 2fr) minmax(130px, 1fr) 100px; */
       grid-template-columns:
-        minmax(54px, min-content) minmax(80px, 1fr) minmax(130px, 1fr) minmax(
-          130px,
-          1fr
-        )
+        ${({ showActions }) =>
+          showActions ? css`minmax(54px, min-content)` : null}
+        ${({ showTechnology }) =>
+          showTechnology ? css`minmax(80px, 1fr)` : null}
+        ${({ showCreateBy }) => (showCreateBy ? css`minmax(80px, 1fr)` : null)}
+        minmax(130px, 1fr) minmax(130px, 1fr) minmax(130px, 1fr)
         minmax(130px, 1fr)
         minmax(130px, 1fr);
     }

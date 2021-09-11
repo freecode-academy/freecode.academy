@@ -6,7 +6,7 @@ import {
   SortOrder,
   useLearnStrategiesQuery,
 } from 'src/modules/gql/generated'
-import { UikitUserLink } from 'src/uikit/Link/User'
+import UikitUserLink from 'src/uikit/Link/User'
 import { CreateLearnStrategyStageLearnStrategyProps } from './interfaces'
 
 /**

@@ -2980,6 +2980,7 @@ export interface NexusGenInputs {
     hidden?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     image?: NexusGenEnums['SortOrder'] | null // SortOrder
+    isMentor?: NexusGenEnums['SortOrder'] | null // SortOrder
     marketplaceToken?: NexusGenEnums['SortOrder'] | null // SortOrder
     oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
     password?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -3031,6 +3032,7 @@ export interface NexusGenInputs {
     date_till?: NexusGenEnums['SortOrder'] | null // SortOrder
     hiring_status?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    isMentor?: NexusGenEnums['SortOrder'] | null // SortOrder
     level?: NexusGenEnums['SortOrder'] | null // SortOrder
     status?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -3041,6 +3043,7 @@ export interface NexusGenInputs {
     date_from?: NexusGenScalars['DateTime'] | null // DateTime
     date_till?: NexusGenScalars['DateTime'] | null // DateTime
     hiring_status?: NexusGenEnums['UserTechnologyHiringStatus'] | null // UserTechnologyHiringStatus
+    isMentor?: boolean | null // Boolean
     level?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     status?: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
   }
@@ -3063,6 +3066,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['EnumUserTechnologyHiringStatusNullableFilter']
       | null // EnumUserTechnologyHiringStatusNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    isMentor?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     level?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     status?: NexusGenInputs['EnumUserTechnologyStatusNullableFilter'] | null // EnumUserTechnologyStatusNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
@@ -3086,6 +3090,7 @@ export interface NexusGenInputs {
     email?: string | null // String
     fullname?: string | null // String
     image?: string | null // String
+    isMentor?: boolean | null // Boolean
     password?: string | null // String
     phone?: string | null // String
     technologyLevel?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
@@ -3247,6 +3252,7 @@ export interface NexusGenInputs {
     hidden?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     image?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    isMentor?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     marketplaceToken?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     oldID?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
     other_Users?: NexusGenInputs['UserListRelationFilter'] | null // UserListRelationFilter
@@ -4082,6 +4088,7 @@ export interface NexusGenFieldTypes {
     hasPhone: boolean | null // Boolean
     id: string // String!
     image: string | null // String
+    isMentor: boolean | null // Boolean
     phone: string | null // String
     showEmail: boolean | null // Boolean
     showPhone: boolean | null // Boolean
@@ -4117,6 +4124,7 @@ export interface NexusGenFieldTypes {
     date_till: NexusGenScalars['DateTime'] | null // DateTime
     hiring_status: NexusGenEnums['UserTechnologyHiringStatus'] | null // UserTechnologyHiringStatus
     id: string // ID!
+    isMentor: boolean | null // Boolean
     level: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     status: NexusGenEnums['UserTechnologyStatus'] | null // UserTechnologyStatus
     technologyId: string // String!
@@ -4648,6 +4656,7 @@ export interface NexusGenFieldTypeNames {
     hasPhone: 'Boolean'
     id: 'String'
     image: 'String'
+    isMentor: 'Boolean'
     phone: 'String'
     showEmail: 'Boolean'
     showPhone: 'Boolean'
@@ -4683,6 +4692,7 @@ export interface NexusGenFieldTypeNames {
     date_till: 'DateTime'
     hiring_status: 'UserTechnologyHiringStatus'
     id: 'ID'
+    isMentor: 'Boolean'
     level: 'UserTechnologyLevel'
     status: 'UserTechnologyStatus'
     technologyId: 'String'
@@ -5210,6 +5220,12 @@ export interface NexusGenArgTypes {
       // args
       orderBy?: NexusGenInputs['TimerOrderByInput'] | null // TimerOrderByInput
       where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
+    }
+  }
+  Technology: {
+    UserTechnologies: {
+      // args
+      orderBy?: NexusGenInputs['UserTechnologyOrderByInput'] | null // UserTechnologyOrderByInput
     }
   }
   User: {

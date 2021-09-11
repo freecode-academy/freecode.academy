@@ -25,18 +25,19 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
 
   const currentUser = useCurrentUser()
 
+  const showActions = currentUser ? true : false
+
   const header = useMemo(() => {
     return (
       <GridTableItemStyled>
-        <GridTableAttributeStyled />
+        {showActions ? <GridTableAttributeStyled /> : null}
 
         <GridTableAttributeStyled>Пользователь</GridTableAttributeStyled>
 
-        <GridTableAttributeStyled>
-          Технологический уровень
-        </GridTableAttributeStyled>
+        <GridTableAttributeStyled>Уровень</GridTableAttributeStyled>
         <GridTableAttributeStyled>Статус</GridTableAttributeStyled>
         <GridTableAttributeStyled>Готовность к найму</GridTableAttributeStyled>
+        <GridTableAttributeStyled>Менторство</GridTableAttributeStyled>
 
         <GridTableAttributesContainerStyled>
           <GridTableAttributeStyled>Используется С</GridTableAttributeStyled>
@@ -44,10 +45,19 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
         </GridTableAttributesContainerStyled>
       </GridTableItemStyled>
     )
-  }, [])
+  }, [showActions])
 
   const items = technology.UserTechnologies?.map((n) => {
-    return <UserTechnologyRow key={n.id} object={n} user={context.user} />
+    return (
+      <UserTechnologyRow
+        key={n.id}
+        userTechnology={n}
+        currentUser={context.user}
+        showCreateBy={true}
+        showTechnology={false}
+        showActions={showActions}
+      />
+    )
   })
 
   const content = useMemo(() => {
@@ -187,12 +197,16 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
               <Grid item>
                 <ConnectUserTechnology
                   technology={technology}
-                  user={context.user}
+                  currentUser={context.user}
                 />
               </Grid>
             </Grid>
 
-            <TechnologyGridTableStyled>
+            <TechnologyGridTableStyled
+              showActions={showActions}
+              showCreateBy={true}
+              showTechnology={false}
+            >
               {header}
               {items}
             </TechnologyGridTableStyled>
@@ -207,6 +221,7 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
     content,
     learnTimes,
     context.user,
+    showActions,
     header,
     items,
   ])

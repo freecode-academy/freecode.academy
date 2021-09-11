@@ -10,7 +10,7 @@ import { ConnectUserTechnologyProps } from './interfaces'
  */
 const ConnectUserTechnology: React.FC<ConnectUserTechnologyProps> = ({
   technology,
-  user,
+  currentUser,
 }) => {
   /**
    * Процессор на создание связки Пользователь-Технология
@@ -48,8 +48,10 @@ const ConnectUserTechnology: React.FC<ConnectUserTechnologyProps> = ({
      * Если технология уже привязана, не выводим ничего
      */
     if (
-      user?.id &&
-      technology.UserTechnologies?.find((n) => n.CreatedBy?.id === user?.id)
+      currentUser?.id &&
+      technology.UserTechnologies?.find(
+        (n) => n.CreatedBy?.id === currentUser?.id
+      )
     ) {
       return null
     }
@@ -69,7 +71,7 @@ const ConnectUserTechnology: React.FC<ConnectUserTechnologyProps> = ({
         </Button>
       </>
     )
-  }, [loading, onClick, snakbar, technology.UserTechnologies, user?.id])
+  }, [loading, onClick, snakbar, technology.UserTechnologies, currentUser?.id])
 }
 
 export default ConnectUserTechnology

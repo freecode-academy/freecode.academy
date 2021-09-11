@@ -42,6 +42,7 @@ export const LearnStrategyViewStages: React.FC<LearnStrategyViewStagesProps> =
           subStrategies.push(
             <li key={n.id}>
               <LearnStrategyView
+                isRoot={false}
                 id={n.learnStrategyTargetId}
                 loadedIDs={loadedIDsWithCurrent}
                 currentUser={currentUser}

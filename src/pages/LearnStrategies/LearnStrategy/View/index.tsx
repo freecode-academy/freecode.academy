@@ -19,6 +19,7 @@ export const LearnStrategyPageView: React.FC<LearnStrategyPageViewProps> = ({
            * из одной стратегии в другую.
            */
           key={learnStrategy.id}
+          isRoot={true}
           id={learnStrategy.id}
           loadedIDs={[]}
           currentUser={currentUser}

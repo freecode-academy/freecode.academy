@@ -33,6 +33,7 @@ model User {
   acceptChatMessageAnonymous                             Boolean?
   acceptNewChatRoomAnonymous                             Boolean?
   acceptNewChatRoom                                      Boolean?
+  isMentor                                               Boolean                   @default(value: false)
   technologyLevel                                        Int?                      @db.UnsignedTinyInt
   User                                                   User?                     @relation("UserToUser_CreatedBy", fields: [CreatedBy], references: [id])
   EthAccount_EthAccountToUser_EthAccountAuthed           EthAccount?               @relation("EthAccountToUser_EthAccountAuthed", fields: [EthAccountAuthed], references: [id])
@@ -1413,6 +1414,7 @@ model UserTechnology {
   status                                UserTechnologyStatus?
   // Готов ли принимать заказы с таким технологиями
   hiring_status                         UserTechnologyHiringStatus?
+  isMentor                              Boolean                     @default(value: false)
   CreatedBy                             String                      @db.VarChar(32)
   User                                  User                        @relation(fields: [CreatedBy], references: [id])
   Technology                            String                      @db.VarChar(32)

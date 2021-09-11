@@ -492,7 +492,7 @@ export type TimerResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserKeySpecifier = ('CodeChallengeCompletions' | 'EthAccounts' | 'NotificationTypes' | 'Projects' | 'ProjectsCreated' | 'Timers' | 'UserTechnologies' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoom' | 'acceptNewChatRoomAnonymous' | 'activated' | 'active' | 'address' | 'createdAt' | 'deleted' | 'email' | 'fullname' | 'hasEmail' | 'hasPhone' | 'id' | 'image' | 'phone' | 'showEmail' | 'showPhone' | 'sudo' | 'technologyLevel' | 'updatedAt' | 'username' | UserKeySpecifier)[];
+export type UserKeySpecifier = ('CodeChallengeCompletions' | 'EthAccounts' | 'NotificationTypes' | 'Projects' | 'ProjectsCreated' | 'Timers' | 'UserTechnologies' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoom' | 'acceptNewChatRoomAnonymous' | 'activated' | 'active' | 'address' | 'createdAt' | 'deleted' | 'email' | 'fullname' | 'hasEmail' | 'hasPhone' | 'id' | 'image' | 'isMentor' | 'phone' | 'showEmail' | 'showPhone' | 'sudo' | 'technologyLevel' | 'updatedAt' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
 	CodeChallengeCompletions?: FieldPolicy<any> | FieldReadFunction<any>,
 	EthAccounts?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -515,6 +515,7 @@ export type UserFieldPolicy = {
 	hasPhone?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	isMentor?: FieldPolicy<any> | FieldReadFunction<any>,
 	phone?: FieldPolicy<any> | FieldReadFunction<any>,
 	showEmail?: FieldPolicy<any> | FieldReadFunction<any>,
 	showPhone?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -540,7 +541,7 @@ export type UserResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserTechnologyKeySpecifier = ('CreatedBy' | 'Technology' | 'components' | 'createdAt' | 'date_from' | 'date_till' | 'hiring_status' | 'id' | 'level' | 'status' | 'technologyId' | 'updatedAt' | UserTechnologyKeySpecifier)[];
+export type UserTechnologyKeySpecifier = ('CreatedBy' | 'Technology' | 'components' | 'createdAt' | 'date_from' | 'date_till' | 'hiring_status' | 'id' | 'isMentor' | 'level' | 'status' | 'technologyId' | 'updatedAt' | UserTechnologyKeySpecifier)[];
 export type UserTechnologyFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	Technology?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -550,6 +551,7 @@ export type UserTechnologyFieldPolicy = {
 	date_till?: FieldPolicy<any> | FieldReadFunction<any>,
 	hiring_status?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	isMentor?: FieldPolicy<any> | FieldReadFunction<any>,
 	level?: FieldPolicy<any> | FieldReadFunction<any>,
 	status?: FieldPolicy<any> | FieldReadFunction<any>,
 	technologyId?: FieldPolicy<any> | FieldReadFunction<any>,

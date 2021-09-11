@@ -10,13 +10,13 @@ import * as Types from './types';
 
 import { LearnStrategyNoNestingFragment } from './LearnStrategyNoNesting';
 import { UserNoNestingFragment } from './UserNoNesting';
-import { TechnologyNoNestingFragment } from './TechnologyNoNesting';
+import { LearnStrategyStageTechnologyFragment } from './learnStrategyStageTechnology';
 import { LearnStrategyStageNoNestingFragment } from './learnStrategyStageNoNesting';
 import { UserLearnStrategyNoNestingFragment } from './UserLearnStrategyNoNesting';
 import { gql } from '@apollo/client';
 import { LearnStrategyNoNestingFragmentDoc } from './LearnStrategyNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
-import { TechnologyNoNestingFragmentDoc } from './TechnologyNoNesting';
+import { LearnStrategyStageTechnologyFragmentDoc } from './learnStrategyStageTechnology';
 import { LearnStrategyStageNoNestingFragmentDoc } from './learnStrategyStageNoNesting';
 import { UserLearnStrategyNoNestingFragmentDoc } from './UserLearnStrategyNoNesting';
 export type LearnStrategyFragment = (
@@ -26,7 +26,7 @@ export type LearnStrategyFragment = (
   )>, LearnStrategyStages?: Types.Maybe<Array<(
     { __typename?: 'LearnStrategyStage', Technology?: Types.Maybe<(
       { __typename?: 'Technology' }
-      & TechnologyNoNestingFragment
+      & LearnStrategyStageTechnologyFragment
     )> }
     & LearnStrategyStageNoNestingFragment
   )>>, UserLearnStrategies?: Types.Maybe<Array<(
@@ -47,7 +47,7 @@ export const LearnStrategyFragmentDoc = gql`
   }
   LearnStrategyStages {
     Technology {
-      ...TechnologyNoNesting
+      ...learnStrategyStageTechnology
     }
     ...learnStrategyStageNoNesting
   }
@@ -60,6 +60,6 @@ export const LearnStrategyFragmentDoc = gql`
 }
     ${LearnStrategyNoNestingFragmentDoc}
 ${UserNoNestingFragmentDoc}
-${TechnologyNoNestingFragmentDoc}
+${LearnStrategyStageTechnologyFragmentDoc}
 ${LearnStrategyStageNoNestingFragmentDoc}
 ${UserLearnStrategyNoNestingFragmentDoc}`;

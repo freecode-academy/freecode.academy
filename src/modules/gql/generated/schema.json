@@ -34529,7 +34529,20 @@
           {
             "name": "UserTechnologies",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "orderBy",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserTechnologyOrderByInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
             "type": {
               "kind": "LIST",
               "name": null,
@@ -38515,6 +38528,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isMentor",
+            "description": "Готов быть ментором",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "phone",
             "description": null,
             "args": [],
@@ -39528,6 +39553,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isMentor",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "marketplaceToken",
             "description": null,
             "type": {
@@ -39979,6 +40016,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isMentor",
+            "description": "Готов быть ментором",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "level",
             "description": null,
             "args": [],
@@ -40299,6 +40348,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isMentor",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "level",
             "description": null,
             "type": {
@@ -40513,6 +40574,18 @@
             "type": {
               "kind": "ENUM",
               "name": "UserTechnologyHiringStatus",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isMentor",
+            "description": "Готов быть ментором",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -40735,6 +40808,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isMentor",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BoolFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "level",
             "description": null,
             "type": {
@@ -40906,6 +40991,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isMentor",
+            "description": "Готов быть ментором",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -42069,6 +42166,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isMentor",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BoolFilter",
               "ofType": null
             },
             "defaultValue": null,

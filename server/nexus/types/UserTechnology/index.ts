@@ -76,8 +76,9 @@ export const UserTechnology = objectType({
     t.field('hiring_status', {
       type: 'UserTechnologyHiringStatus',
     })
-    t.field('level', {
-      type: 'UserTechnologyLevel',
+    t.technologyLevel('level')
+    t.boolean('isMentor', {
+      description: 'Готов быть ментором',
     })
     t.field('CreatedBy', {
       type: 'User',
@@ -209,6 +210,9 @@ export const UserTechnologyUpdateInput = inputObjectType({
     })
     t.field('level', {
       type: 'UserTechnologyLevel',
+    })
+    t.boolean('isMentor', {
+      description: 'Готов быть ментором',
     })
     // t.field('CreatedBy', {
     //   type: 'UserCreateOneInput',

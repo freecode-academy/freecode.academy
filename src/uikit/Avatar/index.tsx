@@ -22,6 +22,10 @@ const styles = {
     // height: "auto",
   },
   smallAvatar: {
+    width: 25,
+    height: 25,
+  },
+  normalAvatar: {
     width: 40,
     height: 40,
   },
@@ -51,7 +55,7 @@ export class UserAvatar extends Component<UserAvatarProps> {
   static contextType = Context
 
   render() {
-    const { user, classes, size, editable, ...other } = this.props
+    const { user, classes, size, editable, className, ...other } = this.props
 
     if (!user) {
       return null
@@ -89,6 +93,10 @@ export class UserAvatar extends Component<UserAvatarProps> {
         classNames.push(classes?.smallAvatar)
         break
 
+      case 'normal':
+        classNames.push(classes?.normalAvatar)
+        break
+
       case 'big':
         classNames.push(classes?.bigAvatar)
 
@@ -103,7 +111,7 @@ export class UserAvatar extends Component<UserAvatarProps> {
       <Avatar
         alt={name}
         src={url || undefined}
-        className={classNames.join(' ')}
+        className={[className].concat(classNames).join(' ')}
         {...other}
       >
         {url ? '' : (name && name.substr(0, 1).toLocaleUpperCase()) || 'A'}

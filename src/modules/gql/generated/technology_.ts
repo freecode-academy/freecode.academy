@@ -32,7 +32,7 @@ export const TechnologyFragmentDoc = gql`
   CreatedBy {
     ...UserNoNesting
   }
-  UserTechnologies {
+  UserTechnologies(orderBy: {createdAt: desc}) {
     ...technology_UserTechnology
   }
 }

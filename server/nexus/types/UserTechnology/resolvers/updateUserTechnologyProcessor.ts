@@ -6,8 +6,15 @@ export const updateUserTechnologyProcessor: FieldResolver<
   'Mutation',
   'updateUserTechnologyProcessor'
 > = async (_, args, ctx) => {
-  const { date_from, date_till, level, components, hiring_status, status } =
-    args.data
+  const {
+    date_from,
+    date_till,
+    level,
+    components,
+    hiring_status,
+    status,
+    isMentor,
+  } = args.data
 
   const { id: currentUserId } = ctx.currentUser || {}
 
@@ -38,6 +45,7 @@ export const updateUserTechnologyProcessor: FieldResolver<
     hiring_status,
     status,
     level,
+    isMentor: isMentor !== null ? isMentor : undefined,
   }
 
   if (date_from !== undefined || date_till !== undefined) {

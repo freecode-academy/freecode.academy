@@ -47,7 +47,7 @@ export const UserPage: Page = () => {
         description={`Страница пользователя ${user.fullname || user.username}`}
       />
 
-      <View object={user} />
+      <View user={user} />
     </>
   )
 }

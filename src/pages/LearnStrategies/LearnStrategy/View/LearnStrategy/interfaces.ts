@@ -4,6 +4,11 @@ import {
 } from 'src/modules/gql/generated'
 
 export type LearnStrategyViewProps = {
+  /**
+   * Флаг того, что это корневой компонент
+   */
+  isRoot: boolean
+
   // learnStrategy: LearnStrategyFragment
 
   // ID запрашиваемого объекта

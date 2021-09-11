@@ -37,7 +37,7 @@ const styles = {
   },
 }
 
-export class UikitUserLink extends Component<UikitUserLinkProps> {
+class UikitUserLink extends Component<UikitUserLinkProps> {
   static defaultProps = {
     withAvatar: true,
     showName: true,
@@ -84,18 +84,26 @@ export class UikitUserLink extends Component<UikitUserLinkProps> {
       >
         <Avatar
           user={user}
+          size={size}
+          {...avatarProps}
           className={[
             classes?.avatar,
             'avatar-inline',
             `avatar-size--${size}`,
           ].join(' ')}
-          {...avatarProps}
         />
       </Link>
     )
 
     return showName ? (
-      <Grid container className={classes?.root}>
+      <Grid
+        container
+        className={classes?.root}
+        // style={{
+        //   alignItems: 'center',
+        //   flexWrap: "nowrap",
+        // }}
+      >
         <Grid item>{(withAvatar && avatarLink) || null}</Grid>
 
         <Grid
@@ -108,7 +116,7 @@ export class UikitUserLink extends Component<UikitUserLinkProps> {
           <Link
             key={id}
             style={{
-              marginLeft: 5,
+              marginLeft: size === 'small' ? undefined : 5,
             }}
             {...other}
             href={url}

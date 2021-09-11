@@ -1,26 +1,23 @@
 query noticesConnection(
   $where: NoticeWhereInput
-  $orderBy: NoticeOrderByInput
+  $orderBy: [NoticeOrderByInput!]
   $skip: Int
-  $first: Int
-  # $last: Int
-  $getNodes: Boolean = true
+  $first: Int # $last: Int # $getNodes: Boolean = true
 ) {
-  objectsConnection: noticesConnection(
+  noticesCount(where: $where)
+
+  notices(
     where: $where
     orderBy: $orderBy
     skip: $skip
-    first: $first # last: $last
+    take: $first # last: $last
   ) {
-    aggregate {
-      count
-    }
-    edges @include(if: $getNodes) {
-      node {
-        ...notice
-      }
-    }
+    ...notice
   }
+}
+
+query noticesCount($where: NoticeWhereInput) {
+  noticesCount(where: $where)
 }
 
 mutation deleteNotice($where: NoticeWhereUniqueInput!) {

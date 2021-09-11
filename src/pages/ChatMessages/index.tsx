@@ -4,7 +4,7 @@ import {
   ChatMessagesConnectionDocument,
   ChatMessagesConnectionQueryVariables,
   useChatMessagesConnectionQuery,
-  ChatMessageFragment,
+  // ChatMessageFragment,
 } from 'src/modules/gql/generated'
 
 import { Page } from '../_App/interfaces'
@@ -56,20 +56,6 @@ const ChatMessagesPage: Page = () => {
 
   const { variables } = response
 
-  const objects = useMemo(() => {
-    const objects: ChatMessageFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   return (
     <>
       <Head>
@@ -78,10 +64,10 @@ const ChatMessagesPage: Page = () => {
       </Head>
 
       <ChatMessagesView
-        objects={objects}
+        objects={response.data?.chatMessages || []}
         limit={variables?.first}
         page={page}
-        total={response.data?.objectsConnection.aggregate.count || 0}
+        total={response.data?.chatMessagesCount || 0}
       />
     </>
   )

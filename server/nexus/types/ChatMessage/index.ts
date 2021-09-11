@@ -22,48 +22,6 @@ export const ChatMessageQuery = extendType({
         })
       },
     })
-
-    t.nonNull.field('chatMessagesConnection', {
-      type: 'ChatMessageConnection',
-      args: {
-        where: 'ChatMessageWhereInput',
-        orderBy: 'ChatMessageOrderByInput',
-        first: 'Int',
-        skip: 'Int',
-      },
-      resolve: async (_, args, ctx) => {
-        const where = args.where as Prisma.ChatMessageWhereInput
-        const orderBy = args.orderBy as Prisma.ChatMessageOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
-
-        const countPromise = ctx.prisma.chatMessage.count({
-          where,
-        })
-
-        const chatMessagesPromise = ctx.prisma.chatMessage.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
-
-        return Promise.all([countPromise, chatMessagesPromise]).then(
-          (results) => {
-            return {
-              aggregate: {
-                count: results[0],
-              },
-              edges: results[1].map((n) => {
-                return {
-                  node: n,
-                }
-              }),
-            }
-          }
-        )
-      },
-    })
   },
 })
 
@@ -152,34 +110,6 @@ export const ChatMessageResponse = objectType({
     })
     t.field('data', {
       type: 'ChatMessage',
-    })
-  },
-})
-
-export const AggregateChatMessage = objectType({
-  name: 'AggregateChatMessage',
-  definition(t) {
-    t.nonNull.int('count')
-  },
-})
-
-export const ChatMessageEdge = objectType({
-  name: 'ChatMessageEdge',
-  definition(t) {
-    t.nonNull.field('node', {
-      type: 'ChatMessage',
-    })
-  },
-})
-
-export const ChatMessageConnection = objectType({
-  name: 'ChatMessageConnection',
-  definition(t) {
-    t.nonNull.list.field('edges', {
-      type: 'ChatMessageEdge',
-    })
-    t.nonNull.field('aggregate', {
-      type: 'AggregateChatMessage',
     })
   },
 })

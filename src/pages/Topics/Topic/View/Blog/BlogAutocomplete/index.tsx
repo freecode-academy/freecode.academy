@@ -9,7 +9,6 @@ import Autocomplete from 'src/uikit/Autocomplete'
 import { BlogAutocompleteProps } from './interfaces'
 import {
   BlogsConnectionQueryVariables,
-  BlogsConnectionResourceFragment,
   useBlogsConnectionQuery,
   useResourceQuery,
 } from 'src/modules/gql/generated'
@@ -110,28 +109,20 @@ const BlogAutocomplete: React.FC<BlogAutocompleteProps> = (props) => {
 
   const object = resourceResponse.data?.object
 
-  return useMemo(() => {
-    const objects =
-      data.data?.objectsConnection.edges.reduce<
-        BlogsConnectionResourceFragment[]
-      >((current, next) => {
-        if (next?.node) {
-          current.push(next.node)
-        }
-        return current
-      }, []) || []
-
+  const items = useMemo(() => {
     const items =
-      (objects &&
-        objects.map((n) => {
-          return {
-            ...n,
-            value: n.id,
-            label: n.name || n.id,
-          }
-        })) ||
-      []
+      data.data?.resources.map((n) => {
+        return {
+          ...n,
+          value: n.id,
+          label: n.name || n.id,
+        }
+      }) || []
 
+    return items
+  }, [data.data?.resources])
+
+  return useMemo(() => {
     // const object = value ? items.find((n) => n.id === value) : null
     /**
      * Если есть id компании и нет введенного значения,
@@ -163,7 +154,7 @@ const BlogAutocomplete: React.FC<BlogAutocompleteProps> = (props) => {
       />
     )
   }, [
-    data.data?.objectsConnection.edges,
+    items,
     name_contains,
     object,
     onAutocompleteChange,

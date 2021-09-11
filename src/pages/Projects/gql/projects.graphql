@@ -2,22 +2,11 @@ query projectsConnection(
   $first: Int = 12
   $skip: Int
   $where: ProjectWhereInput
-  $orderBy: ProjectOrderByInput = { updatedAt: desc }
+  $orderBy: [ProjectOrderByInput!] = { updatedAt: desc }
 ) {
-  objectsConnection: projectsConnection(
-    orderBy: $orderBy
-    first: $first
-    skip: $skip
-    where: $where
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...projectsConnectionProject
-      }
-    }
+  projectsCount(where: $where)
+  projects(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...projectsConnectionProject
   }
 }
 

@@ -1,23 +1,12 @@
 query blogsConnection(
-  $where: ResourceWhereInput
-  $orderBy: ResourceOrderByInput = { name: asc }
+  $first: Int = 10
   $skip: Int
-  $first: Int
+  $where: ResourceWhereInput
+  $orderBy: [ResourceOrderByInput!] = { createdAt: desc }
 ) {
-  objectsConnection: resourcesConnection(
-    where: $where
-    orderBy: $orderBy
-    skip: $skip
-    first: $first
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...BlogsConnectionResource
-      }
-    }
+  resourcesCount(where: $where)
+  resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...BlogsConnectionResource
   }
 }
 

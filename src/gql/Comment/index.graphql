@@ -1,23 +1,12 @@
 query commentsConnection(
   $first: Int = 10
-  $skip: Int = 0
-  $orderBy: ResourceOrderByInput = { createdAt: desc }
-  $where: ResourceWhereInput = { type: { equals: Comment } }
+  $skip: Int
+  $where: ResourceWhereInput
+  $orderBy: [ResourceOrderByInput!] = { createdAt: desc }
 ) {
-  objectsConnection: resourcesConnection(
-    where: $where
-    first: $first
-    skip: $skip
-    orderBy: $orderBy
-  ) {
-    edges {
-      node {
-        ...commentsConnectionComment
-      }
-    }
-    aggregate {
-      count
-    }
+  resourcesCount(where: $where)
+  resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...commentsConnectionComment
   }
 }
 

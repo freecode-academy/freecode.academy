@@ -15,35 +15,23 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type NoticesConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.NoticeWhereInput>;
-  orderBy?: Types.Maybe<Types.NoticeOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.NoticeOrderByInput> | Types.NoticeOrderByInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
-  getNodes?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
-export type NoticesConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'NoticeConnection', aggregate: { __typename?: 'AggregateNotice', count: number }, edges?: Types.Maybe<Array<Types.Maybe<{ __typename?: 'NoticeEdge', node: (
-        { __typename?: 'Notice' }
-        & NoticeFragment
-      ) }>>> } };
+export type NoticesConnectionQuery = { __typename?: 'Query', noticesCount: number, notices: Array<(
+    { __typename?: 'Notice' }
+    & NoticeFragment
+  )> };
 
 
 export const NoticesConnectionDocument = gql`
-    query noticesConnection($where: NoticeWhereInput, $orderBy: NoticeOrderByInput, $skip: Int, $first: Int, $getNodes: Boolean = true) {
-  objectsConnection: noticesConnection(
-    where: $where
-    orderBy: $orderBy
-    skip: $skip
-    first: $first
-  ) {
-    aggregate {
-      count
-    }
-    edges @include(if: $getNodes) {
-      node {
-        ...notice
-      }
-    }
+    query noticesConnection($where: NoticeWhereInput, $orderBy: [NoticeOrderByInput!], $skip: Int, $first: Int) {
+  noticesCount(where: $where)
+  notices(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
+    ...notice
   }
 }
     ${NoticeFragmentDoc}`;
@@ -64,7 +52,6 @@ export const NoticesConnectionDocument = gql`
  *      orderBy: // value for 'orderBy'
  *      skip: // value for 'skip'
  *      first: // value for 'first'
- *      getNodes: // value for 'getNodes'
  *   },
  * });
  */

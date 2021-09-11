@@ -3,7 +3,6 @@ import React, { useMemo } from 'react'
 import {
   MainPageCodeChallengeCompletionFragment,
   ResourceFragment,
-  TasksConnectionTaskFragment,
   UserNoNestingFragment,
 } from 'src/modules/gql/generated'
 import MainPageCodeChallengeCompletions from './CodeChallengeCompletions'
@@ -42,16 +41,7 @@ const MainPageView: React.FC<MainPageProps> = (props) => {
         return curr
       }, []) ?? []
 
-    const tasksNeedHelp =
-      props.data?.tasksNeedHelp.edges.reduce<TasksConnectionTaskFragment[]>(
-        (curr, next) => {
-          if (next?.node) {
-            curr.push(next.node)
-          }
-          return curr
-        },
-        []
-      ) ?? []
+    const tasksNeedHelp = props.data?.tasksNeedHelp || []
 
     return (
       <MainPageViewStyled>
@@ -79,7 +69,7 @@ const MainPageView: React.FC<MainPageProps> = (props) => {
     props.data?.codeChallengeCompletions,
     props.data?.comments,
     props.data?.students,
-    props.data?.tasksNeedHelp.edges,
+    props.data?.tasksNeedHelp,
   ])
 }
 

@@ -217,14 +217,9 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
       (authPage && typeof authPage === 'string' && parseInt(authPage)) || 1
 
     if (response) {
-      const objectsConnection = response.objectsConnection
+      users = response.users
 
-      // const first = data.variables?.first
-
-      users = objectsConnection
-        ? objectsConnection.edges.map((n: any) => n.node)
-        : []
-      count = objectsConnection ? objectsConnection.aggregate.count : 0
+      count = response.usersCount
 
       if (users.length) {
         if (count === 1) {

@@ -21,48 +21,6 @@ export const CodeChallengeBlockQuery = extendType({
     })
 
     t.crud.codeChallengeBlock({})
-
-    // t.nonNull.field("codeChallengeBlocksConnection", {
-    //   type: "CodeChallengeBlockConnection",
-    //   args: {
-    //     where: "CodeChallengeBlockWhereInput",
-    //     orderBy: "CodeChallengeBlockOrderByInput",
-    //     first: "Int",
-    //     skip: "Int",
-    //   },
-    //   resolve: async (_, args, ctx) => {
-
-    //     const where = args.where as Prisma.CodeChallengeBlockWhereInput;
-    //     const orderBy = args.orderBy as Prisma.CodeChallengeBlockOrderByInput;
-    //     const take = args.first || undefined;
-    //     const skip = args.skip || undefined;
-
-    //     const countPromise = ctx.prisma.codeChallengeBlock.count({
-    //       where,
-    //     })
-
-    //     const codeChallengeBlocksPromise = ctx.prisma.codeChallengeBlock.findMany({
-    //       where,
-    //       orderBy: orderBy ? [orderBy] : undefined,
-    //       take,
-    //       skip,
-    //     })
-
-    //     return Promise.all([countPromise, codeChallengeBlocksPromise]).then(results => {
-
-    //       return {
-    //         aggregate: {
-    //           count: results[0],
-    //         },
-    //         edges: results[1].map(n => {
-    //           return {
-    //             node: n,
-    //           }
-    //         })
-    //       }
-    //     })
-    //   }
-    // })
   },
 })
 

@@ -3437,38 +3437,6 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  AggregateChatMessage: {
-    // root type
-    count: number // Int!
-  }
-  AggregateNotice: {
-    // root type
-    count: number // Int!
-  }
-  AggregateProject: {
-    // root type
-    count: number // Int!
-  }
-  AggregateResource: {
-    // root type
-    count: number // Int!
-  }
-  AggregateTag: {
-    // root type
-    count: number // Int!
-  }
-  AggregateTask: {
-    // root type
-    count: number // Int!
-  }
-  AggregateTimer: {
-    // root type
-    count: number // Int!
-  }
-  AggregateUser: {
-    // root type
-    count: number // Int!
-  }
   AuthPayload: {
     // root type
     data?: NexusGenRootTypes['User'] | null // User
@@ -3478,15 +3446,6 @@ export interface NexusGenObjects {
     token?: string | null // String
   }
   ChatMessage: ChatMessage
-  ChatMessageConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateChatMessage'] // AggregateChatMessage!
-    edges: Array<NexusGenRootTypes['ChatMessageEdge'] | null> // [ChatMessageEdge]!
-  }
-  ChatMessageEdge: {
-    // root type
-    node: NexusGenRootTypes['ChatMessage'] // ChatMessage!
-  }
   ChatMessageResponse: {
     // root type
     data?: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
@@ -3512,26 +3471,8 @@ export interface NexusGenObjects {
   LearnStrategyStage: LearnStrategyStage
   Mutation: {}
   Notice: Notice
-  NoticeConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateNotice'] // AggregateNotice!
-    edges: Array<NexusGenRootTypes['NoticeEdge'] | null> // [NoticeEdge]!
-  }
-  NoticeEdge: {
-    // root type
-    node: NexusGenRootTypes['Notice'] // Notice!
-  }
   NotificationType: NotificationType
   Project: Project
-  ProjectConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateProject'] // AggregateProject!
-    edges: Array<NexusGenRootTypes['ProjectEdge'] | null> // [ProjectEdge]!
-  }
-  ProjectEdge: {
-    // root type
-    node: NexusGenRootTypes['Project'] // Project!
-  }
   ProjectMember: ProjectMember
   ProjectResponse: {
     // root type
@@ -3556,15 +3497,6 @@ export interface NexusGenObjects {
     success: boolean // Boolean!
   }
   Resource: Resource
-  ResourceConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateResource'] // AggregateResource!
-    edges: Array<NexusGenRootTypes['ResourceEdge'] | null> // [ResourceEdge]!
-  }
-  ResourceEdge: {
-    // root type
-    node: NexusGenRootTypes['Resource'] // Resource!
-  }
   ResourceResponse: {
     // root type
     data?: NexusGenRootTypes['Resource'] | null // Resource
@@ -3574,25 +3506,7 @@ export interface NexusGenObjects {
   }
   ResourceTag: ResourceTag
   Tag: Tag
-  TagConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateTag'] // AggregateTag!
-    edges: Array<NexusGenRootTypes['TagEdge'] | null> // [TagEdge]!
-  }
-  TagEdge: {
-    // root type
-    node: NexusGenRootTypes['Tag'] // Tag!
-  }
   Task: Task
-  TaskConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateTask'] // AggregateTask!
-    edges: Array<NexusGenRootTypes['TaskEdge'] | null> // [TaskEdge]!
-  }
-  TaskEdge: {
-    // root type
-    node: NexusGenRootTypes['Task'] // Task!
-  }
   TaskReaction: TaskReaction
   TaskResponse: {
     // root type
@@ -3611,15 +3525,6 @@ export interface NexusGenObjects {
   }
   Technology: Technology
   Timer: Timer
-  TimerConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateTimer'] // AggregateTimer!
-    edges: Array<NexusGenRootTypes['TimerEdge'] | null> // [TimerEdge]!
-  }
-  TimerEdge: {
-    // root type
-    node: NexusGenRootTypes['Timer'] // Timer!
-  }
   TimerResponse: {
     // root type
     data?: NexusGenRootTypes['Timer'] | null // Timer
@@ -3628,15 +3533,6 @@ export interface NexusGenObjects {
     success: boolean // Boolean!
   }
   User: User
-  UserConnection: {
-    // root type
-    aggregate: NexusGenRootTypes['AggregateUser'] // AggregateUser!
-    edges: Array<NexusGenRootTypes['UserEdge'] | null> // [UserEdge]!
-  }
-  UserEdge: {
-    // root type
-    node: NexusGenRootTypes['User'] // User!
-  }
   UserLearnStrategy: UserLearnStrategy
   UserResponse: {
     // root type
@@ -3666,38 +3562,6 @@ export type NexusGenAllTypes = NexusGenRootTypes &
   NexusGenEnums
 
 export interface NexusGenFieldTypes {
-  AggregateChatMessage: {
-    // field return type
-    count: number // Int!
-  }
-  AggregateNotice: {
-    // field return type
-    count: number // Int!
-  }
-  AggregateProject: {
-    // field return type
-    count: number // Int!
-  }
-  AggregateResource: {
-    // field return type
-    count: number // Int!
-  }
-  AggregateTag: {
-    // field return type
-    count: number // Int!
-  }
-  AggregateTask: {
-    // field return type
-    count: number // Int!
-  }
-  AggregateTimer: {
-    // field return type
-    count: number // Int!
-  }
-  AggregateUser: {
-    // field return type
-    count: number // Int!
-  }
   AuthPayload: {
     // field return type
     data: NexusGenRootTypes['User'] | null // User
@@ -3715,15 +3579,6 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     id: string // ID!
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
-  }
-  ChatMessageConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateChatMessage'] // AggregateChatMessage!
-    edges: Array<NexusGenRootTypes['ChatMessageEdge'] | null> // [ChatMessageEdge]!
-  }
-  ChatMessageEdge: {
-    // field return type
-    node: NexusGenRootTypes['ChatMessage'] // ChatMessage!
   }
   ChatMessageResponse: {
     // field return type
@@ -3919,15 +3774,6 @@ export interface NexusGenFieldTypes {
     type: NexusGenEnums['NoticeType'] // NoticeType!
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  NoticeConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateNotice'] // AggregateNotice!
-    edges: Array<NexusGenRootTypes['NoticeEdge'] | null> // [NoticeEdge]!
-  }
-  NoticeEdge: {
-    // field return type
-    node: NexusGenRootTypes['Notice'] // Notice!
-  }
   NotificationType: {
     // field return type
     code: string | null // ID
@@ -3959,15 +3805,6 @@ export interface NexusGenFieldTypes {
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
     url: string | null // String
   }
-  ProjectConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateProject'] // AggregateProject!
-    edges: Array<NexusGenRootTypes['ProjectEdge'] | null> // [ProjectEdge]!
-  }
-  ProjectEdge: {
-    // field return type
-    node: NexusGenRootTypes['Project'] // Project!
-  }
   ProjectMember: {
     // field return type
     Project: NexusGenRootTypes['Project'] | null // Project
@@ -3997,7 +3834,6 @@ export interface NexusGenFieldTypes {
     // field return type
     chatMessage: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     chatMessages: NexusGenRootTypes['ChatMessage'][] // [ChatMessage!]!
-    chatMessagesConnection: NexusGenRootTypes['ChatMessageConnection'] // ChatMessageConnection!
     chatMessagesCount: number // Int!
     chatRoom: NexusGenRootTypes['ChatRoom'] | null // ChatRoom
     chatRooms: NexusGenRootTypes['ChatRoom'][] // [ChatRoom!]!
@@ -4021,33 +3857,31 @@ export interface NexusGenFieldTypes {
     me: NexusGenRootTypes['User'] | null // User
     notice: NexusGenRootTypes['Notice'] | null // Notice
     notices: NexusGenRootTypes['Notice'][] // [Notice!]!
-    noticesConnection: NexusGenRootTypes['NoticeConnection'] // NoticeConnection!
     noticesCount: number // Int!
     notificationTypes: NexusGenRootTypes['NotificationType'][] // [NotificationType!]!
     notificationTypesCount: number // Int!
     project: NexusGenRootTypes['Project'] | null // Project
     projectTasks: NexusGenRootTypes['ProjectTask'][] // [ProjectTask!]!
     projects: NexusGenRootTypes['Project'][] // [Project!]!
-    projectsConnection: NexusGenRootTypes['ProjectConnection'] // ProjectConnection!
+    projectsCount: number // Int!
     resource: NexusGenRootTypes['Resource'] | null // Resource
     resources: NexusGenRootTypes['Resource'][] // [Resource!]!
-    resourcesConnection: NexusGenRootTypes['ResourceConnection'] // ResourceConnection!
+    resourcesCount: number // Int!
     tag: NexusGenRootTypes['Tag'] | null // Tag
     tags: NexusGenRootTypes['Tag'][] // [Tag!]!
-    tagsConnection: NexusGenRootTypes['TagConnection'] // TagConnection!
+    tagsCount: number // Int!
     task: NexusGenRootTypes['Task'] | null // Task
     taskTechnologies: NexusGenRootTypes['TaskTechnology'][] // [TaskTechnology!]!
     taskTechnology: NexusGenRootTypes['TaskTechnology'] | null // TaskTechnology
     taskTechnologysCount: number // Int!
     tasks: NexusGenRootTypes['Task'][] // [Task!]!
-    tasksConnection: NexusGenRootTypes['TaskConnection'] // TaskConnection!
     tasksCount: number // Int!
     technologies: NexusGenRootTypes['Technology'][] // [Technology!]!
     technologiesCount: number // Int!
     technology: NexusGenRootTypes['Technology'] | null // Technology
     timer: NexusGenRootTypes['Timer'] | null // Timer
     timers: NexusGenRootTypes['Timer'][] // [Timer!]!
-    timersConnection: NexusGenRootTypes['TimerConnection'] // TimerConnection!
+    timersCount: number // Int!
     user: NexusGenRootTypes['User'] | null // User
     userLearnStrategies: NexusGenRootTypes['UserLearnStrategy'][] // [UserLearnStrategy!]!
     userLearnStrategiesCount: number // Int!
@@ -4056,7 +3890,6 @@ export interface NexusGenFieldTypes {
     userTechnology: NexusGenRootTypes['UserTechnology'] | null // UserTechnology
     userTechnologysCount: number // Int!
     users: NexusGenRootTypes['User'][] // [User!]!
-    usersConnection: NexusGenRootTypes['UserConnection'] // UserConnection!
     usersCount: number // Int!
   }
   RequestError: {
@@ -4111,15 +3944,6 @@ export interface NexusGenFieldTypes {
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
     uri: string // String!
   }
-  ResourceConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateResource'] // AggregateResource!
-    edges: Array<NexusGenRootTypes['ResourceEdge'] | null> // [ResourceEdge]!
-  }
-  ResourceEdge: {
-    // field return type
-    node: NexusGenRootTypes['Resource'] // Resource!
-  }
   ResourceResponse: {
     // field return type
     data: NexusGenRootTypes['Resource'] | null // Resource
@@ -4146,15 +3970,6 @@ export interface NexusGenFieldTypes {
     name: string // String!
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  TagConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateTag'] // AggregateTag!
-    edges: Array<NexusGenRootTypes['TagEdge'] | null> // [TagEdge]!
-  }
-  TagEdge: {
-    // field return type
-    node: NexusGenRootTypes['Tag'] // Tag!
-  }
   Task: {
     // field return type
     CodeChallengeCompletion: NexusGenRootTypes['CodeChallengeCompletion'] | null // CodeChallengeCompletion
@@ -4176,15 +3991,6 @@ export interface NexusGenFieldTypes {
     startDatePlaning: NexusGenScalars['DateTime'] | null // DateTime
     status: NexusGenEnums['TaskStatus'] // TaskStatus!
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
-  }
-  TaskConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateTask'] // AggregateTask!
-    edges: Array<NexusGenRootTypes['TaskEdge'] | null> // [TaskEdge]!
-  }
-  TaskEdge: {
-    // field return type
-    node: NexusGenRootTypes['Task'] // Task!
   }
   TaskReaction: {
     // field return type
@@ -4244,15 +4050,6 @@ export interface NexusGenFieldTypes {
     stopedAt: NexusGenScalars['DateTime'] | null // DateTime
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
-  TimerConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateTimer'] // AggregateTimer!
-    edges: Array<NexusGenRootTypes['TimerEdge'] | null> // [TimerEdge]!
-  }
-  TimerEdge: {
-    // field return type
-    node: NexusGenRootTypes['Timer'] // Timer!
-  }
   TimerResponse: {
     // field return type
     data: NexusGenRootTypes['Timer'] | null // Timer
@@ -4292,15 +4089,6 @@ export interface NexusGenFieldTypes {
     technologyLevel: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
     username: string | null // String
-  }
-  UserConnection: {
-    // field return type
-    aggregate: NexusGenRootTypes['AggregateUser'] // AggregateUser!
-    edges: Array<NexusGenRootTypes['UserEdge'] | null> // [UserEdge]!
-  }
-  UserEdge: {
-    // field return type
-    node: NexusGenRootTypes['User'] // User!
   }
   UserLearnStrategy: {
     // field return type
@@ -4344,38 +4132,6 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
-  AggregateChatMessage: {
-    // field return type name
-    count: 'Int'
-  }
-  AggregateNotice: {
-    // field return type name
-    count: 'Int'
-  }
-  AggregateProject: {
-    // field return type name
-    count: 'Int'
-  }
-  AggregateResource: {
-    // field return type name
-    count: 'Int'
-  }
-  AggregateTag: {
-    // field return type name
-    count: 'Int'
-  }
-  AggregateTask: {
-    // field return type name
-    count: 'Int'
-  }
-  AggregateTimer: {
-    // field return type name
-    count: 'Int'
-  }
-  AggregateUser: {
-    // field return type name
-    count: 'Int'
-  }
   AuthPayload: {
     // field return type name
     data: 'User'
@@ -4393,15 +4149,6 @@ export interface NexusGenFieldTypeNames {
     createdAt: 'DateTime'
     id: 'ID'
     updatedAt: 'DateTime'
-  }
-  ChatMessageConnection: {
-    // field return type name
-    aggregate: 'AggregateChatMessage'
-    edges: 'ChatMessageEdge'
-  }
-  ChatMessageEdge: {
-    // field return type name
-    node: 'ChatMessage'
   }
   ChatMessageResponse: {
     // field return type name
@@ -4595,15 +4342,6 @@ export interface NexusGenFieldTypeNames {
     type: 'NoticeType'
     updatedAt: 'DateTime'
   }
-  NoticeConnection: {
-    // field return type name
-    aggregate: 'AggregateNotice'
-    edges: 'NoticeEdge'
-  }
-  NoticeEdge: {
-    // field return type name
-    node: 'Notice'
-  }
   NotificationType: {
     // field return type name
     code: 'ID'
@@ -4635,15 +4373,6 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
     url: 'String'
   }
-  ProjectConnection: {
-    // field return type name
-    aggregate: 'AggregateProject'
-    edges: 'ProjectEdge'
-  }
-  ProjectEdge: {
-    // field return type name
-    node: 'Project'
-  }
   ProjectMember: {
     // field return type name
     Project: 'Project'
@@ -4673,7 +4402,6 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     chatMessage: 'ChatMessage'
     chatMessages: 'ChatMessage'
-    chatMessagesConnection: 'ChatMessageConnection'
     chatMessagesCount: 'Int'
     chatRoom: 'ChatRoom'
     chatRooms: 'ChatRoom'
@@ -4697,33 +4425,31 @@ export interface NexusGenFieldTypeNames {
     me: 'User'
     notice: 'Notice'
     notices: 'Notice'
-    noticesConnection: 'NoticeConnection'
     noticesCount: 'Int'
     notificationTypes: 'NotificationType'
     notificationTypesCount: 'Int'
     project: 'Project'
     projectTasks: 'ProjectTask'
     projects: 'Project'
-    projectsConnection: 'ProjectConnection'
+    projectsCount: 'Int'
     resource: 'Resource'
     resources: 'Resource'
-    resourcesConnection: 'ResourceConnection'
+    resourcesCount: 'Int'
     tag: 'Tag'
     tags: 'Tag'
-    tagsConnection: 'TagConnection'
+    tagsCount: 'Int'
     task: 'Task'
     taskTechnologies: 'TaskTechnology'
     taskTechnology: 'TaskTechnology'
     taskTechnologysCount: 'Int'
     tasks: 'Task'
-    tasksConnection: 'TaskConnection'
     tasksCount: 'Int'
     technologies: 'Technology'
     technologiesCount: 'Int'
     technology: 'Technology'
     timer: 'Timer'
     timers: 'Timer'
-    timersConnection: 'TimerConnection'
+    timersCount: 'Int'
     user: 'User'
     userLearnStrategies: 'UserLearnStrategy'
     userLearnStrategiesCount: 'Int'
@@ -4732,7 +4458,6 @@ export interface NexusGenFieldTypeNames {
     userTechnology: 'UserTechnology'
     userTechnologysCount: 'Int'
     users: 'User'
-    usersConnection: 'UserConnection'
     usersCount: 'Int'
   }
   RequestError: {
@@ -4787,15 +4512,6 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
     uri: 'String'
   }
-  ResourceConnection: {
-    // field return type name
-    aggregate: 'AggregateResource'
-    edges: 'ResourceEdge'
-  }
-  ResourceEdge: {
-    // field return type name
-    node: 'Resource'
-  }
   ResourceResponse: {
     // field return type name
     data: 'Resource'
@@ -4822,15 +4538,6 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     updatedAt: 'DateTime'
   }
-  TagConnection: {
-    // field return type name
-    aggregate: 'AggregateTag'
-    edges: 'TagEdge'
-  }
-  TagEdge: {
-    // field return type name
-    node: 'Tag'
-  }
   Task: {
     // field return type name
     CodeChallengeCompletion: 'CodeChallengeCompletion'
@@ -4852,15 +4559,6 @@ export interface NexusGenFieldTypeNames {
     startDatePlaning: 'DateTime'
     status: 'TaskStatus'
     updatedAt: 'DateTime'
-  }
-  TaskConnection: {
-    // field return type name
-    aggregate: 'AggregateTask'
-    edges: 'TaskEdge'
-  }
-  TaskEdge: {
-    // field return type name
-    node: 'Task'
   }
   TaskReaction: {
     // field return type name
@@ -4920,15 +4618,6 @@ export interface NexusGenFieldTypeNames {
     stopedAt: 'DateTime'
     updatedAt: 'DateTime'
   }
-  TimerConnection: {
-    // field return type name
-    aggregate: 'AggregateTimer'
-    edges: 'TimerEdge'
-  }
-  TimerEdge: {
-    // field return type name
-    node: 'Timer'
-  }
   TimerResponse: {
     // field return type name
     data: 'Timer'
@@ -4966,15 +4655,6 @@ export interface NexusGenFieldTypeNames {
     technologyLevel: 'UserTechnologyLevel'
     updatedAt: 'DateTime'
     username: 'String'
-  }
-  UserConnection: {
-    // field return type name
-    aggregate: 'AggregateUser'
-    edges: 'UserEdge'
-  }
-  UserEdge: {
-    // field return type name
-    node: 'User'
   }
   UserLearnStrategy: {
     // field return type name
@@ -5209,13 +4889,6 @@ export interface NexusGenArgTypes {
       take?: number | null // Int
       where?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
     }
-    chatMessagesConnection: {
-      // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['ChatMessageOrderByInput'] | null // ChatMessageOrderByInput
-      skip?: number | null // Int
-      where?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
-    }
     chatMessagesCount: {
       // args
       where?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
@@ -5336,13 +5009,6 @@ export interface NexusGenArgTypes {
       take?: number | null // Int
       where?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
     }
-    noticesConnection: {
-      // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['NoticeOrderByInput'] | null // NoticeOrderByInput
-      skip?: number | null // Int
-      where?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
-    }
     noticesCount: {
       // args
       where?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
@@ -5379,11 +5045,8 @@ export interface NexusGenArgTypes {
       take?: number | null // Int
       where?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
     }
-    projectsConnection: {
+    projectsCount: {
       // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['ProjectOrderByInput'] | null // ProjectOrderByInput
-      skip?: number | null // Int
       where?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
     }
     resource: {
@@ -5398,11 +5061,8 @@ export interface NexusGenArgTypes {
       take?: number | null // Int
       where?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
     }
-    resourcesConnection: {
+    resourcesCount: {
       // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null // ResourceOrderByInput
-      skip?: number | null // Int
       where?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
     }
     tag: {
@@ -5417,11 +5077,8 @@ export interface NexusGenArgTypes {
       take?: number | null // Int
       where?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
     }
-    tagsConnection: {
+    tagsCount: {
       // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['TagOrderByInput'] | null // TagOrderByInput
-      skip?: number | null // Int
       where?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
     }
     task: {
@@ -5450,13 +5107,6 @@ export interface NexusGenArgTypes {
       orderBy?: NexusGenInputs['TaskOrderByInput'][] | null // [TaskOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
-      where?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
-    }
-    tasksConnection: {
-      // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['TaskOrderByInput'] | null // TaskOrderByInput
-      skip?: number | null // Int
       where?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
     }
     tasksCount: {
@@ -5491,11 +5141,8 @@ export interface NexusGenArgTypes {
       take?: number | null // Int
       where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
     }
-    timersConnection: {
+    timersCount: {
       // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['TimerOrderByInput'] | null // TimerOrderByInput
-      skip?: number | null // Int
       where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
     }
     user: {
@@ -5540,13 +5187,6 @@ export interface NexusGenArgTypes {
       orderBy?: NexusGenInputs['UserOrderByInput'][] | null // [UserOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
-      where?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    }
-    usersConnection: {
-      // args
-      first?: number | null // Int
-      orderBy?: NexusGenInputs['UserOrderByInput'] | null // UserOrderByInput
-      skip?: number | null // Int
       where?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     }
     usersCount: {

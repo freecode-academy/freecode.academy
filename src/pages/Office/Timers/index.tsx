@@ -2,7 +2,6 @@ import React, { useContext, useMemo, useState } from 'react'
 import {
   TimersConnectionQueryVariables,
   useTimersConnectionQuery,
-  TimersConnectionTimerFragment,
   SortOrder,
 } from 'src/modules/gql/generated'
 
@@ -54,27 +53,13 @@ const OfficeTimersPage: Page = () => {
     onError: console.error,
   })
 
-  const objects = useMemo(() => {
-    const objects: TimersConnectionTimerFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   return useMemo(() => {
     return (
       <>
         <NextSeo title="Лог выполнения" />
 
         <View
-          timers={objects}
+          timers={response.data?.timers || []}
           date={date}
           setDate={setDate}
           currentUserOnly={currentUserOnly}
@@ -83,7 +68,7 @@ const OfficeTimersPage: Page = () => {
         />
       </>
     )
-  }, [currentUserOnly, date, objects, user])
+  }, [currentUserOnly, date, response.data?.timers, user])
 }
 
 OfficeTimersPage.getInitialProps = async () => {

@@ -1,5 +1,4 @@
 export * from './AuthFormUsersConnection';
-export * from './AuthFormUsersConnectionResult';
 export * from './AuthFormUsersConnectionUser';
 export * from './AuthUser';
 export * from './BlogsConnectionResource';
@@ -80,6 +79,7 @@ export * from './me';
 export * from './meUser';
 export * from './notice';
 export * from './noticesConnection';
+export * from './noticesCount';
 export * from './notificationTypes';
 export * from './officeProject';
 export * from './officeProjects';

@@ -15,34 +15,23 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type ChatMessagesConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.ChatMessageWhereInput>;
-  orderBy?: Types.Maybe<Types.ChatMessageOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.ChatMessageOrderByInput> | Types.ChatMessageOrderByInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
 }>;
 
 
-export type ChatMessagesConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'ChatMessageConnection', aggregate: { __typename?: 'AggregateChatMessage', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ChatMessageEdge', node: (
-        { __typename?: 'ChatMessage' }
-        & ChatMessageFragment
-      ) }>> } };
+export type ChatMessagesConnectionQuery = { __typename?: 'Query', chatMessagesCount: number, chatMessages: Array<(
+    { __typename?: 'ChatMessage' }
+    & ChatMessageFragment
+  )> };
 
 
 export const ChatMessagesConnectionDocument = gql`
-    query chatMessagesConnection($where: ChatMessageWhereInput, $orderBy: ChatMessageOrderByInput, $skip: Int, $first: Int = 10) {
-  objectsConnection: chatMessagesConnection(
-    where: $where
-    orderBy: $orderBy
-    skip: $skip
-    first: $first
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...chatMessage_
-      }
-    }
+    query chatMessagesConnection($where: ChatMessageWhereInput, $orderBy: [ChatMessageOrderByInput!], $skip: Int, $first: Int = 10) {
+  chatMessagesCount(where: $where)
+  chatMessages(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
+    ...chatMessage_
   }
 }
     ${ChatMessageFragmentDoc}`;

@@ -13,42 +13,14 @@ export const TimerExtendQuery = extendType({
       ordering: true,
     })
 
-    t.nonNull.field('timersConnection', {
-      type: 'TimerConnection',
+    t.nonNull.int('timersCount', {
+      description: 'Количество таймеров',
       args: {
         where: 'TimerWhereInput',
-        orderBy: 'TimerOrderByInput',
-        first: 'Int',
-        skip: 'Int',
       },
-      resolve: async (_, args, ctx) => {
-        const where = args.where as Prisma.TimerWhereInput
-        const orderBy = args.orderBy as Prisma.TimerOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
-
-        const countPromise = ctx.prisma.timer.count({
-          where,
-        })
-
-        const timersPromise = ctx.prisma.timer.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
-
-        return Promise.all([countPromise, timersPromise]).then((results) => {
-          return {
-            aggregate: {
-              count: results[0],
-            },
-            edges: results[1].map((n) => {
-              return {
-                node: n,
-              }
-            }),
-          }
+      resolve(_, args, ctx) {
+        return ctx.prisma.timer.count({
+          where: args.where as Prisma.TimerCountArgs['where'],
         })
       },
     })
@@ -145,48 +117,11 @@ export const TimerUpdateInput = inputObjectType({
   },
 })
 
-// export const UserCreateOneWithoutTimersInput = inputObjectType({
-//   name: "UserCreateOneWithoutTimersInput",
-//   definition(t) {
-//     t.field("connect", {
-//       type: "UserWhereUniqueInput",
-//     })
-//   }
-// })
-
 export const TaskCreateOneWithoutTimersInput = inputObjectType({
   name: 'TaskCreateOneWithoutTimersInput',
   definition(t) {
     t.field('connect', {
       type: 'TaskWhereUniqueInput',
-    })
-  },
-})
-
-export const AggregateTimer = objectType({
-  name: 'AggregateTimer',
-  definition(t) {
-    t.nonNull.int('count')
-  },
-})
-
-export const TimerEdge = objectType({
-  name: 'TimerEdge',
-  definition(t) {
-    t.nonNull.field('node', {
-      type: 'Timer',
-    })
-  },
-})
-
-export const TimerConnection = objectType({
-  name: 'TimerConnection',
-  definition(t) {
-    t.nonNull.list.field('edges', {
-      type: 'TimerEdge',
-    })
-    t.nonNull.field('aggregate', {
-      type: 'AggregateTimer',
     })
   },
 })

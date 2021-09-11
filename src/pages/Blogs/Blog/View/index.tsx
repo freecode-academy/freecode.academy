@@ -3,10 +3,7 @@ import { BlogViewProps } from './interfaces'
 import { BlogViewStyled } from './styles'
 // import Link from 'next/link'
 import Typography from 'material-ui/Typography'
-import {
-  TopicsConnectionTopicFragment,
-  useTopicsConnectionQuery,
-} from 'src/modules/gql/generated'
+import { useTopicsConnectionQuery } from 'src/modules/gql/generated'
 import { getTopicsVariables } from 'src/pages/Topics'
 import { TopicsView } from 'src/pages/Topics/View'
 import { NextRouter, useRouter } from 'next/router'
@@ -61,20 +58,6 @@ const BlogView: React.FC<BlogViewProps> = (props) => {
 
   const { loading } = response
 
-  const objects = useMemo(() => {
-    const objects: TopicsConnectionTopicFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   if (!blog) {
     return null
   }
@@ -86,8 +69,8 @@ const BlogView: React.FC<BlogViewProps> = (props) => {
       <TopicsView
         title={`Топики в блоге "${blog.name}"`}
         loading={loading}
-        objects={objects}
-        count={response.data?.objectsConnection.aggregate.count}
+        objects={response.data?.resources || []}
+        count={response.data?.resourcesCount || 0}
         variables={response.variables}
       />
     </BlogViewStyled>

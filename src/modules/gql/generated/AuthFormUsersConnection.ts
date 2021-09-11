@@ -8,37 +8,33 @@
 
 import * as Types from './types';
 
-import { AuthFormUsersConnectionResultFragment } from './AuthFormUsersConnectionResult';
+import { AuthFormUsersConnectionUserFragment } from './AuthFormUsersConnectionUser';
 import { gql } from '@apollo/client';
-import { AuthFormUsersConnectionResultFragmentDoc } from './AuthFormUsersConnectionResult';
+import { AuthFormUsersConnectionUserFragmentDoc } from './AuthFormUsersConnectionUser';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type AuthFormUsersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.UserWhereInput>;
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
-  orderBy?: Types.Maybe<Types.UserOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.UserOrderByInput> | Types.UserOrderByInput>;
 }>;
 
 
-export type AuthFormUsersConnectionQuery = { __typename?: 'Query', objectsConnection: (
-    { __typename?: 'UserConnection' }
-    & AuthFormUsersConnectionResultFragment
-  ) };
+export type AuthFormUsersConnectionQuery = { __typename?: 'Query', usersCount: number, users: Array<(
+    { __typename?: 'User' }
+    & AuthFormUsersConnectionUserFragment
+  )> };
 
 
 export const AuthFormUsersConnectionDocument = gql`
-    query AuthFormUsersConnection($where: UserWhereInput, $first: Int = 10, $skip: Int, $orderBy: UserOrderByInput) {
-  objectsConnection: usersConnection(
-    where: $where
-    first: $first
-    skip: $skip
-    orderBy: $orderBy
-  ) {
-    ...AuthFormUsersConnectionResult
+    query AuthFormUsersConnection($where: UserWhereInput, $first: Int = 10, $skip: Int, $orderBy: [UserOrderByInput!]) {
+  usersCount(where: $where)
+  users(where: $where, take: $first, skip: $skip, orderBy: $orderBy) {
+    ...AuthFormUsersConnectionUser
   }
 }
-    ${AuthFormUsersConnectionResultFragmentDoc}`;
+    ${AuthFormUsersConnectionUserFragmentDoc}`;
 
 /**
  * __useAuthFormUsersConnectionQuery__

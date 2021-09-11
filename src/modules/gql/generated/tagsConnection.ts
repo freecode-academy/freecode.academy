@@ -17,27 +17,21 @@ export type TagsConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.TagWhereInput>;
-  orderBy?: Types.Maybe<Types.TagOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TagOrderByInput> | Types.TagOrderByInput>;
 }>;
 
 
-export type TagsConnectionQuery = { __typename?: 'Query', tagsConnection: { __typename?: 'TagConnection', aggregate: { __typename?: 'AggregateTag', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TagEdge', node: (
-        { __typename?: 'Tag' }
-        & TagFragment
-      ) }>> } };
+export type TagsConnectionQuery = { __typename?: 'Query', tagsCount: number, tags: Array<(
+    { __typename?: 'Tag' }
+    & TagFragment
+  )> };
 
 
 export const TagsConnectionDocument = gql`
-    query tagsConnection($first: Int!, $skip: Int, $where: TagWhereInput, $orderBy: TagOrderByInput) {
-  tagsConnection(first: $first, skip: $skip, where: $where, orderBy: $orderBy) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...tag_
-      }
-    }
+    query tagsConnection($first: Int!, $skip: Int, $where: TagWhereInput, $orderBy: [TagOrderByInput!]) {
+  tagsCount(where: $where)
+  tags(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {
+    ...tag_
   }
 }
     ${TagFragmentDoc}`;

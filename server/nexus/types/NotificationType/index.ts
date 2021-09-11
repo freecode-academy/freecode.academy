@@ -22,50 +22,6 @@ export const NotificationTypeExtendQuery = extendType({
         })
       },
     })
-
-    // t.crud.notificationType({
-    //   description: 'Уведомление',
-    // })
-
-    // t.nonNull.field('notificationTypesConnection', {
-    //   type: 'NotificationTypeConnection',
-    //   args: {
-    //     where: 'NotificationTypeWhereInput',
-    //     orderBy: 'NotificationTypeOrderByInput',
-    //     first: 'Int',
-    //     skip: 'Int',
-    //   },
-    //   resolve: async (_, args, ctx) => {
-    //     const where = args.where as Prisma.NotificationTypeWhereInput
-    //     const orderBy = args.orderBy as Prisma.NotificationTypeOrderByInput
-    //     const take = args.first || undefined
-    //     const skip = args.skip || undefined
-
-    //     const countPromise = ctx.prisma.notificationType.count({
-    //       where,
-    //     })
-
-    //     const notificationTypesPromise = ctx.prisma.notificationType.findMany({
-    //       where,
-    //       orderBy: orderBy ? [orderBy] : undefined,
-    //       take,
-    //       skip,
-    //     })
-
-    //     return Promise.all([countPromise, notificationTypesPromise]).then((results) => {
-    //       return {
-    //         aggregate: {
-    //           count: results[0],
-    //         },
-    //         edges: results[1].map((n) => {
-    //           return {
-    //             node: n,
-    //           }
-    //         }),
-    //       }
-    //     })
-    //   },
-    // })
   },
 })
 

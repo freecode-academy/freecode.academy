@@ -2,7 +2,7 @@
 import { IMocks } from 'graphql-tools'
 import {
   AuthFormUsersConnectionQueryVariables,
-  AuthFormUsersConnectionResultFragment,
+  AuthFormUsersConnectionQuery,
   FragmentAuthPayloadFragment,
 } from 'src/modules/gql/generated'
 import mockUser from './data/user'
@@ -81,27 +81,19 @@ export const checkAuthority = (_props?: checkAuthorityProps) => {
           usersConnection: (
             _source: null,
             args: AuthFormUsersConnectionQueryVariables
-          ): AuthFormUsersConnectionResultFragment => {
+          ): AuthFormUsersConnectionQuery => {
             // console.log('usersConnection args', args);
 
             if (!args.where || args.where.username?.equals !== 'Fi1osof') {
               return {
-                aggregate: {
-                  count: 0,
-                },
-                edges: [],
+                usersCount: 0,
+                users: [],
               }
             }
 
             return {
-              aggregate: {
-                count: 1,
-              },
-              edges: [
-                {
-                  node: user,
-                },
-              ],
+              usersCount: 1,
+              users: [user],
             }
           },
         }),

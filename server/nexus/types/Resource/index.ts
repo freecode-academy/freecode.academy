@@ -14,42 +14,15 @@ export const ResourceExtendQuery = extendType({
       ordering: true,
     })
 
-    t.nonNull.field('resourcesConnection', {
-      type: 'ResourceConnection',
+    t.nonNull.int('resourcesCount', {
       args: {
         where: 'ResourceWhereInput',
-        orderBy: 'ResourceOrderByInput',
-        first: 'Int',
-        skip: 'Int',
       },
-      resolve: async (_, args, ctx) => {
+      resolve(_, args, ctx) {
         const where = args.where as Prisma.ResourceWhereInput
-        const orderBy = args.orderBy as Prisma.ResourceOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
 
-        const countPromise = ctx.prisma.resource.count({
+        return ctx.prisma.resource.count({
           where,
-        })
-
-        const resourcesPromise = ctx.prisma.resource.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
-
-        return Promise.all([countPromise, resourcesPromise]).then((results) => {
-          return {
-            aggregate: {
-              count: results[0],
-            },
-            edges: results[1].map((n) => {
-              return {
-                node: n,
-              }
-            }),
-          }
         })
       },
     })
@@ -205,34 +178,6 @@ export const ResourceType = enumType({
     'Team',
     'Topic',
   ],
-})
-
-export const ResourceEdge = objectType({
-  name: 'ResourceEdge',
-  definition(t) {
-    t.nonNull.field('node', {
-      type: 'Resource',
-    })
-  },
-})
-
-export const AggregateResource = objectType({
-  name: 'AggregateResource',
-  definition(t) {
-    t.nonNull.int('count')
-  },
-})
-
-export const ResourceConnection = objectType({
-  name: 'ResourceConnection',
-  definition(t) {
-    t.nonNull.list.field('edges', {
-      type: 'ResourceEdge',
-    })
-    t.nonNull.field('aggregate', {
-      type: 'AggregateResource',
-    })
-  },
 })
 
 export const ResourceResponse = objectType({

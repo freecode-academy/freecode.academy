@@ -16,42 +16,15 @@ export const ProjectExtendQuery = extendType({
       ordering: true,
     })
 
-    t.nonNull.field('projectsConnection', {
-      type: 'ProjectConnection',
+    t.nonNull.int('projectsCount', {
       args: {
         where: 'ProjectWhereInput',
-        orderBy: 'ProjectOrderByInput',
-        first: 'Int',
-        skip: 'Int',
       },
-      resolve: async (_, args, ctx) => {
+      resolve(_, args, ctx) {
         const where = args.where as Prisma.ProjectWhereInput
-        const orderBy = args.orderBy as Prisma.ProjectOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
 
-        const countPromise = ctx.prisma.project.count({
+        return ctx.prisma.project.count({
           where,
-        })
-
-        const projectsPromise = ctx.prisma.project.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
-
-        return Promise.all([countPromise, projectsPromise]).then((results) => {
-          return {
-            aggregate: {
-              count: results[0],
-            },
-            edges: results[1].map((n) => {
-              return {
-                node: n,
-              }
-            }),
-          }
         })
       },
     })
@@ -186,34 +159,6 @@ export const ProjectStatus = enumType({
     'Completed',
     'Reopened',
   ],
-})
-
-export const AggregateProject = objectType({
-  name: 'AggregateProject',
-  definition(t) {
-    t.nonNull.int('count')
-  },
-})
-
-export const ProjectEdge = objectType({
-  name: 'ProjectEdge',
-  definition(t) {
-    t.nonNull.field('node', {
-      type: 'Project',
-    })
-  },
-})
-
-export const ProjectConnection = objectType({
-  name: 'ProjectConnection',
-  definition(t) {
-    t.nonNull.list.field('edges', {
-      type: 'ProjectEdge',
-    })
-    t.nonNull.field('aggregate', {
-      type: 'AggregateProject',
-    })
-  },
 })
 
 export const ProjectResponse = objectType({

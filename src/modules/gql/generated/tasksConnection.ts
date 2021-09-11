@@ -15,35 +15,24 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type TasksConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.TaskWhereInput>;
-  orderBy?: Types.Maybe<Types.TaskOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TaskOrderByInput> | Types.TaskOrderByInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
   timersWhere?: Types.Maybe<Types.TimerWhereInput>;
 }>;
 
 
-export type TasksConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'TaskConnection', aggregate: { __typename?: 'AggregateTask', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TaskEdge', node: (
-        { __typename?: 'Task' }
-        & TasksConnectionTaskFragment
-      ) }>> } };
+export type TasksConnectionQuery = { __typename?: 'Query', tasksCount: number, tasks: Array<(
+    { __typename?: 'Task' }
+    & TasksConnectionTaskFragment
+  )> };
 
 
 export const TasksConnectionDocument = gql`
-    query tasksConnection($where: TaskWhereInput, $orderBy: TaskOrderByInput = {createdAt: desc}, $skip: Int, $first: Int = 10, $timersWhere: TimerWhereInput) {
-  objectsConnection: tasksConnection(
-    where: $where
-    orderBy: $orderBy
-    skip: $skip
-    first: $first
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...tasksConnectionTask
-      }
-    }
+    query tasksConnection($where: TaskWhereInput, $orderBy: [TaskOrderByInput!] = {createdAt: desc}, $skip: Int, $first: Int = 10, $timersWhere: TimerWhereInput) {
+  tasksCount(where: $where)
+  tasks(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
+    ...tasksConnectionTask
   }
 }
     ${TasksConnectionTaskFragmentDoc}`;

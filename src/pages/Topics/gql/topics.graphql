@@ -2,22 +2,11 @@ query topicsConnection(
   $first: Int = 10
   $skip: Int
   $where: ResourceWhereInput
-  $orderBy: ResourceOrderByInput = { createdAt: desc }
+  $orderBy: [ResourceOrderByInput!] = { createdAt: desc }
 ) {
-  objectsConnection: resourcesConnection(
-    orderBy: $orderBy
-    first: $first
-    skip: $skip
-    where: $where
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...topicsConnectionTopic
-      }
-    }
+  resourcesCount(where: $where)
+  resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...topicsConnectionTopic
   }
 }
 

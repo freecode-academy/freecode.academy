@@ -4,7 +4,6 @@ import {
   TasksConnectionDocument,
   TasksConnectionQueryVariables,
   useTasksConnectionQuery,
-  TasksConnectionTaskFragment,
   TaskWhereInput,
   EnumTaskStatusFilter,
 } from 'src/modules/gql/generated'
@@ -92,20 +91,6 @@ const TasksPage: Page = () => {
     onError: console.error,
   })
 
-  const objects = useMemo(() => {
-    const objects: TasksConnectionTaskFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   const { variables } = response
 
   const setFilters = useCallback((filters: any) => {
@@ -120,8 +105,8 @@ const TasksPage: Page = () => {
           <meta name="description" content="Все задачи" />
         </Head>
         <View
-          objects={objects}
-          total={response.data?.objectsConnection.aggregate.count ?? 0}
+          objects={response.data?.tasks || []}
+          total={response.data?.tasksCount || 0}
           limit={variables?.first}
           page={page}
           setFilters={setFilters}
@@ -129,9 +114,9 @@ const TasksPage: Page = () => {
       </>
     )
   }, [
-    objects,
     page,
-    response.data?.objectsConnection.aggregate.count,
+    response.data?.tasks,
+    response.data?.tasksCount,
     setFilters,
     variables?.first,
   ])

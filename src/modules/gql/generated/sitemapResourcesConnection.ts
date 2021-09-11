@@ -15,32 +15,21 @@ export type SitemapResourcesConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where: Types.ResourceWhereInput;
-  orderBy: Types.ResourceOrderByInput;
+  orderBy: Array<Types.ResourceOrderByInput> | Types.ResourceOrderByInput;
 }>;
 
 
-export type SitemapResourcesConnectionQuery = { __typename?: 'Query', resourcesConnection: { __typename?: 'ResourceConnection', aggregate: { __typename?: 'AggregateResource', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ResourceEdge', node: { __typename?: 'Resource', id: string, type?: Types.Maybe<Types.ResourceType>, uri: string, updatedAt: globalThis.Date } }>> } };
+export type SitemapResourcesConnectionQuery = { __typename?: 'Query', resourcesCount: number, resources: Array<{ __typename?: 'Resource', id: string, type?: Types.Maybe<Types.ResourceType>, uri: string, updatedAt: globalThis.Date }> };
 
 
 export const SitemapResourcesConnectionDocument = gql`
-    query sitemapResourcesConnection($first: Int!, $skip: Int, $where: ResourceWhereInput!, $orderBy: ResourceOrderByInput!) {
-  resourcesConnection(
-    first: $first
-    skip: $skip
-    where: $where
-    orderBy: $orderBy
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        id
-        type
-        uri
-        updatedAt
-      }
-    }
+    query sitemapResourcesConnection($first: Int!, $skip: Int, $where: ResourceWhereInput!, $orderBy: [ResourceOrderByInput!]!) {
+  resourcesCount(where: $where)
+  resources(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {
+    id
+    type
+    uri
+    updatedAt
   }
 }
     `;

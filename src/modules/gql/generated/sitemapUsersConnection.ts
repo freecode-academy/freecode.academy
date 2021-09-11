@@ -15,26 +15,20 @@ export type SitemapUsersConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where: Types.UserWhereInput;
-  orderBy: Types.UserOrderByInput;
+  orderBy: Array<Types.UserOrderByInput> | Types.UserOrderByInput;
 }>;
 
 
-export type SitemapUsersConnectionQuery = { __typename?: 'Query', usersConnection: { __typename?: 'UserConnection', aggregate: { __typename?: 'AggregateUser', count: number }, edges: Array<Types.Maybe<{ __typename?: 'UserEdge', node: { __typename?: 'User', id: string, username?: Types.Maybe<string>, updatedAt: globalThis.Date } }>> } };
+export type SitemapUsersConnectionQuery = { __typename?: 'Query', usersCount: number, users: Array<{ __typename?: 'User', id: string, username?: Types.Maybe<string>, updatedAt: globalThis.Date }> };
 
 
 export const SitemapUsersConnectionDocument = gql`
-    query sitemapUsersConnection($first: Int!, $skip: Int, $where: UserWhereInput!, $orderBy: UserOrderByInput!) {
-  usersConnection(first: $first, skip: $skip, where: $where, orderBy: $orderBy) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        id
-        username
-        updatedAt
-      }
-    }
+    query sitemapUsersConnection($first: Int!, $skip: Int, $where: UserWhereInput!, $orderBy: [UserOrderByInput!]!) {
+  usersCount(where: $where)
+  users(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {
+    id
+    username
+    updatedAt
   }
 }
     `;

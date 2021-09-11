@@ -5,23 +5,19 @@ import IconButton from 'material-ui/IconButton'
 import NoticesIcon from 'material-ui-icons/Notifications'
 import NoticesActiveIcon from 'material-ui-icons/NotificationsActive'
 
-import { useNoticesConnectionQuery } from 'src/modules/gql/generated'
+import { useNoticesCountQuery } from 'src/modules/gql/generated'
 import Link from 'next/link'
 
 const MainMenuNotices: React.FC<MainMenuNoticesProps> = ({
   className,
   ...other
 }) => {
-  const queryResult = useNoticesConnectionQuery({
-    variables: {
-      getNodes: false,
-    },
-  })
+  const queryResult = useNoticesCountQuery()
 
   return useMemo(() => {
     let icon = <NoticesIcon />
 
-    if (queryResult.data?.objectsConnection.aggregate.count) {
+    if (queryResult.data?.noticesCount) {
       icon = <NoticesActiveIcon color="secondary" />
     }
 
@@ -34,7 +30,7 @@ const MainMenuNotices: React.FC<MainMenuNoticesProps> = ({
         </Link>
       </>
     )
-  }, [className, other, queryResult.data?.objectsConnection.aggregate.count])
+  }, [className, other, queryResult.data?.noticesCount])
 }
 
 export default MainMenuNotices

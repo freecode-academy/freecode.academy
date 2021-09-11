@@ -2,18 +2,12 @@ query sitemapTagsConnection(
   $first: Int!
   $skip: Int
   $where: TagWhereInput!
-  $orderBy: TagOrderByInput!
+  $orderBy: [TagOrderByInput!]!
 ) {
-  tagsConnection(first: $first, skip: $skip, where: $where, orderBy: $orderBy) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        id
-        name
-        updatedAt
-      }
-    }
+  tagsCount(where: $where)
+  tags(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {
+    id
+    name
+    updatedAt
   }
 }

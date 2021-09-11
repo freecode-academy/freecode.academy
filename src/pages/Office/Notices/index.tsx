@@ -2,7 +2,6 @@ import React, { useMemo } from 'react'
 import {
   NoticesConnectionQueryVariables,
   useNoticesConnectionQuery,
-  NoticeFragment,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -52,20 +51,6 @@ const NoticesPage: Page = () => {
     variables: queryVariables,
   })
 
-  const notices = useMemo(() => {
-    const notices: NoticeFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges?.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, notices) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   const { variables } = response
 
   return (
@@ -78,11 +63,11 @@ const NoticesPage: Page = () => {
       />
 
       <View
-        notices={notices}
+        notices={response.data?.notices || []}
         pagination={{
           limit: variables?.first || 0,
           page,
-          total: response.data?.objectsConnection.aggregate.count || 0,
+          total: response.data?.noticesCount || 0,
         }}
       />
     </>

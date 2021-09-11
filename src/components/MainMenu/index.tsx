@@ -28,7 +28,7 @@ import { MainMenuProps, MainMenuState } from './interfaces'
 // import { Timer } from '@prisma-cms/cooperation'
 
 import Timer from './Timer'
-import MainMenuNotices from './Notices'
+// import MainMenuNotices from './Notices'
 import { TaskStatus, TaskWhereInput } from 'src/modules/gql/generated'
 
 // export const defaultStyles = theme => {
@@ -324,14 +324,14 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                   </Grid>
                 ) : null}
 
-                {currentUser ? (
+                {/* {currentUser ? (
                   <Grid key="notifications" item>
                     <MainMenuNotices
                       key={currentUser.id}
                       className={classes?.iconButton}
                     />
                   </Grid>
-                ) : null}
+                ) : null} */}
 
                 {currentUser ? (
                   <Grid key="user" item>

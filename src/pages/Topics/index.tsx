@@ -5,7 +5,6 @@ import {
   TopicsConnectionDocument,
   TopicsConnectionQueryVariables,
   useTopicsConnectionQuery,
-  TopicsConnectionTopicFragment,
 } from 'src/modules/gql/generated'
 
 import { Page, NextPageContextCustom } from '../_App/interfaces'
@@ -65,20 +64,6 @@ const TopicsPage: Page = () => {
 
   const { variables, loading } = response
 
-  const objects = useMemo(() => {
-    const objects: TopicsConnectionTopicFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   return (
     <>
       <Head>
@@ -88,8 +73,8 @@ const TopicsPage: Page = () => {
 
       <TopicsView
         loading={loading}
-        objects={objects}
-        count={response.data?.objectsConnection.aggregate.count}
+        objects={response.data?.resources || []}
+        count={response.data?.resourcesCount || 0}
         variables={variables}
         page={page}
       />

@@ -17,32 +17,21 @@ export type ProjectsConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.ProjectWhereInput>;
-  orderBy?: Types.Maybe<Types.ProjectOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.ProjectOrderByInput> | Types.ProjectOrderByInput>;
 }>;
 
 
-export type ProjectsConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'ProjectConnection', aggregate: { __typename?: 'AggregateProject', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ProjectEdge', node: (
-        { __typename?: 'Project' }
-        & ProjectsConnectionProjectFragment
-      ) }>> } };
+export type ProjectsConnectionQuery = { __typename?: 'Query', projectsCount: number, projects: Array<(
+    { __typename?: 'Project' }
+    & ProjectsConnectionProjectFragment
+  )> };
 
 
 export const ProjectsConnectionDocument = gql`
-    query projectsConnection($first: Int = 12, $skip: Int, $where: ProjectWhereInput, $orderBy: ProjectOrderByInput = {updatedAt: desc}) {
-  objectsConnection: projectsConnection(
-    orderBy: $orderBy
-    first: $first
-    skip: $skip
-    where: $where
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...projectsConnectionProject
-      }
-    }
+    query projectsConnection($first: Int = 12, $skip: Int, $where: ProjectWhereInput, $orderBy: [ProjectOrderByInput!] = {updatedAt: desc}) {
+  projectsCount(where: $where)
+  projects(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...projectsConnectionProject
   }
 }
     ${ProjectsConnectionProjectFragmentDoc}`;

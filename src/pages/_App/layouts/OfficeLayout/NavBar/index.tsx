@@ -12,7 +12,7 @@ import TimerIcon from 'material-ui-icons/Timer'
 import UserIcon from 'material-ui-icons/AccountCircle'
 import OfficeIcon from 'material-ui-icons/Dashboard'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
-import MainMenuNotices from 'src/components/MainMenu/Notices'
+// import MainMenuNotices from 'src/components/MainMenu/Notices'
 
 /**
  * Боковая панель
@@ -67,7 +67,7 @@ const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
               </a>
             </Link>
 
-            <MainMenuNotices />
+            {/* <MainMenuNotices /> */}
 
             <div className="separator" />
 

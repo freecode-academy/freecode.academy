@@ -21,10 +21,11 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type MainPageQueryVariables = Types.Exact<{
   timersWhere?: Types.Maybe<Types.TimerWhereInput>;
+  tasksNeedHelpwhereInput?: Types.Maybe<Types.TaskWhereInput>;
 }>;
 
 
-export type MainPageQuery = { __typename?: 'Query', students: Array<(
+export type MainPageQuery = { __typename?: 'Query', tasksNeedHelpCount: number, students: Array<(
     { __typename?: 'User' }
     & UserNoNestingFragment
   )>, codeChallengeCompletions: Array<(
@@ -33,14 +34,14 @@ export type MainPageQuery = { __typename?: 'Query', students: Array<(
   )>, comments: Array<(
     { __typename?: 'Resource' }
     & ResourceFragment
-  )>, tasksNeedHelp: { __typename?: 'TaskConnection', aggregate: { __typename?: 'AggregateTask', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TaskEdge', node: (
-        { __typename?: 'Task' }
-        & TasksConnectionTaskFragment
-      ) }>> } };
+  )>, tasksNeedHelp: Array<(
+    { __typename?: 'Task' }
+    & TasksConnectionTaskFragment
+  )> };
 
 
 export const MainPageDocument = gql`
-    query mainPage($timersWhere: TimerWhereInput) {
+    query mainPage($timersWhere: TimerWhereInput, $tasksNeedHelpwhereInput: TaskWhereInput = {needHelp: {equals: true}, status: {notIn: [Completed]}}) {
   students: users(
     take: 4
     orderBy: {createdAt: desc}
@@ -62,19 +63,13 @@ export const MainPageDocument = gql`
   ) {
     ...resource_
   }
-  tasksNeedHelp: tasksConnection(
-    where: {needHelp: {equals: true}, status: {notIn: [Completed]}}
+  tasksNeedHelpCount: tasksCount(where: $tasksNeedHelpwhereInput)
+  tasksNeedHelp: tasks(
+    where: $tasksNeedHelpwhereInput
     orderBy: {createdAt: desc}
-    first: 3
+    take: 3
   ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...tasksConnectionTask
-      }
-    }
+    ...tasksConnectionTask
   }
 }
     ${UserNoNestingFragmentDoc}
@@ -95,6 +90,7 @@ ${TasksConnectionTaskFragmentDoc}`;
  * const { data, loading, error } = useMainPageQuery({
  *   variables: {
  *      timersWhere: // value for 'timersWhere'
+ *      tasksNeedHelpwhereInput: // value for 'tasksNeedHelpwhereInput'
  *   },
  * });
  */

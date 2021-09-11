@@ -15,34 +15,23 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type TimersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.TimerWhereInput>;
-  orderBy?: Types.Maybe<Types.TimerOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TimerOrderByInput> | Types.TimerOrderByInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
 }>;
 
 
-export type TimersConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'TimerConnection', aggregate: { __typename?: 'AggregateTimer', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TimerEdge', node: (
-        { __typename?: 'Timer' }
-        & TimersConnectionTimerFragment
-      ) }>> } };
+export type TimersConnectionQuery = { __typename?: 'Query', timersCount: number, timers: Array<(
+    { __typename?: 'Timer' }
+    & TimersConnectionTimerFragment
+  )> };
 
 
 export const TimersConnectionDocument = gql`
-    query timersConnection($where: TimerWhereInput, $orderBy: TimerOrderByInput = {createdAt: desc}, $skip: Int, $first: Int) {
-  objectsConnection: timersConnection(
-    where: $where
-    orderBy: $orderBy
-    skip: $skip
-    first: $first
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...timersConnectionTimer
-      }
-    }
+    query timersConnection($where: TimerWhereInput, $orderBy: [TimerOrderByInput!] = {createdAt: desc}, $skip: Int, $first: Int) {
+  timersCount(where: $where)
+  timers(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
+    ...timersConnectionTimer
   }
 }
     ${TimersConnectionTimerFragmentDoc}`;

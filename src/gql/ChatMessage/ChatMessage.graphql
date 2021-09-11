@@ -1,3 +1,43 @@
+query chatMessagesConnection(
+  $where: ChatMessageWhereInput
+  $orderBy: [ChatMessageOrderByInput!]
+  $skip: Int
+  # $after: String
+  # $before: String
+  $first: Int = 10 # $last: Int
+) {
+  chatMessagesCount(where: $where)
+
+  chatMessages(
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    # after: $after
+    # before: $before
+    take: $first # last: $last
+  ) {
+    ...chatMessage_
+  }
+}
+
+fragment chatMessage_ on ChatMessage {
+  ...ChatMessageNoNesting
+  Room {
+    ...ChatRoomNoNesting
+  }
+  CreatedBy {
+    ...UserNoNesting
+  }
+}
+
+fragment ChatMessageNoNesting on ChatMessage {
+  id
+  createdAt
+  updatedAt
+  content
+  contentText
+}
+
 mutation createChatMessageProcessor($data: ChatMessageCreateInput!) {
   response: createChatMessageProcessor(data: $data) {
     success

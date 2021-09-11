@@ -10,42 +10,15 @@ export const TagExtendQuery = extendType({
       ordering: true,
     })
 
-    t.nonNull.field('tagsConnection', {
-      type: 'TagConnection',
+    t.nonNull.int('tagsCount', {
       args: {
         where: 'TagWhereInput',
-        orderBy: 'TagOrderByInput',
-        first: 'Int',
-        skip: 'Int',
       },
-      resolve: async (_, args, ctx) => {
+      resolve(_, args, ctx) {
         const where = args.where as Prisma.TagWhereInput
-        const orderBy = args.orderBy as Prisma.TagOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
 
-        const countPromise = ctx.prisma.tag.count({
+        return ctx.prisma.tag.count({
           where,
-        })
-
-        const tagsPromise = ctx.prisma.tag.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
-
-        return Promise.all([countPromise, tagsPromise]).then((results) => {
-          return {
-            aggregate: {
-              count: results[0],
-            },
-            edges: results[1].map((n) => {
-              return {
-                node: n,
-              }
-            }),
-          }
         })
       },
     })
@@ -80,34 +53,6 @@ export const Tag = objectType({
           },
         })
       },
-    })
-  },
-})
-
-export const AggregateTag = objectType({
-  name: 'AggregateTag',
-  definition(t) {
-    t.nonNull.int('count')
-  },
-})
-
-export const TagEdge = objectType({
-  name: 'TagEdge',
-  definition(t) {
-    t.nonNull.field('node', {
-      type: 'Tag',
-    })
-  },
-})
-
-export const TagConnection = objectType({
-  name: 'TagConnection',
-  definition(t) {
-    t.nonNull.list.field('edges', {
-      type: 'TagEdge',
-    })
-    t.nonNull.field('aggregate', {
-      type: 'AggregateTag',
     })
   },
 })

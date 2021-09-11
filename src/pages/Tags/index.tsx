@@ -5,7 +5,6 @@ import {
   TagsConnectionQueryVariables,
   TagsConnectionQuery,
   useTagsConnectionQuery,
-  TagFragment,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -55,20 +54,6 @@ const TagsPage: Page = () => {
     onError: console.error,
   })
 
-  const objects = useMemo(() => {
-    const objects: TagFragment[] = []
-
-    return (
-      response.data?.tagsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.tagsConnection.edges])
-
   const { variables, loading } = response
 
   return (
@@ -82,8 +67,8 @@ const TagsPage: Page = () => {
         // {...queryResult}
         loading={loading}
         // data={response || null}
-        objects={objects}
-        count={response.data?.tagsConnection.aggregate.count}
+        objects={response.data?.tags || []}
+        count={response.data?.tagsCount || 0}
         variables={variables}
         page={page}
       />
@@ -108,7 +93,7 @@ TagsPage.getInitialProps = async (context) => {
   })
 
   return {
-    statusCode: !result.data.tagsConnection.edges.length ? 404 : undefined,
+    statusCode: !result.data.tags.length ? 404 : undefined,
   }
 }
 

@@ -3,26 +3,11 @@ query AuthFormUsersConnection(
   $where: UserWhereInput
   $first: Int = 10
   $skip: Int
-  $orderBy: UserOrderByInput
+  $orderBy: [UserOrderByInput!]
 ) {
-  objectsConnection: usersConnection(
-    where: $where
-    first: $first
-    skip: $skip
-    orderBy: $orderBy
-  ) {
-    ...AuthFormUsersConnectionResult
-  }
-}
-
-fragment AuthFormUsersConnectionResult on UserConnection {
-  aggregate {
-    count
-  }
-  edges {
-    node {
-      ...AuthFormUsersConnectionUser
-    }
+  usersCount(where: $where)
+  users(where: $where, take: $first, skip: $skip, orderBy: $orderBy) {
+    ...AuthFormUsersConnectionUser
   }
 }
 

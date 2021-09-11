@@ -17,32 +17,21 @@ export type TopicsConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.ResourceWhereInput>;
-  orderBy?: Types.Maybe<Types.ResourceOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.ResourceOrderByInput> | Types.ResourceOrderByInput>;
 }>;
 
 
-export type TopicsConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'ResourceConnection', aggregate: { __typename?: 'AggregateResource', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ResourceEdge', node: (
-        { __typename?: 'Resource' }
-        & TopicsConnectionTopicFragment
-      ) }>> } };
+export type TopicsConnectionQuery = { __typename?: 'Query', resourcesCount: number, resources: Array<(
+    { __typename?: 'Resource' }
+    & TopicsConnectionTopicFragment
+  )> };
 
 
 export const TopicsConnectionDocument = gql`
-    query topicsConnection($first: Int = 10, $skip: Int, $where: ResourceWhereInput, $orderBy: ResourceOrderByInput = {createdAt: desc}) {
-  objectsConnection: resourcesConnection(
-    orderBy: $orderBy
-    first: $first
-    skip: $skip
-    where: $where
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...topicsConnectionTopic
-      }
-    }
+    query topicsConnection($first: Int = 10, $skip: Int, $where: ResourceWhereInput, $orderBy: [ResourceOrderByInput!] = {createdAt: desc}) {
+  resourcesCount(where: $where)
+  resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...topicsConnectionTopic
   }
 }
     ${TopicsConnectionTopicFragmentDoc}`;

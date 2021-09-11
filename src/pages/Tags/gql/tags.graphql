@@ -2,17 +2,11 @@ query tagsConnection(
   $first: Int!
   $skip: Int
   $where: TagWhereInput
-  $orderBy: TagOrderByInput
+  $orderBy: [TagOrderByInput!]
 ) {
-  tagsConnection(first: $first, skip: $skip, where: $where, orderBy: $orderBy) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...tag_
-      }
-    }
+  tagsCount(where: $where)
+  tags(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {
+    ...tag_
   }
 }
 

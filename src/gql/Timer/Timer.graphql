@@ -1,26 +1,21 @@
 query timersConnection(
   $where: TimerWhereInput
-  $orderBy: TimerOrderByInput = { createdAt: desc }
+  $orderBy: [TimerOrderByInput!] = { createdAt: desc }
   $skip: Int
   # $after: String
   # $before: String
   $first: Int # $last: Int
 ) {
-  objectsConnection: timersConnection(
+  timersCount(where: $where)
+
+  timers(
     where: $where
     orderBy: $orderBy
     skip: $skip
     # after: $after
     # before: $before
-    first: $first # last: $last
+    take: $first # last: $last
   ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...timersConnectionTimer
-      }
-    }
+    ...timersConnectionTimer
   }
 }

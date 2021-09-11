@@ -35,46 +35,6 @@ export const UserQuery = extendType({
         return ctx.currentUser
       },
     })
-
-    t.nonNull.field('usersConnection', {
-      type: 'UserConnection',
-      args: {
-        where: 'UserWhereInput',
-        orderBy: 'UserOrderByInput',
-        first: 'Int',
-        skip: 'Int',
-      },
-      resolve: async (_, args, ctx) => {
-        const where = args.where as Prisma.UserWhereInput
-        const orderBy = args.orderBy as Prisma.UserOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
-
-        const countPromise = ctx.prisma.user.count({
-          where,
-        })
-
-        const usersPromise = ctx.prisma.user.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
-
-        return Promise.all([countPromise, usersPromise]).then((results) => {
-          return {
-            aggregate: {
-              count: results[0],
-            },
-            edges: results[1].map((n) => {
-              return {
-                node: n,
-              }
-            }),
-          }
-        })
-      },
-    })
   },
 })
 
@@ -303,34 +263,6 @@ export const User = objectType({
           },
         })
       },
-    })
-  },
-})
-
-export const AggregateUser = objectType({
-  name: 'AggregateUser',
-  definition(t) {
-    t.nonNull.int('count')
-  },
-})
-
-export const UserEdge = objectType({
-  name: 'UserEdge',
-  definition(t) {
-    t.nonNull.field('node', {
-      type: 'User',
-    })
-  },
-})
-
-export const UserConnection = objectType({
-  name: 'UserConnection',
-  definition(t) {
-    t.nonNull.list.field('edges', {
-      type: 'UserEdge',
-    })
-    t.nonNull.field('aggregate', {
-      type: 'AggregateUser',
     })
   },
 })

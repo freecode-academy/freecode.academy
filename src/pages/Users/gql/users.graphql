@@ -1,27 +1,21 @@
 query usersConnection(
   $where: UserWhereInput
-  $orderBy: UserOrderByInput = { createdAt: asc }
+  $orderBy: [UserOrderByInput!] = { createdAt: asc }
   $skip: Int
   # $after: String
   # $before: String
   $first: Int = 10 # $last: Int
 ) {
-  objectsConnection: usersConnection(
+  usersCount(where: $where)
+  users(
     where: $where
     orderBy: $orderBy
     skip: $skip
     # after: $after
     # before: $before
-    first: $first # last: $last
+    take: $first # last: $last
   ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...usersConnectionUser
-      }
-    }
+    ...usersConnectionUser
   }
 }
 

@@ -6,7 +6,6 @@ import {
   useOfficeProjectsQuery,
   useOfficeTasksQuery,
 } from 'src/modules/gql/generated'
-import { OfficeContextValue } from '../../Context'
 import { useOfficeDataProps } from './interfaces'
 
 /**
@@ -92,18 +91,8 @@ const useOfficeData = (props: useOfficeDataProps) => {
    * Формируем конечный массив проектов
    */
   const projects = useMemo(() => {
-    return (
-      projectsData.data?.projectsConnection.edges.reduce<
-        OfficeContextValue['projects']
-      >((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, []) ?? []
-    )
-  }, [projectsData.data?.projectsConnection.edges])
+    return projectsData.data?.projects || []
+  }, [projectsData.data?.projects])
 
   /**
    * Формируем массив айдишников полученных проектов
@@ -151,19 +140,8 @@ const useOfficeData = (props: useOfficeDataProps) => {
    * Конечный массив задач
    */
   const tasks = useMemo(() => {
-    return (
-      tasksData.data?.tasksConnection.edges.reduce<OfficeContextValue['tasks']>(
-        (curr, next) => {
-          if (next?.node) {
-            curr.push(next.node)
-          }
-
-          return curr
-        },
-        []
-      ) ?? []
-    )
-  }, [tasksData.data?.tasksConnection.edges])
+    return tasksData.data?.tasks || []
+  }, [tasksData.data?.tasks])
 
   return useMemo(() => {
     return {

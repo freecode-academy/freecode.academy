@@ -208,11 +208,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       },
     })
 
-    const {
-      aggregate: { count: total },
-    } = usersResult.data.usersConnection
-
-    const pages = Math.ceil(total / limit)
+    const pages = Math.ceil(usersResult.data.usersCount / limit)
 
     let i = 0
 
@@ -265,12 +261,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       },
     })
 
-    const {
-      // aggregate: { count: total },
-      edges: usersEdges,
-    } = usersResult.data.usersConnection
-
-    const users = usersEdges.map((n) => n?.node)
+    const users = usersResult.data.users
 
     /**
      * Плюсуем количество статических страниц
@@ -370,11 +361,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       },
     })
 
-    const {
-      aggregate: { count: total },
-    } = resourcesResult.data.resourcesConnection
-
-    const pages = Math.ceil(total / limit)
+    const pages = Math.ceil(resourcesResult.data.resourcesCount / limit)
 
     let i = 0
 
@@ -434,12 +421,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       },
     })
 
-    const {
-      // aggregate: { count: total },
-      edges: edges,
-    } = objectsResult.data.resourcesConnection
-
-    const objects = edges.map((n) => n?.node)
+    const objects = objectsResult.data.resources
 
     // const pages = Math.ceil(total / limit)
 
@@ -529,11 +511,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       },
     })
 
-    const {
-      aggregate: { count: total },
-    } = tagsResult.data.tagsConnection
-
-    const pages = Math.ceil(total / limit)
+    const pages = Math.ceil(tagsResult.data.tagsCount / limit)
 
     let i = 0
 
@@ -603,12 +581,7 @@ export default class PrismaCmsComSitemap extends Sitemap {
       },
     })
 
-    const {
-      // aggregate: { count: total },
-      edges: edges,
-    } = objectsResult.data.tagsConnection
-
-    const objects = edges.map((n) => n?.node)
+    const objects = objectsResult.data.tags
 
     // const pages = Math.ceil(total / limit)
 

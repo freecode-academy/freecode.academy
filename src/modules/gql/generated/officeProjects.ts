@@ -18,23 +18,17 @@ export type OfficeProjectsQueryVariables = Types.Exact<{
 }>;
 
 
-export type OfficeProjectsQuery = { __typename?: 'Query', projectsConnection: { __typename?: 'ProjectConnection', aggregate: { __typename?: 'AggregateProject', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ProjectEdge', node: (
-        { __typename?: 'Project' }
-        & OfficeProjectFragment
-      ) }>> } };
+export type OfficeProjectsQuery = { __typename?: 'Query', projectsCount: number, projects: Array<(
+    { __typename?: 'Project' }
+    & OfficeProjectFragment
+  )> };
 
 
 export const OfficeProjectsDocument = gql`
     query officeProjects($where: ProjectWhereInput) {
-  projectsConnection(orderBy: {updatedAt: desc}, where: $where) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...officeProject
-      }
-    }
+  projectsCount(where: $where)
+  projects(orderBy: {updatedAt: desc}, where: $where) {
+    ...officeProject
   }
 }
     ${OfficeProjectFragmentDoc}`;

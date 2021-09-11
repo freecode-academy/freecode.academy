@@ -16,33 +16,22 @@ const defaultOptions =  {}
 export type CommentsConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
-  orderBy?: Types.Maybe<Types.ResourceOrderByInput>;
   where?: Types.Maybe<Types.ResourceWhereInput>;
+  orderBy?: Types.Maybe<Array<Types.ResourceOrderByInput> | Types.ResourceOrderByInput>;
 }>;
 
 
-export type CommentsConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'ResourceConnection', edges: Array<Types.Maybe<{ __typename?: 'ResourceEdge', node: (
-        { __typename?: 'Resource' }
-        & CommentsConnectionCommentFragment
-      ) }>>, aggregate: { __typename?: 'AggregateResource', count: number } } };
+export type CommentsConnectionQuery = { __typename?: 'Query', resourcesCount: number, resources: Array<(
+    { __typename?: 'Resource' }
+    & CommentsConnectionCommentFragment
+  )> };
 
 
 export const CommentsConnectionDocument = gql`
-    query commentsConnection($first: Int = 10, $skip: Int = 0, $orderBy: ResourceOrderByInput = {createdAt: desc}, $where: ResourceWhereInput = {type: {equals: Comment}}) {
-  objectsConnection: resourcesConnection(
-    where: $where
-    first: $first
-    skip: $skip
-    orderBy: $orderBy
-  ) {
-    edges {
-      node {
-        ...commentsConnectionComment
-      }
-    }
-    aggregate {
-      count
-    }
+    query commentsConnection($first: Int = 10, $skip: Int, $where: ResourceWhereInput, $orderBy: [ResourceOrderByInput!] = {createdAt: desc}) {
+  resourcesCount(where: $where)
+  resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...commentsConnectionComment
   }
 }
     ${CommentsConnectionCommentFragmentDoc}`;
@@ -61,8 +50,8 @@ export const CommentsConnectionDocument = gql`
  *   variables: {
  *      first: // value for 'first'
  *      skip: // value for 'skip'
- *      orderBy: // value for 'orderBy'
  *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
  *   },
  * });
  */

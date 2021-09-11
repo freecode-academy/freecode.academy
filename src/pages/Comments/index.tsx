@@ -4,7 +4,6 @@ import {
   CommentsConnectionDocument,
   CommentsConnectionQueryVariables,
   useCommentsConnectionQuery,
-  CommentsConnectionCommentFragment,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -55,20 +54,6 @@ const CommentsPage: Page = () => {
     onError: console.error,
   })
 
-  const objects = useMemo(() => {
-    const objects: CommentsConnectionCommentFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   return (
     <>
       <Head>
@@ -79,8 +64,8 @@ const CommentsPage: Page = () => {
       <View
         page={page}
         limit={first}
-        total={response.data?.objectsConnection.aggregate.count || 0}
-        objects={objects}
+        total={response.data?.resourcesCount || 0}
+        objects={response.data?.resources || []}
       />
     </>
   )

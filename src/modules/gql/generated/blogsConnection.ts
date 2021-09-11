@@ -14,35 +14,24 @@ import { BlogsConnectionResourceFragmentDoc } from './BlogsConnectionResource';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type BlogsConnectionQueryVariables = Types.Exact<{
-  where?: Types.Maybe<Types.ResourceWhereInput>;
-  orderBy?: Types.Maybe<Types.ResourceOrderByInput>;
-  skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
+  skip?: Types.Maybe<Types.Scalars['Int']>;
+  where?: Types.Maybe<Types.ResourceWhereInput>;
+  orderBy?: Types.Maybe<Array<Types.ResourceOrderByInput> | Types.ResourceOrderByInput>;
 }>;
 
 
-export type BlogsConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'ResourceConnection', aggregate: { __typename?: 'AggregateResource', count: number }, edges: Array<Types.Maybe<{ __typename?: 'ResourceEdge', node: (
-        { __typename?: 'Resource' }
-        & BlogsConnectionResourceFragment
-      ) }>> } };
+export type BlogsConnectionQuery = { __typename?: 'Query', resourcesCount: number, resources: Array<(
+    { __typename?: 'Resource' }
+    & BlogsConnectionResourceFragment
+  )> };
 
 
 export const BlogsConnectionDocument = gql`
-    query blogsConnection($where: ResourceWhereInput, $orderBy: ResourceOrderByInput = {name: asc}, $skip: Int, $first: Int) {
-  objectsConnection: resourcesConnection(
-    where: $where
-    orderBy: $orderBy
-    skip: $skip
-    first: $first
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...BlogsConnectionResource
-      }
-    }
+    query blogsConnection($first: Int = 10, $skip: Int, $where: ResourceWhereInput, $orderBy: [ResourceOrderByInput!] = {createdAt: desc}) {
+  resourcesCount(where: $where)
+  resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...BlogsConnectionResource
   }
 }
     ${BlogsConnectionResourceFragmentDoc}`;
@@ -59,10 +48,10 @@ export const BlogsConnectionDocument = gql`
  * @example
  * const { data, loading, error } = useBlogsConnectionQuery({
  *   variables: {
+ *      first: // value for 'first'
+ *      skip: // value for 'skip'
  *      where: // value for 'where'
  *      orderBy: // value for 'orderBy'
- *      skip: // value for 'skip'
- *      first: // value for 'first'
  *   },
  * });
  */

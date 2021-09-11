@@ -5,7 +5,6 @@ import {
   BlogsConnectionQueryVariables,
   useBlogsConnectionQuery,
   ResourceType,
-  BlogsConnectionResourceFragment,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -59,20 +58,6 @@ const BlogsPage: Page = () => {
     onError: console.error,
   })
 
-  const objects = useMemo(() => {
-    const objects: BlogsConnectionResourceFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   const { variables, loading } = response
 
   return (
@@ -86,8 +71,8 @@ const BlogsPage: Page = () => {
         // {...queryResult}
         loading={loading}
         // data={response || null}
-        objects={objects}
-        count={response.data?.objectsConnection.aggregate.count}
+        objects={response.data?.resources || []}
+        count={response.data?.resourcesCount || 0}
         variables={variables}
         page={page}
       />

@@ -31,46 +31,6 @@ export const TaskExtendQuery = extendType({
         })
       },
     })
-
-    t.nonNull.field('tasksConnection', {
-      type: 'TaskConnection',
-      args: {
-        where: 'TaskWhereInput',
-        orderBy: 'TaskOrderByInput',
-        first: 'Int',
-        skip: 'Int',
-      },
-      resolve: async (_, args, ctx) => {
-        const where = args.where as Prisma.TaskWhereInput
-        const orderBy = args.orderBy as Prisma.TaskOrderByInput
-        const take = args.first || undefined
-        const skip = args.skip || undefined
-
-        const countPromise = ctx.prisma.task.count({
-          where,
-        })
-
-        const tasksPromise = ctx.prisma.task.findMany({
-          where,
-          orderBy: orderBy ? [orderBy] : undefined,
-          take,
-          skip,
-        })
-
-        return Promise.all([countPromise, tasksPromise]).then((results) => {
-          return {
-            aggregate: {
-              count: results[0],
-            },
-            edges: results[1].map((n) => {
-              return {
-                node: n,
-              }
-            }),
-          }
-        })
-      },
-    })
   },
 })
 
@@ -224,34 +184,6 @@ export const TaskStatus = enumType({
     'RevisionsRequired',
     'Completed',
   ],
-})
-
-export const AggregateTask = objectType({
-  name: 'AggregateTask',
-  definition(t) {
-    t.nonNull.int('count')
-  },
-})
-
-export const TaskEdge = objectType({
-  name: 'TaskEdge',
-  definition(t) {
-    t.nonNull.field('node', {
-      type: 'Task',
-    })
-  },
-})
-
-export const TaskConnection = objectType({
-  name: 'TaskConnection',
-  definition(t) {
-    t.nonNull.list.field('edges', {
-      type: 'TaskEdge',
-    })
-    t.nonNull.field('aggregate', {
-      type: 'AggregateTask',
-    })
-  },
 })
 
 export const TaskResponse = objectType({

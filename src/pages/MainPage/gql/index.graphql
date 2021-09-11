@@ -1,4 +1,10 @@
-query mainPage($timersWhere: TimerWhereInput) {
+query mainPage(
+  $timersWhere: TimerWhereInput
+  $tasksNeedHelpwhereInput: TaskWhereInput = {
+    needHelp: { equals: true }
+    status: { notIn: [Completed] }
+  }
+) {
   students: users(
     take: 4
     orderBy: { createdAt: desc }
@@ -30,19 +36,13 @@ query mainPage($timersWhere: TimerWhereInput) {
   }
 
   # Задачи, требующие выполнения
-  tasksNeedHelp: tasksConnection(
-    where: { needHelp: { equals: true }, status: { notIn: [Completed] } }
+  tasksNeedHelpCount: tasksCount(where: $tasksNeedHelpwhereInput)
+  tasksNeedHelp: tasks(
+    where: $tasksNeedHelpwhereInput
     orderBy: { createdAt: desc }
-    first: 3
+    take: 3
   ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...tasksConnectionTask
-      }
-    }
+    ...tasksConnectionTask
   }
 }
 

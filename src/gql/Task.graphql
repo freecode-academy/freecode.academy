@@ -1,6 +1,6 @@
 query tasksConnection(
   $where: TaskWhereInput
-  $orderBy: TaskOrderByInput = { createdAt: desc }
+  $orderBy: [TaskOrderByInput!] = { createdAt: desc }
   $skip: Int
   # $after: String
   # $before: String
@@ -8,21 +8,16 @@ query tasksConnection(
   # $last: Int
   $timersWhere: TimerWhereInput
 ) {
-  objectsConnection: tasksConnection(
+  tasksCount(where: $where)
+
+  tasks(
     where: $where
     orderBy: $orderBy
     skip: $skip
     # after: $after
     # before: $before
-    first: $first # last: $last
+    take: $first # last: $last
   ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...tasksConnectionTask
-      }
-    }
+    ...tasksConnectionTask
   }
 }

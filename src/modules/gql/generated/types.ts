@@ -28,46 +28,6 @@ export type Scalars = {
   UserTechnologyLevel: 1 | 2 | 3 | 4 | 5;
 };
 
-export interface AggregateChatMessage {
-  __typename?: 'AggregateChatMessage';
-  count: Scalars['Int'];
-}
-
-export interface AggregateNotice {
-  __typename?: 'AggregateNotice';
-  count: Scalars['Int'];
-}
-
-export interface AggregateProject {
-  __typename?: 'AggregateProject';
-  count: Scalars['Int'];
-}
-
-export interface AggregateResource {
-  __typename?: 'AggregateResource';
-  count: Scalars['Int'];
-}
-
-export interface AggregateTag {
-  __typename?: 'AggregateTag';
-  count: Scalars['Int'];
-}
-
-export interface AggregateTask {
-  __typename?: 'AggregateTask';
-  count: Scalars['Int'];
-}
-
-export interface AggregateTimer {
-  __typename?: 'AggregateTimer';
-  count: Scalars['Int'];
-}
-
-export interface AggregateUser {
-  __typename?: 'AggregateUser';
-  count: Scalars['Int'];
-}
-
 /** Объект ответа мутации пользователя */
 export interface AuthPayload {
   __typename?: 'AuthPayload';
@@ -185,20 +145,9 @@ export interface ChatMessage {
   updatedAt: Scalars['DateTime'];
 }
 
-export interface ChatMessageConnection {
-  __typename?: 'ChatMessageConnection';
-  aggregate: AggregateChatMessage;
-  edges: Array<Maybe<ChatMessageEdge>>;
-}
-
 export interface ChatMessageCreateInput {
   Room?: Maybe<ChatRoomCreateOneWithoutMessagesInput>;
   content?: Maybe<Scalars['JSON']>;
-}
-
-export interface ChatMessageEdge {
-  __typename?: 'ChatMessageEdge';
-  node: ChatMessage;
 }
 
 export interface ChatMessageListRelationFilter {
@@ -2077,17 +2026,6 @@ export interface Notice {
   updatedAt: Scalars['DateTime'];
 }
 
-export interface NoticeConnection {
-  __typename?: 'NoticeConnection';
-  aggregate: AggregateNotice;
-  edges: Array<Maybe<NoticeEdge>>;
-}
-
-export interface NoticeEdge {
-  __typename?: 'NoticeEdge';
-  node: Notice;
-}
-
 export interface NoticeListRelationFilter {
   every?: Maybe<NoticeWhereInput>;
   none?: Maybe<NoticeWhereInput>;
@@ -2263,23 +2201,12 @@ export type ProjectProjectTasksArgs = {
   orderBy?: Maybe<ProjectTaskOrderByInput>;
 };
 
-export interface ProjectConnection {
-  __typename?: 'ProjectConnection';
-  aggregate: AggregateProject;
-  edges: Array<Maybe<ProjectEdge>>;
-}
-
 export interface ProjectCreateInput {
   name: Scalars['String'];
 }
 
 export interface ProjectCreateOneWithoutProjectTasksInput {
   connect?: Maybe<ProjectWhereUniqueInput>;
-}
-
-export interface ProjectEdge {
-  __typename?: 'ProjectEdge';
-  node: Project;
 }
 
 export interface ProjectListRelationFilter {
@@ -2478,7 +2405,6 @@ export interface Query {
   __typename?: 'Query';
   chatMessage?: Maybe<ChatMessage>;
   chatMessages: Array<ChatMessage>;
-  chatMessagesConnection: ChatMessageConnection;
   chatMessagesCount: Scalars['Int'];
   chatRoom?: Maybe<ChatRoom>;
   chatRooms: Array<ChatRoom>;
@@ -2508,7 +2434,6 @@ export interface Query {
   notice?: Maybe<Notice>;
   /** Список уведомлений */
   notices: Array<Notice>;
-  noticesConnection: NoticeConnection;
   /** Количество уведомлений */
   noticesCount: Scalars['Int'];
   /** Список уведомлений */
@@ -2518,26 +2443,26 @@ export interface Query {
   project?: Maybe<Project>;
   projectTasks: Array<ProjectTask>;
   projects: Array<Project>;
-  projectsConnection: ProjectConnection;
+  projectsCount: Scalars['Int'];
   resource?: Maybe<Resource>;
   resources: Array<Resource>;
-  resourcesConnection: ResourceConnection;
+  resourcesCount: Scalars['Int'];
   tag?: Maybe<Tag>;
   tags: Array<Tag>;
-  tagsConnection: TagConnection;
+  tagsCount: Scalars['Int'];
   task?: Maybe<Task>;
   taskTechnologies: Array<TaskTechnology>;
   taskTechnology?: Maybe<TaskTechnology>;
   taskTechnologysCount: Scalars['Int'];
   tasks: Array<Task>;
-  tasksConnection: TaskConnection;
   tasksCount: Scalars['Int'];
   technologies: Array<Technology>;
   technologiesCount: Scalars['Int'];
   technology?: Maybe<Technology>;
   timer?: Maybe<Timer>;
   timers: Array<Timer>;
-  timersConnection: TimerConnection;
+  /** Количество таймеров */
+  timersCount: Scalars['Int'];
   /** Пользователь */
   user?: Maybe<User>;
   userLearnStrategies: Array<UserLearnStrategy>;
@@ -2548,7 +2473,6 @@ export interface Query {
   userTechnologysCount: Scalars['Int'];
   /** Список пользователей */
   users: Array<User>;
-  usersConnection: UserConnection;
   /** Количество пользователей */
   usersCount: Scalars['Int'];
 }
@@ -2564,14 +2488,6 @@ export type QueryChatMessagesArgs = {
   orderBy?: Maybe<Array<ChatMessageOrderByInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
-  where?: Maybe<ChatMessageWhereInput>;
-};
-
-
-export type QueryChatMessagesConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<ChatMessageOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
   where?: Maybe<ChatMessageWhereInput>;
 };
 
@@ -2718,14 +2634,6 @@ export type QueryNoticesArgs = {
 };
 
 
-export type QueryNoticesConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<NoticeOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  where?: Maybe<NoticeWhereInput>;
-};
-
-
 export type QueryNoticesCountArgs = {
   where?: Maybe<NoticeWhereInput>;
 };
@@ -2768,10 +2676,7 @@ export type QueryProjectsArgs = {
 };
 
 
-export type QueryProjectsConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<ProjectOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
+export type QueryProjectsCountArgs = {
   where?: Maybe<ProjectWhereInput>;
 };
 
@@ -2790,10 +2695,7 @@ export type QueryResourcesArgs = {
 };
 
 
-export type QueryResourcesConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<ResourceOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
+export type QueryResourcesCountArgs = {
   where?: Maybe<ResourceWhereInput>;
 };
 
@@ -2812,10 +2714,7 @@ export type QueryTagsArgs = {
 };
 
 
-export type QueryTagsConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<TagOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
+export type QueryTagsCountArgs = {
   where?: Maybe<TagWhereInput>;
 };
 
@@ -2849,14 +2748,6 @@ export type QueryTasksArgs = {
   orderBy?: Maybe<Array<TaskOrderByInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
-  where?: Maybe<TaskWhereInput>;
-};
-
-
-export type QueryTasksConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<TaskOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
   where?: Maybe<TaskWhereInput>;
 };
 
@@ -2899,10 +2790,7 @@ export type QueryTimersArgs = {
 };
 
 
-export type QueryTimersConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<TimerOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
+export type QueryTimersCountArgs = {
   where?: Maybe<TimerWhereInput>;
 };
 
@@ -2955,14 +2843,6 @@ export type QueryUsersArgs = {
   orderBy?: Maybe<Array<UserOrderByInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
-  where?: Maybe<UserWhereInput>;
-};
-
-
-export type QueryUsersConnectionArgs = {
-  first?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<UserOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
   where?: Maybe<UserWhereInput>;
 };
 
@@ -3062,17 +2942,6 @@ export interface Resource {
 export type ResourceCommentsArgs = {
   orderBy?: Maybe<ResourceOrderByInput>;
 };
-
-export interface ResourceConnection {
-  __typename?: 'ResourceConnection';
-  aggregate: AggregateResource;
-  edges: Array<Maybe<ResourceEdge>>;
-}
-
-export interface ResourceEdge {
-  __typename?: 'ResourceEdge';
-  node: Resource;
-}
 
 export interface ResourceListRelationFilter {
   every?: Maybe<ResourceWhereInput>;
@@ -3438,17 +3307,6 @@ export interface Tag {
   updatedAt: Scalars['DateTime'];
 }
 
-export interface TagConnection {
-  __typename?: 'TagConnection';
-  aggregate: AggregateTag;
-  edges: Array<Maybe<TagEdge>>;
-}
-
-export interface TagEdge {
-  __typename?: 'TagEdge';
-  node: Tag;
-}
-
 export interface TagListRelationFilter {
   every?: Maybe<TagWhereInput>;
   none?: Maybe<TagWhereInput>;
@@ -3524,12 +3382,6 @@ export type TaskTimersArgs = {
   where?: Maybe<TimerWhereInput>;
 };
 
-export interface TaskConnection {
-  __typename?: 'TaskConnection';
-  aggregate: AggregateTask;
-  edges: Array<Maybe<TaskEdge>>;
-}
-
 export interface TaskCreateInput {
   Parent?: Maybe<TaskCreateOneWithoutChildsInput>;
   Project?: Maybe<ProjectCreateOneWithoutProjectTasksInput>;
@@ -3559,11 +3411,6 @@ export interface TaskCreateOneWithoutTaskTechnologiesInput {
 
 export interface TaskCreateOneWithoutTimersInput {
   connect?: Maybe<TaskWhereUniqueInput>;
-}
-
-export interface TaskEdge {
-  __typename?: 'TaskEdge';
-  node: Task;
 }
 
 export interface TaskListRelationFilter {
@@ -4045,20 +3892,9 @@ export interface Timer {
   updatedAt: Scalars['DateTime'];
 }
 
-export interface TimerConnection {
-  __typename?: 'TimerConnection';
-  aggregate: AggregateTimer;
-  edges: Array<Maybe<TimerEdge>>;
-}
-
 export interface TimerCreateInput {
   Task?: Maybe<TaskCreateOneWithoutTimersInput>;
   stopedAt?: Maybe<Scalars['DateTime']>;
-}
-
-export interface TimerEdge {
-  __typename?: 'TimerEdge';
-  node: Timer;
 }
 
 export interface TimerListRelationFilter {
@@ -4283,19 +4119,8 @@ export type UserTimersArgs = {
   where?: Maybe<TimerWhereInput>;
 };
 
-export interface UserConnection {
-  __typename?: 'UserConnection';
-  aggregate: AggregateUser;
-  edges: Array<Maybe<UserEdge>>;
-}
-
 export interface UserCreateOneInput {
   connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserEdge {
-  __typename?: 'UserEdge';
-  node: User;
 }
 
 export interface UserGroupListRelationFilter {

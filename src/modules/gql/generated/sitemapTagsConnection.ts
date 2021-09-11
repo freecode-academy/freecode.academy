@@ -15,26 +15,20 @@ export type SitemapTagsConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where: Types.TagWhereInput;
-  orderBy: Types.TagOrderByInput;
+  orderBy: Array<Types.TagOrderByInput> | Types.TagOrderByInput;
 }>;
 
 
-export type SitemapTagsConnectionQuery = { __typename?: 'Query', tagsConnection: { __typename?: 'TagConnection', aggregate: { __typename?: 'AggregateTag', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TagEdge', node: { __typename?: 'Tag', id: string, name: string, updatedAt: globalThis.Date } }>> } };
+export type SitemapTagsConnectionQuery = { __typename?: 'Query', tagsCount: number, tags: Array<{ __typename?: 'Tag', id: string, name: string, updatedAt: globalThis.Date }> };
 
 
 export const SitemapTagsConnectionDocument = gql`
-    query sitemapTagsConnection($first: Int!, $skip: Int, $where: TagWhereInput!, $orderBy: TagOrderByInput!) {
-  tagsConnection(first: $first, skip: $skip, where: $where, orderBy: $orderBy) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        id
-        name
-        updatedAt
-      }
-    }
+    query sitemapTagsConnection($first: Int!, $skip: Int, $where: TagWhereInput!, $orderBy: [TagOrderByInput!]!) {
+  tagsCount(where: $where)
+  tags(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {
+    id
+    name
+    updatedAt
   }
 }
     `;

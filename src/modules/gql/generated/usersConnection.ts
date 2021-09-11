@@ -15,34 +15,23 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type UsersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.UserWhereInput>;
-  orderBy?: Types.Maybe<Types.UserOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.UserOrderByInput> | Types.UserOrderByInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
 }>;
 
 
-export type UsersConnectionQuery = { __typename?: 'Query', objectsConnection: { __typename?: 'UserConnection', aggregate: { __typename?: 'AggregateUser', count: number }, edges: Array<Types.Maybe<{ __typename?: 'UserEdge', node: (
-        { __typename?: 'User' }
-        & UsersConnectionUserFragment
-      ) }>> } };
+export type UsersConnectionQuery = { __typename?: 'Query', usersCount: number, users: Array<(
+    { __typename?: 'User' }
+    & UsersConnectionUserFragment
+  )> };
 
 
 export const UsersConnectionDocument = gql`
-    query usersConnection($where: UserWhereInput, $orderBy: UserOrderByInput = {createdAt: asc}, $skip: Int, $first: Int = 10) {
-  objectsConnection: usersConnection(
-    where: $where
-    orderBy: $orderBy
-    skip: $skip
-    first: $first
-  ) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...usersConnectionUser
-      }
-    }
+    query usersConnection($where: UserWhereInput, $orderBy: [UserOrderByInput!] = {createdAt: asc}, $skip: Int, $first: Int = 10) {
+  usersCount(where: $where)
+  users(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
+    ...usersConnectionUser
   }
 }
     ${UsersConnectionUserFragmentDoc}`;

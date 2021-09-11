@@ -3,7 +3,6 @@ import {
   UsersConnectionDocument,
   UsersConnectionQueryVariables,
   useUsersConnectionQuery,
-  UsersConnectionUserFragment,
 } from 'src/modules/gql/generated'
 
 import View from '../View'
@@ -60,20 +59,6 @@ const StudentsPage: Page = () => {
 
   const { variables, loading } = response
 
-  const objects = useMemo(() => {
-    const objects: UsersConnectionUserFragment[] = []
-
-    return (
-      response.data?.objectsConnection.edges.reduce((curr, next) => {
-        if (next?.node) {
-          curr.push(next.node)
-        }
-
-        return curr
-      }, objects) ?? []
-    )
-  }, [response.data?.objectsConnection.edges])
-
   return (
     <>
       <NextSeo
@@ -84,8 +69,8 @@ const StudentsPage: Page = () => {
       <View
         // {...queryResult}
         // data={response}
-        objects={objects}
-        count={response.data?.objectsConnection.aggregate.count}
+        objects={response.data?.users || []}
+        count={response.data?.usersCount || 0}
         variables={variables}
         page={page}
         loading={loading}

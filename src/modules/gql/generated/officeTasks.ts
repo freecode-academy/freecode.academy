@@ -14,28 +14,22 @@ import { OfficeTaskFragmentDoc } from './officeTask';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type OfficeTasksQueryVariables = Types.Exact<{
-  orderBy?: Types.Maybe<Types.TaskOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TaskOrderByInput> | Types.TaskOrderByInput>;
   where?: Types.Maybe<Types.TaskWhereInput>;
 }>;
 
 
-export type OfficeTasksQuery = { __typename?: 'Query', tasksConnection: { __typename?: 'TaskConnection', aggregate: { __typename?: 'AggregateTask', count: number }, edges: Array<Types.Maybe<{ __typename?: 'TaskEdge', node: (
-        { __typename?: 'Task' }
-        & OfficeTaskFragment
-      ) }>> } };
+export type OfficeTasksQuery = { __typename?: 'Query', tasksCount: number, tasks: Array<(
+    { __typename?: 'Task' }
+    & OfficeTaskFragment
+  )> };
 
 
 export const OfficeTasksDocument = gql`
-    query officeTasks($orderBy: TaskOrderByInput, $where: TaskWhereInput) {
-  tasksConnection(orderBy: $orderBy, where: $where) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...officeTask
-      }
-    }
+    query officeTasks($orderBy: [TaskOrderByInput!], $where: TaskWhereInput) {
+  tasksCount(where: $where)
+  tasks(orderBy: $orderBy, where: $where) {
+    ...officeTask
   }
 }
     ${OfficeTaskFragmentDoc}`;

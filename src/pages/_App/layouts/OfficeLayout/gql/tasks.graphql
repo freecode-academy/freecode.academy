@@ -1,13 +1,7 @@
-query officeTasks($orderBy: TaskOrderByInput, $where: TaskWhereInput) {
-  tasksConnection(orderBy: $orderBy, where: $where) {
-    aggregate {
-      count
-    }
-    edges {
-      node {
-        ...officeTask
-      }
-    }
+query officeTasks($orderBy: [TaskOrderByInput!], $where: TaskWhereInput) {
+  tasksCount(where: $where)
+  tasks(orderBy: $orderBy, where: $where) {
+    ...officeTask
   }
 }
 

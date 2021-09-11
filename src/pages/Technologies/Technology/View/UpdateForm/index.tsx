@@ -149,7 +149,7 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
         <TextField
           {...field}
           type="number"
-          title="Уроовень 1"
+          title="Уровень 1"
           helperText="Примерно время на достижение уровня (часы)"
           value={
             !formState.dirtyFields.level1hours
@@ -172,7 +172,7 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
         <TextField
           {...field}
           type="number"
-          title="Уроовень 2"
+          title="Уровень 2"
           helperText="Примерно время на достижение уровня (часы)"
           value={
             !formState.dirtyFields.level2hours
@@ -195,7 +195,7 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
         <TextField
           {...field}
           type="number"
-          title="Уроовень 3"
+          title="Уровень 3"
           helperText="Примерно время на достижение уровня (часы)"
           value={
             !formState.dirtyFields.level3hours
@@ -218,7 +218,7 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
         <TextField
           {...field}
           type="number"
-          title="Уроовень 4"
+          title="Уровень 4"
           helperText="Примерно время на достижение уровня (часы)"
           value={
             !formState.dirtyFields.level4hours
@@ -241,7 +241,7 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
         <TextField
           {...field}
           type="number"
-          title="Уроовень 5"
+          title="Уровень 5"
           helperText="Примерно время на достижение уровня (часы)"
           value={
             !formState.dirtyFields.level5hours

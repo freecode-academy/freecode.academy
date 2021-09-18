@@ -267,6 +267,29 @@ export const User = objectType({
         })
       },
     })
+
+    t.list.nonNull.field('MentorMenteeMentors', {
+      type: 'MentorMentee',
+      description: 'Список менторов пользователя',
+      resolve({ id }, _args, ctx) {
+        return ctx.prisma.mentorMentee.findMany({
+          where: {
+            menteeId: id,
+          },
+        })
+      },
+    })
+    t.list.nonNull.field('MentorMenteeMentees', {
+      type: 'MentorMentee',
+      description: 'Список менти пользователя',
+      resolve({ id }, _args, ctx) {
+        return ctx.prisma.mentorMentee.findMany({
+          where: {
+            mentorId: id,
+          },
+        })
+      },
+    })
   },
 })
 

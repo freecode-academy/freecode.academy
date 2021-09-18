@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import React, { useMemo } from 'react'
 import {
+  SortOrder,
   UsersConnectionDocument,
   UsersConnectionQueryVariables,
   useUsersConnectionQuery,
@@ -17,6 +18,9 @@ const first = 10
 const defaultVariables: UsersConnectionQueryVariables = {
   where: {},
   first,
+  orderBy: {
+    updatedAt: SortOrder.DESC,
+  },
 }
 
 function getQueryParams(query: ParsedUrlQuery) {

@@ -32,6 +32,7 @@ import type {
   LearnStrategy,
   UserLearnStrategy,
   LearnStrategyStage,
+  MentorMentee,
 } from '@prisma/client'
 import type { core } from 'nexus'
 declare global {
@@ -655,6 +656,13 @@ export interface NexusGenInputs {
     in?: NexusGenEnums['LogLevel'][] | null // [LogLevel!]
     not?: NexusGenInputs['NestedEnumLogLevelFilter'] | null // NestedEnumLogLevelFilter
     notIn?: NexusGenEnums['LogLevel'][] | null // [LogLevel!]
+  }
+  EnumMentorMenteeStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['MentorMenteeStatus'] | null // MentorMenteeStatus
+    in?: NexusGenEnums['MentorMenteeStatus'][] | null // [MentorMenteeStatus!]
+    not?: NexusGenInputs['NestedEnumMentorMenteeStatusFilter'] | null // NestedEnumMentorMenteeStatusFilter
+    notIn?: NexusGenEnums['MentorMenteeStatus'][] | null // [MentorMenteeStatus!]
   }
   EnumMessageTypeFilter: {
     // input type
@@ -1306,6 +1314,51 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
+  MentorMenteeCreateInput: {
+    // input type
+    mentorId: string // ID!
+  }
+  MentorMenteeListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['MentorMenteeWhereInput'] | null // MentorMenteeWhereInput
+    none?: NexusGenInputs['MentorMenteeWhereInput'] | null // MentorMenteeWhereInput
+    some?: NexusGenInputs['MentorMenteeWhereInput'] | null // MentorMenteeWhereInput
+  }
+  MentorMenteeMentorIdMenteeIdCompoundUniqueInput: {
+    // input type
+    menteeId: string // String!
+    mentorId: string // String!
+  }
+  MentorMenteeOrderByInput: {
+    // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    menteeId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    mentorId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    status?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  MentorMenteeWhereInput: {
+    // input type
+    AND?: NexusGenInputs['MentorMenteeWhereInput'][] | null // [MentorMenteeWhereInput!]
+    Mentee?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    Mentor?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    NOT?: NexusGenInputs['MentorMenteeWhereInput'][] | null // [MentorMenteeWhereInput!]
+    OR?: NexusGenInputs['MentorMenteeWhereInput'][] | null // [MentorMenteeWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    menteeId?: NexusGenInputs['StringFilter'] | null // StringFilter
+    mentorId?: NexusGenInputs['StringFilter'] | null // StringFilter
+    status?: NexusGenInputs['EnumMentorMenteeStatusFilter'] | null // EnumMentorMenteeStatusFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  MentorMenteeWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+    mentorId_menteeId?:
+      | NexusGenInputs['MentorMenteeMentorIdMenteeIdCompoundUniqueInput']
+      | null // MentorMenteeMentorIdMenteeIdCompoundUniqueInput
+  }
   MessageListRelationFilter: {
     // input type
     every?: NexusGenInputs['MessageWhereInput'] | null // MessageWhereInput
@@ -1444,6 +1497,13 @@ export interface NexusGenInputs {
     in?: NexusGenEnums['LogLevel'][] | null // [LogLevel!]
     not?: NexusGenInputs['NestedEnumLogLevelFilter'] | null // NestedEnumLogLevelFilter
     notIn?: NexusGenEnums['LogLevel'][] | null // [LogLevel!]
+  }
+  NestedEnumMentorMenteeStatusFilter: {
+    // input type
+    equals?: NexusGenEnums['MentorMenteeStatus'] | null // MentorMenteeStatus
+    in?: NexusGenEnums['MentorMenteeStatus'][] | null // [MentorMenteeStatus!]
+    not?: NexusGenInputs['NestedEnumMentorMenteeStatusFilter'] | null // NestedEnumMentorMenteeStatusFilter
+    notIn?: NexusGenEnums['MentorMenteeStatus'][] | null // [MentorMenteeStatus!]
   }
   NestedEnumMessageTypeFilter: {
     // input type
@@ -3155,6 +3215,12 @@ export interface NexusGenInputs {
     LearnStrategies?: NexusGenInputs['LearnStrategyListRelationFilter'] | null // LearnStrategyListRelationFilter
     Letters?: NexusGenInputs['LetterListRelationFilter'] | null // LetterListRelationFilter
     LogedIns?: NexusGenInputs['LogedInListRelationFilter'] | null // LogedInListRelationFilter
+    MentorMenteeMentees?:
+      | NexusGenInputs['MentorMenteeListRelationFilter']
+      | null // MentorMenteeListRelationFilter
+    MentorMenteeMentors?:
+      | NexusGenInputs['MentorMenteeListRelationFilter']
+      | null // MentorMenteeListRelationFilter
     NOT?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
     Notices_Notice_CreatedByToUser?:
       | NexusGenInputs['NoticeListRelationFilter']
@@ -3370,6 +3436,7 @@ export interface NexusGenEnums {
     | 'WRONG_DATA_FORMAT'
   LetterStatus: 'Created' | 'Error' | 'Processing' | 'Sended'
   LogLevel: 'Error' | 'Fatal' | 'Info' | 'Notice' | 'Warning'
+  MentorMenteeStatus: 'Accepted' | 'Rejected' | 'Request'
   MessageType: 'ERROR' | 'INFO' | 'PLAYER' | 'SERVER'
   NoticeType: 'Call' | 'CallRequest' | 'ChatMessage' | 'ChatRoomInvitation'
   ProjectMemberStatus: 'Active' | 'Fired' | 'Invited' | 'Quit'
@@ -3475,6 +3542,7 @@ export interface NexusGenObjects {
   File: File
   LearnStrategy: LearnStrategy
   LearnStrategyStage: LearnStrategyStage
+  MentorMentee: MentorMentee
   Mutation: {}
   Notice: Notice
   NotificationType: NotificationType
@@ -3733,6 +3801,17 @@ export interface NexusGenFieldTypes {
     technologyId: string | null // String
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
+  MentorMentee: {
+    // field return type
+    Mentee: NexusGenRootTypes['User'] | null // User
+    Mentor: NexusGenRootTypes['User'] | null // User
+    createdAt: NexusGenScalars['DateTime'] // DateTime!
+    id: string // ID!
+    menteeId: string // ID!
+    mentorId: string // ID!
+    status: NexusGenEnums['MentorMenteeStatus'] // MentorMenteeStatus!
+    updatedAt: NexusGenScalars['DateTime'] // DateTime!
+  }
   Mutation: {
     // field return type
     createBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
@@ -3741,6 +3820,7 @@ export interface NexusGenFieldTypes {
     createCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createLearnStrategy: NexusGenRootTypes['LearnStrategy'] // LearnStrategy!
     createLearnStrategyStage: NexusGenRootTypes['LearnStrategyStage'] // LearnStrategyStage!
+    createMentorMentee: NexusGenRootTypes['MentorMentee'] // MentorMentee!
     createProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
     createResetPasswordProcessor: NexusGenRootTypes['ResetPasswordResponse'] // ResetPasswordResponse!
     createTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
@@ -3861,6 +3941,9 @@ export interface NexusGenFieldTypes {
     learnStrategyStages: NexusGenRootTypes['LearnStrategyStage'][] // [LearnStrategyStage!]!
     learnStrategyStagesCount: number // Int!
     me: NexusGenRootTypes['User'] | null // User
+    mentorMentee: NexusGenRootTypes['MentorMentee'] | null // MentorMentee
+    mentorMentees: NexusGenRootTypes['MentorMentee'][] // [MentorMentee!]!
+    mentorMenteesCount: number // Int!
     notice: NexusGenRootTypes['Notice'] | null // Notice
     notices: NexusGenRootTypes['Notice'][] // [Notice!]!
     noticesCount: number // Int!
@@ -4069,6 +4152,8 @@ export interface NexusGenFieldTypes {
       | NexusGenRootTypes['CodeChallengeCompletion'][]
       | null // [CodeChallengeCompletion!]
     EthAccounts: NexusGenRootTypes['EthAccount'][] | null // [EthAccount!]
+    MentorMenteeMentees: NexusGenRootTypes['MentorMentee'][] | null // [MentorMentee!]
+    MentorMenteeMentors: NexusGenRootTypes['MentorMentee'][] | null // [MentorMentee!]
     NotificationTypes: NexusGenRootTypes['NotificationType'][] | null // [NotificationType!]
     Projects: NexusGenRootTypes['ProjectMember'][] | null // [ProjectMember!]
     ProjectsCreated: NexusGenRootTypes['Project'][] | null // [Project!]
@@ -4303,6 +4388,17 @@ export interface NexusGenFieldTypeNames {
     technologyId: 'String'
     updatedAt: 'DateTime'
   }
+  MentorMentee: {
+    // field return type name
+    Mentee: 'User'
+    Mentor: 'User'
+    createdAt: 'DateTime'
+    id: 'ID'
+    menteeId: 'ID'
+    mentorId: 'ID'
+    status: 'MentorMenteeStatus'
+    updatedAt: 'DateTime'
+  }
   Mutation: {
     // field return type name
     createBlogProcessor: 'ResourceResponse'
@@ -4311,6 +4407,7 @@ export interface NexusGenFieldTypeNames {
     createCommentProcessor: 'ResourceResponse'
     createLearnStrategy: 'LearnStrategy'
     createLearnStrategyStage: 'LearnStrategyStage'
+    createMentorMentee: 'MentorMentee'
     createProjectProcessor: 'ProjectResponse'
     createResetPasswordProcessor: 'ResetPasswordResponse'
     createTaskProcessor: 'TaskResponse'
@@ -4431,6 +4528,9 @@ export interface NexusGenFieldTypeNames {
     learnStrategyStages: 'LearnStrategyStage'
     learnStrategyStagesCount: 'Int'
     me: 'User'
+    mentorMentee: 'MentorMentee'
+    mentorMentees: 'MentorMentee'
+    mentorMenteesCount: 'Int'
     notice: 'Notice'
     notices: 'Notice'
     noticesCount: 'Int'
@@ -4637,6 +4737,8 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     CodeChallengeCompletions: 'CodeChallengeCompletion'
     EthAccounts: 'EthAccount'
+    MentorMenteeMentees: 'MentorMentee'
+    MentorMenteeMentors: 'MentorMentee'
     NotificationTypes: 'NotificationType'
     Projects: 'ProjectMember'
     ProjectsCreated: 'Project'
@@ -4757,6 +4859,10 @@ export interface NexusGenArgTypes {
     createLearnStrategyStage: {
       // args
       data: NexusGenInputs['LearnStrategyStageCreateInput'] // LearnStrategyStageCreateInput!
+    }
+    createMentorMentee: {
+      // args
+      data: NexusGenInputs['MentorMenteeCreateInput'] // MentorMenteeCreateInput!
     }
     createProjectProcessor: {
       // args
@@ -5006,6 +5112,22 @@ export interface NexusGenArgTypes {
     learnStrategyStagesCount: {
       // args
       where?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
+    }
+    mentorMentee: {
+      // args
+      where: NexusGenInputs['MentorMenteeWhereUniqueInput'] // MentorMenteeWhereUniqueInput!
+    }
+    mentorMentees: {
+      // args
+      cursor?: NexusGenInputs['MentorMenteeWhereUniqueInput'] | null // MentorMenteeWhereUniqueInput
+      orderBy?: NexusGenInputs['MentorMenteeOrderByInput'][] | null // [MentorMenteeOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['MentorMenteeWhereInput'] | null // MentorMenteeWhereInput
+    }
+    mentorMenteesCount: {
+      // args
+      where?: NexusGenInputs['MentorMenteeWhereInput'] | null // MentorMenteeWhereInput
     }
     notice: {
       // args

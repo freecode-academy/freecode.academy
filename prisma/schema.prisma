@@ -111,6 +111,12 @@ model User {
   // Выбранные пользователем стратегии развития
   UserLearnStrategies                                    UserLearnStrategy[]
 
+  // Где является ментором
+  MentorMenteeMentors MentorMentee[] @relation("MentorMenteeMentor")
+
+  // Где является менти
+  MentorMenteeMentees MentorMentee[] @relation("MentorMenteeMentee")
+
   @@unique([email])
   @@unique([username])
   @@index([CreatedBy], name: "CreatedBy")
@@ -1588,4 +1594,25 @@ model UserLearnStrategy {
   LearnStrategy   LearnStrategy @relation(fields: [learnStrategyId], references: [id])
 
   @@unique([createdById, learnStrategyId])
+}
+
+// Связка меттор-менти
+model MentorMentee {
+  id        String             @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime           @default(now("0")) @db.DateTime(0)
+  updatedAt DateTime           @default(now("0")) @updatedAt @db.DateTime(0)
+  status    MentorMenteeStatus
+  mentorId  String             @db.VarChar(32)
+  Mentor    User               @relation("MentorMenteeMentor", fields: [mentorId], references: [id])
+  menteeId  String             @db.VarChar(32)
+  Mentee    User               @relation("MentorMenteeMentee", fields: [menteeId], references: [id])
+
+  @@unique([mentorId, menteeId])
+}
+
+// Статус заявки на тенторство
+enum MentorMenteeStatus {
+  Request
+  Accepted
+  Rejected
 }

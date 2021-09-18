@@ -8,24 +8,25 @@
 
 import * as Types from './types';
 
-import { UserFragment } from './user_';
+import { UserProfileFragment } from './userProfile';
 import { gql } from '@apollo/client';
-import { UserFragmentDoc } from './user_';
+import { UserProfileFragmentDoc } from './userProfile';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type UpdateUserProcessorMutationVariables = Types.Exact<{
   data: Types.UserUpdateInput;
+  withMentorMentee?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
 export type UpdateUserProcessorMutation = { __typename?: 'Mutation', updateUserProcessor: { __typename?: 'UserResponse', success: boolean, message: string, errors: Array<{ __typename?: 'RequestError', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'User' }
-      & UserFragment
+      & UserProfileFragment
     )> } };
 
 
 export const UpdateUserProcessorDocument = gql`
-    mutation updateUserProcessor($data: UserUpdateInput!) {
+    mutation updateUserProcessor($data: UserUpdateInput!, $withMentorMentee: Boolean = true) {
   updateUserProcessor(data: $data) {
     success
     message
@@ -34,11 +35,11 @@ export const UpdateUserProcessorDocument = gql`
       message
     }
     data {
-      ...user_
+      ...userProfile
     }
   }
 }
-    ${UserFragmentDoc}`;
+    ${UserProfileFragmentDoc}`;
 export type UpdateUserProcessorMutationFn = Apollo.MutationFunction<UpdateUserProcessorMutation, UpdateUserProcessorMutationVariables>;
 
 /**
@@ -55,6 +56,7 @@ export type UpdateUserProcessorMutationFn = Apollo.MutationFunction<UpdateUserPr
  * const [updateUserProcessorMutation, { data, loading, error }] = useUpdateUserProcessorMutation({
  *   variables: {
  *      data: // value for 'data'
+ *      withMentorMentee: // value for 'withMentorMentee'
  *   },
  * });
  */

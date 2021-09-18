@@ -718,6 +718,13 @@ export interface EnumLogLevelFilter {
   notIn?: Maybe<Array<LogLevel>>;
 }
 
+export interface EnumMentorMenteeStatusFilter {
+  equals?: Maybe<MentorMenteeStatus>;
+  in?: Maybe<Array<MentorMenteeStatus>>;
+  not?: Maybe<NestedEnumMentorMenteeStatusFilter>;
+  notIn?: Maybe<Array<MentorMenteeStatus>>;
+}
+
 export interface EnumMessageTypeFilter {
   equals?: Maybe<MessageType>;
   in?: Maybe<Array<MessageType>>;
@@ -1492,6 +1499,74 @@ export interface LogedInWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+/** Связка Метнор-Менти */
+export interface MentorMentee {
+  __typename?: 'MentorMentee';
+  /** Менти */
+  Mentee?: Maybe<User>;
+  /** Ментор */
+  Mentor?: Maybe<User>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  menteeId: Scalars['ID'];
+  mentorId: Scalars['ID'];
+  status: MentorMenteeStatus;
+  updatedAt: Scalars['DateTime'];
+}
+
+export interface MentorMenteeCreateInput {
+  /** ID ментора */
+  mentorId: Scalars['ID'];
+}
+
+export interface MentorMenteeListRelationFilter {
+  every?: Maybe<MentorMenteeWhereInput>;
+  none?: Maybe<MentorMenteeWhereInput>;
+  some?: Maybe<MentorMenteeWhereInput>;
+}
+
+export interface MentorMenteeMentorIdMenteeIdCompoundUniqueInput {
+  menteeId: Scalars['String'];
+  mentorId: Scalars['String'];
+}
+
+export interface MentorMenteeOrderByInput {
+  createdAt?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  menteeId?: Maybe<SortOrder>;
+  mentorId?: Maybe<SortOrder>;
+  status?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
+}
+
+export enum MentorMenteeStatus {
+  /** Запрос принят */
+  ACCEPTED = 'Accepted',
+  /** Запрос отклонен */
+  REJECTED = 'Rejected',
+  /** Отправлен запрос */
+  REQUEST = 'Request'
+}
+
+export interface MentorMenteeWhereInput {
+  AND?: Maybe<Array<MentorMenteeWhereInput>>;
+  Mentee?: Maybe<UserWhereInput>;
+  Mentor?: Maybe<UserWhereInput>;
+  NOT?: Maybe<Array<MentorMenteeWhereInput>>;
+  OR?: Maybe<Array<MentorMenteeWhereInput>>;
+  createdAt?: Maybe<DateTimeFilter>;
+  id?: Maybe<StringFilter>;
+  menteeId?: Maybe<StringFilter>;
+  mentorId?: Maybe<StringFilter>;
+  status?: Maybe<EnumMentorMenteeStatusFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface MentorMenteeWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+  mentorId_menteeId?: Maybe<MentorMenteeMentorIdMenteeIdCompoundUniqueInput>;
+}
+
 export interface MessageListRelationFilter {
   every?: Maybe<MessageWhereInput>;
   none?: Maybe<MessageWhereInput>;
@@ -1525,6 +1600,8 @@ export interface Mutation {
   createCommentProcessor: ResourceResponse;
   createLearnStrategy: LearnStrategy;
   createLearnStrategyStage: LearnStrategyStage;
+  /** Создает заявку на менторство */
+  createMentorMentee: MentorMentee;
   createProjectProcessor: ProjectResponse;
   createResetPasswordProcessor: ResetPasswordResponse;
   createTaskProcessor: TaskResponse;
@@ -1585,6 +1662,11 @@ export type MutationCreateLearnStrategyArgs = {
 
 export type MutationCreateLearnStrategyStageArgs = {
   data: LearnStrategyStageCreateInput;
+};
+
+
+export type MutationCreateMentorMenteeArgs = {
+  data: MentorMenteeCreateInput;
 };
 
 
@@ -1850,6 +1932,13 @@ export interface NestedEnumLogLevelFilter {
   in?: Maybe<Array<LogLevel>>;
   not?: Maybe<NestedEnumLogLevelFilter>;
   notIn?: Maybe<Array<LogLevel>>;
+}
+
+export interface NestedEnumMentorMenteeStatusFilter {
+  equals?: Maybe<MentorMenteeStatus>;
+  in?: Maybe<Array<MentorMenteeStatus>>;
+  not?: Maybe<NestedEnumMentorMenteeStatusFilter>;
+  notIn?: Maybe<Array<MentorMenteeStatus>>;
 }
 
 export interface NestedEnumMessageTypeFilter {
@@ -2430,6 +2519,9 @@ export interface Query {
   learnStrategyStages: Array<LearnStrategyStage>;
   learnStrategyStagesCount: Scalars['Int'];
   me?: Maybe<User>;
+  mentorMentee?: Maybe<MentorMentee>;
+  mentorMentees: Array<MentorMentee>;
+  mentorMenteesCount: Scalars['Int'];
   /** Уведомление */
   notice?: Maybe<Notice>;
   /** Список уведомлений */
@@ -2617,6 +2709,25 @@ export type QueryLearnStrategyStagesArgs = {
 
 export type QueryLearnStrategyStagesCountArgs = {
   where?: Maybe<LearnStrategyStageWhereInput>;
+};
+
+
+export type QueryMentorMenteeArgs = {
+  where: MentorMenteeWhereUniqueInput;
+};
+
+
+export type QueryMentorMenteesArgs = {
+  cursor?: Maybe<MentorMenteeWhereUniqueInput>;
+  orderBy?: Maybe<Array<MentorMenteeOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<MentorMenteeWhereInput>;
+};
+
+
+export type QueryMentorMenteesCountArgs = {
+  where?: Maybe<MentorMenteeWhereInput>;
 };
 
 
@@ -4083,6 +4194,10 @@ export interface User {
   __typename?: 'User';
   CodeChallengeCompletions?: Maybe<Array<CodeChallengeCompletion>>;
   EthAccounts?: Maybe<Array<EthAccount>>;
+  /** Список менти пользователя */
+  MentorMenteeMentees?: Maybe<Array<MentorMentee>>;
+  /** Список менторов пользователя */
+  MentorMenteeMentors?: Maybe<Array<MentorMentee>>;
   NotificationTypes?: Maybe<Array<NotificationType>>;
   /** Проекты, в которых участвует пользователь */
   Projects?: Maybe<Array<ProjectMember>>;
@@ -4424,6 +4539,8 @@ export interface UserWhereInput {
   LearnStrategies?: Maybe<LearnStrategyListRelationFilter>;
   Letters?: Maybe<LetterListRelationFilter>;
   LogedIns?: Maybe<LogedInListRelationFilter>;
+  MentorMenteeMentees?: Maybe<MentorMenteeListRelationFilter>;
+  MentorMenteeMentors?: Maybe<MentorMenteeListRelationFilter>;
   NOT?: Maybe<Array<UserWhereInput>>;
   Notices_Notice_CreatedByToUser?: Maybe<NoticeListRelationFilter>;
   Notices_Notice_UserToUser?: Maybe<NoticeListRelationFilter>;

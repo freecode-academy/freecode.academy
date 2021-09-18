@@ -25,6 +25,7 @@ import UserChatRooms from './ChatRooms'
 import UserTechnologyLevel from 'src/pages/Technologies/Technology/View/UserTechnologyRow/UserTechnologyLevel'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
 import CheckBox from 'src/uikit/CheckBox'
+import { MentorMentees } from './MentorMentees'
 // import { UserProgress } from './Progress'
 
 const UserView: React.FC<UserViewProps> = ({ user }) => {
@@ -473,11 +474,11 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
         {chatRooms}
         {/* {userProgress} */}
         {level}
-        {user.isMentor ? <div>Готов быть ментором</div> : null}
+        <MentorMentees user={user} currentUser={currentUser} />
         {technologies}
       </>
     )
-  }, [chatRooms, form, level, technologies, user.isMentor])
+  }, [chatRooms, currentUser, form, level, technologies, user])
 }
 
 export default UserView

@@ -1,10 +1,13 @@
-query user($where: UserWhereUniqueInput!) {
+query user($where: UserWhereUniqueInput!, $withMentorMentee: Boolean = true) {
   object: user(where: $where) {
-    ...user_
+    ...userProfile
   }
 }
 
-mutation updateUserProcessor($data: UserUpdateInput!) {
+mutation updateUserProcessor(
+  $data: UserUpdateInput!
+  $withMentorMentee: Boolean = true
+) {
   updateUserProcessor(data: $data) {
     success
     message
@@ -13,7 +16,7 @@ mutation updateUserProcessor($data: UserUpdateInput!) {
       message
     }
     data {
-      ...user_
+      ...userProfile
     }
   }
 }

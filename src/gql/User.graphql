@@ -114,6 +114,29 @@ fragment user_ on User {
   # }
 }
 
+# Полный объект с набором различных данных
+fragment userProfile on User {
+  MentorMenteeMentors @include(if: $withMentorMentee) {
+    ...MentorMenteeNoNesting
+    Mentor {
+      ...UserNoNesting
+    }
+    Mentee {
+      ...UserNoNesting
+    }
+  }
+  MentorMenteeMentees @include(if: $withMentorMentee) {
+    ...MentorMenteeNoNesting
+    Mentor {
+      ...UserNoNesting
+    }
+    Mentee {
+      ...UserNoNesting
+    }
+  }
+  ...user_
+}
+
 fragment EthAccountNoNesting on EthAccount {
   id
   createdAt

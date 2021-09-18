@@ -8,29 +8,30 @@
 
 import * as Types from './types';
 
-import { UserFragment } from './user_';
+import { UserProfileFragment } from './userProfile';
 import { gql } from '@apollo/client';
-import { UserFragmentDoc } from './user_';
+import { UserProfileFragmentDoc } from './userProfile';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type UserQueryVariables = Types.Exact<{
   where: Types.UserWhereUniqueInput;
+  withMentorMentee?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
 export type UserQuery = { __typename?: 'Query', object?: Types.Maybe<(
     { __typename?: 'User' }
-    & UserFragment
+    & UserProfileFragment
   )> };
 
 
 export const UserDocument = gql`
-    query user($where: UserWhereUniqueInput!) {
+    query user($where: UserWhereUniqueInput!, $withMentorMentee: Boolean = true) {
   object: user(where: $where) {
-    ...user_
+    ...userProfile
   }
 }
-    ${UserFragmentDoc}`;
+    ${UserProfileFragmentDoc}`;
 
 /**
  * __useUserQuery__
@@ -45,6 +46,7 @@ export const UserDocument = gql`
  * const { data, loading, error } = useUserQuery({
  *   variables: {
  *      where: // value for 'where'
+ *      withMentorMentee: // value for 'withMentorMentee'
  *   },
  * });
  */

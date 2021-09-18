@@ -1,0 +1,24 @@
+mutation createMentorMentee($data: MentorMenteeCreateInput!) {
+  createMentorMentee(data: $data) {
+    ...mentorMentee_
+  }
+}
+
+fragment mentorMentee_ on MentorMentee {
+  ...MentorMenteeNoNesting
+  Mentor {
+    ...UserNoNesting
+  }
+  Mentee {
+    ...UserNoNesting
+  }
+}
+
+fragment MentorMenteeNoNesting on MentorMentee {
+  id
+  createdAt
+  updatedAt
+  status
+  mentorId
+  menteeId
+}

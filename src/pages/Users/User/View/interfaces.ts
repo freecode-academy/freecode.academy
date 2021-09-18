@@ -1,5 +1,5 @@
-import { UserFragment } from 'src/modules/gql/generated'
+import { UserProfileFragment } from 'src/modules/gql/generated'
 
 export type UserViewProps = {
-  user: UserFragment & { password?: string }
+  user: UserProfileFragment & { password?: string }
 }

@@ -676,6 +676,13 @@ input EnumLogLevelFilter {
   notIn: [LogLevel!]
 }
 
+input EnumMentorMenteeStatusFilter {
+  equals: MentorMenteeStatus
+  in: [MentorMenteeStatus!]
+  not: NestedEnumMentorMenteeStatusFilter
+  notIn: [MentorMenteeStatus!]
+}
+
 input EnumMessageTypeFilter {
   equals: MessageType
   in: [MessageType!]
@@ -1488,6 +1495,90 @@ input LogedInWhereInput {
   updatedAt: DateTimeFilter
 }
 
+"""
+Связка Метнор-Менти
+"""
+type MentorMentee {
+  """
+  Менти
+  """
+  Mentee: User
+
+  """
+  Ментор
+  """
+  Mentor: User
+  createdAt: DateTime!
+  id: ID!
+  menteeId: ID!
+  mentorId: ID!
+  status: MentorMenteeStatus!
+  updatedAt: DateTime!
+}
+
+input MentorMenteeCreateInput {
+  """
+  ID ментора
+  """
+  mentorId: ID!
+}
+
+input MentorMenteeListRelationFilter {
+  every: MentorMenteeWhereInput
+  none: MentorMenteeWhereInput
+  some: MentorMenteeWhereInput
+}
+
+input MentorMenteeMentorIdMenteeIdCompoundUniqueInput {
+  menteeId: String!
+  mentorId: String!
+}
+
+input MentorMenteeOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  menteeId: SortOrder
+  mentorId: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+}
+
+enum MentorMenteeStatus {
+  """
+  Запрос принят
+  """
+  Accepted
+
+  """
+  Запрос отклонен
+  """
+  Rejected
+
+  """
+  Отправлен запрос
+  """
+  Request
+}
+
+input MentorMenteeWhereInput {
+  AND: [MentorMenteeWhereInput!]
+  Mentee: UserWhereInput
+  Mentor: UserWhereInput
+  NOT: [MentorMenteeWhereInput!]
+  OR: [MentorMenteeWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  menteeId: StringFilter
+  mentorId: StringFilter
+  status: EnumMentorMenteeStatusFilter
+  updatedAt: DateTimeFilter
+}
+
+input MentorMenteeWhereUniqueInput {
+  id: String
+  mentorId_menteeId: MentorMenteeMentorIdMenteeIdCompoundUniqueInput
+}
+
 input MessageListRelationFilter {
   every: MessageWhereInput
   none: MessageWhereInput
@@ -1526,6 +1617,11 @@ type Mutation {
   createLearnStrategyStage(
     data: LearnStrategyStageCreateInput!
   ): LearnStrategyStage!
+
+  """
+  Создает заявку на менторство
+  """
+  createMentorMentee(data: MentorMenteeCreateInput!): MentorMentee!
   createProjectProcessor(data: ProjectCreateInput!): ProjectResponse!
   createResetPasswordProcessor(
     where: UserWhereUniqueInput!
@@ -1732,6 +1828,13 @@ input NestedEnumLogLevelFilter {
   in: [LogLevel!]
   not: NestedEnumLogLevelFilter
   notIn: [LogLevel!]
+}
+
+input NestedEnumMentorMenteeStatusFilter {
+  equals: MentorMenteeStatus
+  in: [MentorMenteeStatus!]
+  not: NestedEnumMentorMenteeStatusFilter
+  notIn: [MentorMenteeStatus!]
 }
 
 input NestedEnumMessageTypeFilter {
@@ -2366,6 +2469,15 @@ type Query {
   ): [LearnStrategyStage!]!
   learnStrategyStagesCount(where: LearnStrategyStageWhereInput): Int!
   me: User
+  mentorMentee(where: MentorMenteeWhereUniqueInput!): MentorMentee
+  mentorMentees(
+    cursor: MentorMenteeWhereUniqueInput
+    orderBy: [MentorMenteeOrderByInput!]
+    skip: Int
+    take: Int
+    where: MentorMenteeWhereInput
+  ): [MentorMentee!]!
+  mentorMenteesCount(where: MentorMenteeWhereInput): Int!
 
   """
   Уведомление
@@ -3748,6 +3860,16 @@ scalar Upload
 type User {
   CodeChallengeCompletions: [CodeChallengeCompletion!]
   EthAccounts: [EthAccount!]
+
+  """
+  Список менти пользователя
+  """
+  MentorMenteeMentees: [MentorMentee!]
+
+  """
+  Список менторов пользователя
+  """
+  MentorMenteeMentors: [MentorMentee!]
   NotificationTypes: [NotificationType!]
 
   """
@@ -4145,6 +4267,8 @@ input UserWhereInput {
   LearnStrategies: LearnStrategyListRelationFilter
   Letters: LetterListRelationFilter
   LogedIns: LogedInListRelationFilter
+  MentorMenteeMentees: MentorMenteeListRelationFilter
+  MentorMenteeMentors: MentorMenteeListRelationFilter
   NOT: [UserWhereInput!]
   Notices_Notice_CreatedByToUser: NoticeListRelationFilter
   Notices_Notice_UserToUser: NoticeListRelationFilter

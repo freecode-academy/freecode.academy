@@ -20,12 +20,36 @@ import { TechnologyGridTableStyled } from 'src/pages/Technologies/Technology/Vie
 const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
   currentUser,
   // user,
-  userTechnologies,
+  userTechnologies: userTechnologiesOrigin,
   canEdit,
   ...other
 }) => {
   // const showActions = currentUser && currentUser.id === user.id ? true : false
   const showActions = canEdit
+
+  /**
+   * На сервере не получается отсортировать список по наименованию технологий,
+   * поэтому придется сортировать на фронте
+   */
+  const userTechnologies = useMemo(() => {
+    /**
+     * Делаем клон массива, так как исходный заморожен
+     * (и вообще не хорошо менять исходные объекты и массивы)
+     */
+    const userTechnologies = [...userTechnologiesOrigin]
+
+    /**
+     * Сортираем список по названию технологии
+     */
+    userTechnologies.sort((a, b) => {
+      const aName = (a.Technology?.name || '').toLocaleLowerCase()
+      const bName = (b.Technology?.name || '').toLocaleLowerCase()
+
+      return aName > bName ? 1 : aName < bName ? -1 : 0
+    })
+
+    return userTechnologies
+  }, [userTechnologiesOrigin])
 
   const header = useMemo(() => {
     return (

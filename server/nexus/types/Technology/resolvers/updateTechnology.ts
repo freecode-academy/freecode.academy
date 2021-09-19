@@ -28,6 +28,8 @@ export const updateTechnology: FieldResolver<'Mutation', 'updateTechnology'> =
       data: {
         name,
         description,
+        site_url,
+        components,
         level1hours,
         level2hours,
         level3hours,
@@ -41,6 +43,8 @@ export const updateTechnology: FieldResolver<'Mutation', 'updateTechnology'> =
     const updateData: Prisma.TechnologyUpdateInput = {
       name: name === null ? undefined : name,
       description,
+      site_url,
+      components: components as Prisma.JsonValue,
       level1hours,
       level2hours,
       level3hours,

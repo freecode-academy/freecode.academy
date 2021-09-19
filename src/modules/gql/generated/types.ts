@@ -3825,8 +3825,7 @@ export interface Technology {
   __typename?: 'Technology';
   CreatedBy?: Maybe<User>;
   UserTechnologies?: Maybe<Array<UserTechnology>>;
-  components?: Maybe<Scalars['JSON']>;
-  contentText?: Maybe<Scalars['String']>;
+  components?: Maybe<Scalars['EditorComponentObject']>;
   createdAt: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -3935,6 +3934,7 @@ export interface TechnologyOrderByInput {
 }
 
 export interface TechnologyUpdateInput {
+  components?: Maybe<Scalars['EditorComponentObject']>;
   description?: Maybe<Scalars['String']>;
   level1hours?: Maybe<Scalars['Int']>;
   level2hours?: Maybe<Scalars['Int']>;
@@ -3942,6 +3942,7 @@ export interface TechnologyUpdateInput {
   level4hours?: Maybe<Scalars['Int']>;
   level5hours?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
+  site_url?: Maybe<Scalars['String']>;
 }
 
 export interface TechnologyWhereInput {

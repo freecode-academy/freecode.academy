@@ -3477,8 +3477,7 @@ input TeamWhereInput {
 type Technology {
   CreatedBy: User
   UserTechnologies(orderBy: UserTechnologyOrderByInput): [UserTechnology!]
-  components: JSON
-  contentText: String
+  components: EditorComponentObject
   createdAt: DateTime!
   description: String
   id: ID!
@@ -3597,6 +3596,7 @@ input TechnologyOrderByInput {
 }
 
 input TechnologyUpdateInput {
+  components: EditorComponentObject
   description: String
   level1hours: Int
   level2hours: Int
@@ -3604,6 +3604,7 @@ input TechnologyUpdateInput {
   level4hours: Int
   level5hours: Int
   name: String
+  site_url: String
 }
 
 input TechnologyWhereInput {

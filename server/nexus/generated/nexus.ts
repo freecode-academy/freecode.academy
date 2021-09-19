@@ -2716,6 +2716,7 @@ export interface NexusGenInputs {
   }
   TechnologyUpdateInput: {
     // input type
+    components?: NexusGenScalars['EditorComponentObject'] | null // EditorComponentObject
     description?: string | null // String
     level1hours?: number | null // Int
     level2hours?: number | null // Int
@@ -2723,6 +2724,7 @@ export interface NexusGenInputs {
     level4hours?: number | null // Int
     level5hours?: number | null // Int
     name?: string | null // String
+    site_url?: string | null // String
   }
   TechnologyWhereInput: {
     // input type
@@ -4135,8 +4137,7 @@ export interface NexusGenFieldTypes {
     // field return type
     CreatedBy: NexusGenRootTypes['User'] | null // User
     UserTechnologies: NexusGenRootTypes['UserTechnology'][] | null // [UserTechnology!]
-    components: NexusGenScalars['JSON'] | null // JSON
-    contentText: string | null // String
+    components: NexusGenScalars['EditorComponentObject'] | null // EditorComponentObject
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     description: string | null // String
     id: string // ID!
@@ -4723,8 +4724,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     CreatedBy: 'User'
     UserTechnologies: 'UserTechnology'
-    components: 'JSON'
-    contentText: 'String'
+    components: 'EditorComponentObject'
     createdAt: 'DateTime'
     description: 'String'
     id: 'ID'

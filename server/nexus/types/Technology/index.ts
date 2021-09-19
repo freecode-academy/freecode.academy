@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
+import { NexusGenScalars } from 'server/nexus/generated/nexus'
 import { createTechnology } from './resolvers/createTechnology'
 import { updateTechnology } from './resolvers/updateTechnology'
 
@@ -61,8 +62,19 @@ export const Technology = objectType({
     t.nonNull.date('updatedAt')
     t.nonNull.string('name')
     t.string('description')
-    t.field('components', { type: 'JSON' })
-    t.string('contentText')
+    // t.field('components', { type: 'JSON' })
+    t.editorComponentObject('components', {
+      resolve({ components }) {
+        const value = components
+          ? Array.isArray(components)
+            ? components[0]
+            : components
+          : null
+
+        return value as NexusGenScalars['EditorComponentObject'] | null
+      },
+    })
+    // t.string('contentText')
     t.string('site_url')
     t.int('level1hours', {
       description: 'Примерное количество часов на освоение уровня',
@@ -119,6 +131,8 @@ export const TechnologyUpdateInput = inputObjectType({
   definition(t) {
     t.string('name')
     t.string('description')
+    t.string('site_url')
+    t.editorComponentObject('components')
     t.int('level1hours')
     t.int('level2hours')
     t.int('level3hours')

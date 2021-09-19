@@ -35471,19 +35471,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "contentText",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "EditorComponentObject",
               "ofType": null
             },
             "isDeprecated": false,
@@ -36448,6 +36436,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "components",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "EditorComponentObject",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "description",
             "description": null,
             "type": {
@@ -36521,6 +36521,18 @@
           },
           {
             "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "site_url",
             "description": null,
             "type": {
               "kind": "SCALAR",

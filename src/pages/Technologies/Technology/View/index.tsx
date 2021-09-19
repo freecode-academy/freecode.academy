@@ -63,7 +63,7 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
   const content = useMemo(() => {
     const components = technology.components
 
-    if (!components || !Array.isArray(components)) {
+    if (!components) {
       return null
     }
 
@@ -73,12 +73,7 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
         inEditMode={false}
         itemsOnly
         // onChangeState={onChangeState}
-        object={{
-          name: 'Section',
-          component: 'Section',
-          components,
-          props: {},
-        }}
+        object={components}
         className=""
       />
     )
@@ -117,7 +112,9 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
     const levels: number[] = [1, 2, 3, 4, 5]
 
     levels.forEach((level) => {
-      const time = technology[`level${level}hours` as keyof typeof technology]
+      const time = technology[
+        `level${level}hours` as keyof typeof technology
+      ] as number | null
 
       if (time) {
         items.push(

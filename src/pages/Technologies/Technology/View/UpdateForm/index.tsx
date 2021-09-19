@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { NextSeo } from 'next-seo'
 
 import { Controller, ControllerProps, useForm } from 'react-hook-form'
@@ -13,8 +13,13 @@ import {
 import TextField from 'src/components/ui/form/TextField'
 import Button from 'src/components/ui/Button'
 import { TechnologyUpdateFormProps } from './interfaces'
+import SiteFrontEditor from 'src/components/SiteFrontEditor'
+import {
+  EditorComponentObject,
+  EditorComponentProps,
+} from '@prisma-cms/front-editor'
 
-type DateType = TechnologyUpdateInput
+type DateType = Omit<TechnologyUpdateInput, 'components'>
 
 /**
  * Редактирование технологии
@@ -25,6 +30,11 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
 }) => {
   const mutation = useUpdateTechnologyMutation()
 
+  const technologyEditedDataState = useState<Pick<
+    TechnologyUpdateInput,
+    'components'
+  > | null>(null)
+
   /**
    * Описываем структуру формы в соответствии с типизацией
    */
@@ -32,6 +42,10 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
     const schema: SchemaOf<DateType> = yup
       .object({
         name: yup.string(),
+        site_url: yup.string(),
+        // TODO Сейчас не понятно как валидировать рекурсивные объекты.
+        // Вроде как предлагается создавать рекурсивные фнукции, но TS на них ругается
+        // components: yup.object().shape({}).nullable(),
         description: yup.string().nullable(),
         level1hours: yup.number().nullable(),
         level2hours: yup.number().nullable(),
@@ -76,7 +90,10 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
      */
     mutation[0]({
       variables: {
-        data,
+        data: {
+          ...data,
+          ...technologyEditedDataState[0],
+        },
         where: {
           id: technology.id,
         },
@@ -91,6 +108,7 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
           }
 
           editFormOpenedSetter(false)
+          technologyEditedDataState[1](null)
         }
       })
       .catch((error) => {
@@ -139,6 +157,26 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
     },
     [technology.description]
   )
+
+  const site_urlFieldRender: ControllerProps<DateType, 'site_url'>['render'] =
+    useCallback(
+      ({ field, formState }) => {
+        return (
+          <TextField
+            {...field}
+            type="text"
+            title="Описание"
+            value={
+              !formState.dirtyFields.site_url
+                ? technology.site_url || ''
+                : field.value || ''
+            }
+            error={formState.errors[field.name]}
+          />
+        )
+      },
+      [technology.site_url]
+    )
 
   const level1hoursFieldRender: ControllerProps<
     DateType,
@@ -255,6 +293,35 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
     [technology.level5hours]
   )
 
+  const object = useMemo<EditorComponentObject>(() => {
+    return (
+      technologyEditedDataState[0]?.components ||
+      technology.components || {
+        name: 'RichText',
+        component: 'RichText',
+        components: [],
+        props: {},
+      }
+    )
+  }, [technology.components, technologyEditedDataState])
+
+  const onChangeState: EditorComponentProps['onChangeState'] = useCallback(
+    (data) => {
+      technologyEditedDataState[1]({
+        ...technologyEditedDataState[0],
+        components: {
+          name: 'RichText',
+          component: 'RichText',
+          components: [],
+          ...data,
+        },
+      })
+
+      return data
+    },
+    [technologyEditedDataState]
+  )
+
   return useMemo(() => {
     return (
       <>
@@ -266,6 +333,11 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
             name="description"
             control={control}
             render={descriptionFieldRender}
+          />
+          <Controller
+            name="site_url"
+            control={control}
+            render={site_urlFieldRender}
           />
           <Controller
             name="level1hours"
@@ -293,6 +365,14 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
             render={level5hoursFieldRender}
           />
 
+          <SiteFrontEditor
+            inEditMode={true}
+            itemsOnly
+            onChangeState={onChangeState}
+            object={object}
+            className="componentsEditor"
+          />
+
           <Button
             type="submit"
             disabled={mutation[1].loading || !formState.isValid}
@@ -317,6 +397,9 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
     level5hoursFieldRender,
     mutation,
     nameFieldRender,
+    object,
+    onChangeState,
     onSubmit,
+    site_urlFieldRender,
   ])
 }

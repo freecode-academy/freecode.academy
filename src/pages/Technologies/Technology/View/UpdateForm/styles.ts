@@ -6,4 +6,8 @@ export const UpdateTechnologyForm = styled(FormStyled)`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .componentsEditor {
+    width: 100%;
+  }
 `

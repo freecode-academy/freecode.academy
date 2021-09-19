@@ -1,6 +1,64 @@
-query me {
+query me(
+  $withMentorMentee: Boolean = true
+  $withNotificationTypes: Boolean = true
+  $withUserTechnologies: Boolean = true
+  $withCodeChallengeCompletions: Boolean = true
+) {
   user: me {
     ...meUser
+  }
+}
+
+query user(
+  $where: UserWhereUniqueInput!
+  $withMentorMentee: Boolean = true
+  $withNotificationTypes: Boolean = true
+  $withUserTechnologies: Boolean = true
+  $withCodeChallengeCompletions: Boolean = false
+) {
+  object: user(where: $where) {
+    ...userProfile
+  }
+}
+
+query usersConnection(
+  $where: UserWhereInput
+  $orderBy: [UserOrderByInput!] = { createdAt: asc }
+  $skip: Int
+  # $after: String
+  # $before: String
+  $first: Int = 10 # $last: Int
+) {
+  usersCount(where: $where)
+  users(
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    # after: $after
+    # before: $before
+    take: $first # last: $last
+  ) {
+    ...usersConnectionUser
+  }
+}
+
+mutation updateUserProcessor(
+  $data: UserUpdateInput!
+  $withMentorMentee: Boolean = false
+  $withNotificationTypes: Boolean = false
+  $withUserTechnologies: Boolean = false
+  $withCodeChallengeCompletions: Boolean = false
+) {
+  updateUserProcessor(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...userProfile
+    }
   }
 }
 
@@ -69,10 +127,7 @@ fragment UserNoNesting on User {
 }
 
 fragment meUser on User {
-  ...user_
-  CodeChallengeCompletions {
-    ...MeUserCodeChallengeCompletion
-  }
+  ...userProfile
   # EthAccounts {
   #   id
   #   address
@@ -87,15 +142,6 @@ fragment user_ on User {
   ...UserNoNesting
   EthAccounts {
     ...EthAccountNoNesting
-  }
-  NotificationTypes {
-    ...NotificationTypeNoNesting
-  }
-  UserTechnologies {
-    ...technology_UserTechnology
-    Technology {
-      ...TechnologyNoNesting
-    }
   }
   # Projects {
   #   ...ProjectMemberNoNesting
@@ -135,6 +181,18 @@ fragment userProfile on User {
     }
   }
   about
+  NotificationTypes @include(if: $withNotificationTypes) {
+    ...NotificationTypeNoNesting
+  }
+  UserTechnologies @include(if: $withUserTechnologies) {
+    ...technology_UserTechnology
+    Technology {
+      ...TechnologyNoNesting
+    }
+  }
+  CodeChallengeCompletions @include(if: $withCodeChallengeCompletions) {
+    ...MeUserCodeChallengeCompletion
+  }
   ...user_
 }
 
@@ -178,4 +236,91 @@ fragment MeUserCodeChallengeCompletion on CodeChallengeCompletion {
   CodeChallenge {
     id
   }
+}
+
+fragment usersConnectionUser on User {
+  ...UserNoNesting
+  EthAccounts {
+    id
+    createdAt
+    updatedAt
+    name
+    description
+    address
+    type
+    source
+    bytecode
+    abi
+    balance
+  }
+  NotificationTypes {
+    id
+    createdAt
+    updatedAt
+    name
+    code
+    comment
+    oldID
+  }
+  Projects {
+    id
+    createdAt
+    updatedAt
+    status
+    Project {
+      ...usersConnectionProject
+      Resource {
+        ...usersConnectionResource
+      }
+    }
+  }
+  ProjectsCreated {
+    ...usersConnectionProject
+    Resource {
+      ...usersConnectionResource
+    }
+  }
+}
+
+fragment usersConnectionProject on Project {
+  id
+  name
+  domain
+  createdAt
+  updatedAt
+  description
+  url
+  sequence
+  content
+  contentText
+  status
+  public
+  oldID
+}
+
+fragment usersConnectionResource on Resource {
+  id
+  createdAt
+  updatedAt
+  type
+  name
+  longtitle
+  content
+  components
+  contentText
+  published
+  deleted
+  hidemenu
+  searchable
+  uri
+  isfolder
+  rating
+  positiveVotesCount
+  negativeVotesCount
+  neutralVotesCount
+  oldID
+  commentOldID
+  class_key
+  template
+  mockUpdate
 }

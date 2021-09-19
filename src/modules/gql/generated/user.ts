@@ -19,6 +19,9 @@ const defaultOptions =  {}
 export type UserQueryVariables = Types.Exact<{
   where: Types.UserWhereUniqueInput;
   withMentorMentee?: Types.Maybe<Types.Scalars['Boolean']>;
+  withNotificationTypes?: Types.Maybe<Types.Scalars['Boolean']>;
+  withUserTechnologies?: Types.Maybe<Types.Scalars['Boolean']>;
+  withCodeChallengeCompletions?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
@@ -29,7 +32,7 @@ export type UserQuery = { __typename?: 'Query', object?: Types.Maybe<(
 
 
 export const UserDocument = gql`
-    query user($where: UserWhereUniqueInput!, $withMentorMentee: Boolean = true) {
+    query user($where: UserWhereUniqueInput!, $withMentorMentee: Boolean = true, $withNotificationTypes: Boolean = true, $withUserTechnologies: Boolean = true, $withCodeChallengeCompletions: Boolean = false) {
   object: user(where: $where) {
     ...userProfile
   }
@@ -50,6 +53,9 @@ export const UserDocument = gql`
  *   variables: {
  *      where: // value for 'where'
  *      withMentorMentee: // value for 'withMentorMentee'
+ *      withNotificationTypes: // value for 'withNotificationTypes'
+ *      withUserTechnologies: // value for 'withUserTechnologies'
+ *      withCodeChallengeCompletions: // value for 'withCodeChallengeCompletions'
  *   },
  * });
  */

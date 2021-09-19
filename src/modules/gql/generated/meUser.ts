@@ -11,34 +11,25 @@ import { EditorComponentObject } from '@prisma-cms/front-editor'
 
 import * as Types from './types';
 
-import { UserFragment } from './user_';
-import { MeUserCodeChallengeCompletionFragment } from './MeUserCodeChallengeCompletion';
+import { UserProfileFragment } from './userProfile';
 import { MeUserTimerFragment } from './MeUserTimer';
 import { gql } from '@apollo/client';
-import { UserFragmentDoc } from './user_';
-import { MeUserCodeChallengeCompletionFragmentDoc } from './MeUserCodeChallengeCompletion';
+import { UserProfileFragmentDoc } from './userProfile';
 import { MeUserTimerFragmentDoc } from './MeUserTimer';
 export type MeUserFragment = (
-  { __typename?: 'User', CodeChallengeCompletions?: Types.Maybe<Array<(
-    { __typename?: 'CodeChallengeCompletion' }
-    & MeUserCodeChallengeCompletionFragment
-  )>>, Timers?: Types.Maybe<Array<(
+  { __typename?: 'User', Timers?: Types.Maybe<Array<(
     { __typename?: 'Timer' }
     & MeUserTimerFragment
   )>> }
-  & UserFragment
+  & UserProfileFragment
 );
 
 export const MeUserFragmentDoc = gql`
     fragment meUser on User {
-  ...user_
-  CodeChallengeCompletions {
-    ...MeUserCodeChallengeCompletion
-  }
+  ...userProfile
   Timers(first: 1, where: {stopedAt: null}) {
     ...MeUserTimer
   }
 }
-    ${UserFragmentDoc}
-${MeUserCodeChallengeCompletionFragmentDoc}
+    ${UserProfileFragmentDoc}
 ${MeUserTimerFragmentDoc}`;

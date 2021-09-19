@@ -19,6 +19,9 @@ const defaultOptions =  {}
 export type UpdateUserProcessorMutationVariables = Types.Exact<{
   data: Types.UserUpdateInput;
   withMentorMentee?: Types.Maybe<Types.Scalars['Boolean']>;
+  withNotificationTypes?: Types.Maybe<Types.Scalars['Boolean']>;
+  withUserTechnologies?: Types.Maybe<Types.Scalars['Boolean']>;
+  withCodeChallengeCompletions?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
@@ -29,7 +32,7 @@ export type UpdateUserProcessorMutation = { __typename?: 'Mutation', updateUserP
 
 
 export const UpdateUserProcessorDocument = gql`
-    mutation updateUserProcessor($data: UserUpdateInput!, $withMentorMentee: Boolean = true) {
+    mutation updateUserProcessor($data: UserUpdateInput!, $withMentorMentee: Boolean = false, $withNotificationTypes: Boolean = false, $withUserTechnologies: Boolean = false, $withCodeChallengeCompletions: Boolean = false) {
   updateUserProcessor(data: $data) {
     success
     message
@@ -60,6 +63,9 @@ export type UpdateUserProcessorMutationFn = Apollo.MutationFunction<UpdateUserPr
  *   variables: {
  *      data: // value for 'data'
  *      withMentorMentee: // value for 'withMentorMentee'
+ *      withNotificationTypes: // value for 'withNotificationTypes'
+ *      withUserTechnologies: // value for 'withUserTechnologies'
+ *      withCodeChallengeCompletions: // value for 'withCodeChallengeCompletions'
  *   },
  * });
  */

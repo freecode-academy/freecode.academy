@@ -16,7 +16,12 @@ import { gql } from '@apollo/client';
 import { MeUserFragmentDoc } from './meUser';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
-export type MeQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type MeQueryVariables = Types.Exact<{
+  withMentorMentee?: Types.Maybe<Types.Scalars['Boolean']>;
+  withNotificationTypes?: Types.Maybe<Types.Scalars['Boolean']>;
+  withUserTechnologies?: Types.Maybe<Types.Scalars['Boolean']>;
+  withCodeChallengeCompletions?: Types.Maybe<Types.Scalars['Boolean']>;
+}>;
 
 
 export type MeQuery = { __typename?: 'Query', user?: Types.Maybe<(
@@ -26,7 +31,7 @@ export type MeQuery = { __typename?: 'Query', user?: Types.Maybe<(
 
 
 export const MeDocument = gql`
-    query me {
+    query me($withMentorMentee: Boolean = true, $withNotificationTypes: Boolean = true, $withUserTechnologies: Boolean = true, $withCodeChallengeCompletions: Boolean = true) {
   user: me {
     ...meUser
   }
@@ -45,6 +50,10 @@ export const MeDocument = gql`
  * @example
  * const { data, loading, error } = useMeQuery({
  *   variables: {
+ *      withMentorMentee: // value for 'withMentorMentee'
+ *      withNotificationTypes: // value for 'withNotificationTypes'
+ *      withUserTechnologies: // value for 'withUserTechnologies'
+ *      withCodeChallengeCompletions: // value for 'withCodeChallengeCompletions'
  *   },
  * });
  */

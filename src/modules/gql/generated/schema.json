@@ -6332,6 +6332,16 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "EditorComponentObject",
+        "description": "Контент для фронт-редактора",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "EnumCallRequestStatusFilter",
         "description": null,
@@ -39288,6 +39298,18 @@
             "deprecationReason": null
           },
           {
+            "name": "about",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "EditorComponentObject",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "acceptChatMessageAnonymous",
             "description": null,
             "args": [],
@@ -40322,6 +40344,18 @@
           },
           {
             "name": "EthAccountAuthed",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "about",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -41850,6 +41884,18 @@
             "deprecationReason": null
           },
           {
+            "name": "about",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "EditorComponentObject",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "acceptChatMessageAnonymous",
             "description": null,
             "type": {
@@ -42970,6 +43016,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "WorldListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "about",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "JsonNullableFilter",
               "ofType": null
             },
             "defaultValue": null,

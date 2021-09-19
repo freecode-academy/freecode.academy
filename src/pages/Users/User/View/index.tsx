@@ -26,6 +26,7 @@ import UserTechnologyLevel from 'src/pages/Technologies/Technology/View/UserTech
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
 import CheckBox from 'src/uikit/CheckBox'
 import { MentorMentees } from './MentorMentees'
+import { UserAbout } from './About'
 // import { UserProgress } from './Progress'
 
 const UserView: React.FC<UserViewProps> = ({ user }) => {
@@ -460,7 +461,11 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
     }
 
     return (
-      <div>
+      <div
+        style={{
+          marginTop: 15,
+        }}
+      >
         Технологический уровень:{' '}
         {getUserTechnologyLevelText(user.technologyLevel)}
       </div>
@@ -471,6 +476,11 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
     return (
       <>
         {form}
+        <UserAbout
+          userEdited={userEdited}
+          setData={setData}
+          inEditMode={inEditMode}
+        />
         {chatRooms}
         {/* {userProgress} */}
         {level}
@@ -478,7 +488,17 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
         {technologies}
       </>
     )
-  }, [chatRooms, currentUser, form, level, technologies, user])
+  }, [
+    chatRooms,
+    currentUser,
+    form,
+    level,
+    setData,
+    technologies,
+    user,
+    userEdited,
+    inEditMode,
+  ])
 }
 
 export default UserView

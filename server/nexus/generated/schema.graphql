@@ -613,6 +613,11 @@ input DecimalNullableFilter {
   notIn: [Decimal!]
 }
 
+"""
+Контент для фронт-редактора
+"""
+scalar EditorComponentObject
+
 input EnumCallRequestStatusFilter {
   equals: CallRequestStatus
   in: [CallRequestStatus!]
@@ -3883,6 +3888,7 @@ type User {
   ProjectsCreated: [Project!]
   Timers(first: Int, where: TimerWhereInput): [Timer!]
   UserTechnologies: [UserTechnology!]
+  about: EditorComponentObject
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -4008,6 +4014,7 @@ input UserListRelationFilter {
 input UserOrderByInput {
   CreatedBy: SortOrder
   EthAccountAuthed: SortOrder
+  about: SortOrder
   acceptChatMessageAnonymous: SortOrder
   acceptNewChatRoom: SortOrder
   acceptNewChatRoomAnonymous: SortOrder
@@ -4219,6 +4226,7 @@ input UserTechnologyWhereUniqueInput {
 
 input UserUpdateInput {
   NotificationTypes: NotificationType_UserNotificationTypes_UpdateInput
+  about: EditorComponentObject
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -4317,6 +4325,7 @@ input UserWhereInput {
   UserTechnologies: UserTechnologyListRelationFilter
   Votes: VoteListRelationFilter
   Worlds: WorldListRelationFilter
+  about: JsonNullableFilter
   acceptChatMessageAnonymous: BoolNullableFilter
   acceptNewChatRoom: BoolNullableFilter
   acceptNewChatRoomAnonymous: BoolNullableFilter

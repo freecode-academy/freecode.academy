@@ -5,6 +5,9 @@
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
 
+// @ts-ignore
+import { EditorComponentObject } from '@prisma-cms/front-editor'
+
 
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -20,6 +23,8 @@ export type Scalars = {
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: globalThis.Date;
   Decimal: any;
+  /** Контент для фронт-редактора */
+  EditorComponentObject: EditorComponentObject;
   JSON: any;
   Json: globalThis.Record<string, any> | globalThis.Array<any>;
   /** desc */
@@ -654,6 +659,7 @@ export interface DecimalNullableFilter {
   not?: Maybe<NestedDecimalNullableFilter>;
   notIn?: Maybe<Array<Scalars['Decimal']>>;
 }
+
 
 export interface EnumCallRequestStatusFilter {
   equals?: Maybe<CallRequestStatus>;
@@ -4205,6 +4211,7 @@ export interface User {
   ProjectsCreated?: Maybe<Array<Project>>;
   Timers?: Maybe<Array<Timer>>;
   UserTechnologies?: Maybe<Array<UserTechnology>>;
+  about?: Maybe<Scalars['EditorComponentObject']>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -4323,6 +4330,7 @@ export interface UserListRelationFilter {
 export interface UserOrderByInput {
   CreatedBy?: Maybe<SortOrder>;
   EthAccountAuthed?: Maybe<SortOrder>;
+  about?: Maybe<SortOrder>;
   acceptChatMessageAnonymous?: Maybe<SortOrder>;
   acceptNewChatRoom?: Maybe<SortOrder>;
   acceptNewChatRoomAnonymous?: Maybe<SortOrder>;
@@ -4494,6 +4502,7 @@ export interface UserTechnologyWhereUniqueInput {
 
 export interface UserUpdateInput {
   NotificationTypes?: Maybe<NotificationTypeUserNotificationTypesUpdateInput>;
+  about?: Maybe<Scalars['EditorComponentObject']>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -4589,6 +4598,7 @@ export interface UserWhereInput {
   UserTechnologies?: Maybe<UserTechnologyListRelationFilter>;
   Votes?: Maybe<VoteListRelationFilter>;
   Worlds?: Maybe<WorldListRelationFilter>;
+  about?: Maybe<JsonNullableFilter>;
   acceptChatMessageAnonymous?: Maybe<BoolNullableFilter>;
   acceptNewChatRoom?: Maybe<BoolNullableFilter>;
   acceptNewChatRoomAnonymous?: Maybe<BoolNullableFilter>;

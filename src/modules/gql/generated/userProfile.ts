@@ -5,6 +5,9 @@
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
 
+// @ts-ignore
+import { EditorComponentObject } from '@prisma-cms/front-editor'
+
 
 import * as Types from './types';
 
@@ -16,7 +19,7 @@ import { MentorMenteeNoNestingFragmentDoc } from './MentorMenteeNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { UserFragmentDoc } from './user_';
 export type UserProfileFragment = (
-  { __typename?: 'User', MentorMenteeMentors?: Types.Maybe<Array<(
+  { __typename?: 'User', about?: Types.Maybe<EditorComponentObject>, MentorMenteeMentors?: Types.Maybe<Array<(
     { __typename?: 'MentorMentee', Mentor?: Types.Maybe<(
       { __typename?: 'User' }
       & UserNoNestingFragment
@@ -58,6 +61,7 @@ export const UserProfileFragmentDoc = gql`
       ...UserNoNesting
     }
   }
+  about
   ...user_
 }
     ${MentorMenteeNoNestingFragmentDoc}

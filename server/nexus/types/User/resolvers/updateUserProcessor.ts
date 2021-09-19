@@ -27,6 +27,7 @@ export const updateUserProcessor: FieldResolver<
       NotificationTypes,
       technologyLevel,
       isMentor,
+      about,
     },
   } = args
 
@@ -53,6 +54,7 @@ export const updateUserProcessor: FieldResolver<
     technologyLevel,
     NotificationTypes_UserNotificationTypes,
     isMentor: isMentor !== null ? isMentor : undefined,
+    about: about as Prisma.InputJsonValue | null | undefined,
   }
 
   const user = ctx.prisma.user.update({

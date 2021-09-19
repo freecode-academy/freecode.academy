@@ -5,6 +5,9 @@
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
 
+// @ts-ignore
+import { EditorComponentObject } from '@prisma-cms/front-editor'
+
 
 import { FileNoNestingFragment } from './FileNoNesting';
 import { gql } from '@apollo/client';

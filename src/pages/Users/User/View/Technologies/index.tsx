@@ -9,7 +9,10 @@ import {
 // import UserTechnologyLevel from 'src/pages/Technologies/Technology/View/UserTechnologyRow/UserTechnologyLevel'
 // import TechnologyLink from 'src/uikit/Link/Technology'
 import { UserViewTechnologiesProps } from './interfaces'
-import { UserViewTechnologiesGridViewStyled } from './styles'
+import {
+  UserViewTechnologiesGridViewStyled,
+  UserViewTechnologiesStyled,
+} from './styles'
 // import { getUserTechnologyStatusText } from 'src/helpers/getUserTechnologyStatusText'
 import UserTechnologyRow from 'src/pages/Technologies/Technology/View/UserTechnologyRow'
 import { TechnologyGridTableStyled } from 'src/pages/Technologies/Technology/View/styles'
@@ -19,6 +22,7 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
   // user,
   userTechnologies,
   canEdit,
+  ...other
 }) => {
   // const showActions = currentUser && currentUser.id === user.id ? true : false
   const showActions = canEdit
@@ -101,7 +105,7 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
   }, [showActions, currentUser, userTechnologies])
 
   return (
-    <>
+    <UserViewTechnologiesStyled {...other}>
       <Typography variant="subheading">Используемые технологии</Typography>
 
       <UserViewTechnologiesGridViewStyled>
@@ -114,7 +118,7 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
           {items}
         </TechnologyGridTableStyled>
       </UserViewTechnologiesGridViewStyled>
-    </>
+    </UserViewTechnologiesStyled>
   )
 }
 

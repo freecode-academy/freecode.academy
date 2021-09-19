@@ -174,6 +174,7 @@ export const User = objectType({
     t.boolean('isMentor', {
       description: 'Готов быть ментором',
     })
+    t.editorComponentObject('about')
     t.technologyLevel('technologyLevel')
 
     t.list.nonNull.field('CodeChallengeCompletions', {
@@ -313,6 +314,7 @@ export const UserUpdateInput = inputObjectType({
     t.field('NotificationTypes', {
       type: 'NotificationType_UserNotificationTypes_UpdateInput',
     })
+    t.editorComponentObject('about')
   },
 })
 

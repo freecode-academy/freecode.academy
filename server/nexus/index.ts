@@ -44,7 +44,13 @@ export const schema = makeSchema({
   },
   sourceTypes: {
     debug: process.env.NODE_ENV === 'development',
-    modules: [],
+    modules: [
+      {
+        alias: 'EditorComponent',
+        module: '@prisma-cms/front-editor/dist/EditorComponent/interfaces',
+        onlyTypes: ['EditorComponentObject'],
+      },
+    ],
   },
   prettierConfig:
     process.env.NODE_ENV === 'development'

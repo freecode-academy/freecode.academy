@@ -26,6 +26,7 @@ const scalars = {
   Long: 'number',
   Upload: 'globalThis.File',
   UserTechnologyLevel: '1 | 2 | 3 | 4 | 5',
+  EditorComponentObject: 'EditorComponentObject',
 }
 
 const globPromisify = util.promisify(glob)
@@ -38,6 +39,12 @@ const prependText = [
   '* ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО \n',
   '* Команда для генерирования этого файла: "yarn generate:types" \n',
   '*/',
+  '\n',
+  '\n',
+  // TODO проработать, чтобы это добавлялось только в корневой файл types.ts
+  '// @ts-ignore',
+  '\n',
+  `import { EditorComponentObject } from '@prisma-cms/front-editor'`,
   '\n',
   '\n',
 ]

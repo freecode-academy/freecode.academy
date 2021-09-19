@@ -134,6 +134,7 @@ fragment userProfile on User {
       ...UserNoNesting
     }
   }
+  about
   ...user_
 }
 

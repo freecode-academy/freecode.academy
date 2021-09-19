@@ -3,6 +3,7 @@
  * Do not make changes to this file directly
  */
 
+import type * as EditorComponent from '@prisma-cms/front-editor/dist/EditorComponent/interfaces'
 import type { PrismaContext } from './../context/index'
 import type {
   User,
@@ -52,6 +53,13 @@ declare global {
       opts?: core.CommonInputFieldConfig<TypeName, FieldName>
     ): void // "UserTechnologyLevel";
     /**
+     * Контент для фронт-редактора
+     */
+    editorComponentObject<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.CommonInputFieldConfig<TypeName, FieldName>
+    ): void // "EditorComponentObject";
+    /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
     date<FieldName extends string>(
@@ -76,6 +84,13 @@ declare global {
       fieldName: FieldName,
       ...opts: core.ScalarOutSpread<TypeName, FieldName>
     ): void // "UserTechnologyLevel";
+    /**
+     * Контент для фронт-редактора
+     */
+    editorComponentObject<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void // "EditorComponentObject";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -3027,6 +3042,7 @@ export interface NexusGenInputs {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     EthAccountAuthed?: NexusGenEnums['SortOrder'] | null // SortOrder
+    about?: NexusGenEnums['SortOrder'] | null // SortOrder
     acceptChatMessageAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
     acceptNewChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
     acceptNewChatRoomAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -3143,6 +3159,7 @@ export interface NexusGenInputs {
     NotificationTypes?:
       | NexusGenInputs['NotificationType_UserNotificationTypes_UpdateInput']
       | null // NotificationType_UserNotificationTypes_UpdateInput
+    about?: NexusGenScalars['EditorComponentObject'] | null // EditorComponentObject
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -3305,6 +3322,7 @@ export interface NexusGenInputs {
     UserTechnologies?: NexusGenInputs['UserTechnologyListRelationFilter'] | null // UserTechnologyListRelationFilter
     Votes?: NexusGenInputs['VoteListRelationFilter'] | null // VoteListRelationFilter
     Worlds?: NexusGenInputs['WorldListRelationFilter'] | null // WorldListRelationFilter
+    about?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     acceptChatMessageAnonymous?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     acceptNewChatRoom?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     acceptNewChatRoomAnonymous?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
@@ -3503,6 +3521,7 @@ export interface NexusGenScalars {
   ID: string
   DateTime: Date
   Decimal: any
+  EditorComponentObject: EditorComponent.EditorComponentObject
   JSON: any
   Json: any
   Upload: any
@@ -4159,6 +4178,7 @@ export interface NexusGenFieldTypes {
     ProjectsCreated: NexusGenRootTypes['Project'][] | null // [Project!]
     Timers: NexusGenRootTypes['Timer'][] | null // [Timer!]
     UserTechnologies: NexusGenRootTypes['UserTechnology'][] | null // [UserTechnology!]
+    about: NexusGenScalars['EditorComponentObject'] | null // EditorComponentObject
     acceptChatMessageAnonymous: boolean | null // Boolean
     acceptNewChatRoom: boolean | null // Boolean
     acceptNewChatRoomAnonymous: boolean | null // Boolean
@@ -4744,6 +4764,7 @@ export interface NexusGenFieldTypeNames {
     ProjectsCreated: 'Project'
     Timers: 'Timer'
     UserTechnologies: 'UserTechnology'
+    about: 'EditorComponentObject'
     acceptChatMessageAnonymous: 'Boolean'
     acceptNewChatRoom: 'Boolean'
     acceptNewChatRoomAnonymous: 'Boolean'

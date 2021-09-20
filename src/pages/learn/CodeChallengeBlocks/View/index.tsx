@@ -19,7 +19,7 @@ const CodeChallengeBlocksPageView: React.FC<CodeChallengeBlocksViewProps> = ({
 
       <Typography paragraph>
         Внимание: к сожалению, не все разделы работают, в некоторых могут быть
-        ошибки. Если что-то не так, пишите впям в самой задаче во вкладке
+        ошибки. Если что-то не так, пишите прямо в самой задаче во вкладке
         Обсудить.
       </Typography>
 

@@ -28,11 +28,7 @@ Deploy the example using [Vercel](https://vercel.com):
 
 ```bash
 # Clone project
-<<<<<<< HEAD
-git clone https://github.com/freecode-academy/freecode.academy.git
-=======
 git clone https://github.com/prisma-cms/nextjs-nexus.git
->>>>>>> 33e7e287093487395e80b7813f41ed17caed4ded
 
 # Install dependencies
 yarn install

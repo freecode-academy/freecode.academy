@@ -6,6 +6,7 @@ import React, { PureComponent } from 'react'
 
 import dynamic from 'next/dynamic'
 import { FccEditorProps, modeMap } from './interfaces'
+import { MonacoEditorProps } from 'react-monaco-editor'
 
 export * from './interfaces'
 
@@ -96,7 +97,7 @@ class FccEditor<
 
   static displayName = 'Editor'
 
-  declare options: Record<string, any>
+  declare options: MonacoEditorProps['options']
 
   declare _editor: any | null
 
@@ -126,8 +127,8 @@ class FccEditor<
     }
 
     this.options = {
-      tabSize: 2,
-      fontSize: '18px',
+      // tabSize: 2,
+      fontSize: 16,
       scrollBeyondLastLine: false,
       selectionHighlight: false,
       overviewRulerBorder: false,
@@ -145,6 +146,7 @@ class FccEditor<
         useShadows: false,
         verticalScrollbarSize: 5,
       },
+      automaticLayout: true,
     }
 
     this._editor = null

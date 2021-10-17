@@ -5,7 +5,7 @@ import { UserViewStyled } from './styles'
 import Typography from 'material-ui/Typography'
 import UserAvatar from 'src/uikit/Avatar'
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
-import UserNotifications from './Notifications'
+import { UserNotifications } from './Notifications'
 import Grid from 'src/uikit/Grid'
 import {
   Scalars,

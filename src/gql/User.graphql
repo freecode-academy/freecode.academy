@@ -45,7 +45,7 @@ query usersConnection(
 mutation updateUserProcessor(
   $data: UserUpdateInput!
   $withMentorMentee: Boolean = false
-  $withNotificationTypes: Boolean = false
+  $withNotificationTypes: Boolean = true
   $withUserTechnologies: Boolean = false
   $withCodeChallengeCompletions: Boolean = false
 ) {

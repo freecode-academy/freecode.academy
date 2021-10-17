@@ -175,6 +175,9 @@ export const User = objectType({
       description: 'Готов быть ментором',
     })
     t.editorComponentObject('about')
+    t.string('telegram', {
+      description: 'Аккаунт в телеграм',
+    })
     t.technologyLevel('technologyLevel')
 
     t.list.nonNull.field('CodeChallengeCompletions', {
@@ -315,6 +318,7 @@ export const UserUpdateInput = inputObjectType({
       type: 'NotificationType_UserNotificationTypes_UpdateInput',
     })
     t.editorComponentObject('about')
+    t.string('telegram')
   },
 })
 

@@ -3928,6 +3928,11 @@ type User {
   technologyLevel: UserTechnologyLevel
 
   """
+  Аккаунт в телеграм
+  """
+  telegram: String
+
+  """
   Когда обновлен
   """
   updatedAt: DateTime!
@@ -4039,6 +4044,7 @@ input UserOrderByInput {
   showPhone: SortOrder
   sudo: SortOrder
   technologyLevel: SortOrder
+  telegram: SortOrder
   updatedAt: SortOrder
   username: SortOrder
 }
@@ -4243,6 +4249,7 @@ input UserUpdateInput {
   password: String
   phone: String
   technologyLevel: UserTechnologyLevel
+  telegram: String
   username: String
 }
 
@@ -4351,6 +4358,7 @@ input UserWhereInput {
   showPhone: BoolFilter
   sudo: BoolNullableFilter
   technologyLevel: IntNullableFilter
+  telegram: StringNullableFilter
   updatedAt: DateTimeFilter
   username: StringNullableFilter
 }

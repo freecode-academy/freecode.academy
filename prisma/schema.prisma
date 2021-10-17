@@ -120,6 +120,8 @@ model User {
 
   about Json?
 
+  telegram String?
+
   @@unique([email])
   @@unique([username])
   @@index([CreatedBy], name: "CreatedBy")

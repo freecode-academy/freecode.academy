@@ -29,7 +29,7 @@ import { MentorMentees } from './MentorMentees'
 import { UserAbout } from './About'
 // import { UserProgress } from './Progress'
 
-const UserView: React.FC<UserViewProps> = ({ user }) => {
+export const UserView: React.FC<UserViewProps> = ({ user }) => {
   const context = useContext(Context) as PrismaCmsContext
 
   const currentUser = context.user
@@ -257,7 +257,7 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
     )
   }, [data, onCheckBoxChange, userEdited.isMentor])
 
-  const email = useMemo(() => {
+  const emailField = useMemo(() => {
     if (!data) {
       return null
     }
@@ -273,6 +273,22 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
       />
     )
   }, [data, onChange, userEdited?.email])
+
+  const telegramField = useMemo(() => {
+    if (!data) {
+      return null
+    }
+
+    return (
+      <TextField
+        name="telegram"
+        value={userEdited?.telegram || ''}
+        onChange={onChange}
+        label="Аккаунт в Телеграм"
+        fullWidth
+      />
+    )
+  }, [data, onChange, userEdited?.telegram])
 
   const fullname = useMemo(() => {
     if (!data) {
@@ -374,9 +390,15 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
               </Grid>
             ) : null}
 
-            {email ? (
+            {emailField ? (
               <Grid item xs={12} md={6} lg={4}>
-                {email}
+                {emailField}
+              </Grid>
+            ) : null}
+
+            {telegramField ? (
+              <Grid item xs={12} md={6} lg={4}>
+                {telegramField}
               </Grid>
             ) : null}
 
@@ -417,13 +439,14 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
     avatar,
     buttons,
     chatSettings,
-    email,
+    emailField,
     fullname,
     isMentor,
     notifications,
     password,
     save,
     technologyLevel,
+    telegramField,
     userEdited?.fullname,
     userEdited?.username,
   ])
@@ -481,6 +504,18 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
           setData={setData}
           inEditMode={inEditMode}
         />
+        {userEdited.telegram ? (
+          <div>
+            Телеграм:{' '}
+            <a
+              href={`https://t.me/${userEdited.telegram}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://t.me/{userEdited.telegram}
+            </a>
+          </div>
+        ) : null}
         {chatRooms}
         {/* {userProgress} */}
         {level}
@@ -500,5 +535,3 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
     inEditMode,
   ])
 }
-
-export default UserView

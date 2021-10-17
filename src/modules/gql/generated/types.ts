@@ -4237,6 +4237,8 @@ export interface User {
   showPhone?: Maybe<Scalars['Boolean']>;
   sudo?: Maybe<Scalars['Boolean']>;
   technologyLevel?: Maybe<Scalars['UserTechnologyLevel']>;
+  /** Аккаунт в телеграм */
+  telegram?: Maybe<Scalars['String']>;
   /** Когда обновлен */
   updatedAt: Scalars['DateTime'];
   username?: Maybe<Scalars['String']>;
@@ -4355,6 +4357,7 @@ export interface UserOrderByInput {
   showPhone?: Maybe<SortOrder>;
   sudo?: Maybe<SortOrder>;
   technologyLevel?: Maybe<SortOrder>;
+  telegram?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
   username?: Maybe<SortOrder>;
 }
@@ -4516,6 +4519,7 @@ export interface UserUpdateInput {
   password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   technologyLevel?: Maybe<Scalars['UserTechnologyLevel']>;
+  telegram?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
 }
 
@@ -4624,6 +4628,7 @@ export interface UserWhereInput {
   showPhone?: Maybe<BoolFilter>;
   sudo?: Maybe<BoolNullableFilter>;
   technologyLevel?: Maybe<IntNullableFilter>;
+  telegram?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   username?: Maybe<StringNullableFilter>;
 }

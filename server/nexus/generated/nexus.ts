@@ -3068,6 +3068,7 @@ export interface NexusGenInputs {
     showPhone?: NexusGenEnums['SortOrder'] | null // SortOrder
     sudo?: NexusGenEnums['SortOrder'] | null // SortOrder
     technologyLevel?: NexusGenEnums['SortOrder'] | null // SortOrder
+    telegram?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     username?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
@@ -3173,6 +3174,7 @@ export interface NexusGenInputs {
     password?: string | null // String
     phone?: string | null // String
     technologyLevel?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    telegram?: string | null // String
     username?: string | null // String
   }
   UserWhereInput: {
@@ -3349,6 +3351,7 @@ export interface NexusGenInputs {
     showPhone?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     sudo?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     technologyLevel?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    telegram?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     username?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
@@ -4200,6 +4203,7 @@ export interface NexusGenFieldTypes {
     showPhone: boolean | null // Boolean
     sudo: boolean | null // Boolean
     technologyLevel: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    telegram: string | null // String
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
     username: string | null // String
   }
@@ -4785,6 +4789,7 @@ export interface NexusGenFieldTypeNames {
     showPhone: 'Boolean'
     sudo: 'Boolean'
     technologyLevel: 'UserTechnologyLevel'
+    telegram: 'String'
     updatedAt: 'DateTime'
     username: 'String'
   }

@@ -124,6 +124,7 @@ fragment UserNoNesting on User {
   acceptNewChatRoom
   technologyLevel
   isMentor
+  telegram
 }
 
 fragment meUser on User {

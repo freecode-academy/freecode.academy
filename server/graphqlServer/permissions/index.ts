@@ -33,6 +33,8 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
 
     createTechnology: isSudo,
     // updateTechnology: isSudo,
+
+    updateCodeChallenge: isSudo,
   },
 }
 

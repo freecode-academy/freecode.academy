@@ -1,5 +1,10 @@
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 
+export type monacoEditorInstance = {
+  editorInstance: monacoEditor.editor.IStandaloneCodeEditor
+  monaco: typeof monacoEditor
+}
+
 export type MonacoEditorProps = {
   source: string
   language: 'javascript' | 'css' | 'html'
@@ -14,7 +19,5 @@ export type MonacoEditorProps = {
   /**
    * Коллбэк на инициализацию редактора
    */
-  onEditorInit?: (
-    editorInstance: monacoEditor.editor.IStandaloneCodeEditor
-  ) => void
+  onEditorInit?: (editorInstance: monacoEditorInstance) => void
 }

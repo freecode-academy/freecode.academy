@@ -30,7 +30,7 @@ export const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
 
   const context = useContext(Context)
 
-  const user = context?.user
+  const currentUser = context?.user
 
   const challengeFile = context?.challengeData.file ?? null
   const challenge = context?.challenge
@@ -127,10 +127,10 @@ export const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
         codeChallenge={codeChallenge}
         executeChallenge={executeChallenge}
         codeChallengeCompletion={codeChallengeCompletion}
-        user={user}
+        currentUser={currentUser}
       />
     ),
-    [executeChallenge, codeChallenge, codeChallengeCompletion, user]
+    [executeChallenge, codeChallenge, codeChallengeCompletion, currentUser]
   )
 
   const preview = useMemo(
@@ -165,6 +165,7 @@ export const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
       tabIndex={tabIndex}
       topicId={topicId}
       challenge={challenge}
+      currentUser={currentUser}
     />
   )
 }

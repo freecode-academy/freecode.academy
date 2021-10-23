@@ -10,5 +10,5 @@ export type ExecuteChallengeButtonProps = {
     | null
     | undefined
 
-  user: SidePanelProps['user']
+  currentUser: SidePanelProps['currentUser']
 }

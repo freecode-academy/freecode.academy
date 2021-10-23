@@ -10,5 +10,5 @@ export interface ToolPanelProps {
   videoUrl: string | null | undefined
   guideUrl: string | null | undefined
   executeChallenge: ReturnType<typeof useExecuteChallenge>
-  user: SidePanelProps['user']
+  currentUser: SidePanelProps['currentUser']
 }

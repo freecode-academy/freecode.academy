@@ -5,17 +5,17 @@ import { ExecuteChallengeButtonProps } from './interfaces'
 export const ExecuteChallengeButton: React.FC<ExecuteChallengeButtonProps> = ({
   executeChallenge,
   codeChallengeCompletion,
-  user,
+  currentUser,
   ...other
 }) => {
   return useMemo(() => {
     return (
       <ButtonStyled role="run-tests" onClick={executeChallenge} {...other}>
-        {user && !codeChallengeCompletion
+        {currentUser && !codeChallengeCompletion
           ? 'Приступить к выполнению'
           : 'Запустить тесты'}{' '}
         (Ctrl+Enter)
       </ButtonStyled>
     )
-  }, [codeChallengeCompletion, executeChallenge, other, user])
+  }, [codeChallengeCompletion, executeChallenge, other, currentUser])
 }

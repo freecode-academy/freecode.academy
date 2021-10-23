@@ -20,14 +20,14 @@ export const ChallengeDescriptionStyled = styled.div<ChallengeDescriptionStyledP
     }
   }
 
-  #description p,
+  /* #description p,
   #instructions p,
   #description ul,
   #instructions ul,
   #description ol,
   #instructions ol {
     font-family: 'Lato', sans-serif;
-  }
+  } */
 
   #instructions {
     font-size: 1rem;

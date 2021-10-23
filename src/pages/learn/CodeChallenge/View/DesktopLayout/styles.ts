@@ -1,6 +1,15 @@
 import { ReflexContainerStyled } from 'src/uikit/ReFlex/ReflexContainer/styles'
 import styled from 'styled-components'
 
+export const DesktopLayoutToolbarStyled = styled.div`
+  display: flex;
+  align-items: center;
+
+  .tabs {
+    flex: 1;
+  }
+`
+
 export const DesktopLayoutStyled = styled.div`
   height: 100%;
   width: 100%;

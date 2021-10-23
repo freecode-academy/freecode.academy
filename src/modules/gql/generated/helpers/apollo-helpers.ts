@@ -173,7 +173,7 @@ export type MentorMenteeFieldPolicy = {
 	status?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createMentorMentee' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateLearnStrategy' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createMentorMentee' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'updateBlogProcessor' | 'updateCodeChallenge' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateLearnStrategy' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	createBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createChatMessageProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -198,6 +198,7 @@ export type MutationFieldPolicy = {
 	signup?: FieldPolicy<any> | FieldReadFunction<any>,
 	singleUpload?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateCodeChallenge?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateCodeChallengeCompletionProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateCommentProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateLearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,

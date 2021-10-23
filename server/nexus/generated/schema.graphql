@@ -485,6 +485,12 @@ input CodeChallengeOrderByInput {
   videoUrl: SortOrder
 }
 
+input CodeChallengeUpdateInput {
+  description: String
+  instructions: String
+  localeTitle: String
+}
+
 input CodeChallengeWhereInput {
   AND: [CodeChallengeWhereInput!]
   Block: StringNullableFilter
@@ -1675,6 +1681,10 @@ type Mutation {
     data: BlogUpdateInput!
     where: ResourceWhereUniqueInput!
   ): ResourceResponse!
+  updateCodeChallenge(
+    data: CodeChallengeUpdateInput!
+    where: CodeChallengeWhereUniqueInput!
+  ): CodeChallenge!
   updateCodeChallengeCompletionProcessor(
     data: CodeChallengeCompletionUpdateInput!
     where: CodeChallengeCompletionWhereUniqueInput!

@@ -12,6 +12,7 @@
 //   }),
 //   testOutput: PropTypes.element
 
+import { PrismaCmsContext } from '@prisma-cms/context'
 import { CodeChallengeFragment } from 'src/modules/gql/generated'
 import { TestFile } from '../../Context'
 import { CodeChallengeDiscussProps } from './Discuss/interfacse'
@@ -38,4 +39,5 @@ export interface DesktopLayoutProps {
   tabIndex: DesktopLayoutTabIndex
   challenge: CodeChallengeFragment
   topicId: CodeChallengeDiscussProps['topicId']
+  currentUser: PrismaCmsContext['user']
 }

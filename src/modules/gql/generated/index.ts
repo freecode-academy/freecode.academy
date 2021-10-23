@@ -129,6 +129,7 @@ export * from './timersConnectionTimer';
 export * from './topicsConnection';
 export * from './topicsConnectionTopic';
 export * from './topicsConnectionUser';
+export * from './updateCodeChallenge';
 export * from './updateCodeChallengeCompletionProcessor';
 export * from './updateCommentProcessor';
 export * from './updateLearnStrategy';

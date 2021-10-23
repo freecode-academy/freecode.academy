@@ -537,6 +537,12 @@ export interface CodeChallengeOrderByInput {
   videoUrl?: Maybe<SortOrder>;
 }
 
+export interface CodeChallengeUpdateInput {
+  description?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  localeTitle?: Maybe<Scalars['String']>;
+}
+
 export interface CodeChallengeWhereInput {
   AND?: Maybe<Array<CodeChallengeWhereInput>>;
   Block?: Maybe<StringNullableFilter>;
@@ -1627,6 +1633,7 @@ export interface Mutation {
   /** Загрузка файла */
   singleUpload?: Maybe<File>;
   updateBlogProcessor: ResourceResponse;
+  updateCodeChallenge: CodeChallenge;
   updateCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
   updateCommentProcessor: ResourceResponse;
   updateLearnStrategy: LearnStrategy;
@@ -1756,6 +1763,12 @@ export type MutationSingleUploadArgs = {
 export type MutationUpdateBlogProcessorArgs = {
   data: BlogUpdateInput;
   where: ResourceWhereUniqueInput;
+};
+
+
+export type MutationUpdateCodeChallengeArgs = {
+  data: CodeChallengeUpdateInput;
+  where: CodeChallengeWhereUniqueInput;
 };
 
 

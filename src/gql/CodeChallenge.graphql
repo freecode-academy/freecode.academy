@@ -31,3 +31,12 @@ fragment CodeChallengePageChallengeCompletion on CodeChallengeCompletion {
     ...UserNoNesting
   }
 }
+
+mutation updateCodeChallenge(
+  $where: CodeChallengeWhereUniqueInput!
+  $data: CodeChallengeUpdateInput!
+) {
+  updateCodeChallenge(where: $where, data: $data) {
+    ...codeChallenge_
+  }
+}

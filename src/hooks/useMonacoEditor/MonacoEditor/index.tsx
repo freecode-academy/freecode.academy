@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 
 import loader from '@monaco-editor/loader'
-import { MonacoEditorProps } from './interfaces'
+import { monacoEditorInstance, MonacoEditorProps } from './interfaces'
 
 export const MonacoEditor: React.FC<MonacoEditorProps> = ({
   source,
@@ -35,7 +35,7 @@ export const MonacoEditor: React.FC<MonacoEditorProps> = ({
   // ] = useState(false)
 
   const [editorInstance, editorInstanceSetter] =
-    useState<monacoEditor.editor.IStandaloneCodeEditor | null>(null)
+    useState<monacoEditorInstance | null>(null)
 
   /**
    * Init editor
@@ -61,7 +61,7 @@ export const MonacoEditor: React.FC<MonacoEditorProps> = ({
       return
     }
 
-    const model = editorInstance.getModel()
+    const model = editorInstance.editorInstance.getModel()
 
     const modelOnChange = model?.onDidChangeContent((_event) => {
       const value = model.getValue()
@@ -109,7 +109,7 @@ export const MonacoEditor: React.FC<MonacoEditorProps> = ({
       return
     }
 
-    const model = editorInstance.getModel()
+    const model = editorInstance.editorInstance.getModel()
 
     if (!model) {
       return
@@ -175,7 +175,7 @@ export const MonacoEditor: React.FC<MonacoEditorProps> = ({
       //   editorInstance && onChange(editorInstance.getValue())
       // })
 
-      editorInstanceSetter(editorInstance)
+      editorInstanceSetter({ editorInstance, monaco })
     })
 
     return () => {
@@ -200,7 +200,7 @@ export const MonacoEditor: React.FC<MonacoEditorProps> = ({
       editorInstance?.dispose()
       model?.dispose()
     }
-  }, [editorContainer, initialValue, language, onEditorInit])
+  }, [editorContainer, initialValue, language])
 
   return useMemo(() => {
     return (

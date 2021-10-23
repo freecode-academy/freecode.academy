@@ -1,5 +1,13 @@
 import { Prisma } from '@prisma/client'
-import { extendType, intArg, list, nonNull, objectType } from 'nexus'
+import {
+  extendType,
+  inputObjectType,
+  intArg,
+  list,
+  nonNull,
+  objectType,
+} from 'nexus'
+import { updateCodeChallenge } from './resolvers/updateCodeChallenge'
 
 export const CodeChallengeExtendQuery = extendType({
   type: 'Query',
@@ -8,6 +16,20 @@ export const CodeChallengeExtendQuery = extendType({
     t.crud.codeChallenges({
       filtering: true,
       ordering: true,
+    })
+  },
+})
+
+export const CodeChallengeExtendMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('updateCodeChallenge', {
+      type: 'CodeChallenge',
+      args: {
+        where: nonNull('CodeChallengeWhereUniqueInput'),
+        data: nonNull('CodeChallengeUpdateInput'),
+      },
+      resolve: updateCodeChallenge,
     })
   },
 })
@@ -107,5 +129,14 @@ export const CodeChallenge = objectType({
         })
       },
     })
+  },
+})
+
+export const CodeChallengeUpdateInput = inputObjectType({
+  name: 'CodeChallengeUpdateInput',
+  definition(t) {
+    t.string('localeTitle')
+    t.string('description')
+    t.string('instructions')
   },
 })

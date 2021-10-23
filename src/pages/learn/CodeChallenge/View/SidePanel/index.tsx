@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { useCallback, useMemo } from 'react'
 import { CodeChallengeTest } from '../../interfaces'
-import ChallengeDescription from './ChallengeDescription'
+import { ChallengeDescription } from './ChallengeDescription'
 import ChallengeTitle from './ChallengeTitle'
 import { SidePanelProps } from './interfaces'
 import { SidePanelStyled } from './styles'
@@ -14,7 +14,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
   showToolPanel,
   executeChallenge,
   codeChallengeCompletion,
-  user,
+  currentUser,
 }) => {
   const { forumTopicId, description, instructions, videoUrl } = codeChallenge
 
@@ -82,7 +82,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
           // openResetModal={openResetModal}
           openVideoModal={openVideoModal}
           executeChallenge={executeChallenge}
-          user={user}
+          currentUser={currentUser}
         />
       ) : null,
     [
@@ -92,7 +92,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
       openVideoModal,
       showToolPanel,
       videoUrl,
-      user,
+      currentUser,
     ]
   )
 
@@ -106,7 +106,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
         <ChallengeTitle
           codeChallengeCompletion={codeChallengeCompletion}
           executeChallenge={executeChallenge}
-          user={user}
+          currentUser={currentUser}
         >
           {title}
         </ChallengeTitle>
@@ -118,7 +118,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
           instructions={instructions || ''}
           // section={section}
           codeChallengeCompletion={codeChallengeCompletion}
-          user={user}
+          currentUser={currentUser}
         />
         {toolPanel}
         <TestSuite tests={tests} />
@@ -129,7 +129,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
   }, [
     codeChallengeCompletion,
     executeChallenge,
-    user,
+    currentUser,
     title,
     breadCrumbs,
     description,

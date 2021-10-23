@@ -480,6 +480,12 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     videoUrl?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
+  CodeChallengeUpdateInput: {
+    // input type
+    description?: string | null // String
+    instructions?: string | null // String
+    localeTitle?: string | null // String
+  }
   CodeChallengeWhereInput: {
     // input type
     AND?: NexusGenInputs['CodeChallengeWhereInput'][] | null // [CodeChallengeWhereInput!]
@@ -3861,6 +3867,7 @@ export interface NexusGenFieldTypes {
     signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     singleUpload: NexusGenRootTypes['File'] | null // File
     updateBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    updateCodeChallenge: NexusGenRootTypes['CodeChallenge'] // CodeChallenge!
     updateCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     updateCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     updateLearnStrategy: NexusGenRootTypes['LearnStrategy'] // LearnStrategy!
@@ -4449,6 +4456,7 @@ export interface NexusGenFieldTypeNames {
     signup: 'AuthPayload'
     singleUpload: 'File'
     updateBlogProcessor: 'ResourceResponse'
+    updateCodeChallenge: 'CodeChallenge'
     updateCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     updateCommentProcessor: 'ResourceResponse'
     updateLearnStrategy: 'LearnStrategy'
@@ -4956,6 +4964,11 @@ export interface NexusGenArgTypes {
       // args
       data: NexusGenInputs['BlogUpdateInput'] // BlogUpdateInput!
       where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
+    }
+    updateCodeChallenge: {
+      // args
+      data: NexusGenInputs['CodeChallengeUpdateInput'] // CodeChallengeUpdateInput!
+      where: NexusGenInputs['CodeChallengeWhereUniqueInput'] // CodeChallengeWhereUniqueInput!
     }
     updateCodeChallengeCompletionProcessor: {
       // args

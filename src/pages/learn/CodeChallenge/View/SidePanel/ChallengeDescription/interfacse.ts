@@ -4,8 +4,8 @@ import { SidePanelProps } from '../interfaces'
 export interface ChallengeDescriptionProps {
   description?: string
   instructions?: string
-  section?: string
+  // section?: string
 
   codeChallengeCompletion: ExecuteChallengeButtonProps['codeChallengeCompletion']
-  user: SidePanelProps['user']
+  currentUser: SidePanelProps['currentUser']
 }

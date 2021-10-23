@@ -1,35 +1,82 @@
-import React, { PureComponent } from 'react'
+import React, { useState, useEffect } from 'react'
 import Prism from 'prismjs'
 
 import { PrismFormattedProps } from './interfaces'
+import { PrismFormattedStyled } from './styles'
 
-class PrismFormatted extends PureComponent<PrismFormattedProps> {
-  declare instructionsRef: any
+export const PrismFormatted: React.FC<PrismFormattedProps> = ({
+  text,
+  className,
+}) => {
+  // declare instructionsRef: any
 
-  static displayName = 'PrismFormatted'
+  // static displayName = 'PrismFormatted'
 
-  componentDidMount() {
-    // Just in case 'current' has not been created, though it should have been.
-    if (this.instructionsRef.current) {
-      Prism.highlightAllUnder(this.instructionsRef.current)
+  // componentDidMount() {
+
+  //   console.log('this.instructionsRef', this.instructionsRef);
+
+  //   // Just in case 'current' has not been created, though it should have been.
+  //   if (this.instructionsRef.current) {
+  //     Prism.highlightAllUnder(this.instructionsRef.current)
+  //   }
+  // }
+
+  // constructor(props: PrismFormattedProps) {
+  //   super(props)
+  //   this.instructionsRef = React.createRef()
+  // }
+
+  const [element, ref] = useState<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (!element) {
+      return
     }
-  }
 
-  constructor(props: PrismFormattedProps) {
-    super(props)
-    this.instructionsRef = React.createRef()
-  }
+    // Обновление по тексту надо, чтобы обновить подсветку кода
+    text
 
-  render() {
-    const { text, className } = this.props
-    return (
-      <div
-        className={className}
-        dangerouslySetInnerHTML={{ __html: text }}
-        ref={this.instructionsRef}
-      />
-    )
-  }
+    Prism.highlightAllUnder(element)
+  }, [element, text])
+
+  return (
+    <PrismFormattedStyled
+      className={className}
+      dangerouslySetInnerHTML={{ __html: text }}
+      ref={ref}
+    />
+  )
 }
 
-export default PrismFormatted
+// export class PrismFormatted extends PureComponent<PrismFormattedProps> {
+//   declare instructionsRef: any
+
+//   static displayName = 'PrismFormatted'
+
+//   componentDidMount() {
+
+//     console.log('this.instructionsRef', this.instructionsRef);
+
+//     // Just in case 'current' has not been created, though it should have been.
+//     if (this.instructionsRef.current) {
+//       Prism.highlightAllUnder(this.instructionsRef.current)
+//     }
+//   }
+
+//   constructor(props: PrismFormattedProps) {
+//     super(props)
+//     this.instructionsRef = React.createRef()
+//   }
+
+//   render() {
+//     const { text, className } = this.props
+//     return (
+//       <div
+//         className={className}
+//         dangerouslySetInnerHTML={{ __html: text }}
+//         ref={this.instructionsRef}
+//       />
+//     )
+//   }
+// }

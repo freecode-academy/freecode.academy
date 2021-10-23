@@ -6,7 +6,7 @@ export const modeMap = {
   html: 'html',
   js: 'javascript',
   jsx: 'javascript',
-}
+} as const
 
 export type CodeChallengeFileExt = keyof typeof modeMap
 

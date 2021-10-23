@@ -18,7 +18,7 @@ import {
 import { useRouter, NextRouter } from 'next/router'
 
 import { Page, NextPageContextCustom } from '../../_App/interfaces'
-import View from './View'
+import { CodeChallengeView as View } from './View'
 
 import Context, {
   ChallengeData,

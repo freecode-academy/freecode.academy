@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { CodeChallengeContext } from '../Context'
-import '../rechallenge/transformers'
+// import '../rechallenge/transformers'
 // import { transformers, transformersPreview } from '../rechallenge/transformers';
 
 // the config files are created during the build, but not before linting

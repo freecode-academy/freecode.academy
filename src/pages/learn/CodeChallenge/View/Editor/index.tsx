@@ -90,7 +90,11 @@ const defineMonacoThemes = (monaco: any) => {
   })
 }
 
-class FccEditor<
+// TODO Remove
+/**
+ * @deprecated Use CodeChallengeEditor instead
+ */
+export class FccEditor<
   P extends FccEditorProps = FccEditorProps
 > extends PureComponent<P> {
   // static propTypes = propTypes;
@@ -545,5 +549,3 @@ class FccEditor<
     )
   }
 }
-
-export default FccEditor

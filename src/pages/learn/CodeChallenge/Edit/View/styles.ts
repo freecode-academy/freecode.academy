@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { DesktopLayoutStyled } from '../../View/DesktopLayout/styles'
 
 export const CodeChallengeEditViewToolbarStyled = styled.div`
   margin-bottom: 20px;
@@ -23,4 +24,7 @@ export const CodeChallengeEditViewContentStyled = styled.div`
   }
 `
 
-export const CodeChallengeEditViewStyled = styled.div``
+/**
+ * Расширяем DesktopLayoutStyled, чтобы получить общие стили раздела.
+ */
+export const CodeChallengeEditViewStyled = styled(DesktopLayoutStyled)``

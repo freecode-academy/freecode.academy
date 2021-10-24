@@ -10,6 +10,11 @@ export const DesktopLayoutToolbarStyled = styled.div`
   }
 `
 
+/**
+ * Этот компонент используется как минимум в CodeChallengeEditViewStyled,
+ * так что общие стили раздела надо прописывать здесь.
+ * В самый корень проекта эти стили нет особого смысла размещать
+ */
 export const DesktopLayoutStyled = styled.div`
   height: 100%;
   width: 100%;

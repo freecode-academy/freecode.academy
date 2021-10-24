@@ -15,6 +15,8 @@ export const DesktopLayoutStyled = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  font-size: 1rem;
+  line-height: 1.5rem;
 
   > ${ReflexContainerStyled} {
     height: 100%;
@@ -32,5 +34,21 @@ export const DesktopLayoutStyled = styled.div`
       padding: 0;
       color: #17528c;
     }
+  }
+
+  code {
+    background: #ddd;
+    padding: 2px 4px;
+    font-size: 90%;
+  }
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    background: none;
+  }
+
+  :not(pre) > code[class*='language-'],
+  pre[class*='language-'] {
+    background: #f5f2f0;
   }
 `

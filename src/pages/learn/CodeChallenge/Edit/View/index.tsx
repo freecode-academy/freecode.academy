@@ -1,7 +1,8 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import { CodeChallengeEditViewProps } from './interfaces'
 import { IconButton, Typography } from 'material-ui'
 import SaveIcon from 'material-ui-icons/Save'
+import ResetIcon from 'material-ui-icons/Restore'
 import {
   CodeChallengeEditViewStyled,
   CodeChallengeEditViewToolbarStyled,
@@ -21,16 +22,55 @@ import TextField from 'src/components/ui/form/TextField'
 export const CodeChallengeEditView: React.FC<CodeChallengeEditViewProps> = ({
   codeChallange,
 }) => {
-  // const [data, ] = useState<CodeChallengeUpdateInput | null>(null)
-
   const mutation = useUpdateCodeChallengeMutation()
+
+  const localStorageKey = `codeChallange-${codeChallange.id}--draft`
 
   const { store, setValue, updateStore } =
     useStore<CodeChallengeUpdateInput>(null)
 
-  // const file = useMemo<TestFile>(() => {
-  //   return codeChallange.files[0]
-  // }, [codeChallange.files])
+  const resetStore = useCallback(() => {
+    localStorage.removeItem(localStorageKey)
+
+    updateStore(null)
+  }, [localStorageKey, updateStore])
+
+  /**
+   * При загрузке устанавливаем дефолтное хранилище
+   */
+  useEffect(() => {
+    const storageValue = localStorage.getItem(localStorageKey)
+
+    if (storageValue) {
+      try {
+        const value = JSON.parse(storageValue)
+
+        if (value) {
+          updateStore(value)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }, [localStorageKey, updateStore])
+
+  /**
+   * Сохраняем черновик в локальное хранилище
+   */
+  useEffect(() => {
+    if (store) {
+      const value = JSON.stringify(store)
+
+      // console.log('useEffect value', value)
+
+      if (value !== localStorage.getItem(localStorageKey)) {
+        localStorage.setItem(localStorageKey, value)
+      }
+    }
+    // else {
+    //   localStorage.removeItem(localStorageKey)
+    // }
+  }, [localStorageKey, store])
 
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,27 +123,36 @@ export const CodeChallengeEditView: React.FC<CodeChallengeEditViewProps> = ({
         /**
          * Сбрасываем данные редактора
          */
-        updateStore(null)
+        resetStore()
       }
     })
-  }, [codeChallange.id, mutation, store, updateStore])
+  }, [codeChallange.id, mutation, resetStore, store])
 
-  const saveButton = useMemo(() => {
+  const buttons = useMemo<JSX.Element[] | null>(() => {
     if (!store) {
-      return
+      return null
     }
 
-    return (
+    return [
       <IconButton
+        key="reset"
+        title="Отменить изменения"
+        disabled={mutation[1].loading}
+        onClick={resetStore}
+      >
+        <ResetIcon />
+      </IconButton>,
+      <IconButton
+        key="save"
         color="secondary"
         title="Сохранить"
         disabled={mutation[1].loading}
         onClick={save}
       >
         <SaveIcon />
-      </IconButton>
-    )
-  }, [mutation, save, store])
+      </IconButton>,
+    ]
+  }, [mutation, resetStore, save, store])
 
   return (
     <>
@@ -130,7 +179,7 @@ export const CodeChallengeEditView: React.FC<CodeChallengeEditViewProps> = ({
             <Typography variant="subheading">{codeChallange.name}</Typography>
           </div>
 
-          {saveButton}
+          {buttons}
         </CodeChallengeEditViewToolbarStyled>
 
         <CodeChallengeEditViewContentStyled>

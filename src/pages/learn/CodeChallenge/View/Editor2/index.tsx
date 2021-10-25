@@ -24,7 +24,6 @@ export const CodeChallengeEditor: React.FC<CodeChallengeEditorProps> = ({
         id: 'execute-challenge',
         label: 'Run tests',
         keybindings: [
-          /* eslint-disable no-bitwise */
           monaco.KeyMod.chord(
             monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
             monaco.KeyCode.Unknown

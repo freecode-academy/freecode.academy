@@ -1658,6 +1658,11 @@ type Mutation {
     where: LearnStrategyStageWhereUniqueInput!
   ): LearnStrategyStage!
   deleteNotice(where: NoticeWhereUniqueInput!): Notice
+
+  """
+  Удаление ресурса
+  """
+  deleteResource(where: ResourceWhereUniqueInput!): Resource!
   resetPasswordProcessor(where: ResetPasswordProcessorWhereInput!): AuthPayload!
 
   """

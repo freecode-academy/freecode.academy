@@ -69,6 +69,7 @@ export * from './createUserLearnStrategy';
 export * from './createUserTechnologyProcessor';
 export * from './deleteLearnStrategyStage';
 export * from './deleteNotice';
+export * from './deleteResource';
 export * from './fChatRoom';
 export * from './file';
 export * from './learnStrategies';

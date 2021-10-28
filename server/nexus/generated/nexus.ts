@@ -3865,6 +3865,7 @@ export interface NexusGenFieldTypes {
     createUserTechnologyProcessor: NexusGenRootTypes['UserTechnologyResponse'] // UserTechnologyResponse!
     deleteLearnStrategyStage: NexusGenRootTypes['LearnStrategyStage'] // LearnStrategyStage!
     deleteNotice: NexusGenRootTypes['Notice'] | null // Notice
+    deleteResource: NexusGenRootTypes['Resource'] // Resource!
     resetPasswordProcessor: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
@@ -4457,6 +4458,7 @@ export interface NexusGenFieldTypeNames {
     createUserTechnologyProcessor: 'UserTechnologyResponse'
     deleteLearnStrategyStage: 'LearnStrategyStage'
     deleteNotice: 'Notice'
+    deleteResource: 'Resource'
     resetPasswordProcessor: 'AuthPayload'
     signin: 'AuthPayload'
     signup: 'AuthPayload'
@@ -4953,6 +4955,10 @@ export interface NexusGenArgTypes {
     deleteNotice: {
       // args
       where: NexusGenInputs['NoticeWhereUniqueInput'] // NoticeWhereUniqueInput!
+    }
+    deleteResource: {
+      // args
+      where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
     }
     resetPasswordProcessor: {
       // args

@@ -1627,6 +1627,8 @@ export interface Mutation {
   createUserTechnologyProcessor: UserTechnologyResponse;
   deleteLearnStrategyStage: LearnStrategyStage;
   deleteNotice?: Maybe<Notice>;
+  /** Удаление ресурса */
+  deleteResource: Resource;
   resetPasswordProcessor: AuthPayload;
   /** Авторизация */
   signin: AuthPayload;
@@ -1744,6 +1746,11 @@ export type MutationDeleteLearnStrategyStageArgs = {
 
 export type MutationDeleteNoticeArgs = {
   where: NoticeWhereUniqueInput;
+};
+
+
+export type MutationDeleteResourceArgs = {
+  where: ResourceWhereUniqueInput;
 };
 
 

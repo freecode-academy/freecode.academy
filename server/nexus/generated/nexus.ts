@@ -3057,6 +3057,7 @@ export interface NexusGenInputs {
     activated?: NexusGenEnums['SortOrder'] | null // SortOrder
     active?: NexusGenEnums['SortOrder'] | null // SortOrder
     address?: NexusGenEnums['SortOrder'] | null // SortOrder
+    blocked?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     deleted?: NexusGenEnums['SortOrder'] | null // SortOrder
     email?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -3339,6 +3340,7 @@ export interface NexusGenInputs {
     activated?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     active?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     address?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    blocked?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     deleted?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     email?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -3844,6 +3846,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: {
     // field return type
+    blockUser: NexusGenRootTypes['User'] // User!
     createBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse'] // ChatMessageResponse!
     createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
@@ -3866,6 +3869,7 @@ export interface NexusGenFieldTypes {
     signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     singleUpload: NexusGenRootTypes['File'] | null // File
+    unblockUser: NexusGenRootTypes['User'] // User!
     updateBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     updateCodeChallenge: NexusGenRootTypes['CodeChallenge'] // CodeChallenge!
     updateCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
@@ -4196,6 +4200,7 @@ export interface NexusGenFieldTypes {
     activated: boolean | null // Boolean
     active: boolean | null // Boolean
     address: string | null // String
+    blocked: boolean // Boolean!
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     deleted: boolean | null // Boolean
     email: string | null // String
@@ -4433,6 +4438,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: {
     // field return type name
+    blockUser: 'User'
     createBlogProcessor: 'ResourceResponse'
     createChatMessageProcessor: 'ChatMessageResponse'
     createCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
@@ -4455,6 +4461,7 @@ export interface NexusGenFieldTypeNames {
     signin: 'AuthPayload'
     signup: 'AuthPayload'
     singleUpload: 'File'
+    unblockUser: 'User'
     updateBlogProcessor: 'ResourceResponse'
     updateCodeChallenge: 'CodeChallenge'
     updateCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
@@ -4783,6 +4790,7 @@ export interface NexusGenFieldTypeNames {
     activated: 'Boolean'
     active: 'Boolean'
     address: 'String'
+    blocked: 'Boolean'
     createdAt: 'DateTime'
     deleted: 'Boolean'
     email: 'String'
@@ -4870,6 +4878,10 @@ export interface NexusGenArgTypes {
     }
   }
   Mutation: {
+    blockUser: {
+      // args
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
+    }
     createBlogProcessor: {
       // args
       data: NexusGenInputs['BlogCreateInput'] // BlogCreateInput!
@@ -4959,6 +4971,10 @@ export interface NexusGenArgTypes {
       // args
       data?: NexusGenInputs['SingleUploadInput'] | null // SingleUploadInput
       file?: NexusGenScalars['Upload'] | null // Upload
+    }
+    unblockUser: {
+      // args
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
     }
     updateBlogProcessor: {
       // args

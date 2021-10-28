@@ -31,8 +31,8 @@ const SignupForm: React.FC = () => {
         email: yup.string().email(),
         username: yup.string(),
         fullname: yup.string(),
-        password: yup.string(),
         phone: yup.string(),
+        password: yup.string().required('Укажите пароль'),
         showEmail: yup.boolean().required(),
         showFullname: yup.boolean().required(),
       })

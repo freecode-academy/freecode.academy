@@ -98,6 +98,18 @@ fragment MeUserTimer on Timer {
   }
 }
 
+mutation blockUser($where: UserWhereUniqueInput!) {
+  blockUser(where: $where) {
+    ...user_
+  }
+}
+
+mutation unblockUser($where: UserWhereUniqueInput!) {
+  unblockUser(where: $where) {
+    ...user_
+  }
+}
+
 fragment UserNoNesting on User {
   id
   createdAt
@@ -112,7 +124,6 @@ fragment UserNoNesting on User {
   image
   address
   sudo
-  active
   activated
   deleted
   hasEmail
@@ -125,6 +136,8 @@ fragment UserNoNesting on User {
   technologyLevel
   isMentor
   telegram
+  active
+  blocked
 }
 
 fragment meUser on User {

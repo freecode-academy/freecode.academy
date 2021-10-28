@@ -22,6 +22,7 @@ model User {
   image                                                  String?                   @db.Text
   address                                                String?                   @db.Text
   active                                                 Boolean?
+  blocked                                                Boolean                   @default(false)
   activated                                              Boolean?
   deleted                                                Boolean?
   hidden                                                 Boolean?

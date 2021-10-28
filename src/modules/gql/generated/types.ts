@@ -1606,6 +1606,8 @@ export interface MessageWhereInput {
 
 export interface Mutation {
   __typename?: 'Mutation';
+  /** Заблокировать пользователя */
+  blockUser: User;
   createBlogProcessor: ResourceResponse;
   createChatMessageProcessor: ChatMessageResponse;
   createCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
@@ -1632,6 +1634,8 @@ export interface Mutation {
   signup: AuthPayload;
   /** Загрузка файла */
   singleUpload?: Maybe<File>;
+  /** Разблокировать пользователя */
+  unblockUser: User;
   updateBlogProcessor: ResourceResponse;
   updateCodeChallenge: CodeChallenge;
   updateCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
@@ -1646,6 +1650,11 @@ export interface Mutation {
   updateUserProcessor: UserResponse;
   updateUserTechnologyProcessor: UserTechnologyResponse;
 }
+
+
+export type MutationBlockUserArgs = {
+  where: UserWhereUniqueInput;
+};
 
 
 export type MutationCreateBlogProcessorArgs = {
@@ -1757,6 +1766,11 @@ export type MutationSignupArgs = {
 export type MutationSingleUploadArgs = {
   data?: Maybe<SingleUploadInput>;
   file?: Maybe<Scalars['Upload']>;
+};
+
+
+export type MutationUnblockUserArgs = {
+  where: UserWhereUniqueInput;
 };
 
 
@@ -4230,8 +4244,11 @@ export interface User {
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
   activated?: Maybe<Scalars['Boolean']>;
+  /** Активирован ли пользователь */
   active?: Maybe<Scalars['Boolean']>;
   address?: Maybe<Scalars['String']>;
+  /** Заблокирован ли пользователь */
+  blocked: Scalars['Boolean'];
   /** Когда создан */
   createdAt: Scalars['DateTime'];
   deleted?: Maybe<Scalars['Boolean']>;
@@ -4353,6 +4370,7 @@ export interface UserOrderByInput {
   activated?: Maybe<SortOrder>;
   active?: Maybe<SortOrder>;
   address?: Maybe<SortOrder>;
+  blocked?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   deleted?: Maybe<SortOrder>;
   email?: Maybe<SortOrder>;
@@ -4623,6 +4641,7 @@ export interface UserWhereInput {
   activated?: Maybe<BoolNullableFilter>;
   active?: Maybe<BoolNullableFilter>;
   address?: Maybe<StringNullableFilter>;
+  blocked?: Maybe<BoolFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   deleted?: Maybe<BoolNullableFilter>;
   email?: Maybe<StringNullableFilter>;

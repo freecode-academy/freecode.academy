@@ -11,6 +11,8 @@ const mockUser: MeUserFragment = {
   hasPhone: false,
   EthAccounts: [],
   Timers: [],
+  active: true,
+  blocked: false,
 }
 
 export default mockUser

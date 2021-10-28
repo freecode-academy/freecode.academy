@@ -38,6 +38,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                 deleted: false,
                 hasEmail: true,
                 hasPhone: false,
+                blocked: false,
                 // marketplaceToken: null,
                 // hidden: null,
               },

@@ -1,116 +1,10 @@
 import { Prisma } from '@prisma/client'
 import { objectType, extendType, inputObjectType, nonNull, intArg } from 'nexus'
+import { blockUser } from './resolvers/blockUser'
 import { signin } from './resolvers/signin'
 import { signup } from './resolvers/signup'
+import { unblockUser } from './resolvers/unblockUser'
 import { updateUserProcessor } from './resolvers/updateUserProcessor'
-
-export const UserQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.users({
-      description: 'Список пользователей',
-      filtering: true,
-      ordering: true,
-    })
-
-    t.nonNull.int('usersCount', {
-      description: 'Количество пользователей',
-      args: {
-        where: 'UserWhereInput',
-      },
-      resolve(_, args, ctx) {
-        return ctx.prisma.user.count({
-          where: args.where as Prisma.UserCountArgs['where'],
-        })
-      },
-    })
-
-    t.crud.user({
-      description: 'Пользователь',
-    })
-
-    t.field('me', {
-      type: 'User',
-      resolve(_, _args, ctx) {
-        return ctx.currentUser
-      },
-    })
-  },
-})
-
-export const UserExtendMutation = extendType({
-  type: 'Mutation',
-  definition: (t) => {
-    t.nonNull.field('signup', {
-      description: 'Регистрация',
-      type: 'AuthPayload',
-      args: {
-        data: nonNull('UserSignupDataInput'),
-      },
-      resolve: signup,
-    })
-
-    t.nonNull.field('signin', {
-      description: 'Авторизация',
-      type: 'AuthPayload',
-      args: {
-        where: nonNull('UserWhereUniqueInput'),
-        data: nonNull('UserSigninDataInput'),
-      },
-      resolve: signin,
-    })
-
-    t.nonNull.field('updateUserProcessor', {
-      type: 'UserResponse',
-      args: {
-        data: nonNull('UserUpdateInput'),
-      },
-      resolve: updateUserProcessor,
-    })
-  },
-})
-
-export const UserSignupDataInput = inputObjectType({
-  name: 'UserSignupDataInput',
-  definition(t) {
-    t.string('username')
-    t.string('email')
-    t.string('fullname')
-    t.string('password')
-    t.string('phone')
-    t.nonNull.boolean('showEmail', {
-      description: 'Показывать емейл другим пользователям',
-      default: false,
-    })
-    t.nonNull.boolean('showFullname', {
-      description: 'Показывать ФИО другим пользователям',
-      default: true,
-    })
-  },
-})
-
-export const UserSigninDataInput = inputObjectType({
-  name: 'UserSigninDataInput',
-  definition(t) {
-    t.string('password')
-  },
-})
-
-export const AuthPayload = objectType({
-  name: 'AuthPayload',
-  description: 'Объект ответа мутации пользователя',
-  definition(t) {
-    t.nonNull.boolean('success')
-    t.string('message')
-    t.string('token')
-    t.nonNull.list.nonNull.field('errors', {
-      type: 'RequestError',
-    })
-    t.field('data', {
-      type: 'User',
-    })
-  },
-})
 
 export const User = objectType({
   name: 'User',
@@ -159,7 +53,12 @@ export const User = objectType({
     })
 
     t.boolean('showPhone')
-    t.boolean('active')
+    t.boolean('active', {
+      description: 'Активирован ли пользователь',
+    })
+    t.nonNull.boolean('blocked', {
+      description: 'Заблокирован ли пользователь',
+    })
     t.boolean('activated')
     t.boolean('deleted')
     t.boolean('hasEmail')
@@ -293,6 +192,132 @@ export const User = objectType({
           },
         })
       },
+    })
+  },
+})
+
+export const UserQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.users({
+      description: 'Список пользователей',
+      filtering: true,
+      ordering: true,
+    })
+
+    t.nonNull.int('usersCount', {
+      description: 'Количество пользователей',
+      args: {
+        where: 'UserWhereInput',
+      },
+      resolve(_, args, ctx) {
+        return ctx.prisma.user.count({
+          where: args.where as Prisma.UserCountArgs['where'],
+        })
+      },
+    })
+
+    t.crud.user({
+      description: 'Пользователь',
+    })
+
+    t.field('me', {
+      type: 'User',
+      resolve(_, _args, ctx) {
+        return ctx.currentUser
+      },
+    })
+  },
+})
+
+export const UserExtendMutation = extendType({
+  type: 'Mutation',
+  definition: (t) => {
+    t.nonNull.field('signup', {
+      description: 'Регистрация',
+      type: 'AuthPayload',
+      args: {
+        data: nonNull('UserSignupDataInput'),
+      },
+      resolve: signup,
+    })
+
+    t.nonNull.field('signin', {
+      description: 'Авторизация',
+      type: 'AuthPayload',
+      args: {
+        where: nonNull('UserWhereUniqueInput'),
+        data: nonNull('UserSigninDataInput'),
+      },
+      resolve: signin,
+    })
+
+    t.nonNull.field('updateUserProcessor', {
+      type: 'UserResponse',
+      args: {
+        data: nonNull('UserUpdateInput'),
+      },
+      resolve: updateUserProcessor,
+    })
+
+    t.nonNull.field('blockUser', {
+      type: 'User',
+      description: 'Заблокировать пользователя',
+      args: {
+        where: nonNull('UserWhereUniqueInput'),
+      },
+      resolve: blockUser,
+    })
+
+    t.nonNull.field('unblockUser', {
+      type: 'User',
+      description: 'Разблокировать пользователя',
+      args: {
+        where: nonNull('UserWhereUniqueInput'),
+      },
+      resolve: unblockUser,
+    })
+  },
+})
+
+export const UserSignupDataInput = inputObjectType({
+  name: 'UserSignupDataInput',
+  definition(t) {
+    t.string('username')
+    t.string('email')
+    t.string('fullname')
+    t.string('password')
+    t.string('phone')
+    t.nonNull.boolean('showEmail', {
+      description: 'Показывать емейл другим пользователям',
+      default: false,
+    })
+    t.nonNull.boolean('showFullname', {
+      description: 'Показывать ФИО другим пользователям',
+      default: true,
+    })
+  },
+})
+
+export const UserSigninDataInput = inputObjectType({
+  name: 'UserSigninDataInput',
+  definition(t) {
+    t.string('password')
+  },
+})
+
+export const AuthPayload = objectType({
+  name: 'AuthPayload',
+  description: 'Объект ответа мутации пользователя',
+  definition(t) {
+    t.nonNull.boolean('success')
+    t.string('message')
+    t.string('token')
+    t.nonNull.list.nonNull.field('errors', {
+      type: 'RequestError',
+    })
+    t.field('data', {
+      type: 'User',
     })
   },
 })

@@ -1616,6 +1616,10 @@ input MessageWhereInput {
 }
 
 type Mutation {
+  """
+  Заблокировать пользователя
+  """
+  blockUser(where: UserWhereUniqueInput!): User!
   createBlogProcessor(data: BlogCreateInput!): ResourceResponse!
   createChatMessageProcessor(
     data: ChatMessageCreateInput!
@@ -1677,6 +1681,11 @@ type Mutation {
     """
     file: Upload
   ): File
+
+  """
+  Разблокировать пользователя
+  """
+  unblockUser(where: UserWhereUniqueInput!): User!
   updateBlogProcessor(
     data: BlogUpdateInput!
     where: ResourceWhereUniqueInput!
@@ -3904,8 +3913,17 @@ type User {
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
   activated: Boolean
+
+  """
+  Активирован ли пользователь
+  """
   active: Boolean
   address: String
+
+  """
+  Заблокирован ли пользователь
+  """
+  blocked: Boolean!
 
   """
   Когда создан
@@ -4037,6 +4055,7 @@ input UserOrderByInput {
   activated: SortOrder
   active: SortOrder
   address: SortOrder
+  blocked: SortOrder
   createdAt: SortOrder
   deleted: SortOrder
   email: SortOrder
@@ -4350,6 +4369,7 @@ input UserWhereInput {
   activated: BoolNullableFilter
   active: BoolNullableFilter
   address: StringNullableFilter
+  blocked: BoolFilter
   createdAt: DateTimeFilter
   deleted: BoolNullableFilter
   email: StringNullableFilter

@@ -27,6 +27,7 @@ import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelTe
 import CheckBox from 'src/uikit/CheckBox'
 import { MentorMentees } from './MentorMentees'
 import { UserAbout } from './About'
+import { BlockUser } from './BlockUser'
 // import { UserProgress } from './Progress'
 
 export const UserView: React.FC<UserViewProps> = ({ user }) => {
@@ -161,52 +162,60 @@ export const UserView: React.FC<UserViewProps> = ({ user }) => {
   }, [inEditMode, isCurrentUser, setValue, userEdited])
 
   const buttons = useMemo(() => {
-    if (!user?.id || !isCurrentUser) {
+    if (!user?.id) {
       return null
     }
 
     const buttons: JSX.Element[] = []
 
-    if (data) {
-      const isDirty = Object.keys(data).length
+    if (currentUser?.sudo) {
+      if (user.id !== currentUser.id) {
+        buttons.push(<BlockUser key="BlockUser" user={user} />)
+      }
+    }
 
-      buttons.push(
-        <IconButton
-          key="ResetIcon"
-          onClick={reset}
-          disabled={inRequest}
-          title="Отменить изменения"
-        >
-          <ResetIcon />
-        </IconButton>
-      )
+    if (isCurrentUser) {
+      if (data) {
+        const isDirty = Object.keys(data).length
 
-      isDirty &&
         buttons.push(
           <IconButton
-            key="SaveIcon"
-            type="submit"
+            key="ResetIcon"
+            onClick={reset}
             disabled={inRequest}
-            color="secondary"
-            title="Сохранить пользователя"
+            title="Отменить изменения"
           >
-            <SaveIcon />
+            <ResetIcon />
           </IconButton>
         )
-    } else {
-      buttons.push(
-        <IconButton
-          key="EditIcon"
-          onClick={startEdit}
-          title="Редактировать пользователя"
-        >
-          <EditIcon />
-        </IconButton>
-      )
+
+        isDirty &&
+          buttons.push(
+            <IconButton
+              key="SaveIcon"
+              type="submit"
+              disabled={inRequest}
+              color="secondary"
+              title="Сохранить пользователя"
+            >
+              <SaveIcon />
+            </IconButton>
+          )
+      } else {
+        buttons.push(
+          <IconButton
+            key="EditIcon"
+            onClick={startEdit}
+            title="Редактировать пользователя"
+          >
+            <EditIcon />
+          </IconButton>
+        )
+      }
     }
 
     return buttons
-  }, [user?.id, isCurrentUser, data, reset, inRequest, startEdit])
+  }, [user, currentUser, isCurrentUser, data, reset, inRequest, startEdit])
 
   const password = useMemo(() => {
     if (!data) {

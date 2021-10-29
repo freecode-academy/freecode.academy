@@ -167,19 +167,22 @@ export const CodeChallengeEditView: React.FC<CodeChallengeEditViewProps> = ({
               </a>
             </Link> */}
 
-            <TextField
-              value={localeTitle || ''}
-              name="localeTitle"
-              onChange={onChange}
-              helperText={
-                codeChallange.localeTitle || codeChallange.name || undefined
-              }
-            />
+            <div className="fields">
+              <TextField
+                value={localeTitle || ''}
+                name="localeTitle"
+                onChange={onChange}
+                helperText={
+                  codeChallange.localeTitle || codeChallange.name || undefined
+                }
+                fullWidth
+              />
+
+              {buttons}
+            </div>
 
             <Typography variant="subheading">{codeChallange.name}</Typography>
           </div>
-
-          {buttons}
         </CodeChallengeEditViewToolbarStyled>
 
         <CodeChallengeEditViewContentStyled>

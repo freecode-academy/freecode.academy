@@ -8,6 +8,11 @@ export const CodeChallengeEditViewToolbarStyled = styled.div`
 
   > .title {
     flex: 1;
+
+    > .fields {
+      display: flex;
+      align-items: center;
+    }
   }
 `
 

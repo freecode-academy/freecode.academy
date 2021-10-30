@@ -147,10 +147,6 @@ class UikitComment extends EditableView<UikitCommentProps> {
   }
 
   getButtons() {
-    if (!this.props.object) {
-      return null
-    }
-
     const originButtons = super.getButtons()
 
     const buttons: React.ReactNode[] = []
@@ -165,10 +161,12 @@ class UikitComment extends EditableView<UikitCommentProps> {
 
     const { user: currentUser } = this.context
 
-    if (currentUser?.sudo) {
-      buttons.push(
-        <DeleteResource key="DeleteResource" resource={this.props.object} />
-      )
+    if (this.props.object) {
+      if (currentUser?.sudo) {
+        buttons.push(
+          <DeleteResource key="DeleteResource" resource={this.props.object} />
+        )
+      }
     }
 
     return buttons

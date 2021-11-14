@@ -10,40 +10,11 @@ export async function createNotifications(
   result: Resource,
   ctx: PrismaContext
 ) {
-  const { id: currentUserId } = ctx.currentUser || {}
+  const currentUser = ctx.currentUser
 
-  if (!currentUserId) {
+  if (!currentUser) {
     return
   }
-
-  // /**
-  //  * Получаем данные созданного объекта
-  //  */
-  // const Resource = await this.ctx.db.query.resource({
-  //   where: {
-  //     id: result.id,
-  //   },
-  // }, `{
-  //   id
-  //   type
-  //   name
-  //   uri
-  //   contentText,
-  //   CreatedBy {
-  //     id
-  //     username
-  //   }
-  //   Topic {
-  //     id
-  //     name
-  //     uri
-  //   }
-  //   Task {
-  //     id
-  //     name
-  //   }
-  // }`)
-  //   .catch(console.error);
 
   /**
    * Получаем данные созданного объекта
@@ -117,27 +88,6 @@ export async function createNotifications(
 
           const usersWhere: Prisma.UserWhereInput = {
             // id_not: currentUserId,
-            id: {
-              not: currentUserId,
-            },
-
-            /**
-             * Кто создал этот топик или написал в нем хоть один комментарий
-             */
-            Resources: {
-              some: {
-                OR: [
-                  {
-                    id: topicID,
-                  },
-                  {
-                    Resource_ResourceToResource_Topic: {
-                      id: topicID,
-                    },
-                  },
-                ],
-              },
-            },
             NotificationTypes_UserNotificationTypes: {
               some: {
                 name: {
@@ -146,6 +96,33 @@ export async function createNotifications(
               },
               // name_in: ["new_comment", "new_reply", "new_comments_in_my_topics"],
             },
+            id: {
+              not: currentUser.id,
+            },
+            OR: [
+              {
+                sudo: true,
+              },
+              {
+                /**
+                 * Кто создал этот топик или написал в нем хоть один комментарий
+                 */
+                Resources: {
+                  some: {
+                    OR: [
+                      {
+                        id: topicID,
+                      },
+                      {
+                        Resource_ResourceToResource_Topic: {
+                          id: topicID,
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
           }
 
           sendNotifications(
@@ -174,8 +151,15 @@ export async function createNotifications(
           // TODO Перепроверить запрос.
           const usersWhere: Prisma.UserWhereInput = {
             // id_not: currentUserId,
+            NotificationTypes_UserNotificationTypes: {
+              some: {
+                name: {
+                  in: ['new_comment', 'new_reply', 'new_comments_in_my_topics'],
+                },
+              },
+            },
             id: {
-              not: currentUserId,
+              not: currentUser.id,
             },
             OR: [
               {
@@ -184,13 +168,6 @@ export async function createNotifications(
               },
               {
                 // Кто создал проект для задачи
-                // ProjectsCreated_some: {
-                //   ProjectTasks_some: {
-                //     Task: {
-                //       id: taskId
-                //     },
-                //   },
-                // },
                 Projects_PrismaProjectUsers: {
                   some: {
                     ProjectTasks: {
@@ -205,15 +182,6 @@ export async function createNotifications(
               },
               {
                 // Кто участвует в проекте задачи
-                // Projects_some: {
-                //   Project: {
-                //     ProjectTasks_some: {
-                //       Task: {
-                //         id: taskId
-                //       },
-                //     },
-                //   },
-                // },
                 ProjectMembers_ProjectMember_CreatedByToUser: {
                   some: {
                     Project_ProjectToProjectMember: {
@@ -228,9 +196,6 @@ export async function createNotifications(
               },
               {
                 // Кто создал задачу
-                // TasksCreated_some: {
-                //   id: taskId
-                // }
                 Tasks: {
                   some: {
                     id: taskId,
@@ -239,11 +204,6 @@ export async function createNotifications(
               },
               {
                 // Кто участвует в задаче
-                // Tasks_some: {
-                //   Task: {
-                //     id: taskId
-                //   },
-                // }
                 TaskMembers_TaskMember_CreatedByToUser: {
                   some: {
                     Task: taskId,
@@ -252,11 +212,6 @@ export async function createNotifications(
               },
               {
                 // Кто работал по задаче
-                // Timers_some: {
-                //   Task: {
-                //     id: taskId
-                //   }
-                // }
                 Timers: {
                   some: {
                     Task_TaskToTimer: {
@@ -267,11 +222,6 @@ export async function createNotifications(
               },
               {
                 // Кто создавал какие-либо публикации к задаче (в том числе и комментарии)
-                // Resources_some: {
-                //   Task: {
-                //     id: taskId
-                //   }
-                // },
                 Resources: {
                   some: {
                     Task: taskId,
@@ -279,13 +229,6 @@ export async function createNotifications(
                 },
               },
             ],
-            NotificationTypes_UserNotificationTypes: {
-              some: {
-                name: {
-                  in: ['new_comment', 'new_reply', 'new_comments_in_my_topics'],
-                },
-              },
-            },
           }
 
           sendNotifications(
@@ -327,16 +270,20 @@ export async function createNotifications(
            */
           const usersWhere: Prisma.UserWhereInput = {
             id: {
-              not: currentUserId,
+              not: currentUser.id,
             },
-            // NotificationTypes_some: {
-            //   name: "new_topic",
-            // },
             NotificationTypes_UserNotificationTypes: {
               some: {
                 name: 'new_topic',
               },
             },
+          }
+
+          /**
+           * Если пользователь не судо, то отправляем только суперпользователям
+           */
+          if (!currentUser.sudo) {
+            usersWhere.sudo = true
           }
 
           sendNotifications({ message, subject }, usersWhere, ctx)

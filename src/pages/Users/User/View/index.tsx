@@ -5,7 +5,7 @@ import { UserViewStyled } from './styles'
 import Typography from 'material-ui/Typography'
 import UserAvatar from 'src/uikit/Avatar'
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
-import UserNotifications from './Notifications'
+import { UserNotifications } from './Notifications'
 import Grid from 'src/uikit/Grid'
 import {
   Scalars,
@@ -27,9 +27,10 @@ import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelTe
 import CheckBox from 'src/uikit/CheckBox'
 import { MentorMentees } from './MentorMentees'
 import { UserAbout } from './About'
+import { BlockUser } from './BlockUser'
 // import { UserProgress } from './Progress'
 
-const UserView: React.FC<UserViewProps> = ({ user }) => {
+export const UserView: React.FC<UserViewProps> = ({ user }) => {
   const context = useContext(Context) as PrismaCmsContext
 
   const currentUser = context.user
@@ -161,52 +162,60 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
   }, [inEditMode, isCurrentUser, setValue, userEdited])
 
   const buttons = useMemo(() => {
-    if (!user?.id || !isCurrentUser) {
+    if (!user?.id) {
       return null
     }
 
     const buttons: JSX.Element[] = []
 
-    if (data) {
-      const isDirty = Object.keys(data).length
+    if (currentUser?.sudo) {
+      if (user.id !== currentUser.id) {
+        buttons.push(<BlockUser key="BlockUser" user={user} />)
+      }
+    }
 
-      buttons.push(
-        <IconButton
-          key="ResetIcon"
-          onClick={reset}
-          disabled={inRequest}
-          title="Отменить изменения"
-        >
-          <ResetIcon />
-        </IconButton>
-      )
+    if (isCurrentUser) {
+      if (data) {
+        const isDirty = Object.keys(data).length
 
-      isDirty &&
         buttons.push(
           <IconButton
-            key="SaveIcon"
-            type="submit"
+            key="ResetIcon"
+            onClick={reset}
             disabled={inRequest}
-            color="secondary"
-            title="Сохранить пользователя"
+            title="Отменить изменения"
           >
-            <SaveIcon />
+            <ResetIcon />
           </IconButton>
         )
-    } else {
-      buttons.push(
-        <IconButton
-          key="EditIcon"
-          onClick={startEdit}
-          title="Редактировать пользователя"
-        >
-          <EditIcon />
-        </IconButton>
-      )
+
+        isDirty &&
+          buttons.push(
+            <IconButton
+              key="SaveIcon"
+              type="submit"
+              disabled={inRequest}
+              color="secondary"
+              title="Сохранить пользователя"
+            >
+              <SaveIcon />
+            </IconButton>
+          )
+      } else {
+        buttons.push(
+          <IconButton
+            key="EditIcon"
+            onClick={startEdit}
+            title="Редактировать пользователя"
+          >
+            <EditIcon />
+          </IconButton>
+        )
+      }
     }
 
     return buttons
-  }, [user?.id, isCurrentUser, data, reset, inRequest, startEdit])
+  }, [user, currentUser, isCurrentUser, data, reset, inRequest, startEdit])
 
   const password = useMemo(() => {
     if (!data) {
@@ -257,7 +266,7 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
     )
   }, [data, onCheckBoxChange, userEdited.isMentor])
 
-  const email = useMemo(() => {
+  const emailField = useMemo(() => {
     if (!data) {
       return null
     }
@@ -273,6 +282,22 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
       />
     )
   }, [data, onChange, userEdited?.email])
+
+  const telegramField = useMemo(() => {
+    if (!data) {
+      return null
+    }
+
+    return (
+      <TextField
+        name="telegram"
+        value={userEdited?.telegram || ''}
+        onChange={onChange}
+        label="Аккаунт в Телеграм"
+        fullWidth
+      />
+    )
+  }, [data, onChange, userEdited?.telegram])
 
   const fullname = useMemo(() => {
     if (!data) {
@@ -374,9 +399,15 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
               </Grid>
             ) : null}
 
-            {email ? (
+            {emailField ? (
               <Grid item xs={12} md={6} lg={4}>
-                {email}
+                {emailField}
+              </Grid>
+            ) : null}
+
+            {telegramField ? (
+              <Grid item xs={12} md={6} lg={4}>
+                {telegramField}
               </Grid>
             ) : null}
 
@@ -417,13 +448,14 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
     avatar,
     buttons,
     chatSettings,
-    email,
+    emailField,
     fullname,
     isMentor,
     notifications,
     password,
     save,
     technologyLevel,
+    telegramField,
     userEdited?.fullname,
     userEdited?.username,
   ])
@@ -481,6 +513,18 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
           setData={setData}
           inEditMode={inEditMode}
         />
+        {userEdited.telegram ? (
+          <div>
+            Телеграм:{' '}
+            <a
+              href={`https://t.me/${userEdited.telegram}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://t.me/{userEdited.telegram}
+            </a>
+          </div>
+        ) : null}
         {chatRooms}
         {/* {userProgress} */}
         {level}
@@ -500,5 +544,3 @@ const UserView: React.FC<UserViewProps> = ({ user }) => {
     inEditMode,
   ])
 }
-
-export default UserView

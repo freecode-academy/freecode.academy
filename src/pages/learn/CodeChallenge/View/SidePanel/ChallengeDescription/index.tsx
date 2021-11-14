@@ -1,21 +1,22 @@
 import React, { Fragment } from 'react'
 
-import PrismFormatted from '../../components/PrismFormatted'
+import { PrismFormatted } from '../../components/PrismFormatted'
 
 import { ChallengeDescriptionStyled } from './styles'
 import { ChallengeDescriptionProps } from './interfacse'
 
-const ChallengeDescription: React.FC<ChallengeDescriptionProps> = ({
+export const ChallengeDescription: React.FC<ChallengeDescriptionProps> = ({
   description,
   instructions,
-  section,
-  user,
+  // section,
+  currentUser,
   codeChallengeCompletion,
 }) => {
   return (
     <ChallengeDescriptionStyled
-      className={`challenge-instructions${section ? ' ' + section : ''}`}
-      blur={!!(user && !codeChallengeCompletion)}
+      // className={`challenge-instructions ${section ? section : ''}`}
+      className={`challenge-instructions`}
+      blur={!!(currentUser && !codeChallengeCompletion)}
     >
       {description && <PrismFormatted text={description} />}
       {instructions && (
@@ -30,5 +31,3 @@ const ChallengeDescription: React.FC<ChallengeDescriptionProps> = ({
 }
 
 ChallengeDescription.displayName = 'ChallengeDescription'
-
-export default ChallengeDescription

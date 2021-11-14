@@ -4,7 +4,7 @@ import UikitUserLink from 'src/uikit/Link/User'
 import { MainPageCodeChallengeCompletionsProps } from './interfaces'
 import Paper from 'material-ui/Paper'
 import Slider, { Settings } from 'react-slick'
-import ChallengeDescription from 'src/pages/learn/CodeChallenge/View/SidePanel/ChallengeDescription'
+import { ChallengeDescription } from 'src/pages/learn/CodeChallenge/View/SidePanel/ChallengeDescription'
 import Grid from 'src/uikit/Grid'
 import Link from 'next/link'
 
@@ -65,7 +65,7 @@ const MainPageCodeChallengeCompletions: React.FC<MainPageCodeChallengeCompletion
                       /**
                        * Не передаем здесь пользователя и выполнение, так как это не требуется
                        */
-                      user={undefined}
+                      currentUser={undefined}
                       codeChallengeCompletion={undefined}
                     />
                   </div>

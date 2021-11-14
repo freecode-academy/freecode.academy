@@ -140,6 +140,7 @@ const args: Partial<ContainerProps> = {
       deleted: false,
       hasEmail: true,
       hasPhone: false,
+      blocked: false,
       __typename: 'User',
     },
   },

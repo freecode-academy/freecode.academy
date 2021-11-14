@@ -7,5 +7,5 @@ export interface ChallengeTitleProps {
   codeChallengeCompletion: CodeChallengeContext['codeChallengeCompletion']
 
   executeChallenge: ToolPanelProps['executeChallenge']
-  user: SidePanelProps['user']
+  currentUser: SidePanelProps['currentUser']
 }

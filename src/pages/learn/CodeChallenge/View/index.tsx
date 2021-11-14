@@ -1,7 +1,8 @@
 import React, { useCallback, useContext, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import DesktopLayout from './DesktopLayout'
-import Editor from './Editor'
+// import { FccEditor as Editor } from './Editor'
+import { CodeChallengeEditor as Editor } from './Editor2'
 import { challengeTypes } from '../utils/challengeTypes'
 import SidePanel from './SidePanel'
 import { CodeChallengeViewProps } from './interfaces'
@@ -16,7 +17,7 @@ import useExecuteChallenge from '../hooks/useExecuteChallenge'
  */
 const Preview = dynamic(import('./Preview'), { ssr: false })
 
-const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
+export const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
   const { codeChallenge, codeChallengeCompletion, tabIndex, topicId } = props
 
   // const onResize = () => {
@@ -29,7 +30,7 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
 
   const context = useContext(Context)
 
-  const user = context?.user
+  const currentUser = context?.user
 
   const challengeFile = context?.challengeData.file ?? null
   const challenge = context?.challenge
@@ -56,13 +57,18 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
     )
   }, [codeChallenge])
 
-  const saveEditorContent = useCallback(() => {
-    // eslint-disable-next-line no-console
-    // console.log('saveEditorContent')
-  }, [])
+  // const saveEditorContent = useCallback(() => {
+  //   // eslint-disable-next-line no-console
+  //   // console.log('saveEditorContent')
+  // }, [])
 
   const updateFile = useCallback(
-    ({ editorValue }: { key: string; editorValue: string }) => {
+    ({
+      editorValue,
+    }: {
+      // key: string;
+      editorValue: string
+    }) => {
       if (!context) {
         return
       }
@@ -88,22 +94,22 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
 
   const executeChallenge = useExecuteChallenge()
 
-  const setEditorFocusability = useCallback((_args: any) => {
-    // eslint-disable-next-line no-console
-    // console.log('setEditorFocusability args', { ...args })
-  }, [])
+  // const setEditorFocusability = useCallback((_args: any) => {
+  //   // eslint-disable-next-line no-console
+  //   // console.log('setEditorFocusability args', { ...args })
+  // }, [])
 
   const editor = challengeFile && (
     <Editor
       {...challengeFile}
-      saveEditorContent={saveEditorContent}
+      // saveEditorContent={saveEditorContent}
       updateFile={updateFile}
       // containerRef={containerRef}
       // ref={editorRef}
       // fileKey={challengeFile.key}
       contents={challengeFile.contents}
       executeChallenge={executeChallenge}
-      setEditorFocusability={setEditorFocusability}
+      // setEditorFocusability={setEditorFocusability}
     />
   )
 
@@ -121,10 +127,10 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
         codeChallenge={codeChallenge}
         executeChallenge={executeChallenge}
         codeChallengeCompletion={codeChallengeCompletion}
-        user={user}
+        currentUser={currentUser}
       />
     ),
-    [executeChallenge, codeChallenge, codeChallengeCompletion, user]
+    [executeChallenge, codeChallenge, codeChallengeCompletion, currentUser]
   )
 
   const preview = useMemo(
@@ -159,8 +165,7 @@ const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
       tabIndex={tabIndex}
       topicId={topicId}
       challenge={challenge}
+      currentUser={currentUser}
     />
   )
 }
-
-export default CodeChallengeView

@@ -32,7 +32,7 @@ export type UpdateUserProcessorMutation = { __typename?: 'Mutation', updateUserP
 
 
 export const UpdateUserProcessorDocument = gql`
-    mutation updateUserProcessor($data: UserUpdateInput!, $withMentorMentee: Boolean = false, $withNotificationTypes: Boolean = false, $withUserTechnologies: Boolean = false, $withCodeChallengeCompletions: Boolean = false) {
+    mutation updateUserProcessor($data: UserUpdateInput!, $withMentorMentee: Boolean = false, $withNotificationTypes: Boolean = true, $withUserTechnologies: Boolean = false, $withCodeChallengeCompletions: Boolean = false) {
   updateUserProcessor(data: $data) {
     success
     message

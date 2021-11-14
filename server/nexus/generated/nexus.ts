@@ -480,6 +480,12 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     videoUrl?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
+  CodeChallengeUpdateInput: {
+    // input type
+    description?: string | null // String
+    instructions?: string | null // String
+    localeTitle?: string | null // String
+  }
   CodeChallengeWhereInput: {
     // input type
     AND?: NexusGenInputs['CodeChallengeWhereInput'][] | null // [CodeChallengeWhereInput!]
@@ -3051,6 +3057,7 @@ export interface NexusGenInputs {
     activated?: NexusGenEnums['SortOrder'] | null // SortOrder
     active?: NexusGenEnums['SortOrder'] | null // SortOrder
     address?: NexusGenEnums['SortOrder'] | null // SortOrder
+    blocked?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     deleted?: NexusGenEnums['SortOrder'] | null // SortOrder
     email?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -3068,6 +3075,7 @@ export interface NexusGenInputs {
     showPhone?: NexusGenEnums['SortOrder'] | null // SortOrder
     sudo?: NexusGenEnums['SortOrder'] | null // SortOrder
     technologyLevel?: NexusGenEnums['SortOrder'] | null // SortOrder
+    telegram?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     username?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
@@ -3173,6 +3181,7 @@ export interface NexusGenInputs {
     password?: string | null // String
     phone?: string | null // String
     technologyLevel?: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    telegram?: string | null // String
     username?: string | null // String
   }
   UserWhereInput: {
@@ -3331,6 +3340,7 @@ export interface NexusGenInputs {
     activated?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     active?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     address?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    blocked?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     deleted?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     email?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
@@ -3349,6 +3359,7 @@ export interface NexusGenInputs {
     showPhone?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     sudo?: NexusGenInputs['BoolNullableFilter'] | null // BoolNullableFilter
     technologyLevel?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    telegram?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     username?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
@@ -3835,6 +3846,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: {
     // field return type
+    blockUser: NexusGenRootTypes['User'] // User!
     createBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse'] // ChatMessageResponse!
     createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
@@ -3853,11 +3865,14 @@ export interface NexusGenFieldTypes {
     createUserTechnologyProcessor: NexusGenRootTypes['UserTechnologyResponse'] // UserTechnologyResponse!
     deleteLearnStrategyStage: NexusGenRootTypes['LearnStrategyStage'] // LearnStrategyStage!
     deleteNotice: NexusGenRootTypes['Notice'] | null // Notice
+    deleteResource: NexusGenRootTypes['Resource'] // Resource!
     resetPasswordProcessor: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     singleUpload: NexusGenRootTypes['File'] | null // File
+    unblockUser: NexusGenRootTypes['User'] // User!
     updateBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    updateCodeChallenge: NexusGenRootTypes['CodeChallenge'] // CodeChallenge!
     updateCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     updateCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     updateLearnStrategy: NexusGenRootTypes['LearnStrategy'] // LearnStrategy!
@@ -4186,6 +4201,7 @@ export interface NexusGenFieldTypes {
     activated: boolean | null // Boolean
     active: boolean | null // Boolean
     address: string | null // String
+    blocked: boolean // Boolean!
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     deleted: boolean | null // Boolean
     email: string | null // String
@@ -4200,6 +4216,7 @@ export interface NexusGenFieldTypes {
     showPhone: boolean | null // Boolean
     sudo: boolean | null // Boolean
     technologyLevel: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
+    telegram: string | null // String
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
     username: string | null // String
   }
@@ -4422,6 +4439,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: {
     // field return type name
+    blockUser: 'User'
     createBlogProcessor: 'ResourceResponse'
     createChatMessageProcessor: 'ChatMessageResponse'
     createCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
@@ -4440,11 +4458,14 @@ export interface NexusGenFieldTypeNames {
     createUserTechnologyProcessor: 'UserTechnologyResponse'
     deleteLearnStrategyStage: 'LearnStrategyStage'
     deleteNotice: 'Notice'
+    deleteResource: 'Resource'
     resetPasswordProcessor: 'AuthPayload'
     signin: 'AuthPayload'
     signup: 'AuthPayload'
     singleUpload: 'File'
+    unblockUser: 'User'
     updateBlogProcessor: 'ResourceResponse'
+    updateCodeChallenge: 'CodeChallenge'
     updateCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     updateCommentProcessor: 'ResourceResponse'
     updateLearnStrategy: 'LearnStrategy'
@@ -4771,6 +4792,7 @@ export interface NexusGenFieldTypeNames {
     activated: 'Boolean'
     active: 'Boolean'
     address: 'String'
+    blocked: 'Boolean'
     createdAt: 'DateTime'
     deleted: 'Boolean'
     email: 'String'
@@ -4785,6 +4807,7 @@ export interface NexusGenFieldTypeNames {
     showPhone: 'Boolean'
     sudo: 'Boolean'
     technologyLevel: 'UserTechnologyLevel'
+    telegram: 'String'
     updatedAt: 'DateTime'
     username: 'String'
   }
@@ -4857,6 +4880,10 @@ export interface NexusGenArgTypes {
     }
   }
   Mutation: {
+    blockUser: {
+      // args
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
+    }
     createBlogProcessor: {
       // args
       data: NexusGenInputs['BlogCreateInput'] // BlogCreateInput!
@@ -4929,6 +4956,10 @@ export interface NexusGenArgTypes {
       // args
       where: NexusGenInputs['NoticeWhereUniqueInput'] // NoticeWhereUniqueInput!
     }
+    deleteResource: {
+      // args
+      where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
+    }
     resetPasswordProcessor: {
       // args
       where: NexusGenInputs['ResetPasswordProcessorWhereInput'] // ResetPasswordProcessorWhereInput!
@@ -4947,10 +4978,19 @@ export interface NexusGenArgTypes {
       data?: NexusGenInputs['SingleUploadInput'] | null // SingleUploadInput
       file?: NexusGenScalars['Upload'] | null // Upload
     }
+    unblockUser: {
+      // args
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
+    }
     updateBlogProcessor: {
       // args
       data: NexusGenInputs['BlogUpdateInput'] // BlogUpdateInput!
       where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
+    }
+    updateCodeChallenge: {
+      // args
+      data: NexusGenInputs['CodeChallengeUpdateInput'] // CodeChallengeUpdateInput!
+      where: NexusGenInputs['CodeChallengeWhereUniqueInput'] // CodeChallengeWhereUniqueInput!
     }
     updateCodeChallengeCompletionProcessor: {
       // args

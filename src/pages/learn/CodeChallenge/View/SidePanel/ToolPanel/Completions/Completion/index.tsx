@@ -17,34 +17,36 @@ export const ToolPanelCompletion: React.FC<ToolPanelCompletionProps> = ({
   }, [])
 
   useEffect(() => {
-    if (wrapper) {
-      const onClick = (event: MouseEvent) => {
-        /**
-         * Обрываем событие, чтобы по ссылкам переход не выполнялся
-         */
-        event.preventDefault()
-        event.stopPropagation()
+    if (!wrapper) {
+      return
+    }
 
-        if (context) {
-          const challengeData = context.challengeData
+    const onClick = (event: MouseEvent) => {
+      /**
+       * Обрываем событие, чтобы по ссылкам переход не выполнялся
+       */
+      event.preventDefault()
+      event.stopPropagation()
 
-          const file = challengeData.file
+      if (context) {
+        const challengeData = context.challengeData
 
-          context.setChallengeData({
-            ...challengeData,
-            file: {
-              ...file,
-              contents: codeChallengeCompletion.content || '',
-            },
-          })
-        }
+        const file = challengeData.file
+
+        context.setChallengeData({
+          ...challengeData,
+          file: {
+            ...file,
+            contents: codeChallengeCompletion.content || '',
+          },
+        })
       }
+    }
 
-      wrapper.addEventListener('click', onClick, true)
+    wrapper.addEventListener('click', onClick, true)
 
-      return () => {
-        wrapper.removeEventListener('click', onClick)
-      }
+    return () => {
+      wrapper.removeEventListener('click', onClick, true)
     }
   }, [codeChallengeCompletion, context, wrapper])
 

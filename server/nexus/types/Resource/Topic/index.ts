@@ -2,7 +2,7 @@ import { extendType, inputObjectType, nonNull } from 'nexus'
 import { createTopicProcessor } from './resolvers/createTopicProcessor'
 import { updateTopicProcessor } from './resolvers/updateTopicProcessor'
 
-export const ResourceExtendMutation = extendType({
+export const TopicExtendMutation = extendType({
   type: 'Mutation',
   definition(t) {
     t.nonNull.field('createTopicProcessor', {

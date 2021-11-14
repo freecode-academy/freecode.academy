@@ -4,9 +4,9 @@ import Grid from 'src/uikit/Grid'
 import Paper from 'src/uikit/Paper'
 import Title from 'src/uikit/Title'
 import { UserNotificationsProps } from './interfacse'
-import UserNotification from './Notification'
+import { UserNotification } from './Notification'
 
-const UserNotifications: React.FC<UserNotificationsProps> = ({
+export const UserNotifications: React.FC<UserNotificationsProps> = ({
   NotificationTypes,
 }) => {
   const notifications =
@@ -40,5 +40,3 @@ const UserNotifications: React.FC<UserNotificationsProps> = ({
     </Grid>
   )
 }
-
-export default UserNotifications

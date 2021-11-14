@@ -20,9 +20,11 @@ export const signup: FieldResolver<'Mutation', 'signup'> = async (
     username,
   } = args.data || {}
 
-  const password = passwordProps
-    ? await createPassword(passwordProps)
-    : passwordProps
+  if (!passwordProps) {
+    throw new Error('Укажите пароль')
+  }
+
+  const password = await createPassword(passwordProps)
 
   /**
    * Подключаем сразу все настройки уведомлений

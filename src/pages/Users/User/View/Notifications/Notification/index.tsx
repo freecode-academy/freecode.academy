@@ -7,12 +7,12 @@ import {
   useUpdateUserProcessorMutation,
 } from 'src/modules/gql/generated'
 
-const UserNotification: React.FC<UserNotificationProps> = ({
+export const UserNotification: React.FC<UserNotificationProps> = ({
   object,
   checked,
   label,
 }) => {
-  const [mutate] = useUpdateUserProcessorMutation()
+  const mutation = useUpdateUserProcessorMutation()
 
   const onChange = useCallback(
     (_event: React.ChangeEvent<HTMLInputElement>, newChecked: boolean) => {
@@ -28,14 +28,19 @@ const UserNotification: React.FC<UserNotificationProps> = ({
         },
       }
 
-      mutate({
+      mutation[0]({
         variables,
       })
     },
-    [mutate, object.id]
+    [mutation, object.id]
   )
 
-  return <CheckBox checked={checked} label={label} onChange={onChange} />
+  return (
+    <CheckBox
+      checked={checked}
+      label={label}
+      onChange={onChange}
+      disabled={mutation[1].loading}
+    />
+  )
 }
-
-export default UserNotification

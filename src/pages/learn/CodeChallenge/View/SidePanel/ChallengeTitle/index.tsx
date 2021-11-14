@@ -9,7 +9,7 @@ const ChallengeTitle: React.FC<ChallengeTitleProps> = ({
   // isCompleted,
   codeChallengeCompletion,
   executeChallenge,
-  user,
+  currentUser,
 }) => {
   return useMemo(() => {
     return (
@@ -25,16 +25,16 @@ const ChallengeTitle: React.FC<ChallengeTitleProps> = ({
         Если пользователь авторизованный и он еще не начинал выполнения,
         то выводим кнопку
          */}
-        {user && !codeChallengeCompletion ? (
+        {currentUser && !codeChallengeCompletion ? (
           <ExecuteChallengeButton
             executeChallenge={executeChallenge}
             codeChallengeCompletion={codeChallengeCompletion}
-            user={user}
+            currentUser={currentUser}
           />
         ) : null}
       </>
     )
-  }, [children, codeChallengeCompletion, executeChallenge, user])
+  }, [children, codeChallengeCompletion, executeChallenge, currentUser])
 }
 
 export default ChallengeTitle

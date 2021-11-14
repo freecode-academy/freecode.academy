@@ -77,3 +77,9 @@ fragment ResourceNoNesting on Resource {
 #     name
 #   }
 # }
+
+mutation deleteResource($where: ResourceWhereUniqueInput!) {
+  deleteResource(where: $where) {
+    ...ResourceNoNesting
+  }
+}

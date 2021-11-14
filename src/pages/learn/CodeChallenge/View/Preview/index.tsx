@@ -6,7 +6,7 @@ import { challengeTypes } from '../../utils/challengeTypes'
 import { PreviewProps } from './interfaces'
 // import PropTypes from 'prop-types';
 import { CodeChallengePreviewStyled } from './styles'
-import PreviewHtml from './type/HTML'
+import { PreviewHtml } from './type/HTML'
 import PreviewModern from './type/Modern'
 
 // import { previewMounted } from '../redux';

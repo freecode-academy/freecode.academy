@@ -30,7 +30,7 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
   guideUrl,
   videoUrl,
   executeChallenge,
-  user,
+  currentUser,
 }) => {
   // const openHelpModal = useCallback(() => {
   //   return null;
@@ -81,7 +81,7 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
         <ExecuteChallengeButton
           executeChallenge={executeChallenge}
           codeChallengeCompletion={codeChallengeCompletion}
-          user={user}
+          currentUser={currentUser}
         />
 
         <ButtonStyled className="btn-invert" onClick={resetChallengeData}>
@@ -106,7 +106,7 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
     guideUrl,
     resetChallengeData,
     videoUrl,
-    user,
+    currentUser,
   ])
 }
 

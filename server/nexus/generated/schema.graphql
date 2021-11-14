@@ -485,6 +485,12 @@ input CodeChallengeOrderByInput {
   videoUrl: SortOrder
 }
 
+input CodeChallengeUpdateInput {
+  description: String
+  instructions: String
+  localeTitle: String
+}
+
 input CodeChallengeWhereInput {
   AND: [CodeChallengeWhereInput!]
   Block: StringNullableFilter
@@ -1610,6 +1616,10 @@ input MessageWhereInput {
 }
 
 type Mutation {
+  """
+  Заблокировать пользователя
+  """
+  blockUser(where: UserWhereUniqueInput!): User!
   createBlogProcessor(data: BlogCreateInput!): ResourceResponse!
   createChatMessageProcessor(
     data: ChatMessageCreateInput!
@@ -1648,6 +1658,11 @@ type Mutation {
     where: LearnStrategyStageWhereUniqueInput!
   ): LearnStrategyStage!
   deleteNotice(where: NoticeWhereUniqueInput!): Notice
+
+  """
+  Удаление ресурса
+  """
+  deleteResource(where: ResourceWhereUniqueInput!): Resource!
   resetPasswordProcessor(where: ResetPasswordProcessorWhereInput!): AuthPayload!
 
   """
@@ -1671,10 +1686,19 @@ type Mutation {
     """
     file: Upload
   ): File
+
+  """
+  Разблокировать пользователя
+  """
+  unblockUser(where: UserWhereUniqueInput!): User!
   updateBlogProcessor(
     data: BlogUpdateInput!
     where: ResourceWhereUniqueInput!
   ): ResourceResponse!
+  updateCodeChallenge(
+    data: CodeChallengeUpdateInput!
+    where: CodeChallengeWhereUniqueInput!
+  ): CodeChallenge!
   updateCodeChallengeCompletionProcessor(
     data: CodeChallengeCompletionUpdateInput!
     where: CodeChallengeCompletionWhereUniqueInput!
@@ -3894,8 +3918,17 @@ type User {
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
   activated: Boolean
+
+  """
+  Активирован ли пользователь
+  """
   active: Boolean
   address: String
+
+  """
+  Заблокирован ли пользователь
+  """
+  blocked: Boolean!
 
   """
   Когда создан
@@ -3926,6 +3959,11 @@ type User {
   showPhone: Boolean
   sudo: Boolean
   technologyLevel: UserTechnologyLevel
+
+  """
+  Аккаунт в телеграм
+  """
+  telegram: String
 
   """
   Когда обновлен
@@ -4022,6 +4060,7 @@ input UserOrderByInput {
   activated: SortOrder
   active: SortOrder
   address: SortOrder
+  blocked: SortOrder
   createdAt: SortOrder
   deleted: SortOrder
   email: SortOrder
@@ -4039,6 +4078,7 @@ input UserOrderByInput {
   showPhone: SortOrder
   sudo: SortOrder
   technologyLevel: SortOrder
+  telegram: SortOrder
   updatedAt: SortOrder
   username: SortOrder
 }
@@ -4243,6 +4283,7 @@ input UserUpdateInput {
   password: String
   phone: String
   technologyLevel: UserTechnologyLevel
+  telegram: String
   username: String
 }
 
@@ -4333,6 +4374,7 @@ input UserWhereInput {
   activated: BoolNullableFilter
   active: BoolNullableFilter
   address: StringNullableFilter
+  blocked: BoolFilter
   createdAt: DateTimeFilter
   deleted: BoolNullableFilter
   email: StringNullableFilter
@@ -4351,6 +4393,7 @@ input UserWhereInput {
   showPhone: BoolFilter
   sudo: BoolNullableFilter
   technologyLevel: IntNullableFilter
+  telegram: StringNullableFilter
   updatedAt: DateTimeFilter
   username: StringNullableFilter
 }

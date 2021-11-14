@@ -1,33 +1,10 @@
 import { Prisma } from '@prisma/client'
-import { enumType, extendType, objectType } from 'nexus'
+import { enumType, extendType, nonNull, objectType } from 'nexus'
+import { deleteResource } from './resolvers/deleteResource'
 
 export * from './Blog'
 export * from './Comment'
 export * from './Topic'
-
-export const ResourceExtendQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.resource({})
-    t.crud.resources({
-      filtering: true,
-      ordering: true,
-    })
-
-    t.nonNull.int('resourcesCount', {
-      args: {
-        where: 'ResourceWhereInput',
-      },
-      resolve(_, args, ctx) {
-        const where = args.where as Prisma.ResourceWhereInput
-
-        return ctx.prisma.resource.count({
-          where,
-        })
-      },
-    })
-  },
-})
 
 export const Resource = objectType({
   name: 'Resource',
@@ -162,6 +139,44 @@ export const Resource = objectType({
             })
           : []
       },
+    })
+  },
+})
+
+export const ResourceExtendQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.resource({})
+    t.crud.resources({
+      filtering: true,
+      ordering: true,
+    })
+
+    t.nonNull.int('resourcesCount', {
+      args: {
+        where: 'ResourceWhereInput',
+      },
+      resolve(_, args, ctx) {
+        const where = args.where as Prisma.ResourceWhereInput
+
+        return ctx.prisma.resource.count({
+          where,
+        })
+      },
+    })
+  },
+})
+
+export const ResourceExtendMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('deleteResource', {
+      type: 'Resource',
+      description: 'Удаление ресурса',
+      args: {
+        where: nonNull('ResourceWhereUniqueInput'),
+      },
+      resolve: deleteResource,
     })
   },
 })

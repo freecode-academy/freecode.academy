@@ -537,6 +537,12 @@ export interface CodeChallengeOrderByInput {
   videoUrl?: Maybe<SortOrder>;
 }
 
+export interface CodeChallengeUpdateInput {
+  description?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  localeTitle?: Maybe<Scalars['String']>;
+}
+
 export interface CodeChallengeWhereInput {
   AND?: Maybe<Array<CodeChallengeWhereInput>>;
   Block?: Maybe<StringNullableFilter>;
@@ -1600,6 +1606,8 @@ export interface MessageWhereInput {
 
 export interface Mutation {
   __typename?: 'Mutation';
+  /** Заблокировать пользователя */
+  blockUser: User;
   createBlogProcessor: ResourceResponse;
   createChatMessageProcessor: ChatMessageResponse;
   createCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
@@ -1619,6 +1627,8 @@ export interface Mutation {
   createUserTechnologyProcessor: UserTechnologyResponse;
   deleteLearnStrategyStage: LearnStrategyStage;
   deleteNotice?: Maybe<Notice>;
+  /** Удаление ресурса */
+  deleteResource: Resource;
   resetPasswordProcessor: AuthPayload;
   /** Авторизация */
   signin: AuthPayload;
@@ -1626,7 +1636,10 @@ export interface Mutation {
   signup: AuthPayload;
   /** Загрузка файла */
   singleUpload?: Maybe<File>;
+  /** Разблокировать пользователя */
+  unblockUser: User;
   updateBlogProcessor: ResourceResponse;
+  updateCodeChallenge: CodeChallenge;
   updateCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
   updateCommentProcessor: ResourceResponse;
   updateLearnStrategy: LearnStrategy;
@@ -1639,6 +1652,11 @@ export interface Mutation {
   updateUserProcessor: UserResponse;
   updateUserTechnologyProcessor: UserTechnologyResponse;
 }
+
+
+export type MutationBlockUserArgs = {
+  where: UserWhereUniqueInput;
+};
 
 
 export type MutationCreateBlogProcessorArgs = {
@@ -1731,6 +1749,11 @@ export type MutationDeleteNoticeArgs = {
 };
 
 
+export type MutationDeleteResourceArgs = {
+  where: ResourceWhereUniqueInput;
+};
+
+
 export type MutationResetPasswordProcessorArgs = {
   where: ResetPasswordProcessorWhereInput;
 };
@@ -1753,9 +1776,20 @@ export type MutationSingleUploadArgs = {
 };
 
 
+export type MutationUnblockUserArgs = {
+  where: UserWhereUniqueInput;
+};
+
+
 export type MutationUpdateBlogProcessorArgs = {
   data: BlogUpdateInput;
   where: ResourceWhereUniqueInput;
+};
+
+
+export type MutationUpdateCodeChallengeArgs = {
+  data: CodeChallengeUpdateInput;
+  where: CodeChallengeWhereUniqueInput;
 };
 
 
@@ -4217,8 +4251,11 @@ export interface User {
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
   activated?: Maybe<Scalars['Boolean']>;
+  /** Активирован ли пользователь */
   active?: Maybe<Scalars['Boolean']>;
   address?: Maybe<Scalars['String']>;
+  /** Заблокирован ли пользователь */
+  blocked: Scalars['Boolean'];
   /** Когда создан */
   createdAt: Scalars['DateTime'];
   deleted?: Maybe<Scalars['Boolean']>;
@@ -4237,6 +4274,8 @@ export interface User {
   showPhone?: Maybe<Scalars['Boolean']>;
   sudo?: Maybe<Scalars['Boolean']>;
   technologyLevel?: Maybe<Scalars['UserTechnologyLevel']>;
+  /** Аккаунт в телеграм */
+  telegram?: Maybe<Scalars['String']>;
   /** Когда обновлен */
   updatedAt: Scalars['DateTime'];
   username?: Maybe<Scalars['String']>;
@@ -4338,6 +4377,7 @@ export interface UserOrderByInput {
   activated?: Maybe<SortOrder>;
   active?: Maybe<SortOrder>;
   address?: Maybe<SortOrder>;
+  blocked?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   deleted?: Maybe<SortOrder>;
   email?: Maybe<SortOrder>;
@@ -4355,6 +4395,7 @@ export interface UserOrderByInput {
   showPhone?: Maybe<SortOrder>;
   sudo?: Maybe<SortOrder>;
   technologyLevel?: Maybe<SortOrder>;
+  telegram?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
   username?: Maybe<SortOrder>;
 }
@@ -4516,6 +4557,7 @@ export interface UserUpdateInput {
   password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   technologyLevel?: Maybe<Scalars['UserTechnologyLevel']>;
+  telegram?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
 }
 
@@ -4606,6 +4648,7 @@ export interface UserWhereInput {
   activated?: Maybe<BoolNullableFilter>;
   active?: Maybe<BoolNullableFilter>;
   address?: Maybe<StringNullableFilter>;
+  blocked?: Maybe<BoolFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   deleted?: Maybe<BoolNullableFilter>;
   email?: Maybe<StringNullableFilter>;
@@ -4624,6 +4667,7 @@ export interface UserWhereInput {
   showPhone?: Maybe<BoolFilter>;
   sudo?: Maybe<BoolNullableFilter>;
   technologyLevel?: Maybe<IntNullableFilter>;
+  telegram?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   username?: Maybe<StringNullableFilter>;
 }

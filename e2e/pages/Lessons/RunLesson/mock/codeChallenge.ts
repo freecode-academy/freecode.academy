@@ -14,6 +14,8 @@ const codeChallenge: CodeChallengeFragment = {
     image: '9da9e7e309fd4e77cf42c02a7a42142e.jpeg',
     hasEmail: true,
     hasPhone: false,
+    active: true,
+    blocked: false,
     __typename: 'User',
   },
   externalKey: 'bd7123c9c441eddfaeb4bdef',

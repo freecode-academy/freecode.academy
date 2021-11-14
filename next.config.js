@@ -2,7 +2,7 @@
 const webpack = (config, options) => {
   const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 
-  const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+  // const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
   config.module.rules.push({
     test: /\.pdf/,
@@ -49,13 +49,13 @@ const webpack = (config, options) => {
     ],
   })
 
-  config.plugins.push(
-    new MonacoWebpackPlugin({
-      // Add languages as needed...
-      languages: ['html', 'css', 'javascript', 'typescript'],
-      filename: 'static/[name].worker.js',
-    })
-  )
+  // config.plugins.push(
+  //   new MonacoWebpackPlugin({
+  //     // Add languages as needed...
+  //     languages: ['html', 'css', 'javascript', 'typescript'],
+  //     filename: 'static/[name].worker.js',
+  //   })
+  // )
 
   /**
    * Fix locales issue

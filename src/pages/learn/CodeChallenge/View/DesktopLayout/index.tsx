@@ -3,11 +3,15 @@ import React, { useCallback, useContext, useMemo } from 'react'
 import { DesktopLayoutProps, DesktopLayoutTabIndex } from './interfaces'
 import ReflexContainer from 'src/uikit/ReFlex/ReflexContainer'
 import ReflexElement from 'src/uikit/ReFlex/ReflexElement'
-import { DesktopLayoutStyled } from './styles'
+import { DesktopLayoutStyled, DesktopLayoutToolbarStyled } from './styles'
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import Tabs, { Tab } from 'material-ui/Tabs'
 import { useRouter } from 'next/router'
 import CodeChallengeDiscuss from './Discuss'
+import { IconButton } from 'material-ui'
+import DiscussIcon from 'material-ui-icons/Comment'
+import Link from 'next/link'
+import EditIcon from 'material-ui-icons/ModeEdit'
 
 const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
   // static displayName = 'DesktopLayout';
@@ -40,6 +44,7 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
     tabIndex,
     challenge,
     topicId,
+    currentUser,
   } = props
 
   const context = useContext(Context) as PrismaCmsContext
@@ -133,10 +138,34 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
           </div>
         ) : null}
 
-        <Tabs value={tabIndex} onChange={onChangeTabs}>
-          <Tab label="Задание" value={DesktopLayoutTabIndex.Root} />
-          <Tab label="Обсудить" value={DesktopLayoutTabIndex.Discuss} />
-        </Tabs>
+        <DesktopLayoutToolbarStyled>
+          <Tabs value={tabIndex} onChange={onChangeTabs} className="tabs">
+            <Tab label="Задание" value={DesktopLayoutTabIndex.Root} />
+            <Tab
+              label={
+                <span
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  Обсудить &nbsp;{challenge.Topic ? <DiscussIcon /> : null}
+                </span>
+              }
+              value={DesktopLayoutTabIndex.Discuss}
+            />
+          </Tabs>
+
+          {currentUser?.sudo ? (
+            <Link href={`/learn/exercises/edit/${challenge.id}`}>
+              <a rel="noindex nofollow">
+                <IconButton title="Редактировать">
+                  <EditIcon />
+                </IconButton>
+              </a>
+            </Link>
+          ) : null}
+        </DesktopLayoutToolbarStyled>
 
         {content}
       </DesktopLayoutStyled>
@@ -154,6 +183,7 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
     tabIndex,
     testOutput,
     topicId,
+    currentUser,
   ])
 }
 

@@ -4,7 +4,7 @@ import Context from '../../../../Context'
 import { ChallengeTestIFrameElement } from '../../interfaces'
 import * as Babel from '@babel/standalone'
 
-const PreviewHtml: React.FC = () => {
+export const PreviewHtml: React.FC = () => {
   const [frame, setFrame] = useState<ChallengeTestIFrameElement | null>(null)
 
   const context = useContext(Context)
@@ -105,5 +105,3 @@ const PreviewHtml: React.FC = () => {
 
   return frameContent
 }
-
-export default PreviewHtml

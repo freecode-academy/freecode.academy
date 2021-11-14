@@ -30,9 +30,15 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
 
     createTopicProcessor: isAuthenticated,
     updateTopicProcessor: isAuthenticated,
+    deleteResource: isSudo,
 
     createTechnology: isSudo,
     // updateTechnology: isSudo,
+
+    updateCodeChallenge: isSudo,
+
+    blockUser: isSudo,
+    unblockUser: isSudo,
   },
 }
 

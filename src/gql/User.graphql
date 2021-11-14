@@ -45,7 +45,7 @@ query usersConnection(
 mutation updateUserProcessor(
   $data: UserUpdateInput!
   $withMentorMentee: Boolean = false
-  $withNotificationTypes: Boolean = false
+  $withNotificationTypes: Boolean = true
   $withUserTechnologies: Boolean = false
   $withCodeChallengeCompletions: Boolean = false
 ) {
@@ -98,6 +98,18 @@ fragment MeUserTimer on Timer {
   }
 }
 
+mutation blockUser($where: UserWhereUniqueInput!) {
+  blockUser(where: $where) {
+    ...user_
+  }
+}
+
+mutation unblockUser($where: UserWhereUniqueInput!) {
+  unblockUser(where: $where) {
+    ...user_
+  }
+}
+
 fragment UserNoNesting on User {
   id
   createdAt
@@ -112,7 +124,6 @@ fragment UserNoNesting on User {
   image
   address
   sudo
-  active
   activated
   deleted
   hasEmail
@@ -124,6 +135,9 @@ fragment UserNoNesting on User {
   acceptNewChatRoom
   technologyLevel
   isMentor
+  telegram
+  active
+  blocked
 }
 
 fragment meUser on User {

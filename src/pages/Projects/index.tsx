@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import {
   ProjectsConnectionDocument,
   ProjectsConnectionQueryVariables,
+  ProjectType,
   useProjectsConnectionQuery,
 } from 'src/modules/gql/generated'
 
@@ -15,7 +16,23 @@ import { ParsedUrlQuery } from 'querystring'
 const first = 12
 
 const defaultVariables: ProjectsConnectionQueryVariables = {
-  where: {},
+  where: {
+    /**
+     * Берем все проекты, кроме самообучения
+     */
+    OR: [
+      {
+        type: null,
+      },
+      {
+        type: {
+          not: {
+            equals: ProjectType.EDUCATION,
+          },
+        },
+      },
+    ],
+  },
   first,
 }
 

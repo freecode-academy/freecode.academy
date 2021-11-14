@@ -50,6 +50,7 @@ export const DesktopLayoutStyled = styled.div`
   code[class*='language-'],
   pre[class*='language-'] {
     background: none;
+    white-space: pre-wrap;
   }
 
   :not(pre) > code[class*='language-'],

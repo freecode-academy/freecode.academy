@@ -66,7 +66,7 @@ const CodeChallengeDiscuss: React.FC<CodeChallengeDiscussProps> = (props) => {
         <TopicView
           object={undefined}
           _dirty={_dirty}
-          cacheKey="new_code_challenge_topic"
+          cacheKey={`new_code_challenge_topic--${challenge.id}`}
           mutate={createTopicMutation}
           canChangeBlog={false}
         />

@@ -60,9 +60,11 @@ class TopicView extends EditableView<TopicViewProps> {
   }
 
   getCacheKey() {
+    const { cacheKey } = this.props
+
     const { id } = this.getObject() || {}
 
-    return `topic_${id || 'new_topic'}`
+    return cacheKey ? cacheKey : `topic_${id || 'new_topic'}`
   }
 
   renderHeader() {

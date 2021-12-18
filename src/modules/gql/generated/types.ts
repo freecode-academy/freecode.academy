@@ -3858,6 +3858,7 @@ export interface TeamWhereInput {
 export interface Technology {
   __typename?: 'Technology';
   CreatedBy?: Maybe<User>;
+  LearnStrategyStages?: Maybe<Array<LearnStrategyStage>>;
   UserTechnologies?: Maybe<Array<UserTechnology>>;
   components?: Maybe<Scalars['EditorComponentObject']>;
   createdAt: Scalars['DateTime'];
@@ -3877,6 +3878,11 @@ export interface Technology {
   site_url?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 }
+
+
+export type TechnologyLearnStrategyStagesArgs = {
+  orderBy?: Maybe<LearnStrategyStageOrderByInput>;
+};
 
 
 export type TechnologyUserTechnologiesArgs = {

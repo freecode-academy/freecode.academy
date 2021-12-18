@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { editor } from 'monaco-editor'
 import React, { useCallback } from 'react'
 import { useMonacoEditor } from 'src/hooks/useMonacoEditor'

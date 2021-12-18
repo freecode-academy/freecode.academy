@@ -18,6 +18,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type TechnologyQueryVariables = Types.Exact<{
   where: Types.TechnologyWhereUniqueInput;
+  withLearnStrategies?: Types.Scalars['Boolean'];
 }>;
 
 
@@ -28,7 +29,7 @@ export type TechnologyQuery = { __typename?: 'Query', object?: Types.Maybe<(
 
 
 export const TechnologyDocument = gql`
-    query technology($where: TechnologyWhereUniqueInput!) {
+    query technology($where: TechnologyWhereUniqueInput!, $withLearnStrategies: Boolean! = false) {
   object: technology(where: $where) {
     ...technology_
   }
@@ -48,6 +49,7 @@ export const TechnologyDocument = gql`
  * const { data, loading, error } = useTechnologyQuery({
  *   variables: {
  *      where: // value for 'where'
+ *      withLearnStrategies: // value for 'withLearnStrategies'
  *   },
  * });
  */

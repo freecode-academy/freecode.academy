@@ -19,6 +19,7 @@ const defaultOptions =  {}
 export type UpdateTechnologyMutationVariables = Types.Exact<{
   data: Types.TechnologyUpdateInput;
   where: Types.TechnologyWhereUniqueInput;
+  withLearnStrategies?: Types.Scalars['Boolean'];
 }>;
 
 
@@ -29,7 +30,7 @@ export type UpdateTechnologyMutation = { __typename?: 'Mutation', updateTechnolo
 
 
 export const UpdateTechnologyDocument = gql`
-    mutation updateTechnology($data: TechnologyUpdateInput!, $where: TechnologyWhereUniqueInput!) {
+    mutation updateTechnology($data: TechnologyUpdateInput!, $where: TechnologyWhereUniqueInput!, $withLearnStrategies: Boolean! = false) {
   updateTechnology(data: $data, where: $where) {
     ...technology_
   }
@@ -52,6 +53,7 @@ export type UpdateTechnologyMutationFn = Apollo.MutationFunction<UpdateTechnolog
  *   variables: {
  *      data: // value for 'data'
  *      where: // value for 'where'
+ *      withLearnStrategies: // value for 'withLearnStrategies'
  *   },
  * });
  */

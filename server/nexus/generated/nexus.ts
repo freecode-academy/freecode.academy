@@ -4151,6 +4151,7 @@ export interface NexusGenFieldTypes {
   Technology: {
     // field return type
     CreatedBy: NexusGenRootTypes['User'] | null // User
+    LearnStrategyStages: NexusGenRootTypes['LearnStrategyStage'][] | null // [LearnStrategyStage!]
     UserTechnologies: NexusGenRootTypes['UserTechnology'][] | null // [UserTechnology!]
     components: NexusGenScalars['EditorComponentObject'] | null // EditorComponentObject
     createdAt: NexusGenScalars['DateTime'] // DateTime!
@@ -4744,6 +4745,7 @@ export interface NexusGenFieldTypeNames {
   Technology: {
     // field return type name
     CreatedBy: 'User'
+    LearnStrategyStages: 'LearnStrategyStage'
     UserTechnologies: 'UserTechnology'
     components: 'EditorComponentObject'
     createdAt: 'DateTime'
@@ -5406,6 +5408,10 @@ export interface NexusGenArgTypes {
     }
   }
   Technology: {
+    LearnStrategyStages: {
+      // args
+      orderBy?: NexusGenInputs['LearnStrategyStageOrderByInput'] | null // LearnStrategyStageOrderByInput
+    }
     UserTechnologies: {
       // args
       orderBy?: NexusGenInputs['UserTechnologyOrderByInput'] | null // UserTechnologyOrderByInput

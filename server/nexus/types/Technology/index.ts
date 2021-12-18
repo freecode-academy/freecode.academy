@@ -4,52 +4,6 @@ import { NexusGenScalars } from 'server/nexus/generated/nexus'
 import { createTechnology } from './resolvers/createTechnology'
 import { updateTechnology } from './resolvers/updateTechnology'
 
-export const TechnologyExtendQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.technology()
-
-    t.crud.technologies({
-      filtering: true,
-      ordering: true,
-    })
-
-    t.nonNull.int('technologiesCount', {
-      args: {
-        where: 'TechnologyWhereInput',
-      },
-      resolve(_, args, ctx) {
-        const where = args.where as Prisma.TechnologyWhereInput
-
-        return ctx.prisma.technology.count({
-          where,
-        })
-      },
-    })
-  },
-})
-
-export const TechnologyExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('createTechnology', {
-      type: 'Technology',
-      args: {
-        data: nonNull('TechnologyCreateInput'),
-      },
-      resolve: createTechnology,
-    })
-    t.nonNull.field('updateTechnology', {
-      type: 'Technology',
-      args: {
-        data: nonNull('TechnologyUpdateInput'),
-        where: nonNull('TechnologyWhereUniqueInput'),
-      },
-      resolve: updateTechnology,
-    })
-  },
-})
-
 export const Technology = objectType({
   name: 'Technology',
   sourceType: {
@@ -114,6 +68,68 @@ export const Technology = objectType({
           orderBy,
         })
       },
+    })
+    t.list.nonNull.field('LearnStrategyStages', {
+      type: 'LearnStrategyStage',
+      args: {
+        orderBy: 'LearnStrategyStageOrderByInput',
+      },
+      resolve({ id }, args, ctx) {
+        const orderBy = args.orderBy as Prisma.LearnStrategyStageOrderByInput
+
+        return ctx.prisma.learnStrategyStage.findMany({
+          where: {
+            technologyId: id,
+          },
+          orderBy,
+        })
+      },
+    })
+  },
+})
+
+export const TechnologyExtendQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.technology()
+
+    t.crud.technologies({
+      filtering: true,
+      ordering: true,
+    })
+
+    t.nonNull.int('technologiesCount', {
+      args: {
+        where: 'TechnologyWhereInput',
+      },
+      resolve(_, args, ctx) {
+        const where = args.where as Prisma.TechnologyWhereInput
+
+        return ctx.prisma.technology.count({
+          where,
+        })
+      },
+    })
+  },
+})
+
+export const TechnologyExtendMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createTechnology', {
+      type: 'Technology',
+      args: {
+        data: nonNull('TechnologyCreateInput'),
+      },
+      resolve: createTechnology,
+    })
+    t.nonNull.field('updateTechnology', {
+      type: 'Technology',
+      args: {
+        data: nonNull('TechnologyUpdateInput'),
+        where: nonNull('TechnologyWhereUniqueInput'),
+      },
+      resolve: updateTechnology,
     })
   },
 })

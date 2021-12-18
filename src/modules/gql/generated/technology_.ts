@@ -25,7 +25,7 @@ export type TechnologyFragment = (
   )>, UserTechnologies?: Types.Maybe<Array<(
     { __typename?: 'UserTechnology' }
     & TechnologyUserTechnologyFragment
-  )>> }
+  )>>, LearnStrategyStages?: Types.Maybe<Array<{ __typename?: 'LearnStrategyStage', id: string, LearnStrategy?: Types.Maybe<{ __typename?: 'LearnStrategy', id: string, name: string }> }>> }
   & TechnologyNoNestingFragment
 );
 
@@ -37,6 +37,13 @@ export const TechnologyFragmentDoc = gql`
   }
   UserTechnologies(orderBy: {createdAt: desc}) {
     ...technology_UserTechnology
+  }
+  LearnStrategyStages @include(if: $withLearnStrategies) {
+    id
+    LearnStrategy {
+      id
+      name
+    }
   }
 }
     ${TechnologyNoNestingFragmentDoc}

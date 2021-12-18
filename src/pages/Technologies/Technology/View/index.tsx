@@ -19,6 +19,7 @@ import Link from 'src/uikit/Link'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
 import Button from 'src/components/ui/Button'
 import { TechnologyUpdateForm } from './UpdateForm'
+import { TechnologyLearnStrategyStages } from './LearnStrategyStages'
 
 const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
@@ -185,6 +186,12 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
           )}
 
           {learnTimes}
+
+          {technology.LearnStrategyStages ? (
+            <TechnologyLearnStrategyStages
+              LearnStrategyStages={technology.LearnStrategyStages}
+            />
+          ) : null}
 
           <div className="technology--used-by">
             <Grid container spacing={8}>

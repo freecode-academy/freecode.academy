@@ -18,6 +18,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type CreateTechnologyMutationVariables = Types.Exact<{
   data: Types.TechnologyCreateInput;
+  withLearnStrategies?: Types.Scalars['Boolean'];
 }>;
 
 
@@ -28,7 +29,7 @@ export type CreateTechnologyMutation = { __typename?: 'Mutation', createTechnolo
 
 
 export const CreateTechnologyDocument = gql`
-    mutation createTechnology($data: TechnologyCreateInput!) {
+    mutation createTechnology($data: TechnologyCreateInput!, $withLearnStrategies: Boolean! = false) {
   createTechnology(data: $data) {
     ...technology_
   }
@@ -50,6 +51,7 @@ export type CreateTechnologyMutationFn = Apollo.MutationFunction<CreateTechnolog
  * const [createTechnologyMutation, { data, loading, error }] = useCreateTechnologyMutation({
  *   variables: {
  *      data: // value for 'data'
+ *      withLearnStrategies: // value for 'withLearnStrategies'
  *   },
  * });
  */

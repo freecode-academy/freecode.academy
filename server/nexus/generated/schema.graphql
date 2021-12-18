@@ -3500,6 +3500,9 @@ input TeamWhereInput {
 
 type Technology {
   CreatedBy: User
+  LearnStrategyStages(
+    orderBy: LearnStrategyStageOrderByInput
+  ): [LearnStrategyStage!]
   UserTechnologies(orderBy: UserTechnologyOrderByInput): [UserTechnology!]
   components: EditorComponentObject
   createdAt: DateTime!

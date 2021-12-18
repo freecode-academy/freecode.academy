@@ -1,4 +1,7 @@
-query technology($where: TechnologyWhereUniqueInput!) {
+query technology(
+  $where: TechnologyWhereUniqueInput!
+  $withLearnStrategies: Boolean! = false
+) {
   object: technology(where: $where) {
     ...technology_
   }
@@ -27,7 +30,10 @@ query technologiesConnection(
   }
 }
 
-mutation createTechnology($data: TechnologyCreateInput!) {
+mutation createTechnology(
+  $data: TechnologyCreateInput!
+  $withLearnStrategies: Boolean! = false
+) {
   createTechnology(data: $data) {
     ...technology_
   }
@@ -36,6 +42,7 @@ mutation createTechnology($data: TechnologyCreateInput!) {
 mutation updateTechnology(
   $data: TechnologyUpdateInput!
   $where: TechnologyWhereUniqueInput!
+  $withLearnStrategies: Boolean! = false
 ) {
   updateTechnology(data: $data, where: $where) {
     ...technology_
@@ -76,6 +83,13 @@ fragment technology_ on Technology {
   }
   UserTechnologies(orderBy: { createdAt: desc }) {
     ...technology_UserTechnology
+  }
+  LearnStrategyStages @include(if: $withLearnStrategies) {
+    id
+    LearnStrategy {
+      id
+      name
+    }
   }
 }
 

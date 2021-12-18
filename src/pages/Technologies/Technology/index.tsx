@@ -19,6 +19,7 @@ function getQueryParams(query: ParsedUrlQuery): TechnologyQueryVariables {
     where: {
       id: id && typeof id === 'string' ? id : '',
     },
+    withLearnStrategies: true,
   }
 }
 

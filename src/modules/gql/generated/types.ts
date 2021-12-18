@@ -2332,6 +2332,7 @@ export type ProjectProjectTasksArgs = {
 
 export interface ProjectCreateInput {
   name: Scalars['String'];
+  url?: Maybe<Scalars['String']>;
 }
 
 export interface ProjectCreateOneWithoutProjectTasksInput {

@@ -14,10 +14,14 @@ import * as Types from './types';
 import { TechnologyNoNestingFragment } from './TechnologyNoNesting';
 import { UserNoNestingFragment } from './UserNoNesting';
 import { TechnologyUserTechnologyFragment } from './technology_UserTechnology';
+import { LearnStrategyStageNoNestingFragment } from './learnStrategyStageNoNesting';
+import { LearnStrategyNoNestingFragment } from './LearnStrategyNoNesting';
 import { gql } from '@apollo/client';
 import { TechnologyNoNestingFragmentDoc } from './TechnologyNoNesting';
 import { UserNoNestingFragmentDoc } from './UserNoNesting';
 import { TechnologyUserTechnologyFragmentDoc } from './technology_UserTechnology';
+import { LearnStrategyStageNoNestingFragmentDoc } from './learnStrategyStageNoNesting';
+import { LearnStrategyNoNestingFragmentDoc } from './LearnStrategyNoNesting';
 export type TechnologyFragment = (
   { __typename?: 'Technology', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
@@ -25,7 +29,13 @@ export type TechnologyFragment = (
   )>, UserTechnologies?: Types.Maybe<Array<(
     { __typename?: 'UserTechnology' }
     & TechnologyUserTechnologyFragment
-  )>>, LearnStrategyStages?: Types.Maybe<Array<{ __typename?: 'LearnStrategyStage', id: string, LearnStrategy?: Types.Maybe<{ __typename?: 'LearnStrategy', id: string, name: string }> }>> }
+  )>>, LearnStrategyStages?: Types.Maybe<Array<(
+    { __typename?: 'LearnStrategyStage', LearnStrategy?: Types.Maybe<(
+      { __typename?: 'LearnStrategy' }
+      & LearnStrategyNoNestingFragment
+    )> }
+    & LearnStrategyStageNoNestingFragment
+  )>> }
   & TechnologyNoNestingFragment
 );
 
@@ -39,13 +49,14 @@ export const TechnologyFragmentDoc = gql`
     ...technology_UserTechnology
   }
   LearnStrategyStages @include(if: $withLearnStrategies) {
-    id
+    ...learnStrategyStageNoNesting
     LearnStrategy {
-      id
-      name
+      ...LearnStrategyNoNesting
     }
   }
 }
     ${TechnologyNoNestingFragmentDoc}
 ${UserNoNestingFragmentDoc}
-${TechnologyUserTechnologyFragmentDoc}`;
+${TechnologyUserTechnologyFragmentDoc}
+${LearnStrategyStageNoNestingFragmentDoc}
+${LearnStrategyNoNestingFragmentDoc}`;

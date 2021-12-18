@@ -6,69 +6,7 @@ import {
   nonNull,
   objectType,
 } from 'nexus'
-
-export const ProjectExtendQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.project({})
-    t.crud.projects({
-      filtering: true,
-      ordering: true,
-    })
-
-    t.nonNull.int('projectsCount', {
-      args: {
-        where: 'ProjectWhereInput',
-      },
-      resolve(_, args, ctx) {
-        const where = args.where as Prisma.ProjectWhereInput
-
-        return ctx.prisma.project.count({
-          where,
-        })
-      },
-    })
-  },
-})
-
-export const ProjectExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('createProjectProcessor', {
-      type: 'ProjectResponse',
-      args: {
-        data: nonNull('ProjectCreateInput'),
-      },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
-    })
-    t.nonNull.field('updateProjectProcessor', {
-      type: 'ProjectResponse',
-      args: {
-        data: nonNull('ProjectUpdateInput'),
-        where: nonNull('ProjectWhereUniqueInput'),
-      },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
-    })
-  },
-})
+import { createProjectProcessor } from './resolvers/createProjectProcessor'
 
 export const Project = objectType({
   name: 'Project',
@@ -144,6 +82,60 @@ export const Project = objectType({
   },
 })
 
+export const ProjectExtendQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.project({})
+    t.crud.projects({
+      filtering: true,
+      ordering: true,
+    })
+
+    t.nonNull.int('projectsCount', {
+      args: {
+        where: 'ProjectWhereInput',
+      },
+      resolve(_, args, ctx) {
+        const where = args.where as Prisma.ProjectWhereInput
+
+        return ctx.prisma.project.count({
+          where,
+        })
+      },
+    })
+  },
+})
+
+export const ProjectExtendMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createProjectProcessor', {
+      type: 'ProjectResponse',
+      args: {
+        data: nonNull('ProjectCreateInput'),
+      },
+      resolve: createProjectProcessor,
+    })
+    t.nonNull.field('updateProjectProcessor', {
+      type: 'ProjectResponse',
+      args: {
+        data: nonNull('ProjectUpdateInput'),
+        where: nonNull('ProjectWhereUniqueInput'),
+      },
+      // TODO Restore logic
+      resolve(_, _args, _ctx) {
+        throw new Error('Not implemented')
+
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
+      },
+    })
+  },
+})
+
 export const ProjectType = enumType({
   name: 'ProjectType',
   members: ['Education'],
@@ -179,6 +171,7 @@ export const ProjectCreateInput = inputObjectType({
   name: 'ProjectCreateInput',
   definition(t) {
     t.nonNull.string('name')
+    t.string('url')
   },
 })
 

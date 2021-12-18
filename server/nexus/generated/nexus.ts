@@ -1827,6 +1827,7 @@ export interface NexusGenInputs {
   ProjectCreateInput: {
     // input type
     name: string // String!
+    url?: string | null // String
   }
   ProjectCreateOneWithoutProjectTasksInput: {
     // input type

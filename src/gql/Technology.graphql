@@ -85,10 +85,9 @@ fragment technology_ on Technology {
     ...technology_UserTechnology
   }
   LearnStrategyStages @include(if: $withLearnStrategies) {
-    id
+    ...learnStrategyStageNoNesting
     LearnStrategy {
-      id
-      name
+      ...LearnStrategyNoNesting
     }
   }
 }

@@ -2209,6 +2209,7 @@ type Project {
 
 input ProjectCreateInput {
   name: String!
+  url: String
 }
 
 input ProjectCreateOneWithoutProjectTasksInput {

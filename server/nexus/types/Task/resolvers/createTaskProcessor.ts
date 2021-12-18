@@ -34,7 +34,7 @@ export const createTaskProcessor: FieldResolver<
     throw new Error('Не указано название задачи')
   }
 
-  const createdData: Prisma.TaskCreateInput = {
+  const createData: Prisma.TaskCreateInput = {
     name,
     content,
     description,
@@ -55,7 +55,7 @@ export const createTaskProcessor: FieldResolver<
   if (Parent?.connect) {
     const connect = Parent?.connect as Prisma.TaskWhereUniqueInput
 
-    createdData.Task = {
+    createData.Task = {
       connect,
     }
   }
@@ -76,7 +76,7 @@ export const createTaskProcessor: FieldResolver<
 
     const ProjectConnect = Project.connect as Prisma.ProjectWhereUniqueInput
 
-    createdData.ProjectTasks = {
+    createData.ProjectTasks = {
       create: {
         Project_ProjectToProjectTask: {
           connect: ProjectConnect,
@@ -99,7 +99,7 @@ export const createTaskProcessor: FieldResolver<
   // })
 
   const task = await ctx.prisma.task.create({
-    data: createdData,
+    data: createData,
   })
 
   return {

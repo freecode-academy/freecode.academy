@@ -16,7 +16,7 @@ function translit(word: string) {
 }
 
 function escapeUri(uri: string) {
-  return uri ? uri.replace(/[/?% ]+/g, '-').replace(/-+/g, '-') : ''
+  return uri ? uri.replace(/[^a-zA-Z0-9 ]+/g, '-').replace(/-+/g, '-') : ''
 }
 
 export function prepareName(

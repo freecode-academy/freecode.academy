@@ -104,7 +104,7 @@ export default async function* executeCancellableChallengeSaga(
       let result: TestResult | undefined
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let testResult: any
+      let testResult: (arg0: () => string) => void
 
       if (this) {
         // eslint-disable-next-line prefer-const

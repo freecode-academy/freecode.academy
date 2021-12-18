@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
 import { createPassword } from '.'
+import { sanitizeTelegram } from './helpers/sanitizeTelegram'
 
 export const updateUserProcessor: FieldResolver<
   'Mutation',
@@ -56,7 +57,7 @@ export const updateUserProcessor: FieldResolver<
     NotificationTypes_UserNotificationTypes,
     isMentor: isMentor !== null ? isMentor : undefined,
     about: about as Prisma.InputJsonValue | null | undefined,
-    telegram,
+    telegram: sanitizeTelegram(telegram),
   }
 
   const user = ctx.prisma.user.update({

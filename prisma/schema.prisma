@@ -1188,6 +1188,7 @@ model TaskTechnology {
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Task], name: "Task")
   @@index([Technology], name: "Technology")
+  @@unique([Task, Technology])
 }
 
 model Team {

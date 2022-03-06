@@ -30,6 +30,7 @@ import { MainMenuProps, MainMenuState } from './interfaces'
 import Timer from './Timer'
 // import MainMenuNotices from './Notices'
 import { TaskStatus, TaskWhereInput } from 'src/modules/gql/generated'
+import { TelegramIconSvg } from 'src/uikit/icons/telegram'
 
 // export const defaultStyles = theme => {
 
@@ -300,6 +301,17 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                   <Typography>{this.lexicon('About')}</Typography>
                 </a>
               </Link>
+            </Grid>
+
+            <Grid item>
+              <a
+                href="https://t.me/freecode_academy"
+                title="Freecode.Academy в телеграме"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <TelegramIconSvg />
+              </a>
             </Grid>
 
             <Grid item xs></Grid>

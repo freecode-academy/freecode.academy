@@ -3713,6 +3713,11 @@ export interface TaskTechnologyResponse {
   success: Scalars['Boolean'];
 }
 
+export interface TaskTechnologyTaskTechnologyCompoundUniqueInput {
+  Task: Scalars['String'];
+  Technology: Scalars['String'];
+}
+
 export interface TaskTechnologyUpdateInput {
   Task?: Maybe<TaskCreateOneWithoutTaskTechnologiesInput>;
   Technology?: Maybe<TechnologyCreateOneWithoutTaskTechnologiesInput>;
@@ -3736,6 +3741,7 @@ export interface TaskTechnologyWhereInput {
 }
 
 export interface TaskTechnologyWhereUniqueInput {
+  Task_Technology?: Maybe<TaskTechnologyTaskTechnologyCompoundUniqueInput>;
   id?: Maybe<Scalars['String']>;
 }
 

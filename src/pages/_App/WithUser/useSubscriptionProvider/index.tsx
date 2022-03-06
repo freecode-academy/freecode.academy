@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react'
 
+import { ZenObservable } from 'zen-observable-ts'
 import gql from 'graphql-tag'
 import { SubscriptionProviderProps } from './interfaces'
 

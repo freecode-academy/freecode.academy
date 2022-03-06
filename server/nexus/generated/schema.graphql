@@ -3356,6 +3356,11 @@ type TaskTechnologyResponse {
   success: Boolean!
 }
 
+input TaskTechnologyTaskTechnologyCompoundUniqueInput {
+  Task: String!
+  Technology: String!
+}
+
 input TaskTechnologyUpdateInput {
   Task: TaskCreateOneWithoutTaskTechnologiesInput
   Technology: TechnologyCreateOneWithoutTaskTechnologiesInput
@@ -3379,6 +3384,7 @@ input TaskTechnologyWhereInput {
 }
 
 input TaskTechnologyWhereUniqueInput {
+  Task_Technology: TaskTechnologyTaskTechnologyCompoundUniqueInput
   id: String
 }
 

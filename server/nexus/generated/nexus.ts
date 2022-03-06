@@ -2498,6 +2498,11 @@ export interface NexusGenInputs {
     level?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
+  TaskTechnologyTaskTechnologyCompoundUniqueInput: {
+    // input type
+    Task: string // String!
+    Technology: string // String!
+  }
   TaskTechnologyUpdateInput: {
     // input type
     Task?: NexusGenInputs['TaskCreateOneWithoutTaskTechnologiesInput'] | null // TaskCreateOneWithoutTaskTechnologiesInput
@@ -2526,6 +2531,9 @@ export interface NexusGenInputs {
   }
   TaskTechnologyWhereUniqueInput: {
     // input type
+    Task_Technology?:
+      | NexusGenInputs['TaskTechnologyTaskTechnologyCompoundUniqueInput']
+      | null // TaskTechnologyTaskTechnologyCompoundUniqueInput
     id?: string | null // String
   }
   TaskUpdateInput: {

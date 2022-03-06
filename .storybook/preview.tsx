@@ -66,7 +66,7 @@ addDecorator(makeDecorator({
           // isPreview: false,
         }}
       >
-        {storyFn(context)}
+        {storyFn(context) as React.ReactNode}
       </RouterContext.Provider>
     </ThemeProvider>
   }

@@ -33,7 +33,7 @@ export const TopicPage: Page = () => {
     <>
       <NextSeo
         title={name || ''}
-        description={`Публикакация "${longtitle || name}"`}
+        description={`Публикация "${longtitle || name}"`}
       />
 
       {object ? (

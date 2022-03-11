@@ -17,29 +17,27 @@ const validateTechnology = (
   return data
 }
 
-export const createTechnology: FieldResolver<
-  'Mutation',
-  'createTechnology'
-> = async (_, args, ctx) => {
-  const { id: currentUserId } = getCurrentUser(ctx)
+export const createTechnology: FieldResolver<'Mutation', 'createTechnology'> =
+  async (_, args, ctx) => {
+    const { id: currentUserId } = getCurrentUser(ctx)
 
-  validateTechnology(args.data)
+    validateTechnology(args.data)
 
-  const {
-    data: { name, description },
-  } = args
+    const {
+      data: { name, description },
+    } = args
 
-  const createData: Prisma.TechnologyCreateInput = {
-    name,
-    description,
-    User: {
-      connect: {
-        id: currentUserId,
+    const createData: Prisma.TechnologyCreateInput = {
+      name,
+      description,
+      User: {
+        connect: {
+          id: currentUserId,
+        },
       },
-    },
-  }
+    }
 
-  return ctx.prisma.technology.create({
-    data: createData,
-  })
-}
+    return ctx.prisma.technology.create({
+      data: createData,
+    })
+  }

@@ -168,11 +168,9 @@ export const processUpload = async (
   }
 }
 
-export const singleUploadResolver: FieldResolver<
-  'Mutation',
-  'singleUpload'
-> = async (_, args, ctx) => {
-  const result = await processUpload(args, ctx)
+export const singleUploadResolver: FieldResolver<'Mutation', 'singleUpload'> =
+  async (_, args, ctx) => {
+    const result = await processUpload(args, ctx)
 
-  return result
-}
+    return result
+  }

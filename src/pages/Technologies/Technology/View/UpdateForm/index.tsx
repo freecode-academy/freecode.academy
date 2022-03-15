@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { NextSeo } from 'next-seo'
 
 import { Controller, ControllerProps, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
 import * as yup from 'yup'
 import { SchemaOf } from 'yup'
 import { UpdateTechnologyForm } from './styles'

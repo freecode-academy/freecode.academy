@@ -306,7 +306,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
             <Grid item>
               <a
                 href="https://t.me/freecode_academy"
-                title="Freecode.Academy в телеграме"
+                title="Freecode.Academy в Телеграме"
                 target="_blank"
                 rel="noreferrer"
               >

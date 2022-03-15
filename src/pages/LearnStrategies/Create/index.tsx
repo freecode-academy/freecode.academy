@@ -1,4 +1,4 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo } from 'react'

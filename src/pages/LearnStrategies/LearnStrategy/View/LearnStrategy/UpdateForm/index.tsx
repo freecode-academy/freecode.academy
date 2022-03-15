@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import { SchemaOf } from 'yup'
 
 import TextField from 'src/components/ui/form/TextField'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
 
 import {
   LearnStrategyUpdateInput,

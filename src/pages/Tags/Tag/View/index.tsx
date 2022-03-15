@@ -26,7 +26,7 @@ export const getTagTopicsVariables = (
       // },
       ResourceTags: {
         some: {
-          id: {
+          Tag: {
             equals: tagId,
           },
         },

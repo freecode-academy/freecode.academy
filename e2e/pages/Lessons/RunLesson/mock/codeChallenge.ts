@@ -16,6 +16,7 @@ const codeChallenge: CodeChallengeFragment = {
     hasPhone: false,
     active: true,
     blocked: false,
+    showFullname: true,
     __typename: 'User',
   },
   externalKey: 'bd7123c9c441eddfaeb4bdef',

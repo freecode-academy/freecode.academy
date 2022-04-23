@@ -327,7 +327,7 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
       <>
         <NextSeo title="Создание технологии" nofollow noindex />
 
-        <UpdateTechnologyForm onSubmit={onSubmit}>
+        <UpdateTechnologyForm onSubmit={onSubmit} layout="column">
           <Controller name="name" control={control} render={nameFieldRender} />
           <Controller
             name="description"

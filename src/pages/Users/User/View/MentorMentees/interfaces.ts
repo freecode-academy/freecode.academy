@@ -1,8 +1,8 @@
-import { UserViewProps } from '../interfaces'
+import { UserPageViewProps } from '../interfaces'
 
 import { PrismaCmsContext } from '@prisma-cms/context'
 
 export type MentorMenteesProps = {
-  user: UserViewProps['user']
+  user: UserPageViewProps['user']
   currentUser: PrismaCmsContext['user']
 }

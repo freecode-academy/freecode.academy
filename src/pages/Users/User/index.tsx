@@ -5,7 +5,7 @@ import {
   UserQuery,
 } from 'src/modules/gql/generated'
 
-import { UserView } from './View'
+import { UserPageView } from './View'
 
 import { Page, NextPageContextCustom } from '../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
@@ -47,7 +47,7 @@ export const UserPage: Page = () => {
         description={`Страница пользователя ${user.fullname || user.username}`}
       />
 
-      <UserView user={user} />
+      <UserPageView user={user} />
     </>
   )
 }

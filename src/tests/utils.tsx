@@ -10,7 +10,7 @@ import { ThemeProvider } from 'styled-components'
 // For handle css
 import 'jest-styled-components'
 
-import { HeadManagerContext } from 'next/dist/next-server/lib/head-manager-context'
+import { HeadManagerContext } from 'next/dist/shared/lib/head-manager-context'
 import { Page, PageProps } from 'src/pages/_App/interfaces'
 
 /**
@@ -20,6 +20,13 @@ export { baseRender }
 
 // re-export everything
 export * from '@testing-library/react'
+
+// TODO TypeError: require.resolveWeak is not a function
+jest.mock('next/dynamic', () => {
+  return () => {
+    return null
+  }
+})
 
 /**
  * Collect tags from next/head

@@ -620,6 +620,12 @@ export interface CommentWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface CurrentUserUpdateInput {
+  fullname?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
+}
+
 
 export interface DateTimeFilter {
   equals?: Maybe<Scalars['DateTime']>;
@@ -1642,7 +1648,11 @@ export interface Mutation {
   updateCodeChallenge: CodeChallenge;
   updateCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
   updateCommentProcessor: ResourceResponse;
+  /** Обновление текущего пользователя */
+  updateCurrentUser: User;
   updateLearnStrategy: LearnStrategy;
+  /** Обновление пользователя */
+  updateOneUser: User;
   updateProjectProcessor: ProjectResponse;
   updateTaskProcessor: TaskResponse;
   updateTaskTechnologyProcessor: TaskTechnologyResponse;
@@ -1805,9 +1815,20 @@ export type MutationUpdateCommentProcessorArgs = {
 };
 
 
+export type MutationUpdateCurrentUserArgs = {
+  data: CurrentUserUpdateInput;
+};
+
+
 export type MutationUpdateLearnStrategyArgs = {
   data: LearnStrategyUpdateInput;
   where: LearnStrategyWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneUserArgs = {
+  data: UserUpdateInput;
+  where: UserWhereUniqueInput;
 };
 
 
@@ -4284,6 +4305,8 @@ export interface User {
   phone?: Maybe<Scalars['String']>;
   /** Показывать емейл другим пользователям */
   showEmail?: Maybe<Scalars['Boolean']>;
+  /** Показывать ФИО другим пользователям */
+  showFullname: Scalars['Boolean'];
   showPhone?: Maybe<Scalars['Boolean']>;
   sudo?: Maybe<Scalars['Boolean']>;
   technologyLevel?: Maybe<Scalars['UserTechnologyLevel']>;

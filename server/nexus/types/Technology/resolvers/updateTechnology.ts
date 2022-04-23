@@ -18,42 +18,44 @@ const validateTechnology = (
   return data
 }
 
-export const updateTechnology: FieldResolver<'Mutation', 'updateTechnology'> =
-  async (_, args, ctx) => {
-    getCurrentUser(ctx)
+export const updateTechnology: FieldResolver<
+  'Mutation',
+  'updateTechnology'
+> = async (_, args, ctx) => {
+  getCurrentUser(ctx)
 
-    validateTechnology(args.data)
+  validateTechnology(args.data)
 
-    const {
-      data: {
-        name,
-        description,
-        site_url,
-        components,
-        level1hours,
-        level2hours,
-        level3hours,
-        level4hours,
-        level5hours,
-      },
-    } = args
-
-    const where = args.where as Prisma.TechnologyWhereUniqueInput
-
-    const updateData: Prisma.TechnologyUpdateInput = {
-      name: name === null ? undefined : name,
+  const {
+    data: {
+      name,
       description,
       site_url,
-      components: components as Prisma.JsonValue,
+      components,
       level1hours,
       level2hours,
       level3hours,
       level4hours,
       level5hours,
-    }
+    },
+  } = args
 
-    return ctx.prisma.technology.update({
-      data: updateData,
-      where,
-    })
+  const where = args.where as Prisma.TechnologyWhereUniqueInput
+
+  const updateData: Prisma.TechnologyUpdateInput = {
+    name: name === null ? undefined : name,
+    description,
+    site_url,
+    components: components as Prisma.JsonValue,
+    level1hours,
+    level2hours,
+    level3hours,
+    level4hours,
+    level5hours,
   }
+
+  return ctx.prisma.technology.update({
+    data: updateData,
+    where,
+  })
+}

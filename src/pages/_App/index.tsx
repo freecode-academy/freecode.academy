@@ -9,6 +9,7 @@ import {
   PageProps,
   MainApp,
   NextPageContextCustom,
+  AppProps,
 } from './interfaces'
 
 import { useApollo, initializeApollo } from 'src/lib/apolloClient'
@@ -16,6 +17,7 @@ import { getSubscriptionClient } from 'src/lib/apolloClient/createApolloClient'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import URI from 'urijs'
+import * as yup from 'yup'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { getMuiTheme } from './MUI/theme'
@@ -44,10 +46,21 @@ import MainLayout from './layouts/MainLayout'
 // TODO Restore WebSockets
 const withWs = false
 
-const App: MainApp = ({ Component, pageProps }) => {
-  // eslint-disable-next-line no-console
-  // console.log('App props', props);
+// const App: MainApp = ({ Component, pageProps }) => {
+//   // eslint-disable-next-line no-console
+//   // console.log('App props', props);
 
+yup.setLocale({
+  mixed: {
+    default: 'Ошибка заполнения',
+    required: 'Обязательное поле',
+  },
+  string: {
+    email: 'Введите корректный емейл',
+  },
+})
+
+const App: MainApp<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState, withWs)
 
   const { statusCode, layout } = pageProps

@@ -1,5 +1,5 @@
-import { UserViewProps } from '../interfaces'
+import { UserPageViewProps } from '../interfaces'
 
 export type UserProgressProps = {
-  userTechnologies: NonNullable<UserViewProps['user']['UserTechnologies']>
+  userTechnologies: NonNullable<UserPageViewProps['user']['UserTechnologies']>
 }

@@ -1,8 +1,8 @@
 import { PrismaCmsContext } from '@prisma-cms/context'
-import { UserViewProps } from '../interfaces'
+import { UserPageViewProps } from '../interfaces'
 
 export type UserChatRoomsProps = {
-  user: UserViewProps['user']
+  user: UserPageViewProps['user']
 
   currentUser: PrismaCmsContext['user']
 }

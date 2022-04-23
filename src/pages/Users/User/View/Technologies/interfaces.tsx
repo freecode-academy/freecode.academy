@@ -1,10 +1,10 @@
 import { PrismaCmsContext } from '@prisma-cms/context'
 import { UserProfileFragment } from 'src/modules/gql/generated'
-// import { UserViewProps } from '../interfaces'
+// import { UserPageViewProps } from '../interfaces'
 
 export type UserViewTechnologiesProps = {
   userTechnologies: NonNullable<UserProfileFragment['UserTechnologies']>
-  // user: UserViewProps["user"]
+  // user: UserPageViewProps["user"]
 
   currentUser: PrismaCmsContext['user']
 

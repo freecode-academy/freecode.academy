@@ -31,7 +31,7 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
     // },
   })
 
-  const user = data?.user
+  const user = data?.me
 
   useSubscriptionProvider({ client })
 

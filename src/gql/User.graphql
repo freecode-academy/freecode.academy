@@ -4,7 +4,7 @@ query me(
   $withUserTechnologies: Boolean = true
   $withCodeChallengeCompletions: Boolean = true
 ) {
-  user: me {
+  me {
     ...meUser
   }
 }
@@ -110,6 +110,12 @@ mutation unblockUser($where: UserWhereUniqueInput!) {
   }
 }
 
+mutation updateCurrentUser($data: CurrentUserUpdateInput!) {
+  updateCurrentUser(data: $data) {
+    ...user_
+  }
+}
+
 fragment UserNoNesting on User {
   id
   createdAt
@@ -119,6 +125,7 @@ fragment UserNoNesting on User {
   phone
   showEmail
   showPhone
+  showFullname
   # password
   fullname
   image

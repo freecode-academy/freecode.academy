@@ -1,10 +1,10 @@
-import React, { useCallback, useContext, useMemo } from 'react'
-import { UserViewProps } from './interfaces'
+import React, { useCallback, useMemo } from 'react'
+import { UserPageViewProps } from './interfaces'
 import { UserViewStyled } from './styles'
 // import Link from 'next/link'
 import Typography from 'material-ui/Typography'
 import UserAvatar from 'src/uikit/Avatar'
-import Context, { PrismaCmsContext } from '@prisma-cms/context'
+// import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import { UserNotifications } from './Notifications'
 import Grid from 'src/uikit/Grid'
 import {
@@ -28,12 +28,13 @@ import CheckBox from 'src/uikit/CheckBox'
 import { MentorMentees } from './MentorMentees'
 import { UserAbout } from './About'
 import { BlockUser } from './BlockUser'
+import { useCurrentUser } from 'src/hooks/useCurrentUser'
 // import { UserProgress } from './Progress'
 
-export const UserView: React.FC<UserViewProps> = ({ user }) => {
-  const context = useContext(Context) as PrismaCmsContext
-
-  const currentUser = context.user
+// export const UserView: React.FC<UserPageViewProps> = ({ user }) => {
+//   const context = useContext(Context) as PrismaCmsContext
+export const UserPageView: React.FC<UserPageViewProps> = ({ user }) => {
+  const { user: currentUser } = useCurrentUser()
 
   const isCurrentUser = user ? user.id === currentUser?.id : false
   const canEdit = isCurrentUser
@@ -62,7 +63,7 @@ export const UserView: React.FC<UserViewProps> = ({ user }) => {
             ...data,
           }
         : user
-    ) as UserViewProps['user']
+    ) as UserPageViewProps['user']
   }, [data, user])
 
   const onChange = useCallback(

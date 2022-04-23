@@ -5,6 +5,8 @@ import { signin } from './resolvers/signin'
 import { signup } from './resolvers/signup'
 import { unblockUser } from './resolvers/unblockUser'
 import { updateUserProcessor } from './resolvers/updateUserProcessor'
+import { updateCurrentUser } from './resolvers/updateCurrentUser'
+import { updateOneUser } from './resolvers/updateOneUser'
 
 export const User = objectType({
   name: 'User',
@@ -45,9 +47,9 @@ export const User = objectType({
     t.boolean('showEmail', {
       description: 'Показывать емейл другим пользователям',
     })
-    // t.nonNull.boolean('showFullname', {
-    //   description: 'Показывать ФИО другим пользователям',
-    // })
+    t.nonNull.boolean('showFullname', {
+      description: 'Показывать ФИО другим пользователям',
+    })
     t.string('image', {
       description: 'Avatar',
     })
@@ -252,6 +254,7 @@ export const UserExtendMutation = extendType({
       resolve: signin,
     })
 
+    // TODO Move to updateCurrentUser
     t.nonNull.field('updateUserProcessor', {
       type: 'UserResponse',
       args: {
@@ -276,6 +279,25 @@ export const UserExtendMutation = extendType({
         where: nonNull('UserWhereUniqueInput'),
       },
       resolve: unblockUser,
+    })
+
+    t.nonNull.field('updateOneUser', {
+      type: 'User',
+      description: 'Обновление пользователя',
+      args: {
+        where: nonNull('UserWhereUniqueInput'),
+        data: nonNull('UserUpdateInput'),
+      },
+      resolve: updateOneUser,
+    })
+
+    t.nonNull.field('updateCurrentUser', {
+      type: 'User',
+      description: 'Обновление текущего пользователя',
+      args: {
+        data: nonNull('CurrentUserUpdateInput'),
+      },
+      resolve: updateCurrentUser,
     })
   },
 })
@@ -302,6 +324,15 @@ export const UserSignupDataInput = inputObjectType({
 export const UserSigninDataInput = inputObjectType({
   name: 'UserSigninDataInput',
   definition(t) {
+    t.string('password')
+  },
+})
+
+export const CurrentUserUpdateInput = inputObjectType({
+  name: 'CurrentUserUpdateInput',
+  definition(t) {
+    t.string('username')
+    t.string('fullname')
     t.string('password')
   },
 })

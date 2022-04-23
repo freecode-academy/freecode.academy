@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { minWidth } from 'src/theme/helpers'
+// eslint-disable-next-line no-restricted-imports
 import { ButtonStyled } from '@prisma-cms/ui/dist/Button/styles'
 
 export const CreateLearnStrategyStageStyled = styled.div`

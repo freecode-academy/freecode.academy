@@ -29,7 +29,7 @@ export function formatPhone(str: string) {
   }-${value[9] || '#'}${value[10] || '#'}`
 }
 
-class NumberFormat extends NumberFormatProto {}
+class NumberFormat extends NumberFormatProto<any> {}
 
 class PhoneField extends Component<PhoneFieldProps> {
   valueToText = formatPhone

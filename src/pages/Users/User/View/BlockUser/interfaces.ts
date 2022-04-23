@@ -1,5 +1,5 @@
-import { UserViewProps } from '../interfaces'
+import { UserPageViewProps } from '../interfaces'
 
 export type BlockUserProps = {
-  user: UserViewProps['user']
+  user: UserPageViewProps['user']
 }

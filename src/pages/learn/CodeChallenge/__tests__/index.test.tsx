@@ -41,6 +41,7 @@ jest.mock('@apollo/client/react/hooks', () => {
                 blocked: false,
                 // marketplaceToken: null,
                 // hidden: null,
+                showFullname: true,
               },
               externalKey: 'bd7123c9c441eddfaeb4bdef',
               createdAt: new Date('2019-12-22T14:08:33.364Z'),

@@ -135,6 +135,7 @@ export * from './unblockUser';
 export * from './updateCodeChallenge';
 export * from './updateCodeChallengeCompletionProcessor';
 export * from './updateCommentProcessor';
+export * from './updateCurrentUser';
 export * from './updateLearnStrategy';
 export * from './updateTaskProcessor';
 export * from './updateTaskTechnologyProcessor';

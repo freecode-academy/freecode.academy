@@ -27,6 +27,7 @@ export const DonateForm: React.FC = () => {
       <DonateFormStyled
         method="POST"
         action="https://yoomoney.ru/quickpay/confirm.xml"
+        layout="column"
       >
         <Typography
           variant="title"

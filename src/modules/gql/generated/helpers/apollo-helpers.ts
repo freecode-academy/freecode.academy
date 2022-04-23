@@ -173,7 +173,7 @@ export type MentorMenteeFieldPolicy = {
 	status?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('blockUser' | 'createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createMentorMentee' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'deleteResource' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'unblockUser' | 'updateBlogProcessor' | 'updateCodeChallenge' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateLearnStrategy' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('blockUser' | 'createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createMentorMentee' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'deleteResource' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'unblockUser' | 'updateBlogProcessor' | 'updateCodeChallenge' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateCurrentUser' | 'updateLearnStrategy' | 'updateOneUser' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	blockUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	createBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -204,7 +204,9 @@ export type MutationFieldPolicy = {
 	updateCodeChallenge?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateCodeChallengeCompletionProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateCommentProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateCurrentUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateLearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateOneUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateProjectProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateTaskProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateTaskTechnologyProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -511,7 +513,7 @@ export type TimerResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserKeySpecifier = ('CodeChallengeCompletions' | 'EthAccounts' | 'MentorMenteeMentees' | 'MentorMenteeMentors' | 'NotificationTypes' | 'Projects' | 'ProjectsCreated' | 'Timers' | 'UserTechnologies' | 'about' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoom' | 'acceptNewChatRoomAnonymous' | 'activated' | 'active' | 'address' | 'blocked' | 'createdAt' | 'deleted' | 'email' | 'fullname' | 'hasEmail' | 'hasPhone' | 'id' | 'image' | 'isMentor' | 'phone' | 'showEmail' | 'showPhone' | 'sudo' | 'technologyLevel' | 'telegram' | 'updatedAt' | 'username' | UserKeySpecifier)[];
+export type UserKeySpecifier = ('CodeChallengeCompletions' | 'EthAccounts' | 'MentorMenteeMentees' | 'MentorMenteeMentors' | 'NotificationTypes' | 'Projects' | 'ProjectsCreated' | 'Timers' | 'UserTechnologies' | 'about' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoom' | 'acceptNewChatRoomAnonymous' | 'activated' | 'active' | 'address' | 'blocked' | 'createdAt' | 'deleted' | 'email' | 'fullname' | 'hasEmail' | 'hasPhone' | 'id' | 'image' | 'isMentor' | 'phone' | 'showEmail' | 'showFullname' | 'showPhone' | 'sudo' | 'technologyLevel' | 'telegram' | 'updatedAt' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
 	CodeChallengeCompletions?: FieldPolicy<any> | FieldReadFunction<any>,
 	EthAccounts?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -541,6 +543,7 @@ export type UserFieldPolicy = {
 	isMentor?: FieldPolicy<any> | FieldReadFunction<any>,
 	phone?: FieldPolicy<any> | FieldReadFunction<any>,
 	showEmail?: FieldPolicy<any> | FieldReadFunction<any>,
+	showFullname?: FieldPolicy<any> | FieldReadFunction<any>,
 	showPhone?: FieldPolicy<any> | FieldReadFunction<any>,
 	sudo?: FieldPolicy<any> | FieldReadFunction<any>,
 	technologyLevel?: FieldPolicy<any> | FieldReadFunction<any>,

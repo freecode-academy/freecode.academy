@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useMemo } from 'react'
 
 import { Controller, ControllerProps, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
+import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { SchemaOf } from 'yup'
 import {
@@ -14,6 +14,7 @@ import Button from 'src/components/ui/Button'
 
 import { SigninFormStyled } from './styles'
 import { Context } from 'src/pages/_App/Context'
+import Link from 'next/link'
 
 type FormData = Pick<SigninMutationVariables['where'], 'username'> &
   SigninMutationVariables['data']
@@ -94,6 +95,7 @@ const SigninForm: React.FC = () => {
           error={formState.errors[field.name]}
           {...field}
           value={field.value || ''}
+          fullWidth
         />
       )
     }, [])
@@ -107,6 +109,7 @@ const SigninForm: React.FC = () => {
           {...field}
           value={field.value || ''}
           error={formState.errors[field.name]}
+          fullWidth
         />
       )
     }, [])
@@ -114,7 +117,7 @@ const SigninForm: React.FC = () => {
   return useMemo(() => {
     return (
       <>
-        <SigninFormStyled onSubmit={onSubmit}>
+        <SigninFormStyled role="signin" onSubmit={onSubmit} layout="column">
           <h2>Авторизоваться</h2>
 
           <Controller
@@ -131,9 +134,25 @@ const SigninForm: React.FC = () => {
             render={passwordFieldRender}
           />
 
-          <Button type="submit" disabled={signinLoading} variant="success">
-            Авторизоваться
-          </Button>
+          <div
+            style={{
+              display: 'flex',
+            }}
+          >
+            <Link href="/signup">
+              <Button size="small" type="button" variant="default">
+                Зарегистрироваться
+              </Button>
+            </Link>
+            <Button
+              size="small"
+              type="submit"
+              disabled={signinLoading}
+              variant="success"
+            >
+              Авторизоваться
+            </Button>
+          </div>
         </SigninFormStyled>
       </>
     )

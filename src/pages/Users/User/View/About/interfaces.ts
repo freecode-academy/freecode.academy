@@ -1,8 +1,8 @@
 import { UserUpdateInput } from 'src/modules/gql/generated'
-import { UserViewProps } from '../interfaces'
+import { UserPageViewProps } from '../interfaces'
 
 export type UserAboutProps = {
-  userEdited: UserViewProps['user']
+  userEdited: UserPageViewProps['user']
   setData: React.Dispatch<React.SetStateAction<UserUpdateInput | null>>
   inEditMode: boolean
 }

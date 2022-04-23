@@ -1,7 +1,7 @@
-import { UserViewProps } from '../interfaces'
+import { UserPageViewProps } from '../interfaces'
 import { ChatSettingProps } from './ChatSetting/interfacse'
 
 export type UserChatSettingsProps = {
-  user: UserViewProps['user']
+  user: UserPageViewProps['user']
   setValue: ChatSettingProps['setValue']
 }

@@ -180,7 +180,7 @@ export const CreateLearnStrategyPage: Page = () => {
         <NextSeo noindex nofollow title="Новая стратегия развития" />
 
         <CreateLearnStrategyPageStyled>
-          <CreateLearnStrategyFormStyled onSubmit={onSubmit}>
+          <CreateLearnStrategyFormStyled onSubmit={onSubmit} layout="default">
             <h2>Новая стратегия развития</h2>
 
             <Controller

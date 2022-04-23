@@ -39,6 +39,9 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
 
     blockUser: isSudo,
     unblockUser: isSudo,
+    updateOneUser: isSudo,
+    // updateCurrentUser: isAuthenticated,
+    updateCurrentUser: isSudo,
   },
 }
 

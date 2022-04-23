@@ -24,7 +24,7 @@ export type MeQueryVariables = Types.Exact<{
 }>;
 
 
-export type MeQuery = { __typename?: 'Query', user?: Types.Maybe<(
+export type MeQuery = { __typename?: 'Query', me?: Types.Maybe<(
     { __typename?: 'User' }
     & MeUserFragment
   )> };
@@ -32,7 +32,7 @@ export type MeQuery = { __typename?: 'Query', user?: Types.Maybe<(
 
 export const MeDocument = gql`
     query me($withMentorMentee: Boolean = true, $withNotificationTypes: Boolean = true, $withUserTechnologies: Boolean = true, $withCodeChallengeCompletions: Boolean = true) {
-  user: me {
+  me {
     ...meUser
   }
 }

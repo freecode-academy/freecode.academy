@@ -123,7 +123,7 @@ export const CreateTechnologyPage: Page = () => {
       <>
         <NextSeo title="Создание технологии" nofollow noindex />
 
-        <CreateTechnologyForm onSubmit={onSubmit}>
+        <CreateTechnologyForm onSubmit={onSubmit} layout="column">
           <h2>Новая технология</h2>
 
           <Controller name="name" control={control} render={nameFieldRender} />

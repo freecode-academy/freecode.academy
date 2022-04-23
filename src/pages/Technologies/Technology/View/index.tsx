@@ -24,7 +24,7 @@ import { TechnologyLearnStrategyStages } from './LearnStrategyStages'
 const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
 
-  const currentUser = useCurrentUser()
+  const currentUser = useCurrentUser()?.user
 
   const showActions = currentUser ? true : false
 

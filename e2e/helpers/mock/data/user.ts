@@ -13,6 +13,7 @@ const mockUser: MeUserFragment = {
   Timers: [],
   active: true,
   blocked: false,
+  showFullname: true,
 }
 
 export default mockUser

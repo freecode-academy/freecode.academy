@@ -567,6 +567,12 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
+  CurrentUserUpdateInput: {
+    // input type
+    fullname?: string | null // String
+    password?: string | null // String
+    username?: string | null // String
+  }
   DateTimeFilter: {
     // input type
     equals?: NexusGenScalars['DateTime'] | null // DateTime
@@ -3884,7 +3890,9 @@ export interface NexusGenFieldTypes {
     updateCodeChallenge: NexusGenRootTypes['CodeChallenge'] // CodeChallenge!
     updateCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     updateCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
+    updateCurrentUser: NexusGenRootTypes['User'] // User!
     updateLearnStrategy: NexusGenRootTypes['LearnStrategy'] // LearnStrategy!
+    updateOneUser: NexusGenRootTypes['User'] // User!
     updateProjectProcessor: NexusGenRootTypes['ProjectResponse'] // ProjectResponse!
     updateTaskProcessor: NexusGenRootTypes['TaskResponse'] // TaskResponse!
     updateTaskTechnologyProcessor: NexusGenRootTypes['TaskTechnologyResponse'] // TaskTechnologyResponse!
@@ -4223,6 +4231,7 @@ export interface NexusGenFieldTypes {
     isMentor: boolean | null // Boolean
     phone: string | null // String
     showEmail: boolean | null // Boolean
+    showFullname: boolean // Boolean!
     showPhone: boolean | null // Boolean
     sudo: boolean | null // Boolean
     technologyLevel: NexusGenScalars['UserTechnologyLevel'] | null // UserTechnologyLevel
@@ -4478,7 +4487,9 @@ export interface NexusGenFieldTypeNames {
     updateCodeChallenge: 'CodeChallenge'
     updateCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
     updateCommentProcessor: 'ResourceResponse'
+    updateCurrentUser: 'User'
     updateLearnStrategy: 'LearnStrategy'
+    updateOneUser: 'User'
     updateProjectProcessor: 'ProjectResponse'
     updateTaskProcessor: 'TaskResponse'
     updateTaskTechnologyProcessor: 'TaskTechnologyResponse'
@@ -4815,6 +4826,7 @@ export interface NexusGenFieldTypeNames {
     isMentor: 'Boolean'
     phone: 'String'
     showEmail: 'Boolean'
+    showFullname: 'Boolean'
     showPhone: 'Boolean'
     sudo: 'Boolean'
     technologyLevel: 'UserTechnologyLevel'
@@ -5013,10 +5025,19 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['CommentUpdateInput'] // CommentUpdateInput!
       where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
     }
+    updateCurrentUser: {
+      // args
+      data: NexusGenInputs['CurrentUserUpdateInput'] // CurrentUserUpdateInput!
+    }
     updateLearnStrategy: {
       // args
       data: NexusGenInputs['LearnStrategyUpdateInput'] // LearnStrategyUpdateInput!
       where: NexusGenInputs['LearnStrategyWhereUniqueInput'] // LearnStrategyWhereUniqueInput!
+    }
+    updateOneUser: {
+      // args
+      data: NexusGenInputs['UserUpdateInput'] // UserUpdateInput!
+      where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
     }
     updateProjectProcessor: {
       // args

@@ -8,7 +8,7 @@ export const OfficeLayoutStyled = styled.div`
   height: 100%;
   width: 100%;
   max-width: 100%;
-  background: url('${bg}') scroll center top no-repeat;
+  background: url('${bg.src}') scroll center top no-repeat;
 
   display: flex;
   overflow: hidden;

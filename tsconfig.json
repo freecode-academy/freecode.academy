@@ -28,7 +28,6 @@
     "sourceMap": false,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "tsBuildInfoFile": "tsconfig.tsbuildinfo",
     "incremental": true
   },
   "exclude": [

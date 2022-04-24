@@ -1,5 +1,5 @@
-import { DateSelectArg } from '@fullcalendar/react'
-import React, { useCallback, useMemo } from 'react'
+// import { DateSelectArg } from '@fullcalendar/react'
+import React, { useMemo } from 'react'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
 import {
   TaskStatus,
@@ -13,15 +13,15 @@ import { ProjectCalendarProps } from './interfaces'
  */
 const ProjectCalendar: React.FC<ProjectCalendarProps> = ({
   tasks: tasksProps,
-  project,
+  // project,
   ...other
 }) => {
   const createTaskTuple = useCreateTaskProcessorMutation()
 
   const {
     snakbar,
-    loading,
-    mutation: createTask,
+    // loading,
+    // mutation: createTask,
   } = useProcessorMutation(createTaskTuple)
 
   const tasks = useMemo(() => {
@@ -36,53 +36,58 @@ const ProjectCalendar: React.FC<ProjectCalendarProps> = ({
     )
   }, [tasksProps])
 
-  const handleDateSelect = useCallback(
-    (selectInfo: DateSelectArg) => {
-      if (loading) {
-        return
-      }
+  // const handleDateSelect = useCallback(
+  //   // (selectInfo: DateSelectArg) => {
+  //   (selectInfo: any) => {
+  //     if (loading) {
+  //       return
+  //     }
 
-      const title = prompt('Введите название задачи')
-      const calendarApi = selectInfo.view.calendar
+  //     const title = prompt('Введите название задачи')
+  //     const calendarApi = selectInfo.view.calendar
 
-      calendarApi.unselect() // clear date selection
+  //     calendarApi.unselect() // clear date selection
 
-      if (title) {
-        // calendarApi.addEvent({
-        //   // id: createEventId(),
-        //   title,
-        //   start: selectInfo.startStr,
-        //   end: selectInfo.endStr,
-        //   allDay: selectInfo.allDay,
-        // })
+  //     if (title) {
+  //       // calendarApi.addEvent({
+  //       //   // id: createEventId(),
+  //       //   title,
+  //       //   start: selectInfo.startStr,
+  //       //   end: selectInfo.endStr,
+  //       //   allDay: selectInfo.allDay,
+  //       // })
 
-        createTask({
-          variables: {
-            data: {
-              Project: {
-                connect: {
-                  id: project.id,
-                },
-              },
-              name: title,
-              startDatePlaning: selectInfo.start,
-              endDatePlaning: selectInfo.end,
-            },
-          },
-        })
-      }
-    },
-    [createTask, loading, project.id]
-  )
+  //       createTask({
+  //         variables: {
+  //           data: {
+  //             Project: {
+  //               connect: {
+  //                 id: project.id,
+  //               },
+  //             },
+  //             name: title,
+  //             startDatePlaning: selectInfo.start,
+  //             endDatePlaning: selectInfo.end,
+  //           },
+  //         },
+  //       })
+  //     }
+  //   },
+  //   [createTask, loading, project.id]
+  // )
 
   return useMemo(() => {
     return (
       <>
         {snakbar}
-        <Calendar tasks={tasks} select={handleDateSelect} {...other} />
+        <Calendar
+          tasks={tasks}
+          // select={handleDateSelect}
+          {...other}
+        />
       </>
     )
-  }, [snakbar, tasks, handleDateSelect, other])
+  }, [snakbar, tasks, other])
 }
 
 export default ProjectCalendar

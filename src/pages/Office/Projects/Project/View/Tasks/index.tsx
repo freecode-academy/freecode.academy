@@ -14,7 +14,7 @@ import { Button, Paper } from 'material-ui'
 import { CreateTaskProcessorMutation } from 'src/modules/gql/generated'
 
 import { ProjectTasksProps } from './interfaces'
-import Link from 'next/link'
+// import Link from 'next/link'
 import { ProjectTasksStyled } from './styles'
 
 /**
@@ -272,16 +272,18 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
           <header>
             <div className="left">{createTask}</div>
             <div>
+              {/* 
+              TODO Restore
               <Link href={`/office/projects/${project.id}/calendar/day`}>
                 <a>Смотреть в календаре</a>
-              </Link>
+              </Link> */}
             </div>
           </header>
           {sections}
         </ProjectTasksStyled>
       </>
     )
-  }, [createTask, project.id, sections])
+  }, [createTask, sections])
 }
 
 export default ProjectTasks

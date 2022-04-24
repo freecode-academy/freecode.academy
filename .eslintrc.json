@@ -25,6 +25,10 @@
           "error",
           {
             "patterns": [
+              /*
+              Некст так и не научился импортировать css-файлы из node_modules
+              */
+              "@fullcalendar/*",
               "packages/*",
               // TODO Сейчас этот компонент вызывает ошибку styled-components
               // Prop `className` did not match. Server: "..." Client: "..."

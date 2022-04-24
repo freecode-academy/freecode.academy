@@ -10,7 +10,38 @@ query commentsConnection(
   }
 }
 
-fragment commentsConnectionComment on Resource {
+mutation createCommentProcessor($data: CommentCreateInput!) {
+  response: createCommentProcessor(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...commentsConnectionComment
+    }
+  }
+}
+
+mutation updateCommentProcessor(
+  $data: CommentUpdateInput!
+  $where: ResourceWhereUniqueInput!
+) {
+  response: updateCommentProcessor(data: $data, where: $where) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...commentsConnectionComment
+    }
+  }
+}
+
+fragment CommentNoNesting on Resource {
   id
   createdAt
   updatedAt
@@ -18,6 +49,10 @@ fragment commentsConnectionComment on Resource {
   content
   components
   uri
+}
+
+fragment commentsConnectionComment on Resource {
+  ...CommentNoNesting
   CreatedBy {
     ...commentsConnectionCommentUser
   }

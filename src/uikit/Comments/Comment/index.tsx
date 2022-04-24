@@ -64,14 +64,20 @@ class UikitComment extends EditableView<UikitCommentProps> {
   }
 
   async save() {
-    const { user: currentUser, openLoginForm } = this.context
+    const { user: currentUser, openLoginForm, client } = this.context
 
     if (!currentUser) {
       openLoginForm()
       return
     }
 
-    return super.save()
+    return super.save().then((r) => {
+      if (!(r instanceof Error) && r?.data?.response?.success) {
+        client.resetStore().catch(console.error)
+      }
+
+      return r
+    })
   }
 
   renderHeader() {

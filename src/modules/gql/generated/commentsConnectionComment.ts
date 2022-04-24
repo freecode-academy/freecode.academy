@@ -11,28 +11,27 @@ import { EditorComponentObject } from '@prisma-cms/front-editor'
 
 import * as Types from './types';
 
+import { CommentNoNestingFragment } from './CommentNoNesting';
 import { CommentsConnectionCommentUserFragment } from './commentsConnectionCommentUser';
 import { TaskNoNestingFragment } from './TaskNoNesting';
 import { gql } from '@apollo/client';
+import { CommentNoNestingFragmentDoc } from './CommentNoNesting';
 import { CommentsConnectionCommentUserFragmentDoc } from './commentsConnectionCommentUser';
 import { TaskNoNestingFragmentDoc } from './TaskNoNesting';
-export type CommentsConnectionCommentFragment = { __typename?: 'Resource', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, type?: Types.Maybe<Types.ResourceType>, content?: Types.Maybe<any>, components?: Types.Maybe<any>, uri: string, CreatedBy?: Types.Maybe<(
+export type CommentsConnectionCommentFragment = (
+  { __typename?: 'Resource', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & CommentsConnectionCommentUserFragment
   )>, Topic?: Types.Maybe<{ __typename?: 'Resource', id: string, name?: Types.Maybe<string>, uri: string, type?: Types.Maybe<Types.ResourceType> }>, Task?: Types.Maybe<(
     { __typename?: 'Task' }
     & TaskNoNestingFragment
-  )> };
+  )> }
+  & CommentNoNestingFragment
+);
 
 export const CommentsConnectionCommentFragmentDoc = gql`
     fragment commentsConnectionComment on Resource {
-  id
-  createdAt
-  updatedAt
-  type
-  content
-  components
-  uri
+  ...CommentNoNesting
   CreatedBy {
     ...commentsConnectionCommentUser
   }
@@ -46,5 +45,6 @@ export const CommentsConnectionCommentFragmentDoc = gql`
     ...TaskNoNesting
   }
 }
-    ${CommentsConnectionCommentUserFragmentDoc}
+    ${CommentNoNestingFragmentDoc}
+${CommentsConnectionCommentUserFragmentDoc}
 ${TaskNoNestingFragmentDoc}`;

@@ -12,13 +12,16 @@ import { EditorComponentObject } from '@prisma-cms/front-editor'
 import * as Types from './types';
 
 import { gql } from '@apollo/client';
-export type ResponseCommentFragment = { __typename?: 'Resource', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, content?: Types.Maybe<any> };
+export type CommentNoNestingFragment = { __typename?: 'Resource', id: string, createdAt: globalThis.Date, updatedAt: globalThis.Date, type?: Types.Maybe<Types.ResourceType>, content?: Types.Maybe<any>, components?: Types.Maybe<any>, uri: string };
 
-export const ResponseCommentFragmentDoc = gql`
-    fragment responseComment on Resource {
+export const CommentNoNestingFragmentDoc = gql`
+    fragment CommentNoNesting on Resource {
   id
   createdAt
   updatedAt
+  type
   content
+  components
+  uri
 }
     `;

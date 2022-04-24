@@ -11,9 +11,9 @@ import { EditorComponentObject } from '@prisma-cms/front-editor'
 
 import * as Types from './types';
 
-import { ResponseCommentFragment } from './responseComment';
+import { CommentsConnectionCommentFragment } from './commentsConnectionComment';
 import { gql } from '@apollo/client';
-import { ResponseCommentFragmentDoc } from './responseComment';
+import { CommentsConnectionCommentFragmentDoc } from './commentsConnectionComment';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type CreateCommentProcessorMutationVariables = Types.Exact<{
@@ -23,7 +23,7 @@ export type CreateCommentProcessorMutationVariables = Types.Exact<{
 
 export type CreateCommentProcessorMutation = { __typename?: 'Mutation', response: { __typename?: 'ResourceResponse', success: boolean, message: string, errors: Array<{ __typename?: 'RequestError', key: string, message: string }>, data?: Types.Maybe<(
       { __typename?: 'Resource' }
-      & ResponseCommentFragment
+      & CommentsConnectionCommentFragment
     )> } };
 
 
@@ -37,11 +37,11 @@ export const CreateCommentProcessorDocument = gql`
       message
     }
     data {
-      ...responseComment
+      ...commentsConnectionComment
     }
   }
 }
-    ${ResponseCommentFragmentDoc}`;
+    ${CommentsConnectionCommentFragmentDoc}`;
 export type CreateCommentProcessorMutationFn = Apollo.MutationFunction<CreateCommentProcessorMutation, CreateCommentProcessorMutationVariables>;
 
 /**

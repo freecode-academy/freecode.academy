@@ -1,0 +1,31 @@
+query donates(
+  $where: DonateWhereInput
+  $orderBy: [DonateOrderByInput!]
+  $take: Int
+  $skip: Int
+) {
+  donates(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
+    ...donate_
+  }
+}
+
+mutation createOneDonate($data: DonateCreateInput!) {
+  createOneDonate(data: $data) {
+    ...donate_
+  }
+}
+
+fragment donateNoNesting on Donate {
+  id
+  date
+  sum
+  title
+  donatorId
+}
+
+fragment donate_ on Donate {
+  ...donateNoNesting
+  Donator {
+    ...user_
+  }
+}

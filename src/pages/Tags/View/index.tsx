@@ -67,7 +67,7 @@ class TagsView<
         key: 'CreatedBy',
         label: 'Кем создан',
         renderer: (value: CC['CreatedBy']) => {
-          return <UserLink user={value} />
+          return value ? <UserLink user={value} /> : null
         },
       },
     ]

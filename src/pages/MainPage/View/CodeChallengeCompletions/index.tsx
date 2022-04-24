@@ -54,9 +54,11 @@ const MainPageCodeChallengeCompletions: React.FC<
                         </Link>
                       </Typography>
                     </Grid>
-                    <Grid item>
-                      <UikitUserLink user={n.CreatedBy} />
-                    </Grid>
+                    {n.CreatedBy ? (
+                      <Grid item>
+                        <UikitUserLink user={n.CreatedBy} />
+                      </Grid>
+                    ) : null}
                   </Grid>
 
                   <ChallengeDescription

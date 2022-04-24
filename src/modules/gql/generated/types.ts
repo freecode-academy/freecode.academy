@@ -43,6 +43,41 @@ export interface AuthPayload {
   token?: Maybe<Scalars['String']>;
 }
 
+export interface BlockCreateManyWorldInput {
+  id?: Maybe<Scalars['String']>;
+  representation: Scalars['String'];
+  type: Scalars['Int'];
+  x: Scalars['Int'];
+  y: Scalars['Int'];
+  z: Scalars['Int'];
+}
+
+export interface BlockCreateManyWorldInputEnvelope {
+  data?: Maybe<Array<BlockCreateManyWorldInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface BlockCreateNestedManyWithoutWorldInput {
+  connect?: Maybe<Array<BlockWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<BlockCreateOrConnectWithoutWorldInput>>;
+  create?: Maybe<Array<BlockCreateWithoutWorldInput>>;
+  createMany?: Maybe<BlockCreateManyWorldInputEnvelope>;
+}
+
+export interface BlockCreateOrConnectWithoutWorldInput {
+  create: BlockCreateWithoutWorldInput;
+  where: BlockWhereUniqueInput;
+}
+
+export interface BlockCreateWithoutWorldInput {
+  id?: Maybe<Scalars['String']>;
+  representation: Scalars['String'];
+  type: Scalars['Int'];
+  x: Scalars['Int'];
+  y: Scalars['Int'];
+  z: Scalars['Int'];
+}
+
 export interface BlockListRelationFilter {
   every?: Maybe<BlockWhereInput>;
   none?: Maybe<BlockWhereInput>;
@@ -63,6 +98,10 @@ export interface BlockWhereInput {
   z?: Maybe<IntFilter>;
 }
 
+export interface BlockWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface BlogCreateInput {
   content?: Maybe<Scalars['JSON']>;
   name?: Scalars['String'];
@@ -81,6 +120,135 @@ export interface BoolFilter {
 export interface BoolNullableFilter {
   equals?: Maybe<Scalars['Boolean']>;
   not?: Maybe<NestedBoolNullableFilter>;
+}
+
+export interface CallRequestCreateManyChatRoomInput {
+  Called?: Maybe<Scalars['String']>;
+  Caller?: Maybe<Scalars['String']>;
+  called_descriptions: Scalars['Json'];
+  caller_descriptions: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  endedAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  startedAt?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<CallRequestStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CallRequestCreateManyChatRoomInputEnvelope {
+  data?: Maybe<Array<CallRequestCreateManyChatRoomInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CallRequestCreateManyUserCallRequestCalledToUserInput {
+  Caller?: Maybe<Scalars['String']>;
+  Room?: Maybe<Scalars['String']>;
+  called_descriptions: Scalars['Json'];
+  caller_descriptions: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  endedAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  startedAt?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<CallRequestStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CallRequestCreateManyUserCallRequestCalledToUserInputEnvelope {
+  data?: Maybe<Array<CallRequestCreateManyUserCallRequestCalledToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CallRequestCreateManyUserCallRequestCallerToUserInput {
+  Called?: Maybe<Scalars['String']>;
+  Room?: Maybe<Scalars['String']>;
+  called_descriptions: Scalars['Json'];
+  caller_descriptions: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  endedAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  startedAt?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<CallRequestStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CallRequestCreateManyUserCallRequestCallerToUserInputEnvelope {
+  data?: Maybe<Array<CallRequestCreateManyUserCallRequestCallerToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CallRequestCreateNestedManyWithoutChatRoomInput {
+  connect?: Maybe<Array<CallRequestWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CallRequestCreateOrConnectWithoutChatRoomInput>>;
+  create?: Maybe<Array<CallRequestCreateWithoutChatRoomInput>>;
+  createMany?: Maybe<CallRequestCreateManyChatRoomInputEnvelope>;
+}
+
+export interface CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput {
+  connect?: Maybe<Array<CallRequestWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CallRequestCreateOrConnectWithoutUserCallRequestCalledToUserInput>>;
+  create?: Maybe<Array<CallRequestCreateWithoutUserCallRequestCalledToUserInput>>;
+  createMany?: Maybe<CallRequestCreateManyUserCallRequestCalledToUserInputEnvelope>;
+}
+
+export interface CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput {
+  connect?: Maybe<Array<CallRequestWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CallRequestCreateOrConnectWithoutUserCallRequestCallerToUserInput>>;
+  create?: Maybe<Array<CallRequestCreateWithoutUserCallRequestCallerToUserInput>>;
+  createMany?: Maybe<CallRequestCreateManyUserCallRequestCallerToUserInputEnvelope>;
+}
+
+export interface CallRequestCreateOrConnectWithoutChatRoomInput {
+  create: CallRequestCreateWithoutChatRoomInput;
+  where: CallRequestWhereUniqueInput;
+}
+
+export interface CallRequestCreateOrConnectWithoutUserCallRequestCalledToUserInput {
+  create: CallRequestCreateWithoutUserCallRequestCalledToUserInput;
+  where: CallRequestWhereUniqueInput;
+}
+
+export interface CallRequestCreateOrConnectWithoutUserCallRequestCallerToUserInput {
+  create: CallRequestCreateWithoutUserCallRequestCallerToUserInput;
+  where: CallRequestWhereUniqueInput;
+}
+
+export interface CallRequestCreateWithoutChatRoomInput {
+  User_CallRequest_CalledToUser?: Maybe<UserCreateNestedOneWithoutCallRequestsCallRequestCalledToUserInput>;
+  User_CallRequest_CallerToUser?: Maybe<UserCreateNestedOneWithoutCallRequestsCallRequestCallerToUserInput>;
+  called_descriptions: Scalars['Json'];
+  caller_descriptions: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  endedAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  startedAt?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<CallRequestStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CallRequestCreateWithoutUserCallRequestCalledToUserInput {
+  ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutCallRequestsInput>;
+  User_CallRequest_CallerToUser?: Maybe<UserCreateNestedOneWithoutCallRequestsCallRequestCallerToUserInput>;
+  called_descriptions: Scalars['Json'];
+  caller_descriptions: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  endedAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  startedAt?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<CallRequestStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CallRequestCreateWithoutUserCallRequestCallerToUserInput {
+  ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutCallRequestsInput>;
+  User_CallRequest_CalledToUser?: Maybe<UserCreateNestedOneWithoutCallRequestsCallRequestCalledToUserInput>;
+  called_descriptions: Scalars['Json'];
+  caller_descriptions: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  endedAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  startedAt?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<CallRequestStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface CallRequestListRelationFilter {
@@ -119,6 +287,45 @@ export interface CallRequestWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface CallRequestWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface CareerCreateManyUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CareerCreateManyUserInputEnvelope {
+  data?: Maybe<Array<CareerCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CareerCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<CareerWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CareerCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<CareerCreateWithoutUserInput>>;
+  createMany?: Maybe<CareerCreateManyUserInputEnvelope>;
+}
+
+export interface CareerCreateOrConnectWithoutUserInput {
+  create: CareerCreateWithoutUserInput;
+  where: CareerWhereUniqueInput;
+}
+
+export interface CareerCreateWithoutUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface CareerListRelationFilter {
   every?: Maybe<CareerWhereInput>;
   none?: Maybe<CareerWhereInput>;
@@ -139,6 +346,10 @@ export interface CareerWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface CareerWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface ChatMessage {
   __typename?: 'ChatMessage';
   CreatedBy?: Maybe<User>;
@@ -155,6 +366,124 @@ export interface ChatMessageCreateInput {
   content?: Maybe<Scalars['JSON']>;
 }
 
+export interface ChatMessageCreateManyChatRoomInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageCreateManyChatRoomInputEnvelope {
+  data?: Maybe<Array<ChatMessageCreateManyChatRoomInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatMessageCreateManyUserInput {
+  Room?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageCreateManyUserInputEnvelope {
+  data?: Maybe<Array<ChatMessageCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatMessageCreateNestedManyWithoutChatRoomInput {
+  connect?: Maybe<Array<ChatMessageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatMessageCreateOrConnectWithoutChatRoomInput>>;
+  create?: Maybe<Array<ChatMessageCreateWithoutChatRoomInput>>;
+  createMany?: Maybe<ChatMessageCreateManyChatRoomInputEnvelope>;
+}
+
+export interface ChatMessageCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<ChatMessageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatMessageCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<ChatMessageCreateWithoutUserInput>>;
+  createMany?: Maybe<ChatMessageCreateManyUserInputEnvelope>;
+}
+
+export interface ChatMessageCreateNestedOneWithoutChatMessagesReadedInput {
+  connect?: Maybe<ChatMessageWhereUniqueInput>;
+  connectOrCreate?: Maybe<ChatMessageCreateOrConnectWithoutChatMessagesReadedInput>;
+  create?: Maybe<ChatMessageCreateWithoutChatMessagesReadedInput>;
+}
+
+export interface ChatMessageCreateNestedOneWithoutNoticesInput {
+  connect?: Maybe<ChatMessageWhereUniqueInput>;
+  connectOrCreate?: Maybe<ChatMessageCreateOrConnectWithoutNoticesInput>;
+  create?: Maybe<ChatMessageCreateWithoutNoticesInput>;
+}
+
+export interface ChatMessageCreateOrConnectWithoutChatMessagesReadedInput {
+  create: ChatMessageCreateWithoutChatMessagesReadedInput;
+  where: ChatMessageWhereUniqueInput;
+}
+
+export interface ChatMessageCreateOrConnectWithoutChatRoomInput {
+  create: ChatMessageCreateWithoutChatRoomInput;
+  where: ChatMessageWhereUniqueInput;
+}
+
+export interface ChatMessageCreateOrConnectWithoutNoticesInput {
+  create: ChatMessageCreateWithoutNoticesInput;
+  where: ChatMessageWhereUniqueInput;
+}
+
+export interface ChatMessageCreateOrConnectWithoutUserInput {
+  create: ChatMessageCreateWithoutUserInput;
+  where: ChatMessageWhereUniqueInput;
+}
+
+export interface ChatMessageCreateWithoutChatMessagesReadedInput {
+  ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
+  Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
+  User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageCreateWithoutChatRoomInput {
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
+  Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
+  User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageCreateWithoutNoticesInput {
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
+  ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageCreateWithoutUserInput {
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
+  ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
+  Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface ChatMessageListRelationFilter {
   every?: Maybe<ChatMessageWhereInput>;
   none?: Maybe<ChatMessageWhereInput>;
@@ -169,6 +498,68 @@ export interface ChatMessageOrderByInput {
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
+}
+
+export interface ChatMessageReadedCreateManyChatMessageInput {
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageReadedCreateManyChatMessageInputEnvelope {
+  data?: Maybe<Array<ChatMessageReadedCreateManyChatMessageInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatMessageReadedCreateManyUserChatMessageReadedToUserInput {
+  Message?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageReadedCreateManyUserChatMessageReadedToUserInputEnvelope {
+  data?: Maybe<Array<ChatMessageReadedCreateManyUserChatMessageReadedToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatMessageReadedCreateNestedManyWithoutChatMessageInput {
+  connect?: Maybe<Array<ChatMessageReadedWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatMessageReadedCreateOrConnectWithoutChatMessageInput>>;
+  create?: Maybe<Array<ChatMessageReadedCreateWithoutChatMessageInput>>;
+  createMany?: Maybe<ChatMessageReadedCreateManyChatMessageInputEnvelope>;
+}
+
+export interface ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput {
+  connect?: Maybe<Array<ChatMessageReadedWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatMessageReadedCreateOrConnectWithoutUserChatMessageReadedToUserInput>>;
+  create?: Maybe<Array<ChatMessageReadedCreateWithoutUserChatMessageReadedToUserInput>>;
+  createMany?: Maybe<ChatMessageReadedCreateManyUserChatMessageReadedToUserInputEnvelope>;
+}
+
+export interface ChatMessageReadedCreateOrConnectWithoutChatMessageInput {
+  create: ChatMessageReadedCreateWithoutChatMessageInput;
+  where: ChatMessageReadedWhereUniqueInput;
+}
+
+export interface ChatMessageReadedCreateOrConnectWithoutUserChatMessageReadedToUserInput {
+  create: ChatMessageReadedCreateWithoutUserChatMessageReadedToUserInput;
+  where: ChatMessageReadedWhereUniqueInput;
+}
+
+export interface ChatMessageReadedCreateWithoutChatMessageInput {
+  User_ChatMessageReadedToUser?: Maybe<UserCreateNestedOneWithoutChatMessagesReadedInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageReadedCreateWithoutUserChatMessageReadedToUserInput {
+  ChatMessage?: Maybe<ChatMessageCreateNestedOneWithoutChatMessagesReadedInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ChatMessageReadedListRelationFilter {
@@ -188,6 +579,10 @@ export interface ChatMessageReadedWhereInput {
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface ChatMessageReadedWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface ChatMessageResponse {
@@ -235,9 +630,238 @@ export interface ChatRoom {
   updatedAt: Scalars['DateTime'];
 }
 
+export interface ChatRoomCreateManyUserChatRoomToUserInput {
+  allowAnonymous?: Maybe<Scalars['Boolean']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  sandbox?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomCreateManyUserChatRoomToUserInputEnvelope {
+  data?: Maybe<Array<ChatRoomCreateManyUserChatRoomToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput {
+  connect?: Maybe<Array<ChatRoomWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatRoomCreateOrConnectWithoutUserChatRoomToUserInput>>;
+  create?: Maybe<Array<ChatRoomCreateWithoutUserChatRoomToUserInput>>;
+  createMany?: Maybe<ChatRoomCreateManyUserChatRoomToUserInputEnvelope>;
+}
+
+export interface ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput {
+  connect?: Maybe<Array<ChatRoomWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatRoomCreateOrConnectWithoutUserChatRoomsMembersInput>>;
+  create?: Maybe<Array<ChatRoomCreateWithoutUserChatRoomsMembersInput>>;
+}
+
+export interface ChatRoomCreateNestedOneWithoutCallRequestsInput {
+  connect?: Maybe<ChatRoomWhereUniqueInput>;
+  connectOrCreate?: Maybe<ChatRoomCreateOrConnectWithoutCallRequestsInput>;
+  create?: Maybe<ChatRoomCreateWithoutCallRequestsInput>;
+}
+
+export interface ChatRoomCreateNestedOneWithoutChatMessagesInput {
+  connect?: Maybe<ChatRoomWhereUniqueInput>;
+  connectOrCreate?: Maybe<ChatRoomCreateOrConnectWithoutChatMessagesInput>;
+  create?: Maybe<ChatRoomCreateWithoutChatMessagesInput>;
+}
+
+export interface ChatRoomCreateNestedOneWithoutChatRoomInvitationsInput {
+  connect?: Maybe<ChatRoomWhereUniqueInput>;
+  connectOrCreate?: Maybe<ChatRoomCreateOrConnectWithoutChatRoomInvitationsInput>;
+  create?: Maybe<ChatRoomCreateWithoutChatRoomInvitationsInput>;
+}
+
+export interface ChatRoomCreateNestedOneWithoutProjectsInput {
+  connect?: Maybe<ChatRoomWhereUniqueInput>;
+  connectOrCreate?: Maybe<ChatRoomCreateOrConnectWithoutProjectsInput>;
+  create?: Maybe<ChatRoomCreateWithoutProjectsInput>;
+}
+
+export interface ChatRoomCreateNestedOneWithoutTasksInput {
+  connect?: Maybe<ChatRoomWhereUniqueInput>;
+  connectOrCreate?: Maybe<ChatRoomCreateOrConnectWithoutTasksInput>;
+  create?: Maybe<ChatRoomCreateWithoutTasksInput>;
+}
+
 export interface ChatRoomCreateOneWithoutMessagesInput {
   connect?: Maybe<ChatRoomWhereUniqueInput>;
   to?: Maybe<Scalars['ID']>;
+}
+
+export interface ChatRoomCreateOrConnectWithoutCallRequestsInput {
+  create: ChatRoomCreateWithoutCallRequestsInput;
+  where: ChatRoomWhereUniqueInput;
+}
+
+export interface ChatRoomCreateOrConnectWithoutChatMessagesInput {
+  create: ChatRoomCreateWithoutChatMessagesInput;
+  where: ChatRoomWhereUniqueInput;
+}
+
+export interface ChatRoomCreateOrConnectWithoutChatRoomInvitationsInput {
+  create: ChatRoomCreateWithoutChatRoomInvitationsInput;
+  where: ChatRoomWhereUniqueInput;
+}
+
+export interface ChatRoomCreateOrConnectWithoutProjectsInput {
+  create: ChatRoomCreateWithoutProjectsInput;
+  where: ChatRoomWhereUniqueInput;
+}
+
+export interface ChatRoomCreateOrConnectWithoutTasksInput {
+  create: ChatRoomCreateWithoutTasksInput;
+  where: ChatRoomWhereUniqueInput;
+}
+
+export interface ChatRoomCreateOrConnectWithoutUserChatRoomToUserInput {
+  create: ChatRoomCreateWithoutUserChatRoomToUserInput;
+  where: ChatRoomWhereUniqueInput;
+}
+
+export interface ChatRoomCreateOrConnectWithoutUserChatRoomsMembersInput {
+  create: ChatRoomCreateWithoutUserChatRoomsMembersInput;
+  where: ChatRoomWhereUniqueInput;
+}
+
+export interface ChatRoomCreateWithoutCallRequestsInput {
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutChatRoomInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutChatRoomChatRoomToChatRoomInvitationInput>;
+  Projects?: Maybe<ProjectCreateNestedManyWithoutChatRoomChatRoomToProjectInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutChatRoomChatRoomToTaskInput>;
+  User_ChatRoomToUser?: Maybe<UserCreateNestedOneWithoutChatRoomsChatRoomToUserInput>;
+  User_ChatRoomsMembers?: Maybe<UserCreateNestedManyWithoutChatRoomsChatRoomsMembersInput>;
+  allowAnonymous?: Maybe<Scalars['Boolean']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  sandbox?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomCreateWithoutChatMessagesInput {
+  CallRequests?: Maybe<CallRequestCreateNestedManyWithoutChatRoomInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutChatRoomChatRoomToChatRoomInvitationInput>;
+  Projects?: Maybe<ProjectCreateNestedManyWithoutChatRoomChatRoomToProjectInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutChatRoomChatRoomToTaskInput>;
+  User_ChatRoomToUser?: Maybe<UserCreateNestedOneWithoutChatRoomsChatRoomToUserInput>;
+  User_ChatRoomsMembers?: Maybe<UserCreateNestedManyWithoutChatRoomsChatRoomsMembersInput>;
+  allowAnonymous?: Maybe<Scalars['Boolean']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  sandbox?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomCreateWithoutChatRoomInvitationsInput {
+  CallRequests?: Maybe<CallRequestCreateNestedManyWithoutChatRoomInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutChatRoomInput>;
+  Projects?: Maybe<ProjectCreateNestedManyWithoutChatRoomChatRoomToProjectInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutChatRoomChatRoomToTaskInput>;
+  User_ChatRoomToUser?: Maybe<UserCreateNestedOneWithoutChatRoomsChatRoomToUserInput>;
+  User_ChatRoomsMembers?: Maybe<UserCreateNestedManyWithoutChatRoomsChatRoomsMembersInput>;
+  allowAnonymous?: Maybe<Scalars['Boolean']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  sandbox?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomCreateWithoutProjectsInput {
+  CallRequests?: Maybe<CallRequestCreateNestedManyWithoutChatRoomInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutChatRoomInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutChatRoomChatRoomToChatRoomInvitationInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutChatRoomChatRoomToTaskInput>;
+  User_ChatRoomToUser?: Maybe<UserCreateNestedOneWithoutChatRoomsChatRoomToUserInput>;
+  User_ChatRoomsMembers?: Maybe<UserCreateNestedManyWithoutChatRoomsChatRoomsMembersInput>;
+  allowAnonymous?: Maybe<Scalars['Boolean']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  sandbox?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomCreateWithoutTasksInput {
+  CallRequests?: Maybe<CallRequestCreateNestedManyWithoutChatRoomInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutChatRoomInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutChatRoomChatRoomToChatRoomInvitationInput>;
+  Projects?: Maybe<ProjectCreateNestedManyWithoutChatRoomChatRoomToProjectInput>;
+  User_ChatRoomToUser?: Maybe<UserCreateNestedOneWithoutChatRoomsChatRoomToUserInput>;
+  User_ChatRoomsMembers?: Maybe<UserCreateNestedManyWithoutChatRoomsChatRoomsMembersInput>;
+  allowAnonymous?: Maybe<Scalars['Boolean']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  sandbox?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomCreateWithoutUserChatRoomToUserInput {
+  CallRequests?: Maybe<CallRequestCreateNestedManyWithoutChatRoomInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutChatRoomInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutChatRoomChatRoomToChatRoomInvitationInput>;
+  Projects?: Maybe<ProjectCreateNestedManyWithoutChatRoomChatRoomToProjectInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutChatRoomChatRoomToTaskInput>;
+  User_ChatRoomsMembers?: Maybe<UserCreateNestedManyWithoutChatRoomsChatRoomsMembersInput>;
+  allowAnonymous?: Maybe<Scalars['Boolean']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  sandbox?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomCreateWithoutUserChatRoomsMembersInput {
+  CallRequests?: Maybe<CallRequestCreateNestedManyWithoutChatRoomInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutChatRoomInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutChatRoomChatRoomToChatRoomInvitationInput>;
+  Projects?: Maybe<ProjectCreateNestedManyWithoutChatRoomChatRoomToProjectInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutChatRoomChatRoomToTaskInput>;
+  User_ChatRoomToUser?: Maybe<UserCreateNestedOneWithoutChatRoomsChatRoomToUserInput>;
+  allowAnonymous?: Maybe<Scalars['Boolean']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  sandbox?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ChatRoomInvitation {
@@ -248,6 +872,146 @@ export interface ChatRoomInvitation {
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   updatedAt: Scalars['DateTime'];
+}
+
+export interface ChatRoomInvitationCreateManyChatRoomChatRoomToChatRoomInvitationInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Notice?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomInvitationCreateManyChatRoomChatRoomToChatRoomInvitationInputEnvelope {
+  data?: Maybe<Array<ChatRoomInvitationCreateManyChatRoomChatRoomToChatRoomInvitationInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatRoomInvitationCreateManyNoticeChatRoomInvitationToNoticeInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomInvitationCreateManyNoticeChatRoomInvitationToNoticeInputEnvelope {
+  data?: Maybe<Array<ChatRoomInvitationCreateManyNoticeChatRoomInvitationToNoticeInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatRoomInvitationCreateManyUserChatRoomInvitationCreatedByToUserInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  Notice?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomInvitationCreateManyUserChatRoomInvitationCreatedByToUserInputEnvelope {
+  data?: Maybe<Array<ChatRoomInvitationCreateManyUserChatRoomInvitationCreatedByToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatRoomInvitationCreateManyUserChatRoomInvitationUserToUserInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  Notice?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomInvitationCreateManyUserChatRoomInvitationUserToUserInputEnvelope {
+  data?: Maybe<Array<ChatRoomInvitationCreateManyUserChatRoomInvitationUserToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatRoomInvitationCreateNestedManyWithoutChatRoomChatRoomToChatRoomInvitationInput {
+  connect?: Maybe<Array<ChatRoomInvitationWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatRoomInvitationCreateOrConnectWithoutChatRoomChatRoomToChatRoomInvitationInput>>;
+  create?: Maybe<Array<ChatRoomInvitationCreateWithoutChatRoomChatRoomToChatRoomInvitationInput>>;
+  createMany?: Maybe<ChatRoomInvitationCreateManyChatRoomChatRoomToChatRoomInvitationInputEnvelope>;
+}
+
+export interface ChatRoomInvitationCreateNestedManyWithoutNoticeChatRoomInvitationToNoticeInput {
+  connect?: Maybe<Array<ChatRoomInvitationWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatRoomInvitationCreateOrConnectWithoutNoticeChatRoomInvitationToNoticeInput>>;
+  create?: Maybe<Array<ChatRoomInvitationCreateWithoutNoticeChatRoomInvitationToNoticeInput>>;
+  createMany?: Maybe<ChatRoomInvitationCreateManyNoticeChatRoomInvitationToNoticeInputEnvelope>;
+}
+
+export interface ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput {
+  connect?: Maybe<Array<ChatRoomInvitationWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatRoomInvitationCreateOrConnectWithoutUserChatRoomInvitationCreatedByToUserInput>>;
+  create?: Maybe<Array<ChatRoomInvitationCreateWithoutUserChatRoomInvitationCreatedByToUserInput>>;
+  createMany?: Maybe<ChatRoomInvitationCreateManyUserChatRoomInvitationCreatedByToUserInputEnvelope>;
+}
+
+export interface ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput {
+  connect?: Maybe<Array<ChatRoomInvitationWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatRoomInvitationCreateOrConnectWithoutUserChatRoomInvitationUserToUserInput>>;
+  create?: Maybe<Array<ChatRoomInvitationCreateWithoutUserChatRoomInvitationUserToUserInput>>;
+  createMany?: Maybe<ChatRoomInvitationCreateManyUserChatRoomInvitationUserToUserInputEnvelope>;
+}
+
+export interface ChatRoomInvitationCreateOrConnectWithoutChatRoomChatRoomToChatRoomInvitationInput {
+  create: ChatRoomInvitationCreateWithoutChatRoomChatRoomToChatRoomInvitationInput;
+  where: ChatRoomInvitationWhereUniqueInput;
+}
+
+export interface ChatRoomInvitationCreateOrConnectWithoutNoticeChatRoomInvitationToNoticeInput {
+  create: ChatRoomInvitationCreateWithoutNoticeChatRoomInvitationToNoticeInput;
+  where: ChatRoomInvitationWhereUniqueInput;
+}
+
+export interface ChatRoomInvitationCreateOrConnectWithoutUserChatRoomInvitationCreatedByToUserInput {
+  create: ChatRoomInvitationCreateWithoutUserChatRoomInvitationCreatedByToUserInput;
+  where: ChatRoomInvitationWhereUniqueInput;
+}
+
+export interface ChatRoomInvitationCreateOrConnectWithoutUserChatRoomInvitationUserToUserInput {
+  create: ChatRoomInvitationCreateWithoutUserChatRoomInvitationUserToUserInput;
+  where: ChatRoomInvitationWhereUniqueInput;
+}
+
+export interface ChatRoomInvitationCreateWithoutChatRoomChatRoomToChatRoomInvitationInput {
+  Notice_ChatRoomInvitationToNotice?: Maybe<NoticeCreateNestedOneWithoutChatRoomInvitationsInput>;
+  User_ChatRoomInvitation_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput>;
+  User_ChatRoomInvitation_UserToUser?: Maybe<UserCreateNestedOneWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomInvitationCreateWithoutNoticeChatRoomInvitationToNoticeInput {
+  ChatRoom_ChatRoomToChatRoomInvitation?: Maybe<ChatRoomCreateNestedOneWithoutChatRoomInvitationsInput>;
+  User_ChatRoomInvitation_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput>;
+  User_ChatRoomInvitation_UserToUser?: Maybe<UserCreateNestedOneWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomInvitationCreateWithoutUserChatRoomInvitationCreatedByToUserInput {
+  ChatRoom_ChatRoomToChatRoomInvitation?: Maybe<ChatRoomCreateNestedOneWithoutChatRoomInvitationsInput>;
+  Notice_ChatRoomInvitationToNotice?: Maybe<NoticeCreateNestedOneWithoutChatRoomInvitationsInput>;
+  User_ChatRoomInvitation_UserToUser?: Maybe<UserCreateNestedOneWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatRoomInvitationCreateWithoutUserChatRoomInvitationUserToUserInput {
+  ChatRoom_ChatRoomToChatRoomInvitation?: Maybe<ChatRoomCreateNestedOneWithoutChatRoomInvitationsInput>;
+  Notice_ChatRoomInvitationToNotice?: Maybe<NoticeCreateNestedOneWithoutChatRoomInvitationsInput>;
+  User_ChatRoomInvitation_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ChatRoomInvitationListRelationFilter {
@@ -271,6 +1035,10 @@ export interface ChatRoomInvitationWhereInput {
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface ChatRoomInvitationWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface ChatRoomListRelationFilter {
@@ -386,6 +1154,130 @@ export type CodeChallengeBlockChildrenArgs = {
   orderBy?: Maybe<CodeChallengeBlockOrderByInput>;
 };
 
+export interface CodeChallengeBlockCreateManyCodeChallengeBlockInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeBlockCreateManyCodeChallengeBlockInputEnvelope {
+  data?: Maybe<Array<CodeChallengeBlockCreateManyCodeChallengeBlockInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CodeChallengeBlockCreateManyUserInput {
+  Parent?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeBlockCreateManyUserInputEnvelope {
+  data?: Maybe<Array<CodeChallengeBlockCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CodeChallengeBlockCreateNestedManyWithoutCodeChallengeBlockInput {
+  connect?: Maybe<Array<CodeChallengeBlockWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CodeChallengeBlockCreateOrConnectWithoutCodeChallengeBlockInput>>;
+  create?: Maybe<Array<CodeChallengeBlockCreateWithoutCodeChallengeBlockInput>>;
+  createMany?: Maybe<CodeChallengeBlockCreateManyCodeChallengeBlockInputEnvelope>;
+}
+
+export interface CodeChallengeBlockCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<CodeChallengeBlockWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CodeChallengeBlockCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<CodeChallengeBlockCreateWithoutUserInput>>;
+  createMany?: Maybe<CodeChallengeBlockCreateManyUserInputEnvelope>;
+}
+
+export interface CodeChallengeBlockCreateNestedOneWithoutCodeChallengeInput {
+  connect?: Maybe<CodeChallengeBlockWhereUniqueInput>;
+  connectOrCreate?: Maybe<CodeChallengeBlockCreateOrConnectWithoutCodeChallengeInput>;
+  create?: Maybe<CodeChallengeBlockCreateWithoutCodeChallengeInput>;
+}
+
+export interface CodeChallengeBlockCreateNestedOneWithoutOtherCodeChallengeBlockInput {
+  connect?: Maybe<CodeChallengeBlockWhereUniqueInput>;
+  connectOrCreate?: Maybe<CodeChallengeBlockCreateOrConnectWithoutOtherCodeChallengeBlockInput>;
+  create?: Maybe<CodeChallengeBlockCreateWithoutOtherCodeChallengeBlockInput>;
+}
+
+export interface CodeChallengeBlockCreateOrConnectWithoutCodeChallengeBlockInput {
+  create: CodeChallengeBlockCreateWithoutCodeChallengeBlockInput;
+  where: CodeChallengeBlockWhereUniqueInput;
+}
+
+export interface CodeChallengeBlockCreateOrConnectWithoutCodeChallengeInput {
+  create: CodeChallengeBlockCreateWithoutCodeChallengeInput;
+  where: CodeChallengeBlockWhereUniqueInput;
+}
+
+export interface CodeChallengeBlockCreateOrConnectWithoutOtherCodeChallengeBlockInput {
+  create: CodeChallengeBlockCreateWithoutOtherCodeChallengeBlockInput;
+  where: CodeChallengeBlockWhereUniqueInput;
+}
+
+export interface CodeChallengeBlockCreateOrConnectWithoutUserInput {
+  create: CodeChallengeBlockCreateWithoutUserInput;
+  where: CodeChallengeBlockWhereUniqueInput;
+}
+
+export interface CodeChallengeBlockCreateWithoutCodeChallengeBlockInput {
+  CodeChallenge?: Maybe<CodeChallengeCreateNestedManyWithoutCodeChallengeBlockInput>;
+  User?: Maybe<UserCreateNestedOneWithoutCodeChallengeBlocksInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedManyWithoutCodeChallengeBlockInput>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeBlockCreateWithoutCodeChallengeInput {
+  CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedOneWithoutOtherCodeChallengeBlockInput>;
+  User?: Maybe<UserCreateNestedOneWithoutCodeChallengeBlocksInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedManyWithoutCodeChallengeBlockInput>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeBlockCreateWithoutOtherCodeChallengeBlockInput {
+  CodeChallenge?: Maybe<CodeChallengeCreateNestedManyWithoutCodeChallengeBlockInput>;
+  CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedOneWithoutOtherCodeChallengeBlockInput>;
+  User?: Maybe<UserCreateNestedOneWithoutCodeChallengeBlocksInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeBlockCreateWithoutUserInput {
+  CodeChallenge?: Maybe<CodeChallengeCreateNestedManyWithoutCodeChallengeBlockInput>;
+  CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedOneWithoutOtherCodeChallengeBlockInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedManyWithoutCodeChallengeBlockInput>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface CodeChallengeBlockListRelationFilter {
   every?: Maybe<CodeChallengeBlockWhereInput>;
   none?: Maybe<CodeChallengeBlockWhereInput>;
@@ -441,6 +1333,117 @@ export interface CodeChallengeCompletionCreateInput {
   CodeChallenge: CodeChallengeCreateOneWithoutCompletionsInput;
 }
 
+export interface CodeChallengeCompletionCreateManyCodeChallengeCodeChallengeToCodeChallengeCompletionInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeCompletionCreateManyCodeChallengeCodeChallengeToCodeChallengeCompletionInputEnvelope {
+  data?: Maybe<Array<CodeChallengeCompletionCreateManyCodeChallengeCodeChallengeToCodeChallengeCompletionInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CodeChallengeCompletionCreateManyTaskCodeChallengeCompletionToTaskInput {
+  CodeChallenge?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeCompletionCreateManyTaskCodeChallengeCompletionToTaskInputEnvelope {
+  data?: Maybe<Array<CodeChallengeCompletionCreateManyTaskCodeChallengeCompletionToTaskInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CodeChallengeCompletionCreateManyUserInput {
+  CodeChallenge?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeCompletionCreateManyUserInputEnvelope {
+  data?: Maybe<Array<CodeChallengeCompletionCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CodeChallengeCompletionCreateNestedManyWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput {
+  connect?: Maybe<Array<CodeChallengeCompletionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CodeChallengeCompletionCreateOrConnectWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput>>;
+  create?: Maybe<Array<CodeChallengeCompletionCreateWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput>>;
+  createMany?: Maybe<CodeChallengeCompletionCreateManyCodeChallengeCodeChallengeToCodeChallengeCompletionInputEnvelope>;
+}
+
+export interface CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput {
+  connect?: Maybe<Array<CodeChallengeCompletionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CodeChallengeCompletionCreateOrConnectWithoutTaskCodeChallengeCompletionToTaskInput>>;
+  create?: Maybe<Array<CodeChallengeCompletionCreateWithoutTaskCodeChallengeCompletionToTaskInput>>;
+  createMany?: Maybe<CodeChallengeCompletionCreateManyTaskCodeChallengeCompletionToTaskInputEnvelope>;
+}
+
+export interface CodeChallengeCompletionCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<CodeChallengeCompletionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CodeChallengeCompletionCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<CodeChallengeCompletionCreateWithoutUserInput>>;
+  createMany?: Maybe<CodeChallengeCompletionCreateManyUserInputEnvelope>;
+}
+
+export interface CodeChallengeCompletionCreateOrConnectWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput {
+  create: CodeChallengeCompletionCreateWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput;
+  where: CodeChallengeCompletionWhereUniqueInput;
+}
+
+export interface CodeChallengeCompletionCreateOrConnectWithoutTaskCodeChallengeCompletionToTaskInput {
+  create: CodeChallengeCompletionCreateWithoutTaskCodeChallengeCompletionToTaskInput;
+  where: CodeChallengeCompletionWhereUniqueInput;
+}
+
+export interface CodeChallengeCompletionCreateOrConnectWithoutUserInput {
+  create: CodeChallengeCompletionCreateWithoutUserInput;
+  where: CodeChallengeCompletionWhereUniqueInput;
+}
+
+export interface CodeChallengeCompletionCreateWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput {
+  Task_CodeChallengeCompletionToTask?: Maybe<TaskCreateNestedOneWithoutCodeChallengeCompletionsInput>;
+  User?: Maybe<UserCreateNestedOneWithoutCodeChallengeCompletionsInput>;
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeCompletionCreateWithoutTaskCodeChallengeCompletionToTaskInput {
+  CodeChallenge_CodeChallengeToCodeChallengeCompletion?: Maybe<CodeChallengeCreateNestedOneWithoutCodeChallengeCompletionsInput>;
+  User?: Maybe<UserCreateNestedOneWithoutCodeChallengeCompletionsInput>;
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CodeChallengeCompletionCreateWithoutUserInput {
+  CodeChallenge_CodeChallengeToCodeChallengeCompletion?: Maybe<CodeChallengeCreateNestedOneWithoutCodeChallengeCompletionsInput>;
+  Task_CodeChallengeCompletionToTask?: Maybe<TaskCreateNestedOneWithoutCodeChallengeCompletionsInput>;
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface CodeChallengeCompletionListRelationFilter {
   every?: Maybe<CodeChallengeCompletionWhereInput>;
   none?: Maybe<CodeChallengeCompletionWhereInput>;
@@ -492,12 +1495,295 @@ export interface CodeChallengeCompletionWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
 }
 
+export interface CodeChallengeCreateManyCodeChallengeBlockInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  challengeOrder?: Maybe<Scalars['Int']>;
+  challengeType?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dashedName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  files?: Maybe<Scalars['Json']>;
+  forumTopicId?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  isBeta?: Maybe<Scalars['Boolean']>;
+  isPrivate?: Maybe<Scalars['Boolean']>;
+  isRequired?: Maybe<Scalars['Boolean']>;
+  localeTitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  required?: Maybe<Scalars['Json']>;
+  solutions?: Maybe<Scalars['Json']>;
+  superOrder?: Maybe<Scalars['Int']>;
+  template?: Maybe<Scalars['String']>;
+  tests?: Maybe<Scalars['Json']>;
+  time?: Maybe<Scalars['String']>;
+  translations?: Maybe<Scalars['Json']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  videoUrl?: Maybe<Scalars['String']>;
+}
+
+export interface CodeChallengeCreateManyCodeChallengeBlockInputEnvelope {
+  data?: Maybe<Array<CodeChallengeCreateManyCodeChallengeBlockInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CodeChallengeCreateManyResourceInput {
+  Block?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  challengeOrder?: Maybe<Scalars['Int']>;
+  challengeType?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dashedName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  files?: Maybe<Scalars['Json']>;
+  forumTopicId?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  isBeta?: Maybe<Scalars['Boolean']>;
+  isPrivate?: Maybe<Scalars['Boolean']>;
+  isRequired?: Maybe<Scalars['Boolean']>;
+  localeTitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  required?: Maybe<Scalars['Json']>;
+  solutions?: Maybe<Scalars['Json']>;
+  superOrder?: Maybe<Scalars['Int']>;
+  template?: Maybe<Scalars['String']>;
+  tests?: Maybe<Scalars['Json']>;
+  time?: Maybe<Scalars['String']>;
+  translations?: Maybe<Scalars['Json']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  videoUrl?: Maybe<Scalars['String']>;
+}
+
+export interface CodeChallengeCreateManyResourceInputEnvelope {
+  data?: Maybe<Array<CodeChallengeCreateManyResourceInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CodeChallengeCreateManyUserInput {
+  Block?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  challengeOrder?: Maybe<Scalars['Int']>;
+  challengeType?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dashedName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  files?: Maybe<Scalars['Json']>;
+  forumTopicId?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  isBeta?: Maybe<Scalars['Boolean']>;
+  isPrivate?: Maybe<Scalars['Boolean']>;
+  isRequired?: Maybe<Scalars['Boolean']>;
+  localeTitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  required?: Maybe<Scalars['Json']>;
+  solutions?: Maybe<Scalars['Json']>;
+  superOrder?: Maybe<Scalars['Int']>;
+  template?: Maybe<Scalars['String']>;
+  tests?: Maybe<Scalars['Json']>;
+  time?: Maybe<Scalars['String']>;
+  translations?: Maybe<Scalars['Json']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  videoUrl?: Maybe<Scalars['String']>;
+}
+
+export interface CodeChallengeCreateManyUserInputEnvelope {
+  data?: Maybe<Array<CodeChallengeCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CodeChallengeCreateNestedManyWithoutCodeChallengeBlockInput {
+  connect?: Maybe<Array<CodeChallengeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CodeChallengeCreateOrConnectWithoutCodeChallengeBlockInput>>;
+  create?: Maybe<Array<CodeChallengeCreateWithoutCodeChallengeBlockInput>>;
+  createMany?: Maybe<CodeChallengeCreateManyCodeChallengeBlockInputEnvelope>;
+}
+
+export interface CodeChallengeCreateNestedManyWithoutResourceInput {
+  connect?: Maybe<Array<CodeChallengeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CodeChallengeCreateOrConnectWithoutResourceInput>>;
+  create?: Maybe<Array<CodeChallengeCreateWithoutResourceInput>>;
+  createMany?: Maybe<CodeChallengeCreateManyResourceInputEnvelope>;
+}
+
+export interface CodeChallengeCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<CodeChallengeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CodeChallengeCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<CodeChallengeCreateWithoutUserInput>>;
+  createMany?: Maybe<CodeChallengeCreateManyUserInputEnvelope>;
+}
+
+export interface CodeChallengeCreateNestedOneWithoutCodeChallengeCompletionsInput {
+  connect?: Maybe<CodeChallengeWhereUniqueInput>;
+  connectOrCreate?: Maybe<CodeChallengeCreateOrConnectWithoutCodeChallengeCompletionsInput>;
+  create?: Maybe<CodeChallengeCreateWithoutCodeChallengeCompletionsInput>;
+}
+
 export interface CodeChallengeCreateOneWithoutCompletionsInput {
   connect?: Maybe<CodeChallengeWhereUniqueInput>;
 }
 
 export interface CodeChallengeCreateOneWithoutTopicInput {
   connect?: Maybe<CodeChallengeWhereUniqueInput>;
+}
+
+export interface CodeChallengeCreateOrConnectWithoutCodeChallengeBlockInput {
+  create: CodeChallengeCreateWithoutCodeChallengeBlockInput;
+  where: CodeChallengeWhereUniqueInput;
+}
+
+export interface CodeChallengeCreateOrConnectWithoutCodeChallengeCompletionsInput {
+  create: CodeChallengeCreateWithoutCodeChallengeCompletionsInput;
+  where: CodeChallengeWhereUniqueInput;
+}
+
+export interface CodeChallengeCreateOrConnectWithoutResourceInput {
+  create: CodeChallengeCreateWithoutResourceInput;
+  where: CodeChallengeWhereUniqueInput;
+}
+
+export interface CodeChallengeCreateOrConnectWithoutUserInput {
+  create: CodeChallengeCreateWithoutUserInput;
+  where: CodeChallengeWhereUniqueInput;
+}
+
+export interface CodeChallengeCreateWithoutCodeChallengeBlockInput {
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput>;
+  Resource?: Maybe<ResourceCreateNestedOneWithoutCodeChallengesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutCodeChallengesInput>;
+  challengeOrder?: Maybe<Scalars['Int']>;
+  challengeType?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dashedName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  files?: Maybe<Scalars['Json']>;
+  forumTopicId?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  isBeta?: Maybe<Scalars['Boolean']>;
+  isPrivate?: Maybe<Scalars['Boolean']>;
+  isRequired?: Maybe<Scalars['Boolean']>;
+  localeTitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  required?: Maybe<Scalars['Json']>;
+  solutions?: Maybe<Scalars['Json']>;
+  superOrder?: Maybe<Scalars['Int']>;
+  template?: Maybe<Scalars['String']>;
+  tests?: Maybe<Scalars['Json']>;
+  time?: Maybe<Scalars['String']>;
+  translations?: Maybe<Scalars['Json']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  videoUrl?: Maybe<Scalars['String']>;
+}
+
+export interface CodeChallengeCreateWithoutCodeChallengeCompletionsInput {
+  CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedOneWithoutCodeChallengeInput>;
+  Resource?: Maybe<ResourceCreateNestedOneWithoutCodeChallengesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutCodeChallengesInput>;
+  challengeOrder?: Maybe<Scalars['Int']>;
+  challengeType?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dashedName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  files?: Maybe<Scalars['Json']>;
+  forumTopicId?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  isBeta?: Maybe<Scalars['Boolean']>;
+  isPrivate?: Maybe<Scalars['Boolean']>;
+  isRequired?: Maybe<Scalars['Boolean']>;
+  localeTitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  required?: Maybe<Scalars['Json']>;
+  solutions?: Maybe<Scalars['Json']>;
+  superOrder?: Maybe<Scalars['Int']>;
+  template?: Maybe<Scalars['String']>;
+  tests?: Maybe<Scalars['Json']>;
+  time?: Maybe<Scalars['String']>;
+  translations?: Maybe<Scalars['Json']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  videoUrl?: Maybe<Scalars['String']>;
+}
+
+export interface CodeChallengeCreateWithoutResourceInput {
+  CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedOneWithoutCodeChallengeInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput>;
+  User?: Maybe<UserCreateNestedOneWithoutCodeChallengesInput>;
+  challengeOrder?: Maybe<Scalars['Int']>;
+  challengeType?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dashedName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  files?: Maybe<Scalars['Json']>;
+  forumTopicId?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  isBeta?: Maybe<Scalars['Boolean']>;
+  isPrivate?: Maybe<Scalars['Boolean']>;
+  isRequired?: Maybe<Scalars['Boolean']>;
+  localeTitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  required?: Maybe<Scalars['Json']>;
+  solutions?: Maybe<Scalars['Json']>;
+  superOrder?: Maybe<Scalars['Int']>;
+  template?: Maybe<Scalars['String']>;
+  tests?: Maybe<Scalars['Json']>;
+  time?: Maybe<Scalars['String']>;
+  translations?: Maybe<Scalars['Json']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  videoUrl?: Maybe<Scalars['String']>;
+}
+
+export interface CodeChallengeCreateWithoutUserInput {
+  CodeChallengeBlock?: Maybe<CodeChallengeBlockCreateNestedOneWithoutCodeChallengeInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutCodeChallengeCodeChallengeToCodeChallengeCompletionInput>;
+  Resource?: Maybe<ResourceCreateNestedOneWithoutCodeChallengesInput>;
+  challengeOrder?: Maybe<Scalars['Int']>;
+  challengeType?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dashedName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  files?: Maybe<Scalars['Json']>;
+  forumTopicId?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['String']>;
+  instructions?: Maybe<Scalars['String']>;
+  isBeta?: Maybe<Scalars['Boolean']>;
+  isPrivate?: Maybe<Scalars['Boolean']>;
+  isRequired?: Maybe<Scalars['Boolean']>;
+  localeTitle?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  required?: Maybe<Scalars['Json']>;
+  solutions?: Maybe<Scalars['Json']>;
+  superOrder?: Maybe<Scalars['Int']>;
+  template?: Maybe<Scalars['String']>;
+  tests?: Maybe<Scalars['Json']>;
+  time?: Maybe<Scalars['String']>;
+  translations?: Maybe<Scalars['Json']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  videoUrl?: Maybe<Scalars['String']>;
 }
 
 export interface CodeChallengeListRelationFilter {
@@ -595,6 +1881,76 @@ export interface CommentCreateInput {
   topicID?: Maybe<Scalars['ID']>;
 }
 
+export interface CommentCreateManyTechnologyLessonCommentToTechnologyLessonInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  components?: Maybe<Scalars['String']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CommentCreateManyTechnologyLessonCommentToTechnologyLessonInputEnvelope {
+  data?: Maybe<Array<CommentCreateManyTechnologyLessonCommentToTechnologyLessonInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CommentCreateManyUserInput {
+  TechnologyLesson?: Maybe<Scalars['String']>;
+  components?: Maybe<Scalars['String']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CommentCreateManyUserInputEnvelope {
+  data?: Maybe<Array<CommentCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface CommentCreateNestedManyWithoutTechnologyLessonCommentToTechnologyLessonInput {
+  connect?: Maybe<Array<CommentWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CommentCreateOrConnectWithoutTechnologyLessonCommentToTechnologyLessonInput>>;
+  create?: Maybe<Array<CommentCreateWithoutTechnologyLessonCommentToTechnologyLessonInput>>;
+  createMany?: Maybe<CommentCreateManyTechnologyLessonCommentToTechnologyLessonInputEnvelope>;
+}
+
+export interface CommentCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<CommentWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<CommentCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<CommentCreateWithoutUserInput>>;
+  createMany?: Maybe<CommentCreateManyUserInputEnvelope>;
+}
+
+export interface CommentCreateOrConnectWithoutTechnologyLessonCommentToTechnologyLessonInput {
+  create: CommentCreateWithoutTechnologyLessonCommentToTechnologyLessonInput;
+  where: CommentWhereUniqueInput;
+}
+
+export interface CommentCreateOrConnectWithoutUserInput {
+  create: CommentCreateWithoutUserInput;
+  where: CommentWhereUniqueInput;
+}
+
+export interface CommentCreateWithoutTechnologyLessonCommentToTechnologyLessonInput {
+  User?: Maybe<UserCreateNestedOneWithoutCommentsInput>;
+  components?: Maybe<Scalars['String']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface CommentCreateWithoutUserInput {
+  TechnologyLesson_CommentToTechnologyLesson?: Maybe<TechnologyLessonCreateNestedOneWithoutCommentsInput>;
+  components?: Maybe<Scalars['String']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface CommentListRelationFilter {
   every?: Maybe<CommentWhereInput>;
   none?: Maybe<CommentWhereInput>;
@@ -619,6 +1975,10 @@ export interface CommentWhereInput {
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface CommentWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface CurrentUserUpdateInput {
@@ -671,6 +2031,95 @@ export interface DecimalNullableFilter {
   lte?: Maybe<Scalars['Decimal']>;
   not?: Maybe<NestedDecimalNullableFilter>;
   notIn?: Maybe<Array<Scalars['Decimal']>>;
+}
+
+export interface Donate {
+  __typename?: 'Donate';
+  Donator?: Maybe<User>;
+  date: Scalars['DateTime'];
+  donatorId?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
+  sum: Scalars['Float'];
+  title?: Maybe<Scalars['String']>;
+}
+
+export interface DonateCreateInput {
+  Donator?: Maybe<UserCreateNestedOneWithoutDonatesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date: Scalars['DateTime'];
+  id?: Maybe<Scalars['String']>;
+  sum: Scalars['Float'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface DonateCreateManyDonatorInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date: Scalars['DateTime'];
+  id?: Maybe<Scalars['String']>;
+  sum: Scalars['Float'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface DonateCreateManyDonatorInputEnvelope {
+  data?: Maybe<Array<DonateCreateManyDonatorInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface DonateCreateNestedManyWithoutDonatorInput {
+  connect?: Maybe<Array<DonateWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<DonateCreateOrConnectWithoutDonatorInput>>;
+  create?: Maybe<Array<DonateCreateWithoutDonatorInput>>;
+  createMany?: Maybe<DonateCreateManyDonatorInputEnvelope>;
+}
+
+export interface DonateCreateOrConnectWithoutDonatorInput {
+  create: DonateCreateWithoutDonatorInput;
+  where: DonateWhereUniqueInput;
+}
+
+export interface DonateCreateWithoutDonatorInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date: Scalars['DateTime'];
+  id?: Maybe<Scalars['String']>;
+  sum: Scalars['Float'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface DonateListRelationFilter {
+  every?: Maybe<DonateWhereInput>;
+  none?: Maybe<DonateWhereInput>;
+  some?: Maybe<DonateWhereInput>;
+}
+
+export interface DonateOrderByInput {
+  createdAt?: Maybe<SortOrder>;
+  date?: Maybe<SortOrder>;
+  donatorId?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  sum?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
+}
+
+export interface DonateWhereInput {
+  AND?: Maybe<Array<DonateWhereInput>>;
+  Donator?: Maybe<UserWhereInput>;
+  NOT?: Maybe<Array<DonateWhereInput>>;
+  OR?: Maybe<Array<DonateWhereInput>>;
+  createdAt?: Maybe<DateTimeFilter>;
+  date?: Maybe<DateTimeFilter>;
+  donatorId?: Maybe<StringNullableFilter>;
+  id?: Maybe<StringFilter>;
+  sum?: Maybe<FloatFilter>;
+  title?: Maybe<StringNullableFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface DonateWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 
@@ -876,6 +2325,357 @@ export type EthAccountBalanceArgs = {
   convert?: Maybe<EthAmountConvert>;
 };
 
+export interface EthAccountCreateManyEthContractSourceInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Project?: Maybe<Scalars['String']>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateManyEthContractSourceInputEnvelope {
+  data?: Maybe<Array<EthAccountCreateManyEthContractSourceInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthAccountCreateManyProjectEthAccountToProjectInput {
+  ContractSource?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateManyProjectEthAccountToProjectInputEnvelope {
+  data?: Maybe<Array<EthAccountCreateManyProjectEthAccountToProjectInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthAccountCreateManyUserEthAccountCreatedByToUserInput {
+  ContractSource?: Maybe<Scalars['String']>;
+  Project?: Maybe<Scalars['String']>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateManyUserEthAccountCreatedByToUserInputEnvelope {
+  data?: Maybe<Array<EthAccountCreateManyUserEthAccountCreatedByToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthAccountCreateNestedManyWithoutEthContractSourceInput {
+  connect?: Maybe<Array<EthAccountWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthAccountCreateOrConnectWithoutEthContractSourceInput>>;
+  create?: Maybe<Array<EthAccountCreateWithoutEthContractSourceInput>>;
+  createMany?: Maybe<EthAccountCreateManyEthContractSourceInputEnvelope>;
+}
+
+export interface EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput {
+  connect?: Maybe<Array<EthAccountWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthAccountCreateOrConnectWithoutProjectEthAccountToProjectInput>>;
+  create?: Maybe<Array<EthAccountCreateWithoutProjectEthAccountToProjectInput>>;
+  createMany?: Maybe<EthAccountCreateManyProjectEthAccountToProjectInputEnvelope>;
+}
+
+export interface EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput {
+  connect?: Maybe<Array<EthAccountWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthAccountCreateOrConnectWithoutUserEthAccountCreatedByToUserInput>>;
+  create?: Maybe<Array<EthAccountCreateWithoutUserEthAccountCreatedByToUserInput>>;
+  createMany?: Maybe<EthAccountCreateManyUserEthAccountCreatedByToUserInputEnvelope>;
+}
+
+export interface EthAccountCreateNestedOneWithoutEthBlockInput {
+  connect?: Maybe<EthAccountWhereUniqueInput>;
+  connectOrCreate?: Maybe<EthAccountCreateOrConnectWithoutEthBlockInput>;
+  create?: Maybe<EthAccountCreateWithoutEthBlockInput>;
+}
+
+export interface EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionAccountInput {
+  connect?: Maybe<EthAccountWhereUniqueInput>;
+  connectOrCreate?: Maybe<EthAccountCreateOrConnectWithoutEthTransactionEthAccountToEthTransactionAccountInput>;
+  create?: Maybe<EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionAccountInput>;
+}
+
+export interface EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionReceiverInput {
+  connect?: Maybe<EthAccountWhereUniqueInput>;
+  connectOrCreate?: Maybe<EthAccountCreateOrConnectWithoutEthTransactionEthAccountToEthTransactionReceiverInput>;
+  create?: Maybe<EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionReceiverInput>;
+}
+
+export interface EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionSenderInput {
+  connect?: Maybe<EthAccountWhereUniqueInput>;
+  connectOrCreate?: Maybe<EthAccountCreateOrConnectWithoutEthTransactionEthAccountToEthTransactionSenderInput>;
+  create?: Maybe<EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionSenderInput>;
+}
+
+export interface EthAccountCreateNestedOneWithoutResourceInput {
+  connect?: Maybe<EthAccountWhereUniqueInput>;
+  connectOrCreate?: Maybe<EthAccountCreateOrConnectWithoutResourceInput>;
+  create?: Maybe<EthAccountCreateWithoutResourceInput>;
+}
+
+export interface EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput {
+  connect?: Maybe<EthAccountWhereUniqueInput>;
+  connectOrCreate?: Maybe<EthAccountCreateOrConnectWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  create?: Maybe<EthAccountCreateWithoutUserEthAccountToUserEthAccountAuthedInput>;
+}
+
+export interface EthAccountCreateOrConnectWithoutEthBlockInput {
+  create: EthAccountCreateWithoutEthBlockInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateOrConnectWithoutEthContractSourceInput {
+  create: EthAccountCreateWithoutEthContractSourceInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateOrConnectWithoutEthTransactionEthAccountToEthTransactionAccountInput {
+  create: EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionAccountInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateOrConnectWithoutEthTransactionEthAccountToEthTransactionReceiverInput {
+  create: EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionReceiverInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateOrConnectWithoutEthTransactionEthAccountToEthTransactionSenderInput {
+  create: EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionSenderInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateOrConnectWithoutProjectEthAccountToProjectInput {
+  create: EthAccountCreateWithoutProjectEthAccountToProjectInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateOrConnectWithoutResourceInput {
+  create: EthAccountCreateWithoutResourceInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateOrConnectWithoutUserEthAccountToUserEthAccountAuthedInput {
+  create: EthAccountCreateWithoutUserEthAccountToUserEthAccountAuthedInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateOrConnectWithoutUserEthAccountCreatedByToUserInput {
+  create: EthAccountCreateWithoutUserEthAccountCreatedByToUserInput;
+  where: EthAccountWhereUniqueInput;
+}
+
+export interface EthAccountCreateWithoutEthBlockInput {
+  EthContractSource?: Maybe<EthContractSourceCreateNestedOneWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput>;
+  Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
+  Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateWithoutEthContractSourceInput {
+  EthBlock?: Maybe<EthBlockCreateNestedManyWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput>;
+  Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
+  Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionAccountInput {
+  EthBlock?: Maybe<EthBlockCreateNestedManyWithoutEthAccountInput>;
+  EthContractSource?: Maybe<EthContractSourceCreateNestedOneWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput>;
+  Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
+  Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionReceiverInput {
+  EthBlock?: Maybe<EthBlockCreateNestedManyWithoutEthAccountInput>;
+  EthContractSource?: Maybe<EthContractSourceCreateNestedOneWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput>;
+  Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
+  Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateWithoutEthTransactionEthAccountToEthTransactionSenderInput {
+  EthBlock?: Maybe<EthBlockCreateNestedManyWithoutEthAccountInput>;
+  EthContractSource?: Maybe<EthContractSourceCreateNestedOneWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput>;
+  Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
+  Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateWithoutProjectEthAccountToProjectInput {
+  EthBlock?: Maybe<EthBlockCreateNestedManyWithoutEthAccountInput>;
+  EthContractSource?: Maybe<EthContractSourceCreateNestedOneWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput>;
+  Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateWithoutResourceInput {
+  EthBlock?: Maybe<EthBlockCreateNestedManyWithoutEthAccountInput>;
+  EthContractSource?: Maybe<EthContractSourceCreateNestedOneWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput>;
+  Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateWithoutUserEthAccountToUserEthAccountAuthedInput {
+  EthBlock?: Maybe<EthBlockCreateNestedManyWithoutEthAccountInput>;
+  EthContractSource?: Maybe<EthContractSourceCreateNestedOneWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput>;
+  Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
+  Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthAccountCreateWithoutUserEthAccountCreatedByToUserInput {
+  EthBlock?: Maybe<EthBlockCreateNestedManyWithoutEthAccountInput>;
+  EthContractSource?: Maybe<EthContractSourceCreateNestedOneWithoutEthAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput>;
+  Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
+  Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
+  abi?: Maybe<Scalars['Json']>;
+  address: Scalars['String'];
+  bytecode?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  type?: Maybe<EthAccountType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface EthAccountListRelationFilter {
   every?: Maybe<EthAccountWhereInput>;
   none?: Maybe<EthAccountWhereInput>;
@@ -915,6 +2715,10 @@ export interface EthAccountWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface EthAccountWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export enum EthAmountConvert {
   GWEI = 'Gwei',
   KWEI = 'Kwei',
@@ -926,6 +2730,183 @@ export enum EthAmountConvert {
   NANO = 'nano',
   TETHER = 'tether',
   WEI = 'wei'
+}
+
+export interface EthBlockCreateManyEthAccountInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  difficulty?: Maybe<Scalars['Decimal']>;
+  extraData?: Maybe<Scalars['String']>;
+  gasLimit?: Maybe<Scalars['Decimal']>;
+  gasUsed?: Maybe<Scalars['Decimal']>;
+  hash: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  mixHash?: Maybe<Scalars['String']>;
+  nonce?: Maybe<Scalars['String']>;
+  number: Scalars['Int'];
+  parentHash?: Maybe<Scalars['String']>;
+  receiptsRoot?: Maybe<Scalars['String']>;
+  sha3Uncles?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Int']>;
+  stateRoot?: Maybe<Scalars['String']>;
+  totalDifficulty?: Maybe<Scalars['Decimal']>;
+  transactionsRoot?: Maybe<Scalars['String']>;
+  transactions_count?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthBlockCreateManyEthAccountInputEnvelope {
+  data?: Maybe<Array<EthBlockCreateManyEthAccountInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthBlockCreateNestedManyWithoutEthAccountInput {
+  connect?: Maybe<Array<EthBlockWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthBlockCreateOrConnectWithoutEthAccountInput>>;
+  create?: Maybe<Array<EthBlockCreateWithoutEthAccountInput>>;
+  createMany?: Maybe<EthBlockCreateManyEthAccountInputEnvelope>;
+}
+
+export interface EthBlockCreateNestedManyWithoutEthBlockAInput {
+  connect?: Maybe<Array<EthBlockWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthBlockCreateOrConnectWithoutEthBlockAInput>>;
+  create?: Maybe<Array<EthBlockCreateWithoutEthBlockAInput>>;
+}
+
+export interface EthBlockCreateNestedManyWithoutEthBlockBInput {
+  connect?: Maybe<Array<EthBlockWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthBlockCreateOrConnectWithoutEthBlockBInput>>;
+  create?: Maybe<Array<EthBlockCreateWithoutEthBlockBInput>>;
+}
+
+export interface EthBlockCreateNestedOneWithoutEthTransactionInput {
+  connect?: Maybe<EthBlockWhereUniqueInput>;
+  connectOrCreate?: Maybe<EthBlockCreateOrConnectWithoutEthTransactionInput>;
+  create?: Maybe<EthBlockCreateWithoutEthTransactionInput>;
+}
+
+export interface EthBlockCreateOrConnectWithoutEthAccountInput {
+  create: EthBlockCreateWithoutEthAccountInput;
+  where: EthBlockWhereUniqueInput;
+}
+
+export interface EthBlockCreateOrConnectWithoutEthBlockAInput {
+  create: EthBlockCreateWithoutEthBlockAInput;
+  where: EthBlockWhereUniqueInput;
+}
+
+export interface EthBlockCreateOrConnectWithoutEthBlockBInput {
+  create: EthBlockCreateWithoutEthBlockBInput;
+  where: EthBlockWhereUniqueInput;
+}
+
+export interface EthBlockCreateOrConnectWithoutEthTransactionInput {
+  create: EthBlockCreateWithoutEthTransactionInput;
+  where: EthBlockWhereUniqueInput;
+}
+
+export interface EthBlockCreateWithoutEthAccountInput {
+  EthBlock_A?: Maybe<EthBlockCreateNestedManyWithoutEthBlockBInput>;
+  EthBlock_B?: Maybe<EthBlockCreateNestedManyWithoutEthBlockAInput>;
+  EthTransaction?: Maybe<EthTransactionCreateNestedManyWithoutEthBlockInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  difficulty?: Maybe<Scalars['Decimal']>;
+  extraData?: Maybe<Scalars['String']>;
+  gasLimit?: Maybe<Scalars['Decimal']>;
+  gasUsed?: Maybe<Scalars['Decimal']>;
+  hash: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  mixHash?: Maybe<Scalars['String']>;
+  nonce?: Maybe<Scalars['String']>;
+  number: Scalars['Int'];
+  parentHash?: Maybe<Scalars['String']>;
+  receiptsRoot?: Maybe<Scalars['String']>;
+  sha3Uncles?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Int']>;
+  stateRoot?: Maybe<Scalars['String']>;
+  totalDifficulty?: Maybe<Scalars['Decimal']>;
+  transactionsRoot?: Maybe<Scalars['String']>;
+  transactions_count?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthBlockCreateWithoutEthBlockAInput {
+  EthAccount?: Maybe<EthAccountCreateNestedOneWithoutEthBlockInput>;
+  EthBlock_B?: Maybe<EthBlockCreateNestedManyWithoutEthBlockAInput>;
+  EthTransaction?: Maybe<EthTransactionCreateNestedManyWithoutEthBlockInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  difficulty?: Maybe<Scalars['Decimal']>;
+  extraData?: Maybe<Scalars['String']>;
+  gasLimit?: Maybe<Scalars['Decimal']>;
+  gasUsed?: Maybe<Scalars['Decimal']>;
+  hash: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  mixHash?: Maybe<Scalars['String']>;
+  nonce?: Maybe<Scalars['String']>;
+  number: Scalars['Int'];
+  parentHash?: Maybe<Scalars['String']>;
+  receiptsRoot?: Maybe<Scalars['String']>;
+  sha3Uncles?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Int']>;
+  stateRoot?: Maybe<Scalars['String']>;
+  totalDifficulty?: Maybe<Scalars['Decimal']>;
+  transactionsRoot?: Maybe<Scalars['String']>;
+  transactions_count?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthBlockCreateWithoutEthBlockBInput {
+  EthAccount?: Maybe<EthAccountCreateNestedOneWithoutEthBlockInput>;
+  EthBlock_A?: Maybe<EthBlockCreateNestedManyWithoutEthBlockBInput>;
+  EthTransaction?: Maybe<EthTransactionCreateNestedManyWithoutEthBlockInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  difficulty?: Maybe<Scalars['Decimal']>;
+  extraData?: Maybe<Scalars['String']>;
+  gasLimit?: Maybe<Scalars['Decimal']>;
+  gasUsed?: Maybe<Scalars['Decimal']>;
+  hash: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  mixHash?: Maybe<Scalars['String']>;
+  nonce?: Maybe<Scalars['String']>;
+  number: Scalars['Int'];
+  parentHash?: Maybe<Scalars['String']>;
+  receiptsRoot?: Maybe<Scalars['String']>;
+  sha3Uncles?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Int']>;
+  stateRoot?: Maybe<Scalars['String']>;
+  totalDifficulty?: Maybe<Scalars['Decimal']>;
+  transactionsRoot?: Maybe<Scalars['String']>;
+  transactions_count?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthBlockCreateWithoutEthTransactionInput {
+  EthAccount?: Maybe<EthAccountCreateNestedOneWithoutEthBlockInput>;
+  EthBlock_A?: Maybe<EthBlockCreateNestedManyWithoutEthBlockBInput>;
+  EthBlock_B?: Maybe<EthBlockCreateNestedManyWithoutEthBlockAInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  difficulty?: Maybe<Scalars['Decimal']>;
+  extraData?: Maybe<Scalars['String']>;
+  gasLimit?: Maybe<Scalars['Decimal']>;
+  gasUsed?: Maybe<Scalars['Decimal']>;
+  hash: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  mixHash?: Maybe<Scalars['String']>;
+  nonce?: Maybe<Scalars['String']>;
+  number: Scalars['Int'];
+  parentHash?: Maybe<Scalars['String']>;
+  receiptsRoot?: Maybe<Scalars['String']>;
+  sha3Uncles?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Int']>;
+  stateRoot?: Maybe<Scalars['String']>;
+  totalDifficulty?: Maybe<Scalars['Decimal']>;
+  transactionsRoot?: Maybe<Scalars['String']>;
+  transactions_count?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface EthBlockListRelationFilter {
@@ -965,6 +2946,68 @@ export interface EthBlockWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface EthBlockWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['Int']>;
+}
+
+export interface EthContractSourceCreateManyUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  source?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthContractSourceCreateManyUserInputEnvelope {
+  data?: Maybe<Array<EthContractSourceCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthContractSourceCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<EthContractSourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthContractSourceCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<EthContractSourceCreateWithoutUserInput>>;
+  createMany?: Maybe<EthContractSourceCreateManyUserInputEnvelope>;
+}
+
+export interface EthContractSourceCreateNestedOneWithoutEthAccountInput {
+  connect?: Maybe<EthContractSourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<EthContractSourceCreateOrConnectWithoutEthAccountInput>;
+  create?: Maybe<EthContractSourceCreateWithoutEthAccountInput>;
+}
+
+export interface EthContractSourceCreateOrConnectWithoutEthAccountInput {
+  create: EthContractSourceCreateWithoutEthAccountInput;
+  where: EthContractSourceWhereUniqueInput;
+}
+
+export interface EthContractSourceCreateOrConnectWithoutUserInput {
+  create: EthContractSourceCreateWithoutUserInput;
+  where: EthContractSourceWhereUniqueInput;
+}
+
+export interface EthContractSourceCreateWithoutEthAccountInput {
+  User?: Maybe<UserCreateNestedOneWithoutEthContractSourcesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  source?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface EthContractSourceCreateWithoutUserInput {
+  EthAccount?: Maybe<EthAccountCreateNestedManyWithoutEthContractSourceInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  source?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface EthContractSourceListRelationFilter {
   every?: Maybe<EthContractSourceWhereInput>;
   none?: Maybe<EthContractSourceWhereInput>;
@@ -984,6 +3027,222 @@ export interface EthContractSourceWhereInput {
   name?: Maybe<StringFilter>;
   source?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface EthContractSourceWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface EthTransactionCreateManyEthAccountEthAccountToEthTransactionAccountInput {
+  Block?: Maybe<Scalars['String']>;
+  Receiver?: Maybe<Scalars['String']>;
+  Sender?: Maybe<Scalars['String']>;
+  address: Scalars['String'];
+  amount?: Maybe<Scalars['Decimal']>;
+  chainId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  input?: Maybe<Scalars['String']>;
+  r?: Maybe<Scalars['String']>;
+  s?: Maybe<Scalars['String']>;
+  type?: Maybe<EthTransactionType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  v?: Maybe<Scalars['String']>;
+}
+
+export interface EthTransactionCreateManyEthAccountEthAccountToEthTransactionAccountInputEnvelope {
+  data?: Maybe<Array<EthTransactionCreateManyEthAccountEthAccountToEthTransactionAccountInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthTransactionCreateManyEthAccountEthAccountToEthTransactionReceiverInput {
+  Account?: Maybe<Scalars['String']>;
+  Block?: Maybe<Scalars['String']>;
+  Sender?: Maybe<Scalars['String']>;
+  address: Scalars['String'];
+  amount?: Maybe<Scalars['Decimal']>;
+  chainId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  input?: Maybe<Scalars['String']>;
+  r?: Maybe<Scalars['String']>;
+  s?: Maybe<Scalars['String']>;
+  type?: Maybe<EthTransactionType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  v?: Maybe<Scalars['String']>;
+}
+
+export interface EthTransactionCreateManyEthAccountEthAccountToEthTransactionReceiverInputEnvelope {
+  data?: Maybe<Array<EthTransactionCreateManyEthAccountEthAccountToEthTransactionReceiverInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthTransactionCreateManyEthAccountEthAccountToEthTransactionSenderInput {
+  Account?: Maybe<Scalars['String']>;
+  Block?: Maybe<Scalars['String']>;
+  Receiver?: Maybe<Scalars['String']>;
+  address: Scalars['String'];
+  amount?: Maybe<Scalars['Decimal']>;
+  chainId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  input?: Maybe<Scalars['String']>;
+  r?: Maybe<Scalars['String']>;
+  s?: Maybe<Scalars['String']>;
+  type?: Maybe<EthTransactionType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  v?: Maybe<Scalars['String']>;
+}
+
+export interface EthTransactionCreateManyEthAccountEthAccountToEthTransactionSenderInputEnvelope {
+  data?: Maybe<Array<EthTransactionCreateManyEthAccountEthAccountToEthTransactionSenderInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthTransactionCreateManyEthBlockInput {
+  Account?: Maybe<Scalars['String']>;
+  Receiver?: Maybe<Scalars['String']>;
+  Sender?: Maybe<Scalars['String']>;
+  address: Scalars['String'];
+  amount?: Maybe<Scalars['Decimal']>;
+  chainId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  input?: Maybe<Scalars['String']>;
+  r?: Maybe<Scalars['String']>;
+  s?: Maybe<Scalars['String']>;
+  type?: Maybe<EthTransactionType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  v?: Maybe<Scalars['String']>;
+}
+
+export interface EthTransactionCreateManyEthBlockInputEnvelope {
+  data?: Maybe<Array<EthTransactionCreateManyEthBlockInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionAccountInput {
+  connect?: Maybe<Array<EthTransactionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthTransactionCreateOrConnectWithoutEthAccountEthAccountToEthTransactionAccountInput>>;
+  create?: Maybe<Array<EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionAccountInput>>;
+  createMany?: Maybe<EthTransactionCreateManyEthAccountEthAccountToEthTransactionAccountInputEnvelope>;
+}
+
+export interface EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionReceiverInput {
+  connect?: Maybe<Array<EthTransactionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthTransactionCreateOrConnectWithoutEthAccountEthAccountToEthTransactionReceiverInput>>;
+  create?: Maybe<Array<EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionReceiverInput>>;
+  createMany?: Maybe<EthTransactionCreateManyEthAccountEthAccountToEthTransactionReceiverInputEnvelope>;
+}
+
+export interface EthTransactionCreateNestedManyWithoutEthAccountEthAccountToEthTransactionSenderInput {
+  connect?: Maybe<Array<EthTransactionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthTransactionCreateOrConnectWithoutEthAccountEthAccountToEthTransactionSenderInput>>;
+  create?: Maybe<Array<EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionSenderInput>>;
+  createMany?: Maybe<EthTransactionCreateManyEthAccountEthAccountToEthTransactionSenderInputEnvelope>;
+}
+
+export interface EthTransactionCreateNestedManyWithoutEthBlockInput {
+  connect?: Maybe<Array<EthTransactionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<EthTransactionCreateOrConnectWithoutEthBlockInput>>;
+  create?: Maybe<Array<EthTransactionCreateWithoutEthBlockInput>>;
+  createMany?: Maybe<EthTransactionCreateManyEthBlockInputEnvelope>;
+}
+
+export interface EthTransactionCreateOrConnectWithoutEthAccountEthAccountToEthTransactionAccountInput {
+  create: EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionAccountInput;
+  where: EthTransactionWhereUniqueInput;
+}
+
+export interface EthTransactionCreateOrConnectWithoutEthAccountEthAccountToEthTransactionReceiverInput {
+  create: EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionReceiverInput;
+  where: EthTransactionWhereUniqueInput;
+}
+
+export interface EthTransactionCreateOrConnectWithoutEthAccountEthAccountToEthTransactionSenderInput {
+  create: EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionSenderInput;
+  where: EthTransactionWhereUniqueInput;
+}
+
+export interface EthTransactionCreateOrConnectWithoutEthBlockInput {
+  create: EthTransactionCreateWithoutEthBlockInput;
+  where: EthTransactionWhereUniqueInput;
+}
+
+export interface EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionAccountInput {
+  EthAccount_EthAccountToEthTransaction_Receiver?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionReceiverInput>;
+  EthAccount_EthAccountToEthTransaction_Sender?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionSenderInput>;
+  EthBlock?: Maybe<EthBlockCreateNestedOneWithoutEthTransactionInput>;
+  address: Scalars['String'];
+  amount?: Maybe<Scalars['Decimal']>;
+  chainId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  input?: Maybe<Scalars['String']>;
+  r?: Maybe<Scalars['String']>;
+  s?: Maybe<Scalars['String']>;
+  type?: Maybe<EthTransactionType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  v?: Maybe<Scalars['String']>;
+}
+
+export interface EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionReceiverInput {
+  EthAccount_EthAccountToEthTransaction_Account?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionAccountInput>;
+  EthAccount_EthAccountToEthTransaction_Sender?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionSenderInput>;
+  EthBlock?: Maybe<EthBlockCreateNestedOneWithoutEthTransactionInput>;
+  address: Scalars['String'];
+  amount?: Maybe<Scalars['Decimal']>;
+  chainId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  input?: Maybe<Scalars['String']>;
+  r?: Maybe<Scalars['String']>;
+  s?: Maybe<Scalars['String']>;
+  type?: Maybe<EthTransactionType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  v?: Maybe<Scalars['String']>;
+}
+
+export interface EthTransactionCreateWithoutEthAccountEthAccountToEthTransactionSenderInput {
+  EthAccount_EthAccountToEthTransaction_Account?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionAccountInput>;
+  EthAccount_EthAccountToEthTransaction_Receiver?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionReceiverInput>;
+  EthBlock?: Maybe<EthBlockCreateNestedOneWithoutEthTransactionInput>;
+  address: Scalars['String'];
+  amount?: Maybe<Scalars['Decimal']>;
+  chainId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  input?: Maybe<Scalars['String']>;
+  r?: Maybe<Scalars['String']>;
+  s?: Maybe<Scalars['String']>;
+  type?: Maybe<EthTransactionType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  v?: Maybe<Scalars['String']>;
+}
+
+export interface EthTransactionCreateWithoutEthBlockInput {
+  EthAccount_EthAccountToEthTransaction_Account?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionAccountInput>;
+  EthAccount_EthAccountToEthTransaction_Receiver?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionReceiverInput>;
+  EthAccount_EthAccountToEthTransaction_Sender?: Maybe<EthAccountCreateNestedOneWithoutEthTransactionEthAccountToEthTransactionSenderInput>;
+  address: Scalars['String'];
+  amount?: Maybe<Scalars['Decimal']>;
+  chainId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  input?: Maybe<Scalars['String']>;
+  r?: Maybe<Scalars['String']>;
+  s?: Maybe<Scalars['String']>;
+  type?: Maybe<EthTransactionType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  v?: Maybe<Scalars['String']>;
 }
 
 export interface EthTransactionListRelationFilter {
@@ -1026,6 +3285,10 @@ export interface EthTransactionWhereInput {
   v?: Maybe<StringNullableFilter>;
 }
 
+export interface EthTransactionWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 /** Файл */
 export interface File {
   __typename?: 'File';
@@ -1048,6 +3311,184 @@ export interface File {
   size?: Maybe<Scalars['Float']>;
   /** Когда обновлен */
   updatedAt: Scalars['DateTime'];
+}
+
+export interface FileCreateManyGalleryFileToGalleryInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  ImageResource?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  encoding: Scalars['String'];
+  filename?: Maybe<Scalars['String']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  mimetype: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  size?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface FileCreateManyGalleryFileToGalleryInputEnvelope {
+  data?: Maybe<Array<FileCreateManyGalleryFileToGalleryInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface FileCreateManyResourceInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Gallery?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  encoding: Scalars['String'];
+  filename?: Maybe<Scalars['String']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  mimetype: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  size?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface FileCreateManyResourceInputEnvelope {
+  data?: Maybe<Array<FileCreateManyResourceInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface FileCreateManyUserInput {
+  Gallery?: Maybe<Scalars['String']>;
+  ImageResource?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  encoding: Scalars['String'];
+  filename?: Maybe<Scalars['String']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  mimetype: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  size?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface FileCreateManyUserInputEnvelope {
+  data?: Maybe<Array<FileCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface FileCreateNestedManyWithoutGalleryFileToGalleryInput {
+  connect?: Maybe<Array<FileWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<FileCreateOrConnectWithoutGalleryFileToGalleryInput>>;
+  create?: Maybe<Array<FileCreateWithoutGalleryFileToGalleryInput>>;
+  createMany?: Maybe<FileCreateManyGalleryFileToGalleryInputEnvelope>;
+}
+
+export interface FileCreateNestedManyWithoutResourceInput {
+  connect?: Maybe<Array<FileWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<FileCreateOrConnectWithoutResourceInput>>;
+  create?: Maybe<Array<FileCreateWithoutResourceInput>>;
+  createMany?: Maybe<FileCreateManyResourceInputEnvelope>;
+}
+
+export interface FileCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<FileWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<FileCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<FileCreateWithoutUserInput>>;
+  createMany?: Maybe<FileCreateManyUserInputEnvelope>;
+}
+
+export interface FileCreateNestedOneWithoutProjectsInput {
+  connect?: Maybe<FileWhereUniqueInput>;
+  connectOrCreate?: Maybe<FileCreateOrConnectWithoutProjectsInput>;
+  create?: Maybe<FileCreateWithoutProjectsInput>;
+}
+
+export interface FileCreateOrConnectWithoutGalleryFileToGalleryInput {
+  create: FileCreateWithoutGalleryFileToGalleryInput;
+  where: FileWhereUniqueInput;
+}
+
+export interface FileCreateOrConnectWithoutProjectsInput {
+  create: FileCreateWithoutProjectsInput;
+  where: FileWhereUniqueInput;
+}
+
+export interface FileCreateOrConnectWithoutResourceInput {
+  create: FileCreateWithoutResourceInput;
+  where: FileWhereUniqueInput;
+}
+
+export interface FileCreateOrConnectWithoutUserInput {
+  create: FileCreateWithoutUserInput;
+  where: FileWhereUniqueInput;
+}
+
+export interface FileCreateWithoutGalleryFileToGalleryInput {
+  Projects?: Maybe<ProjectCreateNestedManyWithoutFileInput>;
+  Resource?: Maybe<ResourceCreateNestedOneWithoutFilesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutFilesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  encoding: Scalars['String'];
+  filename?: Maybe<Scalars['String']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  mimetype: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  size?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface FileCreateWithoutProjectsInput {
+  Gallery_FileToGallery?: Maybe<GalleryCreateNestedOneWithoutFilesInput>;
+  Resource?: Maybe<ResourceCreateNestedOneWithoutFilesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutFilesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  encoding: Scalars['String'];
+  filename?: Maybe<Scalars['String']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  mimetype: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  size?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface FileCreateWithoutResourceInput {
+  Gallery_FileToGallery?: Maybe<GalleryCreateNestedOneWithoutFilesInput>;
+  Projects?: Maybe<ProjectCreateNestedManyWithoutFileInput>;
+  User?: Maybe<UserCreateNestedOneWithoutFilesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  encoding: Scalars['String'];
+  filename?: Maybe<Scalars['String']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  mimetype: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  size?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface FileCreateWithoutUserInput {
+  Gallery_FileToGallery?: Maybe<GalleryCreateNestedOneWithoutFilesInput>;
+  Projects?: Maybe<ProjectCreateNestedManyWithoutFileInput>;
+  Resource?: Maybe<ResourceCreateNestedOneWithoutFilesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  encoding: Scalars['String'];
+  filename?: Maybe<Scalars['String']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  mimetype: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  size?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface FileListRelationFilter {
@@ -1101,6 +3542,105 @@ export interface FileWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
 }
 
+export interface FloatFilter {
+  equals?: Maybe<Scalars['Float']>;
+  gt?: Maybe<Scalars['Float']>;
+  gte?: Maybe<Scalars['Float']>;
+  in?: Maybe<Array<Scalars['Float']>>;
+  lt?: Maybe<Scalars['Float']>;
+  lte?: Maybe<Scalars['Float']>;
+  not?: Maybe<NestedFloatFilter>;
+  notIn?: Maybe<Array<Scalars['Float']>>;
+}
+
+export interface GalleryCreateManyResourceGalleryToResourceInput {
+  CreatedBy: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GalleryCreateManyResourceGalleryToResourceInputEnvelope {
+  data?: Maybe<Array<GalleryCreateManyResourceGalleryToResourceInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GalleryCreateManyUserInput {
+  Resource?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GalleryCreateManyUserInputEnvelope {
+  data?: Maybe<Array<GalleryCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GalleryCreateNestedManyWithoutResourceGalleryToResourceInput {
+  connect?: Maybe<Array<GalleryWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GalleryCreateOrConnectWithoutResourceGalleryToResourceInput>>;
+  create?: Maybe<Array<GalleryCreateWithoutResourceGalleryToResourceInput>>;
+  createMany?: Maybe<GalleryCreateManyResourceGalleryToResourceInputEnvelope>;
+}
+
+export interface GalleryCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<GalleryWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GalleryCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<GalleryCreateWithoutUserInput>>;
+  createMany?: Maybe<GalleryCreateManyUserInputEnvelope>;
+}
+
+export interface GalleryCreateNestedOneWithoutFilesInput {
+  connect?: Maybe<GalleryWhereUniqueInput>;
+  connectOrCreate?: Maybe<GalleryCreateOrConnectWithoutFilesInput>;
+  create?: Maybe<GalleryCreateWithoutFilesInput>;
+}
+
+export interface GalleryCreateOrConnectWithoutFilesInput {
+  create: GalleryCreateWithoutFilesInput;
+  where: GalleryWhereUniqueInput;
+}
+
+export interface GalleryCreateOrConnectWithoutResourceGalleryToResourceInput {
+  create: GalleryCreateWithoutResourceGalleryToResourceInput;
+  where: GalleryWhereUniqueInput;
+}
+
+export interface GalleryCreateOrConnectWithoutUserInput {
+  create: GalleryCreateWithoutUserInput;
+  where: GalleryWhereUniqueInput;
+}
+
+export interface GalleryCreateWithoutFilesInput {
+  Resource_GalleryToResource?: Maybe<ResourceCreateNestedOneWithoutGalleriesInput>;
+  User: UserCreateNestedOneWithoutGalleriesInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GalleryCreateWithoutResourceGalleryToResourceInput {
+  Files?: Maybe<FileCreateNestedManyWithoutGalleryFileToGalleryInput>;
+  User: UserCreateNestedOneWithoutGalleriesInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GalleryCreateWithoutUserInput {
+  Files?: Maybe<FileCreateNestedManyWithoutGalleryFileToGalleryInput>;
+  Resource_GalleryToResource?: Maybe<ResourceCreateNestedOneWithoutGalleriesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface GalleryListRelationFilter {
   every?: Maybe<GalleryWhereInput>;
   none?: Maybe<GalleryWhereInput>;
@@ -1122,10 +3662,421 @@ export interface GalleryWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface GalleryWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface GameCreateManyGameInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Tourney?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateManyGameInputEnvelope {
+  data?: Maybe<Array<GameCreateManyGameInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GameCreateManyTourneyGameToTourneyInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateManyTourneyGameToTourneyInputEnvelope {
+  data?: Maybe<Array<GameCreateManyTourneyGameToTourneyInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GameCreateManyUserGameToUserInput {
+  Parent?: Maybe<Scalars['String']>;
+  Tourney?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateManyUserGameToUserInputEnvelope {
+  data?: Maybe<Array<GameCreateManyUserGameToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GameCreateNestedManyWithoutGameInput {
+  connect?: Maybe<Array<GameWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameCreateOrConnectWithoutGameInput>>;
+  create?: Maybe<Array<GameCreateWithoutGameInput>>;
+  createMany?: Maybe<GameCreateManyGameInputEnvelope>;
+}
+
+export interface GameCreateNestedManyWithoutTeamInput {
+  connect?: Maybe<Array<GameWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameCreateOrConnectWithoutTeamInput>>;
+  create?: Maybe<Array<GameCreateWithoutTeamInput>>;
+}
+
+export interface GameCreateNestedManyWithoutTourneyGameToTourneyInput {
+  connect?: Maybe<Array<GameWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameCreateOrConnectWithoutTourneyGameToTourneyInput>>;
+  create?: Maybe<Array<GameCreateWithoutTourneyGameToTourneyInput>>;
+  createMany?: Maybe<GameCreateManyTourneyGameToTourneyInputEnvelope>;
+}
+
+export interface GameCreateNestedManyWithoutUserGameToUserInput {
+  connect?: Maybe<Array<GameWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameCreateOrConnectWithoutUserGameToUserInput>>;
+  create?: Maybe<Array<GameCreateWithoutUserGameToUserInput>>;
+  createMany?: Maybe<GameCreateManyUserGameToUserInputEnvelope>;
+}
+
+export interface GameCreateNestedManyWithoutUserGameUsersInput {
+  connect?: Maybe<Array<GameWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameCreateOrConnectWithoutUserGameUsersInput>>;
+  create?: Maybe<Array<GameCreateWithoutUserGameUsersInput>>;
+}
+
+export interface GameCreateNestedOneWithoutGameResultInput {
+  connect?: Maybe<GameWhereUniqueInput>;
+  connectOrCreate?: Maybe<GameCreateOrConnectWithoutGameResultInput>;
+  create?: Maybe<GameCreateWithoutGameResultInput>;
+}
+
+export interface GameCreateNestedOneWithoutOtherGameInput {
+  connect?: Maybe<GameWhereUniqueInput>;
+  connectOrCreate?: Maybe<GameCreateOrConnectWithoutOtherGameInput>;
+  create?: Maybe<GameCreateWithoutOtherGameInput>;
+}
+
+export interface GameCreateOrConnectWithoutGameInput {
+  create: GameCreateWithoutGameInput;
+  where: GameWhereUniqueInput;
+}
+
+export interface GameCreateOrConnectWithoutGameResultInput {
+  create: GameCreateWithoutGameResultInput;
+  where: GameWhereUniqueInput;
+}
+
+export interface GameCreateOrConnectWithoutOtherGameInput {
+  create: GameCreateWithoutOtherGameInput;
+  where: GameWhereUniqueInput;
+}
+
+export interface GameCreateOrConnectWithoutTeamInput {
+  create: GameCreateWithoutTeamInput;
+  where: GameWhereUniqueInput;
+}
+
+export interface GameCreateOrConnectWithoutTourneyGameToTourneyInput {
+  create: GameCreateWithoutTourneyGameToTourneyInput;
+  where: GameWhereUniqueInput;
+}
+
+export interface GameCreateOrConnectWithoutUserGameToUserInput {
+  create: GameCreateWithoutUserGameToUserInput;
+  where: GameWhereUniqueInput;
+}
+
+export interface GameCreateOrConnectWithoutUserGameUsersInput {
+  create: GameCreateWithoutUserGameUsersInput;
+  where: GameWhereUniqueInput;
+}
+
+export interface GameCreateWithoutGameInput {
+  GameResult?: Maybe<GameResultCreateNestedManyWithoutGameGameToGameResultInput>;
+  Team?: Maybe<TeamCreateNestedManyWithoutGamesInput>;
+  Tourney_GameToTourney?: Maybe<TourneyCreateNestedOneWithoutGamesInput>;
+  User_GameToUser?: Maybe<UserCreateNestedOneWithoutGamesGameToUserInput>;
+  User_GameUsers?: Maybe<UserCreateNestedManyWithoutGamesGameUsersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Game?: Maybe<GameCreateNestedManyWithoutGameInput>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateWithoutGameResultInput {
+  Game?: Maybe<GameCreateNestedOneWithoutOtherGameInput>;
+  Team?: Maybe<TeamCreateNestedManyWithoutGamesInput>;
+  Tourney_GameToTourney?: Maybe<TourneyCreateNestedOneWithoutGamesInput>;
+  User_GameToUser?: Maybe<UserCreateNestedOneWithoutGamesGameToUserInput>;
+  User_GameUsers?: Maybe<UserCreateNestedManyWithoutGamesGameUsersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Game?: Maybe<GameCreateNestedManyWithoutGameInput>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateWithoutOtherGameInput {
+  Game?: Maybe<GameCreateNestedOneWithoutOtherGameInput>;
+  GameResult?: Maybe<GameResultCreateNestedManyWithoutGameGameToGameResultInput>;
+  Team?: Maybe<TeamCreateNestedManyWithoutGamesInput>;
+  Tourney_GameToTourney?: Maybe<TourneyCreateNestedOneWithoutGamesInput>;
+  User_GameToUser?: Maybe<UserCreateNestedOneWithoutGamesGameToUserInput>;
+  User_GameUsers?: Maybe<UserCreateNestedManyWithoutGamesGameUsersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateWithoutTeamInput {
+  Game?: Maybe<GameCreateNestedOneWithoutOtherGameInput>;
+  GameResult?: Maybe<GameResultCreateNestedManyWithoutGameGameToGameResultInput>;
+  Tourney_GameToTourney?: Maybe<TourneyCreateNestedOneWithoutGamesInput>;
+  User_GameToUser?: Maybe<UserCreateNestedOneWithoutGamesGameToUserInput>;
+  User_GameUsers?: Maybe<UserCreateNestedManyWithoutGamesGameUsersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Game?: Maybe<GameCreateNestedManyWithoutGameInput>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateWithoutTourneyGameToTourneyInput {
+  Game?: Maybe<GameCreateNestedOneWithoutOtherGameInput>;
+  GameResult?: Maybe<GameResultCreateNestedManyWithoutGameGameToGameResultInput>;
+  Team?: Maybe<TeamCreateNestedManyWithoutGamesInput>;
+  User_GameToUser?: Maybe<UserCreateNestedOneWithoutGamesGameToUserInput>;
+  User_GameUsers?: Maybe<UserCreateNestedManyWithoutGamesGameUsersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Game?: Maybe<GameCreateNestedManyWithoutGameInput>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateWithoutUserGameToUserInput {
+  Game?: Maybe<GameCreateNestedOneWithoutOtherGameInput>;
+  GameResult?: Maybe<GameResultCreateNestedManyWithoutGameGameToGameResultInput>;
+  Team?: Maybe<TeamCreateNestedManyWithoutGamesInput>;
+  Tourney_GameToTourney?: Maybe<TourneyCreateNestedOneWithoutGamesInput>;
+  User_GameUsers?: Maybe<UserCreateNestedManyWithoutGamesGameUsersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Game?: Maybe<GameCreateNestedManyWithoutGameInput>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface GameCreateWithoutUserGameUsersInput {
+  Game?: Maybe<GameCreateNestedOneWithoutOtherGameInput>;
+  GameResult?: Maybe<GameResultCreateNestedManyWithoutGameGameToGameResultInput>;
+  Team?: Maybe<TeamCreateNestedManyWithoutGamesInput>;
+  Tourney_GameToTourney?: Maybe<TourneyCreateNestedOneWithoutGamesInput>;
+  User_GameToUser?: Maybe<UserCreateNestedOneWithoutGamesGameToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  end_date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Game?: Maybe<GameCreateNestedManyWithoutGameInput>;
+  sequence?: Maybe<Scalars['Int']>;
+  start_date?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface GameListRelationFilter {
   every?: Maybe<GameWhereInput>;
   none?: Maybe<GameWhereInput>;
   some?: Maybe<GameWhereInput>;
+}
+
+export interface GameResultCreateManyGameGameToGameResultInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Decimal']>;
+}
+
+export interface GameResultCreateManyGameGameToGameResultInputEnvelope {
+  data?: Maybe<Array<GameResultCreateManyGameGameToGameResultInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GameResultCreateManyTeamGameResultToTeamInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Game?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Decimal']>;
+}
+
+export interface GameResultCreateManyTeamGameResultToTeamInputEnvelope {
+  data?: Maybe<Array<GameResultCreateManyTeamGameResultToTeamInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GameResultCreateManyUserGameResultCreatedByToUserInput {
+  Game?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Decimal']>;
+}
+
+export interface GameResultCreateManyUserGameResultCreatedByToUserInputEnvelope {
+  data?: Maybe<Array<GameResultCreateManyUserGameResultCreatedByToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GameResultCreateManyUserGameResultUserToUserInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Game?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Decimal']>;
+}
+
+export interface GameResultCreateManyUserGameResultUserToUserInputEnvelope {
+  data?: Maybe<Array<GameResultCreateManyUserGameResultUserToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface GameResultCreateNestedManyWithoutGameGameToGameResultInput {
+  connect?: Maybe<Array<GameResultWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameResultCreateOrConnectWithoutGameGameToGameResultInput>>;
+  create?: Maybe<Array<GameResultCreateWithoutGameGameToGameResultInput>>;
+  createMany?: Maybe<GameResultCreateManyGameGameToGameResultInputEnvelope>;
+}
+
+export interface GameResultCreateNestedManyWithoutTeamGameResultToTeamInput {
+  connect?: Maybe<Array<GameResultWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameResultCreateOrConnectWithoutTeamGameResultToTeamInput>>;
+  create?: Maybe<Array<GameResultCreateWithoutTeamGameResultToTeamInput>>;
+  createMany?: Maybe<GameResultCreateManyTeamGameResultToTeamInputEnvelope>;
+}
+
+export interface GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput {
+  connect?: Maybe<Array<GameResultWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameResultCreateOrConnectWithoutUserGameResultCreatedByToUserInput>>;
+  create?: Maybe<Array<GameResultCreateWithoutUserGameResultCreatedByToUserInput>>;
+  createMany?: Maybe<GameResultCreateManyUserGameResultCreatedByToUserInputEnvelope>;
+}
+
+export interface GameResultCreateNestedManyWithoutUserGameResultUserToUserInput {
+  connect?: Maybe<Array<GameResultWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<GameResultCreateOrConnectWithoutUserGameResultUserToUserInput>>;
+  create?: Maybe<Array<GameResultCreateWithoutUserGameResultUserToUserInput>>;
+  createMany?: Maybe<GameResultCreateManyUserGameResultUserToUserInputEnvelope>;
+}
+
+export interface GameResultCreateOrConnectWithoutGameGameToGameResultInput {
+  create: GameResultCreateWithoutGameGameToGameResultInput;
+  where: GameResultWhereUniqueInput;
+}
+
+export interface GameResultCreateOrConnectWithoutTeamGameResultToTeamInput {
+  create: GameResultCreateWithoutTeamGameResultToTeamInput;
+  where: GameResultWhereUniqueInput;
+}
+
+export interface GameResultCreateOrConnectWithoutUserGameResultCreatedByToUserInput {
+  create: GameResultCreateWithoutUserGameResultCreatedByToUserInput;
+  where: GameResultWhereUniqueInput;
+}
+
+export interface GameResultCreateOrConnectWithoutUserGameResultUserToUserInput {
+  create: GameResultCreateWithoutUserGameResultUserToUserInput;
+  where: GameResultWhereUniqueInput;
+}
+
+export interface GameResultCreateWithoutGameGameToGameResultInput {
+  Team_GameResultToTeam?: Maybe<TeamCreateNestedOneWithoutGameResultsInput>;
+  User_GameResult_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutGameResultsGameResultCreatedByToUserInput>;
+  User_GameResult_UserToUser?: Maybe<UserCreateNestedOneWithoutGameResultsGameResultUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Decimal']>;
+}
+
+export interface GameResultCreateWithoutTeamGameResultToTeamInput {
+  Game_GameToGameResult?: Maybe<GameCreateNestedOneWithoutGameResultInput>;
+  User_GameResult_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutGameResultsGameResultCreatedByToUserInput>;
+  User_GameResult_UserToUser?: Maybe<UserCreateNestedOneWithoutGameResultsGameResultUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Decimal']>;
+}
+
+export interface GameResultCreateWithoutUserGameResultCreatedByToUserInput {
+  Game_GameToGameResult?: Maybe<GameCreateNestedOneWithoutGameResultInput>;
+  Team_GameResultToTeam?: Maybe<TeamCreateNestedOneWithoutGameResultsInput>;
+  User_GameResult_UserToUser?: Maybe<UserCreateNestedOneWithoutGameResultsGameResultUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Decimal']>;
+}
+
+export interface GameResultCreateWithoutUserGameResultUserToUserInput {
+  Game_GameToGameResult?: Maybe<GameCreateNestedOneWithoutGameResultInput>;
+  Team_GameResultToTeam?: Maybe<TeamCreateNestedOneWithoutGameResultsInput>;
+  User_GameResult_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutGameResultsGameResultCreatedByToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Decimal']>;
 }
 
 export interface GameResultListRelationFilter {
@@ -1154,6 +4105,10 @@ export interface GameResultWhereInput {
   value?: Maybe<DecimalNullableFilter>;
 }
 
+export interface GameResultWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface GameWhereInput {
   AND?: Maybe<Array<GameWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -1177,11 +4132,49 @@ export interface GameWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface GameWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export enum Gamemode {
   ADVENTURE = 'ADVENTURE',
   CREATIVE = 'CREATIVE',
   SPECTATOR = 'SPECTATOR',
   SURVIVAL = 'SURVIVAL'
+}
+
+export interface ImportCreateManyUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  status?: Maybe<ImportStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ImportCreateManyUserInputEnvelope {
+  data?: Maybe<Array<ImportCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ImportCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<ImportWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ImportCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<ImportCreateWithoutUserInput>>;
+  createMany?: Maybe<ImportCreateManyUserInputEnvelope>;
+}
+
+export interface ImportCreateOrConnectWithoutUserInput {
+  create: ImportCreateWithoutUserInput;
+  where: ImportWhereUniqueInput;
+}
+
+export interface ImportCreateWithoutUserInput {
+  Log?: Maybe<LogCreateNestedManyWithoutImportImportToLogInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  status?: Maybe<ImportStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ImportListRelationFilter {
@@ -1212,6 +4205,10 @@ export interface ImportWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface ImportWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface IntFilter {
   equals?: Maybe<Scalars['Int']>;
   gt?: Maybe<Scalars['Int']>;
@@ -1234,6 +4231,23 @@ export interface IntNullableFilter {
   notIn?: Maybe<Array<Scalars['Int']>>;
 }
 
+export interface InventoryCreateNestedOneWithoutPlayerInput {
+  connect?: Maybe<InventoryWhereUniqueInput>;
+  connectOrCreate?: Maybe<InventoryCreateOrConnectWithoutPlayerInput>;
+  create?: Maybe<InventoryCreateWithoutPlayerInput>;
+}
+
+export interface InventoryCreateOrConnectWithoutPlayerInput {
+  create: InventoryCreateWithoutPlayerInput;
+  where: InventoryWhereUniqueInput;
+}
+
+export interface InventoryCreateWithoutPlayerInput {
+  cursor: Scalars['Int'];
+  data: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface InventoryWhereInput {
   AND?: Maybe<Array<InventoryWhereInput>>;
   NOT?: Maybe<Array<InventoryWhereInput>>;
@@ -1242,6 +4256,10 @@ export interface InventoryWhereInput {
   cursor?: Maybe<IntFilter>;
   data?: Maybe<StringFilter>;
   id?: Maybe<StringFilter>;
+}
+
+export interface InventoryWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 
@@ -1269,6 +4287,113 @@ export interface LearnStrategyCreateInput {
   description?: Maybe<Scalars['String']>;
   level: Scalars['UserTechnologyLevel'];
   name: Scalars['String'];
+}
+
+export interface LearnStrategyCreateManyCreatedByInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level: Scalars['Int'];
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyCreateManyCreatedByInputEnvelope {
+  data?: Maybe<Array<LearnStrategyCreateManyCreatedByInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface LearnStrategyCreateNestedManyWithoutCreatedByInput {
+  connect?: Maybe<Array<LearnStrategyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<LearnStrategyCreateOrConnectWithoutCreatedByInput>>;
+  create?: Maybe<Array<LearnStrategyCreateWithoutCreatedByInput>>;
+  createMany?: Maybe<LearnStrategyCreateManyCreatedByInputEnvelope>;
+}
+
+export interface LearnStrategyCreateNestedOneWithoutLearnStrategyStagesInput {
+  connect?: Maybe<LearnStrategyWhereUniqueInput>;
+  connectOrCreate?: Maybe<LearnStrategyCreateOrConnectWithoutLearnStrategyStagesInput>;
+  create?: Maybe<LearnStrategyCreateWithoutLearnStrategyStagesInput>;
+}
+
+export interface LearnStrategyCreateNestedOneWithoutLearnStrategyStagesTargetsInput {
+  connect?: Maybe<LearnStrategyWhereUniqueInput>;
+  connectOrCreate?: Maybe<LearnStrategyCreateOrConnectWithoutLearnStrategyStagesTargetsInput>;
+  create?: Maybe<LearnStrategyCreateWithoutLearnStrategyStagesTargetsInput>;
+}
+
+export interface LearnStrategyCreateNestedOneWithoutUserLearnStrategiesInput {
+  connect?: Maybe<LearnStrategyWhereUniqueInput>;
+  connectOrCreate?: Maybe<LearnStrategyCreateOrConnectWithoutUserLearnStrategiesInput>;
+  create?: Maybe<LearnStrategyCreateWithoutUserLearnStrategiesInput>;
+}
+
+export interface LearnStrategyCreateOrConnectWithoutCreatedByInput {
+  create: LearnStrategyCreateWithoutCreatedByInput;
+  where: LearnStrategyWhereUniqueInput;
+}
+
+export interface LearnStrategyCreateOrConnectWithoutLearnStrategyStagesInput {
+  create: LearnStrategyCreateWithoutLearnStrategyStagesInput;
+  where: LearnStrategyWhereUniqueInput;
+}
+
+export interface LearnStrategyCreateOrConnectWithoutLearnStrategyStagesTargetsInput {
+  create: LearnStrategyCreateWithoutLearnStrategyStagesTargetsInput;
+  where: LearnStrategyWhereUniqueInput;
+}
+
+export interface LearnStrategyCreateOrConnectWithoutUserLearnStrategiesInput {
+  create: LearnStrategyCreateWithoutUserLearnStrategiesInput;
+  where: LearnStrategyWhereUniqueInput;
+}
+
+export interface LearnStrategyCreateWithoutCreatedByInput {
+  LearnStrategyStages?: Maybe<LearnStrategyStageCreateNestedManyWithoutLearnStrategyInput>;
+  LearnStrategyStagesTargets?: Maybe<LearnStrategyStageCreateNestedManyWithoutLearnStrategyTargetInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutLearnStrategyInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level: Scalars['Int'];
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyCreateWithoutLearnStrategyStagesInput {
+  CreatedBy: UserCreateNestedOneWithoutLearnStrategiesInput;
+  LearnStrategyStagesTargets?: Maybe<LearnStrategyStageCreateNestedManyWithoutLearnStrategyTargetInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutLearnStrategyInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level: Scalars['Int'];
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyCreateWithoutLearnStrategyStagesTargetsInput {
+  CreatedBy: UserCreateNestedOneWithoutLearnStrategiesInput;
+  LearnStrategyStages?: Maybe<LearnStrategyStageCreateNestedManyWithoutLearnStrategyInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutLearnStrategyInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level: Scalars['Int'];
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyCreateWithoutUserLearnStrategiesInput {
+  CreatedBy: UserCreateNestedOneWithoutLearnStrategiesInput;
+  LearnStrategyStages?: Maybe<LearnStrategyStageCreateNestedManyWithoutLearnStrategyInput>;
+  LearnStrategyStagesTargets?: Maybe<LearnStrategyStageCreateNestedManyWithoutLearnStrategyTargetInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level: Scalars['Int'];
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface LearnStrategyListRelationFilter {
@@ -1317,10 +4442,115 @@ export interface LearnStrategyStageCreateLearnStrategyInput {
   id: Scalars['ID'];
 }
 
+export interface LearnStrategyStageCreateManyLearnStrategyInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  learnStrategyTargetId?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  technologyId?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyStageCreateManyLearnStrategyInputEnvelope {
+  data?: Maybe<Array<LearnStrategyStageCreateManyLearnStrategyInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface LearnStrategyStageCreateManyLearnStrategyTargetInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  learnStrategyId: Scalars['String'];
+  level?: Maybe<Scalars['Int']>;
+  technologyId?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyStageCreateManyLearnStrategyTargetInputEnvelope {
+  data?: Maybe<Array<LearnStrategyStageCreateManyLearnStrategyTargetInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface LearnStrategyStageCreateManyTechnologyInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  learnStrategyId: Scalars['String'];
+  learnStrategyTargetId?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyStageCreateManyTechnologyInputEnvelope {
+  data?: Maybe<Array<LearnStrategyStageCreateManyTechnologyInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface LearnStrategyStageCreateNestedManyWithoutLearnStrategyInput {
+  connect?: Maybe<Array<LearnStrategyStageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<LearnStrategyStageCreateOrConnectWithoutLearnStrategyInput>>;
+  create?: Maybe<Array<LearnStrategyStageCreateWithoutLearnStrategyInput>>;
+  createMany?: Maybe<LearnStrategyStageCreateManyLearnStrategyInputEnvelope>;
+}
+
+export interface LearnStrategyStageCreateNestedManyWithoutLearnStrategyTargetInput {
+  connect?: Maybe<Array<LearnStrategyStageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<LearnStrategyStageCreateOrConnectWithoutLearnStrategyTargetInput>>;
+  create?: Maybe<Array<LearnStrategyStageCreateWithoutLearnStrategyTargetInput>>;
+  createMany?: Maybe<LearnStrategyStageCreateManyLearnStrategyTargetInputEnvelope>;
+}
+
+export interface LearnStrategyStageCreateNestedManyWithoutTechnologyInput {
+  connect?: Maybe<Array<LearnStrategyStageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<LearnStrategyStageCreateOrConnectWithoutTechnologyInput>>;
+  create?: Maybe<Array<LearnStrategyStageCreateWithoutTechnologyInput>>;
+  createMany?: Maybe<LearnStrategyStageCreateManyTechnologyInputEnvelope>;
+}
+
+export interface LearnStrategyStageCreateOrConnectWithoutLearnStrategyInput {
+  create: LearnStrategyStageCreateWithoutLearnStrategyInput;
+  where: LearnStrategyStageWhereUniqueInput;
+}
+
+export interface LearnStrategyStageCreateOrConnectWithoutLearnStrategyTargetInput {
+  create: LearnStrategyStageCreateWithoutLearnStrategyTargetInput;
+  where: LearnStrategyStageWhereUniqueInput;
+}
+
+export interface LearnStrategyStageCreateOrConnectWithoutTechnologyInput {
+  create: LearnStrategyStageCreateWithoutTechnologyInput;
+  where: LearnStrategyStageWhereUniqueInput;
+}
+
 /** Технология */
 export interface LearnStrategyStageCreateTechnologyInput {
   id: Scalars['ID'];
   level: Scalars['UserTechnologyLevel'];
+}
+
+export interface LearnStrategyStageCreateWithoutLearnStrategyInput {
+  LearnStrategyTarget?: Maybe<LearnStrategyCreateNestedOneWithoutLearnStrategyStagesTargetsInput>;
+  Technology?: Maybe<TechnologyCreateNestedOneWithoutLearnStrategyStagesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyStageCreateWithoutLearnStrategyTargetInput {
+  LearnStrategy: LearnStrategyCreateNestedOneWithoutLearnStrategyStagesInput;
+  Technology?: Maybe<TechnologyCreateNestedOneWithoutLearnStrategyStagesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LearnStrategyStageCreateWithoutTechnologyInput {
+  LearnStrategy: LearnStrategyCreateNestedOneWithoutLearnStrategyStagesInput;
+  LearnStrategyTarget?: Maybe<LearnStrategyCreateNestedOneWithoutLearnStrategyStagesTargetsInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface LearnStrategyStageListRelationFilter {
@@ -1385,6 +4615,27 @@ export interface LearnStrategyWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
 }
 
+export interface LetsadsSmsMessageStatusCreateNestedOneWithoutSmsMessageInput {
+  connect?: Maybe<LetsadsSmsMessageStatusWhereUniqueInput>;
+  connectOrCreate?: Maybe<LetsadsSmsMessageStatusCreateOrConnectWithoutSmsMessageInput>;
+  create?: Maybe<LetsadsSmsMessageStatusCreateWithoutSmsMessageInput>;
+}
+
+export interface LetsadsSmsMessageStatusCreateOrConnectWithoutSmsMessageInput {
+  create: LetsadsSmsMessageStatusCreateWithoutSmsMessageInput;
+  where: LetsadsSmsMessageStatusWhereUniqueInput;
+}
+
+export interface LetsadsSmsMessageStatusCreateWithoutSmsMessageInput {
+  LetsadsSmsMessageStatusItem?: Maybe<LetsadsSmsMessageStatusItemCreateNestedManyWithoutLetsadsSmsMessageStatusInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  errorCode?: Maybe<LetsadsSmsMessageStatusErrorCodeEnum>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<LetsadsSmsMessageStatusEnum>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export enum LetsadsSmsMessageStatusEnum {
   COMPLETE = 'Complete',
   ERROR = 'Error'
@@ -1406,6 +4657,37 @@ export enum LetsadsSmsMessageStatusErrorCodeEnum {
   WRONG_DATA_FORMAT = 'WRONG_DATA_FORMAT'
 }
 
+export interface LetsadsSmsMessageStatusItemCreateManyLetsadsSmsMessageStatusInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  sms_id: Scalars['Int'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LetsadsSmsMessageStatusItemCreateManyLetsadsSmsMessageStatusInputEnvelope {
+  data?: Maybe<Array<LetsadsSmsMessageStatusItemCreateManyLetsadsSmsMessageStatusInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface LetsadsSmsMessageStatusItemCreateNestedManyWithoutLetsadsSmsMessageStatusInput {
+  connect?: Maybe<Array<LetsadsSmsMessageStatusItemWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<LetsadsSmsMessageStatusItemCreateOrConnectWithoutLetsadsSmsMessageStatusInput>>;
+  create?: Maybe<Array<LetsadsSmsMessageStatusItemCreateWithoutLetsadsSmsMessageStatusInput>>;
+  createMany?: Maybe<LetsadsSmsMessageStatusItemCreateManyLetsadsSmsMessageStatusInputEnvelope>;
+}
+
+export interface LetsadsSmsMessageStatusItemCreateOrConnectWithoutLetsadsSmsMessageStatusInput {
+  create: LetsadsSmsMessageStatusItemCreateWithoutLetsadsSmsMessageStatusInput;
+  where: LetsadsSmsMessageStatusItemWhereUniqueInput;
+}
+
+export interface LetsadsSmsMessageStatusItemCreateWithoutLetsadsSmsMessageStatusInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  sms_id: Scalars['Int'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface LetsadsSmsMessageStatusItemListRelationFilter {
   every?: Maybe<LetsadsSmsMessageStatusItemWhereInput>;
   none?: Maybe<LetsadsSmsMessageStatusItemWhereInput>;
@@ -1424,6 +4706,11 @@ export interface LetsadsSmsMessageStatusItemWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface LetsadsSmsMessageStatusItemWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+  sms_id?: Maybe<Scalars['Int']>;
+}
+
 export interface LetsadsSmsMessageStatusWhereInput {
   AND?: Maybe<Array<LetsadsSmsMessageStatusWhereInput>>;
   LetsadsSmsMessageStatusItem?: Maybe<LetsadsSmsMessageStatusItemListRelationFilter>;
@@ -1436,6 +4723,57 @@ export interface LetsadsSmsMessageStatusWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<EnumLetsadsSmsMessageStatusEnumNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface LetsadsSmsMessageStatusWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface LetterCreateManyUserLetterToUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleteOnSend?: Maybe<Scalars['Boolean']>;
+  email: Scalars['String'];
+  errorMessage?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  message: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  replyTo?: Maybe<Scalars['String']>;
+  returnTo?: Maybe<Scalars['String']>;
+  status?: Maybe<LetterStatus>;
+  subject: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LetterCreateManyUserLetterToUserInputEnvelope {
+  data?: Maybe<Array<LetterCreateManyUserLetterToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface LetterCreateNestedManyWithoutUserLetterToUserInput {
+  connect?: Maybe<Array<LetterWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<LetterCreateOrConnectWithoutUserLetterToUserInput>>;
+  create?: Maybe<Array<LetterCreateWithoutUserLetterToUserInput>>;
+  createMany?: Maybe<LetterCreateManyUserLetterToUserInputEnvelope>;
+}
+
+export interface LetterCreateOrConnectWithoutUserLetterToUserInput {
+  create: LetterCreateWithoutUserLetterToUserInput;
+  where: LetterWhereUniqueInput;
+}
+
+export interface LetterCreateWithoutUserLetterToUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleteOnSend?: Maybe<Scalars['Boolean']>;
+  email: Scalars['String'];
+  errorMessage?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  message: Scalars['String'];
+  rank?: Maybe<Scalars['Int']>;
+  replyTo?: Maybe<Scalars['String']>;
+  returnTo?: Maybe<Scalars['String']>;
+  status?: Maybe<LetterStatus>;
+  subject: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface LetterListRelationFilter {
@@ -1471,6 +4809,47 @@ export interface LetterWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface LetterWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface LogCreateManyImportImportToLogInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<LogLevel>;
+  message: Scalars['String'];
+  objectType?: Maybe<Scalars['String']>;
+  stack?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LogCreateManyImportImportToLogInputEnvelope {
+  data?: Maybe<Array<LogCreateManyImportImportToLogInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface LogCreateNestedManyWithoutImportImportToLogInput {
+  connect?: Maybe<Array<LogWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<LogCreateOrConnectWithoutImportImportToLogInput>>;
+  create?: Maybe<Array<LogCreateWithoutImportImportToLogInput>>;
+  createMany?: Maybe<LogCreateManyImportImportToLogInputEnvelope>;
+}
+
+export interface LogCreateOrConnectWithoutImportImportToLogInput {
+  create: LogCreateWithoutImportImportToLogInput;
+  where: LogWhereUniqueInput;
+}
+
+export interface LogCreateWithoutImportImportToLogInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<LogLevel>;
+  message: Scalars['String'];
+  objectType?: Maybe<Scalars['String']>;
+  stack?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export enum LogLevel {
   ERROR = 'Error',
   FATAL = 'Fatal',
@@ -1500,6 +4879,41 @@ export interface LogWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface LogWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface LogedInCreateManyUserLogedInToUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  fake?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface LogedInCreateManyUserLogedInToUserInputEnvelope {
+  data?: Maybe<Array<LogedInCreateManyUserLogedInToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface LogedInCreateNestedManyWithoutUserLogedInToUserInput {
+  connect?: Maybe<Array<LogedInWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<LogedInCreateOrConnectWithoutUserLogedInToUserInput>>;
+  create?: Maybe<Array<LogedInCreateWithoutUserLogedInToUserInput>>;
+  createMany?: Maybe<LogedInCreateManyUserLogedInToUserInputEnvelope>;
+}
+
+export interface LogedInCreateOrConnectWithoutUserLogedInToUserInput {
+  create: LogedInCreateWithoutUserLogedInToUserInput;
+  where: LogedInWhereUniqueInput;
+}
+
+export interface LogedInCreateWithoutUserLogedInToUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  fake?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface LogedInListRelationFilter {
   every?: Maybe<LogedInWhereInput>;
   none?: Maybe<LogedInWhereInput>;
@@ -1516,6 +4930,10 @@ export interface LogedInWhereInput {
   fake?: Maybe<BoolNullableFilter>;
   id?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface LogedInWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 /** Связка Метнор-Менти */
@@ -1536,6 +4954,72 @@ export interface MentorMentee {
 export interface MentorMenteeCreateInput {
   /** ID ментора */
   mentorId: Scalars['ID'];
+}
+
+export interface MentorMenteeCreateManyMenteeInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  mentorId: Scalars['String'];
+  status: MentorMenteeStatus;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface MentorMenteeCreateManyMenteeInputEnvelope {
+  data?: Maybe<Array<MentorMenteeCreateManyMenteeInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface MentorMenteeCreateManyMentorInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  menteeId: Scalars['String'];
+  status: MentorMenteeStatus;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface MentorMenteeCreateManyMentorInputEnvelope {
+  data?: Maybe<Array<MentorMenteeCreateManyMentorInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface MentorMenteeCreateNestedManyWithoutMenteeInput {
+  connect?: Maybe<Array<MentorMenteeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<MentorMenteeCreateOrConnectWithoutMenteeInput>>;
+  create?: Maybe<Array<MentorMenteeCreateWithoutMenteeInput>>;
+  createMany?: Maybe<MentorMenteeCreateManyMenteeInputEnvelope>;
+}
+
+export interface MentorMenteeCreateNestedManyWithoutMentorInput {
+  connect?: Maybe<Array<MentorMenteeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<MentorMenteeCreateOrConnectWithoutMentorInput>>;
+  create?: Maybe<Array<MentorMenteeCreateWithoutMentorInput>>;
+  createMany?: Maybe<MentorMenteeCreateManyMentorInputEnvelope>;
+}
+
+export interface MentorMenteeCreateOrConnectWithoutMenteeInput {
+  create: MentorMenteeCreateWithoutMenteeInput;
+  where: MentorMenteeWhereUniqueInput;
+}
+
+export interface MentorMenteeCreateOrConnectWithoutMentorInput {
+  create: MentorMenteeCreateWithoutMentorInput;
+  where: MentorMenteeWhereUniqueInput;
+}
+
+export interface MentorMenteeCreateWithoutMenteeInput {
+  Mentor: UserCreateNestedOneWithoutMentorMenteeMentorsInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status: MentorMenteeStatus;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface MentorMenteeCreateWithoutMentorInput {
+  Mentee: UserCreateNestedOneWithoutMentorMenteeMenteesInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status: MentorMenteeStatus;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface MentorMenteeListRelationFilter {
@@ -1586,6 +5070,37 @@ export interface MentorMenteeWhereUniqueInput {
   mentorId_menteeId?: Maybe<MentorMenteeMentorIdMenteeIdCompoundUniqueInput>;
 }
 
+export interface MessageCreateManyWorldInput {
+  body: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  sender?: Maybe<Scalars['String']>;
+  type: MessageType;
+}
+
+export interface MessageCreateManyWorldInputEnvelope {
+  data?: Maybe<Array<MessageCreateManyWorldInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface MessageCreateNestedManyWithoutWorldInput {
+  connect?: Maybe<Array<MessageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<MessageCreateOrConnectWithoutWorldInput>>;
+  create?: Maybe<Array<MessageCreateWithoutWorldInput>>;
+  createMany?: Maybe<MessageCreateManyWorldInputEnvelope>;
+}
+
+export interface MessageCreateOrConnectWithoutWorldInput {
+  create: MessageCreateWithoutWorldInput;
+  where: MessageWhereUniqueInput;
+}
+
+export interface MessageCreateWithoutWorldInput {
+  body: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  sender?: Maybe<Scalars['String']>;
+  type: MessageType;
+}
+
 export interface MessageListRelationFilter {
   every?: Maybe<MessageWhereInput>;
   none?: Maybe<MessageWhereInput>;
@@ -1611,6 +5126,10 @@ export interface MessageWhereInput {
   world?: Maybe<StringNullableFilter>;
 }
 
+export interface MessageWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface Mutation {
   __typename?: 'Mutation';
   /** Заблокировать пользователя */
@@ -1623,6 +5142,7 @@ export interface Mutation {
   createLearnStrategyStage: LearnStrategyStage;
   /** Создает заявку на менторство */
   createMentorMentee: MentorMentee;
+  createOneDonate: Donate;
   createProjectProcessor: ProjectResponse;
   createResetPasswordProcessor: ResetPasswordResponse;
   createTaskProcessor: TaskResponse;
@@ -1702,6 +5222,11 @@ export type MutationCreateLearnStrategyStageArgs = {
 
 export type MutationCreateMentorMenteeArgs = {
   data: MentorMenteeCreateInput;
+};
+
+
+export type MutationCreateOneDonateArgs = {
+  data: DonateCreateInput;
 };
 
 
@@ -2115,6 +5640,17 @@ export interface NestedEnumWorldTypeFilter {
   notIn?: Maybe<Array<WorldType>>;
 }
 
+export interface NestedFloatFilter {
+  equals?: Maybe<Scalars['Float']>;
+  gt?: Maybe<Scalars['Float']>;
+  gte?: Maybe<Scalars['Float']>;
+  in?: Maybe<Array<Scalars['Float']>>;
+  lt?: Maybe<Scalars['Float']>;
+  lte?: Maybe<Scalars['Float']>;
+  not?: Maybe<NestedFloatFilter>;
+  notIn?: Maybe<Array<Scalars['Float']>>;
+}
+
 export interface NestedIntFilter {
   equals?: Maybe<Scalars['Int']>;
   gt?: Maybe<Scalars['Int']>;
@@ -2177,6 +5713,135 @@ export interface Notice {
   updatedAt: Scalars['DateTime'];
 }
 
+export interface NoticeCreateManyChatMessageChatMessageToNoticeInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: NoticeType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface NoticeCreateManyChatMessageChatMessageToNoticeInputEnvelope {
+  data?: Maybe<Array<NoticeCreateManyChatMessageChatMessageToNoticeInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface NoticeCreateManyUserNoticeCreatedByToUserInput {
+  ChatMessage?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: NoticeType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface NoticeCreateManyUserNoticeCreatedByToUserInputEnvelope {
+  data?: Maybe<Array<NoticeCreateManyUserNoticeCreatedByToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface NoticeCreateManyUserNoticeUserToUserInput {
+  ChatMessage?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: NoticeType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface NoticeCreateManyUserNoticeUserToUserInputEnvelope {
+  data?: Maybe<Array<NoticeCreateManyUserNoticeUserToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput {
+  connect?: Maybe<Array<NoticeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<NoticeCreateOrConnectWithoutChatMessageChatMessageToNoticeInput>>;
+  create?: Maybe<Array<NoticeCreateWithoutChatMessageChatMessageToNoticeInput>>;
+  createMany?: Maybe<NoticeCreateManyChatMessageChatMessageToNoticeInputEnvelope>;
+}
+
+export interface NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput {
+  connect?: Maybe<Array<NoticeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<NoticeCreateOrConnectWithoutUserNoticeCreatedByToUserInput>>;
+  create?: Maybe<Array<NoticeCreateWithoutUserNoticeCreatedByToUserInput>>;
+  createMany?: Maybe<NoticeCreateManyUserNoticeCreatedByToUserInputEnvelope>;
+}
+
+export interface NoticeCreateNestedManyWithoutUserNoticeUserToUserInput {
+  connect?: Maybe<Array<NoticeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<NoticeCreateOrConnectWithoutUserNoticeUserToUserInput>>;
+  create?: Maybe<Array<NoticeCreateWithoutUserNoticeUserToUserInput>>;
+  createMany?: Maybe<NoticeCreateManyUserNoticeUserToUserInputEnvelope>;
+}
+
+export interface NoticeCreateNestedOneWithoutChatRoomInvitationsInput {
+  connect?: Maybe<NoticeWhereUniqueInput>;
+  connectOrCreate?: Maybe<NoticeCreateOrConnectWithoutChatRoomInvitationsInput>;
+  create?: Maybe<NoticeCreateWithoutChatRoomInvitationsInput>;
+}
+
+export interface NoticeCreateOrConnectWithoutChatMessageChatMessageToNoticeInput {
+  create: NoticeCreateWithoutChatMessageChatMessageToNoticeInput;
+  where: NoticeWhereUniqueInput;
+}
+
+export interface NoticeCreateOrConnectWithoutChatRoomInvitationsInput {
+  create: NoticeCreateWithoutChatRoomInvitationsInput;
+  where: NoticeWhereUniqueInput;
+}
+
+export interface NoticeCreateOrConnectWithoutUserNoticeCreatedByToUserInput {
+  create: NoticeCreateWithoutUserNoticeCreatedByToUserInput;
+  where: NoticeWhereUniqueInput;
+}
+
+export interface NoticeCreateOrConnectWithoutUserNoticeUserToUserInput {
+  create: NoticeCreateWithoutUserNoticeUserToUserInput;
+  where: NoticeWhereUniqueInput;
+}
+
+export interface NoticeCreateWithoutChatMessageChatMessageToNoticeInput {
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutNoticeChatRoomInvitationToNoticeInput>;
+  User_Notice_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutNoticesNoticeCreatedByToUserInput>;
+  User_Notice_UserToUser?: Maybe<UserCreateNestedOneWithoutNoticesNoticeUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: NoticeType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface NoticeCreateWithoutChatRoomInvitationsInput {
+  ChatMessage_ChatMessageToNotice?: Maybe<ChatMessageCreateNestedOneWithoutNoticesInput>;
+  User_Notice_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutNoticesNoticeCreatedByToUserInput>;
+  User_Notice_UserToUser?: Maybe<UserCreateNestedOneWithoutNoticesNoticeUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: NoticeType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface NoticeCreateWithoutUserNoticeCreatedByToUserInput {
+  ChatMessage_ChatMessageToNotice?: Maybe<ChatMessageCreateNestedOneWithoutNoticesInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutNoticeChatRoomInvitationToNoticeInput>;
+  User_Notice_UserToUser?: Maybe<UserCreateNestedOneWithoutNoticesNoticeUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: NoticeType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface NoticeCreateWithoutUserNoticeUserToUserInput {
+  ChatMessage_ChatMessageToNotice?: Maybe<ChatMessageCreateNestedOneWithoutNoticesInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationCreateNestedManyWithoutNoticeChatRoomInvitationToNoticeInput>;
+  User_Notice_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutNoticesNoticeCreatedByToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: NoticeType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface NoticeListRelationFilter {
   every?: Maybe<NoticeWhereInput>;
   none?: Maybe<NoticeWhereInput>;
@@ -2232,6 +5897,66 @@ export interface NotificationType {
   updatedAt: Scalars['DateTime'];
 }
 
+export interface NotificationTypeCreateManyUserNotificationTypeToUserInput {
+  code?: Maybe<Scalars['String']>;
+  comment?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface NotificationTypeCreateManyUserNotificationTypeToUserInputEnvelope {
+  data?: Maybe<Array<NotificationTypeCreateManyUserNotificationTypeToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput {
+  connect?: Maybe<Array<NotificationTypeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<NotificationTypeCreateOrConnectWithoutUserNotificationTypeToUserInput>>;
+  create?: Maybe<Array<NotificationTypeCreateWithoutUserNotificationTypeToUserInput>>;
+  createMany?: Maybe<NotificationTypeCreateManyUserNotificationTypeToUserInputEnvelope>;
+}
+
+export interface NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput {
+  connect?: Maybe<Array<NotificationTypeWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<NotificationTypeCreateOrConnectWithoutUserUserNotificationTypesInput>>;
+  create?: Maybe<Array<NotificationTypeCreateWithoutUserUserNotificationTypesInput>>;
+}
+
+export interface NotificationTypeCreateOrConnectWithoutUserNotificationTypeToUserInput {
+  create: NotificationTypeCreateWithoutUserNotificationTypeToUserInput;
+  where: NotificationTypeWhereUniqueInput;
+}
+
+export interface NotificationTypeCreateOrConnectWithoutUserUserNotificationTypesInput {
+  create: NotificationTypeCreateWithoutUserUserNotificationTypesInput;
+  where: NotificationTypeWhereUniqueInput;
+}
+
+export interface NotificationTypeCreateWithoutUserNotificationTypeToUserInput {
+  User_UserNotificationTypes?: Maybe<UserCreateNestedManyWithoutNotificationTypesUserNotificationTypesInput>;
+  code?: Maybe<Scalars['String']>;
+  comment?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface NotificationTypeCreateWithoutUserUserNotificationTypesInput {
+  User_NotificationTypeToUser?: Maybe<UserCreateNestedOneWithoutNotificationTypesNotificationTypeToUserInput>;
+  code?: Maybe<Scalars['String']>;
+  comment?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface NotificationTypeListRelationFilter {
   every?: Maybe<NotificationTypeWhereInput>;
   none?: Maybe<NotificationTypeWhereInput>;
@@ -2276,6 +6001,104 @@ export interface NotificationTypeUserNotificationTypesUpdateInput {
   disconnect?: Maybe<NotificationTypeWhereUniqueInput>;
 }
 
+export interface PlayerCreateManyUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dirx: Scalars['Decimal'];
+  diry: Scalars['Decimal'];
+  gamemode: Gamemode;
+  id?: Maybe<Scalars['String']>;
+  inventory?: Maybe<Scalars['String']>;
+  isAdmin: Scalars['Boolean'];
+  lastLogin?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  world?: Maybe<Scalars['String']>;
+  x: Scalars['Decimal'];
+  y: Scalars['Decimal'];
+  z: Scalars['Decimal'];
+}
+
+export interface PlayerCreateManyUserInputEnvelope {
+  data?: Maybe<Array<PlayerCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface PlayerCreateManyWorldInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dirx: Scalars['Decimal'];
+  diry: Scalars['Decimal'];
+  gamemode: Gamemode;
+  id?: Maybe<Scalars['String']>;
+  inventory?: Maybe<Scalars['String']>;
+  isAdmin: Scalars['Boolean'];
+  lastLogin?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  user?: Maybe<Scalars['String']>;
+  x: Scalars['Decimal'];
+  y: Scalars['Decimal'];
+  z: Scalars['Decimal'];
+}
+
+export interface PlayerCreateManyWorldInputEnvelope {
+  data?: Maybe<Array<PlayerCreateManyWorldInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface PlayerCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<PlayerWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<PlayerCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<PlayerCreateWithoutUserInput>>;
+  createMany?: Maybe<PlayerCreateManyUserInputEnvelope>;
+}
+
+export interface PlayerCreateNestedManyWithoutWorldInput {
+  connect?: Maybe<Array<PlayerWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<PlayerCreateOrConnectWithoutWorldInput>>;
+  create?: Maybe<Array<PlayerCreateWithoutWorldInput>>;
+  createMany?: Maybe<PlayerCreateManyWorldInputEnvelope>;
+}
+
+export interface PlayerCreateOrConnectWithoutUserInput {
+  create: PlayerCreateWithoutUserInput;
+  where: PlayerWhereUniqueInput;
+}
+
+export interface PlayerCreateOrConnectWithoutWorldInput {
+  create: PlayerCreateWithoutWorldInput;
+  where: PlayerWhereUniqueInput;
+}
+
+export interface PlayerCreateWithoutUserInput {
+  Inventory?: Maybe<InventoryCreateNestedOneWithoutPlayerInput>;
+  World?: Maybe<WorldCreateNestedOneWithoutPlayersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dirx: Scalars['Decimal'];
+  diry: Scalars['Decimal'];
+  gamemode: Gamemode;
+  id?: Maybe<Scalars['String']>;
+  isAdmin: Scalars['Boolean'];
+  lastLogin?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  x: Scalars['Decimal'];
+  y: Scalars['Decimal'];
+  z: Scalars['Decimal'];
+}
+
+export interface PlayerCreateWithoutWorldInput {
+  Inventory?: Maybe<InventoryCreateNestedOneWithoutPlayerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutPlayersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dirx: Scalars['Decimal'];
+  diry: Scalars['Decimal'];
+  gamemode: Gamemode;
+  id?: Maybe<Scalars['String']>;
+  isAdmin: Scalars['Boolean'];
+  lastLogin?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  x: Scalars['Decimal'];
+  y: Scalars['Decimal'];
+  z: Scalars['Decimal'];
+}
+
 export interface PlayerListRelationFilter {
   every?: Maybe<PlayerWhereInput>;
   none?: Maybe<PlayerWhereInput>;
@@ -2305,6 +6128,64 @@ export interface PlayerWhereInput {
   z?: Maybe<DecimalFilter>;
 }
 
+export interface PlayerWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface PositionCreateManyUserPositionToUserInput {
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface PositionCreateManyUserPositionToUserInputEnvelope {
+  data?: Maybe<Array<PositionCreateManyUserPositionToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface PositionCreateNestedManyWithoutUserPositionToUserInput {
+  connect?: Maybe<Array<PositionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<PositionCreateOrConnectWithoutUserPositionToUserInput>>;
+  create?: Maybe<Array<PositionCreateWithoutUserPositionToUserInput>>;
+  createMany?: Maybe<PositionCreateManyUserPositionToUserInputEnvelope>;
+}
+
+export interface PositionCreateNestedManyWithoutUserPositionUsersInput {
+  connect?: Maybe<Array<PositionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<PositionCreateOrConnectWithoutUserPositionUsersInput>>;
+  create?: Maybe<Array<PositionCreateWithoutUserPositionUsersInput>>;
+}
+
+export interface PositionCreateOrConnectWithoutUserPositionToUserInput {
+  create: PositionCreateWithoutUserPositionToUserInput;
+  where: PositionWhereUniqueInput;
+}
+
+export interface PositionCreateOrConnectWithoutUserPositionUsersInput {
+  create: PositionCreateWithoutUserPositionUsersInput;
+  where: PositionWhereUniqueInput;
+}
+
+export interface PositionCreateWithoutUserPositionToUserInput {
+  User_PositionUsers?: Maybe<UserCreateNestedManyWithoutPositionsPositionUsersInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface PositionCreateWithoutUserPositionUsersInput {
+  User_PositionToUser?: Maybe<UserCreateNestedOneWithoutPositionsPositionToUserInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface PositionListRelationFilter {
   every?: Maybe<PositionWhereInput>;
   none?: Maybe<PositionWhereInput>;
@@ -2323,6 +6204,11 @@ export interface PositionWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface PositionWhereUniqueInput {
+  code?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface Project {
@@ -2357,8 +6243,663 @@ export interface ProjectCreateInput {
   url?: Maybe<Scalars['String']>;
 }
 
+export interface ProjectCreateManyChatRoomChatRoomToProjectInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Image?: Maybe<Scalars['String']>;
+  Resource?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateManyChatRoomChatRoomToProjectInputEnvelope {
+  data?: Maybe<Array<ProjectCreateManyChatRoomChatRoomToProjectInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectCreateManyFileInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  Resource?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateManyFileInputEnvelope {
+  data?: Maybe<Array<ProjectCreateManyFileInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectCreateManyResourceProjectResourceToResourceInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  Image?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateManyResourceProjectResourceToResourceInputEnvelope {
+  data?: Maybe<Array<ProjectCreateManyResourceProjectResourceToResourceInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectCreateManyTeamProjectToTeamInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  Image?: Maybe<Scalars['String']>;
+  Resource?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateManyTeamProjectToTeamInputEnvelope {
+  data?: Maybe<Array<ProjectCreateManyTeamProjectToTeamInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectCreateManyUserProjectToUserInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  Image?: Maybe<Scalars['String']>;
+  Resource?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateManyUserProjectToUserInputEnvelope {
+  data?: Maybe<Array<ProjectCreateManyUserProjectToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectCreateNestedManyWithoutChatRoomChatRoomToProjectInput {
+  connect?: Maybe<Array<ProjectWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectCreateOrConnectWithoutChatRoomChatRoomToProjectInput>>;
+  create?: Maybe<Array<ProjectCreateWithoutChatRoomChatRoomToProjectInput>>;
+  createMany?: Maybe<ProjectCreateManyChatRoomChatRoomToProjectInputEnvelope>;
+}
+
+export interface ProjectCreateNestedManyWithoutFileInput {
+  connect?: Maybe<Array<ProjectWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectCreateOrConnectWithoutFileInput>>;
+  create?: Maybe<Array<ProjectCreateWithoutFileInput>>;
+  createMany?: Maybe<ProjectCreateManyFileInputEnvelope>;
+}
+
+export interface ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput {
+  connect?: Maybe<Array<ProjectWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectCreateOrConnectWithoutResourceProjectResourceToResourceInput>>;
+  create?: Maybe<Array<ProjectCreateWithoutResourceProjectResourceToResourceInput>>;
+  createMany?: Maybe<ProjectCreateManyResourceProjectResourceToResourceInputEnvelope>;
+}
+
+export interface ProjectCreateNestedManyWithoutTeamProjectCustomersInput {
+  connect?: Maybe<Array<ProjectWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectCreateOrConnectWithoutTeamProjectCustomersInput>>;
+  create?: Maybe<Array<ProjectCreateWithoutTeamProjectCustomersInput>>;
+}
+
+export interface ProjectCreateNestedManyWithoutTeamProjectToTeamInput {
+  connect?: Maybe<Array<ProjectWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectCreateOrConnectWithoutTeamProjectToTeamInput>>;
+  create?: Maybe<Array<ProjectCreateWithoutTeamProjectToTeamInput>>;
+  createMany?: Maybe<ProjectCreateManyTeamProjectToTeamInputEnvelope>;
+}
+
+export interface ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput {
+  connect?: Maybe<Array<ProjectWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectCreateOrConnectWithoutUserPrismaProjectUsersInput>>;
+  create?: Maybe<Array<ProjectCreateWithoutUserPrismaProjectUsersInput>>;
+}
+
+export interface ProjectCreateNestedManyWithoutUserProjectToUserInput {
+  connect?: Maybe<Array<ProjectWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectCreateOrConnectWithoutUserProjectToUserInput>>;
+  create?: Maybe<Array<ProjectCreateWithoutUserProjectToUserInput>>;
+  createMany?: Maybe<ProjectCreateManyUserProjectToUserInputEnvelope>;
+}
+
+export interface ProjectCreateNestedOneWithoutEthAccountsInput {
+  connect?: Maybe<ProjectWhereUniqueInput>;
+  connectOrCreate?: Maybe<ProjectCreateOrConnectWithoutEthAccountsInput>;
+  create?: Maybe<ProjectCreateWithoutEthAccountsInput>;
+}
+
+export interface ProjectCreateNestedOneWithoutProjectMembersInput {
+  connect?: Maybe<ProjectWhereUniqueInput>;
+  connectOrCreate?: Maybe<ProjectCreateOrConnectWithoutProjectMembersInput>;
+  create?: Maybe<ProjectCreateWithoutProjectMembersInput>;
+}
+
+export interface ProjectCreateNestedOneWithoutProjectTasksInput {
+  connect?: Maybe<ProjectWhereUniqueInput>;
+  connectOrCreate?: Maybe<ProjectCreateOrConnectWithoutProjectTasksInput>;
+  create?: Maybe<ProjectCreateWithoutProjectTasksInput>;
+}
+
+export interface ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput {
+  connect?: Maybe<ProjectWhereUniqueInput>;
+  connectOrCreate?: Maybe<ProjectCreateOrConnectWithoutResourcesProjectToResourcePrismaProjectInput>;
+  create?: Maybe<ProjectCreateWithoutResourcesProjectToResourcePrismaProjectInput>;
+}
+
+export interface ProjectCreateNestedOneWithoutTemplatesProjectToTemplatePrismaProjectInput {
+  connect?: Maybe<ProjectWhereUniqueInput>;
+  connectOrCreate?: Maybe<ProjectCreateOrConnectWithoutTemplatesProjectToTemplatePrismaProjectInput>;
+  create?: Maybe<ProjectCreateWithoutTemplatesProjectToTemplatePrismaProjectInput>;
+}
+
+export interface ProjectCreateNestedOneWithoutTemplatesProjectToTemplateProjectInput {
+  connect?: Maybe<ProjectWhereUniqueInput>;
+  connectOrCreate?: Maybe<ProjectCreateOrConnectWithoutTemplatesProjectToTemplateProjectInput>;
+  create?: Maybe<ProjectCreateWithoutTemplatesProjectToTemplateProjectInput>;
+}
+
 export interface ProjectCreateOneWithoutProjectTasksInput {
   connect?: Maybe<ProjectWhereUniqueInput>;
+}
+
+export interface ProjectCreateOrConnectWithoutChatRoomChatRoomToProjectInput {
+  create: ProjectCreateWithoutChatRoomChatRoomToProjectInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutEthAccountsInput {
+  create: ProjectCreateWithoutEthAccountsInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutFileInput {
+  create: ProjectCreateWithoutFileInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutProjectMembersInput {
+  create: ProjectCreateWithoutProjectMembersInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutProjectTasksInput {
+  create: ProjectCreateWithoutProjectTasksInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutResourceProjectResourceToResourceInput {
+  create: ProjectCreateWithoutResourceProjectResourceToResourceInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutResourcesProjectToResourcePrismaProjectInput {
+  create: ProjectCreateWithoutResourcesProjectToResourcePrismaProjectInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutTeamProjectCustomersInput {
+  create: ProjectCreateWithoutTeamProjectCustomersInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutTeamProjectToTeamInput {
+  create: ProjectCreateWithoutTeamProjectToTeamInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutTemplatesProjectToTemplatePrismaProjectInput {
+  create: ProjectCreateWithoutTemplatesProjectToTemplatePrismaProjectInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutTemplatesProjectToTemplateProjectInput {
+  create: ProjectCreateWithoutTemplatesProjectToTemplateProjectInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutUserPrismaProjectUsersInput {
+  create: ProjectCreateWithoutUserPrismaProjectUsersInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateOrConnectWithoutUserProjectToUserInput {
+  create: ProjectCreateWithoutUserProjectToUserInput;
+  where: ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateWithoutChatRoomChatRoomToProjectInput {
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutEthAccountsInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutFileInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutProjectMembersInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutProjectTasksInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutResourceProjectResourceToResourceInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutResourcesProjectToResourcePrismaProjectInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutTeamProjectCustomersInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutTeamProjectToTeamInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutTemplatesProjectToTemplatePrismaProjectInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutTemplatesProjectToTemplateProjectInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutUserPrismaProjectUsersInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
+}
+
+export interface ProjectCreateWithoutUserProjectToUserInput {
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomCreateNestedOneWithoutProjectsInput>;
+  EthAccounts?: Maybe<EthAccountCreateNestedManyWithoutProjectEthAccountToProjectInput>;
+  File?: Maybe<FileCreateNestedOneWithoutProjectsInput>;
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput>;
+  Team_ProjectCustomers?: Maybe<TeamCreateNestedManyWithoutProjectProjectCustomersInput>;
+  Team_ProjectToTeam?: Maybe<TeamCreateNestedOneWithoutProjectsProjectToTeamInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
+  User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  public?: Maybe<Scalars['Boolean']>;
+  sequence?: Maybe<Scalars['Int']>;
+  status?: Maybe<ProjectStatus>;
+  type?: Maybe<ProjectType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url?: Maybe<Scalars['String']>;
 }
 
 export interface ProjectListRelationFilter {
@@ -2375,6 +6916,135 @@ export interface ProjectMember {
   id: Scalars['ID'];
   status?: Maybe<ProjectMemberStatus>;
   updatedAt: Scalars['DateTime'];
+}
+
+export interface ProjectMemberCreateManyProjectProjectToProjectMemberInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<ProjectMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectMemberCreateManyProjectProjectToProjectMemberInputEnvelope {
+  data?: Maybe<Array<ProjectMemberCreateManyProjectProjectToProjectMemberInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectMemberCreateManyUserProjectMemberCreatedByToUserInput {
+  Project?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<ProjectMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectMemberCreateManyUserProjectMemberCreatedByToUserInputEnvelope {
+  data?: Maybe<Array<ProjectMemberCreateManyUserProjectMemberCreatedByToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectMemberCreateManyUserProjectMemberUserToUserInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Project?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<ProjectMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectMemberCreateManyUserProjectMemberUserToUserInputEnvelope {
+  data?: Maybe<Array<ProjectMemberCreateManyUserProjectMemberUserToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectMemberCreateNestedManyWithoutProjectProjectToProjectMemberInput {
+  connect?: Maybe<Array<ProjectMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectMemberCreateOrConnectWithoutProjectProjectToProjectMemberInput>>;
+  create?: Maybe<Array<ProjectMemberCreateWithoutProjectProjectToProjectMemberInput>>;
+  createMany?: Maybe<ProjectMemberCreateManyProjectProjectToProjectMemberInputEnvelope>;
+}
+
+export interface ProjectMemberCreateNestedManyWithoutServicesInput {
+  connect?: Maybe<Array<ProjectMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectMemberCreateOrConnectWithoutServicesInput>>;
+  create?: Maybe<Array<ProjectMemberCreateWithoutServicesInput>>;
+}
+
+export interface ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput {
+  connect?: Maybe<Array<ProjectMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectMemberCreateOrConnectWithoutUserProjectMemberCreatedByToUserInput>>;
+  create?: Maybe<Array<ProjectMemberCreateWithoutUserProjectMemberCreatedByToUserInput>>;
+  createMany?: Maybe<ProjectMemberCreateManyUserProjectMemberCreatedByToUserInputEnvelope>;
+}
+
+export interface ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput {
+  connect?: Maybe<Array<ProjectMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectMemberCreateOrConnectWithoutUserProjectMemberUserToUserInput>>;
+  create?: Maybe<Array<ProjectMemberCreateWithoutUserProjectMemberUserToUserInput>>;
+  createMany?: Maybe<ProjectMemberCreateManyUserProjectMemberUserToUserInputEnvelope>;
+}
+
+export interface ProjectMemberCreateOrConnectWithoutProjectProjectToProjectMemberInput {
+  create: ProjectMemberCreateWithoutProjectProjectToProjectMemberInput;
+  where: ProjectMemberWhereUniqueInput;
+}
+
+export interface ProjectMemberCreateOrConnectWithoutServicesInput {
+  create: ProjectMemberCreateWithoutServicesInput;
+  where: ProjectMemberWhereUniqueInput;
+}
+
+export interface ProjectMemberCreateOrConnectWithoutUserProjectMemberCreatedByToUserInput {
+  create: ProjectMemberCreateWithoutUserProjectMemberCreatedByToUserInput;
+  where: ProjectMemberWhereUniqueInput;
+}
+
+export interface ProjectMemberCreateOrConnectWithoutUserProjectMemberUserToUserInput {
+  create: ProjectMemberCreateWithoutUserProjectMemberUserToUserInput;
+  where: ProjectMemberWhereUniqueInput;
+}
+
+export interface ProjectMemberCreateWithoutProjectProjectToProjectMemberInput {
+  Services?: Maybe<ServiceCreateNestedManyWithoutProjectMembersInput>;
+  User_ProjectMember_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutProjectMembersProjectMemberCreatedByToUserInput>;
+  User_ProjectMember_UserToUser?: Maybe<UserCreateNestedOneWithoutProjectMembersProjectMemberUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<ProjectMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectMemberCreateWithoutServicesInput {
+  Project_ProjectToProjectMember?: Maybe<ProjectCreateNestedOneWithoutProjectMembersInput>;
+  User_ProjectMember_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutProjectMembersProjectMemberCreatedByToUserInput>;
+  User_ProjectMember_UserToUser?: Maybe<UserCreateNestedOneWithoutProjectMembersProjectMemberUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<ProjectMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectMemberCreateWithoutUserProjectMemberCreatedByToUserInput {
+  Project_ProjectToProjectMember?: Maybe<ProjectCreateNestedOneWithoutProjectMembersInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutProjectMembersInput>;
+  User_ProjectMember_UserToUser?: Maybe<UserCreateNestedOneWithoutProjectMembersProjectMemberUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<ProjectMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectMemberCreateWithoutUserProjectMemberUserToUserInput {
+  Project_ProjectToProjectMember?: Maybe<ProjectCreateNestedOneWithoutProjectMembersInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutProjectMembersInput>;
+  User_ProjectMember_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutProjectMembersProjectMemberCreatedByToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<ProjectMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ProjectMemberListRelationFilter {
@@ -2405,6 +7075,10 @@ export interface ProjectMemberWhereInput {
   id?: Maybe<StringFilter>;
   status?: Maybe<EnumProjectMemberStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface ProjectMemberWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface ProjectOrderByInput {
@@ -2454,6 +7128,105 @@ export interface ProjectTask {
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   updatedAt: Scalars['DateTime'];
+}
+
+export interface ProjectTaskCreateManyProjectProjectToProjectTaskInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectTaskCreateManyProjectProjectToProjectTaskInputEnvelope {
+  data?: Maybe<Array<ProjectTaskCreateManyProjectProjectToProjectTaskInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectTaskCreateManyTaskProjectTaskToTaskInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Project?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectTaskCreateManyTaskProjectTaskToTaskInputEnvelope {
+  data?: Maybe<Array<ProjectTaskCreateManyTaskProjectTaskToTaskInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectTaskCreateManyUserInput {
+  Project?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectTaskCreateManyUserInputEnvelope {
+  data?: Maybe<Array<ProjectTaskCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ProjectTaskCreateNestedManyWithoutProjectProjectToProjectTaskInput {
+  connect?: Maybe<Array<ProjectTaskWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectTaskCreateOrConnectWithoutProjectProjectToProjectTaskInput>>;
+  create?: Maybe<Array<ProjectTaskCreateWithoutProjectProjectToProjectTaskInput>>;
+  createMany?: Maybe<ProjectTaskCreateManyProjectProjectToProjectTaskInputEnvelope>;
+}
+
+export interface ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput {
+  connect?: Maybe<Array<ProjectTaskWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectTaskCreateOrConnectWithoutTaskProjectTaskToTaskInput>>;
+  create?: Maybe<Array<ProjectTaskCreateWithoutTaskProjectTaskToTaskInput>>;
+  createMany?: Maybe<ProjectTaskCreateManyTaskProjectTaskToTaskInputEnvelope>;
+}
+
+export interface ProjectTaskCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<ProjectTaskWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ProjectTaskCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<ProjectTaskCreateWithoutUserInput>>;
+  createMany?: Maybe<ProjectTaskCreateManyUserInputEnvelope>;
+}
+
+export interface ProjectTaskCreateOrConnectWithoutProjectProjectToProjectTaskInput {
+  create: ProjectTaskCreateWithoutProjectProjectToProjectTaskInput;
+  where: ProjectTaskWhereUniqueInput;
+}
+
+export interface ProjectTaskCreateOrConnectWithoutTaskProjectTaskToTaskInput {
+  create: ProjectTaskCreateWithoutTaskProjectTaskToTaskInput;
+  where: ProjectTaskWhereUniqueInput;
+}
+
+export interface ProjectTaskCreateOrConnectWithoutUserInput {
+  create: ProjectTaskCreateWithoutUserInput;
+  where: ProjectTaskWhereUniqueInput;
+}
+
+export interface ProjectTaskCreateWithoutProjectProjectToProjectTaskInput {
+  Task_ProjectTaskToTask?: Maybe<TaskCreateNestedOneWithoutProjectTasksInput>;
+  User?: Maybe<UserCreateNestedOneWithoutProjectTasksInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectTaskCreateWithoutTaskProjectTaskToTaskInput {
+  Project_ProjectToProjectTask?: Maybe<ProjectCreateNestedOneWithoutProjectTasksInput>;
+  User?: Maybe<UserCreateNestedOneWithoutProjectTasksInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ProjectTaskCreateWithoutUserInput {
+  Project_ProjectToProjectTask?: Maybe<ProjectCreateNestedOneWithoutProjectTasksInput>;
+  Task_ProjectTaskToTask?: Maybe<TaskCreateNestedOneWithoutProjectTasksInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ProjectTaskListRelationFilter {
@@ -2569,6 +7342,9 @@ export interface Query {
   codeChallengeCompletion?: Maybe<CodeChallengeCompletion>;
   codeChallengeCompletions: Array<CodeChallengeCompletion>;
   codeChallenges: Array<CodeChallenge>;
+  donate?: Maybe<Donate>;
+  donates: Array<Donate>;
+  donatesCount: Scalars['Int'];
   /** Файл */
   file?: Maybe<File>;
   /** Список файлов */
@@ -2715,6 +7491,25 @@ export type QueryCodeChallengesArgs = {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<CodeChallengeWhereInput>;
+};
+
+
+export type QueryDonateArgs = {
+  where: DonateWhereUniqueInput;
+};
+
+
+export type QueryDonatesArgs = {
+  cursor?: Maybe<DonateWhereUniqueInput>;
+  orderBy?: Maybe<Array<DonateOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<DonateWhereInput>;
+};
+
+
+export type QueryDonatesCountArgs = {
+  where?: Maybe<DonateWhereInput>;
 };
 
 
@@ -3038,6 +7833,41 @@ export interface ResetPassword {
   id: Scalars['ID'];
 }
 
+export interface ResetPasswordCreateManyUserResetPasswordToUserInput {
+  code: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  password: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  validTill?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ResetPasswordCreateManyUserResetPasswordToUserInputEnvelope {
+  data?: Maybe<Array<ResetPasswordCreateManyUserResetPasswordToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput {
+  connect?: Maybe<Array<ResetPasswordWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResetPasswordCreateOrConnectWithoutUserResetPasswordToUserInput>>;
+  create?: Maybe<Array<ResetPasswordCreateWithoutUserResetPasswordToUserInput>>;
+  createMany?: Maybe<ResetPasswordCreateManyUserResetPasswordToUserInputEnvelope>;
+}
+
+export interface ResetPasswordCreateOrConnectWithoutUserResetPasswordToUserInput {
+  create: ResetPasswordCreateWithoutUserResetPasswordToUserInput;
+  where: ResetPasswordWhereUniqueInput;
+}
+
+export interface ResetPasswordCreateWithoutUserResetPasswordToUserInput {
+  code: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  password: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  validTill?: Maybe<Scalars['DateTime']>;
+}
+
 export interface ResetPasswordListRelationFilter {
   every?: Maybe<ResetPasswordWhereInput>;
   none?: Maybe<ResetPasswordWhereInput>;
@@ -3117,6 +7947,1392 @@ export type ResourceCommentsArgs = {
   orderBy?: Maybe<ResourceOrderByInput>;
 };
 
+export interface ResourceCreateManyEthAccountEthAccountToResourceInput {
+  Blog?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Service?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyEthAccountEthAccountToResourceInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyEthAccountEthAccountToResourceInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateManyProjectProjectToResourcePrismaProjectInput {
+  Blog?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  EthAccount?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  Service?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyProjectProjectToResourcePrismaProjectInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyProjectProjectToResourcePrismaProjectInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateManyResourceResourceToResourceBlogInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  EthAccount?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Service?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyResourceResourceToResourceBlogInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyResourceResourceToResourceBlogInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateManyResourceResourceToResourceParentInput {
+  Blog?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  EthAccount?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Service?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyResourceResourceToResourceParentInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyResourceResourceToResourceParentInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateManyResourceResourceToResourceTopicInput {
+  Blog?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  EthAccount?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Service?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyResourceResourceToResourceTopicInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyResourceResourceToResourceTopicInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateManyServiceResourceToServiceInput {
+  Blog?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  EthAccount?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyServiceResourceToServiceInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyServiceResourceToServiceInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateManyTaskResourceToTaskInput {
+  Blog?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  EthAccount?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Service?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyTaskResourceToTaskInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyTaskResourceToTaskInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateManyTeamResourceToTeamInput {
+  Blog?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  EthAccount?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Service?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyTeamResourceToTeamInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyTeamResourceToTeamInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateManyUserInput {
+  Blog?: Maybe<Scalars['String']>;
+  EthAccount?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Service?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  Team?: Maybe<Scalars['String']>;
+  Topic?: Maybe<Scalars['String']>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateManyUserInputEnvelope {
+  data?: Maybe<Array<ResourceCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutEthAccountEthAccountToResourceInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutEthAccountEthAccountToResourceInput>>;
+  createMany?: Maybe<ResourceCreateManyEthAccountEthAccountToResourceInputEnvelope>;
+}
+
+export interface ResourceCreateNestedManyWithoutProjectProjectToResourcePrismaProjectInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutProjectProjectToResourcePrismaProjectInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutProjectProjectToResourcePrismaProjectInput>>;
+  createMany?: Maybe<ResourceCreateManyProjectProjectToResourcePrismaProjectInputEnvelope>;
+}
+
+export interface ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutResourceResourceToResourceBlogInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutResourceResourceToResourceBlogInput>>;
+  createMany?: Maybe<ResourceCreateManyResourceResourceToResourceBlogInputEnvelope>;
+}
+
+export interface ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutResourceResourceToResourceParentInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutResourceResourceToResourceParentInput>>;
+  createMany?: Maybe<ResourceCreateManyResourceResourceToResourceParentInputEnvelope>;
+}
+
+export interface ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutResourceResourceToResourceTopicInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutResourceResourceToResourceTopicInput>>;
+  createMany?: Maybe<ResourceCreateManyResourceResourceToResourceTopicInputEnvelope>;
+}
+
+export interface ResourceCreateNestedManyWithoutServiceResourceToServiceInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutServiceResourceToServiceInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutServiceResourceToServiceInput>>;
+  createMany?: Maybe<ResourceCreateManyServiceResourceToServiceInputEnvelope>;
+}
+
+export interface ResourceCreateNestedManyWithoutTaskResourceToTaskInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutTaskResourceToTaskInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutTaskResourceToTaskInput>>;
+  createMany?: Maybe<ResourceCreateManyTaskResourceToTaskInputEnvelope>;
+}
+
+export interface ResourceCreateNestedManyWithoutTeamResourceToTeamInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutTeamResourceToTeamInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutTeamResourceToTeamInput>>;
+  createMany?: Maybe<ResourceCreateManyTeamResourceToTeamInputEnvelope>;
+}
+
+export interface ResourceCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<ResourceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<ResourceCreateWithoutUserInput>>;
+  createMany?: Maybe<ResourceCreateManyUserInputEnvelope>;
+}
+
+export interface ResourceCreateNestedOneWithoutCodeChallengesInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutCodeChallengesInput>;
+  create?: Maybe<ResourceCreateWithoutCodeChallengesInput>;
+}
+
+export interface ResourceCreateNestedOneWithoutFilesInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutFilesInput>;
+  create?: Maybe<ResourceCreateWithoutFilesInput>;
+}
+
+export interface ResourceCreateNestedOneWithoutGalleriesInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutGalleriesInput>;
+  create?: Maybe<ResourceCreateWithoutGalleriesInput>;
+}
+
+export interface ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutOtherResourceResourceToResourceBlogsInput>;
+  create?: Maybe<ResourceCreateWithoutOtherResourceResourceToResourceBlogsInput>;
+}
+
+export interface ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutOtherResourceResourceToResourceParentsInput>;
+  create?: Maybe<ResourceCreateWithoutOtherResourceResourceToResourceParentsInput>;
+}
+
+export interface ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutOtherResourceResourceToResourceTopicsInput>;
+  create?: Maybe<ResourceCreateWithoutOtherResourceResourceToResourceTopicsInput>;
+}
+
+export interface ResourceCreateNestedOneWithoutProjectsProjectResourceToResourceInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutProjectsProjectResourceToResourceInput>;
+  create?: Maybe<ResourceCreateWithoutProjectsProjectResourceToResourceInput>;
+}
+
+export interface ResourceCreateNestedOneWithoutResourceTagsInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutResourceTagsInput>;
+  create?: Maybe<ResourceCreateWithoutResourceTagsInput>;
+}
+
+export interface ResourceCreateNestedOneWithoutVotesInput {
+  connect?: Maybe<ResourceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ResourceCreateOrConnectWithoutVotesInput>;
+  create?: Maybe<ResourceCreateWithoutVotesInput>;
+}
+
+export interface ResourceCreateOrConnectWithoutCodeChallengesInput {
+  create: ResourceCreateWithoutCodeChallengesInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutEthAccountEthAccountToResourceInput {
+  create: ResourceCreateWithoutEthAccountEthAccountToResourceInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutFilesInput {
+  create: ResourceCreateWithoutFilesInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutGalleriesInput {
+  create: ResourceCreateWithoutGalleriesInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutOtherResourceResourceToResourceBlogsInput {
+  create: ResourceCreateWithoutOtherResourceResourceToResourceBlogsInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutOtherResourceResourceToResourceParentsInput {
+  create: ResourceCreateWithoutOtherResourceResourceToResourceParentsInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutOtherResourceResourceToResourceTopicsInput {
+  create: ResourceCreateWithoutOtherResourceResourceToResourceTopicsInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutProjectProjectToResourcePrismaProjectInput {
+  create: ResourceCreateWithoutProjectProjectToResourcePrismaProjectInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutProjectsProjectResourceToResourceInput {
+  create: ResourceCreateWithoutProjectsProjectResourceToResourceInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutResourceTagsInput {
+  create: ResourceCreateWithoutResourceTagsInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutResourceResourceToResourceBlogInput {
+  create: ResourceCreateWithoutResourceResourceToResourceBlogInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutResourceResourceToResourceParentInput {
+  create: ResourceCreateWithoutResourceResourceToResourceParentInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutResourceResourceToResourceTopicInput {
+  create: ResourceCreateWithoutResourceResourceToResourceTopicInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutServiceResourceToServiceInput {
+  create: ResourceCreateWithoutServiceResourceToServiceInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutTaskResourceToTaskInput {
+  create: ResourceCreateWithoutTaskResourceToTaskInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutTeamResourceToTeamInput {
+  create: ResourceCreateWithoutTeamResourceToTeamInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutUserInput {
+  create: ResourceCreateWithoutUserInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateOrConnectWithoutVotesInput {
+  create: ResourceCreateWithoutVotesInput;
+  where: ResourceWhereUniqueInput;
+}
+
+export interface ResourceCreateWithoutCodeChallengesInput {
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutEthAccountEthAccountToResourceInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutFilesInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutGalleriesInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutOtherResourceResourceToResourceBlogsInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutOtherResourceResourceToResourceParentsInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutOtherResourceResourceToResourceTopicsInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutProjectProjectToResourcePrismaProjectInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutProjectsProjectResourceToResourceInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutResourceTagsInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutResourceResourceToResourceBlogInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutResourceResourceToResourceParentInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutResourceResourceToResourceTopicInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutServiceResourceToServiceInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutTaskResourceToTaskInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutTeamResourceToTeamInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutUserInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutResourceResourceToVoteInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
+export interface ResourceCreateWithoutVotesInput {
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutResourceInput>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountCreateNestedOneWithoutResourceInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutResourceInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutResourceGalleryToResourceInput>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutResourcesProjectToResourcePrismaProjectInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectCreateNestedManyWithoutResourceProjectResourceToResourceInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceBlogsInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceParentsInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceCreateNestedOneWithoutOtherResourceResourceToResourceTopicsInput>;
+  Service_ResourceToService?: Maybe<ServiceCreateNestedOneWithoutResourcesInput>;
+  Task_ResourceToTask?: Maybe<TaskCreateNestedOneWithoutResourcesInput>;
+  Team_ResourceToTeam?: Maybe<TeamCreateNestedOneWithoutResourcesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourcesInput>;
+  class_key?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  commentOldID?: Maybe<Scalars['Int']>;
+  components?: Maybe<Scalars['Json']>;
+  content?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  hidemenu?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  isfolder: Scalars['Boolean'];
+  longtitle?: Maybe<Scalars['String']>;
+  mockUpdate?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  negativeVotesCount?: Maybe<Scalars['Int']>;
+  neutralVotesCount?: Maybe<Scalars['Int']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceBlogInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceParentInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceCreateNestedManyWithoutResourceResourceToResourceTopicInput>;
+  positiveVotesCount?: Maybe<Scalars['Int']>;
+  published?: Maybe<Scalars['Boolean']>;
+  rating?: Maybe<Scalars['Decimal']>;
+  searchable?: Maybe<Scalars['Boolean']>;
+  template?: Maybe<Scalars['Int']>;
+  type?: Maybe<ResourceType>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  uri: Scalars['String'];
+}
+
 export interface ResourceListRelationFilter {
   every?: Maybe<ResourceWhereInput>;
   none?: Maybe<ResourceWhereInput>;
@@ -3179,6 +9395,111 @@ export interface ResourceTag {
   updatedAt: Scalars['DateTime'];
 }
 
+export interface ResourceTagCreateManyResourceResourceToResourceTagInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Tag?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ResourceTagCreateManyResourceResourceToResourceTagInputEnvelope {
+  data?: Maybe<Array<ResourceTagCreateManyResourceResourceToResourceTagInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceTagCreateManyTagResourceTagToTagInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Resource?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ResourceTagCreateManyTagResourceTagToTagInputEnvelope {
+  data?: Maybe<Array<ResourceTagCreateManyTagResourceTagToTagInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceTagCreateManyUserInput {
+  Resource?: Maybe<Scalars['String']>;
+  Tag?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ResourceTagCreateManyUserInputEnvelope {
+  data?: Maybe<Array<ResourceTagCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ResourceTagCreateNestedManyWithoutResourceResourceToResourceTagInput {
+  connect?: Maybe<Array<ResourceTagWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceTagCreateOrConnectWithoutResourceResourceToResourceTagInput>>;
+  create?: Maybe<Array<ResourceTagCreateWithoutResourceResourceToResourceTagInput>>;
+  createMany?: Maybe<ResourceTagCreateManyResourceResourceToResourceTagInputEnvelope>;
+}
+
+export interface ResourceTagCreateNestedManyWithoutTagResourceTagToTagInput {
+  connect?: Maybe<Array<ResourceTagWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceTagCreateOrConnectWithoutTagResourceTagToTagInput>>;
+  create?: Maybe<Array<ResourceTagCreateWithoutTagResourceTagToTagInput>>;
+  createMany?: Maybe<ResourceTagCreateManyTagResourceTagToTagInputEnvelope>;
+}
+
+export interface ResourceTagCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<ResourceTagWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ResourceTagCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<ResourceTagCreateWithoutUserInput>>;
+  createMany?: Maybe<ResourceTagCreateManyUserInputEnvelope>;
+}
+
+export interface ResourceTagCreateOrConnectWithoutResourceResourceToResourceTagInput {
+  create: ResourceTagCreateWithoutResourceResourceToResourceTagInput;
+  where: ResourceTagWhereUniqueInput;
+}
+
+export interface ResourceTagCreateOrConnectWithoutTagResourceTagToTagInput {
+  create: ResourceTagCreateWithoutTagResourceTagToTagInput;
+  where: ResourceTagWhereUniqueInput;
+}
+
+export interface ResourceTagCreateOrConnectWithoutUserInput {
+  create: ResourceTagCreateWithoutUserInput;
+  where: ResourceTagWhereUniqueInput;
+}
+
+export interface ResourceTagCreateWithoutResourceResourceToResourceTagInput {
+  Tag_ResourceTagToTag?: Maybe<TagCreateNestedOneWithoutResourceTagsInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourceTagsInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ResourceTagCreateWithoutTagResourceTagToTagInput {
+  Resource_ResourceToResourceTag?: Maybe<ResourceCreateNestedOneWithoutResourceTagsInput>;
+  User?: Maybe<UserCreateNestedOneWithoutResourceTagsInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ResourceTagCreateWithoutUserInput {
+  Resource_ResourceToResourceTag?: Maybe<ResourceCreateNestedOneWithoutResourceTagsInput>;
+  Tag_ResourceTagToTag?: Maybe<TagCreateNestedOneWithoutResourceTagsInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface ResourceTagListRelationFilter {
   every?: Maybe<ResourceTagWhereInput>;
   none?: Maybe<ResourceTagWhereInput>;
@@ -3199,6 +9520,10 @@ export interface ResourceTagWhereInput {
   id?: Maybe<StringFilter>;
   status?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface ResourceTagWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export enum ResourceType {
@@ -3278,6 +9603,99 @@ export interface ResourceWhereUniqueInput {
   uri?: Maybe<Scalars['String']>;
 }
 
+export interface RouteCreateManyRouteInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  component: Scalars['String'];
+  exact: Scalars['Boolean'];
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+}
+
+export interface RouteCreateManyRouteInputEnvelope {
+  data?: Maybe<Array<RouteCreateManyRouteInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface RouteCreateManyUserInput {
+  Parent?: Maybe<Scalars['String']>;
+  component: Scalars['String'];
+  exact: Scalars['Boolean'];
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+}
+
+export interface RouteCreateManyUserInputEnvelope {
+  data?: Maybe<Array<RouteCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface RouteCreateNestedManyWithoutRouteInput {
+  connect?: Maybe<Array<RouteWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<RouteCreateOrConnectWithoutRouteInput>>;
+  create?: Maybe<Array<RouteCreateWithoutRouteInput>>;
+  createMany?: Maybe<RouteCreateManyRouteInputEnvelope>;
+}
+
+export interface RouteCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<RouteWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<RouteCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<RouteCreateWithoutUserInput>>;
+  createMany?: Maybe<RouteCreateManyUserInputEnvelope>;
+}
+
+export interface RouteCreateNestedOneWithoutOtherRoutesInput {
+  connect?: Maybe<RouteWhereUniqueInput>;
+  connectOrCreate?: Maybe<RouteCreateOrConnectWithoutOtherRoutesInput>;
+  create?: Maybe<RouteCreateWithoutOtherRoutesInput>;
+}
+
+export interface RouteCreateOrConnectWithoutOtherRoutesInput {
+  create: RouteCreateWithoutOtherRoutesInput;
+  where: RouteWhereUniqueInput;
+}
+
+export interface RouteCreateOrConnectWithoutRouteInput {
+  create: RouteCreateWithoutRouteInput;
+  where: RouteWhereUniqueInput;
+}
+
+export interface RouteCreateOrConnectWithoutUserInput {
+  create: RouteCreateWithoutUserInput;
+  where: RouteWhereUniqueInput;
+}
+
+export interface RouteCreateWithoutOtherRoutesInput {
+  Route?: Maybe<RouteCreateNestedOneWithoutOtherRoutesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutRoutesInput>;
+  component: Scalars['String'];
+  exact: Scalars['Boolean'];
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+}
+
+export interface RouteCreateWithoutRouteInput {
+  User?: Maybe<UserCreateNestedOneWithoutRoutesInput>;
+  component: Scalars['String'];
+  exact: Scalars['Boolean'];
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Routes?: Maybe<RouteCreateNestedManyWithoutRouteInput>;
+  path: Scalars['String'];
+}
+
+export interface RouteCreateWithoutUserInput {
+  Route?: Maybe<RouteCreateNestedOneWithoutOtherRoutesInput>;
+  component: Scalars['String'];
+  exact: Scalars['Boolean'];
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Routes?: Maybe<RouteCreateNestedManyWithoutRouteInput>;
+  path: Scalars['String'];
+}
+
 export interface RouteListRelationFilter {
   every?: Maybe<RouteWhereInput>;
   none?: Maybe<RouteWhereInput>;
@@ -3298,6 +9716,134 @@ export interface RouteWhereInput {
   name?: Maybe<StringNullableFilter>;
   other_Routes?: Maybe<RouteListRelationFilter>;
   path?: Maybe<StringFilter>;
+}
+
+export interface RouteWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface ServiceCategoryCreateManyServiceCategoryInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCategoryCreateManyServiceCategoryInputEnvelope {
+  data?: Maybe<Array<ServiceCategoryCreateManyServiceCategoryInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ServiceCategoryCreateManyUserInput {
+  Parent?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCategoryCreateManyUserInputEnvelope {
+  data?: Maybe<Array<ServiceCategoryCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ServiceCategoryCreateNestedManyWithoutServiceCategoryInput {
+  connect?: Maybe<Array<ServiceCategoryWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ServiceCategoryCreateOrConnectWithoutServiceCategoryInput>>;
+  create?: Maybe<Array<ServiceCategoryCreateWithoutServiceCategoryInput>>;
+  createMany?: Maybe<ServiceCategoryCreateManyServiceCategoryInputEnvelope>;
+}
+
+export interface ServiceCategoryCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<ServiceCategoryWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ServiceCategoryCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<ServiceCategoryCreateWithoutUserInput>>;
+  createMany?: Maybe<ServiceCategoryCreateManyUserInputEnvelope>;
+}
+
+export interface ServiceCategoryCreateNestedOneWithoutOtherServiceCategoriesInput {
+  connect?: Maybe<ServiceCategoryWhereUniqueInput>;
+  connectOrCreate?: Maybe<ServiceCategoryCreateOrConnectWithoutOtherServiceCategoriesInput>;
+  create?: Maybe<ServiceCategoryCreateWithoutOtherServiceCategoriesInput>;
+}
+
+export interface ServiceCategoryCreateNestedOneWithoutServicesInput {
+  connect?: Maybe<ServiceCategoryWhereUniqueInput>;
+  connectOrCreate?: Maybe<ServiceCategoryCreateOrConnectWithoutServicesInput>;
+  create?: Maybe<ServiceCategoryCreateWithoutServicesInput>;
+}
+
+export interface ServiceCategoryCreateOrConnectWithoutOtherServiceCategoriesInput {
+  create: ServiceCategoryCreateWithoutOtherServiceCategoriesInput;
+  where: ServiceCategoryWhereUniqueInput;
+}
+
+export interface ServiceCategoryCreateOrConnectWithoutServiceCategoryInput {
+  create: ServiceCategoryCreateWithoutServiceCategoryInput;
+  where: ServiceCategoryWhereUniqueInput;
+}
+
+export interface ServiceCategoryCreateOrConnectWithoutServicesInput {
+  create: ServiceCategoryCreateWithoutServicesInput;
+  where: ServiceCategoryWhereUniqueInput;
+}
+
+export interface ServiceCategoryCreateOrConnectWithoutUserInput {
+  create: ServiceCategoryCreateWithoutUserInput;
+  where: ServiceCategoryWhereUniqueInput;
+}
+
+export interface ServiceCategoryCreateWithoutOtherServiceCategoriesInput {
+  ServiceCategory?: Maybe<ServiceCategoryCreateNestedOneWithoutOtherServiceCategoriesInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutServiceCategoryInput>;
+  User?: Maybe<UserCreateNestedOneWithoutServiceCategoriesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCategoryCreateWithoutServiceCategoryInput {
+  Services?: Maybe<ServiceCreateNestedManyWithoutServiceCategoryInput>;
+  User?: Maybe<UserCreateNestedOneWithoutServiceCategoriesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  other_ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutServiceCategoryInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCategoryCreateWithoutServicesInput {
+  ServiceCategory?: Maybe<ServiceCategoryCreateNestedOneWithoutOtherServiceCategoriesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutServiceCategoriesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  other_ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutServiceCategoryInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCategoryCreateWithoutUserInput {
+  ServiceCategory?: Maybe<ServiceCategoryCreateNestedOneWithoutOtherServiceCategoriesInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutServiceCategoryInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  other_ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutServiceCategoryInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ServiceCategoryListRelationFilter {
@@ -3322,6 +9868,230 @@ export interface ServiceCategoryWhereInput {
   name?: Maybe<StringFilter>;
   other_ServiceCategories?: Maybe<ServiceCategoryListRelationFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface ServiceCategoryWhereUniqueInput {
+  code?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface ServiceCreateManyServiceCategoryInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCreateManyServiceCategoryInputEnvelope {
+  data?: Maybe<Array<ServiceCreateManyServiceCategoryInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ServiceCreateManyServiceInput {
+  Category?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCreateManyServiceInputEnvelope {
+  data?: Maybe<Array<ServiceCreateManyServiceInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ServiceCreateManyUserInput {
+  Category?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCreateManyUserInputEnvelope {
+  data?: Maybe<Array<ServiceCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ServiceCreateNestedManyWithoutProjectMembersInput {
+  connect?: Maybe<Array<ServiceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ServiceCreateOrConnectWithoutProjectMembersInput>>;
+  create?: Maybe<Array<ServiceCreateWithoutProjectMembersInput>>;
+}
+
+export interface ServiceCreateNestedManyWithoutServiceCategoryInput {
+  connect?: Maybe<Array<ServiceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ServiceCreateOrConnectWithoutServiceCategoryInput>>;
+  create?: Maybe<Array<ServiceCreateWithoutServiceCategoryInput>>;
+  createMany?: Maybe<ServiceCreateManyServiceCategoryInputEnvelope>;
+}
+
+export interface ServiceCreateNestedManyWithoutServiceInput {
+  connect?: Maybe<Array<ServiceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ServiceCreateOrConnectWithoutServiceInput>>;
+  create?: Maybe<Array<ServiceCreateWithoutServiceInput>>;
+  createMany?: Maybe<ServiceCreateManyServiceInputEnvelope>;
+}
+
+export interface ServiceCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<ServiceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ServiceCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<ServiceCreateWithoutUserInput>>;
+  createMany?: Maybe<ServiceCreateManyUserInputEnvelope>;
+}
+
+export interface ServiceCreateNestedOneWithoutOtherServicesInput {
+  connect?: Maybe<ServiceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ServiceCreateOrConnectWithoutOtherServicesInput>;
+  create?: Maybe<ServiceCreateWithoutOtherServicesInput>;
+}
+
+export interface ServiceCreateNestedOneWithoutResourcesInput {
+  connect?: Maybe<ServiceWhereUniqueInput>;
+  connectOrCreate?: Maybe<ServiceCreateOrConnectWithoutResourcesInput>;
+  create?: Maybe<ServiceCreateWithoutResourcesInput>;
+}
+
+export interface ServiceCreateOrConnectWithoutOtherServicesInput {
+  create: ServiceCreateWithoutOtherServicesInput;
+  where: ServiceWhereUniqueInput;
+}
+
+export interface ServiceCreateOrConnectWithoutProjectMembersInput {
+  create: ServiceCreateWithoutProjectMembersInput;
+  where: ServiceWhereUniqueInput;
+}
+
+export interface ServiceCreateOrConnectWithoutResourcesInput {
+  create: ServiceCreateWithoutResourcesInput;
+  where: ServiceWhereUniqueInput;
+}
+
+export interface ServiceCreateOrConnectWithoutServiceCategoryInput {
+  create: ServiceCreateWithoutServiceCategoryInput;
+  where: ServiceWhereUniqueInput;
+}
+
+export interface ServiceCreateOrConnectWithoutServiceInput {
+  create: ServiceCreateWithoutServiceInput;
+  where: ServiceWhereUniqueInput;
+}
+
+export interface ServiceCreateOrConnectWithoutUserInput {
+  create: ServiceCreateWithoutUserInput;
+  where: ServiceWhereUniqueInput;
+}
+
+export interface ServiceCreateWithoutOtherServicesInput {
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutServicesInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutServiceResourceToServiceInput>;
+  Service?: Maybe<ServiceCreateNestedOneWithoutOtherServicesInput>;
+  ServiceCategory?: Maybe<ServiceCategoryCreateNestedOneWithoutServicesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutServicesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCreateWithoutProjectMembersInput {
+  Resources?: Maybe<ResourceCreateNestedManyWithoutServiceResourceToServiceInput>;
+  Service?: Maybe<ServiceCreateNestedOneWithoutOtherServicesInput>;
+  ServiceCategory?: Maybe<ServiceCategoryCreateNestedOneWithoutServicesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutServicesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Services?: Maybe<ServiceCreateNestedManyWithoutServiceInput>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCreateWithoutResourcesInput {
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutServicesInput>;
+  Service?: Maybe<ServiceCreateNestedOneWithoutOtherServicesInput>;
+  ServiceCategory?: Maybe<ServiceCategoryCreateNestedOneWithoutServicesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutServicesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Services?: Maybe<ServiceCreateNestedManyWithoutServiceInput>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCreateWithoutServiceCategoryInput {
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutServicesInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutServiceResourceToServiceInput>;
+  Service?: Maybe<ServiceCreateNestedOneWithoutOtherServicesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutServicesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Services?: Maybe<ServiceCreateNestedManyWithoutServiceInput>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCreateWithoutServiceInput {
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutServicesInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutServiceResourceToServiceInput>;
+  ServiceCategory?: Maybe<ServiceCategoryCreateNestedOneWithoutServicesInput>;
+  User?: Maybe<UserCreateNestedOneWithoutServicesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Services?: Maybe<ServiceCreateNestedManyWithoutServiceInput>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ServiceCreateWithoutUserInput {
+  ProjectMembers?: Maybe<ProjectMemberCreateNestedManyWithoutServicesInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutServiceResourceToServiceInput>;
+  Service?: Maybe<ServiceCreateNestedOneWithoutOtherServicesInput>;
+  ServiceCategory?: Maybe<ServiceCategoryCreateNestedOneWithoutServicesInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Services?: Maybe<ServiceCreateNestedManyWithoutServiceInput>;
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ServiceListRelationFilter {
@@ -3353,6 +10123,39 @@ export interface ServiceWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface ServiceWhereUniqueInput {
+  code?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+}
+
+export interface SettingsCreateManyUserSettingsToUserInput {
+  id?: Maybe<Scalars['String']>;
+  renderDistance: Scalars['Int'];
+}
+
+export interface SettingsCreateManyUserSettingsToUserInputEnvelope {
+  data?: Maybe<Array<SettingsCreateManyUserSettingsToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface SettingsCreateNestedManyWithoutUserSettingsToUserInput {
+  connect?: Maybe<Array<SettingsWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SettingsCreateOrConnectWithoutUserSettingsToUserInput>>;
+  create?: Maybe<Array<SettingsCreateWithoutUserSettingsToUserInput>>;
+  createMany?: Maybe<SettingsCreateManyUserSettingsToUserInputEnvelope>;
+}
+
+export interface SettingsCreateOrConnectWithoutUserSettingsToUserInput {
+  create: SettingsCreateWithoutUserSettingsToUserInput;
+  where: SettingsWhereUniqueInput;
+}
+
+export interface SettingsCreateWithoutUserSettingsToUserInput {
+  id?: Maybe<Scalars['String']>;
+  renderDistance: Scalars['Int'];
+}
+
 export interface SettingsListRelationFilter {
   every?: Maybe<SettingsWhereInput>;
   none?: Maybe<SettingsWhereInput>;
@@ -3369,12 +10172,96 @@ export interface SettingsWhereInput {
   renderDistance?: Maybe<IntFilter>;
 }
 
+export interface SettingsWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface SingleUploadInput {
   /** В какую директорю загружать файл */
   directory?: Maybe<Scalars['String']>;
   file: Scalars['Upload'];
   /** Пользовательское имя файла */
   name?: Maybe<Scalars['String']>;
+}
+
+export interface SmsMessageCreateManySmsProviderInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Status?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletOnSend?: Maybe<Scalars['Boolean']>;
+  from: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  text: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface SmsMessageCreateManySmsProviderInputEnvelope {
+  data?: Maybe<Array<SmsMessageCreateManySmsProviderInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface SmsMessageCreateManyUserInput {
+  Provider?: Maybe<Scalars['String']>;
+  Status?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletOnSend?: Maybe<Scalars['Boolean']>;
+  from: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  text: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface SmsMessageCreateManyUserInputEnvelope {
+  data?: Maybe<Array<SmsMessageCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface SmsMessageCreateNestedManyWithoutSmsProviderInput {
+  connect?: Maybe<Array<SmsMessageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SmsMessageCreateOrConnectWithoutSmsProviderInput>>;
+  create?: Maybe<Array<SmsMessageCreateWithoutSmsProviderInput>>;
+  createMany?: Maybe<SmsMessageCreateManySmsProviderInputEnvelope>;
+}
+
+export interface SmsMessageCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<SmsMessageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SmsMessageCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<SmsMessageCreateWithoutUserInput>>;
+  createMany?: Maybe<SmsMessageCreateManyUserInputEnvelope>;
+}
+
+export interface SmsMessageCreateOrConnectWithoutSmsProviderInput {
+  create: SmsMessageCreateWithoutSmsProviderInput;
+  where: SmsMessageWhereUniqueInput;
+}
+
+export interface SmsMessageCreateOrConnectWithoutUserInput {
+  create: SmsMessageCreateWithoutUserInput;
+  where: SmsMessageWhereUniqueInput;
+}
+
+export interface SmsMessageCreateWithoutSmsProviderInput {
+  LetsadsSmsMessageStatus?: Maybe<LetsadsSmsMessageStatusCreateNestedOneWithoutSmsMessageInput>;
+  SmsMessage_recipients?: Maybe<SmsMessageRecipientsCreateNestedManyWithoutSmsMessageInput>;
+  User?: Maybe<UserCreateNestedOneWithoutSmsMessagesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletOnSend?: Maybe<Scalars['Boolean']>;
+  from: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  text: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface SmsMessageCreateWithoutUserInput {
+  LetsadsSmsMessageStatus?: Maybe<LetsadsSmsMessageStatusCreateNestedOneWithoutSmsMessageInput>;
+  SmsMessage_recipients?: Maybe<SmsMessageRecipientsCreateNestedManyWithoutSmsMessageInput>;
+  SmsProvider?: Maybe<SmsProviderCreateNestedOneWithoutSmsMessagesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletOnSend?: Maybe<Scalars['Boolean']>;
+  from: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  text: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface SmsMessageListRelationFilter {
@@ -3402,10 +10289,46 @@ export interface SmsMessageWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface SmsMessageWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface SmsMessageRecipientsCreateManySmsMessageInput {
+  position: Scalars['Int'];
+  value: Scalars['String'];
+}
+
+export interface SmsMessageRecipientsCreateManySmsMessageInputEnvelope {
+  data?: Maybe<Array<SmsMessageRecipientsCreateManySmsMessageInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface SmsMessageRecipientsCreateNestedManyWithoutSmsMessageInput {
+  connect?: Maybe<Array<SmsMessageRecipientsWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SmsMessageRecipientsCreateOrConnectWithoutSmsMessageInput>>;
+  create?: Maybe<Array<SmsMessageRecipientsCreateWithoutSmsMessageInput>>;
+  createMany?: Maybe<SmsMessageRecipientsCreateManySmsMessageInputEnvelope>;
+}
+
+export interface SmsMessageRecipientsCreateOrConnectWithoutSmsMessageInput {
+  create: SmsMessageRecipientsCreateWithoutSmsMessageInput;
+  where: SmsMessageRecipientsWhereUniqueInput;
+}
+
+export interface SmsMessageRecipientsCreateWithoutSmsMessageInput {
+  position: Scalars['Int'];
+  value: Scalars['String'];
+}
+
 export interface SmsMessageRecipientsListRelationFilter {
   every?: Maybe<SmsMessageRecipientsWhereInput>;
   none?: Maybe<SmsMessageRecipientsWhereInput>;
   some?: Maybe<SmsMessageRecipientsWhereInput>;
+}
+
+export interface SmsMessageRecipientsNodeIdPositionCompoundUniqueInput {
+  nodeId: Scalars['String'];
+  position: Scalars['Int'];
 }
 
 export interface SmsMessageRecipientsWhereInput {
@@ -3416,6 +10339,64 @@ export interface SmsMessageRecipientsWhereInput {
   nodeId?: Maybe<StringFilter>;
   position?: Maybe<IntFilter>;
   value?: Maybe<StringFilter>;
+}
+
+export interface SmsMessageRecipientsWhereUniqueInput {
+  nodeId_position?: Maybe<SmsMessageRecipientsNodeIdPositionCompoundUniqueInput>;
+}
+
+export interface SmsProviderCreateManyUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  credentials?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface SmsProviderCreateManyUserInputEnvelope {
+  data?: Maybe<Array<SmsProviderCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface SmsProviderCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<SmsProviderWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SmsProviderCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<SmsProviderCreateWithoutUserInput>>;
+  createMany?: Maybe<SmsProviderCreateManyUserInputEnvelope>;
+}
+
+export interface SmsProviderCreateNestedOneWithoutSmsMessagesInput {
+  connect?: Maybe<SmsProviderWhereUniqueInput>;
+  connectOrCreate?: Maybe<SmsProviderCreateOrConnectWithoutSmsMessagesInput>;
+  create?: Maybe<SmsProviderCreateWithoutSmsMessagesInput>;
+}
+
+export interface SmsProviderCreateOrConnectWithoutSmsMessagesInput {
+  create: SmsProviderCreateWithoutSmsMessagesInput;
+  where: SmsProviderWhereUniqueInput;
+}
+
+export interface SmsProviderCreateOrConnectWithoutUserInput {
+  create: SmsProviderCreateWithoutUserInput;
+  where: SmsProviderWhereUniqueInput;
+}
+
+export interface SmsProviderCreateWithoutSmsMessagesInput {
+  User?: Maybe<UserCreateNestedOneWithoutSmsProvidersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  credentials?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface SmsProviderCreateWithoutUserInput {
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutSmsProviderInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  credentials?: Maybe<Scalars['Json']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface SmsProviderListRelationFilter {
@@ -3436,6 +10417,10 @@ export interface SmsProviderWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface SmsProviderWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export enum SortOrder {
@@ -3479,6 +10464,60 @@ export interface Tag {
   id: Scalars['ID'];
   name: Scalars['String'];
   updatedAt: Scalars['DateTime'];
+}
+
+export interface TagCreateManyUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  status?: Maybe<TagStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TagCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TagCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TagCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TagWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TagCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TagCreateWithoutUserInput>>;
+  createMany?: Maybe<TagCreateManyUserInputEnvelope>;
+}
+
+export interface TagCreateNestedOneWithoutResourceTagsInput {
+  connect?: Maybe<TagWhereUniqueInput>;
+  connectOrCreate?: Maybe<TagCreateOrConnectWithoutResourceTagsInput>;
+  create?: Maybe<TagCreateWithoutResourceTagsInput>;
+}
+
+export interface TagCreateOrConnectWithoutResourceTagsInput {
+  create: TagCreateWithoutResourceTagsInput;
+  where: TagWhereUniqueInput;
+}
+
+export interface TagCreateOrConnectWithoutUserInput {
+  create: TagCreateWithoutUserInput;
+  where: TagWhereUniqueInput;
+}
+
+export interface TagCreateWithoutResourceTagsInput {
+  User?: Maybe<UserCreateNestedOneWithoutTagsInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  status?: Maybe<TagStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TagCreateWithoutUserInput {
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutTagResourceTagToTagInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  status?: Maybe<TagStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface TagListRelationFilter {
@@ -3571,6 +10610,153 @@ export interface TaskCreateInput {
   status?: Maybe<TaskStatus>;
 }
 
+export interface TaskCreateManyChatRoomChatRoomToTaskInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateManyChatRoomChatRoomToTaskInputEnvelope {
+  data?: Maybe<Array<TaskCreateManyChatRoomChatRoomToTaskInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskCreateManyTaskInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  CreatedBy?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateManyTaskInputEnvelope {
+  data?: Maybe<Array<TaskCreateManyTaskInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskCreateManyUserInput {
+  ChatRoom?: Maybe<Scalars['String']>;
+  Parent?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TaskCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskCreateNestedManyWithoutChatRoomChatRoomToTaskInput {
+  connect?: Maybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskCreateOrConnectWithoutChatRoomChatRoomToTaskInput>>;
+  create?: Maybe<Array<TaskCreateWithoutChatRoomChatRoomToTaskInput>>;
+  createMany?: Maybe<TaskCreateManyChatRoomChatRoomToTaskInputEnvelope>;
+}
+
+export interface TaskCreateNestedManyWithoutTaskInput {
+  connect?: Maybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskCreateOrConnectWithoutTaskInput>>;
+  create?: Maybe<Array<TaskCreateWithoutTaskInput>>;
+  createMany?: Maybe<TaskCreateManyTaskInputEnvelope>;
+}
+
+export interface TaskCreateNestedManyWithoutTasksAInput {
+  connect?: Maybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskCreateOrConnectWithoutTasksAInput>>;
+  create?: Maybe<Array<TaskCreateWithoutTasksAInput>>;
+}
+
+export interface TaskCreateNestedManyWithoutTasksBInput {
+  connect?: Maybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskCreateOrConnectWithoutTasksBInput>>;
+  create?: Maybe<Array<TaskCreateWithoutTasksBInput>>;
+}
+
+export interface TaskCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TaskCreateWithoutUserInput>>;
+  createMany?: Maybe<TaskCreateManyUserInputEnvelope>;
+}
+
+export interface TaskCreateNestedOneWithoutCodeChallengeCompletionsInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+  connectOrCreate?: Maybe<TaskCreateOrConnectWithoutCodeChallengeCompletionsInput>;
+  create?: Maybe<TaskCreateWithoutCodeChallengeCompletionsInput>;
+}
+
+export interface TaskCreateNestedOneWithoutOtherTasksInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+  connectOrCreate?: Maybe<TaskCreateOrConnectWithoutOtherTasksInput>;
+  create?: Maybe<TaskCreateWithoutOtherTasksInput>;
+}
+
+export interface TaskCreateNestedOneWithoutProjectTasksInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+  connectOrCreate?: Maybe<TaskCreateOrConnectWithoutProjectTasksInput>;
+  create?: Maybe<TaskCreateWithoutProjectTasksInput>;
+}
+
+export interface TaskCreateNestedOneWithoutResourcesInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+  connectOrCreate?: Maybe<TaskCreateOrConnectWithoutResourcesInput>;
+  create?: Maybe<TaskCreateWithoutResourcesInput>;
+}
+
+export interface TaskCreateNestedOneWithoutTaskMembersInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+  connectOrCreate?: Maybe<TaskCreateOrConnectWithoutTaskMembersInput>;
+  create?: Maybe<TaskCreateWithoutTaskMembersInput>;
+}
+
+export interface TaskCreateNestedOneWithoutTaskReactionsInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+  connectOrCreate?: Maybe<TaskCreateOrConnectWithoutTaskReactionsInput>;
+  create?: Maybe<TaskCreateWithoutTaskReactionsInput>;
+}
+
+export interface TaskCreateNestedOneWithoutTaskTechnologiesInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+  connectOrCreate?: Maybe<TaskCreateOrConnectWithoutTaskTechnologiesInput>;
+  create?: Maybe<TaskCreateWithoutTaskTechnologiesInput>;
+}
+
+export interface TaskCreateNestedOneWithoutTimersInput {
+  connect?: Maybe<TaskWhereUniqueInput>;
+  connectOrCreate?: Maybe<TaskCreateOrConnectWithoutTimersInput>;
+  create?: Maybe<TaskCreateWithoutTimersInput>;
+}
+
 export interface TaskCreateOneWithoutChildsInput {
   connect?: Maybe<TaskWhereUniqueInput>;
 }
@@ -3587,10 +10773,531 @@ export interface TaskCreateOneWithoutTimersInput {
   connect?: Maybe<TaskWhereUniqueInput>;
 }
 
+export interface TaskCreateOrConnectWithoutChatRoomChatRoomToTaskInput {
+  create: TaskCreateWithoutChatRoomChatRoomToTaskInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutCodeChallengeCompletionsInput {
+  create: TaskCreateWithoutCodeChallengeCompletionsInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutOtherTasksInput {
+  create: TaskCreateWithoutOtherTasksInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutProjectTasksInput {
+  create: TaskCreateWithoutProjectTasksInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutResourcesInput {
+  create: TaskCreateWithoutResourcesInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutTaskInput {
+  create: TaskCreateWithoutTaskInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutTaskMembersInput {
+  create: TaskCreateWithoutTaskMembersInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutTaskReactionsInput {
+  create: TaskCreateWithoutTaskReactionsInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutTaskTechnologiesInput {
+  create: TaskCreateWithoutTaskTechnologiesInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutTasksAInput {
+  create: TaskCreateWithoutTasksAInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutTasksBInput {
+  create: TaskCreateWithoutTasksBInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutTimersInput {
+  create: TaskCreateWithoutTimersInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateOrConnectWithoutUserInput {
+  create: TaskCreateWithoutUserInput;
+  where: TaskWhereUniqueInput;
+}
+
+export interface TaskCreateWithoutChatRoomChatRoomToTaskInput {
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutCodeChallengeCompletionsInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutOtherTasksInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutProjectTasksInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutResourcesInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutTaskInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutTaskMembersInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutTaskReactionsInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutTaskTechnologiesInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutTasksAInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutTasksBInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutTimersInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskCreateWithoutUserInput {
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomCreateNestedOneWithoutTasksInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutTaskCodeChallengeCompletionToTaskInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutTaskProjectTaskToTaskInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTaskResourceToTaskInput>;
+  Task?: Maybe<TaskCreateNestedOneWithoutOtherTasksInput>;
+  TaskMembers?: Maybe<TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput>;
+  Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
+  Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
+  content?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDatePlaning?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  needHelp?: Maybe<Scalars['Boolean']>;
+  other_Tasks?: Maybe<TaskCreateNestedManyWithoutTaskInput>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  startDatePlaning?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<TaskStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface TaskListRelationFilter {
   every?: Maybe<TaskWhereInput>;
   none?: Maybe<TaskWhereInput>;
   some?: Maybe<TaskWhereInput>;
+}
+
+export interface TaskMemberCreateManyTaskTaskToTaskMemberInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskMemberCreateManyTaskTaskToTaskMemberInputEnvelope {
+  data?: Maybe<Array<TaskMemberCreateManyTaskTaskToTaskMemberInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskMemberCreateManyUserTaskMemberCreatedByToUserInput {
+  Task?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskMemberCreateManyUserTaskMemberCreatedByToUserInputEnvelope {
+  data?: Maybe<Array<TaskMemberCreateManyUserTaskMemberCreatedByToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskMemberCreateManyUserTaskMemberUserToUserInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Task?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskMemberCreateManyUserTaskMemberUserToUserInputEnvelope {
+  data?: Maybe<Array<TaskMemberCreateManyUserTaskMemberUserToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskMemberCreateNestedManyWithoutTaskTaskToTaskMemberInput {
+  connect?: Maybe<Array<TaskMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskMemberCreateOrConnectWithoutTaskTaskToTaskMemberInput>>;
+  create?: Maybe<Array<TaskMemberCreateWithoutTaskTaskToTaskMemberInput>>;
+  createMany?: Maybe<TaskMemberCreateManyTaskTaskToTaskMemberInputEnvelope>;
+}
+
+export interface TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput {
+  connect?: Maybe<Array<TaskMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskMemberCreateOrConnectWithoutUserTaskMemberCreatedByToUserInput>>;
+  create?: Maybe<Array<TaskMemberCreateWithoutUserTaskMemberCreatedByToUserInput>>;
+  createMany?: Maybe<TaskMemberCreateManyUserTaskMemberCreatedByToUserInputEnvelope>;
+}
+
+export interface TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput {
+  connect?: Maybe<Array<TaskMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskMemberCreateOrConnectWithoutUserTaskMemberUserToUserInput>>;
+  create?: Maybe<Array<TaskMemberCreateWithoutUserTaskMemberUserToUserInput>>;
+  createMany?: Maybe<TaskMemberCreateManyUserTaskMemberUserToUserInputEnvelope>;
+}
+
+export interface TaskMemberCreateOrConnectWithoutTaskTaskToTaskMemberInput {
+  create: TaskMemberCreateWithoutTaskTaskToTaskMemberInput;
+  where: TaskMemberWhereUniqueInput;
+}
+
+export interface TaskMemberCreateOrConnectWithoutUserTaskMemberCreatedByToUserInput {
+  create: TaskMemberCreateWithoutUserTaskMemberCreatedByToUserInput;
+  where: TaskMemberWhereUniqueInput;
+}
+
+export interface TaskMemberCreateOrConnectWithoutUserTaskMemberUserToUserInput {
+  create: TaskMemberCreateWithoutUserTaskMemberUserToUserInput;
+  where: TaskMemberWhereUniqueInput;
+}
+
+export interface TaskMemberCreateWithoutTaskTaskToTaskMemberInput {
+  User_TaskMember_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutTaskMembersTaskMemberCreatedByToUserInput>;
+  User_TaskMember_UserToUser?: Maybe<UserCreateNestedOneWithoutTaskMembersTaskMemberUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskMemberCreateWithoutUserTaskMemberCreatedByToUserInput {
+  Task_TaskToTaskMember?: Maybe<TaskCreateNestedOneWithoutTaskMembersInput>;
+  User_TaskMember_UserToUser?: Maybe<UserCreateNestedOneWithoutTaskMembersTaskMemberUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskMemberCreateWithoutUserTaskMemberUserToUserInput {
+  Task_TaskToTaskMember?: Maybe<TaskCreateNestedOneWithoutTaskMembersInput>;
+  User_TaskMember_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutTaskMembersTaskMemberCreatedByToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface TaskMemberListRelationFilter {
@@ -3622,6 +11329,10 @@ export interface TaskMemberWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface TaskMemberWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface TaskOrderByInput {
   ChatRoom?: Maybe<SortOrder>;
   CreatedBy?: Maybe<SortOrder>;
@@ -3648,6 +11359,72 @@ export interface TaskReaction {
   updatedAt: Scalars['DateTime'];
 }
 
+export interface TaskReactionCreateManyTaskTaskToTaskReactionInput {
+  CreatedBy: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: TaskReactionType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskReactionCreateManyTaskTaskToTaskReactionInputEnvelope {
+  data?: Maybe<Array<TaskReactionCreateManyTaskTaskToTaskReactionInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskReactionCreateManyUserInput {
+  Task?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: TaskReactionType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskReactionCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TaskReactionCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskReactionCreateNestedManyWithoutTaskTaskToTaskReactionInput {
+  connect?: Maybe<Array<TaskReactionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskReactionCreateOrConnectWithoutTaskTaskToTaskReactionInput>>;
+  create?: Maybe<Array<TaskReactionCreateWithoutTaskTaskToTaskReactionInput>>;
+  createMany?: Maybe<TaskReactionCreateManyTaskTaskToTaskReactionInputEnvelope>;
+}
+
+export interface TaskReactionCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TaskReactionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskReactionCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TaskReactionCreateWithoutUserInput>>;
+  createMany?: Maybe<TaskReactionCreateManyUserInputEnvelope>;
+}
+
+export interface TaskReactionCreateOrConnectWithoutTaskTaskToTaskReactionInput {
+  create: TaskReactionCreateWithoutTaskTaskToTaskReactionInput;
+  where: TaskReactionWhereUniqueInput;
+}
+
+export interface TaskReactionCreateOrConnectWithoutUserInput {
+  create: TaskReactionCreateWithoutUserInput;
+  where: TaskReactionWhereUniqueInput;
+}
+
+export interface TaskReactionCreateWithoutTaskTaskToTaskReactionInput {
+  User: UserCreateNestedOneWithoutTaskReactionsInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: TaskReactionType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskReactionCreateWithoutUserInput {
+  Task_TaskToTaskReaction?: Maybe<TaskCreateNestedOneWithoutTaskReactionsInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  type: TaskReactionType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface TaskReactionListRelationFilter {
   every?: Maybe<TaskReactionWhereInput>;
   none?: Maybe<TaskReactionWhereInput>;
@@ -3670,6 +11447,10 @@ export interface TaskReactionWhereInput {
   id?: Maybe<StringFilter>;
   type?: Maybe<EnumTaskReactionTypeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface TaskReactionWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface TaskResponse {
@@ -3709,6 +11490,111 @@ export interface TaskTechnologyCreateInput {
   Technology: TechnologyCreateOneWithoutTaskTechnologiesInput;
   id?: Maybe<Scalars['ID']>;
   level?: Maybe<Scalars['UserTechnologyLevel']>;
+}
+
+export interface TaskTechnologyCreateManyTaskTaskToTaskTechnologyInput {
+  CreatedBy: Scalars['String'];
+  Technology?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskTechnologyCreateManyTaskTaskToTaskTechnologyInputEnvelope {
+  data?: Maybe<Array<TaskTechnologyCreateManyTaskTaskToTaskTechnologyInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskTechnologyCreateManyTechnologyTaskTechnologyToTechnologyInput {
+  CreatedBy: Scalars['String'];
+  Task?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskTechnologyCreateManyTechnologyTaskTechnologyToTechnologyInputEnvelope {
+  data?: Maybe<Array<TaskTechnologyCreateManyTechnologyTaskTechnologyToTechnologyInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskTechnologyCreateManyUserInput {
+  Task?: Maybe<Scalars['String']>;
+  Technology?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskTechnologyCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TaskTechnologyCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TaskTechnologyCreateNestedManyWithoutTaskTaskToTaskTechnologyInput {
+  connect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskTechnologyCreateOrConnectWithoutTaskTaskToTaskTechnologyInput>>;
+  create?: Maybe<Array<TaskTechnologyCreateWithoutTaskTaskToTaskTechnologyInput>>;
+  createMany?: Maybe<TaskTechnologyCreateManyTaskTaskToTaskTechnologyInputEnvelope>;
+}
+
+export interface TaskTechnologyCreateNestedManyWithoutTechnologyTaskTechnologyToTechnologyInput {
+  connect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskTechnologyCreateOrConnectWithoutTechnologyTaskTechnologyToTechnologyInput>>;
+  create?: Maybe<Array<TaskTechnologyCreateWithoutTechnologyTaskTechnologyToTechnologyInput>>;
+  createMany?: Maybe<TaskTechnologyCreateManyTechnologyTaskTechnologyToTechnologyInputEnvelope>;
+}
+
+export interface TaskTechnologyCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TaskTechnologyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TaskTechnologyCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TaskTechnologyCreateWithoutUserInput>>;
+  createMany?: Maybe<TaskTechnologyCreateManyUserInputEnvelope>;
+}
+
+export interface TaskTechnologyCreateOrConnectWithoutTaskTaskToTaskTechnologyInput {
+  create: TaskTechnologyCreateWithoutTaskTaskToTaskTechnologyInput;
+  where: TaskTechnologyWhereUniqueInput;
+}
+
+export interface TaskTechnologyCreateOrConnectWithoutTechnologyTaskTechnologyToTechnologyInput {
+  create: TaskTechnologyCreateWithoutTechnologyTaskTechnologyToTechnologyInput;
+  where: TaskTechnologyWhereUniqueInput;
+}
+
+export interface TaskTechnologyCreateOrConnectWithoutUserInput {
+  create: TaskTechnologyCreateWithoutUserInput;
+  where: TaskTechnologyWhereUniqueInput;
+}
+
+export interface TaskTechnologyCreateWithoutTaskTaskToTaskTechnologyInput {
+  Technology_TaskTechnologyToTechnology?: Maybe<TechnologyCreateNestedOneWithoutTaskTechnologiesInput>;
+  User: UserCreateNestedOneWithoutTaskTechnologiesInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskTechnologyCreateWithoutTechnologyTaskTechnologyToTechnologyInput {
+  Task_TaskToTaskTechnology?: Maybe<TaskCreateNestedOneWithoutTaskTechnologiesInput>;
+  User: UserCreateNestedOneWithoutTaskTechnologiesInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TaskTechnologyCreateWithoutUserInput {
+  Task_TaskToTaskTechnology?: Maybe<TaskCreateNestedOneWithoutTaskTechnologiesInput>;
+  Technology_TaskTechnologyToTechnology?: Maybe<TechnologyCreateNestedOneWithoutTaskTechnologiesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface TaskTechnologyListRelationFilter {
@@ -3818,10 +11704,443 @@ export interface TaskWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
 }
 
+export interface TeamCreateManyTeamInput {
+  CreatedBy: Scalars['String'];
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateManyTeamInputEnvelope {
+  data?: Maybe<Array<TeamCreateManyTeamInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TeamCreateManyUserInput {
+  Parent?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TeamCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TeamCreateNestedManyWithoutGamesInput {
+  connect?: Maybe<Array<TeamWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TeamCreateOrConnectWithoutGamesInput>>;
+  create?: Maybe<Array<TeamCreateWithoutGamesInput>>;
+}
+
+export interface TeamCreateNestedManyWithoutProjectProjectCustomersInput {
+  connect?: Maybe<Array<TeamWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TeamCreateOrConnectWithoutProjectProjectCustomersInput>>;
+  create?: Maybe<Array<TeamCreateWithoutProjectProjectCustomersInput>>;
+}
+
+export interface TeamCreateNestedManyWithoutTeamInput {
+  connect?: Maybe<Array<TeamWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TeamCreateOrConnectWithoutTeamInput>>;
+  create?: Maybe<Array<TeamCreateWithoutTeamInput>>;
+  createMany?: Maybe<TeamCreateManyTeamInputEnvelope>;
+}
+
+export interface TeamCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TeamWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TeamCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TeamCreateWithoutUserInput>>;
+  createMany?: Maybe<TeamCreateManyUserInputEnvelope>;
+}
+
+export interface TeamCreateNestedOneWithoutGameResultsInput {
+  connect?: Maybe<TeamWhereUniqueInput>;
+  connectOrCreate?: Maybe<TeamCreateOrConnectWithoutGameResultsInput>;
+  create?: Maybe<TeamCreateWithoutGameResultsInput>;
+}
+
+export interface TeamCreateNestedOneWithoutOtherTeamsInput {
+  connect?: Maybe<TeamWhereUniqueInput>;
+  connectOrCreate?: Maybe<TeamCreateOrConnectWithoutOtherTeamsInput>;
+  create?: Maybe<TeamCreateWithoutOtherTeamsInput>;
+}
+
+export interface TeamCreateNestedOneWithoutProjectsProjectToTeamInput {
+  connect?: Maybe<TeamWhereUniqueInput>;
+  connectOrCreate?: Maybe<TeamCreateOrConnectWithoutProjectsProjectToTeamInput>;
+  create?: Maybe<TeamCreateWithoutProjectsProjectToTeamInput>;
+}
+
+export interface TeamCreateNestedOneWithoutResourcesInput {
+  connect?: Maybe<TeamWhereUniqueInput>;
+  connectOrCreate?: Maybe<TeamCreateOrConnectWithoutResourcesInput>;
+  create?: Maybe<TeamCreateWithoutResourcesInput>;
+}
+
+export interface TeamCreateNestedOneWithoutTeamMembersInput {
+  connect?: Maybe<TeamWhereUniqueInput>;
+  connectOrCreate?: Maybe<TeamCreateOrConnectWithoutTeamMembersInput>;
+  create?: Maybe<TeamCreateWithoutTeamMembersInput>;
+}
+
+export interface TeamCreateOrConnectWithoutGameResultsInput {
+  create: TeamCreateWithoutGameResultsInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateOrConnectWithoutGamesInput {
+  create: TeamCreateWithoutGamesInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateOrConnectWithoutOtherTeamsInput {
+  create: TeamCreateWithoutOtherTeamsInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateOrConnectWithoutProjectProjectCustomersInput {
+  create: TeamCreateWithoutProjectProjectCustomersInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateOrConnectWithoutProjectsProjectToTeamInput {
+  create: TeamCreateWithoutProjectsProjectToTeamInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateOrConnectWithoutResourcesInput {
+  create: TeamCreateWithoutResourcesInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateOrConnectWithoutTeamInput {
+  create: TeamCreateWithoutTeamInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateOrConnectWithoutTeamMembersInput {
+  create: TeamCreateWithoutTeamMembersInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateOrConnectWithoutUserInput {
+  create: TeamCreateWithoutUserInput;
+  where: TeamWhereUniqueInput;
+}
+
+export interface TeamCreateWithoutGameResultsInput {
+  Games?: Maybe<GameCreateNestedManyWithoutTeamInput>;
+  Project_ProjectCustomers?: Maybe<ProjectCreateNestedManyWithoutTeamProjectCustomersInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectCreateNestedManyWithoutTeamProjectToTeamInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTeamResourceToTeamInput>;
+  Team?: Maybe<TeamCreateNestedOneWithoutOtherTeamsInput>;
+  TeamMembers?: Maybe<TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput>;
+  User: UserCreateNestedOneWithoutTeamsInput;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  other_Teams?: Maybe<TeamCreateNestedManyWithoutTeamInput>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateWithoutGamesInput {
+  GameResults?: Maybe<GameResultCreateNestedManyWithoutTeamGameResultToTeamInput>;
+  Project_ProjectCustomers?: Maybe<ProjectCreateNestedManyWithoutTeamProjectCustomersInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectCreateNestedManyWithoutTeamProjectToTeamInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTeamResourceToTeamInput>;
+  Team?: Maybe<TeamCreateNestedOneWithoutOtherTeamsInput>;
+  TeamMembers?: Maybe<TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput>;
+  User: UserCreateNestedOneWithoutTeamsInput;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  other_Teams?: Maybe<TeamCreateNestedManyWithoutTeamInput>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateWithoutOtherTeamsInput {
+  GameResults?: Maybe<GameResultCreateNestedManyWithoutTeamGameResultToTeamInput>;
+  Games?: Maybe<GameCreateNestedManyWithoutTeamInput>;
+  Project_ProjectCustomers?: Maybe<ProjectCreateNestedManyWithoutTeamProjectCustomersInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectCreateNestedManyWithoutTeamProjectToTeamInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTeamResourceToTeamInput>;
+  Team?: Maybe<TeamCreateNestedOneWithoutOtherTeamsInput>;
+  TeamMembers?: Maybe<TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput>;
+  User: UserCreateNestedOneWithoutTeamsInput;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateWithoutProjectProjectCustomersInput {
+  GameResults?: Maybe<GameResultCreateNestedManyWithoutTeamGameResultToTeamInput>;
+  Games?: Maybe<GameCreateNestedManyWithoutTeamInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectCreateNestedManyWithoutTeamProjectToTeamInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTeamResourceToTeamInput>;
+  Team?: Maybe<TeamCreateNestedOneWithoutOtherTeamsInput>;
+  TeamMembers?: Maybe<TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput>;
+  User: UserCreateNestedOneWithoutTeamsInput;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  other_Teams?: Maybe<TeamCreateNestedManyWithoutTeamInput>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateWithoutProjectsProjectToTeamInput {
+  GameResults?: Maybe<GameResultCreateNestedManyWithoutTeamGameResultToTeamInput>;
+  Games?: Maybe<GameCreateNestedManyWithoutTeamInput>;
+  Project_ProjectCustomers?: Maybe<ProjectCreateNestedManyWithoutTeamProjectCustomersInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTeamResourceToTeamInput>;
+  Team?: Maybe<TeamCreateNestedOneWithoutOtherTeamsInput>;
+  TeamMembers?: Maybe<TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput>;
+  User: UserCreateNestedOneWithoutTeamsInput;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  other_Teams?: Maybe<TeamCreateNestedManyWithoutTeamInput>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateWithoutResourcesInput {
+  GameResults?: Maybe<GameResultCreateNestedManyWithoutTeamGameResultToTeamInput>;
+  Games?: Maybe<GameCreateNestedManyWithoutTeamInput>;
+  Project_ProjectCustomers?: Maybe<ProjectCreateNestedManyWithoutTeamProjectCustomersInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectCreateNestedManyWithoutTeamProjectToTeamInput>;
+  Team?: Maybe<TeamCreateNestedOneWithoutOtherTeamsInput>;
+  TeamMembers?: Maybe<TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput>;
+  User: UserCreateNestedOneWithoutTeamsInput;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  other_Teams?: Maybe<TeamCreateNestedManyWithoutTeamInput>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateWithoutTeamInput {
+  GameResults?: Maybe<GameResultCreateNestedManyWithoutTeamGameResultToTeamInput>;
+  Games?: Maybe<GameCreateNestedManyWithoutTeamInput>;
+  Project_ProjectCustomers?: Maybe<ProjectCreateNestedManyWithoutTeamProjectCustomersInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectCreateNestedManyWithoutTeamProjectToTeamInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTeamResourceToTeamInput>;
+  TeamMembers?: Maybe<TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput>;
+  User: UserCreateNestedOneWithoutTeamsInput;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  other_Teams?: Maybe<TeamCreateNestedManyWithoutTeamInput>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateWithoutTeamMembersInput {
+  GameResults?: Maybe<GameResultCreateNestedManyWithoutTeamGameResultToTeamInput>;
+  Games?: Maybe<GameCreateNestedManyWithoutTeamInput>;
+  Project_ProjectCustomers?: Maybe<ProjectCreateNestedManyWithoutTeamProjectCustomersInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectCreateNestedManyWithoutTeamProjectToTeamInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTeamResourceToTeamInput>;
+  Team?: Maybe<TeamCreateNestedOneWithoutOtherTeamsInput>;
+  User: UserCreateNestedOneWithoutTeamsInput;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  other_Teams?: Maybe<TeamCreateNestedManyWithoutTeamInput>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
+export interface TeamCreateWithoutUserInput {
+  GameResults?: Maybe<GameResultCreateNestedManyWithoutTeamGameResultToTeamInput>;
+  Games?: Maybe<GameCreateNestedManyWithoutTeamInput>;
+  Project_ProjectCustomers?: Maybe<ProjectCreateNestedManyWithoutTeamProjectCustomersInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectCreateNestedManyWithoutTeamProjectToTeamInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutTeamResourceToTeamInput>;
+  Team?: Maybe<TeamCreateNestedOneWithoutOtherTeamsInput>;
+  TeamMembers?: Maybe<TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput>;
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  oldID?: Maybe<Scalars['Int']>;
+  other_Teams?: Maybe<TeamCreateNestedManyWithoutTeamInput>;
+  phone?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  website?: Maybe<Scalars['String']>;
+}
+
 export interface TeamListRelationFilter {
   every?: Maybe<TeamWhereInput>;
   none?: Maybe<TeamWhereInput>;
   some?: Maybe<TeamWhereInput>;
+}
+
+export interface TeamMemberCreateManyTeamTeamToTeamMemberInput {
+  CreatedBy: Scalars['String'];
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TeamMemberCreateManyTeamTeamToTeamMemberInputEnvelope {
+  data?: Maybe<Array<TeamMemberCreateManyTeamTeamToTeamMemberInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TeamMemberCreateManyUserTeamMemberCreatedByToUserInput {
+  Team?: Maybe<Scalars['String']>;
+  User?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TeamMemberCreateManyUserTeamMemberCreatedByToUserInputEnvelope {
+  data?: Maybe<Array<TeamMemberCreateManyUserTeamMemberCreatedByToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TeamMemberCreateManyUserTeamMemberUserToUserInput {
+  CreatedBy: Scalars['String'];
+  Team?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TeamMemberCreateManyUserTeamMemberUserToUserInputEnvelope {
+  data?: Maybe<Array<TeamMemberCreateManyUserTeamMemberUserToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TeamMemberCreateNestedManyWithoutTeamTeamToTeamMemberInput {
+  connect?: Maybe<Array<TeamMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TeamMemberCreateOrConnectWithoutTeamTeamToTeamMemberInput>>;
+  create?: Maybe<Array<TeamMemberCreateWithoutTeamTeamToTeamMemberInput>>;
+  createMany?: Maybe<TeamMemberCreateManyTeamTeamToTeamMemberInputEnvelope>;
+}
+
+export interface TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput {
+  connect?: Maybe<Array<TeamMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TeamMemberCreateOrConnectWithoutUserTeamMemberCreatedByToUserInput>>;
+  create?: Maybe<Array<TeamMemberCreateWithoutUserTeamMemberCreatedByToUserInput>>;
+  createMany?: Maybe<TeamMemberCreateManyUserTeamMemberCreatedByToUserInputEnvelope>;
+}
+
+export interface TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput {
+  connect?: Maybe<Array<TeamMemberWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TeamMemberCreateOrConnectWithoutUserTeamMemberUserToUserInput>>;
+  create?: Maybe<Array<TeamMemberCreateWithoutUserTeamMemberUserToUserInput>>;
+  createMany?: Maybe<TeamMemberCreateManyUserTeamMemberUserToUserInputEnvelope>;
+}
+
+export interface TeamMemberCreateOrConnectWithoutTeamTeamToTeamMemberInput {
+  create: TeamMemberCreateWithoutTeamTeamToTeamMemberInput;
+  where: TeamMemberWhereUniqueInput;
+}
+
+export interface TeamMemberCreateOrConnectWithoutUserTeamMemberCreatedByToUserInput {
+  create: TeamMemberCreateWithoutUserTeamMemberCreatedByToUserInput;
+  where: TeamMemberWhereUniqueInput;
+}
+
+export interface TeamMemberCreateOrConnectWithoutUserTeamMemberUserToUserInput {
+  create: TeamMemberCreateWithoutUserTeamMemberUserToUserInput;
+  where: TeamMemberWhereUniqueInput;
+}
+
+export interface TeamMemberCreateWithoutTeamTeamToTeamMemberInput {
+  User_TeamMember_CreatedByToUser: UserCreateNestedOneWithoutTeamMembersTeamMemberCreatedByToUserInput;
+  User_TeamMember_UserToUser?: Maybe<UserCreateNestedOneWithoutTeamMembersTeamMemberUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TeamMemberCreateWithoutUserTeamMemberCreatedByToUserInput {
+  Team_TeamToTeamMember?: Maybe<TeamCreateNestedOneWithoutTeamMembersInput>;
+  User_TeamMember_UserToUser?: Maybe<UserCreateNestedOneWithoutTeamMembersTeamMemberUserToUserInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TeamMemberCreateWithoutUserTeamMemberUserToUserInput {
+  Team_TeamToTeamMember?: Maybe<TeamCreateNestedOneWithoutTeamMembersInput>;
+  User_TeamMember_CreatedByToUser: UserCreateNestedOneWithoutTeamMembersTeamMemberCreatedByToUserInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TeamMemberStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface TeamMemberListRelationFilter {
@@ -3850,6 +12169,10 @@ export interface TeamMemberWhereInput {
   id?: Maybe<StringFilter>;
   status?: Maybe<EnumTeamMemberStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface TeamMemberWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export enum TeamStatus {
@@ -3882,6 +12205,11 @@ export interface TeamWhereInput {
   status?: Maybe<EnumTeamStatusFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   website?: Maybe<StringNullableFilter>;
+}
+
+export interface TeamWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
 }
 
 export interface Technology {
@@ -3923,6 +12251,58 @@ export interface TechnologyCreateInput {
   name: Scalars['String'];
 }
 
+export interface TechnologyCreateManyUserInput {
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level1hours?: Maybe<Scalars['Int']>;
+  level2hours?: Maybe<Scalars['Int']>;
+  level3hours?: Maybe<Scalars['Int']>;
+  level4hours?: Maybe<Scalars['Int']>;
+  level5hours?: Maybe<Scalars['Int']>;
+  name: Scalars['String'];
+  site_url?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TechnologyCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TechnologyCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TechnologyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TechnologyCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TechnologyCreateWithoutUserInput>>;
+  createMany?: Maybe<TechnologyCreateManyUserInputEnvelope>;
+}
+
+export interface TechnologyCreateNestedOneWithoutLearnStrategyStagesInput {
+  connect?: Maybe<TechnologyWhereUniqueInput>;
+  connectOrCreate?: Maybe<TechnologyCreateOrConnectWithoutLearnStrategyStagesInput>;
+  create?: Maybe<TechnologyCreateWithoutLearnStrategyStagesInput>;
+}
+
+export interface TechnologyCreateNestedOneWithoutTaskTechnologiesInput {
+  connect?: Maybe<TechnologyWhereUniqueInput>;
+  connectOrCreate?: Maybe<TechnologyCreateOrConnectWithoutTaskTechnologiesInput>;
+  create?: Maybe<TechnologyCreateWithoutTaskTechnologiesInput>;
+}
+
+export interface TechnologyCreateNestedOneWithoutTechnologyLessonsInput {
+  connect?: Maybe<TechnologyWhereUniqueInput>;
+  connectOrCreate?: Maybe<TechnologyCreateOrConnectWithoutTechnologyLessonsInput>;
+  create?: Maybe<TechnologyCreateWithoutTechnologyLessonsInput>;
+}
+
+export interface TechnologyCreateNestedOneWithoutUserTechnologiesInput {
+  connect?: Maybe<TechnologyWhereUniqueInput>;
+  connectOrCreate?: Maybe<TechnologyCreateOrConnectWithoutUserTechnologiesInput>;
+  create?: Maybe<TechnologyCreateWithoutUserTechnologiesInput>;
+}
+
 export interface TechnologyCreateOneWithoutTaskTechnologiesInput {
   connect?: Maybe<TechnologyWhereUniqueInput>;
 }
@@ -3931,10 +12311,317 @@ export interface TechnologyCreateOneWithoutUserTechnologiesInput {
   connect?: Maybe<TechnologyWhereUniqueInput>;
 }
 
+export interface TechnologyCreateOrConnectWithoutLearnStrategyStagesInput {
+  create: TechnologyCreateWithoutLearnStrategyStagesInput;
+  where: TechnologyWhereUniqueInput;
+}
+
+export interface TechnologyCreateOrConnectWithoutTaskTechnologiesInput {
+  create: TechnologyCreateWithoutTaskTechnologiesInput;
+  where: TechnologyWhereUniqueInput;
+}
+
+export interface TechnologyCreateOrConnectWithoutTechnologyLessonsInput {
+  create: TechnologyCreateWithoutTechnologyLessonsInput;
+  where: TechnologyWhereUniqueInput;
+}
+
+export interface TechnologyCreateOrConnectWithoutUserInput {
+  create: TechnologyCreateWithoutUserInput;
+  where: TechnologyWhereUniqueInput;
+}
+
+export interface TechnologyCreateOrConnectWithoutUserTechnologiesInput {
+  create: TechnologyCreateWithoutUserTechnologiesInput;
+  where: TechnologyWhereUniqueInput;
+}
+
+export interface TechnologyCreateWithoutLearnStrategyStagesInput {
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTechnologyTaskTechnologyToTechnologyInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput>;
+  User: UserCreateNestedOneWithoutTechnologiesInput;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput>;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level1hours?: Maybe<Scalars['Int']>;
+  level2hours?: Maybe<Scalars['Int']>;
+  level3hours?: Maybe<Scalars['Int']>;
+  level4hours?: Maybe<Scalars['Int']>;
+  level5hours?: Maybe<Scalars['Int']>;
+  name: Scalars['String'];
+  site_url?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyCreateWithoutTaskTechnologiesInput {
+  LearnStrategyStages?: Maybe<LearnStrategyStageCreateNestedManyWithoutTechnologyInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput>;
+  User: UserCreateNestedOneWithoutTechnologiesInput;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput>;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level1hours?: Maybe<Scalars['Int']>;
+  level2hours?: Maybe<Scalars['Int']>;
+  level3hours?: Maybe<Scalars['Int']>;
+  level4hours?: Maybe<Scalars['Int']>;
+  level5hours?: Maybe<Scalars['Int']>;
+  name: Scalars['String'];
+  site_url?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyCreateWithoutTechnologyLessonsInput {
+  LearnStrategyStages?: Maybe<LearnStrategyStageCreateNestedManyWithoutTechnologyInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTechnologyTaskTechnologyToTechnologyInput>;
+  User: UserCreateNestedOneWithoutTechnologiesInput;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput>;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level1hours?: Maybe<Scalars['Int']>;
+  level2hours?: Maybe<Scalars['Int']>;
+  level3hours?: Maybe<Scalars['Int']>;
+  level4hours?: Maybe<Scalars['Int']>;
+  level5hours?: Maybe<Scalars['Int']>;
+  name: Scalars['String'];
+  site_url?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyCreateWithoutUserInput {
+  LearnStrategyStages?: Maybe<LearnStrategyStageCreateNestedManyWithoutTechnologyInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTechnologyTaskTechnologyToTechnologyInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput>;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level1hours?: Maybe<Scalars['Int']>;
+  level2hours?: Maybe<Scalars['Int']>;
+  level3hours?: Maybe<Scalars['Int']>;
+  level4hours?: Maybe<Scalars['Int']>;
+  level5hours?: Maybe<Scalars['Int']>;
+  name: Scalars['String'];
+  site_url?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyCreateWithoutUserTechnologiesInput {
+  LearnStrategyStages?: Maybe<LearnStrategyStageCreateNestedManyWithoutTechnologyInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTechnologyTaskTechnologyToTechnologyInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput>;
+  User: UserCreateNestedOneWithoutTechnologiesInput;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  level1hours?: Maybe<Scalars['Int']>;
+  level2hours?: Maybe<Scalars['Int']>;
+  level3hours?: Maybe<Scalars['Int']>;
+  level4hours?: Maybe<Scalars['Int']>;
+  level5hours?: Maybe<Scalars['Int']>;
+  name: Scalars['String'];
+  site_url?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyLessonCreateManyTechnologyTechnologyToTechnologyLessonInput {
+  CreatedBy: Scalars['String'];
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+}
+
+export interface TechnologyLessonCreateManyTechnologyTechnologyToTechnologyLessonInputEnvelope {
+  data?: Maybe<Array<TechnologyLessonCreateManyTechnologyTechnologyToTechnologyLessonInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TechnologyLessonCreateManyUserInput {
+  Technology: Scalars['String'];
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+}
+
+export interface TechnologyLessonCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TechnologyLessonCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput {
+  connect?: Maybe<Array<TechnologyLessonWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TechnologyLessonCreateOrConnectWithoutTechnologyTechnologyToTechnologyLessonInput>>;
+  create?: Maybe<Array<TechnologyLessonCreateWithoutTechnologyTechnologyToTechnologyLessonInput>>;
+  createMany?: Maybe<TechnologyLessonCreateManyTechnologyTechnologyToTechnologyLessonInputEnvelope>;
+}
+
+export interface TechnologyLessonCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TechnologyLessonWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TechnologyLessonCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TechnologyLessonCreateWithoutUserInput>>;
+  createMany?: Maybe<TechnologyLessonCreateManyUserInputEnvelope>;
+}
+
+export interface TechnologyLessonCreateNestedOneWithoutCommentsInput {
+  connect?: Maybe<TechnologyLessonWhereUniqueInput>;
+  connectOrCreate?: Maybe<TechnologyLessonCreateOrConnectWithoutCommentsInput>;
+  create?: Maybe<TechnologyLessonCreateWithoutCommentsInput>;
+}
+
+export interface TechnologyLessonCreateNestedOneWithoutTechnologyLessonUsersInput {
+  connect?: Maybe<TechnologyLessonWhereUniqueInput>;
+  connectOrCreate?: Maybe<TechnologyLessonCreateOrConnectWithoutTechnologyLessonUsersInput>;
+  create?: Maybe<TechnologyLessonCreateWithoutTechnologyLessonUsersInput>;
+}
+
+export interface TechnologyLessonCreateOrConnectWithoutCommentsInput {
+  create: TechnologyLessonCreateWithoutCommentsInput;
+  where: TechnologyLessonWhereUniqueInput;
+}
+
+export interface TechnologyLessonCreateOrConnectWithoutTechnologyLessonUsersInput {
+  create: TechnologyLessonCreateWithoutTechnologyLessonUsersInput;
+  where: TechnologyLessonWhereUniqueInput;
+}
+
+export interface TechnologyLessonCreateOrConnectWithoutTechnologyTechnologyToTechnologyLessonInput {
+  create: TechnologyLessonCreateWithoutTechnologyTechnologyToTechnologyLessonInput;
+  where: TechnologyLessonWhereUniqueInput;
+}
+
+export interface TechnologyLessonCreateOrConnectWithoutUserInput {
+  create: TechnologyLessonCreateWithoutUserInput;
+  where: TechnologyLessonWhereUniqueInput;
+}
+
+export interface TechnologyLessonCreateWithoutCommentsInput {
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput>;
+  Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput;
+  User: UserCreateNestedOneWithoutTechnologyLessonsInput;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+}
+
+export interface TechnologyLessonCreateWithoutTechnologyLessonUsersInput {
+  Comments?: Maybe<CommentCreateNestedManyWithoutTechnologyLessonCommentToTechnologyLessonInput>;
+  Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput;
+  User: UserCreateNestedOneWithoutTechnologyLessonsInput;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+}
+
+export interface TechnologyLessonCreateWithoutTechnologyTechnologyToTechnologyLessonInput {
+  Comments?: Maybe<CommentCreateNestedManyWithoutTechnologyLessonCommentToTechnologyLessonInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput>;
+  User: UserCreateNestedOneWithoutTechnologyLessonsInput;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+}
+
+export interface TechnologyLessonCreateWithoutUserInput {
+  Comments?: Maybe<CommentCreateNestedManyWithoutTechnologyLessonCommentToTechnologyLessonInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput>;
+  Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput;
+  components?: Maybe<Scalars['Json']>;
+  contentText?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+}
+
 export interface TechnologyLessonListRelationFilter {
   every?: Maybe<TechnologyLessonWhereInput>;
   none?: Maybe<TechnologyLessonWhereInput>;
   some?: Maybe<TechnologyLessonWhereInput>;
+}
+
+export interface TechnologyLessonUserCreateManyTechnologyLessonInput {
+  CreatedBy: Scalars['String'];
+  completedAt?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TechnologyLessonUserStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyLessonUserCreateManyTechnologyLessonInputEnvelope {
+  data?: Maybe<Array<TechnologyLessonUserCreateManyTechnologyLessonInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TechnologyLessonUserCreateManyUserInput {
+  Lesson: Scalars['String'];
+  completedAt?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TechnologyLessonUserStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyLessonUserCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TechnologyLessonUserCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput {
+  connect?: Maybe<Array<TechnologyLessonUserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TechnologyLessonUserCreateOrConnectWithoutTechnologyLessonInput>>;
+  create?: Maybe<Array<TechnologyLessonUserCreateWithoutTechnologyLessonInput>>;
+  createMany?: Maybe<TechnologyLessonUserCreateManyTechnologyLessonInputEnvelope>;
+}
+
+export interface TechnologyLessonUserCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TechnologyLessonUserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TechnologyLessonUserCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TechnologyLessonUserCreateWithoutUserInput>>;
+  createMany?: Maybe<TechnologyLessonUserCreateManyUserInputEnvelope>;
+}
+
+export interface TechnologyLessonUserCreateOrConnectWithoutTechnologyLessonInput {
+  create: TechnologyLessonUserCreateWithoutTechnologyLessonInput;
+  where: TechnologyLessonUserWhereUniqueInput;
+}
+
+export interface TechnologyLessonUserCreateOrConnectWithoutUserInput {
+  create: TechnologyLessonUserCreateWithoutUserInput;
+  where: TechnologyLessonUserWhereUniqueInput;
+}
+
+export interface TechnologyLessonUserCreateWithoutTechnologyLessonInput {
+  User: UserCreateNestedOneWithoutTechnologyLessonUsersInput;
+  completedAt?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TechnologyLessonUserStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TechnologyLessonUserCreateWithoutUserInput {
+  TechnologyLesson: TechnologyLessonCreateNestedOneWithoutTechnologyLessonUsersInput;
+  completedAt?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  status?: Maybe<TechnologyLessonUserStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface TechnologyLessonUserListRelationFilter {
@@ -3963,6 +12650,10 @@ export interface TechnologyLessonUserWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface TechnologyLessonUserWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface TechnologyLessonWhereInput {
   AND?: Maybe<Array<TechnologyLessonWhereInput>>;
   Comments?: Maybe<CommentListRelationFilter>;
@@ -3977,6 +12668,10 @@ export interface TechnologyLessonWhereInput {
   contentText?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
+}
+
+export interface TechnologyLessonWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface TechnologyListRelationFilter {
@@ -4044,6 +12739,243 @@ export interface TechnologyWhereUniqueInput {
   name?: Maybe<Scalars['String']>;
 }
 
+export interface TemplateCreateManyProjectProjectToTemplatePrismaProjectInput {
+  CreatedBy: Scalars['String'];
+  Parent?: Maybe<Scalars['String']>;
+  Project?: Maybe<Scalars['String']>;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
+export interface TemplateCreateManyProjectProjectToTemplatePrismaProjectInputEnvelope {
+  data?: Maybe<Array<TemplateCreateManyProjectProjectToTemplatePrismaProjectInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TemplateCreateManyProjectProjectToTemplateProjectInput {
+  CreatedBy: Scalars['String'];
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
+export interface TemplateCreateManyProjectProjectToTemplateProjectInputEnvelope {
+  data?: Maybe<Array<TemplateCreateManyProjectProjectToTemplateProjectInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TemplateCreateManyTemplateInput {
+  CreatedBy: Scalars['String'];
+  PrismaProject?: Maybe<Scalars['String']>;
+  Project?: Maybe<Scalars['String']>;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
+export interface TemplateCreateManyTemplateInputEnvelope {
+  data?: Maybe<Array<TemplateCreateManyTemplateInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TemplateCreateManyUserInput {
+  Parent?: Maybe<Scalars['String']>;
+  PrismaProject?: Maybe<Scalars['String']>;
+  Project?: Maybe<Scalars['String']>;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
+export interface TemplateCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TemplateCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput {
+  connect?: Maybe<Array<TemplateWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TemplateCreateOrConnectWithoutProjectProjectToTemplatePrismaProjectInput>>;
+  create?: Maybe<Array<TemplateCreateWithoutProjectProjectToTemplatePrismaProjectInput>>;
+  createMany?: Maybe<TemplateCreateManyProjectProjectToTemplatePrismaProjectInputEnvelope>;
+}
+
+export interface TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput {
+  connect?: Maybe<Array<TemplateWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TemplateCreateOrConnectWithoutProjectProjectToTemplateProjectInput>>;
+  create?: Maybe<Array<TemplateCreateWithoutProjectProjectToTemplateProjectInput>>;
+  createMany?: Maybe<TemplateCreateManyProjectProjectToTemplateProjectInputEnvelope>;
+}
+
+export interface TemplateCreateNestedManyWithoutTemplateInput {
+  connect?: Maybe<Array<TemplateWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TemplateCreateOrConnectWithoutTemplateInput>>;
+  create?: Maybe<Array<TemplateCreateWithoutTemplateInput>>;
+  createMany?: Maybe<TemplateCreateManyTemplateInputEnvelope>;
+}
+
+export interface TemplateCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TemplateWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TemplateCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TemplateCreateWithoutUserInput>>;
+  createMany?: Maybe<TemplateCreateManyUserInputEnvelope>;
+}
+
+export interface TemplateCreateNestedOneWithoutOtherTemplatesInput {
+  connect?: Maybe<TemplateWhereUniqueInput>;
+  connectOrCreate?: Maybe<TemplateCreateOrConnectWithoutOtherTemplatesInput>;
+  create?: Maybe<TemplateCreateWithoutOtherTemplatesInput>;
+}
+
+export interface TemplateCreateOrConnectWithoutOtherTemplatesInput {
+  create: TemplateCreateWithoutOtherTemplatesInput;
+  where: TemplateWhereUniqueInput;
+}
+
+export interface TemplateCreateOrConnectWithoutProjectProjectToTemplatePrismaProjectInput {
+  create: TemplateCreateWithoutProjectProjectToTemplatePrismaProjectInput;
+  where: TemplateWhereUniqueInput;
+}
+
+export interface TemplateCreateOrConnectWithoutProjectProjectToTemplateProjectInput {
+  create: TemplateCreateWithoutProjectProjectToTemplateProjectInput;
+  where: TemplateWhereUniqueInput;
+}
+
+export interface TemplateCreateOrConnectWithoutTemplateInput {
+  create: TemplateCreateWithoutTemplateInput;
+  where: TemplateWhereUniqueInput;
+}
+
+export interface TemplateCreateOrConnectWithoutUserInput {
+  create: TemplateCreateWithoutUserInput;
+  where: TemplateWhereUniqueInput;
+}
+
+export interface TemplateCreateWithoutOtherTemplatesInput {
+  Project_ProjectToTemplate_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplatePrismaProjectInput>;
+  Project_ProjectToTemplate_Project?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplateProjectInput>;
+  Template?: Maybe<TemplateCreateNestedOneWithoutOtherTemplatesInput>;
+  User: UserCreateNestedOneWithoutTemplatesInput;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
+export interface TemplateCreateWithoutProjectProjectToTemplatePrismaProjectInput {
+  Project_ProjectToTemplate_Project?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplateProjectInput>;
+  Template?: Maybe<TemplateCreateNestedOneWithoutOtherTemplatesInput>;
+  User: UserCreateNestedOneWithoutTemplatesInput;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Templates?: Maybe<TemplateCreateNestedManyWithoutTemplateInput>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
+export interface TemplateCreateWithoutProjectProjectToTemplateProjectInput {
+  Project_ProjectToTemplate_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplatePrismaProjectInput>;
+  Template?: Maybe<TemplateCreateNestedOneWithoutOtherTemplatesInput>;
+  User: UserCreateNestedOneWithoutTemplatesInput;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Templates?: Maybe<TemplateCreateNestedManyWithoutTemplateInput>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
+export interface TemplateCreateWithoutTemplateInput {
+  Project_ProjectToTemplate_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplatePrismaProjectInput>;
+  Project_ProjectToTemplate_Project?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplateProjectInput>;
+  User: UserCreateNestedOneWithoutTemplatesInput;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Templates?: Maybe<TemplateCreateNestedManyWithoutTemplateInput>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
+export interface TemplateCreateWithoutUserInput {
+  Project_ProjectToTemplate_PrismaProject?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplatePrismaProjectInput>;
+  Project_ProjectToTemplate_Project?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplateProjectInput>;
+  Template?: Maybe<TemplateCreateNestedOneWithoutOtherTemplatesInput>;
+  component?: Maybe<Scalars['String']>;
+  components: Scalars['Json'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  externalKey?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  other_Templates?: Maybe<TemplateCreateNestedManyWithoutTemplateInput>;
+  props: Scalars['Json'];
+  rank?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  vars?: Maybe<Scalars['Json']>;
+}
+
 export interface TemplateListRelationFilter {
   every?: Maybe<TemplateWhereInput>;
   none?: Maybe<TemplateWhereInput>;
@@ -4074,6 +13006,10 @@ export interface TemplateWhereInput {
   vars?: Maybe<JsonNullableFilter>;
 }
 
+export interface TemplateWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface Timer {
   __typename?: 'Timer';
   CreatedBy?: Maybe<User>;
@@ -4087,6 +13023,72 @@ export interface Timer {
 export interface TimerCreateInput {
   Task?: Maybe<TaskCreateOneWithoutTimersInput>;
   stopedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TimerCreateManyTaskTaskToTimerInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  stopedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TimerCreateManyTaskTaskToTimerInputEnvelope {
+  data?: Maybe<Array<TimerCreateManyTaskTaskToTimerInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TimerCreateManyUserInput {
+  Task?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  stopedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TimerCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TimerCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TimerCreateNestedManyWithoutTaskTaskToTimerInput {
+  connect?: Maybe<Array<TimerWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TimerCreateOrConnectWithoutTaskTaskToTimerInput>>;
+  create?: Maybe<Array<TimerCreateWithoutTaskTaskToTimerInput>>;
+  createMany?: Maybe<TimerCreateManyTaskTaskToTimerInputEnvelope>;
+}
+
+export interface TimerCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TimerWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TimerCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TimerCreateWithoutUserInput>>;
+  createMany?: Maybe<TimerCreateManyUserInputEnvelope>;
+}
+
+export interface TimerCreateOrConnectWithoutTaskTaskToTimerInput {
+  create: TimerCreateWithoutTaskTaskToTimerInput;
+  where: TimerWhereUniqueInput;
+}
+
+export interface TimerCreateOrConnectWithoutUserInput {
+  create: TimerCreateWithoutUserInput;
+  where: TimerWhereUniqueInput;
+}
+
+export interface TimerCreateWithoutTaskTaskToTimerInput {
+  User?: Maybe<UserCreateNestedOneWithoutTimersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  stopedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TimerCreateWithoutUserInput {
+  Task_TaskToTimer?: Maybe<TaskCreateNestedOneWithoutTimersInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  stopedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface TimerListRelationFilter {
@@ -4147,6 +13149,35 @@ export interface TimerWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
 }
 
+export interface TokenCreateManyUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  expiredAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface TokenCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TokenCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TokenCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TokenWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TokenCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TokenCreateWithoutUserInput>>;
+  createMany?: Maybe<TokenCreateManyUserInputEnvelope>;
+}
+
+export interface TokenCreateOrConnectWithoutUserInput {
+  create: TokenCreateWithoutUserInput;
+  where: TokenWhereUniqueInput;
+}
+
+export interface TokenCreateWithoutUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  expiredAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface TokenListRelationFilter {
   every?: Maybe<TokenWhereInput>;
   none?: Maybe<TokenWhereInput>;
@@ -4164,6 +13195,10 @@ export interface TokenWhereInput {
   userId?: Maybe<StringNullableFilter>;
 }
 
+export interface TokenWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface TopicCreateInput {
   CodeChallenge?: Maybe<CodeChallengeCreateOneWithoutTopicInput>;
   blogID?: Maybe<Scalars['ID']>;
@@ -4178,6 +13213,153 @@ export interface TopicUpdateInput {
   content?: Maybe<Scalars['JSON']>;
   longtitle?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+}
+
+export interface TournamentCreateManyTournamentGroupInput {
+  CreatedBy: Scalars['String'];
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TournamentCreateManyTournamentGroupInputEnvelope {
+  data?: Maybe<Array<TournamentCreateManyTournamentGroupInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TournamentCreateManyUserInput {
+  Group?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TournamentCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TournamentCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TournamentCreateNestedManyWithoutTournamentGroupInput {
+  connect?: Maybe<Array<TournamentWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TournamentCreateOrConnectWithoutTournamentGroupInput>>;
+  create?: Maybe<Array<TournamentCreateWithoutTournamentGroupInput>>;
+  createMany?: Maybe<TournamentCreateManyTournamentGroupInputEnvelope>;
+}
+
+export interface TournamentCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TournamentWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TournamentCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TournamentCreateWithoutUserInput>>;
+  createMany?: Maybe<TournamentCreateManyUserInputEnvelope>;
+}
+
+export interface TournamentCreateNestedOneWithoutTourneysInput {
+  connect?: Maybe<TournamentWhereUniqueInput>;
+  connectOrCreate?: Maybe<TournamentCreateOrConnectWithoutTourneysInput>;
+  create?: Maybe<TournamentCreateWithoutTourneysInput>;
+}
+
+export interface TournamentCreateOrConnectWithoutTournamentGroupInput {
+  create: TournamentCreateWithoutTournamentGroupInput;
+  where: TournamentWhereUniqueInput;
+}
+
+export interface TournamentCreateOrConnectWithoutTourneysInput {
+  create: TournamentCreateWithoutTourneysInput;
+  where: TournamentWhereUniqueInput;
+}
+
+export interface TournamentCreateOrConnectWithoutUserInput {
+  create: TournamentCreateWithoutUserInput;
+  where: TournamentWhereUniqueInput;
+}
+
+export interface TournamentCreateWithoutTournamentGroupInput {
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutTournamentTournamentToTourneyInput>;
+  User: UserCreateNestedOneWithoutTournamentsInput;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TournamentCreateWithoutTourneysInput {
+  TournamentGroup?: Maybe<TournamentGroupCreateNestedOneWithoutTournamentsInput>;
+  User: UserCreateNestedOneWithoutTournamentsInput;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TournamentCreateWithoutUserInput {
+  TournamentGroup?: Maybe<TournamentGroupCreateNestedOneWithoutTournamentsInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutTournamentTournamentToTourneyInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TournamentGroupCreateManyUserInput {
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TournamentGroupCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TournamentGroupCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TournamentGroupCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TournamentGroupWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TournamentGroupCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TournamentGroupCreateWithoutUserInput>>;
+  createMany?: Maybe<TournamentGroupCreateManyUserInputEnvelope>;
+}
+
+export interface TournamentGroupCreateNestedOneWithoutTournamentsInput {
+  connect?: Maybe<TournamentGroupWhereUniqueInput>;
+  connectOrCreate?: Maybe<TournamentGroupCreateOrConnectWithoutTournamentsInput>;
+  create?: Maybe<TournamentGroupCreateWithoutTournamentsInput>;
+}
+
+export interface TournamentGroupCreateOrConnectWithoutTournamentsInput {
+  create: TournamentGroupCreateWithoutTournamentsInput;
+  where: TournamentGroupWhereUniqueInput;
+}
+
+export interface TournamentGroupCreateOrConnectWithoutUserInput {
+  create: TournamentGroupCreateWithoutUserInput;
+  where: TournamentGroupWhereUniqueInput;
+}
+
+export interface TournamentGroupCreateWithoutTournamentsInput {
+  User: UserCreateNestedOneWithoutTournamentGroupsInput;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TournamentGroupCreateWithoutUserInput {
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutTournamentGroupInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface TournamentGroupListRelationFilter {
@@ -4198,6 +13380,11 @@ export interface TournamentGroupWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface TournamentGroupWhereUniqueInput {
+  code?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface TournamentListRelationFilter {
@@ -4222,10 +13409,199 @@ export interface TournamentWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface TournamentWhereUniqueInput {
+  code?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface TourneyCreateManyTournamentTournamentToTourneyInput {
+  CreatedBy: Scalars['String'];
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TourneyCreateManyTournamentTournamentToTourneyInputEnvelope {
+  data?: Maybe<Array<TourneyCreateManyTournamentTournamentToTourneyInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TourneyCreateManyUserInput {
+  Tournament?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TourneyCreateManyUserInputEnvelope {
+  data?: Maybe<Array<TourneyCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TourneyCreateNestedManyWithoutTournamentTournamentToTourneyInput {
+  connect?: Maybe<Array<TourneyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TourneyCreateOrConnectWithoutTournamentTournamentToTourneyInput>>;
+  create?: Maybe<Array<TourneyCreateWithoutTournamentTournamentToTourneyInput>>;
+  createMany?: Maybe<TourneyCreateManyTournamentTournamentToTourneyInputEnvelope>;
+}
+
+export interface TourneyCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<TourneyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TourneyCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<TourneyCreateWithoutUserInput>>;
+  createMany?: Maybe<TourneyCreateManyUserInputEnvelope>;
+}
+
+export interface TourneyCreateNestedOneWithoutGamesInput {
+  connect?: Maybe<TourneyWhereUniqueInput>;
+  connectOrCreate?: Maybe<TourneyCreateOrConnectWithoutGamesInput>;
+  create?: Maybe<TourneyCreateWithoutGamesInput>;
+}
+
+export interface TourneyCreateNestedOneWithoutTourneyPlayersInput {
+  connect?: Maybe<TourneyWhereUniqueInput>;
+  connectOrCreate?: Maybe<TourneyCreateOrConnectWithoutTourneyPlayersInput>;
+  create?: Maybe<TourneyCreateWithoutTourneyPlayersInput>;
+}
+
+export interface TourneyCreateOrConnectWithoutGamesInput {
+  create: TourneyCreateWithoutGamesInput;
+  where: TourneyWhereUniqueInput;
+}
+
+export interface TourneyCreateOrConnectWithoutTournamentTournamentToTourneyInput {
+  create: TourneyCreateWithoutTournamentTournamentToTourneyInput;
+  where: TourneyWhereUniqueInput;
+}
+
+export interface TourneyCreateOrConnectWithoutTourneyPlayersInput {
+  create: TourneyCreateWithoutTourneyPlayersInput;
+  where: TourneyWhereUniqueInput;
+}
+
+export interface TourneyCreateOrConnectWithoutUserInput {
+  create: TourneyCreateWithoutUserInput;
+  where: TourneyWhereUniqueInput;
+}
+
+export interface TourneyCreateWithoutGamesInput {
+  Tournament_TournamentToTourney?: Maybe<TournamentCreateNestedOneWithoutTourneysInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutTourneyTourneyToTourneyPlayerInput>;
+  User: UserCreateNestedOneWithoutTourneysInput;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TourneyCreateWithoutTournamentTournamentToTourneyInput {
+  Games?: Maybe<GameCreateNestedManyWithoutTourneyGameToTourneyInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutTourneyTourneyToTourneyPlayerInput>;
+  User: UserCreateNestedOneWithoutTourneysInput;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TourneyCreateWithoutTourneyPlayersInput {
+  Games?: Maybe<GameCreateNestedManyWithoutTourneyGameToTourneyInput>;
+  Tournament_TournamentToTourney?: Maybe<TournamentCreateNestedOneWithoutTourneysInput>;
+  User: UserCreateNestedOneWithoutTourneysInput;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface TourneyCreateWithoutUserInput {
+  Games?: Maybe<GameCreateNestedManyWithoutTourneyGameToTourneyInput>;
+  Tournament_TournamentToTourney?: Maybe<TournamentCreateNestedOneWithoutTourneysInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutTourneyTourneyToTourneyPlayerInput>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
 export interface TourneyListRelationFilter {
   every?: Maybe<TourneyWhereInput>;
   none?: Maybe<TourneyWhereInput>;
   some?: Maybe<TourneyWhereInput>;
+}
+
+export interface TourneyPlayerCreateManyTourneyTourneyToTourneyPlayerInput {
+  User?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface TourneyPlayerCreateManyTourneyTourneyToTourneyPlayerInputEnvelope {
+  data?: Maybe<Array<TourneyPlayerCreateManyTourneyTourneyToTourneyPlayerInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TourneyPlayerCreateManyUserTourneyPlayerToUserInput {
+  Tourney?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface TourneyPlayerCreateManyUserTourneyPlayerToUserInputEnvelope {
+  data?: Maybe<Array<TourneyPlayerCreateManyUserTourneyPlayerToUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface TourneyPlayerCreateNestedManyWithoutTourneyTourneyToTourneyPlayerInput {
+  connect?: Maybe<Array<TourneyPlayerWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TourneyPlayerCreateOrConnectWithoutTourneyTourneyToTourneyPlayerInput>>;
+  create?: Maybe<Array<TourneyPlayerCreateWithoutTourneyTourneyToTourneyPlayerInput>>;
+  createMany?: Maybe<TourneyPlayerCreateManyTourneyTourneyToTourneyPlayerInputEnvelope>;
+}
+
+export interface TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput {
+  connect?: Maybe<Array<TourneyPlayerWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<TourneyPlayerCreateOrConnectWithoutUserTourneyPlayerToUserInput>>;
+  create?: Maybe<Array<TourneyPlayerCreateWithoutUserTourneyPlayerToUserInput>>;
+  createMany?: Maybe<TourneyPlayerCreateManyUserTourneyPlayerToUserInputEnvelope>;
+}
+
+export interface TourneyPlayerCreateOrConnectWithoutTourneyTourneyToTourneyPlayerInput {
+  create: TourneyPlayerCreateWithoutTourneyTourneyToTourneyPlayerInput;
+  where: TourneyPlayerWhereUniqueInput;
+}
+
+export interface TourneyPlayerCreateOrConnectWithoutUserTourneyPlayerToUserInput {
+  create: TourneyPlayerCreateWithoutUserTourneyPlayerToUserInput;
+  where: TourneyPlayerWhereUniqueInput;
+}
+
+export interface TourneyPlayerCreateWithoutTourneyTourneyToTourneyPlayerInput {
+  User_TourneyPlayerToUser?: Maybe<UserCreateNestedOneWithoutTourneyPlayersInput>;
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface TourneyPlayerCreateWithoutUserTourneyPlayerToUserInput {
+  Tourney_TourneyToTourneyPlayer?: Maybe<TourneyCreateNestedOneWithoutTourneyPlayersInput>;
+  id?: Maybe<Scalars['String']>;
 }
 
 export interface TourneyPlayerListRelationFilter {
@@ -4245,6 +13621,10 @@ export interface TourneyPlayerWhereInput {
   id?: Maybe<StringFilter>;
 }
 
+export interface TourneyPlayerWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface TourneyWhereInput {
   AND?: Maybe<Array<TourneyWhereInput>>;
   CreatedBy?: Maybe<StringFilter>;
@@ -4262,6 +13642,11 @@ export interface TourneyWhereInput {
   id?: Maybe<StringFilter>;
   name?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface TourneyWhereUniqueInput {
+  code?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 }
 
 
@@ -4325,8 +13710,8058 @@ export type UserTimersArgs = {
   where?: Maybe<TimerWhereInput>;
 };
 
+export interface UserCreateManyEthAccountEthAccountToUserEthAccountAuthedInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateManyEthAccountEthAccountToUserEthAccountAuthedInputEnvelope {
+  data?: Maybe<Array<UserCreateManyEthAccountEthAccountToUserEthAccountAuthedInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface UserCreateManyUserInput {
+  EthAccountAuthed?: Maybe<Scalars['String']>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateManyUserInputEnvelope {
+  data?: Maybe<Array<UserCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface UserCreateNestedManyWithoutChatRoomsChatRoomsMembersInput {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserCreateOrConnectWithoutChatRoomsChatRoomsMembersInput>>;
+  create?: Maybe<Array<UserCreateWithoutChatRoomsChatRoomsMembersInput>>;
+}
+
+export interface UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserCreateOrConnectWithoutEthAccountEthAccountToUserEthAccountAuthedInput>>;
+  create?: Maybe<Array<UserCreateWithoutEthAccountEthAccountToUserEthAccountAuthedInput>>;
+  createMany?: Maybe<UserCreateManyEthAccountEthAccountToUserEthAccountAuthedInputEnvelope>;
+}
+
+export interface UserCreateNestedManyWithoutGamesGameUsersInput {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserCreateOrConnectWithoutGamesGameUsersInput>>;
+  create?: Maybe<Array<UserCreateWithoutGamesGameUsersInput>>;
+}
+
+export interface UserCreateNestedManyWithoutNotificationTypesUserNotificationTypesInput {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserCreateOrConnectWithoutNotificationTypesUserNotificationTypesInput>>;
+  create?: Maybe<Array<UserCreateWithoutNotificationTypesUserNotificationTypesInput>>;
+}
+
+export interface UserCreateNestedManyWithoutPositionsPositionUsersInput {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserCreateOrConnectWithoutPositionsPositionUsersInput>>;
+  create?: Maybe<Array<UserCreateWithoutPositionsPositionUsersInput>>;
+}
+
+export interface UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserCreateOrConnectWithoutProjectsPrismaProjectUsersInput>>;
+  create?: Maybe<Array<UserCreateWithoutProjectsPrismaProjectUsersInput>>;
+}
+
+export interface UserCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<UserCreateWithoutUserInput>>;
+  createMany?: Maybe<UserCreateManyUserInputEnvelope>;
+}
+
+export interface UserCreateNestedOneWithoutCallRequestsCallRequestCalledToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutCallRequestsCallRequestCalledToUserInput>;
+  create?: Maybe<UserCreateWithoutCallRequestsCallRequestCalledToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutCallRequestsCallRequestCallerToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutCallRequestsCallRequestCallerToUserInput>;
+  create?: Maybe<UserCreateWithoutCallRequestsCallRequestCallerToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutChatMessagesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutChatMessagesInput>;
+  create?: Maybe<UserCreateWithoutChatMessagesInput>;
+}
+
+export interface UserCreateNestedOneWithoutChatMessagesReadedInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutChatMessagesReadedInput>;
+  create?: Maybe<UserCreateWithoutChatMessagesReadedInput>;
+}
+
+export interface UserCreateNestedOneWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput>;
+  create?: Maybe<UserCreateWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput>;
+  create?: Maybe<UserCreateWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutChatRoomsChatRoomToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutChatRoomsChatRoomToUserInput>;
+  create?: Maybe<UserCreateWithoutChatRoomsChatRoomToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutCodeChallengeBlocksInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutCodeChallengeBlocksInput>;
+  create?: Maybe<UserCreateWithoutCodeChallengeBlocksInput>;
+}
+
+export interface UserCreateNestedOneWithoutCodeChallengeCompletionsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutCodeChallengeCompletionsInput>;
+  create?: Maybe<UserCreateWithoutCodeChallengeCompletionsInput>;
+}
+
+export interface UserCreateNestedOneWithoutCodeChallengesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutCodeChallengesInput>;
+  create?: Maybe<UserCreateWithoutCodeChallengesInput>;
+}
+
+export interface UserCreateNestedOneWithoutCommentsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutCommentsInput>;
+  create?: Maybe<UserCreateWithoutCommentsInput>;
+}
+
+export interface UserCreateNestedOneWithoutDonatesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutDonatesInput>;
+  create?: Maybe<UserCreateWithoutDonatesInput>;
+}
+
+export interface UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutEthAccountsEthAccountCreatedByToUserInput>;
+  create?: Maybe<UserCreateWithoutEthAccountsEthAccountCreatedByToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutEthContractSourcesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutEthContractSourcesInput>;
+  create?: Maybe<UserCreateWithoutEthContractSourcesInput>;
+}
+
+export interface UserCreateNestedOneWithoutFilesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutFilesInput>;
+  create?: Maybe<UserCreateWithoutFilesInput>;
+}
+
+export interface UserCreateNestedOneWithoutGalleriesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutGalleriesInput>;
+  create?: Maybe<UserCreateWithoutGalleriesInput>;
+}
+
+export interface UserCreateNestedOneWithoutGameResultsGameResultCreatedByToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutGameResultsGameResultCreatedByToUserInput>;
+  create?: Maybe<UserCreateWithoutGameResultsGameResultCreatedByToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutGameResultsGameResultUserToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutGameResultsGameResultUserToUserInput>;
+  create?: Maybe<UserCreateWithoutGameResultsGameResultUserToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutGamesGameToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutGamesGameToUserInput>;
+  create?: Maybe<UserCreateWithoutGamesGameToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutLearnStrategiesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutLearnStrategiesInput>;
+  create?: Maybe<UserCreateWithoutLearnStrategiesInput>;
+}
+
+export interface UserCreateNestedOneWithoutMentorMenteeMenteesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutMentorMenteeMenteesInput>;
+  create?: Maybe<UserCreateWithoutMentorMenteeMenteesInput>;
+}
+
+export interface UserCreateNestedOneWithoutMentorMenteeMentorsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutMentorMenteeMentorsInput>;
+  create?: Maybe<UserCreateWithoutMentorMenteeMentorsInput>;
+}
+
+export interface UserCreateNestedOneWithoutNoticesNoticeCreatedByToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutNoticesNoticeCreatedByToUserInput>;
+  create?: Maybe<UserCreateWithoutNoticesNoticeCreatedByToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutNoticesNoticeUserToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutNoticesNoticeUserToUserInput>;
+  create?: Maybe<UserCreateWithoutNoticesNoticeUserToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutNotificationTypesNotificationTypeToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutNotificationTypesNotificationTypeToUserInput>;
+  create?: Maybe<UserCreateWithoutNotificationTypesNotificationTypeToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutOtherUsersInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutOtherUsersInput>;
+  create?: Maybe<UserCreateWithoutOtherUsersInput>;
+}
+
+export interface UserCreateNestedOneWithoutPlayersInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutPlayersInput>;
+  create?: Maybe<UserCreateWithoutPlayersInput>;
+}
+
+export interface UserCreateNestedOneWithoutPositionsPositionToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutPositionsPositionToUserInput>;
+  create?: Maybe<UserCreateWithoutPositionsPositionToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutProjectMembersProjectMemberCreatedByToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutProjectMembersProjectMemberCreatedByToUserInput>;
+  create?: Maybe<UserCreateWithoutProjectMembersProjectMemberCreatedByToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutProjectMembersProjectMemberUserToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutProjectMembersProjectMemberUserToUserInput>;
+  create?: Maybe<UserCreateWithoutProjectMembersProjectMemberUserToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutProjectTasksInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutProjectTasksInput>;
+  create?: Maybe<UserCreateWithoutProjectTasksInput>;
+}
+
+export interface UserCreateNestedOneWithoutProjectsProjectToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutProjectsProjectToUserInput>;
+  create?: Maybe<UserCreateWithoutProjectsProjectToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutResourceTagsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutResourceTagsInput>;
+  create?: Maybe<UserCreateWithoutResourceTagsInput>;
+}
+
+export interface UserCreateNestedOneWithoutResourcesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutResourcesInput>;
+  create?: Maybe<UserCreateWithoutResourcesInput>;
+}
+
+export interface UserCreateNestedOneWithoutRoutesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutRoutesInput>;
+  create?: Maybe<UserCreateWithoutRoutesInput>;
+}
+
+export interface UserCreateNestedOneWithoutServiceCategoriesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutServiceCategoriesInput>;
+  create?: Maybe<UserCreateWithoutServiceCategoriesInput>;
+}
+
+export interface UserCreateNestedOneWithoutServicesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutServicesInput>;
+  create?: Maybe<UserCreateWithoutServicesInput>;
+}
+
+export interface UserCreateNestedOneWithoutSmsMessagesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutSmsMessagesInput>;
+  create?: Maybe<UserCreateWithoutSmsMessagesInput>;
+}
+
+export interface UserCreateNestedOneWithoutSmsProvidersInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutSmsProvidersInput>;
+  create?: Maybe<UserCreateWithoutSmsProvidersInput>;
+}
+
+export interface UserCreateNestedOneWithoutTagsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTagsInput>;
+  create?: Maybe<UserCreateWithoutTagsInput>;
+}
+
+export interface UserCreateNestedOneWithoutTaskMembersTaskMemberCreatedByToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTaskMembersTaskMemberCreatedByToUserInput>;
+  create?: Maybe<UserCreateWithoutTaskMembersTaskMemberCreatedByToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutTaskMembersTaskMemberUserToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTaskMembersTaskMemberUserToUserInput>;
+  create?: Maybe<UserCreateWithoutTaskMembersTaskMemberUserToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutTaskReactionsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTaskReactionsInput>;
+  create?: Maybe<UserCreateWithoutTaskReactionsInput>;
+}
+
+export interface UserCreateNestedOneWithoutTaskTechnologiesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTaskTechnologiesInput>;
+  create?: Maybe<UserCreateWithoutTaskTechnologiesInput>;
+}
+
+export interface UserCreateNestedOneWithoutTasksInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTasksInput>;
+  create?: Maybe<UserCreateWithoutTasksInput>;
+}
+
+export interface UserCreateNestedOneWithoutTeamMembersTeamMemberCreatedByToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTeamMembersTeamMemberCreatedByToUserInput>;
+  create?: Maybe<UserCreateWithoutTeamMembersTeamMemberCreatedByToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutTeamMembersTeamMemberUserToUserInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTeamMembersTeamMemberUserToUserInput>;
+  create?: Maybe<UserCreateWithoutTeamMembersTeamMemberUserToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutTeamsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTeamsInput>;
+  create?: Maybe<UserCreateWithoutTeamsInput>;
+}
+
+export interface UserCreateNestedOneWithoutTechnologiesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTechnologiesInput>;
+  create?: Maybe<UserCreateWithoutTechnologiesInput>;
+}
+
+export interface UserCreateNestedOneWithoutTechnologyLessonUsersInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTechnologyLessonUsersInput>;
+  create?: Maybe<UserCreateWithoutTechnologyLessonUsersInput>;
+}
+
+export interface UserCreateNestedOneWithoutTechnologyLessonsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTechnologyLessonsInput>;
+  create?: Maybe<UserCreateWithoutTechnologyLessonsInput>;
+}
+
+export interface UserCreateNestedOneWithoutTemplatesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTemplatesInput>;
+  create?: Maybe<UserCreateWithoutTemplatesInput>;
+}
+
+export interface UserCreateNestedOneWithoutTimersInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTimersInput>;
+  create?: Maybe<UserCreateWithoutTimersInput>;
+}
+
+export interface UserCreateNestedOneWithoutTournamentGroupsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTournamentGroupsInput>;
+  create?: Maybe<UserCreateWithoutTournamentGroupsInput>;
+}
+
+export interface UserCreateNestedOneWithoutTournamentsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTournamentsInput>;
+  create?: Maybe<UserCreateWithoutTournamentsInput>;
+}
+
+export interface UserCreateNestedOneWithoutTourneyPlayersInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTourneyPlayersInput>;
+  create?: Maybe<UserCreateWithoutTourneyPlayersInput>;
+}
+
+export interface UserCreateNestedOneWithoutTourneysInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutTourneysInput>;
+  create?: Maybe<UserCreateWithoutTourneysInput>;
+}
+
+export interface UserCreateNestedOneWithoutUserLearnStrategiesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutUserLearnStrategiesInput>;
+  create?: Maybe<UserCreateWithoutUserLearnStrategiesInput>;
+}
+
+export interface UserCreateNestedOneWithoutUserTechnologiesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutUserTechnologiesInput>;
+  create?: Maybe<UserCreateWithoutUserTechnologiesInput>;
+}
+
+export interface UserCreateNestedOneWithoutVotesInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutVotesInput>;
+  create?: Maybe<UserCreateWithoutVotesInput>;
+}
+
+export interface UserCreateNestedOneWithoutWorldsInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutWorldsInput>;
+  create?: Maybe<UserCreateWithoutWorldsInput>;
+}
+
 export interface UserCreateOneInput {
   connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateOrConnectWithoutCallRequestsCallRequestCalledToUserInput {
+  create: UserCreateWithoutCallRequestsCallRequestCalledToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutCallRequestsCallRequestCallerToUserInput {
+  create: UserCreateWithoutCallRequestsCallRequestCallerToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutChatMessagesInput {
+  create: UserCreateWithoutChatMessagesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutChatMessagesReadedInput {
+  create: UserCreateWithoutChatMessagesReadedInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput {
+  create: UserCreateWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput {
+  create: UserCreateWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutChatRoomsChatRoomToUserInput {
+  create: UserCreateWithoutChatRoomsChatRoomToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutChatRoomsChatRoomsMembersInput {
+  create: UserCreateWithoutChatRoomsChatRoomsMembersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutCodeChallengeBlocksInput {
+  create: UserCreateWithoutCodeChallengeBlocksInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutCodeChallengeCompletionsInput {
+  create: UserCreateWithoutCodeChallengeCompletionsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutCodeChallengesInput {
+  create: UserCreateWithoutCodeChallengesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutDonatesInput {
+  create: UserCreateWithoutDonatesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutEthAccountEthAccountToUserEthAccountAuthedInput {
+  create: UserCreateWithoutEthAccountEthAccountToUserEthAccountAuthedInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutEthAccountsEthAccountCreatedByToUserInput {
+  create: UserCreateWithoutEthAccountsEthAccountCreatedByToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutEthContractSourcesInput {
+  create: UserCreateWithoutEthContractSourcesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutFilesInput {
+  create: UserCreateWithoutFilesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutGalleriesInput {
+  create: UserCreateWithoutGalleriesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutGameResultsGameResultCreatedByToUserInput {
+  create: UserCreateWithoutGameResultsGameResultCreatedByToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutGameResultsGameResultUserToUserInput {
+  create: UserCreateWithoutGameResultsGameResultUserToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutGamesGameToUserInput {
+  create: UserCreateWithoutGamesGameToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutGamesGameUsersInput {
+  create: UserCreateWithoutGamesGameUsersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutLearnStrategiesInput {
+  create: UserCreateWithoutLearnStrategiesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutMentorMenteeMenteesInput {
+  create: UserCreateWithoutMentorMenteeMenteesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutMentorMenteeMentorsInput {
+  create: UserCreateWithoutMentorMenteeMentorsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutNoticesNoticeCreatedByToUserInput {
+  create: UserCreateWithoutNoticesNoticeCreatedByToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutNoticesNoticeUserToUserInput {
+  create: UserCreateWithoutNoticesNoticeUserToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutNotificationTypesNotificationTypeToUserInput {
+  create: UserCreateWithoutNotificationTypesNotificationTypeToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutNotificationTypesUserNotificationTypesInput {
+  create: UserCreateWithoutNotificationTypesUserNotificationTypesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutOtherUsersInput {
+  create: UserCreateWithoutOtherUsersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutPlayersInput {
+  create: UserCreateWithoutPlayersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutPositionsPositionToUserInput {
+  create: UserCreateWithoutPositionsPositionToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutPositionsPositionUsersInput {
+  create: UserCreateWithoutPositionsPositionUsersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutProjectMembersProjectMemberCreatedByToUserInput {
+  create: UserCreateWithoutProjectMembersProjectMemberCreatedByToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutProjectMembersProjectMemberUserToUserInput {
+  create: UserCreateWithoutProjectMembersProjectMemberUserToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutProjectTasksInput {
+  create: UserCreateWithoutProjectTasksInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutProjectsPrismaProjectUsersInput {
+  create: UserCreateWithoutProjectsPrismaProjectUsersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutProjectsProjectToUserInput {
+  create: UserCreateWithoutProjectsProjectToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutResourceTagsInput {
+  create: UserCreateWithoutResourceTagsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutResourcesInput {
+  create: UserCreateWithoutResourcesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutRoutesInput {
+  create: UserCreateWithoutRoutesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutServiceCategoriesInput {
+  create: UserCreateWithoutServiceCategoriesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutServicesInput {
+  create: UserCreateWithoutServicesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutSmsMessagesInput {
+  create: UserCreateWithoutSmsMessagesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutSmsProvidersInput {
+  create: UserCreateWithoutSmsProvidersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTagsInput {
+  create: UserCreateWithoutTagsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTaskMembersTaskMemberCreatedByToUserInput {
+  create: UserCreateWithoutTaskMembersTaskMemberCreatedByToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTaskMembersTaskMemberUserToUserInput {
+  create: UserCreateWithoutTaskMembersTaskMemberUserToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTaskReactionsInput {
+  create: UserCreateWithoutTaskReactionsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTaskTechnologiesInput {
+  create: UserCreateWithoutTaskTechnologiesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTasksInput {
+  create: UserCreateWithoutTasksInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTeamMembersTeamMemberCreatedByToUserInput {
+  create: UserCreateWithoutTeamMembersTeamMemberCreatedByToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTeamMembersTeamMemberUserToUserInput {
+  create: UserCreateWithoutTeamMembersTeamMemberUserToUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTeamsInput {
+  create: UserCreateWithoutTeamsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTechnologiesInput {
+  create: UserCreateWithoutTechnologiesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTechnologyLessonUsersInput {
+  create: UserCreateWithoutTechnologyLessonUsersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTechnologyLessonsInput {
+  create: UserCreateWithoutTechnologyLessonsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTemplatesInput {
+  create: UserCreateWithoutTemplatesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTimersInput {
+  create: UserCreateWithoutTimersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTournamentGroupsInput {
+  create: UserCreateWithoutTournamentGroupsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTournamentsInput {
+  create: UserCreateWithoutTournamentsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTourneyPlayersInput {
+  create: UserCreateWithoutTourneyPlayersInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutTourneysInput {
+  create: UserCreateWithoutTourneysInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutUserInput {
+  create: UserCreateWithoutUserInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutUserLearnStrategiesInput {
+  create: UserCreateWithoutUserLearnStrategiesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutUserTechnologiesInput {
+  create: UserCreateWithoutUserTechnologiesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutVotesInput {
+  create: UserCreateWithoutVotesInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateOrConnectWithoutWorldsInput {
+  create: UserCreateWithoutWorldsInput;
+  where: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutCallRequestsCallRequestCalledToUserInput {
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutCallRequestsCallRequestCallerToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutChatMessagesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutChatMessagesReadedInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutChatRoomsChatRoomToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutChatRoomsChatRoomsMembersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutCodeChallengeBlocksInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutCodeChallengeCompletionsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutCodeChallengesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutCommentsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutDonatesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutEthAccountEthAccountToUserEthAccountAuthedInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutEthAccountsEthAccountCreatedByToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutEthContractSourcesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutFilesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutGalleriesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutGameResultsGameResultCreatedByToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutGameResultsGameResultUserToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutGamesGameToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutGamesGameUsersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutLearnStrategiesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutMentorMenteeMenteesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutMentorMenteeMentorsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutNoticesNoticeCreatedByToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutNoticesNoticeUserToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutNotificationTypesNotificationTypeToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutNotificationTypesUserNotificationTypesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutOtherUsersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutPlayersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutPositionsPositionToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutPositionsPositionUsersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutProjectMembersProjectMemberCreatedByToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutProjectMembersProjectMemberUserToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutProjectTasksInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutProjectsPrismaProjectUsersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutProjectsProjectToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutResourceTagsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutResourcesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutRoutesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutServiceCategoriesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutServicesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutSmsMessagesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutSmsProvidersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTagsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTaskMembersTaskMemberCreatedByToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTaskMembersTaskMemberUserToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTaskReactionsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTaskTechnologiesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTasksInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTeamMembersTeamMemberCreatedByToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTeamMembersTeamMemberUserToUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTeamsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTechnologiesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTechnologyLessonUsersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTechnologyLessonsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTemplatesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTimersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTournamentGroupsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTournamentsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTourneyPlayersInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutTourneysInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutUserInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutUserLearnStrategiesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutUserTechnologiesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutVotesInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutWorldsInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  about?: Maybe<Scalars['Json']>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserGroupCreateNestedManyWithoutUsersInput {
+  connect?: Maybe<Array<UserGroupWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserGroupCreateOrConnectWithoutUsersInput>>;
+  create?: Maybe<Array<UserGroupCreateWithoutUsersInput>>;
+}
+
+export interface UserGroupCreateOrConnectWithoutUsersInput {
+  create: UserGroupCreateWithoutUsersInput;
+  where: UserGroupWhereUniqueInput;
+}
+
+export interface UserGroupCreateWithoutUsersInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface UserGroupListRelationFilter {
@@ -4346,6 +21781,10 @@ export interface UserGroupWhereInput {
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
+export interface UserGroupWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
 export interface UserLearnStrategy {
   __typename?: 'UserLearnStrategy';
   CreatedBy?: Maybe<User>;
@@ -4359,6 +21798,68 @@ export interface UserLearnStrategy {
 
 export interface UserLearnStrategyCreateInput {
   LearnStrategy: LearnStrategyWhereUniqueInput;
+}
+
+export interface UserLearnStrategyCreateManyCreatedByInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  learnStrategyId: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface UserLearnStrategyCreateManyCreatedByInputEnvelope {
+  data?: Maybe<Array<UserLearnStrategyCreateManyCreatedByInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface UserLearnStrategyCreateManyLearnStrategyInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  createdById: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface UserLearnStrategyCreateManyLearnStrategyInputEnvelope {
+  data?: Maybe<Array<UserLearnStrategyCreateManyLearnStrategyInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface UserLearnStrategyCreateNestedManyWithoutCreatedByInput {
+  connect?: Maybe<Array<UserLearnStrategyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserLearnStrategyCreateOrConnectWithoutCreatedByInput>>;
+  create?: Maybe<Array<UserLearnStrategyCreateWithoutCreatedByInput>>;
+  createMany?: Maybe<UserLearnStrategyCreateManyCreatedByInputEnvelope>;
+}
+
+export interface UserLearnStrategyCreateNestedManyWithoutLearnStrategyInput {
+  connect?: Maybe<Array<UserLearnStrategyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserLearnStrategyCreateOrConnectWithoutLearnStrategyInput>>;
+  create?: Maybe<Array<UserLearnStrategyCreateWithoutLearnStrategyInput>>;
+  createMany?: Maybe<UserLearnStrategyCreateManyLearnStrategyInputEnvelope>;
+}
+
+export interface UserLearnStrategyCreateOrConnectWithoutCreatedByInput {
+  create: UserLearnStrategyCreateWithoutCreatedByInput;
+  where: UserLearnStrategyWhereUniqueInput;
+}
+
+export interface UserLearnStrategyCreateOrConnectWithoutLearnStrategyInput {
+  create: UserLearnStrategyCreateWithoutLearnStrategyInput;
+  where: UserLearnStrategyWhereUniqueInput;
+}
+
+export interface UserLearnStrategyCreateWithoutCreatedByInput {
+  LearnStrategy: LearnStrategyCreateNestedOneWithoutUserLearnStrategiesInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface UserLearnStrategyCreateWithoutLearnStrategyInput {
+  CreatedBy: UserCreateNestedOneWithoutUserLearnStrategiesInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface UserLearnStrategyCreatedByIdLearnStrategyIdCompoundUniqueInput {
@@ -4481,6 +21982,96 @@ export interface UserTechnology {
 
 export interface UserTechnologyCreateInput {
   Technology: TechnologyCreateOneWithoutUserTechnologiesInput;
+}
+
+export interface UserTechnologyCreateManyTechnologyTechnologyToUserTechnologyInput {
+  CreatedBy: Scalars['String'];
+  components?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  hiring_status?: Maybe<UserTechnologyHiringStatus>;
+  id?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  level?: Maybe<Scalars['Int']>;
+  status?: Maybe<UserTechnologyStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface UserTechnologyCreateManyTechnologyTechnologyToUserTechnologyInputEnvelope {
+  data?: Maybe<Array<UserTechnologyCreateManyTechnologyTechnologyToUserTechnologyInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface UserTechnologyCreateManyUserInput {
+  Technology: Scalars['String'];
+  components?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  hiring_status?: Maybe<UserTechnologyHiringStatus>;
+  id?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  level?: Maybe<Scalars['Int']>;
+  status?: Maybe<UserTechnologyStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface UserTechnologyCreateManyUserInputEnvelope {
+  data?: Maybe<Array<UserTechnologyCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput {
+  connect?: Maybe<Array<UserTechnologyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserTechnologyCreateOrConnectWithoutTechnologyTechnologyToUserTechnologyInput>>;
+  create?: Maybe<Array<UserTechnologyCreateWithoutTechnologyTechnologyToUserTechnologyInput>>;
+  createMany?: Maybe<UserTechnologyCreateManyTechnologyTechnologyToUserTechnologyInputEnvelope>;
+}
+
+export interface UserTechnologyCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<UserTechnologyWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<UserTechnologyCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<UserTechnologyCreateWithoutUserInput>>;
+  createMany?: Maybe<UserTechnologyCreateManyUserInputEnvelope>;
+}
+
+export interface UserTechnologyCreateOrConnectWithoutTechnologyTechnologyToUserTechnologyInput {
+  create: UserTechnologyCreateWithoutTechnologyTechnologyToUserTechnologyInput;
+  where: UserTechnologyWhereUniqueInput;
+}
+
+export interface UserTechnologyCreateOrConnectWithoutUserInput {
+  create: UserTechnologyCreateWithoutUserInput;
+  where: UserTechnologyWhereUniqueInput;
+}
+
+export interface UserTechnologyCreateWithoutTechnologyTechnologyToUserTechnologyInput {
+  User: UserCreateNestedOneWithoutUserTechnologiesInput;
+  components?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  hiring_status?: Maybe<UserTechnologyHiringStatus>;
+  id?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  level?: Maybe<Scalars['Int']>;
+  status?: Maybe<UserTechnologyStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface UserTechnologyCreateWithoutUserInput {
+  Technology_TechnologyToUserTechnology: TechnologyCreateNestedOneWithoutUserTechnologiesInput;
+  components?: Maybe<Scalars['Json']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date_from?: Maybe<Scalars['DateTime']>;
+  date_till?: Maybe<Scalars['DateTime']>;
+  hiring_status?: Maybe<UserTechnologyHiringStatus>;
+  id?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  level?: Maybe<Scalars['Int']>;
+  status?: Maybe<UserTechnologyStatus>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface UserTechnologyCreatedByTechnologyCompoundUniqueInput {
@@ -4614,6 +22205,7 @@ export interface UserWhereInput {
   CodeChallenges?: Maybe<CodeChallengeListRelationFilter>;
   Comments?: Maybe<CommentListRelationFilter>;
   CreatedBy?: Maybe<StringNullableFilter>;
+  Donates?: Maybe<DonateListRelationFilter>;
   EthAccountAuthed?: Maybe<StringNullableFilter>;
   EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountWhereInput>;
   EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountListRelationFilter>;
@@ -4716,6 +22308,72 @@ export interface UserWhereUniqueInput {
   username?: Maybe<Scalars['String']>;
 }
 
+export interface VoteCreateManyResourceResourceToVoteInput {
+  User: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value: Scalars['Decimal'];
+}
+
+export interface VoteCreateManyResourceResourceToVoteInputEnvelope {
+  data?: Maybe<Array<VoteCreateManyResourceResourceToVoteInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface VoteCreateManyUserUserToVoteInput {
+  Resource?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value: Scalars['Decimal'];
+}
+
+export interface VoteCreateManyUserUserToVoteInputEnvelope {
+  data?: Maybe<Array<VoteCreateManyUserUserToVoteInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface VoteCreateNestedManyWithoutResourceResourceToVoteInput {
+  connect?: Maybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<VoteCreateOrConnectWithoutResourceResourceToVoteInput>>;
+  create?: Maybe<Array<VoteCreateWithoutResourceResourceToVoteInput>>;
+  createMany?: Maybe<VoteCreateManyResourceResourceToVoteInputEnvelope>;
+}
+
+export interface VoteCreateNestedManyWithoutUserUserToVoteInput {
+  connect?: Maybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<VoteCreateOrConnectWithoutUserUserToVoteInput>>;
+  create?: Maybe<Array<VoteCreateWithoutUserUserToVoteInput>>;
+  createMany?: Maybe<VoteCreateManyUserUserToVoteInputEnvelope>;
+}
+
+export interface VoteCreateOrConnectWithoutResourceResourceToVoteInput {
+  create: VoteCreateWithoutResourceResourceToVoteInput;
+  where: VoteWhereUniqueInput;
+}
+
+export interface VoteCreateOrConnectWithoutUserUserToVoteInput {
+  create: VoteCreateWithoutUserUserToVoteInput;
+  where: VoteWhereUniqueInput;
+}
+
+export interface VoteCreateWithoutResourceResourceToVoteInput {
+  User_UserToVote: UserCreateNestedOneWithoutVotesInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value: Scalars['Decimal'];
+}
+
+export interface VoteCreateWithoutUserUserToVoteInput {
+  Resource_ResourceToVote?: Maybe<ResourceCreateNestedOneWithoutVotesInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  value: Scalars['Decimal'];
+}
+
 export interface VoteListRelationFilter {
   every?: Maybe<VoteWhereInput>;
   none?: Maybe<VoteWhereInput>;
@@ -4734,6 +22392,83 @@ export interface VoteWhereInput {
   id?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   value?: Maybe<DecimalFilter>;
+}
+
+export interface VoteWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface WorldCreateManyUserInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  days: Scalars['Int'];
+  id?: Maybe<Scalars['String']>;
+  lastPlayed: Scalars['DateTime'];
+  name: Scalars['String'];
+  seed: Scalars['String'];
+  time: Scalars['Decimal'];
+  timeChanger?: Maybe<Scalars['Decimal']>;
+  type: WorldType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface WorldCreateManyUserInputEnvelope {
+  data?: Maybe<Array<WorldCreateManyUserInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface WorldCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<WorldWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<WorldCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<WorldCreateWithoutUserInput>>;
+  createMany?: Maybe<WorldCreateManyUserInputEnvelope>;
+}
+
+export interface WorldCreateNestedOneWithoutPlayersInput {
+  connect?: Maybe<WorldWhereUniqueInput>;
+  connectOrCreate?: Maybe<WorldCreateOrConnectWithoutPlayersInput>;
+  create?: Maybe<WorldCreateWithoutPlayersInput>;
+}
+
+export interface WorldCreateOrConnectWithoutPlayersInput {
+  create: WorldCreateWithoutPlayersInput;
+  where: WorldWhereUniqueInput;
+}
+
+export interface WorldCreateOrConnectWithoutUserInput {
+  create: WorldCreateWithoutUserInput;
+  where: WorldWhereUniqueInput;
+}
+
+export interface WorldCreateWithoutPlayersInput {
+  Blocks?: Maybe<BlockCreateNestedManyWithoutWorldInput>;
+  Messages?: Maybe<MessageCreateNestedManyWithoutWorldInput>;
+  User: UserCreateNestedOneWithoutWorldsInput;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  days: Scalars['Int'];
+  id?: Maybe<Scalars['String']>;
+  lastPlayed: Scalars['DateTime'];
+  name: Scalars['String'];
+  seed: Scalars['String'];
+  time: Scalars['Decimal'];
+  timeChanger?: Maybe<Scalars['Decimal']>;
+  type: WorldType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface WorldCreateWithoutUserInput {
+  Blocks?: Maybe<BlockCreateNestedManyWithoutWorldInput>;
+  Messages?: Maybe<MessageCreateNestedManyWithoutWorldInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutWorldInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  days: Scalars['Int'];
+  id?: Maybe<Scalars['String']>;
+  lastPlayed: Scalars['DateTime'];
+  name: Scalars['String'];
+  seed: Scalars['String'];
+  time: Scalars['Decimal'];
+  timeChanger?: Maybe<Scalars['Decimal']>;
+  type: WorldType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface WorldListRelationFilter {
@@ -4766,4 +22501,8 @@ export interface WorldWhereInput {
   timeChanger?: Maybe<DecimalNullableFilter>;
   type?: Maybe<EnumWorldTypeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface WorldWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
 }

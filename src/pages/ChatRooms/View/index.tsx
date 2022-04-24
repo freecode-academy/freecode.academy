@@ -39,7 +39,7 @@ class ChatRoomsView<
         key: 'CreatedBy',
         label: 'Владелец',
         renderer: (value: CC['CreatedBy']) => {
-          return <UserLink user={value} />
+          return value ? <UserLink user={value} /> : null
         },
       },
       {
@@ -67,11 +67,13 @@ class ChatRoomsView<
         label: 'Приглашенные',
         renderer: (value: CC['Invitations']) => {
           const items =
-            value?.map((n) => (
-              <Grid key={n.id} item>
-                <UserLink user={n.User} showName={false} size="small" />
-              </Grid>
-            )) ?? []
+            value?.map((n) =>
+              n.User ? (
+                <Grid key={n.id} item>
+                  <UserLink user={n.User} showName={false} size="small" />
+                </Grid>
+              ) : null
+            ) ?? []
 
           return (
             <Grid container spacing={8}>

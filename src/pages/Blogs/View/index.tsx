@@ -31,7 +31,7 @@ class BlogsView<
         key: 'CreatedBy',
         label: 'Автор',
         renderer: (value: CC['CreatedBy']) => {
-          return <UserLink user={value} />
+          return value ? <UserLink user={value} /> : null
         },
       },
     ]

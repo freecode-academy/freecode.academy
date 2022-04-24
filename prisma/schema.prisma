@@ -123,6 +123,8 @@ model User {
 
   telegram String?
 
+  Donates Donate[]
+
   @@unique([email])
   @@unique([username])
   @@index([CreatedBy], name: "CreatedBy")
@@ -1622,4 +1624,15 @@ enum MentorMenteeStatus {
   Request
   Accepted
   Rejected
+}
+
+model Donate {
+  id        String   @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.DateTime(0)
+  date      DateTime
+  sum       Float
+  title     String?
+  donatorId String?  @db.VarChar(32)
+  Donator   User?    @relation(fields: [donatorId], references: [id])
 }

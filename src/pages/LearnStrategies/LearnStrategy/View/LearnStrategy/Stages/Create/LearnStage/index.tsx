@@ -92,7 +92,9 @@ export const CreateLearnStrategyStageLearnStrategy: React.FC<
                 >
                   {n.name}
                 </Button>
-                <UikitUserLink user={n.CreatedBy} showName={false} />
+                {n.CreatedBy ? (
+                  <UikitUserLink user={n.CreatedBy} showName={false} />
+                ) : null}
               </div>
             )
           })}

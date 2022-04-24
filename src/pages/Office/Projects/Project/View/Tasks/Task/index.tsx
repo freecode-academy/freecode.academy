@@ -197,7 +197,9 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
     return (
       <OfficeProjectPageViewTaskStyled>
         <OfficeTaskListItemStyled>
-          <UikitUserLink user={CreatedBy} showName={false} />
+          {CreatedBy ? (
+            <UikitUserLink user={CreatedBy} showName={false} />
+          ) : null}
           {timer}
           <div className="task">
             <div className="task-info">

@@ -160,7 +160,9 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
       technology.UserTechnologies?.filter((n) => n.isMentor === true) || []
 
     return mentors.map((n) => {
-      return <UikitUserLink key={n.id} user={n.CreatedBy} size="small" />
+      return n.CreatedBy ? (
+        <UikitUserLink key={n.id} user={n.CreatedBy} size="small" />
+      ) : null
     })
   }, [technology.UserTechnologies])
 

@@ -114,7 +114,7 @@ class TimersView<
         numeric: false,
         disablePadding: true,
         renderer: (value: CC['CreatedBy']) => {
-          return <UserLink user={value} />
+          return value ? <UserLink user={value} /> : null
         },
       },
     ]

@@ -23,13 +23,17 @@ const UiChatMessage: React.FC<UiChatMessageProps> = (props) => {
     <UiChatMessageStyled>
       <Grid container spacing={8} alignItems="center">
         <Grid item>
-          <UikitUserLink user={CreatedBy} showName={false} />
+          {CreatedBy ? (
+            <UikitUserLink user={CreatedBy} showName={false} />
+          ) : null}
         </Grid>
 
         <Grid item xs>
           <Grid container spacing={8} alignItems="center">
             <Grid item>
-              <UikitUserLink user={CreatedBy} withAvatar={false} />
+              {CreatedBy ? (
+                <UikitUserLink user={CreatedBy} withAvatar={false} />
+              ) : null}
             </Grid>
             <Grid item xs>
               {id && createdAt ? (

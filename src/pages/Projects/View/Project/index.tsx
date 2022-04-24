@@ -170,7 +170,7 @@ export class ProjectView<
       project_members.map((member) => {
         const { id, User } = member
 
-        members.push(<UserLink key={id} user={User} size="small" />)
+        User && members.push(<UserLink key={id} user={User} size="small" />)
       }, this)
     }
 

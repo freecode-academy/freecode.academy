@@ -110,6 +110,15 @@ export type CodeChallengeCompletionResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type DonateKeySpecifier = ('Donator' | 'date' | 'donatorId' | 'id' | 'sum' | 'title' | DonateKeySpecifier)[];
+export type DonateFieldPolicy = {
+	Donator?: FieldPolicy<any> | FieldReadFunction<any>,
+	date?: FieldPolicy<any> | FieldReadFunction<any>,
+	donatorId?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	sum?: FieldPolicy<any> | FieldReadFunction<any>,
+	title?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type EthAccountKeySpecifier = ('abi' | 'address' | 'balance' | 'bytecode' | 'createdAt' | 'description' | 'id' | 'name' | 'source' | 'type' | 'updatedAt' | EthAccountKeySpecifier)[];
 export type EthAccountFieldPolicy = {
 	abi?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -174,7 +183,7 @@ export type MentorMenteeFieldPolicy = {
 	status?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('blockUser' | 'createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createMentorMentee' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'deleteResource' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'unblockUser' | 'updateBlogProcessor' | 'updateCodeChallenge' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateCurrentUser' | 'updateLearnStrategy' | 'updateOneUser' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('blockUser' | 'createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createMentorMentee' | 'createOneDonate' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'deleteResource' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'unblockUser' | 'updateBlogProcessor' | 'updateCodeChallenge' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateCurrentUser' | 'updateLearnStrategy' | 'updateOneUser' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	blockUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	createBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -184,6 +193,7 @@ export type MutationFieldPolicy = {
 	createLearnStrategy?: FieldPolicy<any> | FieldReadFunction<any>,
 	createLearnStrategyStage?: FieldPolicy<any> | FieldReadFunction<any>,
 	createMentorMentee?: FieldPolicy<any> | FieldReadFunction<any>,
+	createOneDonate?: FieldPolicy<any> | FieldReadFunction<any>,
 	createProjectProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createResetPasswordProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createTaskProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -284,7 +294,7 @@ export type ProjectTaskFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('chatMessage' | 'chatMessages' | 'chatMessagesCount' | 'chatRoom' | 'chatRooms' | 'chatRoomsCount' | 'codeChallenge' | 'codeChallengeBlock' | 'codeChallengeBlocks' | 'codeChallengeBlocksCount' | 'codeChallengeCompletion' | 'codeChallengeCompletions' | 'codeChallenges' | 'file' | 'files' | 'filesCount' | 'learnStrategies' | 'learnStrategiesCount' | 'learnStrategy' | 'learnStrategyStage' | 'learnStrategyStages' | 'learnStrategyStagesCount' | 'me' | 'mentorMentee' | 'mentorMentees' | 'mentorMenteesCount' | 'notice' | 'notices' | 'noticesCount' | 'notificationTypes' | 'notificationTypesCount' | 'project' | 'projectTasks' | 'projects' | 'projectsCount' | 'resource' | 'resources' | 'resourcesCount' | 'tag' | 'tags' | 'tagsCount' | 'task' | 'taskTechnologies' | 'taskTechnology' | 'taskTechnologysCount' | 'tasks' | 'tasksCount' | 'technologies' | 'technologiesCount' | 'technology' | 'timer' | 'timers' | 'timersCount' | 'user' | 'userLearnStrategies' | 'userLearnStrategiesCount' | 'userLearnStrategy' | 'userTechnologies' | 'userTechnology' | 'userTechnologysCount' | 'users' | 'usersCount' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('chatMessage' | 'chatMessages' | 'chatMessagesCount' | 'chatRoom' | 'chatRooms' | 'chatRoomsCount' | 'codeChallenge' | 'codeChallengeBlock' | 'codeChallengeBlocks' | 'codeChallengeBlocksCount' | 'codeChallengeCompletion' | 'codeChallengeCompletions' | 'codeChallenges' | 'donate' | 'donates' | 'donatesCount' | 'file' | 'files' | 'filesCount' | 'learnStrategies' | 'learnStrategiesCount' | 'learnStrategy' | 'learnStrategyStage' | 'learnStrategyStages' | 'learnStrategyStagesCount' | 'me' | 'mentorMentee' | 'mentorMentees' | 'mentorMenteesCount' | 'notice' | 'notices' | 'noticesCount' | 'notificationTypes' | 'notificationTypesCount' | 'project' | 'projectTasks' | 'projects' | 'projectsCount' | 'resource' | 'resources' | 'resourcesCount' | 'tag' | 'tags' | 'tagsCount' | 'task' | 'taskTechnologies' | 'taskTechnology' | 'taskTechnologysCount' | 'tasks' | 'tasksCount' | 'technologies' | 'technologiesCount' | 'technology' | 'timer' | 'timers' | 'timersCount' | 'user' | 'userLearnStrategies' | 'userLearnStrategiesCount' | 'userLearnStrategy' | 'userTechnologies' | 'userTechnology' | 'userTechnologysCount' | 'users' | 'usersCount' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	chatMessage?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatMessages?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -299,6 +309,9 @@ export type QueryFieldPolicy = {
 	codeChallengeCompletion?: FieldPolicy<any> | FieldReadFunction<any>,
 	codeChallengeCompletions?: FieldPolicy<any> | FieldReadFunction<any>,
 	codeChallenges?: FieldPolicy<any> | FieldReadFunction<any>,
+	donate?: FieldPolicy<any> | FieldReadFunction<any>,
+	donates?: FieldPolicy<any> | FieldReadFunction<any>,
+	donatesCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	file?: FieldPolicy<any> | FieldReadFunction<any>,
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	filesCount?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -628,6 +641,10 @@ export type TypedTypePolicies = TypePolicies & {
 	CodeChallengeCompletionResponse?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | CodeChallengeCompletionResponseKeySpecifier | (() => undefined | CodeChallengeCompletionResponseKeySpecifier),
 		fields?: CodeChallengeCompletionResponseFieldPolicy,
+	},
+	Donate?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | DonateKeySpecifier | (() => undefined | DonateKeySpecifier),
+		fields?: DonateFieldPolicy,
 	},
 	EthAccount?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | EthAccountKeySpecifier | (() => undefined | EthAccountKeySpecifier),

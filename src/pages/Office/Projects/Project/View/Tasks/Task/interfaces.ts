@@ -33,5 +33,5 @@ export type OfficeProjectPageViewTaskProps = {
   /**
    * Владелец объекта
    */
-  CreatedBy: UikitUserLinkProps['user']
+  CreatedBy: UikitUserLinkProps['user'] | null | undefined
 }

@@ -57,7 +57,13 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
       <CalendarEventStyled {...other}>
         {/* <b>{eventContent.timeText}</b> */}
         <i>
-          <UikitUserLink user={task?.CreatedBy} size="small" showName={false} />
+          {task.CreatedBy ? (
+            <UikitUserLink
+              user={task.CreatedBy}
+              size="small"
+              showName={false}
+            />
+          ) : null}
           <TaskLink object={task}>
             {/* {eventContent.event.title}{' '} */}
             {task?.status ? `(${task.status})` : null}

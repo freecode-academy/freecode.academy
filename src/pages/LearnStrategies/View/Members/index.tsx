@@ -16,11 +16,11 @@ export const LearnStrategiesViewMembers: React.FC<
           canConnect={true}
         />
         {learnStrategy.UserLearnStrategies?.map((n) => {
-          return (
+          return n.CreatedBy ? (
             <div key={n.id}>
               <UikitUserLink user={n.CreatedBy} size="small" />
             </div>
-          )
+          ) : null
         })}
       </LearnStrategiesViewMembersStyled>
     )

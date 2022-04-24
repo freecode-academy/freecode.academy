@@ -2,7 +2,6 @@ import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import React from 'react'
 import { Page } from '../_App/interfaces'
-import { DonateForm } from './DonateForm'
 
 /**
  * Страница О проекте
@@ -56,7 +55,8 @@ export const AboutPage: Page = () => {
         </p>
 
         <div>
-          <DonateForm />
+          Если вам нравится наш проект, вы можете{' '}
+          <Link href="/donates">поддержать его</Link>.
         </div>
       </div>
     </>

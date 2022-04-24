@@ -53,9 +53,11 @@ export const ToolPanelCompletion: React.FC<ToolPanelCompletionProps> = ({
   return useMemo(() => {
     return (
       <ToolPanelCompletionStyled>
-        <button ref={ref}>
-          <UikitUserLink user={codeChallengeCompletion.CreatedBy} />
-        </button>
+        {codeChallengeCompletion.CreatedBy ? (
+          <button ref={ref}>
+            <UikitUserLink user={codeChallengeCompletion.CreatedBy} />
+          </button>
+        ) : null}
       </ToolPanelCompletionStyled>
     )
   }, [codeChallengeCompletion.CreatedBy, ref])

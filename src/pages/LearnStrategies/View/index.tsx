@@ -59,10 +59,12 @@ export const LearnStrategiesView: React.FC<LearnStrategiesViewProps> = ({
                 <GridTableAttributeStyled>
                   {getUserTechnologyLevelText(n.level)}
                 </GridTableAttributeStyled>
-                <GridTableAttributeStyled>
-                  {' '}
-                  <UikitUserLink user={n.CreatedBy} />
-                </GridTableAttributeStyled>
+                {n.CreatedBy ? (
+                  <GridTableAttributeStyled>
+                    {' '}
+                    <UikitUserLink user={n.CreatedBy} />
+                  </GridTableAttributeStyled>
+                ) : null}
                 <GridTableAttributeStyled>
                   {' '}
                   <LearnStrategiesViewMembers

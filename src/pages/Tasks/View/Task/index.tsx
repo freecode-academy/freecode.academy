@@ -31,9 +31,9 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
     return activeTimers?.map((n) => {
       const { id, CreatedBy } = n
 
-      return (
+      return CreatedBy ? (
         <UserLink key={id} user={CreatedBy} size="small" showName={false} />
-      )
+      ) : null
     })
   }, [object.Timers])
 
@@ -142,9 +142,11 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
             </GridTableAttributeStyled>
           </GridTableAttributesContainerStyled>
 
-          <GridTableAttributeStyled data-label="Постановщик">
-            <UikitUserLink user={object.CreatedBy} />
-          </GridTableAttributeStyled>
+          {object.CreatedBy ? (
+            <GridTableAttributeStyled data-label="Постановщик">
+              <UikitUserLink user={object.CreatedBy} />
+            </GridTableAttributeStyled>
+          ) : null}
 
           <GridTableAttributeStyled data-label="Кто работает">
             {timers}

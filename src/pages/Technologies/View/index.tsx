@@ -44,7 +44,7 @@ class TechnologiesView<
         key: 'CreatedBy',
         label: 'Кем добавлена',
         renderer: (value: CC['CreatedBy']) => {
-          return <UserLink user={value} />
+          return value ? <UserLink user={value} /> : null
         },
       },
       {
@@ -55,7 +55,7 @@ class TechnologiesView<
           const items =
             value?.map((n) => (
               <Grid key={n.id} item>
-                <UserLink user={n.CreatedBy} />
+                {n.CreatedBy ? <UserLink user={n.CreatedBy} /> : null}
               </Grid>
             )) ?? []
 

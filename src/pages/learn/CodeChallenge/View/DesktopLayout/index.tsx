@@ -12,8 +12,27 @@ import { IconButton } from 'material-ui'
 import DiscussIcon from 'material-ui-icons/Comment'
 import Link from 'next/link'
 import EditIcon from 'material-ui-icons/ModeEdit'
+import { NextLesson } from './NextLesson'
+import {
+  CodeChallengeStatus,
+  useCodeChallengStatus,
+} from 'src/hooks/useCodeChallengStatus'
 
-const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
+const DesktopLayout: React.FC<DesktopLayoutProps> = ({
+  // classes,
+  // resizeProps,
+  instructions,
+  challengeFile,
+  editor,
+  testOutput,
+  hasPreview,
+  preview,
+  tabIndex,
+  challenge,
+  topicId,
+  currentUser,
+  codeChallengeCompletion,
+}) => {
   // static displayName = 'DesktopLayout';
 
   // static propTypes = {
@@ -31,21 +50,6 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
   //   }),
   //   testOutput: PropTypes.element
   // };
-
-  const {
-    // classes,
-    // resizeProps,
-    instructions,
-    challengeFile,
-    editor,
-    testOutput,
-    hasPreview,
-    preview,
-    tabIndex,
-    challenge,
-    topicId,
-    currentUser,
-  } = props
 
   const context = useContext(Context) as PrismaCmsContext
 
@@ -85,6 +89,10 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
     },
     [challenge.Topic?.id, challengeId, router]
   )
+
+  const { status } = useCodeChallengStatus({
+    codeChallengeCompletion,
+  })
 
   return useMemo(() => {
     const user = context?.user
@@ -156,6 +164,10 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
             />
           </Tabs>
 
+          {status === CodeChallengeStatus.Done ? (
+            <NextLesson challenge={challenge} status={status} />
+          ) : null}
+
           {currentUser?.sudo ? (
             <Link href={`/learn/exercises/edit/${challenge.id}`}>
               <a rel="noindex nofollow">
@@ -171,19 +183,20 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = (props) => {
       </DesktopLayoutStyled>
     )
   }, [
-    challenge,
-    challengeFile,
-    context.openLoginForm,
     context?.user,
-    editor,
-    hasPreview,
-    instructions,
-    onChangeTabs,
-    preview,
+    context.openLoginForm,
     tabIndex,
+    onChangeTabs,
+    challenge,
+    status,
+    currentUser?.sudo,
+    instructions,
+    challengeFile,
+    editor,
     testOutput,
+    hasPreview,
+    preview,
     topicId,
-    currentUser,
   ])
 }
 

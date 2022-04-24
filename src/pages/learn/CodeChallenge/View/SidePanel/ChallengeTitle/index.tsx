@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { useCodeChallengStatus } from 'src/hooks/useCodeChallengStatus'
 import CodeChallengeStatusIcon from '../../../components/StatusIcon'
 import { ExecuteChallengeButton } from '../ExecuteChallengeButton'
 import { ChallengeTitleProps } from './interfaces'
@@ -11,13 +12,15 @@ const ChallengeTitle: React.FC<ChallengeTitleProps> = ({
   executeChallenge,
   currentUser,
 }) => {
+  const { status } = useCodeChallengStatus({
+    codeChallengeCompletion,
+  })
+
   return useMemo(() => {
     return (
       <>
         <ChallengeTitleStyled className="challenge-title text-center">
-          <CodeChallengeStatusIcon
-            codeChallengeCompletion={codeChallengeCompletion}
-          />{' '}
+          <CodeChallengeStatusIcon status={status} />{' '}
           {children || 'Happy Coding!'}
         </ChallengeTitleStyled>
 
@@ -34,7 +37,7 @@ const ChallengeTitle: React.FC<ChallengeTitleProps> = ({
         ) : null}
       </>
     )
-  }, [children, codeChallengeCompletion, executeChallenge, currentUser])
+  }, [status, children, currentUser, codeChallengeCompletion, executeChallenge])
 }
 
 export default ChallengeTitle

@@ -3734,7 +3734,8 @@ export interface NexusGenFieldTypes {
   }
   CodeChallenge: {
     // field return type
-    Block: NexusGenRootTypes['CodeChallengeBlock'] | null // CodeChallengeBlock
+    Block: string | null // ID
+    CodeChallengeBlock: NexusGenRootTypes['CodeChallengeBlock'] | null // CodeChallengeBlock
     CodeChallengeCompletions:
       | NexusGenRootTypes['CodeChallengeCompletion'][]
       | null // [CodeChallengeCompletion!]
@@ -4333,7 +4334,8 @@ export interface NexusGenFieldTypeNames {
   }
   CodeChallenge: {
     // field return type name
-    Block: 'CodeChallengeBlock'
+    Block: 'ID'
+    CodeChallengeBlock: 'CodeChallengeBlock'
     CodeChallengeCompletions: 'CodeChallengeCompletion'
     CreatedBy: 'User'
     Topic: 'Resource'

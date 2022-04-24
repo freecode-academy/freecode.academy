@@ -288,7 +288,8 @@ input ChatRoomWhereUniqueInput {
 }
 
 type CodeChallenge {
-  Block: CodeChallengeBlock
+  Block: ID
+  CodeChallengeBlock: CodeChallengeBlock
   CodeChallengeCompletions(
     orderBy: [CodeChallengeCompletionOrderByInput!]
     skip: Int

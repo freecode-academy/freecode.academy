@@ -34,7 +34,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
   const title = codeChallenge.localeTitle || codeChallenge.name
 
   const breadCrumbs = useMemo(() => {
-    const block = codeChallenge.Block
+    const block = codeChallenge.CodeChallengeBlock
 
     if (!block) {
       return null
@@ -59,7 +59,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
         </Link>
       </div>
     )
-  }, [codeChallenge.Block])
+  }, [codeChallenge.CodeChallengeBlock])
 
   // const isChallengeCompleted = true
 

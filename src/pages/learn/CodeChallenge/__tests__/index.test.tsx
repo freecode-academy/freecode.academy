@@ -89,7 +89,7 @@ jest.mock('@apollo/client/react/hooks', () => {
               template: null,
               // time: '10 hours',
               rank: 0,
-              Block: {
+              CodeChallengeBlock: {
                 id: 'dsfsdf',
                 name: 'root block',
                 Parent: {

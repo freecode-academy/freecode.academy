@@ -18,7 +18,7 @@ import {
 import { useRouter, NextRouter } from 'next/router'
 
 import { Page, NextPageContextCustom } from '../../_App/interfaces'
-import { CodeChallengeView as View } from './View'
+import { CodeChallengeView } from './View'
 
 import Context, {
   ChallengeData,
@@ -391,7 +391,8 @@ const CodeChallengePage: Page = () => {
       </Head>
 
       <Context.Provider value={context}>
-        <View
+        <CodeChallengeView
+          key={object.id}
           codeChallenge={object}
           codeChallengeCompletion={context?.codeChallengeCompletion}
           tabIndex={tabIndex}

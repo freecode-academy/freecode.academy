@@ -324,7 +324,8 @@ export interface ChatRoomWhereUniqueInput {
 
 export interface CodeChallenge {
   __typename?: 'CodeChallenge';
-  Block?: Maybe<CodeChallengeBlock>;
+  Block?: Maybe<Scalars['ID']>;
+  CodeChallengeBlock?: Maybe<CodeChallengeBlock>;
   CodeChallengeCompletions?: Maybe<Array<CodeChallengeCompletion>>;
   CreatedBy?: Maybe<User>;
   Topic?: Maybe<Resource>;

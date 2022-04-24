@@ -17,9 +17,12 @@ import useExecuteChallenge from '../hooks/useExecuteChallenge'
  */
 const Preview = dynamic(import('./Preview'), { ssr: false })
 
-export const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
-  const { codeChallenge, codeChallengeCompletion, tabIndex, topicId } = props
-
+export const CodeChallengeView: React.FC<CodeChallengeViewProps> = ({
+  codeChallenge,
+  codeChallengeCompletion,
+  tabIndex,
+  topicId,
+}) => {
   // const onResize = () => {
   //   this.setState({ resizing: true })
   // }
@@ -166,6 +169,7 @@ export const CodeChallengeView: React.FC<CodeChallengeViewProps> = (props) => {
       topicId={topicId}
       challenge={challenge}
       currentUser={currentUser}
+      codeChallengeCompletion={codeChallengeCompletion}
     />
   )
 }

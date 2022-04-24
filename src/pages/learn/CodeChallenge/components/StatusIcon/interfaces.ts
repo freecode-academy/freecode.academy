@@ -1,5 +1,5 @@
-import { CodeChallengeContext } from '../../Context'
+import { CodeChallengeStatus } from 'src/hooks/useCodeChallengStatus'
 
 export type CodeChallengeStatusIconProps = {
-  codeChallengeCompletion: CodeChallengeContext['codeChallengeCompletion']
+  status: CodeChallengeStatus
 }

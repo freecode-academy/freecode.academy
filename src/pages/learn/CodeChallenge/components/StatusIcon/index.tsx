@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
+import { CodeChallengeStatus } from 'src/hooks/useCodeChallengStatus'
 
-import { TaskStatus } from 'src/modules/gql/generated'
 import { CodeChallengeStatusIconProps } from './interfaces'
 import { CodeChallengeStatusIconStyled } from './styles'
 
@@ -8,27 +8,24 @@ import { CodeChallengeStatusIconStyled } from './styles'
  * Иконка статуса выполнения задания
  */
 const CodeChallengeStatusIcon: React.FC<CodeChallengeStatusIconProps> = ({
-  codeChallengeCompletion,
+  status,
 }) => {
   return useMemo(() => {
     let icon: JSX.Element | undefined
 
-    const taskStatus = codeChallengeCompletion?.Task?.status
-
-    switch (taskStatus) {
-      case undefined:
+    switch (status) {
+      case CodeChallengeStatus.None:
         break
-      case TaskStatus.DONE:
-      case TaskStatus.COMPLETED:
+      case CodeChallengeStatus.Done:
         icon = <span className="icon OK">✓</span>
         break
-      default:
+      case CodeChallengeStatus.Progress:
         icon = <span className="icon PROGRESS">⌛</span>
         break
     }
 
     return <CodeChallengeStatusIconStyled>{icon}</CodeChallengeStatusIconStyled>
-  }, [codeChallengeCompletion?.Task?.status])
+  }, [status])
 }
 
 export default CodeChallengeStatusIcon

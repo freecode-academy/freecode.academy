@@ -80,7 +80,7 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
         return null
       }
 
-      const block = codeChallenge.Block
+      const block = codeChallenge.CodeChallengeBlock
       if (!block) {
         return null
       }

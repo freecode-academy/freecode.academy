@@ -49,6 +49,7 @@ export * from './codeChallengeCompletion_';
 export * from './codeChallengeCompletions';
 export * from './codeChallengeWithBlocks_';
 export * from './codeChallenge_';
+export * from './codeChallenges';
 export * from './commentsConnection';
 export * from './commentsConnectionComment';
 export * from './commentsConnectionCommentUser';

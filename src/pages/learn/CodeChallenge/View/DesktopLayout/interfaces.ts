@@ -14,7 +14,7 @@
 
 import { PrismaCmsContext } from '@prisma-cms/context'
 import { CodeChallengeFragment } from 'src/modules/gql/generated'
-import { TestFile } from '../../Context'
+import { CodeChallengeContext, TestFile } from '../../Context'
 import { CodeChallengeDiscussProps } from './Discuss/interfacse'
 
 // import { ReflexElementProps } from 'react-reflex'
@@ -40,4 +40,5 @@ export interface DesktopLayoutProps {
   challenge: CodeChallengeFragment
   topicId: CodeChallengeDiscussProps['topicId']
   currentUser: PrismaCmsContext['user']
+  codeChallengeCompletion: CodeChallengeContext['codeChallengeCompletion']
 }

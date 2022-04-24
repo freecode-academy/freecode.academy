@@ -89,7 +89,8 @@ export const CodeChallenge = objectType({
       },
     })
 
-    t.field('Block', {
+    t.id('Block')
+    t.field('CodeChallengeBlock', {
       type: 'CodeChallengeBlock',
       resolve({ Block }, _, ctx) {
         return Block

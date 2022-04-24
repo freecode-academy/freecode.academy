@@ -14,6 +14,24 @@ query codeChallenge($where: CodeChallengeWhereUniqueInput!) {
   # }
 }
 
+query codeChallenges(
+  $where: CodeChallengeWhereInput
+  $orderBy: [CodeChallengeOrderByInput!]
+  $take: Int
+  $skip: Int
+  $cursor: CodeChallengeWhereUniqueInput
+) {
+  codeChallenges(
+    where: $where
+    orderBy: $orderBy
+    take: $take
+    skip: $skip
+    cursor: $cursor
+  ) {
+    ...codeChallenge_
+  }
+}
+
 fragment CodeChallengePage on CodeChallenge {
   ...codeChallenge_
   ...codeChallengeWithBlocks_
@@ -38,5 +56,54 @@ mutation updateCodeChallenge(
 ) {
   updateCodeChallenge(where: $where, data: $data) {
     ...codeChallenge_
+  }
+}
+
+fragment codeChallenge_ on CodeChallenge {
+  id
+  CreatedBy {
+    ...UserNoNesting
+  }
+  externalKey
+  createdAt
+  updatedAt
+  name
+  dashedName
+  localeTitle
+  description
+  challengeType
+  forumTopicId
+  translations
+  tests
+  solutions
+  instructions
+  files
+  videoUrl
+  order
+  superOrder
+  challengeOrder
+  required
+  isRequired
+  isPrivate
+  isBeta
+  template
+  rank
+  Block
+  Topic {
+    ...resource_
+  }
+}
+
+fragment codeChallengeWithBlocks_ on CodeChallenge {
+  id
+  name
+  localeTitle
+  CodeChallengeBlock {
+    id
+    name
+    Parent {
+      id
+      name
+    }
   }
 }

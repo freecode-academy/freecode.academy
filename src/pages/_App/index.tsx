@@ -197,9 +197,13 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
       theme: muiTheme,
       localStorage: global.localStorage,
       apiClientResetStore: async function () {
-        if (!apolloClient['queryManager'].fetchCancelFns.size) {
-          return apolloClient.resetStore().catch(console.error)
-        }
+        /**
+         * Если оставлять проверку, возникают ситуации, что не выполняется сброс хранилища.
+         * Лучше просто ошибку подавлять.
+         */
+        // if (!apolloClient['queryManager'].fetchCancelFns.size) {
+        return apolloClient.resetStore().catch(console.error)
+        // }
       },
 
       /**

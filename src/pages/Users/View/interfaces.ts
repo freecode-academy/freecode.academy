@@ -1,8 +1,7 @@
-import { ObjectsListViewProps } from 'src/components/view/List/interfaces'
+import { PaginationProps } from 'src/components/Pagination'
 import { UsersConnectionUserFragment } from 'src/modules/gql/generated'
 
-export interface UsersViewProps extends ObjectsListViewProps {
-  // data: UsersConnectionQuery | null | undefined
-
-  objects: UsersConnectionUserFragment[]
+export type UsersViewProps = {
+  users: UsersConnectionUserFragment[]
+  pagination: PaginationProps
 }

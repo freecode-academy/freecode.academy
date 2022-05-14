@@ -34177,6 +34177,11 @@ export interface NexusGenArgTypes {
     }
   }
   User: {
+    ProjectsCreated: {
+      // args
+      take?: number | null // Int
+      where?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
+    }
     Timers: {
       // args
       first?: number | null // Int

@@ -3,6 +3,7 @@ query me(
   $withNotificationTypes: Boolean = true
   $withUserTechnologies: Boolean = true
   $withCodeChallengeCompletions: Boolean = true
+  $withEducationProjects: Boolean = false
 ) {
   me {
     ...meUser
@@ -15,6 +16,7 @@ query user(
   $withNotificationTypes: Boolean = true
   $withUserTechnologies: Boolean = true
   $withCodeChallengeCompletions: Boolean = false
+  $withEducationProjects: Boolean = false
 ) {
   object: user(where: $where) {
     ...userProfile
@@ -48,6 +50,7 @@ mutation updateUserProcessor(
   $withNotificationTypes: Boolean = true
   $withUserTechnologies: Boolean = false
   $withCodeChallengeCompletions: Boolean = false
+  $withEducationProjects: Boolean = false
 ) {
   updateUserProcessor(data: $data) {
     success
@@ -214,6 +217,16 @@ fragment userProfile on User {
   CodeChallengeCompletions @include(if: $withCodeChallengeCompletions) {
     ...MeUserCodeChallengeCompletion
   }
+
+  EducationProjects: ProjectsCreated(
+    take: 1
+    where: { type: { equals: Education } }
+  ) @include(if: $withEducationProjects) {
+    id
+    name
+    type
+  }
+
   ...user_
 }
 

@@ -25,8 +25,8 @@ export const UsersFilters: React.FC = () => {
   )
 
   useEffect(() => {
-    if (global.location) {
-      const params = new URLSearchParams(global.location?.search)
+    if (location) {
+      const params = new URLSearchParams(location?.search)
       const value = params.get('search')
 
       searchValueSetter(value || '')
@@ -50,3 +50,5 @@ export const UsersFilters: React.FC = () => {
     </UsersFiltersStyled>
   )
 }
+
+export default UsersFilters

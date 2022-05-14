@@ -6,7 +6,7 @@ import { ProjectLinkProps } from './interfaces'
 
 export class ProjectLink extends Component<ProjectLinkProps> {
   render() {
-    const { object, ...other } = this.props
+    const { object, children, ...other } = this.props
 
     if (!object) {
       return null
@@ -22,7 +22,7 @@ export class ProjectLink extends Component<ProjectLinkProps> {
 
     return (
       <Link href={resourceUri || `/projects/id/${id}`} title={name} {...other}>
-        {name}
+        {children ?? name}
       </Link>
     )
   }

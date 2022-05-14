@@ -3,6 +3,7 @@ import {
   useUserQuery,
   UserDocument,
   UserQuery,
+  UserQueryVariables,
 } from 'src/modules/gql/generated'
 
 import { UserPageView } from './View'
@@ -11,7 +12,9 @@ import { Page, NextPageContextCustom } from '../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 
-function getVariables(router: NextRouter | NextPageContextCustom) {
+function getVariables(
+  router: NextRouter | NextPageContextCustom
+): UserQueryVariables {
   return {
     where: {
       username:
@@ -19,6 +22,7 @@ function getVariables(router: NextRouter | NextPageContextCustom) {
           ? router.query.username
           : undefined,
     },
+    withEducationProjects: true,
   }
 }
 

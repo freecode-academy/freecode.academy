@@ -156,8 +156,21 @@ export const User = objectType({
     t.list.nonNull.field('ProjectsCreated', {
       type: 'Project',
       description: 'Проекты, созданные пользователем',
-      resolve({ id }, _, ctx) {
-        return ctx.prisma.project.findMany({ where: { CreatedBy: id } })
+      args: {
+        take: intArg(),
+        where: 'ProjectWhereInput',
+      },
+      resolve({ id }, args, ctx) {
+        const where = args.where as Prisma.ProjectWhereInput | null | undefined
+        const take = args.take
+
+        return ctx.prisma.project.findMany({
+          take: take || undefined,
+          where: {
+            ...where,
+            CreatedBy: id,
+          },
+        })
       },
     })
 

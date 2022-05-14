@@ -29,6 +29,7 @@ import { MentorMentees } from './MentorMentees'
 import { UserAbout } from './About'
 import { BlockUser } from './BlockUser'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
+import { UserStudyInfo } from './StudyInfo'
 // import { UserProgress } from './Progress'
 
 // export const UserView: React.FC<UserPageViewProps> = ({ user }) => {
@@ -530,6 +531,7 @@ export const UserPageView: React.FC<UserPageViewProps> = ({ user }) => {
         {/* {userProgress} */}
         {level}
         <MentorMentees user={user} currentUser={currentUser} />
+        <UserStudyInfo user={user} />
         {technologies}
       </>
     )

@@ -20,10 +20,16 @@ export const MentorMentees: React.FC<MentorMenteesProps> = ({
       return (
         <div>
           <Typography variant="subheading">{title}</Typography>
-
-          {users.map((n) => {
-            return <UikitUserLinkWithStyles key={n.id} user={n} />
-          })}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            {users.map((n) => {
+              return <UikitUserLinkWithStyles key={n.id} user={n} />
+            })}
+          </div>
         </div>
       )
     },

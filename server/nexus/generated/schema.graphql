@@ -13303,7 +13303,7 @@ type User {
   """
   Проекты, созданные пользователем
   """
-  ProjectsCreated: [Project!]
+  ProjectsCreated(take: Int, where: ProjectWhereInput): [Project!]
   Timers(first: Int, where: TimerWhereInput): [Timer!]
   UserTechnologies: [UserTechnology!]
   about: EditorComponentObject

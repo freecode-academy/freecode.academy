@@ -57,7 +57,7 @@ export type UserProfileFragment = (
   )>>, CodeChallengeCompletions?: Types.Maybe<Array<(
     { __typename?: 'CodeChallengeCompletion' }
     & MeUserCodeChallengeCompletionFragment
-  )>> }
+  )>>, EducationProjects?: Types.Maybe<Array<{ __typename?: 'Project', id: string, name: string, type?: Types.Maybe<Types.ProjectType> }>> }
   & UserFragment
 );
 
@@ -93,6 +93,11 @@ export const UserProfileFragmentDoc = gql`
   }
   CodeChallengeCompletions @include(if: $withCodeChallengeCompletions) {
     ...MeUserCodeChallengeCompletion
+  }
+  EducationProjects: ProjectsCreated(take: 1, where: {type: {equals: Education}}) @include(if: $withEducationProjects) {
+    id
+    name
+    type
   }
   ...user_
 }

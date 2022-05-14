@@ -1,14 +1,18 @@
 import React, { useMemo } from 'react'
+import dynamic from 'next/dynamic'
 import {
   GridTableAttributesContainerStyled,
   GridTableAttributeStyled,
   GridTableItemStyled,
 } from 'src/components/GridTable/styles'
 import Pagination from 'src/components/Pagination'
-import { UsersFilters } from './Filters'
 import { UsersViewProps } from './interfaces'
 import { UsersViewTableStyled } from './styles'
 import { UsersViewUser } from './User'
+
+const UsersFilters = dynamic(import('./Filters'), {
+  ssr: false,
+})
 
 export const UsersView: React.FC<UsersViewProps> = ({
   users,

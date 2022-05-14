@@ -5,12 +5,13 @@ import {
   useUsersConnectionQuery,
 } from 'src/modules/gql/generated'
 
-import View from '../View'
+import { UsersView } from '../View'
 
 import { Page } from '../../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import { NextSeo } from 'next-seo'
+import { PaginationProps } from 'src/components/Pagination'
 
 const first = 10
 
@@ -57,7 +58,15 @@ const StudentsPage: Page = () => {
     onError: console.error,
   })
 
-  const { variables, loading } = response
+  const { variables } = response
+
+  const pagination = useMemo<PaginationProps>(() => {
+    return {
+      total: response.data?.usersCount ?? 0,
+      limit: variables?.first ?? first,
+      page,
+    }
+  }, [page, response.data?.usersCount, variables?.first])
 
   return (
     <>
@@ -66,14 +75,15 @@ const StudentsPage: Page = () => {
         description="Все пользователи, выполняющие учебные задания"
       />
 
-      <View
+      <UsersView
         // {...queryResult}
         // data={response}
-        objects={response.data?.users || []}
-        count={response.data?.usersCount || 0}
-        variables={variables}
-        page={page}
-        loading={loading}
+        users={response.data?.users || []}
+        // count={response.data?.usersCount || 0}
+        // variables={variables}
+        // page={page}
+        // loading={loading}
+        pagination={pagination}
       />
     </>
   )

@@ -13,9 +13,9 @@
 # Так как проекты дергаются в том числе через ресурс,
 # придется искать не по уникальному ключу
 
-query projectPageProjects(
+query projects(
   $where: ProjectWhereInput
-  $first: Int = 1
+  $first: Int
   $timersWhere: TimerWhereInput
 ) {
   projects(where: $where, take: $first) {

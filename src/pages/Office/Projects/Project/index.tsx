@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import {
-  useProjectPageProjectsQuery,
-  ProjectPageProjectsDocument,
-  ProjectPageProjectsQuery,
-  ProjectPageProjectsQueryVariables,
+  useProjectsQuery,
+  ProjectsDocument,
+  ProjectsQuery,
+  ProjectsQueryVariables,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -14,7 +14,9 @@ import { NextSeo } from 'next-seo'
 import { OfficeProjectPageProps } from './interfaces'
 
 const getProjectVariables = (router: NextRouter | NextPageContextCustom) => {
-  const variables: ProjectPageProjectsQueryVariables = {}
+  const variables: ProjectsQueryVariables = {
+    first: 1,
+  }
 
   const id = router.query.projectId
 
@@ -36,7 +38,7 @@ const OfficeProjectPage: Page<OfficeProjectPageProps> = ({ view }) => {
     return getProjectVariables(router)
   }, [router])
 
-  const response = useProjectPageProjectsQuery({
+  const response = useProjectsQuery({
     skip: !variables?.where,
     variables,
     onError: console.error,
@@ -64,8 +66,8 @@ OfficeProjectPage.getInitialProps = async (context) => {
 
   // TODO Fix private rooms access
   const response = variables.where
-    ? await apolloClient.query<ProjectPageProjectsQuery>({
-        query: ProjectPageProjectsDocument,
+    ? await apolloClient.query<ProjectsQuery>({
+        query: ProjectsDocument,
 
         /**
          * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,

@@ -21,6 +21,7 @@ export type MeQueryVariables = Types.Exact<{
   withNotificationTypes?: Types.Maybe<Types.Scalars['Boolean']>;
   withUserTechnologies?: Types.Maybe<Types.Scalars['Boolean']>;
   withCodeChallengeCompletions?: Types.Maybe<Types.Scalars['Boolean']>;
+  withEducationProjects?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
@@ -31,7 +32,7 @@ export type MeQuery = { __typename?: 'Query', me?: Types.Maybe<(
 
 
 export const MeDocument = gql`
-    query me($withMentorMentee: Boolean = true, $withNotificationTypes: Boolean = true, $withUserTechnologies: Boolean = true, $withCodeChallengeCompletions: Boolean = true) {
+    query me($withMentorMentee: Boolean = true, $withNotificationTypes: Boolean = true, $withUserTechnologies: Boolean = true, $withCodeChallengeCompletions: Boolean = true, $withEducationProjects: Boolean = false) {
   me {
     ...meUser
   }
@@ -54,6 +55,7 @@ export const MeDocument = gql`
  *      withNotificationTypes: // value for 'withNotificationTypes'
  *      withUserTechnologies: // value for 'withUserTechnologies'
  *      withCodeChallengeCompletions: // value for 'withCodeChallengeCompletions'
+ *      withEducationProjects: // value for 'withEducationProjects'
  *   },
  * });
  */

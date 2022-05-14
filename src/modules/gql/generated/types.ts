@@ -13705,6 +13705,13 @@ export interface User {
 
 
 /** Пользователь */
+export type UserProjectsCreatedArgs = {
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<ProjectWhereInput>;
+};
+
+
+/** Пользователь */
 export type UserTimersArgs = {
   first?: Maybe<Scalars['Int']>;
   where?: Maybe<TimerWhereInput>;

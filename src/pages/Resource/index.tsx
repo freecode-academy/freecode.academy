@@ -23,6 +23,7 @@ import { TopicPage } from '../Topics/Topic'
 
 import { blogGetInitialProps, BlogPage } from '../Blogs/Blog'
 import CommentPage from '../Comments/Comment'
+import { TeamPage } from '../Teams/Team'
 
 export const getResourceVariables = (
   router: NextRouter | NextPageContextCustom
@@ -68,6 +69,9 @@ const ResourcePage: Page = (props) => {
     case ResourceType.PERSONALBLOG:
       return <BlogPage {...props} />
 
+    case ResourceType.TEAM:
+      return <TeamPage {...props} />
+
     default:
       throw new Error('Unknown Resource type')
   }
@@ -97,6 +101,7 @@ ResourcePage.getInitialProps = async (context) => {
   switch (object?.type) {
     case ResourceType.TOPIC:
     case ResourceType.COMMENT:
+    case ResourceType.TEAM:
       break
 
     case ResourceType.BLOG:

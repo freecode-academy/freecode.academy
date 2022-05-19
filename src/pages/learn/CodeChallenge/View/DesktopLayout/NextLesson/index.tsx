@@ -33,7 +33,7 @@ export const NextLesson: React.FC<NextLessonProps> = ({ challenge }) => {
     skip: !challenge.Block,
   })
 
-  const codeChallenge = response.data?.codeChallenges.at(0)
+  const codeChallenge = response.data?.codeChallenges[0]
 
   if (!codeChallenge) {
     return null

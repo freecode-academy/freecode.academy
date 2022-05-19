@@ -6,7 +6,8 @@ type UserStudyInfoProps = {
 }
 
 export const UserStudyInfo: React.FC<UserStudyInfoProps> = ({ user }) => {
-  const project = user.EducationProjects?.at(0)
+  const project =
+    (user.EducationProjects && user.EducationProjects[0]) || undefined
 
   if (!project) {
     return null

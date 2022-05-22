@@ -109,23 +109,6 @@ const CodeChallengePage: Page = () => {
   const cacheKey =
     global.localStorage && object ? `lesson_${object.id}_file_content` : null
 
-  // const codeChallengeCompletion = useMemo(() => {
-
-  //   if (!object || !user) {
-  //     return null;
-  //   }
-
-  //   return user.CodeChallengeCompletions?.find(
-  //     (n) => n.CodeChallenge.id === object.id
-  //   )
-
-  // }, [object, user]);
-
-  // const initialChallengeData = useMemo<ChallengeData>(
-  //   () => (),
-  //   [object?.challengeType]
-  // )
-
   /**
    * Готовим файл, добавляя данные из сессии
    */
@@ -147,7 +130,7 @@ const CodeChallengePage: Page = () => {
     [cacheKey]
   )
 
-  const [initialChallengeData] = useState<ChallengeData>(() => {
+  const initialChallengeData = useMemo<ChallengeData>(() => {
     const files: Array<Partial<TestFile>> =
       object?.files && Array.isArray(object.files) ? object?.files : []
 
@@ -172,18 +155,27 @@ const CodeChallengePage: Page = () => {
       challengeType: object?.challengeType,
       file,
     }
-  })
+  }, [cacheKey, object])
 
-  const [challengeData, setChallengeDataToState] = useState<ChallengeData>(
-    () => {
-      const file = initialChallengeData.file
+  const challengeDataSetterCallback = useCallback(() => {
+    const file = initialChallengeData.file
 
-      return {
-        ...initialChallengeData,
-        file: prepareFile(file),
-      }
+    return {
+      ...initialChallengeData,
+      file: prepareFile(file),
     }
+  }, [initialChallengeData, prepareFile])
+
+  const [challengeData, challengeDataSetter] = useState<ChallengeData>(
+    challengeDataSetterCallback
   )
+
+  /**
+   * При изменении исходного объекта челенджа, устанавливаем новый стейт
+   */
+  useEffect(() => {
+    challengeDataSetter(challengeDataSetterCallback)
+  }, [challengeDataSetterCallback])
 
   /**
    * @writeCache Если да, то записываем в хранилище
@@ -198,7 +190,7 @@ const CodeChallengePage: Page = () => {
         }
       }
 
-      setChallengeDataToState(value)
+      challengeDataSetter(value)
     },
     [cacheKey]
   )
@@ -390,9 +382,8 @@ const CodeChallengePage: Page = () => {
         <meta name="description" content={object.name || ''} />
       </Head>
 
-      <Context.Provider value={context}>
+      <Context.Provider value={context} key={object.id}>
         <CodeChallengeView
-          key={object.id}
           codeChallenge={object}
           codeChallengeCompletion={context?.codeChallengeCompletion}
           tabIndex={tabIndex}

@@ -1,6 +1,6 @@
 import { asNexusMethod } from 'nexus'
 import { GraphQLScalarType } from 'graphql'
-import { NexusGenScalars } from 'server/nexus/generated/nexus'
+import { NexusGenScalars } from '../../../generated/nexus'
 
 const validateEditorContent = (
   value: Partial<NexusGenScalars['EditorComponentObject']> | null | undefined

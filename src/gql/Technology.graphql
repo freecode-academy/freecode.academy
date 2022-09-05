@@ -11,7 +11,7 @@ query technologies(
   $take: Int
   $skip: Int
   $where: TechnologyWhereInput
-  $orderBy: [TechnologyOrderByInput!] = { createdAt: desc }
+  $orderBy: [TechnologyOrderByWithRelationInput!] = { createdAt: desc }
 ) {
   technologies(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {
     ...technologiesConnectionTechnology
@@ -22,7 +22,7 @@ query technologiesConnection(
   $take: Int
   $skip: Int
   $where: TechnologyWhereInput
-  $orderBy: [TechnologyOrderByInput!] = { createdAt: desc }
+  $orderBy: [TechnologyOrderByWithRelationInput!] = { createdAt: desc }
 ) {
   technologiesCount(where: $where)
   technologies(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {

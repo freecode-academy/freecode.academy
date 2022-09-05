@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type LearnStrategiesQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.LearnStrategyWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.LearnStrategyOrderByInput> | Types.LearnStrategyOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.LearnStrategyOrderByWithRelationInput> | Types.LearnStrategyOrderByWithRelationInput>;
   take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
 }>;
@@ -31,7 +32,7 @@ export type LearnStrategiesQuery = { __typename?: 'Query', learnStrategies: Arra
 
 
 export const LearnStrategiesDocument = gql`
-    query learnStrategies($where: LearnStrategyWhereInput, $orderBy: [LearnStrategyOrderByInput!], $take: Int, $skip: Int) {
+    query learnStrategies($where: LearnStrategyWhereInput, $orderBy: [LearnStrategyOrderByWithRelationInput!], $take: Int, $skip: Int) {
   learnStrategies(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ...learnStrategy_
   }

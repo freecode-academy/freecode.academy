@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -20,7 +21,7 @@ export type AuthFormUsersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.UserWhereInput>;
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
-  orderBy?: Types.Maybe<Array<Types.UserOrderByInput> | Types.UserOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.UserOrderByWithRelationInput> | Types.UserOrderByWithRelationInput>;
 }>;
 
 
@@ -31,7 +32,7 @@ export type AuthFormUsersConnectionQuery = { __typename?: 'Query', usersCount: n
 
 
 export const AuthFormUsersConnectionDocument = gql`
-    query AuthFormUsersConnection($where: UserWhereInput, $first: Int = 10, $skip: Int, $orderBy: [UserOrderByInput!]) {
+    query AuthFormUsersConnection($where: UserWhereInput, $first: Int = 10, $skip: Int, $orderBy: [UserOrderByWithRelationInput!]) {
   usersCount(where: $where)
   users(where: $where, take: $first, skip: $skip, orderBy: $orderBy) {
     ...AuthFormUsersConnectionUser

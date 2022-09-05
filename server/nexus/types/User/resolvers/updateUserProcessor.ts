@@ -56,7 +56,7 @@ export const updateUserProcessor: FieldResolver<
     technologyLevel,
     NotificationTypes_UserNotificationTypes,
     isMentor: isMentor !== null ? isMentor : undefined,
-    about: about as Prisma.InputJsonValue | null | undefined,
+    about: about as Prisma.UserUpdateInput['about'],
     telegram: sanitizeTelegram(telegram),
   }
 

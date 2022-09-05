@@ -2,7 +2,7 @@ query sitemapUsersConnection(
   $first: Int!
   $skip: Int
   $where: UserWhereInput!
-  $orderBy: [UserOrderByInput!]!
+  $orderBy: [UserOrderByWithRelationInput!]!
 ) {
   usersCount(where: $where)
   users(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {

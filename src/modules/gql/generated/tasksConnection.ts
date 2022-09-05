@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type TasksConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.TaskWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.TaskOrderByInput> | Types.TaskOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TaskOrderByWithRelationInput> | Types.TaskOrderByWithRelationInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
   timersWhere?: Types.Maybe<Types.TimerWhereInput>;
@@ -32,7 +33,7 @@ export type TasksConnectionQuery = { __typename?: 'Query', tasksCount: number, t
 
 
 export const TasksConnectionDocument = gql`
-    query tasksConnection($where: TaskWhereInput, $orderBy: [TaskOrderByInput!] = {createdAt: desc}, $skip: Int, $first: Int = 10, $timersWhere: TimerWhereInput) {
+    query tasksConnection($where: TaskWhereInput, $orderBy: [TaskOrderByWithRelationInput!] = {createdAt: desc}, $skip: Int, $first: Int = 10, $timersWhere: TimerWhereInput) {
   tasksCount(where: $where)
   tasks(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
     ...tasksConnectionTask

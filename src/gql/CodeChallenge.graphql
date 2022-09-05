@@ -16,7 +16,7 @@ query codeChallenge($where: CodeChallengeWhereUniqueInput!) {
 
 query codeChallenges(
   $where: CodeChallengeWhereInput
-  $orderBy: [CodeChallengeOrderByInput!]
+  $orderBy: [CodeChallengeOrderByWithRelationInput!]
   $take: Int
   $skip: Int
   $cursor: CodeChallengeWhereUniqueInput

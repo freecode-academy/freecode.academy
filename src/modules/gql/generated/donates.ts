@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type DonatesQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.DonateWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.DonateOrderByInput> | Types.DonateOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.DonateOrderByWithRelationInput> | Types.DonateOrderByWithRelationInput>;
   take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
 }>;
@@ -31,7 +32,7 @@ export type DonatesQuery = { __typename?: 'Query', donates: Array<(
 
 
 export const DonatesDocument = gql`
-    query donates($where: DonateWhereInput, $orderBy: [DonateOrderByInput!], $take: Int, $skip: Int) {
+    query donates($where: DonateWhereInput, $orderBy: [DonateOrderByWithRelationInput!], $take: Int, $skip: Int) {
   donates(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ...donate_
   }

@@ -48,11 +48,11 @@ export const CodeChallengeBlock = objectType({
     t.list.nonNull.field('Challenges', {
       type: 'CodeChallenge',
       args: {
-        orderBy: 'CodeChallengeOrderByInput',
+        orderBy: 'CodeChallengeOrderByWithRelationInput',
       },
       resolve({ id }, args, ctx) {
         const orderBy = args.orderBy as
-          | Prisma.CodeChallengeOrderByInput
+          | Prisma.CodeChallengeOrderByWithRelationInput
           | undefined
 
         return ctx.prisma.codeChallenge.findMany({
@@ -65,11 +65,11 @@ export const CodeChallengeBlock = objectType({
     t.list.nonNull.field('Children', {
       type: 'CodeChallengeBlock',
       args: {
-        orderBy: 'CodeChallengeBlockOrderByInput',
+        orderBy: 'CodeChallengeBlockOrderByWithRelationInput',
       },
       resolve({ id }, args, ctx) {
         const orderBy = args.orderBy as
-          | Prisma.CodeChallengeBlockOrderByInput
+          | Prisma.CodeChallengeBlockOrderByWithRelationInput
           | undefined
 
         return ctx.prisma.codeChallengeBlock.findMany({

@@ -1,4 +1,7 @@
-query officeTasks($orderBy: [TaskOrderByInput!], $where: TaskWhereInput) {
+query officeTasks(
+  $orderBy: [TaskOrderByWithRelationInput!]
+  $where: TaskWhereInput
+) {
   tasksCount(where: $where)
   tasks(orderBy: $orderBy, where: $where) {
     ...officeTask

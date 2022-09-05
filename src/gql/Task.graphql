@@ -1,6 +1,6 @@
 query tasksConnection(
   $where: TaskWhereInput
-  $orderBy: [TaskOrderByInput!] = { createdAt: desc }
+  $orderBy: [TaskOrderByWithRelationInput!] = { createdAt: desc }
   $skip: Int
   # $after: String
   # $before: String

@@ -1,6 +1,6 @@
 query chatRoomsConnection(
   $where: ChatRoomWhereInput
-  $orderBy: [ChatRoomOrderByInput!]
+  $orderBy: [ChatRoomOrderByWithRelationInput!]
   $skip: Int
   $first: Int = 10
 ) {

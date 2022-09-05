@@ -68,14 +68,15 @@ const prepareContentSuper = (
     // const {
     //   blocks,
     // } = content || {};
-
     // const blocks: {text: string}[] | null = content && (typeof content === "object" && !Array.isArray(content)) && Array.isArray(content.blocks) ? content.blocks : null;
     const blocks =
       content &&
       typeof content === 'object' &&
       !Array.isArray(content) &&
+      // @ts-expect-error Wrong types
       Array.isArray(content.blocks)
-        ? (content.blocks as ({ text?: string } | null)[])
+        ? // @ts-expect-error Wrong types
+          (content.blocks as ({ text?: string } | null)[])
         : null
 
     blocks?.map((n) => {

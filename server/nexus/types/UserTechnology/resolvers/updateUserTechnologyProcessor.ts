@@ -41,7 +41,7 @@ export const updateUserTechnologyProcessor: FieldResolver<
   const updateData: Prisma.UserTechnologyUpdateInput = {
     // date_from: date_from_value,
     // date_till: date_till_value,
-    components,
+    components: components as Prisma.UserTechnologyUpdateInput['components'],
     hiring_status,
     status,
     level,

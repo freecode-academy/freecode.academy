@@ -2,7 +2,7 @@ query blogsConnection(
   $first: Int = 10
   $skip: Int
   $where: ResourceWhereInput
-  $orderBy: [ResourceOrderByInput!] = { createdAt: desc }
+  $orderBy: [ResourceOrderByWithRelationInput!] = { createdAt: desc }
 ) {
   resourcesCount(where: $where)
   resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {

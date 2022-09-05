@@ -46,7 +46,7 @@ export const updateTechnology: FieldResolver<
     name: name === null ? undefined : name,
     description,
     site_url,
-    components: components as Prisma.JsonValue,
+    components: components as Prisma.TechnologyUpdateInput['components'],
     level1hours,
     level2hours,
     level3hours,

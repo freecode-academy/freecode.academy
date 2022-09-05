@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -20,7 +21,7 @@ export type TechnologiesQueryVariables = Types.Exact<{
   take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.TechnologyWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.TechnologyOrderByInput> | Types.TechnologyOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TechnologyOrderByWithRelationInput> | Types.TechnologyOrderByWithRelationInput>;
 }>;
 
 
@@ -31,7 +32,7 @@ export type TechnologiesQuery = { __typename?: 'Query', technologies: Array<(
 
 
 export const TechnologiesDocument = gql`
-    query technologies($take: Int, $skip: Int, $where: TechnologyWhereInput, $orderBy: [TechnologyOrderByInput!] = {createdAt: desc}) {
+    query technologies($take: Int, $skip: Int, $where: TechnologyWhereInput, $orderBy: [TechnologyOrderByWithRelationInput!] = {createdAt: desc}) {
   technologies(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {
     ...technologiesConnectionTechnology
   }

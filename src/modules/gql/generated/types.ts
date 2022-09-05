@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -26,7 +27,6 @@ export type Scalars = {
   /** Контент для фронт-редактора */
   EditorComponentObject: EditorComponentObject;
   JSON: any;
-  Json: globalThis.Record<string, any> | globalThis.Array<any>;
   /** desc */
   Upload: globalThis.File;
   /** UserTechnologyLevel from 1 to 5 */
@@ -125,8 +125,8 @@ export interface BoolNullableFilter {
 export interface CallRequestCreateManyChatRoomInput {
   Called?: Maybe<Scalars['String']>;
   Caller?: Maybe<Scalars['String']>;
-  called_descriptions: Scalars['Json'];
-  caller_descriptions: Scalars['Json'];
+  called_descriptions: JsonNullValueInput;
+  caller_descriptions: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   endedAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -143,8 +143,8 @@ export interface CallRequestCreateManyChatRoomInputEnvelope {
 export interface CallRequestCreateManyUserCallRequestCalledToUserInput {
   Caller?: Maybe<Scalars['String']>;
   Room?: Maybe<Scalars['String']>;
-  called_descriptions: Scalars['Json'];
-  caller_descriptions: Scalars['Json'];
+  called_descriptions: JsonNullValueInput;
+  caller_descriptions: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   endedAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -161,8 +161,8 @@ export interface CallRequestCreateManyUserCallRequestCalledToUserInputEnvelope {
 export interface CallRequestCreateManyUserCallRequestCallerToUserInput {
   Called?: Maybe<Scalars['String']>;
   Room?: Maybe<Scalars['String']>;
-  called_descriptions: Scalars['Json'];
-  caller_descriptions: Scalars['Json'];
+  called_descriptions: JsonNullValueInput;
+  caller_descriptions: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   endedAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -215,8 +215,8 @@ export interface CallRequestCreateOrConnectWithoutUserCallRequestCallerToUserInp
 export interface CallRequestCreateWithoutChatRoomInput {
   User_CallRequest_CalledToUser?: Maybe<UserCreateNestedOneWithoutCallRequestsCallRequestCalledToUserInput>;
   User_CallRequest_CallerToUser?: Maybe<UserCreateNestedOneWithoutCallRequestsCallRequestCallerToUserInput>;
-  called_descriptions: Scalars['Json'];
-  caller_descriptions: Scalars['Json'];
+  called_descriptions: JsonNullValueInput;
+  caller_descriptions: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   endedAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -228,8 +228,8 @@ export interface CallRequestCreateWithoutChatRoomInput {
 export interface CallRequestCreateWithoutUserCallRequestCalledToUserInput {
   ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutCallRequestsInput>;
   User_CallRequest_CallerToUser?: Maybe<UserCreateNestedOneWithoutCallRequestsCallRequestCallerToUserInput>;
-  called_descriptions: Scalars['Json'];
-  caller_descriptions: Scalars['Json'];
+  called_descriptions: JsonNullValueInput;
+  caller_descriptions: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   endedAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -241,8 +241,8 @@ export interface CallRequestCreateWithoutUserCallRequestCalledToUserInput {
 export interface CallRequestCreateWithoutUserCallRequestCallerToUserInput {
   ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutCallRequestsInput>;
   User_CallRequest_CalledToUser?: Maybe<UserCreateNestedOneWithoutCallRequestsCallRequestCalledToUserInput>;
-  called_descriptions: Scalars['Json'];
-  caller_descriptions: Scalars['Json'];
+  called_descriptions: JsonNullValueInput;
+  caller_descriptions: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   endedAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -255,6 +255,10 @@ export interface CallRequestListRelationFilter {
   every?: Maybe<CallRequestWhereInput>;
   none?: Maybe<CallRequestWhereInput>;
   some?: Maybe<CallRequestWhereInput>;
+}
+
+export interface CallRequestOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export enum CallRequestStatus {
@@ -332,6 +336,10 @@ export interface CareerListRelationFilter {
   some?: Maybe<CareerWhereInput>;
 }
 
+export interface CareerOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface CareerWhereInput {
   AND?: Maybe<Array<CareerWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -368,7 +376,7 @@ export interface ChatMessageCreateInput {
 
 export interface ChatMessageCreateManyChatRoomInput {
   CreatedBy?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -382,7 +390,7 @@ export interface ChatMessageCreateManyChatRoomInputEnvelope {
 
 export interface ChatMessageCreateManyUserInput {
   Room?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -444,7 +452,7 @@ export interface ChatMessageCreateWithoutChatMessagesReadedInput {
   ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
   Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
   User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -455,7 +463,7 @@ export interface ChatMessageCreateWithoutChatRoomInput {
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
   Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
   User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -466,7 +474,7 @@ export interface ChatMessageCreateWithoutNoticesInput {
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
   ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
   User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -477,7 +485,7 @@ export interface ChatMessageCreateWithoutUserInput {
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
   ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
   Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
@@ -490,9 +498,17 @@ export interface ChatMessageListRelationFilter {
   some?: Maybe<ChatMessageWhereInput>;
 }
 
-export interface ChatMessageOrderByInput {
+export interface ChatMessageOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface ChatMessageOrderByWithRelationInput {
+  ChatMessagesReaded?: Maybe<ChatMessageReadedOrderByRelationAggregateInput>;
+  ChatRoom?: Maybe<ChatRoomOrderByWithRelationInput>;
   CreatedBy?: Maybe<SortOrder>;
+  Notices?: Maybe<NoticeOrderByRelationAggregateInput>;
   Room?: Maybe<SortOrder>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   content?: Maybe<SortOrder>;
   contentText?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
@@ -566,6 +582,10 @@ export interface ChatMessageReadedListRelationFilter {
   every?: Maybe<ChatMessageReadedWhereInput>;
   none?: Maybe<ChatMessageReadedWhereInput>;
   some?: Maybe<ChatMessageReadedWhereInput>;
+}
+
+export interface ChatMessageReadedOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface ChatMessageReadedWhereInput {
@@ -1020,6 +1040,10 @@ export interface ChatRoomInvitationListRelationFilter {
   some?: Maybe<ChatRoomInvitationWhereInput>;
 }
 
+export interface ChatRoomInvitationOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface ChatRoomInvitationWhereInput {
   AND?: Maybe<Array<ChatRoomInvitationWhereInput>>;
   ChatRoom?: Maybe<StringNullableFilter>;
@@ -1047,8 +1071,19 @@ export interface ChatRoomListRelationFilter {
   some?: Maybe<ChatRoomWhereInput>;
 }
 
-export interface ChatRoomOrderByInput {
+export interface ChatRoomOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface ChatRoomOrderByWithRelationInput {
+  CallRequests?: Maybe<CallRequestOrderByRelationAggregateInput>;
+  ChatMessages?: Maybe<ChatMessageOrderByRelationAggregateInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationOrderByRelationAggregateInput>;
   CreatedBy?: Maybe<SortOrder>;
+  Projects?: Maybe<ProjectOrderByRelationAggregateInput>;
+  Tasks?: Maybe<TaskOrderByRelationAggregateInput>;
+  User_ChatRoomToUser?: Maybe<UserOrderByWithRelationInput>;
+  User_ChatRoomsMembers?: Maybe<UserOrderByRelationAggregateInput>;
   allowAnonymous?: Maybe<SortOrder>;
   code?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
@@ -1127,7 +1162,7 @@ export interface CodeChallenge {
 
 
 export type CodeChallengeCodeChallengeCompletionsArgs = {
-  orderBy?: Maybe<Array<CodeChallengeCompletionOrderByInput>>;
+  orderBy?: Maybe<Array<CodeChallengeCompletionOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<CodeChallengeCompletionWhereInput>;
@@ -1146,12 +1181,12 @@ export interface CodeChallengeBlock {
 
 
 export type CodeChallengeBlockChallengesArgs = {
-  orderBy?: Maybe<CodeChallengeOrderByInput>;
+  orderBy?: Maybe<CodeChallengeOrderByWithRelationInput>;
 };
 
 
 export type CodeChallengeBlockChildrenArgs = {
-  orderBy?: Maybe<CodeChallengeBlockOrderByInput>;
+  orderBy?: Maybe<CodeChallengeBlockOrderByWithRelationInput>;
 };
 
 export interface CodeChallengeBlockCreateManyCodeChallengeBlockInput {
@@ -1284,13 +1319,21 @@ export interface CodeChallengeBlockListRelationFilter {
   some?: Maybe<CodeChallengeBlockWhereInput>;
 }
 
-export interface CodeChallengeBlockOrderByInput {
+export interface CodeChallengeBlockOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface CodeChallengeBlockOrderByWithRelationInput {
+  CodeChallenge?: Maybe<CodeChallengeOrderByRelationAggregateInput>;
+  CodeChallengeBlock?: Maybe<CodeChallengeBlockOrderByWithRelationInput>;
   CreatedBy?: Maybe<SortOrder>;
   Parent?: Maybe<SortOrder>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   externalKey?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   name?: Maybe<SortOrder>;
+  other_CodeChallengeBlock?: Maybe<CodeChallengeBlockOrderByRelationAggregateInput>;
   rank?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
 }
@@ -1450,10 +1493,17 @@ export interface CodeChallengeCompletionListRelationFilter {
   some?: Maybe<CodeChallengeCompletionWhereInput>;
 }
 
-export interface CodeChallengeCompletionOrderByInput {
+export interface CodeChallengeCompletionOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface CodeChallengeCompletionOrderByWithRelationInput {
   CodeChallenge?: Maybe<SortOrder>;
+  CodeChallenge_CodeChallengeToCodeChallengeCompletion?: Maybe<CodeChallengeOrderByWithRelationInput>;
   CreatedBy?: Maybe<SortOrder>;
   Task?: Maybe<SortOrder>;
+  Task_CodeChallengeCompletionToTask?: Maybe<TaskOrderByWithRelationInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   content?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
@@ -1504,7 +1554,7 @@ export interface CodeChallengeCreateManyCodeChallengeBlockInput {
   dashedName?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
-  files?: Maybe<Scalars['Json']>;
+  files?: Maybe<NullableJsonNullValueInput>;
   forumTopicId?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   instructions?: Maybe<Scalars['String']>;
@@ -1515,13 +1565,13 @@ export interface CodeChallengeCreateManyCodeChallengeBlockInput {
   name?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   rank?: Maybe<Scalars['Int']>;
-  required?: Maybe<Scalars['Json']>;
-  solutions?: Maybe<Scalars['Json']>;
+  required?: Maybe<NullableJsonNullValueInput>;
+  solutions?: Maybe<NullableJsonNullValueInput>;
   superOrder?: Maybe<Scalars['Int']>;
   template?: Maybe<Scalars['String']>;
-  tests?: Maybe<Scalars['Json']>;
+  tests?: Maybe<NullableJsonNullValueInput>;
   time?: Maybe<Scalars['String']>;
-  translations?: Maybe<Scalars['Json']>;
+  translations?: Maybe<NullableJsonNullValueInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   videoUrl?: Maybe<Scalars['String']>;
 }
@@ -1540,7 +1590,7 @@ export interface CodeChallengeCreateManyResourceInput {
   dashedName?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
-  files?: Maybe<Scalars['Json']>;
+  files?: Maybe<NullableJsonNullValueInput>;
   forumTopicId?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   instructions?: Maybe<Scalars['String']>;
@@ -1551,13 +1601,13 @@ export interface CodeChallengeCreateManyResourceInput {
   name?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   rank?: Maybe<Scalars['Int']>;
-  required?: Maybe<Scalars['Json']>;
-  solutions?: Maybe<Scalars['Json']>;
+  required?: Maybe<NullableJsonNullValueInput>;
+  solutions?: Maybe<NullableJsonNullValueInput>;
   superOrder?: Maybe<Scalars['Int']>;
   template?: Maybe<Scalars['String']>;
-  tests?: Maybe<Scalars['Json']>;
+  tests?: Maybe<NullableJsonNullValueInput>;
   time?: Maybe<Scalars['String']>;
-  translations?: Maybe<Scalars['Json']>;
+  translations?: Maybe<NullableJsonNullValueInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   videoUrl?: Maybe<Scalars['String']>;
 }
@@ -1576,7 +1626,7 @@ export interface CodeChallengeCreateManyUserInput {
   dashedName?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
-  files?: Maybe<Scalars['Json']>;
+  files?: Maybe<NullableJsonNullValueInput>;
   forumTopicId?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   instructions?: Maybe<Scalars['String']>;
@@ -1587,13 +1637,13 @@ export interface CodeChallengeCreateManyUserInput {
   name?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   rank?: Maybe<Scalars['Int']>;
-  required?: Maybe<Scalars['Json']>;
-  solutions?: Maybe<Scalars['Json']>;
+  required?: Maybe<NullableJsonNullValueInput>;
+  solutions?: Maybe<NullableJsonNullValueInput>;
   superOrder?: Maybe<Scalars['Int']>;
   template?: Maybe<Scalars['String']>;
-  tests?: Maybe<Scalars['Json']>;
+  tests?: Maybe<NullableJsonNullValueInput>;
   time?: Maybe<Scalars['String']>;
-  translations?: Maybe<Scalars['Json']>;
+  translations?: Maybe<NullableJsonNullValueInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   videoUrl?: Maybe<Scalars['String']>;
 }
@@ -1668,7 +1718,7 @@ export interface CodeChallengeCreateWithoutCodeChallengeBlockInput {
   dashedName?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
-  files?: Maybe<Scalars['Json']>;
+  files?: Maybe<NullableJsonNullValueInput>;
   forumTopicId?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   instructions?: Maybe<Scalars['String']>;
@@ -1679,13 +1729,13 @@ export interface CodeChallengeCreateWithoutCodeChallengeBlockInput {
   name?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   rank?: Maybe<Scalars['Int']>;
-  required?: Maybe<Scalars['Json']>;
-  solutions?: Maybe<Scalars['Json']>;
+  required?: Maybe<NullableJsonNullValueInput>;
+  solutions?: Maybe<NullableJsonNullValueInput>;
   superOrder?: Maybe<Scalars['Int']>;
   template?: Maybe<Scalars['String']>;
-  tests?: Maybe<Scalars['Json']>;
+  tests?: Maybe<NullableJsonNullValueInput>;
   time?: Maybe<Scalars['String']>;
-  translations?: Maybe<Scalars['Json']>;
+  translations?: Maybe<NullableJsonNullValueInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   videoUrl?: Maybe<Scalars['String']>;
 }
@@ -1700,7 +1750,7 @@ export interface CodeChallengeCreateWithoutCodeChallengeCompletionsInput {
   dashedName?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
-  files?: Maybe<Scalars['Json']>;
+  files?: Maybe<NullableJsonNullValueInput>;
   forumTopicId?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   instructions?: Maybe<Scalars['String']>;
@@ -1711,13 +1761,13 @@ export interface CodeChallengeCreateWithoutCodeChallengeCompletionsInput {
   name?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   rank?: Maybe<Scalars['Int']>;
-  required?: Maybe<Scalars['Json']>;
-  solutions?: Maybe<Scalars['Json']>;
+  required?: Maybe<NullableJsonNullValueInput>;
+  solutions?: Maybe<NullableJsonNullValueInput>;
   superOrder?: Maybe<Scalars['Int']>;
   template?: Maybe<Scalars['String']>;
-  tests?: Maybe<Scalars['Json']>;
+  tests?: Maybe<NullableJsonNullValueInput>;
   time?: Maybe<Scalars['String']>;
-  translations?: Maybe<Scalars['Json']>;
+  translations?: Maybe<NullableJsonNullValueInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   videoUrl?: Maybe<Scalars['String']>;
 }
@@ -1732,7 +1782,7 @@ export interface CodeChallengeCreateWithoutResourceInput {
   dashedName?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
-  files?: Maybe<Scalars['Json']>;
+  files?: Maybe<NullableJsonNullValueInput>;
   forumTopicId?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   instructions?: Maybe<Scalars['String']>;
@@ -1743,13 +1793,13 @@ export interface CodeChallengeCreateWithoutResourceInput {
   name?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   rank?: Maybe<Scalars['Int']>;
-  required?: Maybe<Scalars['Json']>;
-  solutions?: Maybe<Scalars['Json']>;
+  required?: Maybe<NullableJsonNullValueInput>;
+  solutions?: Maybe<NullableJsonNullValueInput>;
   superOrder?: Maybe<Scalars['Int']>;
   template?: Maybe<Scalars['String']>;
-  tests?: Maybe<Scalars['Json']>;
+  tests?: Maybe<NullableJsonNullValueInput>;
   time?: Maybe<Scalars['String']>;
-  translations?: Maybe<Scalars['Json']>;
+  translations?: Maybe<NullableJsonNullValueInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   videoUrl?: Maybe<Scalars['String']>;
 }
@@ -1764,7 +1814,7 @@ export interface CodeChallengeCreateWithoutUserInput {
   dashedName?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
-  files?: Maybe<Scalars['Json']>;
+  files?: Maybe<NullableJsonNullValueInput>;
   forumTopicId?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   instructions?: Maybe<Scalars['String']>;
@@ -1775,13 +1825,13 @@ export interface CodeChallengeCreateWithoutUserInput {
   name?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   rank?: Maybe<Scalars['Int']>;
-  required?: Maybe<Scalars['Json']>;
-  solutions?: Maybe<Scalars['Json']>;
+  required?: Maybe<NullableJsonNullValueInput>;
+  solutions?: Maybe<NullableJsonNullValueInput>;
   superOrder?: Maybe<Scalars['Int']>;
   template?: Maybe<Scalars['String']>;
-  tests?: Maybe<Scalars['Json']>;
+  tests?: Maybe<NullableJsonNullValueInput>;
   time?: Maybe<Scalars['String']>;
-  translations?: Maybe<Scalars['Json']>;
+  translations?: Maybe<NullableJsonNullValueInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   videoUrl?: Maybe<Scalars['String']>;
 }
@@ -1792,10 +1842,18 @@ export interface CodeChallengeListRelationFilter {
   some?: Maybe<CodeChallengeWhereInput>;
 }
 
-export interface CodeChallengeOrderByInput {
+export interface CodeChallengeOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface CodeChallengeOrderByWithRelationInput {
   Block?: Maybe<SortOrder>;
+  CodeChallengeBlock?: Maybe<CodeChallengeBlockOrderByWithRelationInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionOrderByRelationAggregateInput>;
   CreatedBy?: Maybe<SortOrder>;
+  Resource?: Maybe<ResourceOrderByWithRelationInput>;
   Topic?: Maybe<SortOrder>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   challengeOrder?: Maybe<SortOrder>;
   challengeType?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
@@ -1957,6 +2015,10 @@ export interface CommentListRelationFilter {
   some?: Maybe<CommentWhereInput>;
 }
 
+export interface CommentOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface CommentUpdateInput {
   components?: Maybe<Scalars['JSON']>;
   content?: Maybe<Scalars['JSON']>;
@@ -2094,7 +2156,12 @@ export interface DonateListRelationFilter {
   some?: Maybe<DonateWhereInput>;
 }
 
-export interface DonateOrderByInput {
+export interface DonateOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface DonateOrderByWithRelationInput {
+  Donator?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   date?: Maybe<SortOrder>;
   donatorId?: Maybe<SortOrder>;
@@ -2328,11 +2395,11 @@ export type EthAccountBalanceArgs = {
 export interface EthAccountCreateManyEthContractSourceInput {
   CreatedBy?: Maybe<Scalars['String']>;
   Project?: Maybe<Scalars['String']>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2348,11 +2415,11 @@ export interface EthAccountCreateManyEthContractSourceInputEnvelope {
 export interface EthAccountCreateManyProjectEthAccountToProjectInput {
   ContractSource?: Maybe<Scalars['String']>;
   CreatedBy?: Maybe<Scalars['String']>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2368,11 +2435,11 @@ export interface EthAccountCreateManyProjectEthAccountToProjectInputEnvelope {
 export interface EthAccountCreateManyUserEthAccountCreatedByToUserInput {
   ContractSource?: Maybe<Scalars['String']>;
   Project?: Maybe<Scalars['String']>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2496,11 +2563,11 @@ export interface EthAccountCreateWithoutEthBlockInput {
   Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
   User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2517,11 +2584,11 @@ export interface EthAccountCreateWithoutEthContractSourceInput {
   Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
   User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2538,11 +2605,11 @@ export interface EthAccountCreateWithoutEthTransactionEthAccountToEthTransaction
   Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
   User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2559,11 +2626,11 @@ export interface EthAccountCreateWithoutEthTransactionEthAccountToEthTransaction
   Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
   User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2580,11 +2647,11 @@ export interface EthAccountCreateWithoutEthTransactionEthAccountToEthTransaction
   Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
   User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2601,11 +2668,11 @@ export interface EthAccountCreateWithoutProjectEthAccountToProjectInput {
   Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
   User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2622,11 +2689,11 @@ export interface EthAccountCreateWithoutResourceInput {
   Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
   User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2643,11 +2710,11 @@ export interface EthAccountCreateWithoutUserEthAccountToUserEthAccountAuthedInpu
   Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
   Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
   User_EthAccount_CreatedByToUser?: Maybe<UserCreateNestedOneWithoutEthAccountsEthAccountCreatedByToUserInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2664,11 +2731,11 @@ export interface EthAccountCreateWithoutUserEthAccountCreatedByToUserInput {
   Project_EthAccountToProject?: Maybe<ProjectCreateNestedOneWithoutEthAccountsInput>;
   Resource?: Maybe<ResourceCreateNestedManyWithoutEthAccountEthAccountToResourceInput>;
   User_EthAccountToUser_EthAccountAuthed?: Maybe<UserCreateNestedManyWithoutEthAccountEthAccountToUserEthAccountAuthedInput>;
-  abi?: Maybe<Scalars['Json']>;
+  abi?: Maybe<NullableJsonNullValueInput>;
   address: Scalars['String'];
   bytecode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   source?: Maybe<Scalars['String']>;
@@ -2680,6 +2747,35 @@ export interface EthAccountListRelationFilter {
   every?: Maybe<EthAccountWhereInput>;
   none?: Maybe<EthAccountWhereInput>;
   some?: Maybe<EthAccountWhereInput>;
+}
+
+export interface EthAccountOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface EthAccountOrderByWithRelationInput {
+  ContractSource?: Maybe<SortOrder>;
+  CreatedBy?: Maybe<SortOrder>;
+  EthBlock?: Maybe<EthBlockOrderByRelationAggregateInput>;
+  EthContractSource?: Maybe<EthContractSourceOrderByWithRelationInput>;
+  EthTransaction_EthAccountToEthTransaction_Account?: Maybe<EthTransactionOrderByRelationAggregateInput>;
+  EthTransaction_EthAccountToEthTransaction_Receiver?: Maybe<EthTransactionOrderByRelationAggregateInput>;
+  EthTransaction_EthAccountToEthTransaction_Sender?: Maybe<EthTransactionOrderByRelationAggregateInput>;
+  Project?: Maybe<SortOrder>;
+  Project_EthAccountToProject?: Maybe<ProjectOrderByWithRelationInput>;
+  Resource?: Maybe<ResourceOrderByRelationAggregateInput>;
+  User_EthAccountToUser_EthAccountAuthed?: Maybe<UserOrderByRelationAggregateInput>;
+  User_EthAccount_CreatedByToUser?: Maybe<UserOrderByWithRelationInput>;
+  abi?: Maybe<SortOrder>;
+  address?: Maybe<SortOrder>;
+  bytecode?: Maybe<SortOrder>;
+  createdAt?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  source?: Maybe<SortOrder>;
+  type?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
 }
 
 export enum EthAccountType {
@@ -2915,6 +3011,10 @@ export interface EthBlockListRelationFilter {
   some?: Maybe<EthBlockWhereInput>;
 }
 
+export interface EthBlockOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface EthBlockWhereInput {
   AND?: Maybe<Array<EthBlockWhereInput>>;
   EthAccount?: Maybe<EthAccountWhereInput>;
@@ -2953,7 +3053,7 @@ export interface EthBlockWhereUniqueInput {
 
 export interface EthContractSourceCreateManyUserInput {
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   source?: Maybe<Scalars['String']>;
@@ -2991,7 +3091,7 @@ export interface EthContractSourceCreateOrConnectWithoutUserInput {
 export interface EthContractSourceCreateWithoutEthAccountInput {
   User?: Maybe<UserCreateNestedOneWithoutEthContractSourcesInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   source?: Maybe<Scalars['String']>;
@@ -3001,7 +3101,7 @@ export interface EthContractSourceCreateWithoutEthAccountInput {
 export interface EthContractSourceCreateWithoutUserInput {
   EthAccount?: Maybe<EthAccountCreateNestedManyWithoutEthContractSourceInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['Json']>;
+  description?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   source?: Maybe<Scalars['String']>;
@@ -3012,6 +3112,22 @@ export interface EthContractSourceListRelationFilter {
   every?: Maybe<EthContractSourceWhereInput>;
   none?: Maybe<EthContractSourceWhereInput>;
   some?: Maybe<EthContractSourceWhereInput>;
+}
+
+export interface EthContractSourceOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface EthContractSourceOrderByWithRelationInput {
+  CreatedBy?: Maybe<SortOrder>;
+  EthAccount?: Maybe<EthAccountOrderByRelationAggregateInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
+  createdAt?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  source?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
 }
 
 export interface EthContractSourceWhereInput {
@@ -3249,6 +3365,10 @@ export interface EthTransactionListRelationFilter {
   every?: Maybe<EthTransactionWhereInput>;
   none?: Maybe<EthTransactionWhereInput>;
   some?: Maybe<EthTransactionWhereInput>;
+}
+
+export interface EthTransactionOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export enum EthTransactionType {
@@ -3497,10 +3617,18 @@ export interface FileListRelationFilter {
   some?: Maybe<FileWhereInput>;
 }
 
-export interface FileOrderByInput {
+export interface FileOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface FileOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
   Gallery?: Maybe<SortOrder>;
+  Gallery_FileToGallery?: Maybe<GalleryOrderByWithRelationInput>;
   ImageResource?: Maybe<SortOrder>;
+  Projects?: Maybe<ProjectOrderByRelationAggregateInput>;
+  Resource?: Maybe<ResourceOrderByWithRelationInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   encoding?: Maybe<SortOrder>;
   filename?: Maybe<SortOrder>;
@@ -3645,6 +3773,22 @@ export interface GalleryListRelationFilter {
   every?: Maybe<GalleryWhereInput>;
   none?: Maybe<GalleryWhereInput>;
   some?: Maybe<GalleryWhereInput>;
+}
+
+export interface GalleryOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface GalleryOrderByWithRelationInput {
+  CreatedBy?: Maybe<SortOrder>;
+  Files?: Maybe<FileOrderByRelationAggregateInput>;
+  Resource?: Maybe<SortOrder>;
+  Resource_GalleryToResource?: Maybe<ResourceOrderByWithRelationInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
+  createdAt?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
 }
 
 export interface GalleryWhereInput {
@@ -3915,6 +4059,10 @@ export interface GameListRelationFilter {
   some?: Maybe<GameWhereInput>;
 }
 
+export interface GameOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface GameResultCreateManyGameGameToGameResultInput {
   CreatedBy?: Maybe<Scalars['String']>;
   Team?: Maybe<Scalars['String']>;
@@ -4085,6 +4233,10 @@ export interface GameResultListRelationFilter {
   some?: Maybe<GameResultWhereInput>;
 }
 
+export interface GameResultOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface GameResultWhereInput {
   AND?: Maybe<Array<GameResultWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -4183,6 +4335,10 @@ export interface ImportListRelationFilter {
   some?: Maybe<ImportWhereInput>;
 }
 
+export interface ImportOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export enum ImportStatus {
   COMPLETED = 'Completed',
   CREATED = 'Created',
@@ -4263,10 +4419,19 @@ export interface InventoryWhereUniqueInput {
 }
 
 
+export enum JsonNullValueFilter {
+  ANYNULL = 'AnyNull',
+  DBNULL = 'DbNull',
+  JSONNULL = 'JsonNull'
+}
+
+export enum JsonNullValueInput {
+  JSONNULL = 'JsonNull'
+}
 
 export interface JsonNullableFilter {
-  equals?: Maybe<Scalars['Json']>;
-  not?: Maybe<Scalars['Json']>;
+  equals?: Maybe<JsonNullValueFilter>;
+  not?: Maybe<JsonNullValueFilter>;
 }
 
 export interface LearnStrategy {
@@ -4402,7 +4567,15 @@ export interface LearnStrategyListRelationFilter {
   some?: Maybe<LearnStrategyWhereInput>;
 }
 
-export interface LearnStrategyOrderByInput {
+export interface LearnStrategyOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface LearnStrategyOrderByWithRelationInput {
+  CreatedBy?: Maybe<UserOrderByWithRelationInput>;
+  LearnStrategyStages?: Maybe<LearnStrategyStageOrderByRelationAggregateInput>;
+  LearnStrategyStagesTargets?: Maybe<LearnStrategyStageOrderByRelationAggregateInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyOrderByRelationAggregateInput>;
   createdAt?: Maybe<SortOrder>;
   createdById?: Maybe<SortOrder>;
   description?: Maybe<SortOrder>;
@@ -4559,7 +4732,14 @@ export interface LearnStrategyStageListRelationFilter {
   some?: Maybe<LearnStrategyStageWhereInput>;
 }
 
-export interface LearnStrategyStageOrderByInput {
+export interface LearnStrategyStageOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface LearnStrategyStageOrderByWithRelationInput {
+  LearnStrategy?: Maybe<LearnStrategyOrderByWithRelationInput>;
+  LearnStrategyTarget?: Maybe<LearnStrategyOrderByWithRelationInput>;
+  Technology?: Maybe<TechnologyOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   learnStrategyId?: Maybe<SortOrder>;
@@ -4782,6 +4962,10 @@ export interface LetterListRelationFilter {
   some?: Maybe<LetterWhereInput>;
 }
 
+export interface LetterOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export enum LetterStatus {
   CREATED = 'Created',
   ERROR = 'Error',
@@ -4920,6 +5104,10 @@ export interface LogedInListRelationFilter {
   some?: Maybe<LogedInWhereInput>;
 }
 
+export interface LogedInOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface LogedInWhereInput {
   AND?: Maybe<Array<LogedInWhereInput>>;
   NOT?: Maybe<Array<LogedInWhereInput>>;
@@ -5033,7 +5221,13 @@ export interface MentorMenteeMentorIdMenteeIdCompoundUniqueInput {
   mentorId: Scalars['String'];
 }
 
-export interface MentorMenteeOrderByInput {
+export interface MentorMenteeOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface MentorMenteeOrderByWithRelationInput {
+  Mentee?: Maybe<UserOrderByWithRelationInput>;
+  Mentor?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   menteeId?: Maybe<SortOrder>;
@@ -5848,10 +6042,18 @@ export interface NoticeListRelationFilter {
   some?: Maybe<NoticeWhereInput>;
 }
 
-export interface NoticeOrderByInput {
+export interface NoticeOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface NoticeOrderByWithRelationInput {
   ChatMessage?: Maybe<SortOrder>;
+  ChatMessage_ChatMessageToNotice?: Maybe<ChatMessageOrderByWithRelationInput>;
+  ChatRoomInvitations?: Maybe<ChatRoomInvitationOrderByRelationAggregateInput>;
   CreatedBy?: Maybe<SortOrder>;
   User?: Maybe<SortOrder>;
+  User_Notice_CreatedByToUser?: Maybe<UserOrderByWithRelationInput>;
+  User_Notice_UserToUser?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   type?: Maybe<SortOrder>;
@@ -5963,8 +6165,14 @@ export interface NotificationTypeListRelationFilter {
   some?: Maybe<NotificationTypeWhereInput>;
 }
 
-export interface NotificationTypeOrderByInput {
+export interface NotificationTypeOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface NotificationTypeOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
+  User_NotificationTypeToUser?: Maybe<UserOrderByWithRelationInput>;
+  User_UserNotificationTypes?: Maybe<UserOrderByRelationAggregateInput>;
   code?: Maybe<SortOrder>;
   comment?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
@@ -5999,6 +6207,11 @@ export interface NotificationTypeWhereUniqueInput {
 export interface NotificationTypeUserNotificationTypesUpdateInput {
   connect?: Maybe<NotificationTypeWhereUniqueInput>;
   disconnect?: Maybe<NotificationTypeWhereUniqueInput>;
+}
+
+export enum NullableJsonNullValueInput {
+  DBNULL = 'DbNull',
+  JSONNULL = 'JsonNull'
 }
 
 export interface PlayerCreateManyUserInput {
@@ -6105,6 +6318,10 @@ export interface PlayerListRelationFilter {
   some?: Maybe<PlayerWhereInput>;
 }
 
+export interface PlayerOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface PlayerWhereInput {
   AND?: Maybe<Array<PlayerWhereInput>>;
   Inventory?: Maybe<InventoryWhereInput>;
@@ -6192,6 +6409,10 @@ export interface PositionListRelationFilter {
   some?: Maybe<PositionWhereInput>;
 }
 
+export interface PositionOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface PositionWhereInput {
   AND?: Maybe<Array<PositionWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -6235,7 +6456,7 @@ export interface Project {
 
 
 export type ProjectProjectTasksArgs = {
-  orderBy?: Maybe<ProjectTaskOrderByInput>;
+  orderBy?: Maybe<ProjectTaskOrderByWithRelationInput>;
 };
 
 export interface ProjectCreateInput {
@@ -6248,7 +6469,7 @@ export interface ProjectCreateManyChatRoomChatRoomToProjectInput {
   Image?: Maybe<Scalars['String']>;
   Resource?: Maybe<Scalars['String']>;
   Team?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6274,7 +6495,7 @@ export interface ProjectCreateManyFileInput {
   CreatedBy?: Maybe<Scalars['String']>;
   Resource?: Maybe<Scalars['String']>;
   Team?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6300,7 +6521,7 @@ export interface ProjectCreateManyResourceProjectResourceToResourceInput {
   CreatedBy?: Maybe<Scalars['String']>;
   Image?: Maybe<Scalars['String']>;
   Team?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6326,7 +6547,7 @@ export interface ProjectCreateManyTeamProjectToTeamInput {
   CreatedBy?: Maybe<Scalars['String']>;
   Image?: Maybe<Scalars['String']>;
   Resource?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6352,7 +6573,7 @@ export interface ProjectCreateManyUserProjectToUserInput {
   Image?: Maybe<Scalars['String']>;
   Resource?: Maybe<Scalars['String']>;
   Team?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6538,7 +6759,7 @@ export interface ProjectCreateWithoutChatRoomChatRoomToProjectInput {
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6567,7 +6788,7 @@ export interface ProjectCreateWithoutEthAccountsInput {
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6596,7 +6817,7 @@ export interface ProjectCreateWithoutFileInput {
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6625,7 +6846,7 @@ export interface ProjectCreateWithoutProjectMembersInput {
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6654,7 +6875,7 @@ export interface ProjectCreateWithoutProjectTasksInput {
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6683,7 +6904,7 @@ export interface ProjectCreateWithoutResourceProjectResourceToResourceInput {
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6712,7 +6933,7 @@ export interface ProjectCreateWithoutResourcesProjectToResourcePrismaProjectInpu
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6741,7 +6962,7 @@ export interface ProjectCreateWithoutTeamProjectCustomersInput {
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6770,7 +6991,7 @@ export interface ProjectCreateWithoutTeamProjectToTeamInput {
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6799,7 +7020,7 @@ export interface ProjectCreateWithoutTemplatesProjectToTemplatePrismaProjectInpu
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6828,7 +7049,7 @@ export interface ProjectCreateWithoutTemplatesProjectToTemplateProjectInput {
   Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6857,7 +7078,7 @@ export interface ProjectCreateWithoutUserPrismaProjectUsersInput {
   Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_ProjectToUser?: Maybe<UserCreateNestedOneWithoutProjectsProjectToUserInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -6886,7 +7107,7 @@ export interface ProjectCreateWithoutUserProjectToUserInput {
   Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplatePrismaProjectInput>;
   Templates_ProjectToTemplate_Project?: Maybe<TemplateCreateNestedManyWithoutProjectProjectToTemplateProjectInput>;
   User_PrismaProjectUsers?: Maybe<UserCreateNestedManyWithoutProjectsPrismaProjectUsersInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -7053,6 +7274,10 @@ export interface ProjectMemberListRelationFilter {
   some?: Maybe<ProjectMemberWhereInput>;
 }
 
+export interface ProjectMemberOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export enum ProjectMemberStatus {
   ACTIVE = 'Active',
   FIRED = 'Fired',
@@ -7081,12 +7306,29 @@ export interface ProjectMemberWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
 }
 
-export interface ProjectOrderByInput {
+export interface ProjectOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface ProjectOrderByWithRelationInput {
   ChatRoom?: Maybe<SortOrder>;
+  ChatRoom_ChatRoomToProject?: Maybe<ChatRoomOrderByWithRelationInput>;
   CreatedBy?: Maybe<SortOrder>;
+  EthAccounts?: Maybe<EthAccountOrderByRelationAggregateInput>;
+  File?: Maybe<FileOrderByWithRelationInput>;
   Image?: Maybe<SortOrder>;
+  ProjectMembers?: Maybe<ProjectMemberOrderByRelationAggregateInput>;
+  ProjectTasks?: Maybe<ProjectTaskOrderByRelationAggregateInput>;
   Resource?: Maybe<SortOrder>;
+  Resource_Project_ResourceToResource?: Maybe<ResourceOrderByWithRelationInput>;
+  Resources_ProjectToResource_PrismaProject?: Maybe<ResourceOrderByRelationAggregateInput>;
   Team?: Maybe<SortOrder>;
+  Team_ProjectCustomers?: Maybe<TeamOrderByRelationAggregateInput>;
+  Team_ProjectToTeam?: Maybe<TeamOrderByWithRelationInput>;
+  Templates_ProjectToTemplate_PrismaProject?: Maybe<TemplateOrderByRelationAggregateInput>;
+  Templates_ProjectToTemplate_Project?: Maybe<TemplateOrderByRelationAggregateInput>;
+  User_PrismaProjectUsers?: Maybe<UserOrderByRelationAggregateInput>;
+  User_ProjectToUser?: Maybe<UserOrderByWithRelationInput>;
   content?: Maybe<SortOrder>;
   contentText?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
@@ -7235,10 +7477,17 @@ export interface ProjectTaskListRelationFilter {
   some?: Maybe<ProjectTaskWhereInput>;
 }
 
-export interface ProjectTaskOrderByInput {
+export interface ProjectTaskOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface ProjectTaskOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
   Project?: Maybe<SortOrder>;
+  Project_ProjectToProjectTask?: Maybe<ProjectOrderByWithRelationInput>;
   Task?: Maybe<SortOrder>;
+  Task_ProjectTaskToTask?: Maybe<TaskOrderByWithRelationInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
@@ -7416,7 +7665,7 @@ export type QueryChatMessageArgs = {
 
 export type QueryChatMessagesArgs = {
   cursor?: Maybe<ChatMessageWhereUniqueInput>;
-  orderBy?: Maybe<Array<ChatMessageOrderByInput>>;
+  orderBy?: Maybe<Array<ChatMessageOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<ChatMessageWhereInput>;
@@ -7435,7 +7684,7 @@ export type QueryChatRoomArgs = {
 
 export type QueryChatRoomsArgs = {
   cursor?: Maybe<ChatRoomWhereUniqueInput>;
-  orderBy?: Maybe<Array<ChatRoomOrderByInput>>;
+  orderBy?: Maybe<Array<ChatRoomOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<ChatRoomWhereInput>;
@@ -7459,7 +7708,7 @@ export type QueryCodeChallengeBlockArgs = {
 
 export type QueryCodeChallengeBlocksArgs = {
   cursor?: Maybe<CodeChallengeBlockWhereUniqueInput>;
-  orderBy?: Maybe<Array<CodeChallengeBlockOrderByInput>>;
+  orderBy?: Maybe<Array<CodeChallengeBlockOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<CodeChallengeBlockWhereInput>;
@@ -7478,7 +7727,7 @@ export type QueryCodeChallengeCompletionArgs = {
 
 export type QueryCodeChallengeCompletionsArgs = {
   cursor?: Maybe<CodeChallengeCompletionWhereUniqueInput>;
-  orderBy?: Maybe<Array<CodeChallengeCompletionOrderByInput>>;
+  orderBy?: Maybe<Array<CodeChallengeCompletionOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<CodeChallengeCompletionWhereInput>;
@@ -7487,7 +7736,7 @@ export type QueryCodeChallengeCompletionsArgs = {
 
 export type QueryCodeChallengesArgs = {
   cursor?: Maybe<CodeChallengeWhereUniqueInput>;
-  orderBy?: Maybe<Array<CodeChallengeOrderByInput>>;
+  orderBy?: Maybe<Array<CodeChallengeOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<CodeChallengeWhereInput>;
@@ -7501,7 +7750,7 @@ export type QueryDonateArgs = {
 
 export type QueryDonatesArgs = {
   cursor?: Maybe<DonateWhereUniqueInput>;
-  orderBy?: Maybe<Array<DonateOrderByInput>>;
+  orderBy?: Maybe<Array<DonateOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<DonateWhereInput>;
@@ -7520,7 +7769,7 @@ export type QueryFileArgs = {
 
 export type QueryFilesArgs = {
   cursor?: Maybe<FileWhereUniqueInput>;
-  orderBy?: Maybe<Array<FileOrderByInput>>;
+  orderBy?: Maybe<Array<FileOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<FileWhereInput>;
@@ -7534,7 +7783,7 @@ export type QueryFilesCountArgs = {
 
 export type QueryLearnStrategiesArgs = {
   cursor?: Maybe<LearnStrategyWhereUniqueInput>;
-  orderBy?: Maybe<Array<LearnStrategyOrderByInput>>;
+  orderBy?: Maybe<Array<LearnStrategyOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<LearnStrategyWhereInput>;
@@ -7558,7 +7807,7 @@ export type QueryLearnStrategyStageArgs = {
 
 export type QueryLearnStrategyStagesArgs = {
   cursor?: Maybe<LearnStrategyStageWhereUniqueInput>;
-  orderBy?: Maybe<Array<LearnStrategyStageOrderByInput>>;
+  orderBy?: Maybe<Array<LearnStrategyStageOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<LearnStrategyStageWhereInput>;
@@ -7577,7 +7826,7 @@ export type QueryMentorMenteeArgs = {
 
 export type QueryMentorMenteesArgs = {
   cursor?: Maybe<MentorMenteeWhereUniqueInput>;
-  orderBy?: Maybe<Array<MentorMenteeOrderByInput>>;
+  orderBy?: Maybe<Array<MentorMenteeOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<MentorMenteeWhereInput>;
@@ -7596,7 +7845,7 @@ export type QueryNoticeArgs = {
 
 export type QueryNoticesArgs = {
   cursor?: Maybe<NoticeWhereUniqueInput>;
-  orderBy?: Maybe<Array<NoticeOrderByInput>>;
+  orderBy?: Maybe<Array<NoticeOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<NoticeWhereInput>;
@@ -7610,7 +7859,7 @@ export type QueryNoticesCountArgs = {
 
 export type QueryNotificationTypesArgs = {
   cursor?: Maybe<NotificationTypeWhereUniqueInput>;
-  orderBy?: Maybe<Array<NotificationTypeOrderByInput>>;
+  orderBy?: Maybe<Array<NotificationTypeOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<NotificationTypeWhereInput>;
@@ -7629,7 +7878,7 @@ export type QueryProjectArgs = {
 
 export type QueryProjectTasksArgs = {
   cursor?: Maybe<ProjectTaskWhereUniqueInput>;
-  orderBy?: Maybe<Array<ProjectTaskOrderByInput>>;
+  orderBy?: Maybe<Array<ProjectTaskOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<ProjectTaskWhereInput>;
@@ -7638,7 +7887,7 @@ export type QueryProjectTasksArgs = {
 
 export type QueryProjectsArgs = {
   cursor?: Maybe<ProjectWhereUniqueInput>;
-  orderBy?: Maybe<Array<ProjectOrderByInput>>;
+  orderBy?: Maybe<Array<ProjectOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<ProjectWhereInput>;
@@ -7657,7 +7906,7 @@ export type QueryResourceArgs = {
 
 export type QueryResourcesArgs = {
   cursor?: Maybe<ResourceWhereUniqueInput>;
-  orderBy?: Maybe<Array<ResourceOrderByInput>>;
+  orderBy?: Maybe<Array<ResourceOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<ResourceWhereInput>;
@@ -7676,7 +7925,7 @@ export type QueryTagArgs = {
 
 export type QueryTagsArgs = {
   cursor?: Maybe<TagWhereUniqueInput>;
-  orderBy?: Maybe<Array<TagOrderByInput>>;
+  orderBy?: Maybe<Array<TagOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<TagWhereInput>;
@@ -7695,7 +7944,7 @@ export type QueryTaskArgs = {
 
 export type QueryTaskTechnologiesArgs = {
   cursor?: Maybe<TaskTechnologyWhereUniqueInput>;
-  orderBy?: Maybe<Array<TaskTechnologyOrderByInput>>;
+  orderBy?: Maybe<Array<TaskTechnologyOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<TaskTechnologyWhereInput>;
@@ -7714,7 +7963,7 @@ export type QueryTaskTechnologysCountArgs = {
 
 export type QueryTasksArgs = {
   cursor?: Maybe<TaskWhereUniqueInput>;
-  orderBy?: Maybe<Array<TaskOrderByInput>>;
+  orderBy?: Maybe<Array<TaskOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<TaskWhereInput>;
@@ -7728,7 +7977,7 @@ export type QueryTasksCountArgs = {
 
 export type QueryTechnologiesArgs = {
   cursor?: Maybe<TechnologyWhereUniqueInput>;
-  orderBy?: Maybe<Array<TechnologyOrderByInput>>;
+  orderBy?: Maybe<Array<TechnologyOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<TechnologyWhereInput>;
@@ -7752,7 +8001,7 @@ export type QueryTimerArgs = {
 
 export type QueryTimersArgs = {
   cursor?: Maybe<TimerWhereUniqueInput>;
-  orderBy?: Maybe<Array<TimerOrderByInput>>;
+  orderBy?: Maybe<Array<TimerOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<TimerWhereInput>;
@@ -7771,7 +8020,7 @@ export type QueryUserArgs = {
 
 export type QueryUserLearnStrategiesArgs = {
   cursor?: Maybe<UserLearnStrategyWhereUniqueInput>;
-  orderBy?: Maybe<Array<UserLearnStrategyOrderByInput>>;
+  orderBy?: Maybe<Array<UserLearnStrategyOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<UserLearnStrategyWhereInput>;
@@ -7790,7 +8039,7 @@ export type QueryUserLearnStrategyArgs = {
 
 export type QueryUserTechnologiesArgs = {
   cursor?: Maybe<UserTechnologyWhereUniqueInput>;
-  orderBy?: Maybe<Array<UserTechnologyOrderByInput>>;
+  orderBy?: Maybe<Array<UserTechnologyOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<UserTechnologyWhereInput>;
@@ -7809,7 +8058,7 @@ export type QueryUserTechnologysCountArgs = {
 
 export type QueryUsersArgs = {
   cursor?: Maybe<UserWhereUniqueInput>;
-  orderBy?: Maybe<Array<UserOrderByInput>>;
+  orderBy?: Maybe<Array<UserOrderByWithRelationInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<UserWhereInput>;
@@ -7872,6 +8121,10 @@ export interface ResetPasswordListRelationFilter {
   every?: Maybe<ResetPasswordWhereInput>;
   none?: Maybe<ResetPasswordWhereInput>;
   some?: Maybe<ResetPasswordWhereInput>;
+}
+
+export interface ResetPasswordOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface ResetPasswordProcessorWhereInput {
@@ -7944,7 +8197,7 @@ export interface Resource {
 
 
 export type ResourceCommentsArgs = {
-  orderBy?: Maybe<ResourceOrderByInput>;
+  orderBy?: Maybe<ResourceOrderByWithRelationInput>;
 };
 
 export interface ResourceCreateManyEthAccountEthAccountToResourceInput {
@@ -7959,8 +8212,8 @@ export interface ResourceCreateManyEthAccountEthAccountToResourceInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8000,8 +8253,8 @@ export interface ResourceCreateManyProjectProjectToResourcePrismaProjectInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8041,8 +8294,8 @@ export interface ResourceCreateManyResourceResourceToResourceBlogInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8082,8 +8335,8 @@ export interface ResourceCreateManyResourceResourceToResourceParentInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8123,8 +8376,8 @@ export interface ResourceCreateManyResourceResourceToResourceTopicInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8164,8 +8417,8 @@ export interface ResourceCreateManyServiceResourceToServiceInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8205,8 +8458,8 @@ export interface ResourceCreateManyTaskResourceToTaskInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8246,8 +8499,8 @@ export interface ResourceCreateManyTeamResourceToTeamInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8287,8 +8540,8 @@ export interface ResourceCreateManyUserInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8541,8 +8794,8 @@ export interface ResourceCreateWithoutCodeChallengesInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8586,8 +8839,8 @@ export interface ResourceCreateWithoutEthAccountEthAccountToResourceInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8631,8 +8884,8 @@ export interface ResourceCreateWithoutFilesInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8676,8 +8929,8 @@ export interface ResourceCreateWithoutGalleriesInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8722,8 +8975,8 @@ export interface ResourceCreateWithoutOtherResourceResourceToResourceBlogsInput 
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8767,8 +9020,8 @@ export interface ResourceCreateWithoutOtherResourceResourceToResourceParentsInpu
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8812,8 +9065,8 @@ export interface ResourceCreateWithoutOtherResourceResourceToResourceTopicsInput
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8856,8 +9109,8 @@ export interface ResourceCreateWithoutProjectProjectToResourcePrismaProjectInput
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8901,8 +9154,8 @@ export interface ResourceCreateWithoutProjectsProjectResourceToResourceInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8946,8 +9199,8 @@ export interface ResourceCreateWithoutResourceTagsInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -8991,8 +9244,8 @@ export interface ResourceCreateWithoutResourceResourceToResourceBlogInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -9036,8 +9289,8 @@ export interface ResourceCreateWithoutResourceResourceToResourceParentInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -9081,8 +9334,8 @@ export interface ResourceCreateWithoutResourceResourceToResourceTopicInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -9126,8 +9379,8 @@ export interface ResourceCreateWithoutServiceResourceToServiceInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -9171,8 +9424,8 @@ export interface ResourceCreateWithoutTaskResourceToTaskInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -9216,8 +9469,8 @@ export interface ResourceCreateWithoutTeamResourceToTeamInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -9261,8 +9514,8 @@ export interface ResourceCreateWithoutUserInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -9306,8 +9559,8 @@ export interface ResourceCreateWithoutVotesInput {
   class_key?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   commentOldID?: Maybe<Scalars['Int']>;
-  components?: Maybe<Scalars['Json']>;
-  content?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   deleted?: Maybe<Scalars['Boolean']>;
@@ -9339,16 +9592,35 @@ export interface ResourceListRelationFilter {
   some?: Maybe<ResourceWhereInput>;
 }
 
-export interface ResourceOrderByInput {
+export interface ResourceOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface ResourceOrderByWithRelationInput {
   Blog?: Maybe<SortOrder>;
+  CodeChallenges?: Maybe<CodeChallengeOrderByRelationAggregateInput>;
   CreatedBy?: Maybe<SortOrder>;
   EthAccount?: Maybe<SortOrder>;
+  EthAccount_EthAccountToResource?: Maybe<EthAccountOrderByWithRelationInput>;
+  Files?: Maybe<FileOrderByRelationAggregateInput>;
+  Galleries?: Maybe<GalleryOrderByRelationAggregateInput>;
   Parent?: Maybe<SortOrder>;
   PrismaProject?: Maybe<SortOrder>;
+  Project_ProjectToResource_PrismaProject?: Maybe<ProjectOrderByWithRelationInput>;
+  Projects_Project_ResourceToResource?: Maybe<ProjectOrderByRelationAggregateInput>;
+  ResourceTags?: Maybe<ResourceTagOrderByRelationAggregateInput>;
+  Resource_ResourceToResource_Blog?: Maybe<ResourceOrderByWithRelationInput>;
+  Resource_ResourceToResource_Parent?: Maybe<ResourceOrderByWithRelationInput>;
+  Resource_ResourceToResource_Topic?: Maybe<ResourceOrderByWithRelationInput>;
   Service?: Maybe<SortOrder>;
+  Service_ResourceToService?: Maybe<ServiceOrderByWithRelationInput>;
   Task?: Maybe<SortOrder>;
+  Task_ResourceToTask?: Maybe<TaskOrderByWithRelationInput>;
   Team?: Maybe<SortOrder>;
+  Team_ResourceToTeam?: Maybe<TeamOrderByWithRelationInput>;
   Topic?: Maybe<SortOrder>;
+  User?: Maybe<UserOrderByWithRelationInput>;
+  Votes?: Maybe<VoteOrderByRelationAggregateInput>;
   class_key?: Maybe<SortOrder>;
   code?: Maybe<SortOrder>;
   commentOldID?: Maybe<SortOrder>;
@@ -9366,6 +9638,9 @@ export interface ResourceOrderByInput {
   negativeVotesCount?: Maybe<SortOrder>;
   neutralVotesCount?: Maybe<SortOrder>;
   oldID?: Maybe<SortOrder>;
+  other_Resource_ResourceToResource_Blogs?: Maybe<ResourceOrderByRelationAggregateInput>;
+  other_Resource_ResourceToResource_Parents?: Maybe<ResourceOrderByRelationAggregateInput>;
+  other_Resource_ResourceToResource_Topics?: Maybe<ResourceOrderByRelationAggregateInput>;
   positiveVotesCount?: Maybe<SortOrder>;
   published?: Maybe<SortOrder>;
   rating?: Maybe<SortOrder>;
@@ -9504,6 +9779,10 @@ export interface ResourceTagListRelationFilter {
   every?: Maybe<ResourceTagWhereInput>;
   none?: Maybe<ResourceTagWhereInput>;
   some?: Maybe<ResourceTagWhereInput>;
+}
+
+export interface ResourceTagOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface ResourceTagWhereInput {
@@ -9702,6 +9981,10 @@ export interface RouteListRelationFilter {
   some?: Maybe<RouteWhereInput>;
 }
 
+export interface RouteOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface RouteWhereInput {
   AND?: Maybe<Array<RouteWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -9850,6 +10133,25 @@ export interface ServiceCategoryListRelationFilter {
   every?: Maybe<ServiceCategoryWhereInput>;
   none?: Maybe<ServiceCategoryWhereInput>;
   some?: Maybe<ServiceCategoryWhereInput>;
+}
+
+export interface ServiceCategoryOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface ServiceCategoryOrderByWithRelationInput {
+  CreatedBy?: Maybe<SortOrder>;
+  Parent?: Maybe<SortOrder>;
+  ServiceCategory?: Maybe<ServiceCategoryOrderByWithRelationInput>;
+  Services?: Maybe<ServiceOrderByRelationAggregateInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
+  code?: Maybe<SortOrder>;
+  createdAt?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  other_ServiceCategories?: Maybe<ServiceCategoryOrderByRelationAggregateInput>;
+  updatedAt?: Maybe<SortOrder>;
 }
 
 export interface ServiceCategoryWhereInput {
@@ -10100,6 +10402,30 @@ export interface ServiceListRelationFilter {
   some?: Maybe<ServiceWhereInput>;
 }
 
+export interface ServiceOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface ServiceOrderByWithRelationInput {
+  Category?: Maybe<SortOrder>;
+  CreatedBy?: Maybe<SortOrder>;
+  Parent?: Maybe<SortOrder>;
+  ProjectMembers?: Maybe<ProjectMemberOrderByRelationAggregateInput>;
+  Resources?: Maybe<ResourceOrderByRelationAggregateInput>;
+  Service?: Maybe<ServiceOrderByWithRelationInput>;
+  ServiceCategory?: Maybe<ServiceCategoryOrderByWithRelationInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
+  code?: Maybe<SortOrder>;
+  createdAt?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  oldID?: Maybe<SortOrder>;
+  other_Services?: Maybe<ServiceOrderByRelationAggregateInput>;
+  rank?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
+}
+
 export interface ServiceWhereInput {
   AND?: Maybe<Array<ServiceWhereInput>>;
   Category?: Maybe<StringNullableFilter>;
@@ -10160,6 +10486,10 @@ export interface SettingsListRelationFilter {
   every?: Maybe<SettingsWhereInput>;
   none?: Maybe<SettingsWhereInput>;
   some?: Maybe<SettingsWhereInput>;
+}
+
+export interface SettingsOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface SettingsWhereInput {
@@ -10270,6 +10600,10 @@ export interface SmsMessageListRelationFilter {
   some?: Maybe<SmsMessageWhereInput>;
 }
 
+export interface SmsMessageOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface SmsMessageWhereInput {
   AND?: Maybe<Array<SmsMessageWhereInput>>;
   CreatedBy?: Maybe<StringNullableFilter>;
@@ -10347,7 +10681,7 @@ export interface SmsMessageRecipientsWhereUniqueInput {
 
 export interface SmsProviderCreateManyUserInput {
   createdAt?: Maybe<Scalars['DateTime']>;
-  credentials?: Maybe<Scalars['Json']>;
+  credentials?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -10384,7 +10718,7 @@ export interface SmsProviderCreateOrConnectWithoutUserInput {
 export interface SmsProviderCreateWithoutSmsMessagesInput {
   User?: Maybe<UserCreateNestedOneWithoutSmsProvidersInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  credentials?: Maybe<Scalars['Json']>;
+  credentials?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -10393,7 +10727,7 @@ export interface SmsProviderCreateWithoutSmsMessagesInput {
 export interface SmsProviderCreateWithoutUserInput {
   SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutSmsProviderInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  credentials?: Maybe<Scalars['Json']>;
+  credentials?: Maybe<NullableJsonNullValueInput>;
   id?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -10403,6 +10737,10 @@ export interface SmsProviderListRelationFilter {
   every?: Maybe<SmsProviderWhereInput>;
   none?: Maybe<SmsProviderWhereInput>;
   some?: Maybe<SmsProviderWhereInput>;
+}
+
+export interface SmsProviderOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface SmsProviderWhereInput {
@@ -10526,8 +10864,14 @@ export interface TagListRelationFilter {
   some?: Maybe<TagWhereInput>;
 }
 
-export interface TagOrderByInput {
+export interface TagOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface TagOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
+  ResourceTags?: Maybe<ResourceTagOrderByRelationAggregateInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   name?: Maybe<SortOrder>;
@@ -10585,13 +10929,13 @@ export interface Task {
 
 
 export type TaskCommentsArgs = {
-  orderBy?: Maybe<ResourceOrderByInput>;
+  orderBy?: Maybe<ResourceOrderByWithRelationInput>;
   where?: Maybe<ResourceWhereInput>;
 };
 
 
 export type TaskTimersArgs = {
-  orderBy?: Maybe<TimerOrderByInput>;
+  orderBy?: Maybe<TimerOrderByWithRelationInput>;
   where?: Maybe<TimerWhereInput>;
 };
 
@@ -10613,7 +10957,7 @@ export interface TaskCreateInput {
 export interface TaskCreateManyChatRoomChatRoomToTaskInput {
   CreatedBy?: Maybe<Scalars['String']>;
   Parent?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -10635,7 +10979,7 @@ export interface TaskCreateManyChatRoomChatRoomToTaskInputEnvelope {
 export interface TaskCreateManyTaskInput {
   ChatRoom?: Maybe<Scalars['String']>;
   CreatedBy?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -10657,7 +11001,7 @@ export interface TaskCreateManyTaskInputEnvelope {
 export interface TaskCreateManyUserInput {
   ChatRoom?: Maybe<Scalars['String']>;
   Parent?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -10850,7 +11194,7 @@ export interface TaskCreateWithoutChatRoomChatRoomToTaskInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -10877,7 +11221,7 @@ export interface TaskCreateWithoutCodeChallengeCompletionsInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -10905,7 +11249,7 @@ export interface TaskCreateWithoutOtherTasksInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -10931,7 +11275,7 @@ export interface TaskCreateWithoutProjectTasksInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -10958,7 +11302,7 @@ export interface TaskCreateWithoutResourcesInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -10985,7 +11329,7 @@ export interface TaskCreateWithoutTaskInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -11012,7 +11356,7 @@ export interface TaskCreateWithoutTaskMembersInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -11039,7 +11383,7 @@ export interface TaskCreateWithoutTaskReactionsInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -11066,7 +11410,7 @@ export interface TaskCreateWithoutTaskTechnologiesInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -11093,7 +11437,7 @@ export interface TaskCreateWithoutTasksAInput {
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -11120,7 +11464,7 @@ export interface TaskCreateWithoutTasksBInput {
   Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -11147,7 +11491,7 @@ export interface TaskCreateWithoutTimersInput {
   Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   User?: Maybe<UserCreateNestedOneWithoutTasksInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -11174,7 +11518,7 @@ export interface TaskCreateWithoutUserInput {
   Tasks_A?: Maybe<TaskCreateNestedManyWithoutTasksBInput>;
   Tasks_B?: Maybe<TaskCreateNestedManyWithoutTasksAInput>;
   Timers?: Maybe<TimerCreateNestedManyWithoutTaskTaskToTimerInput>;
-  content?: Maybe<Scalars['Json']>;
+  content?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   endDate?: Maybe<Scalars['DateTime']>;
@@ -11306,6 +11650,10 @@ export interface TaskMemberListRelationFilter {
   some?: Maybe<TaskMemberWhereInput>;
 }
 
+export interface TaskMemberOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export enum TaskMemberStatus {
   ACTIVE = 'Active',
   FIRED = 'Fired',
@@ -11333,10 +11681,26 @@ export interface TaskMemberWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
 }
 
-export interface TaskOrderByInput {
+export interface TaskOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface TaskOrderByWithRelationInput {
   ChatRoom?: Maybe<SortOrder>;
+  ChatRoom_ChatRoomToTask?: Maybe<ChatRoomOrderByWithRelationInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionOrderByRelationAggregateInput>;
   CreatedBy?: Maybe<SortOrder>;
   Parent?: Maybe<SortOrder>;
+  ProjectTasks?: Maybe<ProjectTaskOrderByRelationAggregateInput>;
+  Resources?: Maybe<ResourceOrderByRelationAggregateInput>;
+  Task?: Maybe<TaskOrderByWithRelationInput>;
+  TaskMembers?: Maybe<TaskMemberOrderByRelationAggregateInput>;
+  TaskReactions?: Maybe<TaskReactionOrderByRelationAggregateInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyOrderByRelationAggregateInput>;
+  Tasks_A?: Maybe<TaskOrderByRelationAggregateInput>;
+  Tasks_B?: Maybe<TaskOrderByRelationAggregateInput>;
+  Timers?: Maybe<TimerOrderByRelationAggregateInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   content?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   description?: Maybe<SortOrder>;
@@ -11345,6 +11709,7 @@ export interface TaskOrderByInput {
   id?: Maybe<SortOrder>;
   name?: Maybe<SortOrder>;
   needHelp?: Maybe<SortOrder>;
+  other_Tasks?: Maybe<TaskOrderByRelationAggregateInput>;
   startDate?: Maybe<SortOrder>;
   startDatePlaning?: Maybe<SortOrder>;
   status?: Maybe<SortOrder>;
@@ -11429,6 +11794,10 @@ export interface TaskReactionListRelationFilter {
   every?: Maybe<TaskReactionWhereInput>;
   none?: Maybe<TaskReactionWhereInput>;
   some?: Maybe<TaskReactionWhereInput>;
+}
+
+export interface TaskReactionOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export enum TaskReactionType {
@@ -11603,10 +11972,17 @@ export interface TaskTechnologyListRelationFilter {
   some?: Maybe<TaskTechnologyWhereInput>;
 }
 
-export interface TaskTechnologyOrderByInput {
+export interface TaskTechnologyOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface TaskTechnologyOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
   Task?: Maybe<SortOrder>;
+  Task_TaskToTaskTechnology?: Maybe<TaskOrderByWithRelationInput>;
   Technology?: Maybe<SortOrder>;
+  Technology_TaskTechnologyToTechnology?: Maybe<TechnologyOrderByWithRelationInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   level?: Maybe<SortOrder>;
@@ -12149,6 +12525,10 @@ export interface TeamMemberListRelationFilter {
   some?: Maybe<TeamMemberWhereInput>;
 }
 
+export interface TeamMemberOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export enum TeamMemberStatus {
   ACTIVE = 'Active',
   FIRED = 'Fired',
@@ -12173,6 +12553,34 @@ export interface TeamMemberWhereInput {
 
 export interface TeamMemberWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
+}
+
+export interface TeamOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface TeamOrderByWithRelationInput {
+  CreatedBy?: Maybe<SortOrder>;
+  GameResults?: Maybe<GameResultOrderByRelationAggregateInput>;
+  Games?: Maybe<GameOrderByRelationAggregateInput>;
+  Parent?: Maybe<SortOrder>;
+  Project_ProjectCustomers?: Maybe<ProjectOrderByRelationAggregateInput>;
+  Projects_ProjectToTeam?: Maybe<ProjectOrderByRelationAggregateInput>;
+  Resources?: Maybe<ResourceOrderByRelationAggregateInput>;
+  Team?: Maybe<TeamOrderByWithRelationInput>;
+  TeamMembers?: Maybe<TeamMemberOrderByRelationAggregateInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
+  address?: Maybe<SortOrder>;
+  createdAt?: Maybe<SortOrder>;
+  email?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  oldID?: Maybe<SortOrder>;
+  other_Teams?: Maybe<TeamOrderByRelationAggregateInput>;
+  phone?: Maybe<SortOrder>;
+  status?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
+  website?: Maybe<SortOrder>;
 }
 
 export enum TeamStatus {
@@ -12238,12 +12646,12 @@ export interface Technology {
 
 
 export type TechnologyLearnStrategyStagesArgs = {
-  orderBy?: Maybe<LearnStrategyStageOrderByInput>;
+  orderBy?: Maybe<LearnStrategyStageOrderByWithRelationInput>;
 };
 
 
 export type TechnologyUserTechnologiesArgs = {
-  orderBy?: Maybe<UserTechnologyOrderByInput>;
+  orderBy?: Maybe<UserTechnologyOrderByWithRelationInput>;
 };
 
 export interface TechnologyCreateInput {
@@ -12252,7 +12660,7 @@ export interface TechnologyCreateInput {
 }
 
 export interface TechnologyCreateManyUserInput {
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -12341,7 +12749,7 @@ export interface TechnologyCreateWithoutLearnStrategyStagesInput {
   TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput>;
   User: UserCreateNestedOneWithoutTechnologiesInput;
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput>;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -12361,7 +12769,7 @@ export interface TechnologyCreateWithoutTaskTechnologiesInput {
   TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput>;
   User: UserCreateNestedOneWithoutTechnologiesInput;
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput>;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -12381,7 +12789,7 @@ export interface TechnologyCreateWithoutTechnologyLessonsInput {
   TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTechnologyTaskTechnologyToTechnologyInput>;
   User: UserCreateNestedOneWithoutTechnologiesInput;
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput>;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -12401,7 +12809,7 @@ export interface TechnologyCreateWithoutUserInput {
   TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTechnologyTaskTechnologyToTechnologyInput>;
   TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutTechnologyTechnologyToUserTechnologyInput>;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -12421,7 +12829,7 @@ export interface TechnologyCreateWithoutUserTechnologiesInput {
   TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutTechnologyTaskTechnologyToTechnologyInput>;
   TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutTechnologyTechnologyToTechnologyLessonInput>;
   User: UserCreateNestedOneWithoutTechnologiesInput;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -12438,7 +12846,7 @@ export interface TechnologyCreateWithoutUserTechnologiesInput {
 
 export interface TechnologyLessonCreateManyTechnologyTechnologyToTechnologyLessonInput {
   CreatedBy: Scalars['String'];
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -12451,7 +12859,7 @@ export interface TechnologyLessonCreateManyTechnologyTechnologyToTechnologyLesso
 
 export interface TechnologyLessonCreateManyUserInput {
   Technology: Scalars['String'];
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -12512,7 +12920,7 @@ export interface TechnologyLessonCreateWithoutCommentsInput {
   TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput>;
   Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput;
   User: UserCreateNestedOneWithoutTechnologyLessonsInput;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -12522,7 +12930,7 @@ export interface TechnologyLessonCreateWithoutTechnologyLessonUsersInput {
   Comments?: Maybe<CommentCreateNestedManyWithoutTechnologyLessonCommentToTechnologyLessonInput>;
   Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput;
   User: UserCreateNestedOneWithoutTechnologyLessonsInput;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -12532,7 +12940,7 @@ export interface TechnologyLessonCreateWithoutTechnologyTechnologyToTechnologyLe
   Comments?: Maybe<CommentCreateNestedManyWithoutTechnologyLessonCommentToTechnologyLessonInput>;
   TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput>;
   User: UserCreateNestedOneWithoutTechnologyLessonsInput;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -12542,7 +12950,7 @@ export interface TechnologyLessonCreateWithoutUserInput {
   Comments?: Maybe<CommentCreateNestedManyWithoutTechnologyLessonCommentToTechnologyLessonInput>;
   TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput>;
   Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -12552,6 +12960,10 @@ export interface TechnologyLessonListRelationFilter {
   every?: Maybe<TechnologyLessonWhereInput>;
   none?: Maybe<TechnologyLessonWhereInput>;
   some?: Maybe<TechnologyLessonWhereInput>;
+}
+
+export interface TechnologyLessonOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface TechnologyLessonUserCreateManyTechnologyLessonInput {
@@ -12630,6 +13042,10 @@ export interface TechnologyLessonUserListRelationFilter {
   some?: Maybe<TechnologyLessonUserWhereInput>;
 }
 
+export interface TechnologyLessonUserOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export enum TechnologyLessonUserStatus {
   ACCEPTED = 'Accepted',
   COMPLETED = 'Completed'
@@ -12680,8 +13096,17 @@ export interface TechnologyListRelationFilter {
   some?: Maybe<TechnologyWhereInput>;
 }
 
-export interface TechnologyOrderByInput {
+export interface TechnologyOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface TechnologyOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
+  LearnStrategyStages?: Maybe<LearnStrategyStageOrderByRelationAggregateInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyOrderByRelationAggregateInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonOrderByRelationAggregateInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
+  UserTechnologies?: Maybe<UserTechnologyOrderByRelationAggregateInput>;
   components?: Maybe<SortOrder>;
   contentText?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
@@ -12744,16 +13169,16 @@ export interface TemplateCreateManyProjectProjectToTemplatePrismaProjectInput {
   Parent?: Maybe<Scalars['String']>;
   Project?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateCreateManyProjectProjectToTemplatePrismaProjectInputEnvelope {
@@ -12766,16 +13191,16 @@ export interface TemplateCreateManyProjectProjectToTemplateProjectInput {
   Parent?: Maybe<Scalars['String']>;
   PrismaProject?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateCreateManyProjectProjectToTemplateProjectInputEnvelope {
@@ -12788,16 +13213,16 @@ export interface TemplateCreateManyTemplateInput {
   PrismaProject?: Maybe<Scalars['String']>;
   Project?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateCreateManyTemplateInputEnvelope {
@@ -12810,16 +13235,16 @@ export interface TemplateCreateManyUserInput {
   PrismaProject?: Maybe<Scalars['String']>;
   Project?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateCreateManyUserInputEnvelope {
@@ -12892,16 +13317,16 @@ export interface TemplateCreateWithoutOtherTemplatesInput {
   Template?: Maybe<TemplateCreateNestedOneWithoutOtherTemplatesInput>;
   User: UserCreateNestedOneWithoutTemplatesInput;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateCreateWithoutProjectProjectToTemplatePrismaProjectInput {
@@ -12909,17 +13334,17 @@ export interface TemplateCreateWithoutProjectProjectToTemplatePrismaProjectInput
   Template?: Maybe<TemplateCreateNestedOneWithoutOtherTemplatesInput>;
   User: UserCreateNestedOneWithoutTemplatesInput;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   other_Templates?: Maybe<TemplateCreateNestedManyWithoutTemplateInput>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateCreateWithoutProjectProjectToTemplateProjectInput {
@@ -12927,17 +13352,17 @@ export interface TemplateCreateWithoutProjectProjectToTemplateProjectInput {
   Template?: Maybe<TemplateCreateNestedOneWithoutOtherTemplatesInput>;
   User: UserCreateNestedOneWithoutTemplatesInput;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   other_Templates?: Maybe<TemplateCreateNestedManyWithoutTemplateInput>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateCreateWithoutTemplateInput {
@@ -12945,17 +13370,17 @@ export interface TemplateCreateWithoutTemplateInput {
   Project_ProjectToTemplate_Project?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplateProjectInput>;
   User: UserCreateNestedOneWithoutTemplatesInput;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   other_Templates?: Maybe<TemplateCreateNestedManyWithoutTemplateInput>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateCreateWithoutUserInput {
@@ -12963,23 +13388,27 @@ export interface TemplateCreateWithoutUserInput {
   Project_ProjectToTemplate_Project?: Maybe<ProjectCreateNestedOneWithoutTemplatesProjectToTemplateProjectInput>;
   Template?: Maybe<TemplateCreateNestedOneWithoutOtherTemplatesInput>;
   component?: Maybe<Scalars['String']>;
-  components: Scalars['Json'];
+  components: JsonNullValueInput;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   externalKey?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   other_Templates?: Maybe<TemplateCreateNestedManyWithoutTemplateInput>;
-  props: Scalars['Json'];
+  props: JsonNullValueInput;
   rank?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  vars?: Maybe<Scalars['Json']>;
+  vars?: Maybe<NullableJsonNullValueInput>;
 }
 
 export interface TemplateListRelationFilter {
   every?: Maybe<TemplateWhereInput>;
   none?: Maybe<TemplateWhereInput>;
   some?: Maybe<TemplateWhereInput>;
+}
+
+export interface TemplateOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface TemplateWhereInput {
@@ -13097,9 +13526,15 @@ export interface TimerListRelationFilter {
   some?: Maybe<TimerWhereInput>;
 }
 
-export interface TimerOrderByInput {
+export interface TimerOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface TimerOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
   Task?: Maybe<SortOrder>;
+  Task_TaskToTimer?: Maybe<TaskOrderByWithRelationInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   stopedAt?: Maybe<SortOrder>;
@@ -13182,6 +13617,10 @@ export interface TokenListRelationFilter {
   every?: Maybe<TokenWhereInput>;
   none?: Maybe<TokenWhereInput>;
   some?: Maybe<TokenWhereInput>;
+}
+
+export interface TokenOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface TokenWhereInput {
@@ -13368,6 +13807,10 @@ export interface TournamentGroupListRelationFilter {
   some?: Maybe<TournamentGroupWhereInput>;
 }
 
+export interface TournamentGroupOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface TournamentGroupWhereInput {
   AND?: Maybe<Array<TournamentGroupWhereInput>>;
   CreatedBy?: Maybe<StringFilter>;
@@ -13391,6 +13834,10 @@ export interface TournamentListRelationFilter {
   every?: Maybe<TournamentWhereInput>;
   none?: Maybe<TournamentWhereInput>;
   some?: Maybe<TournamentWhereInput>;
+}
+
+export interface TournamentOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface TournamentWhereInput {
@@ -13550,6 +13997,10 @@ export interface TourneyListRelationFilter {
   some?: Maybe<TourneyWhereInput>;
 }
 
+export interface TourneyOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface TourneyPlayerCreateManyTourneyTourneyToTourneyPlayerInput {
   User?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -13608,6 +14059,10 @@ export interface TourneyPlayerListRelationFilter {
   every?: Maybe<TourneyPlayerWhereInput>;
   none?: Maybe<TourneyPlayerWhereInput>;
   some?: Maybe<TourneyPlayerWhereInput>;
+}
+
+export interface TourneyPlayerOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface TourneyPlayerWhereInput {
@@ -13719,7 +14174,7 @@ export type UserTimersArgs = {
 
 export interface UserCreateManyEthAccountEthAccountToUserEthAccountAuthedInput {
   CreatedBy?: Maybe<Scalars['String']>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -13756,7 +14211,7 @@ export interface UserCreateManyEthAccountEthAccountToUserEthAccountAuthedInputEn
 
 export interface UserCreateManyUserInput {
   EthAccountAuthed?: Maybe<Scalars['String']>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -14620,7 +15075,7 @@ export interface UserCreateWithoutCallRequestsCallRequestCalledToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -14726,7 +15181,7 @@ export interface UserCreateWithoutCallRequestsCallRequestCallerToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -14832,7 +15287,7 @@ export interface UserCreateWithoutChatMessagesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -14938,7 +15393,7 @@ export interface UserCreateWithoutChatMessagesReadedInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15044,7 +15499,7 @@ export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationCreatedBy
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15150,7 +15605,7 @@ export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationUserToUse
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15256,7 +15711,7 @@ export interface UserCreateWithoutChatRoomsChatRoomToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15362,7 +15817,7 @@ export interface UserCreateWithoutChatRoomsChatRoomsMembersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15468,7 +15923,7 @@ export interface UserCreateWithoutCodeChallengeBlocksInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15574,7 +16029,7 @@ export interface UserCreateWithoutCodeChallengeCompletionsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15680,7 +16135,7 @@ export interface UserCreateWithoutCodeChallengesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15786,7 +16241,7 @@ export interface UserCreateWithoutCommentsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15892,7 +16347,7 @@ export interface UserCreateWithoutDonatesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -15998,7 +16453,7 @@ export interface UserCreateWithoutEthAccountEthAccountToUserEthAccountAuthedInpu
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16104,7 +16559,7 @@ export interface UserCreateWithoutEthAccountsEthAccountCreatedByToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16210,7 +16665,7 @@ export interface UserCreateWithoutEthContractSourcesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16316,7 +16771,7 @@ export interface UserCreateWithoutFilesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16422,7 +16877,7 @@ export interface UserCreateWithoutGalleriesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16528,7 +16983,7 @@ export interface UserCreateWithoutGameResultsGameResultCreatedByToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16634,7 +17089,7 @@ export interface UserCreateWithoutGameResultsGameResultUserToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16740,7 +17195,7 @@ export interface UserCreateWithoutGamesGameToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16846,7 +17301,7 @@ export interface UserCreateWithoutGamesGameUsersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -16952,7 +17407,7 @@ export interface UserCreateWithoutLearnStrategiesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17058,7 +17513,7 @@ export interface UserCreateWithoutMentorMenteeMenteesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17164,7 +17619,7 @@ export interface UserCreateWithoutMentorMenteeMentorsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17270,7 +17725,7 @@ export interface UserCreateWithoutNoticesNoticeCreatedByToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17376,7 +17831,7 @@ export interface UserCreateWithoutNoticesNoticeUserToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17482,7 +17937,7 @@ export interface UserCreateWithoutNotificationTypesNotificationTypeToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17588,7 +18043,7 @@ export interface UserCreateWithoutNotificationTypesUserNotificationTypesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17695,7 +18150,7 @@ export interface UserCreateWithoutOtherUsersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17800,7 +18255,7 @@ export interface UserCreateWithoutPlayersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -17906,7 +18361,7 @@ export interface UserCreateWithoutPositionsPositionToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18012,7 +18467,7 @@ export interface UserCreateWithoutPositionsPositionUsersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18118,7 +18573,7 @@ export interface UserCreateWithoutProjectMembersProjectMemberCreatedByToUserInpu
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18224,7 +18679,7 @@ export interface UserCreateWithoutProjectMembersProjectMemberUserToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18330,7 +18785,7 @@ export interface UserCreateWithoutProjectTasksInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18436,7 +18891,7 @@ export interface UserCreateWithoutProjectsPrismaProjectUsersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18542,7 +18997,7 @@ export interface UserCreateWithoutProjectsProjectToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18648,7 +19103,7 @@ export interface UserCreateWithoutResourceTagsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18754,7 +19209,7 @@ export interface UserCreateWithoutResourcesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18860,7 +19315,7 @@ export interface UserCreateWithoutRoutesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -18966,7 +19421,7 @@ export interface UserCreateWithoutServiceCategoriesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19072,7 +19527,7 @@ export interface UserCreateWithoutServicesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19178,7 +19633,7 @@ export interface UserCreateWithoutSmsMessagesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19284,7 +19739,7 @@ export interface UserCreateWithoutSmsProvidersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19390,7 +19845,7 @@ export interface UserCreateWithoutTagsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19496,7 +19951,7 @@ export interface UserCreateWithoutTaskMembersTaskMemberCreatedByToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19602,7 +20057,7 @@ export interface UserCreateWithoutTaskMembersTaskMemberUserToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19708,7 +20163,7 @@ export interface UserCreateWithoutTaskReactionsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19814,7 +20269,7 @@ export interface UserCreateWithoutTaskTechnologiesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -19920,7 +20375,7 @@ export interface UserCreateWithoutTasksInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20026,7 +20481,7 @@ export interface UserCreateWithoutTeamMembersTeamMemberCreatedByToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20132,7 +20587,7 @@ export interface UserCreateWithoutTeamMembersTeamMemberUserToUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20238,7 +20693,7 @@ export interface UserCreateWithoutTeamsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20344,7 +20799,7 @@ export interface UserCreateWithoutTechnologiesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20450,7 +20905,7 @@ export interface UserCreateWithoutTechnologyLessonUsersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20556,7 +21011,7 @@ export interface UserCreateWithoutTechnologyLessonsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20662,7 +21117,7 @@ export interface UserCreateWithoutTemplatesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20768,7 +21223,7 @@ export interface UserCreateWithoutTimersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20874,7 +21329,7 @@ export interface UserCreateWithoutTournamentGroupsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -20980,7 +21435,7 @@ export interface UserCreateWithoutTournamentsInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -21086,7 +21541,7 @@ export interface UserCreateWithoutTourneyPlayersInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -21192,7 +21647,7 @@ export interface UserCreateWithoutTourneysInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -21298,7 +21753,7 @@ export interface UserCreateWithoutUserInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -21404,7 +21859,7 @@ export interface UserCreateWithoutUserLearnStrategiesInput {
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -21510,7 +21965,7 @@ export interface UserCreateWithoutUserTechnologiesInput {
   UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -21616,7 +22071,7 @@ export interface UserCreateWithoutVotesInput {
   UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -21722,7 +22177,7 @@ export interface UserCreateWithoutWorldsInput {
   UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
   UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
   Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
-  about?: Maybe<Scalars['Json']>;
+  about?: Maybe<NullableJsonNullValueInput>;
   acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
   acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
@@ -21775,6 +22230,10 @@ export interface UserGroupListRelationFilter {
   every?: Maybe<UserGroupWhereInput>;
   none?: Maybe<UserGroupWhereInput>;
   some?: Maybe<UserGroupWhereInput>;
+}
+
+export interface UserGroupOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export interface UserGroupWhereInput {
@@ -21880,7 +22339,13 @@ export interface UserLearnStrategyListRelationFilter {
   some?: Maybe<UserLearnStrategyWhereInput>;
 }
 
-export interface UserLearnStrategyOrderByInput {
+export interface UserLearnStrategyOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface UserLearnStrategyOrderByWithRelationInput {
+  CreatedBy?: Maybe<UserOrderByWithRelationInput>;
+  LearnStrategy?: Maybe<LearnStrategyOrderByWithRelationInput>;
   createdAt?: Maybe<SortOrder>;
   createdById?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
@@ -21912,9 +22377,88 @@ export interface UserListRelationFilter {
   some?: Maybe<UserWhereInput>;
 }
 
-export interface UserOrderByInput {
+export interface UserOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface UserOrderByWithRelationInput {
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestOrderByRelationAggregateInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestOrderByRelationAggregateInput>;
+  Careers?: Maybe<CareerOrderByRelationAggregateInput>;
+  ChatMessages?: Maybe<ChatMessageOrderByRelationAggregateInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedOrderByRelationAggregateInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationOrderByRelationAggregateInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationOrderByRelationAggregateInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomOrderByRelationAggregateInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomOrderByRelationAggregateInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockOrderByRelationAggregateInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionOrderByRelationAggregateInput>;
+  CodeChallenges?: Maybe<CodeChallengeOrderByRelationAggregateInput>;
+  Comments?: Maybe<CommentOrderByRelationAggregateInput>;
   CreatedBy?: Maybe<SortOrder>;
+  Donates?: Maybe<DonateOrderByRelationAggregateInput>;
   EthAccountAuthed?: Maybe<SortOrder>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountOrderByWithRelationInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountOrderByRelationAggregateInput>;
+  EthContractSources?: Maybe<EthContractSourceOrderByRelationAggregateInput>;
+  Files?: Maybe<FileOrderByRelationAggregateInput>;
+  Galleries?: Maybe<GalleryOrderByRelationAggregateInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultOrderByRelationAggregateInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultOrderByRelationAggregateInput>;
+  Games_GameToUser?: Maybe<GameOrderByRelationAggregateInput>;
+  Games_GameUsers?: Maybe<GameOrderByRelationAggregateInput>;
+  Imports?: Maybe<ImportOrderByRelationAggregateInput>;
+  LearnStrategies?: Maybe<LearnStrategyOrderByRelationAggregateInput>;
+  Letters?: Maybe<LetterOrderByRelationAggregateInput>;
+  LogedIns?: Maybe<LogedInOrderByRelationAggregateInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeOrderByRelationAggregateInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeOrderByRelationAggregateInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeOrderByRelationAggregateInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeOrderByRelationAggregateInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeOrderByRelationAggregateInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeOrderByRelationAggregateInput>;
+  Players?: Maybe<PlayerOrderByRelationAggregateInput>;
+  Positions_PositionToUser?: Maybe<PositionOrderByRelationAggregateInput>;
+  Positions_PositionUsers?: Maybe<PositionOrderByRelationAggregateInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberOrderByRelationAggregateInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberOrderByRelationAggregateInput>;
+  ProjectTasks?: Maybe<ProjectTaskOrderByRelationAggregateInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectOrderByRelationAggregateInput>;
+  Projects_ProjectToUser?: Maybe<ProjectOrderByRelationAggregateInput>;
+  ResetPasswords?: Maybe<ResetPasswordOrderByRelationAggregateInput>;
+  ResourceTags?: Maybe<ResourceTagOrderByRelationAggregateInput>;
+  Resources?: Maybe<ResourceOrderByRelationAggregateInput>;
+  Routes?: Maybe<RouteOrderByRelationAggregateInput>;
+  ServiceCategories?: Maybe<ServiceCategoryOrderByRelationAggregateInput>;
+  Services?: Maybe<ServiceOrderByRelationAggregateInput>;
+  Settings?: Maybe<SettingsOrderByRelationAggregateInput>;
+  SmsMessages?: Maybe<SmsMessageOrderByRelationAggregateInput>;
+  SmsProviders?: Maybe<SmsProviderOrderByRelationAggregateInput>;
+  Tags?: Maybe<TagOrderByRelationAggregateInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberOrderByRelationAggregateInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberOrderByRelationAggregateInput>;
+  TaskReactions?: Maybe<TaskReactionOrderByRelationAggregateInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyOrderByRelationAggregateInput>;
+  Tasks?: Maybe<TaskOrderByRelationAggregateInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberOrderByRelationAggregateInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberOrderByRelationAggregateInput>;
+  Teams?: Maybe<TeamOrderByRelationAggregateInput>;
+  Technologies?: Maybe<TechnologyOrderByRelationAggregateInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserOrderByRelationAggregateInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonOrderByRelationAggregateInput>;
+  Templates?: Maybe<TemplateOrderByRelationAggregateInput>;
+  Timers?: Maybe<TimerOrderByRelationAggregateInput>;
+  Tokens?: Maybe<TokenOrderByRelationAggregateInput>;
+  TournamentGroups?: Maybe<TournamentGroupOrderByRelationAggregateInput>;
+  Tournaments?: Maybe<TournamentOrderByRelationAggregateInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerOrderByRelationAggregateInput>;
+  Tourneys?: Maybe<TourneyOrderByRelationAggregateInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
+  UserGroups?: Maybe<UserGroupOrderByRelationAggregateInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyOrderByRelationAggregateInput>;
+  UserTechnologies?: Maybe<UserTechnologyOrderByRelationAggregateInput>;
+  Votes?: Maybe<VoteOrderByRelationAggregateInput>;
+  Worlds?: Maybe<WorldOrderByRelationAggregateInput>;
   about?: Maybe<SortOrder>;
   acceptChatMessageAnonymous?: Maybe<SortOrder>;
   acceptNewChatRoom?: Maybe<SortOrder>;
@@ -21933,6 +22477,7 @@ export interface UserOrderByInput {
   isMentor?: Maybe<SortOrder>;
   marketplaceToken?: Maybe<SortOrder>;
   oldID?: Maybe<SortOrder>;
+  other_Users?: Maybe<UserOrderByRelationAggregateInput>;
   password?: Maybe<SortOrder>;
   phone?: Maybe<SortOrder>;
   showEmail?: Maybe<SortOrder>;
@@ -21993,7 +22538,7 @@ export interface UserTechnologyCreateInput {
 
 export interface UserTechnologyCreateManyTechnologyTechnologyToUserTechnologyInput {
   CreatedBy: Scalars['String'];
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
@@ -22012,7 +22557,7 @@ export interface UserTechnologyCreateManyTechnologyTechnologyToUserTechnologyInp
 
 export interface UserTechnologyCreateManyUserInput {
   Technology: Scalars['String'];
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
@@ -22055,7 +22600,7 @@ export interface UserTechnologyCreateOrConnectWithoutUserInput {
 
 export interface UserTechnologyCreateWithoutTechnologyTechnologyToUserTechnologyInput {
   User: UserCreateNestedOneWithoutUserTechnologiesInput;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
@@ -22069,7 +22614,7 @@ export interface UserTechnologyCreateWithoutTechnologyTechnologyToUserTechnology
 
 export interface UserTechnologyCreateWithoutUserInput {
   Technology_TechnologyToUserTechnology: TechnologyCreateNestedOneWithoutUserTechnologiesInput;
-  components?: Maybe<Scalars['Json']>;
+  components?: Maybe<NullableJsonNullValueInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   date_from?: Maybe<Scalars['DateTime']>;
   date_till?: Maybe<Scalars['DateTime']>;
@@ -22103,9 +22648,15 @@ export interface UserTechnologyListRelationFilter {
   some?: Maybe<UserTechnologyWhereInput>;
 }
 
-export interface UserTechnologyOrderByInput {
+export interface UserTechnologyOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface UserTechnologyOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
   Technology?: Maybe<SortOrder>;
+  Technology_TechnologyToUserTechnology?: Maybe<TechnologyOrderByWithRelationInput>;
+  User?: Maybe<UserOrderByWithRelationInput>;
   components?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   date_from?: Maybe<SortOrder>;
@@ -22387,6 +22938,10 @@ export interface VoteListRelationFilter {
   some?: Maybe<VoteWhereInput>;
 }
 
+export interface VoteOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
 export interface VoteWhereInput {
   AND?: Maybe<Array<VoteWhereInput>>;
   NOT?: Maybe<Array<VoteWhereInput>>;
@@ -22482,6 +23037,10 @@ export interface WorldListRelationFilter {
   every?: Maybe<WorldWhereInput>;
   none?: Maybe<WorldWhereInput>;
   some?: Maybe<WorldWhereInput>;
+}
+
+export interface WorldOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
 }
 
 export enum WorldType {

@@ -2,7 +2,7 @@ query tagsConnection(
   $first: Int!
   $skip: Int
   $where: TagWhereInput
-  $orderBy: [TagOrderByInput!]
+  $orderBy: [TagOrderByWithRelationInput!]
 ) {
   tagsCount(where: $where)
   tags(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {

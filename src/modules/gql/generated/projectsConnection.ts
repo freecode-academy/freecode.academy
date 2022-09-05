@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -20,7 +21,7 @@ export type ProjectsConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.ProjectWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.ProjectOrderByInput> | Types.ProjectOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.ProjectOrderByWithRelationInput> | Types.ProjectOrderByWithRelationInput>;
 }>;
 
 
@@ -31,7 +32,7 @@ export type ProjectsConnectionQuery = { __typename?: 'Query', projectsCount: num
 
 
 export const ProjectsConnectionDocument = gql`
-    query projectsConnection($first: Int = 12, $skip: Int, $where: ProjectWhereInput, $orderBy: [ProjectOrderByInput!] = {updatedAt: desc}) {
+    query projectsConnection($first: Int = 12, $skip: Int, $where: ProjectWhereInput, $orderBy: [ProjectOrderByWithRelationInput!] = {updatedAt: desc}) {
   projectsCount(where: $where)
   projects(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
     ...projectsConnectionProject

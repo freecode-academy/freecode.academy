@@ -128,7 +128,7 @@ export const Task = objectType({
     t.list.nonNull.field('Timers', {
       type: 'Timer',
       args: {
-        orderBy: 'TimerOrderByInput',
+        orderBy: 'TimerOrderByWithRelationInput',
         where: 'TimerWhereInput',
       },
       resolve({ id }, args, ctx) {
@@ -137,7 +137,7 @@ export const Task = objectType({
           Task: id,
         } as Prisma.TimerWhereInput
 
-        const orderBy = args.orderBy as Prisma.TimerOrderByInput
+        const orderBy = args.orderBy as Prisma.TimerOrderByWithRelationInput
 
         return ctx.prisma.timer.findMany({
           where,
@@ -149,7 +149,7 @@ export const Task = objectType({
     t.list.nonNull.field('Comments', {
       type: 'Resource',
       args: {
-        orderBy: 'ResourceOrderByInput',
+        orderBy: 'ResourceOrderByWithRelationInput',
         where: 'ResourceWhereInput',
       },
       resolve({ id }, args, ctx) {
@@ -159,7 +159,7 @@ export const Task = objectType({
           type: 'Comment',
         } as Prisma.ResourceWhereInput
 
-        const orderBy = args.orderBy as Prisma.ResourceOrderByInput
+        const orderBy = args.orderBy as Prisma.ResourceOrderByWithRelationInput
 
         return ctx.prisma.resource.findMany({
           where,

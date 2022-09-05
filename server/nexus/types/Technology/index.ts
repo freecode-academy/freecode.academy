@@ -56,10 +56,11 @@ export const Technology = objectType({
     t.list.nonNull.field('UserTechnologies', {
       type: 'UserTechnology',
       args: {
-        orderBy: 'UserTechnologyOrderByInput',
+        orderBy: 'UserTechnologyOrderByWithRelationInput',
       },
       resolve({ id }, args, ctx) {
-        const orderBy = args.orderBy as Prisma.UserTechnologyOrderByInput
+        const orderBy =
+          args.orderBy as Prisma.UserTechnologyOrderByWithRelationInput
 
         return ctx.prisma.userTechnology.findMany({
           where: {
@@ -72,10 +73,11 @@ export const Technology = objectType({
     t.list.nonNull.field('LearnStrategyStages', {
       type: 'LearnStrategyStage',
       args: {
-        orderBy: 'LearnStrategyStageOrderByInput',
+        orderBy: 'LearnStrategyStageOrderByWithRelationInput',
       },
       resolve({ id }, args, ctx) {
-        const orderBy = args.orderBy as Prisma.LearnStrategyStageOrderByInput
+        const orderBy =
+          args.orderBy as Prisma.LearnStrategyStageOrderByWithRelationInput
 
         return ctx.prisma.learnStrategyStage.findMany({
           where: {

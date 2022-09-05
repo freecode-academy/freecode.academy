@@ -1,6 +1,6 @@
 query chatMessagesConnection(
   $where: ChatMessageWhereInput
-  $orderBy: [ChatMessageOrderByInput!]
+  $orderBy: [ChatMessageOrderByWithRelationInput!]
   $skip: Int
   # $after: String
   # $before: String

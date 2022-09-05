@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ export type SitemapResourcesConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where: Types.ResourceWhereInput;
-  orderBy: Array<Types.ResourceOrderByInput> | Types.ResourceOrderByInput;
+  orderBy: Array<Types.ResourceOrderByWithRelationInput> | Types.ResourceOrderByWithRelationInput;
 }>;
 
 
@@ -26,7 +27,7 @@ export type SitemapResourcesConnectionQuery = { __typename?: 'Query', resourcesC
 
 
 export const SitemapResourcesConnectionDocument = gql`
-    query sitemapResourcesConnection($first: Int!, $skip: Int, $where: ResourceWhereInput!, $orderBy: [ResourceOrderByInput!]!) {
+    query sitemapResourcesConnection($first: Int!, $skip: Int, $where: ResourceWhereInput!, $orderBy: [ResourceOrderByWithRelationInput!]!) {
   resourcesCount(where: $where)
   resources(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {
     id

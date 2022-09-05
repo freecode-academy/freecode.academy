@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type CodeChallengesQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.CodeChallengeWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.CodeChallengeOrderByInput> | Types.CodeChallengeOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.CodeChallengeOrderByWithRelationInput> | Types.CodeChallengeOrderByWithRelationInput>;
   take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   cursor?: Types.Maybe<Types.CodeChallengeWhereUniqueInput>;
@@ -32,7 +33,7 @@ export type CodeChallengesQuery = { __typename?: 'Query', codeChallenges: Array<
 
 
 export const CodeChallengesDocument = gql`
-    query codeChallenges($where: CodeChallengeWhereInput, $orderBy: [CodeChallengeOrderByInput!], $take: Int, $skip: Int, $cursor: CodeChallengeWhereUniqueInput) {
+    query codeChallenges($where: CodeChallengeWhereInput, $orderBy: [CodeChallengeOrderByWithRelationInput!], $take: Int, $skip: Int, $cursor: CodeChallengeWhereUniqueInput) {
   codeChallenges(
     where: $where
     orderBy: $orderBy

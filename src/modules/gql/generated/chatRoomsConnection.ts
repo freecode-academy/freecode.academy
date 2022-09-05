@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type ChatRoomsConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.ChatRoomWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.ChatRoomOrderByInput> | Types.ChatRoomOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.ChatRoomOrderByWithRelationInput> | Types.ChatRoomOrderByWithRelationInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
 }>;
@@ -31,7 +32,7 @@ export type ChatRoomsConnectionQuery = { __typename?: 'Query', count: number, ch
 
 
 export const ChatRoomsConnectionDocument = gql`
-    query chatRoomsConnection($where: ChatRoomWhereInput, $orderBy: [ChatRoomOrderByInput!], $skip: Int, $first: Int = 10) {
+    query chatRoomsConnection($where: ChatRoomWhereInput, $orderBy: [ChatRoomOrderByWithRelationInput!], $skip: Int, $first: Int = 10) {
   chatRooms(where: $where, orderBy: $orderBy, take: $first, skip: $skip) {
     ...chatRoomsConnectionChatRoom
   }

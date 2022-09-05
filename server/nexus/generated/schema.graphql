@@ -94,8 +94,8 @@ input BoolNullableFilter {
 input CallRequestCreateManyChatRoomInput {
   Called: String
   Caller: String
-  called_descriptions: Json!
-  caller_descriptions: Json!
+  called_descriptions: JsonNullValueInput!
+  caller_descriptions: JsonNullValueInput!
   createdAt: DateTime
   endedAt: DateTime
   id: String
@@ -112,8 +112,8 @@ input CallRequestCreateManyChatRoomInputEnvelope {
 input CallRequestCreateManyUser_CallRequest_CalledToUserInput {
   Caller: String
   Room: String
-  called_descriptions: Json!
-  caller_descriptions: Json!
+  called_descriptions: JsonNullValueInput!
+  caller_descriptions: JsonNullValueInput!
   createdAt: DateTime
   endedAt: DateTime
   id: String
@@ -130,8 +130,8 @@ input CallRequestCreateManyUser_CallRequest_CalledToUserInputEnvelope {
 input CallRequestCreateManyUser_CallRequest_CallerToUserInput {
   Called: String
   Room: String
-  called_descriptions: Json!
-  caller_descriptions: Json!
+  called_descriptions: JsonNullValueInput!
+  caller_descriptions: JsonNullValueInput!
   createdAt: DateTime
   endedAt: DateTime
   id: String
@@ -184,8 +184,8 @@ input CallRequestCreateOrConnectWithoutUser_CallRequest_CallerToUserInput {
 input CallRequestCreateWithoutChatRoomInput {
   User_CallRequest_CalledToUser: UserCreateNestedOneWithoutCallRequests_CallRequest_CalledToUserInput
   User_CallRequest_CallerToUser: UserCreateNestedOneWithoutCallRequests_CallRequest_CallerToUserInput
-  called_descriptions: Json!
-  caller_descriptions: Json!
+  called_descriptions: JsonNullValueInput!
+  caller_descriptions: JsonNullValueInput!
   createdAt: DateTime
   endedAt: DateTime
   id: String
@@ -197,8 +197,8 @@ input CallRequestCreateWithoutChatRoomInput {
 input CallRequestCreateWithoutUser_CallRequest_CalledToUserInput {
   ChatRoom: ChatRoomCreateNestedOneWithoutCallRequestsInput
   User_CallRequest_CallerToUser: UserCreateNestedOneWithoutCallRequests_CallRequest_CallerToUserInput
-  called_descriptions: Json!
-  caller_descriptions: Json!
+  called_descriptions: JsonNullValueInput!
+  caller_descriptions: JsonNullValueInput!
   createdAt: DateTime
   endedAt: DateTime
   id: String
@@ -210,8 +210,8 @@ input CallRequestCreateWithoutUser_CallRequest_CalledToUserInput {
 input CallRequestCreateWithoutUser_CallRequest_CallerToUserInput {
   ChatRoom: ChatRoomCreateNestedOneWithoutCallRequestsInput
   User_CallRequest_CalledToUser: UserCreateNestedOneWithoutCallRequests_CallRequest_CalledToUserInput
-  called_descriptions: Json!
-  caller_descriptions: Json!
+  called_descriptions: JsonNullValueInput!
+  caller_descriptions: JsonNullValueInput!
   createdAt: DateTime
   endedAt: DateTime
   id: String
@@ -224,6 +224,10 @@ input CallRequestListRelationFilter {
   every: CallRequestWhereInput
   none: CallRequestWhereInput
   some: CallRequestWhereInput
+}
+
+input CallRequestOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 enum CallRequestStatus {
@@ -301,6 +305,10 @@ input CareerListRelationFilter {
   some: CareerWhereInput
 }
 
+input CareerOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input CareerWhereInput {
   AND: [CareerWhereInput!]
   CreatedBy: StringNullableFilter
@@ -336,7 +344,7 @@ input ChatMessageCreateInput {
 
 input ChatMessageCreateManyChatRoomInput {
   CreatedBy: String
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   id: String
@@ -350,7 +358,7 @@ input ChatMessageCreateManyChatRoomInputEnvelope {
 
 input ChatMessageCreateManyUserInput {
   Room: String
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   id: String
@@ -412,7 +420,7 @@ input ChatMessageCreateWithoutChatMessagesReadedInput {
   ChatRoom: ChatRoomCreateNestedOneWithoutChatMessagesInput
   Notices: NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
   User: UserCreateNestedOneWithoutChatMessagesInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   id: String
@@ -423,7 +431,7 @@ input ChatMessageCreateWithoutChatRoomInput {
   ChatMessagesReaded: ChatMessageReadedCreateNestedManyWithoutChatMessageInput
   Notices: NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
   User: UserCreateNestedOneWithoutChatMessagesInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   id: String
@@ -434,7 +442,7 @@ input ChatMessageCreateWithoutNoticesInput {
   ChatMessagesReaded: ChatMessageReadedCreateNestedManyWithoutChatMessageInput
   ChatRoom: ChatRoomCreateNestedOneWithoutChatMessagesInput
   User: UserCreateNestedOneWithoutChatMessagesInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   id: String
@@ -445,7 +453,7 @@ input ChatMessageCreateWithoutUserInput {
   ChatMessagesReaded: ChatMessageReadedCreateNestedManyWithoutChatMessageInput
   ChatRoom: ChatRoomCreateNestedOneWithoutChatMessagesInput
   Notices: NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   id: String
@@ -458,9 +466,17 @@ input ChatMessageListRelationFilter {
   some: ChatMessageWhereInput
 }
 
-input ChatMessageOrderByInput {
+input ChatMessageOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ChatMessageOrderByWithRelationInput {
+  ChatMessagesReaded: ChatMessageReadedOrderByRelationAggregateInput
+  ChatRoom: ChatRoomOrderByWithRelationInput
   CreatedBy: SortOrder
+  Notices: NoticeOrderByRelationAggregateInput
   Room: SortOrder
+  User: UserOrderByWithRelationInput
   content: SortOrder
   contentText: SortOrder
   createdAt: SortOrder
@@ -534,6 +550,10 @@ input ChatMessageReadedListRelationFilter {
   every: ChatMessageReadedWhereInput
   none: ChatMessageReadedWhereInput
   some: ChatMessageReadedWhereInput
+}
+
+input ChatMessageReadedOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input ChatMessageReadedWhereInput {
@@ -985,6 +1005,10 @@ input ChatRoomInvitationListRelationFilter {
   some: ChatRoomInvitationWhereInput
 }
 
+input ChatRoomInvitationOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input ChatRoomInvitationWhereInput {
   AND: [ChatRoomInvitationWhereInput!]
   ChatRoom: StringNullableFilter
@@ -1012,8 +1036,19 @@ input ChatRoomListRelationFilter {
   some: ChatRoomWhereInput
 }
 
-input ChatRoomOrderByInput {
+input ChatRoomOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ChatRoomOrderByWithRelationInput {
+  CallRequests: CallRequestOrderByRelationAggregateInput
+  ChatMessages: ChatMessageOrderByRelationAggregateInput
+  ChatRoomInvitations: ChatRoomInvitationOrderByRelationAggregateInput
   CreatedBy: SortOrder
+  Projects: ProjectOrderByRelationAggregateInput
+  Tasks: TaskOrderByRelationAggregateInput
+  User_ChatRoomToUser: UserOrderByWithRelationInput
+  User_ChatRoomsMembers: UserOrderByRelationAggregateInput
   allowAnonymous: SortOrder
   code: SortOrder
   createdAt: SortOrder
@@ -1059,7 +1094,7 @@ type CodeChallenge {
   Block: ID
   CodeChallengeBlock: CodeChallengeBlock
   CodeChallengeCompletions(
-    orderBy: [CodeChallengeCompletionOrderByInput!]
+    orderBy: [CodeChallengeCompletionOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: CodeChallengeCompletionWhereInput
@@ -1095,8 +1130,10 @@ type CodeChallenge {
 }
 
 type CodeChallengeBlock {
-  Challenges(orderBy: CodeChallengeOrderByInput): [CodeChallenge!]
-  Children(orderBy: CodeChallengeBlockOrderByInput): [CodeChallengeBlock!]
+  Challenges(orderBy: CodeChallengeOrderByWithRelationInput): [CodeChallenge!]
+  Children(
+    orderBy: CodeChallengeBlockOrderByWithRelationInput
+  ): [CodeChallengeBlock!]
   Parent: CodeChallengeBlock
   createdAt: DateTime!
   id: ID!
@@ -1234,13 +1271,21 @@ input CodeChallengeBlockListRelationFilter {
   some: CodeChallengeBlockWhereInput
 }
 
-input CodeChallengeBlockOrderByInput {
+input CodeChallengeBlockOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CodeChallengeBlockOrderByWithRelationInput {
+  CodeChallenge: CodeChallengeOrderByRelationAggregateInput
+  CodeChallengeBlock: CodeChallengeBlockOrderByWithRelationInput
   CreatedBy: SortOrder
   Parent: SortOrder
+  User: UserOrderByWithRelationInput
   createdAt: SortOrder
   externalKey: SortOrder
   id: SortOrder
   name: SortOrder
+  other_CodeChallengeBlock: CodeChallengeBlockOrderByRelationAggregateInput
   rank: SortOrder
   updatedAt: SortOrder
 }
@@ -1399,10 +1444,17 @@ input CodeChallengeCompletionListRelationFilter {
   some: CodeChallengeCompletionWhereInput
 }
 
-input CodeChallengeCompletionOrderByInput {
+input CodeChallengeCompletionOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CodeChallengeCompletionOrderByWithRelationInput {
   CodeChallenge: SortOrder
+  CodeChallenge_CodeChallengeToCodeChallengeCompletion: CodeChallengeOrderByWithRelationInput
   CreatedBy: SortOrder
   Task: SortOrder
+  Task_CodeChallengeCompletionToTask: TaskOrderByWithRelationInput
+  User: UserOrderByWithRelationInput
   content: SortOrder
   createdAt: SortOrder
   id: SortOrder
@@ -1452,7 +1504,7 @@ input CodeChallengeCreateManyCodeChallengeBlockInput {
   dashedName: String
   description: String
   externalKey: String
-  files: Json
+  files: NullableJsonNullValueInput
   forumTopicId: Int
   id: String
   instructions: String
@@ -1463,13 +1515,13 @@ input CodeChallengeCreateManyCodeChallengeBlockInput {
   name: String
   order: Int
   rank: Int
-  required: Json
-  solutions: Json
+  required: NullableJsonNullValueInput
+  solutions: NullableJsonNullValueInput
   superOrder: Int
   template: String
-  tests: Json
+  tests: NullableJsonNullValueInput
   time: String
-  translations: Json
+  translations: NullableJsonNullValueInput
   updatedAt: DateTime
   videoUrl: String
 }
@@ -1488,7 +1540,7 @@ input CodeChallengeCreateManyResourceInput {
   dashedName: String
   description: String
   externalKey: String
-  files: Json
+  files: NullableJsonNullValueInput
   forumTopicId: Int
   id: String
   instructions: String
@@ -1499,13 +1551,13 @@ input CodeChallengeCreateManyResourceInput {
   name: String
   order: Int
   rank: Int
-  required: Json
-  solutions: Json
+  required: NullableJsonNullValueInput
+  solutions: NullableJsonNullValueInput
   superOrder: Int
   template: String
-  tests: Json
+  tests: NullableJsonNullValueInput
   time: String
-  translations: Json
+  translations: NullableJsonNullValueInput
   updatedAt: DateTime
   videoUrl: String
 }
@@ -1524,7 +1576,7 @@ input CodeChallengeCreateManyUserInput {
   dashedName: String
   description: String
   externalKey: String
-  files: Json
+  files: NullableJsonNullValueInput
   forumTopicId: Int
   id: String
   instructions: String
@@ -1535,13 +1587,13 @@ input CodeChallengeCreateManyUserInput {
   name: String
   order: Int
   rank: Int
-  required: Json
-  solutions: Json
+  required: NullableJsonNullValueInput
+  solutions: NullableJsonNullValueInput
   superOrder: Int
   template: String
-  tests: Json
+  tests: NullableJsonNullValueInput
   time: String
-  translations: Json
+  translations: NullableJsonNullValueInput
   updatedAt: DateTime
   videoUrl: String
 }
@@ -1616,7 +1668,7 @@ input CodeChallengeCreateWithoutCodeChallengeBlockInput {
   dashedName: String
   description: String
   externalKey: String
-  files: Json
+  files: NullableJsonNullValueInput
   forumTopicId: Int
   id: String
   instructions: String
@@ -1627,13 +1679,13 @@ input CodeChallengeCreateWithoutCodeChallengeBlockInput {
   name: String
   order: Int
   rank: Int
-  required: Json
-  solutions: Json
+  required: NullableJsonNullValueInput
+  solutions: NullableJsonNullValueInput
   superOrder: Int
   template: String
-  tests: Json
+  tests: NullableJsonNullValueInput
   time: String
-  translations: Json
+  translations: NullableJsonNullValueInput
   updatedAt: DateTime
   videoUrl: String
 }
@@ -1648,7 +1700,7 @@ input CodeChallengeCreateWithoutCodeChallengeCompletionsInput {
   dashedName: String
   description: String
   externalKey: String
-  files: Json
+  files: NullableJsonNullValueInput
   forumTopicId: Int
   id: String
   instructions: String
@@ -1659,13 +1711,13 @@ input CodeChallengeCreateWithoutCodeChallengeCompletionsInput {
   name: String
   order: Int
   rank: Int
-  required: Json
-  solutions: Json
+  required: NullableJsonNullValueInput
+  solutions: NullableJsonNullValueInput
   superOrder: Int
   template: String
-  tests: Json
+  tests: NullableJsonNullValueInput
   time: String
-  translations: Json
+  translations: NullableJsonNullValueInput
   updatedAt: DateTime
   videoUrl: String
 }
@@ -1680,7 +1732,7 @@ input CodeChallengeCreateWithoutResourceInput {
   dashedName: String
   description: String
   externalKey: String
-  files: Json
+  files: NullableJsonNullValueInput
   forumTopicId: Int
   id: String
   instructions: String
@@ -1691,13 +1743,13 @@ input CodeChallengeCreateWithoutResourceInput {
   name: String
   order: Int
   rank: Int
-  required: Json
-  solutions: Json
+  required: NullableJsonNullValueInput
+  solutions: NullableJsonNullValueInput
   superOrder: Int
   template: String
-  tests: Json
+  tests: NullableJsonNullValueInput
   time: String
-  translations: Json
+  translations: NullableJsonNullValueInput
   updatedAt: DateTime
   videoUrl: String
 }
@@ -1712,7 +1764,7 @@ input CodeChallengeCreateWithoutUserInput {
   dashedName: String
   description: String
   externalKey: String
-  files: Json
+  files: NullableJsonNullValueInput
   forumTopicId: Int
   id: String
   instructions: String
@@ -1723,13 +1775,13 @@ input CodeChallengeCreateWithoutUserInput {
   name: String
   order: Int
   rank: Int
-  required: Json
-  solutions: Json
+  required: NullableJsonNullValueInput
+  solutions: NullableJsonNullValueInput
   superOrder: Int
   template: String
-  tests: Json
+  tests: NullableJsonNullValueInput
   time: String
-  translations: Json
+  translations: NullableJsonNullValueInput
   updatedAt: DateTime
   videoUrl: String
 }
@@ -1740,10 +1792,18 @@ input CodeChallengeListRelationFilter {
   some: CodeChallengeWhereInput
 }
 
-input CodeChallengeOrderByInput {
+input CodeChallengeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CodeChallengeOrderByWithRelationInput {
   Block: SortOrder
+  CodeChallengeBlock: CodeChallengeBlockOrderByWithRelationInput
+  CodeChallengeCompletions: CodeChallengeCompletionOrderByRelationAggregateInput
   CreatedBy: SortOrder
+  Resource: ResourceOrderByWithRelationInput
   Topic: SortOrder
+  User: UserOrderByWithRelationInput
   challengeOrder: SortOrder
   challengeType: SortOrder
   createdAt: SortOrder
@@ -1905,6 +1965,10 @@ input CommentListRelationFilter {
   some: CommentWhereInput
 }
 
+input CommentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input CommentUpdateInput {
   components: JSON
   content: JSON
@@ -2046,7 +2110,12 @@ input DonateListRelationFilter {
   some: DonateWhereInput
 }
 
-input DonateOrderByInput {
+input DonateOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input DonateOrderByWithRelationInput {
+  Donator: UserOrderByWithRelationInput
   createdAt: SortOrder
   date: SortOrder
   donatorId: SortOrder
@@ -2278,11 +2347,11 @@ type EthAccount {
 input EthAccountCreateManyEthContractSourceInput {
   CreatedBy: String
   Project: String
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2298,11 +2367,11 @@ input EthAccountCreateManyEthContractSourceInputEnvelope {
 input EthAccountCreateManyProject_EthAccountToProjectInput {
   ContractSource: String
   CreatedBy: String
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2318,11 +2387,11 @@ input EthAccountCreateManyProject_EthAccountToProjectInputEnvelope {
 input EthAccountCreateManyUser_EthAccount_CreatedByToUserInput {
   ContractSource: String
   Project: String
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2446,11 +2515,11 @@ input EthAccountCreateWithoutEthBlockInput {
   Resource: ResourceCreateNestedManyWithoutEthAccount_EthAccountToResourceInput
   User_EthAccountToUser_EthAccountAuthed: UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
   User_EthAccount_CreatedByToUser: UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2467,11 +2536,11 @@ input EthAccountCreateWithoutEthContractSourceInput {
   Resource: ResourceCreateNestedManyWithoutEthAccount_EthAccountToResourceInput
   User_EthAccountToUser_EthAccountAuthed: UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
   User_EthAccount_CreatedByToUser: UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2488,11 +2557,11 @@ input EthAccountCreateWithoutEthTransaction_EthAccountToEthTransaction_AccountIn
   Resource: ResourceCreateNestedManyWithoutEthAccount_EthAccountToResourceInput
   User_EthAccountToUser_EthAccountAuthed: UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
   User_EthAccount_CreatedByToUser: UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2509,11 +2578,11 @@ input EthAccountCreateWithoutEthTransaction_EthAccountToEthTransaction_ReceiverI
   Resource: ResourceCreateNestedManyWithoutEthAccount_EthAccountToResourceInput
   User_EthAccountToUser_EthAccountAuthed: UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
   User_EthAccount_CreatedByToUser: UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2530,11 +2599,11 @@ input EthAccountCreateWithoutEthTransaction_EthAccountToEthTransaction_SenderInp
   Resource: ResourceCreateNestedManyWithoutEthAccount_EthAccountToResourceInput
   User_EthAccountToUser_EthAccountAuthed: UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
   User_EthAccount_CreatedByToUser: UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2551,11 +2620,11 @@ input EthAccountCreateWithoutProject_EthAccountToProjectInput {
   Resource: ResourceCreateNestedManyWithoutEthAccount_EthAccountToResourceInput
   User_EthAccountToUser_EthAccountAuthed: UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
   User_EthAccount_CreatedByToUser: UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2572,11 +2641,11 @@ input EthAccountCreateWithoutResourceInput {
   Project_EthAccountToProject: ProjectCreateNestedOneWithoutEthAccountsInput
   User_EthAccountToUser_EthAccountAuthed: UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
   User_EthAccount_CreatedByToUser: UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2593,11 +2662,11 @@ input EthAccountCreateWithoutUser_EthAccountToUser_EthAccountAuthedInput {
   Project_EthAccountToProject: ProjectCreateNestedOneWithoutEthAccountsInput
   Resource: ResourceCreateNestedManyWithoutEthAccount_EthAccountToResourceInput
   User_EthAccount_CreatedByToUser: UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2614,11 +2683,11 @@ input EthAccountCreateWithoutUser_EthAccount_CreatedByToUserInput {
   Project_EthAccountToProject: ProjectCreateNestedOneWithoutEthAccountsInput
   Resource: ResourceCreateNestedManyWithoutEthAccount_EthAccountToResourceInput
   User_EthAccountToUser_EthAccountAuthed: UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
-  abi: Json
+  abi: NullableJsonNullValueInput
   address: String!
   bytecode: String
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String
   source: String
@@ -2630,6 +2699,35 @@ input EthAccountListRelationFilter {
   every: EthAccountWhereInput
   none: EthAccountWhereInput
   some: EthAccountWhereInput
+}
+
+input EthAccountOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input EthAccountOrderByWithRelationInput {
+  ContractSource: SortOrder
+  CreatedBy: SortOrder
+  EthBlock: EthBlockOrderByRelationAggregateInput
+  EthContractSource: EthContractSourceOrderByWithRelationInput
+  EthTransaction_EthAccountToEthTransaction_Account: EthTransactionOrderByRelationAggregateInput
+  EthTransaction_EthAccountToEthTransaction_Receiver: EthTransactionOrderByRelationAggregateInput
+  EthTransaction_EthAccountToEthTransaction_Sender: EthTransactionOrderByRelationAggregateInput
+  Project: SortOrder
+  Project_EthAccountToProject: ProjectOrderByWithRelationInput
+  Resource: ResourceOrderByRelationAggregateInput
+  User_EthAccountToUser_EthAccountAuthed: UserOrderByRelationAggregateInput
+  User_EthAccount_CreatedByToUser: UserOrderByWithRelationInput
+  abi: SortOrder
+  address: SortOrder
+  bytecode: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  source: SortOrder
+  type: SortOrder
+  updatedAt: SortOrder
 }
 
 enum EthAccountType {
@@ -2865,6 +2963,10 @@ input EthBlockListRelationFilter {
   some: EthBlockWhereInput
 }
 
+input EthBlockOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input EthBlockWhereInput {
   AND: [EthBlockWhereInput!]
   EthAccount: EthAccountWhereInput
@@ -2903,7 +3005,7 @@ input EthBlockWhereUniqueInput {
 
 input EthContractSourceCreateManyUserInput {
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String!
   source: String
@@ -2941,7 +3043,7 @@ input EthContractSourceCreateOrConnectWithoutUserInput {
 input EthContractSourceCreateWithoutEthAccountInput {
   User: UserCreateNestedOneWithoutEthContractSourcesInput
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String!
   source: String
@@ -2951,7 +3053,7 @@ input EthContractSourceCreateWithoutEthAccountInput {
 input EthContractSourceCreateWithoutUserInput {
   EthAccount: EthAccountCreateNestedManyWithoutEthContractSourceInput
   createdAt: DateTime
-  description: Json
+  description: NullableJsonNullValueInput
   id: String
   name: String!
   source: String
@@ -2962,6 +3064,22 @@ input EthContractSourceListRelationFilter {
   every: EthContractSourceWhereInput
   none: EthContractSourceWhereInput
   some: EthContractSourceWhereInput
+}
+
+input EthContractSourceOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input EthContractSourceOrderByWithRelationInput {
+  CreatedBy: SortOrder
+  EthAccount: EthAccountOrderByRelationAggregateInput
+  User: UserOrderByWithRelationInput
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  source: SortOrder
+  updatedAt: SortOrder
 }
 
 input EthContractSourceWhereInput {
@@ -3199,6 +3317,10 @@ input EthTransactionListRelationFilter {
   every: EthTransactionWhereInput
   none: EthTransactionWhereInput
   some: EthTransactionWhereInput
+}
+
+input EthTransactionOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 enum EthTransactionType {
@@ -3474,10 +3596,18 @@ input FileListRelationFilter {
   some: FileWhereInput
 }
 
-input FileOrderByInput {
+input FileOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input FileOrderByWithRelationInput {
   CreatedBy: SortOrder
   Gallery: SortOrder
+  Gallery_FileToGallery: GalleryOrderByWithRelationInput
   ImageResource: SortOrder
+  Projects: ProjectOrderByRelationAggregateInput
+  Resource: ResourceOrderByWithRelationInput
+  User: UserOrderByWithRelationInput
   createdAt: SortOrder
   encoding: SortOrder
   filename: SortOrder
@@ -3622,6 +3752,22 @@ input GalleryListRelationFilter {
   every: GalleryWhereInput
   none: GalleryWhereInput
   some: GalleryWhereInput
+}
+
+input GalleryOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input GalleryOrderByWithRelationInput {
+  CreatedBy: SortOrder
+  Files: FileOrderByRelationAggregateInput
+  Resource: SortOrder
+  Resource_GalleryToResource: ResourceOrderByWithRelationInput
+  User: UserOrderByWithRelationInput
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
 }
 
 input GalleryWhereInput {
@@ -3892,6 +4038,10 @@ input GameListRelationFilter {
   some: GameWhereInput
 }
 
+input GameOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input GameResultCreateManyGame_GameToGameResultInput {
   CreatedBy: String
   Team: String
@@ -4062,6 +4212,10 @@ input GameResultListRelationFilter {
   some: GameResultWhereInput
 }
 
+input GameResultOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input GameResultWhereInput {
   AND: [GameResultWhereInput!]
   CreatedBy: StringNullableFilter
@@ -4160,6 +4314,10 @@ input ImportListRelationFilter {
   some: ImportWhereInput
 }
 
+input ImportOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 enum ImportStatus {
   Completed
   Created
@@ -4241,11 +4399,19 @@ input InventoryWhereUniqueInput {
 
 scalar JSON
 
-scalar Json
+enum JsonNullValueFilter {
+  AnyNull
+  DbNull
+  JsonNull
+}
+
+enum JsonNullValueInput {
+  JsonNull
+}
 
 input JsonNullableFilter {
-  equals: Json
-  not: Json
+  equals: JsonNullValueFilter
+  not: JsonNullValueFilter
 }
 
 type LearnStrategy {
@@ -4380,7 +4546,15 @@ input LearnStrategyListRelationFilter {
   some: LearnStrategyWhereInput
 }
 
-input LearnStrategyOrderByInput {
+input LearnStrategyOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input LearnStrategyOrderByWithRelationInput {
+  CreatedBy: UserOrderByWithRelationInput
+  LearnStrategyStages: LearnStrategyStageOrderByRelationAggregateInput
+  LearnStrategyStagesTargets: LearnStrategyStageOrderByRelationAggregateInput
+  UserLearnStrategies: UserLearnStrategyOrderByRelationAggregateInput
   createdAt: SortOrder
   createdById: SortOrder
   description: SortOrder
@@ -4553,7 +4727,14 @@ input LearnStrategyStageListRelationFilter {
   some: LearnStrategyStageWhereInput
 }
 
-input LearnStrategyStageOrderByInput {
+input LearnStrategyStageOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input LearnStrategyStageOrderByWithRelationInput {
+  LearnStrategy: LearnStrategyOrderByWithRelationInput
+  LearnStrategyTarget: LearnStrategyOrderByWithRelationInput
+  Technology: TechnologyOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
   learnStrategyId: SortOrder
@@ -4776,6 +4957,10 @@ input LetterListRelationFilter {
   some: LetterWhereInput
 }
 
+input LetterOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 enum LetterStatus {
   Created
   Error
@@ -4914,6 +5099,10 @@ input LogedInListRelationFilter {
   some: LogedInWhereInput
 }
 
+input LogedInOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input LogedInWhereInput {
   AND: [LogedInWhereInput!]
   NOT: [LogedInWhereInput!]
@@ -5035,7 +5224,13 @@ input MentorMenteeMentorIdMenteeIdCompoundUniqueInput {
   mentorId: String!
 }
 
-input MentorMenteeOrderByInput {
+input MentorMenteeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input MentorMenteeOrderByWithRelationInput {
+  Mentee: UserOrderByWithRelationInput
+  Mentor: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
   menteeId: SortOrder
@@ -5721,10 +5916,18 @@ input NoticeListRelationFilter {
   some: NoticeWhereInput
 }
 
-input NoticeOrderByInput {
+input NoticeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input NoticeOrderByWithRelationInput {
   ChatMessage: SortOrder
+  ChatMessage_ChatMessageToNotice: ChatMessageOrderByWithRelationInput
+  ChatRoomInvitations: ChatRoomInvitationOrderByRelationAggregateInput
   CreatedBy: SortOrder
   User: SortOrder
+  User_Notice_CreatedByToUser: UserOrderByWithRelationInput
+  User_Notice_UserToUser: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
   type: SortOrder
@@ -5835,8 +6038,14 @@ input NotificationTypeListRelationFilter {
   some: NotificationTypeWhereInput
 }
 
-input NotificationTypeOrderByInput {
+input NotificationTypeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input NotificationTypeOrderByWithRelationInput {
   CreatedBy: SortOrder
+  User_NotificationTypeToUser: UserOrderByWithRelationInput
+  User_UserNotificationTypes: UserOrderByRelationAggregateInput
   code: SortOrder
   comment: SortOrder
   createdAt: SortOrder
@@ -5871,6 +6080,11 @@ input NotificationTypeWhereUniqueInput {
 input NotificationType_UserNotificationTypes_UpdateInput {
   connect: NotificationTypeWhereUniqueInput
   disconnect: NotificationTypeWhereUniqueInput
+}
+
+enum NullableJsonNullValueInput {
+  DbNull
+  JsonNull
 }
 
 input PlayerCreateManyUserInput {
@@ -5977,6 +6191,10 @@ input PlayerListRelationFilter {
   some: PlayerWhereInput
 }
 
+input PlayerOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input PlayerWhereInput {
   AND: [PlayerWhereInput!]
   Inventory: InventoryWhereInput
@@ -6064,6 +6282,10 @@ input PositionListRelationFilter {
   some: PositionWhereInput
 }
 
+input PositionOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input PositionWhereInput {
   AND: [PositionWhereInput!]
   CreatedBy: StringNullableFilter
@@ -6086,7 +6308,7 @@ input PositionWhereUniqueInput {
 type Project {
   CreatedBy: User
   Members: [ProjectMember!]
-  ProjectTasks(orderBy: ProjectTaskOrderByInput): [ProjectTask!]
+  ProjectTasks(orderBy: ProjectTaskOrderByWithRelationInput): [ProjectTask!]
   Resource: Resource
   content: JSON
   contentText: String
@@ -6114,7 +6336,7 @@ input ProjectCreateManyChatRoom_ChatRoomToProjectInput {
   Image: String
   Resource: String
   Team: String
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6140,7 +6362,7 @@ input ProjectCreateManyFileInput {
   CreatedBy: String
   Resource: String
   Team: String
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6166,7 +6388,7 @@ input ProjectCreateManyResource_Project_ResourceToResourceInput {
   CreatedBy: String
   Image: String
   Team: String
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6192,7 +6414,7 @@ input ProjectCreateManyTeam_ProjectToTeamInput {
   CreatedBy: String
   Image: String
   Resource: String
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6218,7 +6440,7 @@ input ProjectCreateManyUser_ProjectToUserInput {
   Image: String
   Resource: String
   Team: String
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6404,7 +6626,7 @@ input ProjectCreateWithoutChatRoom_ChatRoomToProjectInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6433,7 +6655,7 @@ input ProjectCreateWithoutEthAccountsInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6462,7 +6684,7 @@ input ProjectCreateWithoutFileInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6491,7 +6713,7 @@ input ProjectCreateWithoutProjectMembersInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6520,7 +6742,7 @@ input ProjectCreateWithoutProjectTasksInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6549,7 +6771,7 @@ input ProjectCreateWithoutResource_Project_ResourceToResourceInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6578,7 +6800,7 @@ input ProjectCreateWithoutResources_ProjectToResource_PrismaProjectInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6607,7 +6829,7 @@ input ProjectCreateWithoutTeam_ProjectCustomersInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6636,7 +6858,7 @@ input ProjectCreateWithoutTeam_ProjectToTeamInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6665,7 +6887,7 @@ input ProjectCreateWithoutTemplates_ProjectToTemplate_PrismaProjectInput {
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6694,7 +6916,7 @@ input ProjectCreateWithoutTemplates_ProjectToTemplate_ProjectInput {
   Templates_ProjectToTemplate_PrismaProject: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_PrismaProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6723,7 +6945,7 @@ input ProjectCreateWithoutUser_PrismaProjectUsersInput {
   Templates_ProjectToTemplate_PrismaProject: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_PrismaProjectInput
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_ProjectToUser: UserCreateNestedOneWithoutProjects_ProjectToUserInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6752,7 +6974,7 @@ input ProjectCreateWithoutUser_ProjectToUserInput {
   Templates_ProjectToTemplate_PrismaProject: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_PrismaProjectInput
   Templates_ProjectToTemplate_Project: TemplateCreateNestedManyWithoutProject_ProjectToTemplate_ProjectInput
   User_PrismaProjectUsers: UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
-  content: Json
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -6918,6 +7140,10 @@ input ProjectMemberListRelationFilter {
   some: ProjectMemberWhereInput
 }
 
+input ProjectMemberOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 enum ProjectMemberStatus {
   Active
   Fired
@@ -6946,12 +7172,29 @@ input ProjectMemberWhereUniqueInput {
   id: String
 }
 
-input ProjectOrderByInput {
+input ProjectOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ProjectOrderByWithRelationInput {
   ChatRoom: SortOrder
+  ChatRoom_ChatRoomToProject: ChatRoomOrderByWithRelationInput
   CreatedBy: SortOrder
+  EthAccounts: EthAccountOrderByRelationAggregateInput
+  File: FileOrderByWithRelationInput
   Image: SortOrder
+  ProjectMembers: ProjectMemberOrderByRelationAggregateInput
+  ProjectTasks: ProjectTaskOrderByRelationAggregateInput
   Resource: SortOrder
+  Resource_Project_ResourceToResource: ResourceOrderByWithRelationInput
+  Resources_ProjectToResource_PrismaProject: ResourceOrderByRelationAggregateInput
   Team: SortOrder
+  Team_ProjectCustomers: TeamOrderByRelationAggregateInput
+  Team_ProjectToTeam: TeamOrderByWithRelationInput
+  Templates_ProjectToTemplate_PrismaProject: TemplateOrderByRelationAggregateInput
+  Templates_ProjectToTemplate_Project: TemplateOrderByRelationAggregateInput
+  User_PrismaProjectUsers: UserOrderByRelationAggregateInput
+  User_ProjectToUser: UserOrderByWithRelationInput
   content: SortOrder
   contentText: SortOrder
   createdAt: SortOrder
@@ -7098,10 +7341,17 @@ input ProjectTaskListRelationFilter {
   some: ProjectTaskWhereInput
 }
 
-input ProjectTaskOrderByInput {
+input ProjectTaskOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ProjectTaskOrderByWithRelationInput {
   CreatedBy: SortOrder
   Project: SortOrder
+  Project_ProjectToProjectTask: ProjectOrderByWithRelationInput
   Task: SortOrder
+  Task_ProjectTaskToTask: TaskOrderByWithRelationInput
+  User: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
   updatedAt: SortOrder
@@ -7193,7 +7443,7 @@ type Query {
   chatMessage(where: ChatMessageWhereUniqueInput!): ChatMessage
   chatMessages(
     cursor: ChatMessageWhereUniqueInput
-    orderBy: [ChatMessageOrderByInput!]
+    orderBy: [ChatMessageOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: ChatMessageWhereInput
@@ -7202,7 +7452,7 @@ type Query {
   chatRoom(where: ChatRoomWhereUniqueInput!): ChatRoom
   chatRooms(
     cursor: ChatRoomWhereUniqueInput
-    orderBy: [ChatRoomOrderByInput!]
+    orderBy: [ChatRoomOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: ChatRoomWhereInput
@@ -7218,7 +7468,7 @@ type Query {
   ): CodeChallengeBlock
   codeChallengeBlocks(
     cursor: CodeChallengeBlockWhereUniqueInput
-    orderBy: [CodeChallengeBlockOrderByInput!]
+    orderBy: [CodeChallengeBlockOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: CodeChallengeBlockWhereInput
@@ -7229,14 +7479,14 @@ type Query {
   ): CodeChallengeCompletion
   codeChallengeCompletions(
     cursor: CodeChallengeCompletionWhereUniqueInput
-    orderBy: [CodeChallengeCompletionOrderByInput!]
+    orderBy: [CodeChallengeCompletionOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: CodeChallengeCompletionWhereInput
   ): [CodeChallengeCompletion!]!
   codeChallenges(
     cursor: CodeChallengeWhereUniqueInput
-    orderBy: [CodeChallengeOrderByInput!]
+    orderBy: [CodeChallengeOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: CodeChallengeWhereInput
@@ -7244,7 +7494,7 @@ type Query {
   donate(where: DonateWhereUniqueInput!): Donate
   donates(
     cursor: DonateWhereUniqueInput
-    orderBy: [DonateOrderByInput!]
+    orderBy: [DonateOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: DonateWhereInput
@@ -7261,7 +7511,7 @@ type Query {
   """
   files(
     cursor: FileWhereUniqueInput
-    orderBy: [FileOrderByInput!]
+    orderBy: [FileOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: FileWhereInput
@@ -7273,7 +7523,7 @@ type Query {
   filesCount(where: FileWhereInput): Int!
   learnStrategies(
     cursor: LearnStrategyWhereUniqueInput
-    orderBy: [LearnStrategyOrderByInput!]
+    orderBy: [LearnStrategyOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: LearnStrategyWhereInput
@@ -7285,7 +7535,7 @@ type Query {
   ): LearnStrategyStage
   learnStrategyStages(
     cursor: LearnStrategyStageWhereUniqueInput
-    orderBy: [LearnStrategyStageOrderByInput!]
+    orderBy: [LearnStrategyStageOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: LearnStrategyStageWhereInput
@@ -7295,7 +7545,7 @@ type Query {
   mentorMentee(where: MentorMenteeWhereUniqueInput!): MentorMentee
   mentorMentees(
     cursor: MentorMenteeWhereUniqueInput
-    orderBy: [MentorMenteeOrderByInput!]
+    orderBy: [MentorMenteeOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: MentorMenteeWhereInput
@@ -7312,7 +7562,7 @@ type Query {
   """
   notices(
     cursor: NoticeWhereUniqueInput
-    orderBy: [NoticeOrderByInput!]
+    orderBy: [NoticeOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: NoticeWhereInput
@@ -7328,7 +7578,7 @@ type Query {
   """
   notificationTypes(
     cursor: NotificationTypeWhereUniqueInput
-    orderBy: [NotificationTypeOrderByInput!]
+    orderBy: [NotificationTypeOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: NotificationTypeWhereInput
@@ -7341,14 +7591,14 @@ type Query {
   project(where: ProjectWhereUniqueInput!): Project
   projectTasks(
     cursor: ProjectTaskWhereUniqueInput
-    orderBy: [ProjectTaskOrderByInput!]
+    orderBy: [ProjectTaskOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: ProjectTaskWhereInput
   ): [ProjectTask!]!
   projects(
     cursor: ProjectWhereUniqueInput
-    orderBy: [ProjectOrderByInput!]
+    orderBy: [ProjectOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: ProjectWhereInput
@@ -7357,7 +7607,7 @@ type Query {
   resource(where: ResourceWhereUniqueInput!): Resource
   resources(
     cursor: ResourceWhereUniqueInput
-    orderBy: [ResourceOrderByInput!]
+    orderBy: [ResourceOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: ResourceWhereInput
@@ -7366,7 +7616,7 @@ type Query {
   tag(where: TagWhereUniqueInput!): Tag
   tags(
     cursor: TagWhereUniqueInput
-    orderBy: [TagOrderByInput!]
+    orderBy: [TagOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: TagWhereInput
@@ -7375,7 +7625,7 @@ type Query {
   task(where: TaskWhereUniqueInput!): Task
   taskTechnologies(
     cursor: TaskTechnologyWhereUniqueInput
-    orderBy: [TaskTechnologyOrderByInput!]
+    orderBy: [TaskTechnologyOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: TaskTechnologyWhereInput
@@ -7384,7 +7634,7 @@ type Query {
   taskTechnologysCount(where: TaskTechnologyWhereInput): Int!
   tasks(
     cursor: TaskWhereUniqueInput
-    orderBy: [TaskOrderByInput!]
+    orderBy: [TaskOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: TaskWhereInput
@@ -7392,7 +7642,7 @@ type Query {
   tasksCount(where: TaskWhereInput): Int!
   technologies(
     cursor: TechnologyWhereUniqueInput
-    orderBy: [TechnologyOrderByInput!]
+    orderBy: [TechnologyOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: TechnologyWhereInput
@@ -7402,7 +7652,7 @@ type Query {
   timer(where: TimerWhereUniqueInput!): Timer
   timers(
     cursor: TimerWhereUniqueInput
-    orderBy: [TimerOrderByInput!]
+    orderBy: [TimerOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: TimerWhereInput
@@ -7419,7 +7669,7 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   userLearnStrategies(
     cursor: UserLearnStrategyWhereUniqueInput
-    orderBy: [UserLearnStrategyOrderByInput!]
+    orderBy: [UserLearnStrategyOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: UserLearnStrategyWhereInput
@@ -7430,7 +7680,7 @@ type Query {
   ): UserLearnStrategy
   userTechnologies(
     cursor: UserTechnologyWhereUniqueInput
-    orderBy: [UserTechnologyOrderByInput!]
+    orderBy: [UserTechnologyOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: UserTechnologyWhereInput
@@ -7443,7 +7693,7 @@ type Query {
   """
   users(
     cursor: UserWhereUniqueInput
-    orderBy: [UserOrderByInput!]
+    orderBy: [UserOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: UserWhereInput
@@ -7509,6 +7759,10 @@ input ResetPasswordListRelationFilter {
   some: ResetPasswordWhereInput
 }
 
+input ResetPasswordOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input ResetPasswordProcessorWhereInput {
   User: UserWhereUniqueInput!
   code: ID!
@@ -7546,7 +7800,7 @@ type Resource {
   """
   Комментарии
   """
-  Comments(orderBy: ResourceOrderByInput): [Resource!]
+  Comments(orderBy: ResourceOrderByWithRelationInput): [Resource!]
   CreatedBy: User
   Image: File
   Tags: [ResourceTag!]
@@ -7590,8 +7844,8 @@ input ResourceCreateManyEthAccount_EthAccountToResourceInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -7631,8 +7885,8 @@ input ResourceCreateManyProject_ProjectToResource_PrismaProjectInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -7672,8 +7926,8 @@ input ResourceCreateManyResource_ResourceToResource_BlogInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -7713,8 +7967,8 @@ input ResourceCreateManyResource_ResourceToResource_ParentInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -7754,8 +8008,8 @@ input ResourceCreateManyResource_ResourceToResource_TopicInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -7795,8 +8049,8 @@ input ResourceCreateManyService_ResourceToServiceInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -7836,8 +8090,8 @@ input ResourceCreateManyTask_ResourceToTaskInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -7877,8 +8131,8 @@ input ResourceCreateManyTeam_ResourceToTeamInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -7918,8 +8172,8 @@ input ResourceCreateManyUserInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8172,8 +8426,8 @@ input ResourceCreateWithoutCodeChallengesInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8217,8 +8471,8 @@ input ResourceCreateWithoutEthAccount_EthAccountToResourceInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8262,8 +8516,8 @@ input ResourceCreateWithoutFilesInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8307,8 +8561,8 @@ input ResourceCreateWithoutGalleriesInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8353,8 +8607,8 @@ input ResourceCreateWithoutOther_Resource_ResourceToResource_BlogsInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8398,8 +8652,8 @@ input ResourceCreateWithoutOther_Resource_ResourceToResource_ParentsInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8443,8 +8697,8 @@ input ResourceCreateWithoutOther_Resource_ResourceToResource_TopicsInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8487,8 +8741,8 @@ input ResourceCreateWithoutProject_ProjectToResource_PrismaProjectInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8532,8 +8786,8 @@ input ResourceCreateWithoutProjects_Project_ResourceToResourceInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8577,8 +8831,8 @@ input ResourceCreateWithoutResourceTagsInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8622,8 +8876,8 @@ input ResourceCreateWithoutResource_ResourceToResource_BlogInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8667,8 +8921,8 @@ input ResourceCreateWithoutResource_ResourceToResource_ParentInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8712,8 +8966,8 @@ input ResourceCreateWithoutResource_ResourceToResource_TopicInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8757,8 +9011,8 @@ input ResourceCreateWithoutService_ResourceToServiceInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8802,8 +9056,8 @@ input ResourceCreateWithoutTask_ResourceToTaskInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8847,8 +9101,8 @@ input ResourceCreateWithoutTeam_ResourceToTeamInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8892,8 +9146,8 @@ input ResourceCreateWithoutUserInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8937,8 +9191,8 @@ input ResourceCreateWithoutVotesInput {
   class_key: String
   code: String
   commentOldID: Int
-  components: Json
-  content: Json
+  components: NullableJsonNullValueInput
+  content: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   deleted: Boolean
@@ -8970,16 +9224,35 @@ input ResourceListRelationFilter {
   some: ResourceWhereInput
 }
 
-input ResourceOrderByInput {
+input ResourceOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ResourceOrderByWithRelationInput {
   Blog: SortOrder
+  CodeChallenges: CodeChallengeOrderByRelationAggregateInput
   CreatedBy: SortOrder
   EthAccount: SortOrder
+  EthAccount_EthAccountToResource: EthAccountOrderByWithRelationInput
+  Files: FileOrderByRelationAggregateInput
+  Galleries: GalleryOrderByRelationAggregateInput
   Parent: SortOrder
   PrismaProject: SortOrder
+  Project_ProjectToResource_PrismaProject: ProjectOrderByWithRelationInput
+  Projects_Project_ResourceToResource: ProjectOrderByRelationAggregateInput
+  ResourceTags: ResourceTagOrderByRelationAggregateInput
+  Resource_ResourceToResource_Blog: ResourceOrderByWithRelationInput
+  Resource_ResourceToResource_Parent: ResourceOrderByWithRelationInput
+  Resource_ResourceToResource_Topic: ResourceOrderByWithRelationInput
   Service: SortOrder
+  Service_ResourceToService: ServiceOrderByWithRelationInput
   Task: SortOrder
+  Task_ResourceToTask: TaskOrderByWithRelationInput
   Team: SortOrder
+  Team_ResourceToTeam: TeamOrderByWithRelationInput
   Topic: SortOrder
+  User: UserOrderByWithRelationInput
+  Votes: VoteOrderByRelationAggregateInput
   class_key: SortOrder
   code: SortOrder
   commentOldID: SortOrder
@@ -8997,6 +9270,9 @@ input ResourceOrderByInput {
   negativeVotesCount: SortOrder
   neutralVotesCount: SortOrder
   oldID: SortOrder
+  other_Resource_ResourceToResource_Blogs: ResourceOrderByRelationAggregateInput
+  other_Resource_ResourceToResource_Parents: ResourceOrderByRelationAggregateInput
+  other_Resource_ResourceToResource_Topics: ResourceOrderByRelationAggregateInput
   positiveVotesCount: SortOrder
   published: SortOrder
   rating: SortOrder
@@ -9133,6 +9409,10 @@ input ResourceTagListRelationFilter {
   every: ResourceTagWhereInput
   none: ResourceTagWhereInput
   some: ResourceTagWhereInput
+}
+
+input ResourceTagOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input ResourceTagWhereInput {
@@ -9331,6 +9611,10 @@ input RouteListRelationFilter {
   some: RouteWhereInput
 }
 
+input RouteOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input RouteWhereInput {
   AND: [RouteWhereInput!]
   CreatedBy: StringNullableFilter
@@ -9479,6 +9763,25 @@ input ServiceCategoryListRelationFilter {
   every: ServiceCategoryWhereInput
   none: ServiceCategoryWhereInput
   some: ServiceCategoryWhereInput
+}
+
+input ServiceCategoryOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ServiceCategoryOrderByWithRelationInput {
+  CreatedBy: SortOrder
+  Parent: SortOrder
+  ServiceCategory: ServiceCategoryOrderByWithRelationInput
+  Services: ServiceOrderByRelationAggregateInput
+  User: UserOrderByWithRelationInput
+  code: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  other_ServiceCategories: ServiceCategoryOrderByRelationAggregateInput
+  updatedAt: SortOrder
 }
 
 input ServiceCategoryWhereInput {
@@ -9729,6 +10032,30 @@ input ServiceListRelationFilter {
   some: ServiceWhereInput
 }
 
+input ServiceOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ServiceOrderByWithRelationInput {
+  Category: SortOrder
+  CreatedBy: SortOrder
+  Parent: SortOrder
+  ProjectMembers: ProjectMemberOrderByRelationAggregateInput
+  Resources: ResourceOrderByRelationAggregateInput
+  Service: ServiceOrderByWithRelationInput
+  ServiceCategory: ServiceCategoryOrderByWithRelationInput
+  User: UserOrderByWithRelationInput
+  code: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  oldID: SortOrder
+  other_Services: ServiceOrderByRelationAggregateInput
+  rank: SortOrder
+  updatedAt: SortOrder
+}
+
 input ServiceWhereInput {
   AND: [ServiceWhereInput!]
   Category: StringNullableFilter
@@ -9789,6 +10116,10 @@ input SettingsListRelationFilter {
   every: SettingsWhereInput
   none: SettingsWhereInput
   some: SettingsWhereInput
+}
+
+input SettingsOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input SettingsWhereInput {
@@ -9904,6 +10235,10 @@ input SmsMessageListRelationFilter {
   some: SmsMessageWhereInput
 }
 
+input SmsMessageOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input SmsMessageWhereInput {
   AND: [SmsMessageWhereInput!]
   CreatedBy: StringNullableFilter
@@ -9981,7 +10316,7 @@ input SmsMessage_recipientsWhereUniqueInput {
 
 input SmsProviderCreateManyUserInput {
   createdAt: DateTime
-  credentials: Json
+  credentials: NullableJsonNullValueInput
   id: String
   name: String!
   updatedAt: DateTime
@@ -10018,7 +10353,7 @@ input SmsProviderCreateOrConnectWithoutUserInput {
 input SmsProviderCreateWithoutSmsMessagesInput {
   User: UserCreateNestedOneWithoutSmsProvidersInput
   createdAt: DateTime
-  credentials: Json
+  credentials: NullableJsonNullValueInput
   id: String
   name: String!
   updatedAt: DateTime
@@ -10027,7 +10362,7 @@ input SmsProviderCreateWithoutSmsMessagesInput {
 input SmsProviderCreateWithoutUserInput {
   SmsMessages: SmsMessageCreateNestedManyWithoutSmsProviderInput
   createdAt: DateTime
-  credentials: Json
+  credentials: NullableJsonNullValueInput
   id: String
   name: String!
   updatedAt: DateTime
@@ -10037,6 +10372,10 @@ input SmsProviderListRelationFilter {
   every: SmsProviderWhereInput
   none: SmsProviderWhereInput
   some: SmsProviderWhereInput
+}
+
+input SmsProviderOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input SmsProviderWhereInput {
@@ -10159,8 +10498,14 @@ input TagListRelationFilter {
   some: TagWhereInput
 }
 
-input TagOrderByInput {
+input TagOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TagOrderByWithRelationInput {
   CreatedBy: SortOrder
+  ResourceTags: ResourceTagOrderByRelationAggregateInput
+  User: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
   name: SortOrder
@@ -10196,14 +10541,17 @@ input TagWhereUniqueInput {
 type Task {
   CodeChallengeCompletion: CodeChallengeCompletion
   Comments(
-    orderBy: ResourceOrderByInput
+    orderBy: ResourceOrderByWithRelationInput
     where: ResourceWhereInput
   ): [Resource!]
   CreatedBy: User
   Parent: Task
   TaskProjects: [ProjectTask!]
   TaskTechnologies: [TaskTechnology!]
-  Timers(orderBy: TimerOrderByInput, where: TimerWhereInput): [Timer!]
+  Timers(
+    orderBy: TimerOrderByWithRelationInput
+    where: TimerWhereInput
+  ): [Timer!]
   content: JSON
   createdAt: DateTime!
   description: String
@@ -10236,7 +10584,7 @@ input TaskCreateInput {
 input TaskCreateManyChatRoom_ChatRoomToTaskInput {
   CreatedBy: String
   Parent: String
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10258,7 +10606,7 @@ input TaskCreateManyChatRoom_ChatRoomToTaskInputEnvelope {
 input TaskCreateManyTaskInput {
   ChatRoom: String
   CreatedBy: String
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10280,7 +10628,7 @@ input TaskCreateManyTaskInputEnvelope {
 input TaskCreateManyUserInput {
   ChatRoom: String
   Parent: String
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10473,7 +10821,7 @@ input TaskCreateWithoutChatRoom_ChatRoomToTaskInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10500,7 +10848,7 @@ input TaskCreateWithoutCodeChallengeCompletionsInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10528,7 +10876,7 @@ input TaskCreateWithoutOther_TasksInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10554,7 +10902,7 @@ input TaskCreateWithoutProjectTasksInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10581,7 +10929,7 @@ input TaskCreateWithoutResourcesInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10608,7 +10956,7 @@ input TaskCreateWithoutTaskInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10635,7 +10983,7 @@ input TaskCreateWithoutTaskMembersInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10662,7 +11010,7 @@ input TaskCreateWithoutTaskReactionsInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10689,7 +11037,7 @@ input TaskCreateWithoutTaskTechnologiesInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10716,7 +11064,7 @@ input TaskCreateWithoutTasks_AInput {
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10743,7 +11091,7 @@ input TaskCreateWithoutTasks_BInput {
   Tasks_A: TaskCreateNestedManyWithoutTasks_BInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10770,7 +11118,7 @@ input TaskCreateWithoutTimersInput {
   Tasks_A: TaskCreateNestedManyWithoutTasks_BInput
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   User: UserCreateNestedOneWithoutTasksInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10797,7 +11145,7 @@ input TaskCreateWithoutUserInput {
   Tasks_A: TaskCreateNestedManyWithoutTasks_BInput
   Tasks_B: TaskCreateNestedManyWithoutTasks_AInput
   Timers: TimerCreateNestedManyWithoutTask_TaskToTimerInput
-  content: Json
+  content: NullableJsonNullValueInput
   createdAt: DateTime
   description: String
   endDate: DateTime
@@ -10929,6 +11277,10 @@ input TaskMemberListRelationFilter {
   some: TaskMemberWhereInput
 }
 
+input TaskMemberOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 enum TaskMemberStatus {
   Active
   Fired
@@ -10956,10 +11308,26 @@ input TaskMemberWhereUniqueInput {
   id: String
 }
 
-input TaskOrderByInput {
+input TaskOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TaskOrderByWithRelationInput {
   ChatRoom: SortOrder
+  ChatRoom_ChatRoomToTask: ChatRoomOrderByWithRelationInput
+  CodeChallengeCompletions: CodeChallengeCompletionOrderByRelationAggregateInput
   CreatedBy: SortOrder
   Parent: SortOrder
+  ProjectTasks: ProjectTaskOrderByRelationAggregateInput
+  Resources: ResourceOrderByRelationAggregateInput
+  Task: TaskOrderByWithRelationInput
+  TaskMembers: TaskMemberOrderByRelationAggregateInput
+  TaskReactions: TaskReactionOrderByRelationAggregateInput
+  TaskTechnologies: TaskTechnologyOrderByRelationAggregateInput
+  Tasks_A: TaskOrderByRelationAggregateInput
+  Tasks_B: TaskOrderByRelationAggregateInput
+  Timers: TimerOrderByRelationAggregateInput
+  User: UserOrderByWithRelationInput
   content: SortOrder
   createdAt: SortOrder
   description: SortOrder
@@ -10968,6 +11336,7 @@ input TaskOrderByInput {
   id: SortOrder
   name: SortOrder
   needHelp: SortOrder
+  other_Tasks: TaskOrderByRelationAggregateInput
   startDate: SortOrder
   startDatePlaning: SortOrder
   status: SortOrder
@@ -11051,6 +11420,10 @@ input TaskReactionListRelationFilter {
   every: TaskReactionWhereInput
   none: TaskReactionWhereInput
   some: TaskReactionWhereInput
+}
+
+input TaskReactionOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 enum TaskReactionType {
@@ -11223,10 +11596,17 @@ input TaskTechnologyListRelationFilter {
   some: TaskTechnologyWhereInput
 }
 
-input TaskTechnologyOrderByInput {
+input TaskTechnologyOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TaskTechnologyOrderByWithRelationInput {
   CreatedBy: SortOrder
   Task: SortOrder
+  Task_TaskToTaskTechnology: TaskOrderByWithRelationInput
   Technology: SortOrder
+  Technology_TaskTechnologyToTechnology: TechnologyOrderByWithRelationInput
+  User: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
   level: SortOrder
@@ -11768,6 +12148,10 @@ input TeamMemberListRelationFilter {
   some: TeamMemberWhereInput
 }
 
+input TeamMemberOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 enum TeamMemberStatus {
   Active
   Fired
@@ -11792,6 +12176,34 @@ input TeamMemberWhereInput {
 
 input TeamMemberWhereUniqueInput {
   id: String
+}
+
+input TeamOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TeamOrderByWithRelationInput {
+  CreatedBy: SortOrder
+  GameResults: GameResultOrderByRelationAggregateInput
+  Games: GameOrderByRelationAggregateInput
+  Parent: SortOrder
+  Project_ProjectCustomers: ProjectOrderByRelationAggregateInput
+  Projects_ProjectToTeam: ProjectOrderByRelationAggregateInput
+  Resources: ResourceOrderByRelationAggregateInput
+  Team: TeamOrderByWithRelationInput
+  TeamMembers: TeamMemberOrderByRelationAggregateInput
+  User: UserOrderByWithRelationInput
+  address: SortOrder
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  name: SortOrder
+  oldID: SortOrder
+  other_Teams: TeamOrderByRelationAggregateInput
+  phone: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+  website: SortOrder
 }
 
 enum TeamStatus {
@@ -11834,9 +12246,11 @@ input TeamWhereUniqueInput {
 type Technology {
   CreatedBy: User
   LearnStrategyStages(
-    orderBy: LearnStrategyStageOrderByInput
+    orderBy: LearnStrategyStageOrderByWithRelationInput
   ): [LearnStrategyStage!]
-  UserTechnologies(orderBy: UserTechnologyOrderByInput): [UserTechnology!]
+  UserTechnologies(
+    orderBy: UserTechnologyOrderByWithRelationInput
+  ): [UserTechnology!]
   components: EditorComponentObject
   createdAt: DateTime!
   description: String
@@ -11877,7 +12291,7 @@ input TechnologyCreateInput {
 }
 
 input TechnologyCreateManyUserInput {
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -11966,7 +12380,7 @@ input TechnologyCreateWithoutLearnStrategyStagesInput {
   TechnologyLessons: TechnologyLessonCreateNestedManyWithoutTechnology_TechnologyToTechnologyLessonInput
   User: UserCreateNestedOneWithoutTechnologiesInput!
   UserTechnologies: UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -11986,7 +12400,7 @@ input TechnologyCreateWithoutTaskTechnologiesInput {
   TechnologyLessons: TechnologyLessonCreateNestedManyWithoutTechnology_TechnologyToTechnologyLessonInput
   User: UserCreateNestedOneWithoutTechnologiesInput!
   UserTechnologies: UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -12006,7 +12420,7 @@ input TechnologyCreateWithoutTechnologyLessonsInput {
   TaskTechnologies: TaskTechnologyCreateNestedManyWithoutTechnology_TaskTechnologyToTechnologyInput
   User: UserCreateNestedOneWithoutTechnologiesInput!
   UserTechnologies: UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -12026,7 +12440,7 @@ input TechnologyCreateWithoutUserInput {
   TaskTechnologies: TaskTechnologyCreateNestedManyWithoutTechnology_TaskTechnologyToTechnologyInput
   TechnologyLessons: TechnologyLessonCreateNestedManyWithoutTechnology_TechnologyToTechnologyLessonInput
   UserTechnologies: UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -12046,7 +12460,7 @@ input TechnologyCreateWithoutUserTechnologiesInput {
   TaskTechnologies: TaskTechnologyCreateNestedManyWithoutTechnology_TaskTechnologyToTechnologyInput
   TechnologyLessons: TechnologyLessonCreateNestedManyWithoutTechnology_TechnologyToTechnologyLessonInput
   User: UserCreateNestedOneWithoutTechnologiesInput!
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   createdAt: DateTime
   description: String
@@ -12063,7 +12477,7 @@ input TechnologyCreateWithoutUserTechnologiesInput {
 
 input TechnologyLessonCreateManyTechnology_TechnologyToTechnologyLessonInput {
   CreatedBy: String!
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   id: String
   name: String
@@ -12076,7 +12490,7 @@ input TechnologyLessonCreateManyTechnology_TechnologyToTechnologyLessonInputEnve
 
 input TechnologyLessonCreateManyUserInput {
   Technology: String!
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   id: String
   name: String
@@ -12137,7 +12551,7 @@ input TechnologyLessonCreateWithoutCommentsInput {
   TechnologyLessonUsers: TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput
   Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput!
   User: UserCreateNestedOneWithoutTechnologyLessonsInput!
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   id: String
   name: String
@@ -12147,7 +12561,7 @@ input TechnologyLessonCreateWithoutTechnologyLessonUsersInput {
   Comments: CommentCreateNestedManyWithoutTechnologyLesson_CommentToTechnologyLessonInput
   Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput!
   User: UserCreateNestedOneWithoutTechnologyLessonsInput!
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   id: String
   name: String
@@ -12157,7 +12571,7 @@ input TechnologyLessonCreateWithoutTechnology_TechnologyToTechnologyLessonInput 
   Comments: CommentCreateNestedManyWithoutTechnologyLesson_CommentToTechnologyLessonInput
   TechnologyLessonUsers: TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput
   User: UserCreateNestedOneWithoutTechnologyLessonsInput!
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   id: String
   name: String
@@ -12167,7 +12581,7 @@ input TechnologyLessonCreateWithoutUserInput {
   Comments: CommentCreateNestedManyWithoutTechnologyLesson_CommentToTechnologyLessonInput
   TechnologyLessonUsers: TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput
   Technology_TechnologyToTechnologyLesson: TechnologyCreateNestedOneWithoutTechnologyLessonsInput!
-  components: Json
+  components: NullableJsonNullValueInput
   contentText: String
   id: String
   name: String
@@ -12177,6 +12591,10 @@ input TechnologyLessonListRelationFilter {
   every: TechnologyLessonWhereInput
   none: TechnologyLessonWhereInput
   some: TechnologyLessonWhereInput
+}
+
+input TechnologyLessonOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input TechnologyLessonUserCreateManyTechnologyLessonInput {
@@ -12255,6 +12673,10 @@ input TechnologyLessonUserListRelationFilter {
   some: TechnologyLessonUserWhereInput
 }
 
+input TechnologyLessonUserOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 enum TechnologyLessonUserStatus {
   Accepted
   Completed
@@ -12305,8 +12727,17 @@ input TechnologyListRelationFilter {
   some: TechnologyWhereInput
 }
 
-input TechnologyOrderByInput {
+input TechnologyOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TechnologyOrderByWithRelationInput {
   CreatedBy: SortOrder
+  LearnStrategyStages: LearnStrategyStageOrderByRelationAggregateInput
+  TaskTechnologies: TaskTechnologyOrderByRelationAggregateInput
+  TechnologyLessons: TechnologyLessonOrderByRelationAggregateInput
+  User: UserOrderByWithRelationInput
+  UserTechnologies: UserTechnologyOrderByRelationAggregateInput
   components: SortOrder
   contentText: SortOrder
   createdAt: SortOrder
@@ -12369,16 +12800,16 @@ input TemplateCreateManyProject_ProjectToTemplate_PrismaProjectInput {
   Parent: String
   Project: String
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateCreateManyProject_ProjectToTemplate_PrismaProjectInputEnvelope {
@@ -12391,16 +12822,16 @@ input TemplateCreateManyProject_ProjectToTemplate_ProjectInput {
   Parent: String
   PrismaProject: String
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateCreateManyProject_ProjectToTemplate_ProjectInputEnvelope {
@@ -12413,16 +12844,16 @@ input TemplateCreateManyTemplateInput {
   PrismaProject: String
   Project: String
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateCreateManyTemplateInputEnvelope {
@@ -12435,16 +12866,16 @@ input TemplateCreateManyUserInput {
   PrismaProject: String
   Project: String
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateCreateManyUserInputEnvelope {
@@ -12517,16 +12948,16 @@ input TemplateCreateWithoutOther_TemplatesInput {
   Template: TemplateCreateNestedOneWithoutOther_TemplatesInput
   User: UserCreateNestedOneWithoutTemplatesInput!
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateCreateWithoutProject_ProjectToTemplate_PrismaProjectInput {
@@ -12534,17 +12965,17 @@ input TemplateCreateWithoutProject_ProjectToTemplate_PrismaProjectInput {
   Template: TemplateCreateNestedOneWithoutOther_TemplatesInput
   User: UserCreateNestedOneWithoutTemplatesInput!
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
   other_Templates: TemplateCreateNestedManyWithoutTemplateInput
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateCreateWithoutProject_ProjectToTemplate_ProjectInput {
@@ -12552,17 +12983,17 @@ input TemplateCreateWithoutProject_ProjectToTemplate_ProjectInput {
   Template: TemplateCreateNestedOneWithoutOther_TemplatesInput
   User: UserCreateNestedOneWithoutTemplatesInput!
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
   other_Templates: TemplateCreateNestedManyWithoutTemplateInput
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateCreateWithoutTemplateInput {
@@ -12570,17 +13001,17 @@ input TemplateCreateWithoutTemplateInput {
   Project_ProjectToTemplate_Project: ProjectCreateNestedOneWithoutTemplates_ProjectToTemplate_ProjectInput
   User: UserCreateNestedOneWithoutTemplatesInput!
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
   other_Templates: TemplateCreateNestedManyWithoutTemplateInput
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateCreateWithoutUserInput {
@@ -12588,23 +13019,27 @@ input TemplateCreateWithoutUserInput {
   Project_ProjectToTemplate_Project: ProjectCreateNestedOneWithoutTemplates_ProjectToTemplate_ProjectInput
   Template: TemplateCreateNestedOneWithoutOther_TemplatesInput
   component: String
-  components: Json!
+  components: JsonNullValueInput!
   createdAt: DateTime
   description: String
   externalKey: String
   id: String
   name: String
   other_Templates: TemplateCreateNestedManyWithoutTemplateInput
-  props: Json!
+  props: JsonNullValueInput!
   rank: Int
   updatedAt: DateTime
-  vars: Json
+  vars: NullableJsonNullValueInput
 }
 
 input TemplateListRelationFilter {
   every: TemplateWhereInput
   none: TemplateWhereInput
   some: TemplateWhereInput
+}
+
+input TemplateOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input TemplateWhereInput {
@@ -12721,9 +13156,15 @@ input TimerListRelationFilter {
   some: TimerWhereInput
 }
 
-input TimerOrderByInput {
+input TimerOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TimerOrderByWithRelationInput {
   CreatedBy: SortOrder
   Task: SortOrder
+  Task_TaskToTimer: TaskOrderByWithRelationInput
+  User: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
   stopedAt: SortOrder
@@ -12805,6 +13246,10 @@ input TokenListRelationFilter {
   every: TokenWhereInput
   none: TokenWhereInput
   some: TokenWhereInput
+}
+
+input TokenOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input TokenWhereInput {
@@ -12991,6 +13436,10 @@ input TournamentGroupListRelationFilter {
   some: TournamentGroupWhereInput
 }
 
+input TournamentGroupOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input TournamentGroupWhereInput {
   AND: [TournamentGroupWhereInput!]
   CreatedBy: StringFilter
@@ -13014,6 +13463,10 @@ input TournamentListRelationFilter {
   every: TournamentWhereInput
   none: TournamentWhereInput
   some: TournamentWhereInput
+}
+
+input TournamentOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input TournamentWhereInput {
@@ -13173,6 +13626,10 @@ input TourneyListRelationFilter {
   some: TourneyWhereInput
 }
 
+input TourneyOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input TourneyPlayerCreateManyTourney_TourneyToTourneyPlayerInput {
   User: String
   id: String
@@ -13231,6 +13688,10 @@ input TourneyPlayerListRelationFilter {
   every: TourneyPlayerWhereInput
   none: TourneyPlayerWhereInput
   some: TourneyPlayerWhereInput
+}
+
+input TourneyPlayerOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input TourneyPlayerWhereInput {
@@ -13372,7 +13833,7 @@ type User {
 
 input UserCreateManyEthAccount_EthAccountToUser_EthAccountAuthedInput {
   CreatedBy: String
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -13409,7 +13870,7 @@ input UserCreateManyEthAccount_EthAccountToUser_EthAccountAuthedInputEnvelope {
 
 input UserCreateManyUserInput {
   EthAccountAuthed: String
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -14273,7 +14734,7 @@ input UserCreateWithoutCallRequests_CallRequest_CalledToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -14379,7 +14840,7 @@ input UserCreateWithoutCallRequests_CallRequest_CallerToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -14485,7 +14946,7 @@ input UserCreateWithoutChatMessagesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -14591,7 +15052,7 @@ input UserCreateWithoutChatMessagesReadedInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -14697,7 +15158,7 @@ input UserCreateWithoutChatRoomInvitations_ChatRoomInvitation_CreatedByToUserInp
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -14803,7 +15264,7 @@ input UserCreateWithoutChatRoomInvitations_ChatRoomInvitation_UserToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -14909,7 +15370,7 @@ input UserCreateWithoutChatRooms_ChatRoomToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15015,7 +15476,7 @@ input UserCreateWithoutChatRooms_ChatRoomsMembersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15121,7 +15582,7 @@ input UserCreateWithoutCodeChallengeBlocksInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15227,7 +15688,7 @@ input UserCreateWithoutCodeChallengeCompletionsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15333,7 +15794,7 @@ input UserCreateWithoutCodeChallengesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15439,7 +15900,7 @@ input UserCreateWithoutCommentsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15545,7 +16006,7 @@ input UserCreateWithoutDonatesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15651,7 +16112,7 @@ input UserCreateWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15757,7 +16218,7 @@ input UserCreateWithoutEthAccounts_EthAccount_CreatedByToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15863,7 +16324,7 @@ input UserCreateWithoutEthContractSourcesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -15969,7 +16430,7 @@ input UserCreateWithoutFilesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16075,7 +16536,7 @@ input UserCreateWithoutGalleriesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16181,7 +16642,7 @@ input UserCreateWithoutGameResults_GameResult_CreatedByToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16287,7 +16748,7 @@ input UserCreateWithoutGameResults_GameResult_UserToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16393,7 +16854,7 @@ input UserCreateWithoutGames_GameToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16499,7 +16960,7 @@ input UserCreateWithoutGames_GameUsersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16605,7 +17066,7 @@ input UserCreateWithoutLearnStrategiesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16711,7 +17172,7 @@ input UserCreateWithoutMentorMenteeMenteesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16817,7 +17278,7 @@ input UserCreateWithoutMentorMenteeMentorsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -16923,7 +17384,7 @@ input UserCreateWithoutNotices_Notice_CreatedByToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17029,7 +17490,7 @@ input UserCreateWithoutNotices_Notice_UserToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17135,7 +17596,7 @@ input UserCreateWithoutNotificationTypes_NotificationTypeToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17241,7 +17702,7 @@ input UserCreateWithoutNotificationTypes_UserNotificationTypesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17348,7 +17809,7 @@ input UserCreateWithoutOther_UsersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17453,7 +17914,7 @@ input UserCreateWithoutPlayersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17559,7 +18020,7 @@ input UserCreateWithoutPositions_PositionToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17665,7 +18126,7 @@ input UserCreateWithoutPositions_PositionUsersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17771,7 +18232,7 @@ input UserCreateWithoutProjectMembers_ProjectMember_CreatedByToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17877,7 +18338,7 @@ input UserCreateWithoutProjectMembers_ProjectMember_UserToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -17983,7 +18444,7 @@ input UserCreateWithoutProjectTasksInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18089,7 +18550,7 @@ input UserCreateWithoutProjects_PrismaProjectUsersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18195,7 +18656,7 @@ input UserCreateWithoutProjects_ProjectToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18301,7 +18762,7 @@ input UserCreateWithoutResourceTagsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18407,7 +18868,7 @@ input UserCreateWithoutResourcesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18513,7 +18974,7 @@ input UserCreateWithoutRoutesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18619,7 +19080,7 @@ input UserCreateWithoutServiceCategoriesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18725,7 +19186,7 @@ input UserCreateWithoutServicesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18831,7 +19292,7 @@ input UserCreateWithoutSmsMessagesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -18937,7 +19398,7 @@ input UserCreateWithoutSmsProvidersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19043,7 +19504,7 @@ input UserCreateWithoutTagsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19149,7 +19610,7 @@ input UserCreateWithoutTaskMembers_TaskMember_CreatedByToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19255,7 +19716,7 @@ input UserCreateWithoutTaskMembers_TaskMember_UserToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19361,7 +19822,7 @@ input UserCreateWithoutTaskReactionsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19467,7 +19928,7 @@ input UserCreateWithoutTaskTechnologiesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19573,7 +20034,7 @@ input UserCreateWithoutTasksInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19679,7 +20140,7 @@ input UserCreateWithoutTeamMembers_TeamMember_CreatedByToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19785,7 +20246,7 @@ input UserCreateWithoutTeamMembers_TeamMember_UserToUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19891,7 +20352,7 @@ input UserCreateWithoutTeamsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -19997,7 +20458,7 @@ input UserCreateWithoutTechnologiesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20103,7 +20564,7 @@ input UserCreateWithoutTechnologyLessonUsersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20209,7 +20670,7 @@ input UserCreateWithoutTechnologyLessonsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20315,7 +20776,7 @@ input UserCreateWithoutTemplatesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20421,7 +20882,7 @@ input UserCreateWithoutTimersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20527,7 +20988,7 @@ input UserCreateWithoutTournamentGroupsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20633,7 +21094,7 @@ input UserCreateWithoutTournamentsInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20739,7 +21200,7 @@ input UserCreateWithoutTourneyPlayersInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20845,7 +21306,7 @@ input UserCreateWithoutTourneysInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -20951,7 +21412,7 @@ input UserCreateWithoutUserInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -21057,7 +21518,7 @@ input UserCreateWithoutUserLearnStrategiesInput {
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -21163,7 +21624,7 @@ input UserCreateWithoutUserTechnologiesInput {
   UserLearnStrategies: UserLearnStrategyCreateNestedManyWithoutCreatedByInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -21269,7 +21730,7 @@ input UserCreateWithoutVotesInput {
   UserLearnStrategies: UserLearnStrategyCreateNestedManyWithoutCreatedByInput
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Worlds: WorldCreateNestedManyWithoutUserInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -21375,7 +21836,7 @@ input UserCreateWithoutWorldsInput {
   UserLearnStrategies: UserLearnStrategyCreateNestedManyWithoutCreatedByInput
   UserTechnologies: UserTechnologyCreateNestedManyWithoutUserInput
   Votes: VoteCreateNestedManyWithoutUser_UserToVoteInput
-  about: Json
+  about: NullableJsonNullValueInput
   acceptChatMessageAnonymous: Boolean
   acceptNewChatRoom: Boolean
   acceptNewChatRoomAnonymous: Boolean
@@ -21428,6 +21889,10 @@ input UserGroupListRelationFilter {
   every: UserGroupWhereInput
   none: UserGroupWhereInput
   some: UserGroupWhereInput
+}
+
+input UserGroupOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input UserGroupWhereInput {
@@ -21532,7 +21997,13 @@ input UserLearnStrategyListRelationFilter {
   some: UserLearnStrategyWhereInput
 }
 
-input UserLearnStrategyOrderByInput {
+input UserLearnStrategyOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input UserLearnStrategyOrderByWithRelationInput {
+  CreatedBy: UserOrderByWithRelationInput
+  LearnStrategy: LearnStrategyOrderByWithRelationInput
   createdAt: SortOrder
   createdById: SortOrder
   id: SortOrder
@@ -21564,9 +22035,88 @@ input UserListRelationFilter {
   some: UserWhereInput
 }
 
-input UserOrderByInput {
+input UserOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input UserOrderByWithRelationInput {
+  CallRequests_CallRequest_CalledToUser: CallRequestOrderByRelationAggregateInput
+  CallRequests_CallRequest_CallerToUser: CallRequestOrderByRelationAggregateInput
+  Careers: CareerOrderByRelationAggregateInput
+  ChatMessages: ChatMessageOrderByRelationAggregateInput
+  ChatMessagesReaded: ChatMessageReadedOrderByRelationAggregateInput
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser: ChatRoomInvitationOrderByRelationAggregateInput
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser: ChatRoomInvitationOrderByRelationAggregateInput
+  ChatRooms_ChatRoomToUser: ChatRoomOrderByRelationAggregateInput
+  ChatRooms_ChatRoomsMembers: ChatRoomOrderByRelationAggregateInput
+  CodeChallengeBlocks: CodeChallengeBlockOrderByRelationAggregateInput
+  CodeChallengeCompletions: CodeChallengeCompletionOrderByRelationAggregateInput
+  CodeChallenges: CodeChallengeOrderByRelationAggregateInput
+  Comments: CommentOrderByRelationAggregateInput
   CreatedBy: SortOrder
+  Donates: DonateOrderByRelationAggregateInput
   EthAccountAuthed: SortOrder
+  EthAccount_EthAccountToUser_EthAccountAuthed: EthAccountOrderByWithRelationInput
+  EthAccounts_EthAccount_CreatedByToUser: EthAccountOrderByRelationAggregateInput
+  EthContractSources: EthContractSourceOrderByRelationAggregateInput
+  Files: FileOrderByRelationAggregateInput
+  Galleries: GalleryOrderByRelationAggregateInput
+  GameResults_GameResult_CreatedByToUser: GameResultOrderByRelationAggregateInput
+  GameResults_GameResult_UserToUser: GameResultOrderByRelationAggregateInput
+  Games_GameToUser: GameOrderByRelationAggregateInput
+  Games_GameUsers: GameOrderByRelationAggregateInput
+  Imports: ImportOrderByRelationAggregateInput
+  LearnStrategies: LearnStrategyOrderByRelationAggregateInput
+  Letters: LetterOrderByRelationAggregateInput
+  LogedIns: LogedInOrderByRelationAggregateInput
+  MentorMenteeMentees: MentorMenteeOrderByRelationAggregateInput
+  MentorMenteeMentors: MentorMenteeOrderByRelationAggregateInput
+  Notices_Notice_CreatedByToUser: NoticeOrderByRelationAggregateInput
+  Notices_Notice_UserToUser: NoticeOrderByRelationAggregateInput
+  NotificationTypes_NotificationTypeToUser: NotificationTypeOrderByRelationAggregateInput
+  NotificationTypes_UserNotificationTypes: NotificationTypeOrderByRelationAggregateInput
+  Players: PlayerOrderByRelationAggregateInput
+  Positions_PositionToUser: PositionOrderByRelationAggregateInput
+  Positions_PositionUsers: PositionOrderByRelationAggregateInput
+  ProjectMembers_ProjectMember_CreatedByToUser: ProjectMemberOrderByRelationAggregateInput
+  ProjectMembers_ProjectMember_UserToUser: ProjectMemberOrderByRelationAggregateInput
+  ProjectTasks: ProjectTaskOrderByRelationAggregateInput
+  Projects_PrismaProjectUsers: ProjectOrderByRelationAggregateInput
+  Projects_ProjectToUser: ProjectOrderByRelationAggregateInput
+  ResetPasswords: ResetPasswordOrderByRelationAggregateInput
+  ResourceTags: ResourceTagOrderByRelationAggregateInput
+  Resources: ResourceOrderByRelationAggregateInput
+  Routes: RouteOrderByRelationAggregateInput
+  ServiceCategories: ServiceCategoryOrderByRelationAggregateInput
+  Services: ServiceOrderByRelationAggregateInput
+  Settings: SettingsOrderByRelationAggregateInput
+  SmsMessages: SmsMessageOrderByRelationAggregateInput
+  SmsProviders: SmsProviderOrderByRelationAggregateInput
+  Tags: TagOrderByRelationAggregateInput
+  TaskMembers_TaskMember_CreatedByToUser: TaskMemberOrderByRelationAggregateInput
+  TaskMembers_TaskMember_UserToUser: TaskMemberOrderByRelationAggregateInput
+  TaskReactions: TaskReactionOrderByRelationAggregateInput
+  TaskTechnologies: TaskTechnologyOrderByRelationAggregateInput
+  Tasks: TaskOrderByRelationAggregateInput
+  TeamMembers_TeamMember_CreatedByToUser: TeamMemberOrderByRelationAggregateInput
+  TeamMembers_TeamMember_UserToUser: TeamMemberOrderByRelationAggregateInput
+  Teams: TeamOrderByRelationAggregateInput
+  Technologies: TechnologyOrderByRelationAggregateInput
+  TechnologyLessonUsers: TechnologyLessonUserOrderByRelationAggregateInput
+  TechnologyLessons: TechnologyLessonOrderByRelationAggregateInput
+  Templates: TemplateOrderByRelationAggregateInput
+  Timers: TimerOrderByRelationAggregateInput
+  Tokens: TokenOrderByRelationAggregateInput
+  TournamentGroups: TournamentGroupOrderByRelationAggregateInput
+  Tournaments: TournamentOrderByRelationAggregateInput
+  TourneyPlayers: TourneyPlayerOrderByRelationAggregateInput
+  Tourneys: TourneyOrderByRelationAggregateInput
+  User: UserOrderByWithRelationInput
+  UserGroups: UserGroupOrderByRelationAggregateInput
+  UserLearnStrategies: UserLearnStrategyOrderByRelationAggregateInput
+  UserTechnologies: UserTechnologyOrderByRelationAggregateInput
+  Votes: VoteOrderByRelationAggregateInput
+  Worlds: WorldOrderByRelationAggregateInput
   about: SortOrder
   acceptChatMessageAnonymous: SortOrder
   acceptNewChatRoom: SortOrder
@@ -21585,6 +22135,7 @@ input UserOrderByInput {
   isMentor: SortOrder
   marketplaceToken: SortOrder
   oldID: SortOrder
+  other_Users: UserOrderByRelationAggregateInput
   password: SortOrder
   phone: SortOrder
   showEmail: SortOrder
@@ -21652,7 +22203,7 @@ input UserTechnologyCreateInput {
 
 input UserTechnologyCreateManyTechnology_TechnologyToUserTechnologyInput {
   CreatedBy: String!
-  components: Json
+  components: NullableJsonNullValueInput
   createdAt: DateTime
   date_from: DateTime
   date_till: DateTime
@@ -21671,7 +22222,7 @@ input UserTechnologyCreateManyTechnology_TechnologyToUserTechnologyInputEnvelope
 
 input UserTechnologyCreateManyUserInput {
   Technology: String!
-  components: Json
+  components: NullableJsonNullValueInput
   createdAt: DateTime
   date_from: DateTime
   date_till: DateTime
@@ -21714,7 +22265,7 @@ input UserTechnologyCreateOrConnectWithoutUserInput {
 
 input UserTechnologyCreateWithoutTechnology_TechnologyToUserTechnologyInput {
   User: UserCreateNestedOneWithoutUserTechnologiesInput!
-  components: Json
+  components: NullableJsonNullValueInput
   createdAt: DateTime
   date_from: DateTime
   date_till: DateTime
@@ -21728,7 +22279,7 @@ input UserTechnologyCreateWithoutTechnology_TechnologyToUserTechnologyInput {
 
 input UserTechnologyCreateWithoutUserInput {
   Technology_TechnologyToUserTechnology: TechnologyCreateNestedOneWithoutUserTechnologiesInput!
-  components: Json
+  components: NullableJsonNullValueInput
   createdAt: DateTime
   date_from: DateTime
   date_till: DateTime
@@ -21776,9 +22327,15 @@ input UserTechnologyListRelationFilter {
   some: UserTechnologyWhereInput
 }
 
-input UserTechnologyOrderByInput {
+input UserTechnologyOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input UserTechnologyOrderByWithRelationInput {
   CreatedBy: SortOrder
   Technology: SortOrder
+  Technology_TechnologyToUserTechnology: TechnologyOrderByWithRelationInput
+  User: UserOrderByWithRelationInput
   components: SortOrder
   createdAt: SortOrder
   date_from: SortOrder
@@ -22082,6 +22639,10 @@ input VoteListRelationFilter {
   some: VoteWhereInput
 }
 
+input VoteOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input VoteWhereInput {
   AND: [VoteWhereInput!]
   NOT: [VoteWhereInput!]
@@ -22177,6 +22738,10 @@ input WorldListRelationFilter {
   every: WorldWhereInput
   none: WorldWhereInput
   some: WorldWhereInput
+}
+
+input WorldOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 enum WorldType {

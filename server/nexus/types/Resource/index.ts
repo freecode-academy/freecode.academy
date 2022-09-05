@@ -69,10 +69,10 @@ export const Resource = objectType({
       type: 'Resource',
       description: 'Комментарии',
       args: {
-        orderBy: 'ResourceOrderByInput',
+        orderBy: 'ResourceOrderByWithRelationInput',
       },
       resolve({ id }, args, ctx) {
-        const orderBy = args.orderBy as Prisma.ResourceOrderByInput
+        const orderBy = args.orderBy as Prisma.ResourceOrderByWithRelationInput
 
         return id
           ? ctx.prisma.resource.findMany({

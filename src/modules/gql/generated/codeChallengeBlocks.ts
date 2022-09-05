@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type CodeChallengeBlocksQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.CodeChallengeBlockWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.CodeChallengeBlockOrderByInput> | Types.CodeChallengeBlockOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.CodeChallengeBlockOrderByWithRelationInput> | Types.CodeChallengeBlockOrderByWithRelationInput>;
   take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
 }>;
@@ -31,7 +32,7 @@ export type CodeChallengeBlocksQuery = { __typename?: 'Query', codeChallengeBloc
 
 
 export const CodeChallengeBlocksDocument = gql`
-    query codeChallengeBlocks($where: CodeChallengeBlockWhereInput = {Parent: null}, $orderBy: [CodeChallengeBlockOrderByInput!] = {rank: asc}, $take: Int, $skip: Int) {
+    query codeChallengeBlocks($where: CodeChallengeBlockWhereInput = {Parent: null}, $orderBy: [CodeChallengeBlockOrderByWithRelationInput!] = {rank: asc}, $take: Int, $skip: Int) {
   codeChallengeBlocks(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ...codeChallengeBlocksBlock
   }

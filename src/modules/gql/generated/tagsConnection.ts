@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -20,7 +21,7 @@ export type TagsConnectionQueryVariables = Types.Exact<{
   first: Types.Scalars['Int'];
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.TagWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.TagOrderByInput> | Types.TagOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TagOrderByWithRelationInput> | Types.TagOrderByWithRelationInput>;
 }>;
 
 
@@ -31,7 +32,7 @@ export type TagsConnectionQuery = { __typename?: 'Query', tagsCount: number, tag
 
 
 export const TagsConnectionDocument = gql`
-    query tagsConnection($first: Int!, $skip: Int, $where: TagWhereInput, $orderBy: [TagOrderByInput!]) {
+    query tagsConnection($first: Int!, $skip: Int, $where: TagWhereInput, $orderBy: [TagOrderByWithRelationInput!]) {
   tagsCount(where: $where)
   tags(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {
     ...tag_

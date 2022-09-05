@@ -64,11 +64,11 @@ export const Project = objectType({
     t.list.nonNull.field('ProjectTasks', {
       type: 'ProjectTask',
       args: {
-        orderBy: 'ProjectTaskOrderByInput',
+        orderBy: 'ProjectTaskOrderByWithRelationInput',
       },
       resolve({ id }, args, ctx) {
         const orderBy = args.orderBy as
-          | Prisma.ProjectTaskOrderByInput
+          | Prisma.ProjectTaskOrderByWithRelationInput
           | undefined
 
         return ctx.prisma.projectTask.findMany({

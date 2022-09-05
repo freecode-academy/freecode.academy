@@ -2,7 +2,7 @@ query sitemapResourcesConnection(
   $first: Int!
   $skip: Int
   $where: ResourceWhereInput!
-  $orderBy: [ResourceOrderByInput!]!
+  $orderBy: [ResourceOrderByWithRelationInput!]!
 ) {
   resourcesCount(where: $where)
   resources(take: $first, skip: $skip, where: $where, orderBy: $orderBy) {

@@ -1,5 +1,5 @@
 import {
-  ResourceOrderByInput,
+  ResourceOrderByWithRelationInput,
   ResourceWhereInput,
   TopicCreateInput,
 } from 'src/modules/gql/generated'
@@ -9,7 +9,7 @@ export type BlogAutocompleteProps = {
 
   where: ResourceWhereInput
 
-  orderBy: ResourceOrderByInput
+  orderBy: ResourceOrderByWithRelationInput
 
   updateObject: (data: Partial<TopicCreateInput>) => void
 

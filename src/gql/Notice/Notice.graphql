@@ -1,6 +1,6 @@
 query noticesConnection(
   $where: NoticeWhereInput
-  $orderBy: [NoticeOrderByInput!]
+  $orderBy: [NoticeOrderByWithRelationInput!]
   $skip: Int
   $first: Int # $last: Int # $getNodes: Boolean = true
 ) {

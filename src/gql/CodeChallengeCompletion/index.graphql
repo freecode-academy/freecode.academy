@@ -8,7 +8,7 @@ query codeChallengeCompletion(
 
 query codeChallengeCompletions(
   $where: CodeChallengeCompletionWhereInput
-  $orderBy: [CodeChallengeCompletionOrderByInput!]
+  $orderBy: [CodeChallengeCompletionOrderByWithRelationInput!]
   $take: Int
   $skip: Int
 ) {

@@ -102,7 +102,9 @@ export const CodeChallenge = objectType({
     t.list.nonNull.field('CodeChallengeCompletions', {
       type: 'CodeChallengeCompletion',
       args: {
-        orderBy: list(nonNull('CodeChallengeCompletionOrderByInput')),
+        orderBy: list(
+          nonNull('CodeChallengeCompletionOrderByWithRelationInput')
+        ),
         where: 'CodeChallengeCompletionWhereInput',
         take: intArg(),
         skip: intArg(),

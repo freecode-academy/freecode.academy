@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import {
   SortOrder,
-  // TaskOrderByInput,
+  // TaskOrderByWithRelationInput,
   TaskStatus,
   useOfficeProjectsQuery,
   useOfficeTasksQuery,
@@ -105,7 +105,7 @@ const useOfficeData = (props: useOfficeDataProps) => {
   const tasksData = useOfficeTasksQuery({
     skip: !projects.length,
     variables: {
-      // orderBy: TaskOrderByInput.UPDATEDAT_DESC,
+      // orderBy: TaskOrderByWithRelationInput.UPDATEDAT_DESC,
       orderBy: {
         updatedAt: SortOrder.DESC,
       },

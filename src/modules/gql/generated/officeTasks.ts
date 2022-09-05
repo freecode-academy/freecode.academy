@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -17,7 +18,7 @@ import { OfficeTaskFragmentDoc } from './officeTask';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type OfficeTasksQueryVariables = Types.Exact<{
-  orderBy?: Types.Maybe<Array<Types.TaskOrderByInput> | Types.TaskOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TaskOrderByWithRelationInput> | Types.TaskOrderByWithRelationInput>;
   where?: Types.Maybe<Types.TaskWhereInput>;
 }>;
 
@@ -29,7 +30,7 @@ export type OfficeTasksQuery = { __typename?: 'Query', tasksCount: number, tasks
 
 
 export const OfficeTasksDocument = gql`
-    query officeTasks($orderBy: [TaskOrderByInput!], $where: TaskWhereInput) {
+    query officeTasks($orderBy: [TaskOrderByWithRelationInput!], $where: TaskWhereInput) {
   tasksCount(where: $where)
   tasks(orderBy: $orderBy, where: $where) {
     ...officeTask

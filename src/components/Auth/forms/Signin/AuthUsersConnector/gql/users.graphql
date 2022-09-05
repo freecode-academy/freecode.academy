@@ -3,7 +3,7 @@ query AuthFormUsersConnection(
   $where: UserWhereInput
   $first: Int = 10
   $skip: Int
-  $orderBy: [UserOrderByInput!]
+  $orderBy: [UserOrderByWithRelationInput!]
 ) {
   usersCount(where: $where)
   users(where: $where, take: $first, skip: $skip, orderBy: $orderBy) {

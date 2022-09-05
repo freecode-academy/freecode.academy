@@ -1,6 +1,6 @@
 query codeChallengeBlocks(
   $where: CodeChallengeBlockWhereInput = { Parent: null }
-  $orderBy: [CodeChallengeBlockOrderByInput!] = { rank: asc }
+  $orderBy: [CodeChallengeBlockOrderByWithRelationInput!] = { rank: asc }
   $take: Int
   $skip: Int
 ) {

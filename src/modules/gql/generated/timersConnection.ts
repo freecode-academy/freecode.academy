@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type TimersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.TimerWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.TimerOrderByInput> | Types.TimerOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.TimerOrderByWithRelationInput> | Types.TimerOrderByWithRelationInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
 }>;
@@ -31,7 +32,7 @@ export type TimersConnectionQuery = { __typename?: 'Query', timersCount: number,
 
 
 export const TimersConnectionDocument = gql`
-    query timersConnection($where: TimerWhereInput, $orderBy: [TimerOrderByInput!] = {createdAt: desc}, $skip: Int, $first: Int) {
+    query timersConnection($where: TimerWhereInput, $orderBy: [TimerOrderByWithRelationInput!] = {createdAt: desc}, $skip: Int, $first: Int) {
   timersCount(where: $where)
   timers(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
     ...timersConnectionTimer

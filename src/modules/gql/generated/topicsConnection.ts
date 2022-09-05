@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -20,7 +21,7 @@ export type TopicsConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.ResourceWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.ResourceOrderByInput> | Types.ResourceOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.ResourceOrderByWithRelationInput> | Types.ResourceOrderByWithRelationInput>;
 }>;
 
 
@@ -31,7 +32,7 @@ export type TopicsConnectionQuery = { __typename?: 'Query', resourcesCount: numb
 
 
 export const TopicsConnectionDocument = gql`
-    query topicsConnection($first: Int = 10, $skip: Int, $where: ResourceWhereInput, $orderBy: [ResourceOrderByInput!] = {createdAt: desc}) {
+    query topicsConnection($first: Int = 10, $skip: Int, $where: ResourceWhereInput, $orderBy: [ResourceOrderByWithRelationInput!] = {createdAt: desc}) {
   resourcesCount(where: $where)
   resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
     ...topicsConnectionTopic

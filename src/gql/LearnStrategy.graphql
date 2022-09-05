@@ -6,7 +6,7 @@ query learnStrategy($where: LearnStrategyWhereUniqueInput!) {
 
 query learnStrategiesConnection(
   $where: LearnStrategyWhereInput
-  $orderBy: [LearnStrategyOrderByInput!]
+  $orderBy: [LearnStrategyOrderByWithRelationInput!]
   $take: Int
   $skip: Int
 ) {
@@ -18,7 +18,7 @@ query learnStrategiesConnection(
 
 query learnStrategies(
   $where: LearnStrategyWhereInput
-  $orderBy: [LearnStrategyOrderByInput!]
+  $orderBy: [LearnStrategyOrderByWithRelationInput!]
   $take: Int
   $skip: Int
 ) {

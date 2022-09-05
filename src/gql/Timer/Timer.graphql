@@ -1,6 +1,6 @@
 query timersConnection(
   $where: TimerWhereInput
-  $orderBy: [TimerOrderByInput!] = { createdAt: desc }
+  $orderBy: [TimerOrderByWithRelationInput!] = { createdAt: desc }
   $skip: Int
   # $after: String
   # $before: String

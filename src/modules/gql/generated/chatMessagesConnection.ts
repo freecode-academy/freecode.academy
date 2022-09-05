@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type ChatMessagesConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.ChatMessageWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.ChatMessageOrderByInput> | Types.ChatMessageOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.ChatMessageOrderByWithRelationInput> | Types.ChatMessageOrderByWithRelationInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
 }>;
@@ -31,7 +32,7 @@ export type ChatMessagesConnectionQuery = { __typename?: 'Query', chatMessagesCo
 
 
 export const ChatMessagesConnectionDocument = gql`
-    query chatMessagesConnection($where: ChatMessageWhereInput, $orderBy: [ChatMessageOrderByInput!], $skip: Int, $first: Int = 10) {
+    query chatMessagesConnection($where: ChatMessageWhereInput, $orderBy: [ChatMessageOrderByWithRelationInput!], $skip: Int, $first: Int = 10) {
   chatMessagesCount(where: $where)
   chatMessages(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
     ...chatMessage_

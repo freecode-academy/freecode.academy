@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type NoticesConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.NoticeWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.NoticeOrderByInput> | Types.NoticeOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.NoticeOrderByWithRelationInput> | Types.NoticeOrderByWithRelationInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
 }>;
@@ -31,7 +32,7 @@ export type NoticesConnectionQuery = { __typename?: 'Query', noticesCount: numbe
 
 
 export const NoticesConnectionDocument = gql`
-    query noticesConnection($where: NoticeWhereInput, $orderBy: [NoticeOrderByInput!], $skip: Int, $first: Int) {
+    query noticesConnection($where: NoticeWhereInput, $orderBy: [NoticeOrderByWithRelationInput!], $skip: Int, $first: Int) {
   noticesCount(where: $where)
   notices(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
     ...notice

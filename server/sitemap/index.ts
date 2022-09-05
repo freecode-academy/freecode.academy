@@ -1,3 +1,5 @@
+// TODO Move to front
+
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // import { ApolloProvider } from 'react-apollo';
 // import { ApolloClient } from 'apollo-client';

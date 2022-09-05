@@ -1,6 +1,6 @@
 query donates(
   $where: DonateWhereInput
-  $orderBy: [DonateOrderByInput!]
+  $orderBy: [DonateOrderByWithRelationInput!]
   $take: Int
   $skip: Int
 ) {

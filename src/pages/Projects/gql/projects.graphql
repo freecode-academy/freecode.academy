@@ -2,7 +2,7 @@ query projectsConnection(
   $first: Int = 12
   $skip: Int
   $where: ProjectWhereInput
-  $orderBy: [ProjectOrderByInput!] = { updatedAt: desc }
+  $orderBy: [ProjectOrderByWithRelationInput!] = { updatedAt: desc }
 ) {
   projectsCount(where: $where)
   projects(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {

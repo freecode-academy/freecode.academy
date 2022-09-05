@@ -6,7 +6,6 @@
 import type * as EditorComponent from '@prisma-cms/front-editor/dist/EditorComponent/interfaces'
 import type { PrismaContext } from './../context/index'
 import type {
-  User,
   File,
   Resource,
   ResourceTag,
@@ -35,6 +34,7 @@ import type {
   LearnStrategyStage,
   MentorMentee,
   Donate,
+  User,
 } from '@prisma/client'
 import type { core } from 'nexus'
 declare global {
@@ -198,8 +198,8 @@ export interface NexusGenInputs {
     // input type
     Called?: string | null // String
     Caller?: string | null // String
-    called_descriptions: NexusGenScalars['Json'] // Json!
-    caller_descriptions: NexusGenScalars['Json'] // Json!
+    called_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
+    caller_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     endedAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -216,8 +216,8 @@ export interface NexusGenInputs {
     // input type
     Caller?: string | null // String
     Room?: string | null // String
-    called_descriptions: NexusGenScalars['Json'] // Json!
-    caller_descriptions: NexusGenScalars['Json'] // Json!
+    called_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
+    caller_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     endedAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -236,8 +236,8 @@ export interface NexusGenInputs {
     // input type
     Called?: string | null // String
     Room?: string | null // String
-    called_descriptions: NexusGenScalars['Json'] // Json!
-    caller_descriptions: NexusGenScalars['Json'] // Json!
+    called_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
+    caller_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     endedAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -312,8 +312,8 @@ export interface NexusGenInputs {
     User_CallRequest_CallerToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutCallRequests_CallRequest_CallerToUserInput']
       | null // UserCreateNestedOneWithoutCallRequests_CallRequest_CallerToUserInput
-    called_descriptions: NexusGenScalars['Json'] // Json!
-    caller_descriptions: NexusGenScalars['Json'] // Json!
+    called_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
+    caller_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     endedAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -329,8 +329,8 @@ export interface NexusGenInputs {
     User_CallRequest_CallerToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutCallRequests_CallRequest_CallerToUserInput']
       | null // UserCreateNestedOneWithoutCallRequests_CallRequest_CallerToUserInput
-    called_descriptions: NexusGenScalars['Json'] // Json!
-    caller_descriptions: NexusGenScalars['Json'] // Json!
+    called_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
+    caller_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     endedAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -346,8 +346,8 @@ export interface NexusGenInputs {
     User_CallRequest_CalledToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutCallRequests_CallRequest_CalledToUserInput']
       | null // UserCreateNestedOneWithoutCallRequests_CallRequest_CalledToUserInput
-    called_descriptions: NexusGenScalars['Json'] // Json!
-    caller_descriptions: NexusGenScalars['Json'] // Json!
+    called_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
+    caller_descriptions: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     endedAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -360,6 +360,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['CallRequestWhereInput'] | null // CallRequestWhereInput
     none?: NexusGenInputs['CallRequestWhereInput'] | null // CallRequestWhereInput
     some?: NexusGenInputs['CallRequestWhereInput'] | null // CallRequestWhereInput
+  }
+  CallRequestOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   CallRequestWhereInput: {
     // input type
@@ -426,6 +430,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['CareerWhereInput'] | null // CareerWhereInput
     some?: NexusGenInputs['CareerWhereInput'] | null // CareerWhereInput
   }
+  CareerOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   CareerWhereInput: {
     // input type
     AND?: NexusGenInputs['CareerWhereInput'][] | null // [CareerWhereInput!]
@@ -452,7 +460,7 @@ export interface NexusGenInputs {
   ChatMessageCreateManyChatRoomInput: {
     // input type
     CreatedBy?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -466,7 +474,7 @@ export interface NexusGenInputs {
   ChatMessageCreateManyUserInput: {
     // input type
     Room?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -544,7 +552,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput']
       | null // NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutChatMessagesInput'] | null // UserCreateNestedOneWithoutChatMessagesInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -559,7 +567,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput']
       | null // NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutChatMessagesInput'] | null // UserCreateNestedOneWithoutChatMessagesInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -574,7 +582,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['ChatRoomCreateNestedOneWithoutChatMessagesInput']
       | null // ChatRoomCreateNestedOneWithoutChatMessagesInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutChatMessagesInput'] | null // UserCreateNestedOneWithoutChatMessagesInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -591,7 +599,7 @@ export interface NexusGenInputs {
     Notices?:
       | NexusGenInputs['NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput']
       | null // NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
@@ -603,10 +611,20 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
     some?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
   }
-  ChatMessageOrderByInput: {
+  ChatMessageOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ChatMessageOrderByWithRelationInput: {
+    // input type
+    ChatMessagesReaded?:
+      | NexusGenInputs['ChatMessageReadedOrderByRelationAggregateInput']
+      | null // ChatMessageReadedOrderByRelationAggregateInput
+    ChatRoom?: NexusGenInputs['ChatRoomOrderByWithRelationInput'] | null // ChatRoomOrderByWithRelationInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Notices?: NexusGenInputs['NoticeOrderByRelationAggregateInput'] | null // NoticeOrderByRelationAggregateInput
     Room?: NexusGenEnums['SortOrder'] | null // SortOrder
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     content?: NexusGenEnums['SortOrder'] | null // SortOrder
     contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -700,6 +718,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['ChatMessageReadedWhereInput'] | null // ChatMessageReadedWhereInput
     none?: NexusGenInputs['ChatMessageReadedWhereInput'] | null // ChatMessageReadedWhereInput
     some?: NexusGenInputs['ChatMessageReadedWhereInput'] | null // ChatMessageReadedWhereInput
+  }
+  ChatMessageReadedOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   ChatMessageReadedWhereInput: {
     // input type
@@ -1283,6 +1305,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ChatRoomInvitationWhereInput'] | null // ChatRoomInvitationWhereInput
     some?: NexusGenInputs['ChatRoomInvitationWhereInput'] | null // ChatRoomInvitationWhereInput
   }
+  ChatRoomInvitationOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   ChatRoomInvitationWhereInput: {
     // input type
     AND?: NexusGenInputs['ChatRoomInvitationWhereInput'][] | null // [ChatRoomInvitationWhereInput!]
@@ -1316,9 +1342,28 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
     some?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
   }
-  ChatRoomOrderByInput: {
+  ChatRoomOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ChatRoomOrderByWithRelationInput: {
+    // input type
+    CallRequests?:
+      | NexusGenInputs['CallRequestOrderByRelationAggregateInput']
+      | null // CallRequestOrderByRelationAggregateInput
+    ChatMessages?:
+      | NexusGenInputs['ChatMessageOrderByRelationAggregateInput']
+      | null // ChatMessageOrderByRelationAggregateInput
+    ChatRoomInvitations?:
+      | NexusGenInputs['ChatRoomInvitationOrderByRelationAggregateInput']
+      | null // ChatRoomInvitationOrderByRelationAggregateInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Projects?: NexusGenInputs['ProjectOrderByRelationAggregateInput'] | null // ProjectOrderByRelationAggregateInput
+    Tasks?: NexusGenInputs['TaskOrderByRelationAggregateInput'] | null // TaskOrderByRelationAggregateInput
+    User_ChatRoomToUser?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    User_ChatRoomsMembers?:
+      | NexusGenInputs['UserOrderByRelationAggregateInput']
+      | null // UserOrderByRelationAggregateInput
     allowAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
     code?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -1535,14 +1580,28 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
     some?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
   }
-  CodeChallengeBlockOrderByInput: {
+  CodeChallengeBlockOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  CodeChallengeBlockOrderByWithRelationInput: {
+    // input type
+    CodeChallenge?:
+      | NexusGenInputs['CodeChallengeOrderByRelationAggregateInput']
+      | null // CodeChallengeOrderByRelationAggregateInput
+    CodeChallengeBlock?:
+      | NexusGenInputs['CodeChallengeBlockOrderByWithRelationInput']
+      | null // CodeChallengeBlockOrderByWithRelationInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     externalKey?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    other_CodeChallengeBlock?:
+      | NexusGenInputs['CodeChallengeBlockOrderByRelationAggregateInput']
+      | null // CodeChallengeBlockOrderByRelationAggregateInput
     rank?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
@@ -1725,11 +1784,22 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
     some?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
   }
-  CodeChallengeCompletionOrderByInput: {
+  CodeChallengeCompletionOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  CodeChallengeCompletionOrderByWithRelationInput: {
     // input type
     CodeChallenge?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CodeChallenge_CodeChallengeToCodeChallengeCompletion?:
+      | NexusGenInputs['CodeChallengeOrderByWithRelationInput']
+      | null // CodeChallengeOrderByWithRelationInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task_CodeChallengeCompletionToTask?:
+      | NexusGenInputs['TaskOrderByWithRelationInput']
+      | null // TaskOrderByWithRelationInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     content?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -1774,7 +1844,7 @@ export interface NexusGenInputs {
     dashedName?: string | null // String
     description?: string | null // String
     externalKey?: string | null // String
-    files?: NexusGenScalars['Json'] | null // Json
+    files?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     forumTopicId?: number | null // Int
     id?: string | null // String
     instructions?: string | null // String
@@ -1785,13 +1855,13 @@ export interface NexusGenInputs {
     name?: string | null // String
     order?: number | null // Int
     rank?: number | null // Int
-    required?: NexusGenScalars['Json'] | null // Json
-    solutions?: NexusGenScalars['Json'] | null // Json
+    required?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    solutions?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     superOrder?: number | null // Int
     template?: string | null // String
-    tests?: NexusGenScalars['Json'] | null // Json
+    tests?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     time?: string | null // String
-    translations?: NexusGenScalars['Json'] | null // Json
+    translations?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
     videoUrl?: string | null // String
   }
@@ -1812,7 +1882,7 @@ export interface NexusGenInputs {
     dashedName?: string | null // String
     description?: string | null // String
     externalKey?: string | null // String
-    files?: NexusGenScalars['Json'] | null // Json
+    files?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     forumTopicId?: number | null // Int
     id?: string | null // String
     instructions?: string | null // String
@@ -1823,13 +1893,13 @@ export interface NexusGenInputs {
     name?: string | null // String
     order?: number | null // Int
     rank?: number | null // Int
-    required?: NexusGenScalars['Json'] | null // Json
-    solutions?: NexusGenScalars['Json'] | null // Json
+    required?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    solutions?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     superOrder?: number | null // Int
     template?: string | null // String
-    tests?: NexusGenScalars['Json'] | null // Json
+    tests?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     time?: string | null // String
-    translations?: NexusGenScalars['Json'] | null // Json
+    translations?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
     videoUrl?: string | null // String
   }
@@ -1848,7 +1918,7 @@ export interface NexusGenInputs {
     dashedName?: string | null // String
     description?: string | null // String
     externalKey?: string | null // String
-    files?: NexusGenScalars['Json'] | null // Json
+    files?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     forumTopicId?: number | null // Int
     id?: string | null // String
     instructions?: string | null // String
@@ -1859,13 +1929,13 @@ export interface NexusGenInputs {
     name?: string | null // String
     order?: number | null // Int
     rank?: number | null // Int
-    required?: NexusGenScalars['Json'] | null // Json
-    solutions?: NexusGenScalars['Json'] | null // Json
+    required?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    solutions?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     superOrder?: number | null // Int
     template?: string | null // String
-    tests?: NexusGenScalars['Json'] | null // Json
+    tests?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     time?: string | null // String
-    translations?: NexusGenScalars['Json'] | null // Json
+    translations?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
     videoUrl?: string | null // String
   }
@@ -1964,7 +2034,7 @@ export interface NexusGenInputs {
     dashedName?: string | null // String
     description?: string | null // String
     externalKey?: string | null // String
-    files?: NexusGenScalars['Json'] | null // Json
+    files?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     forumTopicId?: number | null // Int
     id?: string | null // String
     instructions?: string | null // String
@@ -1975,13 +2045,13 @@ export interface NexusGenInputs {
     name?: string | null // String
     order?: number | null // Int
     rank?: number | null // Int
-    required?: NexusGenScalars['Json'] | null // Json
-    solutions?: NexusGenScalars['Json'] | null // Json
+    required?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    solutions?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     superOrder?: number | null // Int
     template?: string | null // String
-    tests?: NexusGenScalars['Json'] | null // Json
+    tests?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     time?: string | null // String
-    translations?: NexusGenScalars['Json'] | null // Json
+    translations?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
     videoUrl?: string | null // String
   }
@@ -2002,7 +2072,7 @@ export interface NexusGenInputs {
     dashedName?: string | null // String
     description?: string | null // String
     externalKey?: string | null // String
-    files?: NexusGenScalars['Json'] | null // Json
+    files?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     forumTopicId?: number | null // Int
     id?: string | null // String
     instructions?: string | null // String
@@ -2013,13 +2083,13 @@ export interface NexusGenInputs {
     name?: string | null // String
     order?: number | null // Int
     rank?: number | null // Int
-    required?: NexusGenScalars['Json'] | null // Json
-    solutions?: NexusGenScalars['Json'] | null // Json
+    required?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    solutions?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     superOrder?: number | null // Int
     template?: string | null // String
-    tests?: NexusGenScalars['Json'] | null // Json
+    tests?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     time?: string | null // String
-    translations?: NexusGenScalars['Json'] | null // Json
+    translations?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
     videoUrl?: string | null // String
   }
@@ -2040,7 +2110,7 @@ export interface NexusGenInputs {
     dashedName?: string | null // String
     description?: string | null // String
     externalKey?: string | null // String
-    files?: NexusGenScalars['Json'] | null // Json
+    files?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     forumTopicId?: number | null // Int
     id?: string | null // String
     instructions?: string | null // String
@@ -2051,13 +2121,13 @@ export interface NexusGenInputs {
     name?: string | null // String
     order?: number | null // Int
     rank?: number | null // Int
-    required?: NexusGenScalars['Json'] | null // Json
-    solutions?: NexusGenScalars['Json'] | null // Json
+    required?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    solutions?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     superOrder?: number | null // Int
     template?: string | null // String
-    tests?: NexusGenScalars['Json'] | null // Json
+    tests?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     time?: string | null // String
-    translations?: NexusGenScalars['Json'] | null // Json
+    translations?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
     videoUrl?: string | null // String
   }
@@ -2078,7 +2148,7 @@ export interface NexusGenInputs {
     dashedName?: string | null // String
     description?: string | null // String
     externalKey?: string | null // String
-    files?: NexusGenScalars['Json'] | null // Json
+    files?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     forumTopicId?: number | null // Int
     id?: string | null // String
     instructions?: string | null // String
@@ -2089,13 +2159,13 @@ export interface NexusGenInputs {
     name?: string | null // String
     order?: number | null // Int
     rank?: number | null // Int
-    required?: NexusGenScalars['Json'] | null // Json
-    solutions?: NexusGenScalars['Json'] | null // Json
+    required?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    solutions?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     superOrder?: number | null // Int
     template?: string | null // String
-    tests?: NexusGenScalars['Json'] | null // Json
+    tests?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     time?: string | null // String
-    translations?: NexusGenScalars['Json'] | null // Json
+    translations?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
     videoUrl?: string | null // String
   }
@@ -2105,11 +2175,23 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['CodeChallengeWhereInput'] | null // CodeChallengeWhereInput
     some?: NexusGenInputs['CodeChallengeWhereInput'] | null // CodeChallengeWhereInput
   }
-  CodeChallengeOrderByInput: {
+  CodeChallengeOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  CodeChallengeOrderByWithRelationInput: {
     // input type
     Block?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CodeChallengeBlock?:
+      | NexusGenInputs['CodeChallengeBlockOrderByWithRelationInput']
+      | null // CodeChallengeBlockOrderByWithRelationInput
+    CodeChallengeCompletions?:
+      | NexusGenInputs['CodeChallengeCompletionOrderByRelationAggregateInput']
+      | null // CodeChallengeCompletionOrderByRelationAggregateInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Resource?: NexusGenInputs['ResourceOrderByWithRelationInput'] | null // ResourceOrderByWithRelationInput
     Topic?: NexusGenEnums['SortOrder'] | null // SortOrder
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     challengeOrder?: NexusGenEnums['SortOrder'] | null // SortOrder
     challengeType?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -2284,6 +2366,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['CommentWhereInput'] | null // CommentWhereInput
     some?: NexusGenInputs['CommentWhereInput'] | null // CommentWhereInput
   }
+  CommentOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   CommentUpdateInput: {
     // input type
     components?: NexusGenScalars['JSON'] | null // JSON
@@ -2413,8 +2499,13 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['DonateWhereInput'] | null // DonateWhereInput
     some?: NexusGenInputs['DonateWhereInput'] | null // DonateWhereInput
   }
-  DonateOrderByInput: {
+  DonateOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  DonateOrderByWithRelationInput: {
+    // input type
+    Donator?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     date?: NexusGenEnums['SortOrder'] | null // SortOrder
     donatorId?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -2633,11 +2724,11 @@ export interface NexusGenInputs {
     // input type
     CreatedBy?: string | null // String
     Project?: string | null // String
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -2653,11 +2744,11 @@ export interface NexusGenInputs {
     // input type
     ContractSource?: string | null // String
     CreatedBy?: string | null // String
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -2675,11 +2766,11 @@ export interface NexusGenInputs {
     // input type
     ContractSource?: string | null // String
     Project?: string | null // String
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -2859,11 +2950,11 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput']
       | null // UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -2896,11 +2987,11 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput']
       | null // UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -2933,11 +3024,11 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput']
       | null // UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -2970,11 +3061,11 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput']
       | null // UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -3007,11 +3098,11 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput']
       | null // UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -3044,11 +3135,11 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput']
       | null // UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -3081,11 +3172,11 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput']
       | null // UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -3118,11 +3209,11 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput']
       | null // UserCreateNestedOneWithoutEthAccounts_EthAccount_CreatedByToUserInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -3155,11 +3246,11 @@ export interface NexusGenInputs {
     User_EthAccountToUser_EthAccountAuthed?:
       | NexusGenInputs['UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput']
       | null // UserCreateNestedManyWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput
-    abi?: NexusGenScalars['Json'] | null // Json
+    abi?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     address: string // String!
     bytecode?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name?: string | null // String
     source?: string | null // String
@@ -3171,6 +3262,49 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['EthAccountWhereInput'] | null // EthAccountWhereInput
     none?: NexusGenInputs['EthAccountWhereInput'] | null // EthAccountWhereInput
     some?: NexusGenInputs['EthAccountWhereInput'] | null // EthAccountWhereInput
+  }
+  EthAccountOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  EthAccountOrderByWithRelationInput: {
+    // input type
+    ContractSource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    EthBlock?: NexusGenInputs['EthBlockOrderByRelationAggregateInput'] | null // EthBlockOrderByRelationAggregateInput
+    EthContractSource?:
+      | NexusGenInputs['EthContractSourceOrderByWithRelationInput']
+      | null // EthContractSourceOrderByWithRelationInput
+    EthTransaction_EthAccountToEthTransaction_Account?:
+      | NexusGenInputs['EthTransactionOrderByRelationAggregateInput']
+      | null // EthTransactionOrderByRelationAggregateInput
+    EthTransaction_EthAccountToEthTransaction_Receiver?:
+      | NexusGenInputs['EthTransactionOrderByRelationAggregateInput']
+      | null // EthTransactionOrderByRelationAggregateInput
+    EthTransaction_EthAccountToEthTransaction_Sender?:
+      | NexusGenInputs['EthTransactionOrderByRelationAggregateInput']
+      | null // EthTransactionOrderByRelationAggregateInput
+    Project?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Project_EthAccountToProject?:
+      | NexusGenInputs['ProjectOrderByWithRelationInput']
+      | null // ProjectOrderByWithRelationInput
+    Resource?: NexusGenInputs['ResourceOrderByRelationAggregateInput'] | null // ResourceOrderByRelationAggregateInput
+    User_EthAccountToUser_EthAccountAuthed?:
+      | NexusGenInputs['UserOrderByRelationAggregateInput']
+      | null // UserOrderByRelationAggregateInput
+    User_EthAccount_CreatedByToUser?:
+      | NexusGenInputs['UserOrderByWithRelationInput']
+      | null // UserOrderByWithRelationInput
+    abi?: NexusGenEnums['SortOrder'] | null // SortOrder
+    address?: NexusGenEnums['SortOrder'] | null // SortOrder
+    bytecode?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    source?: NexusGenEnums['SortOrder'] | null // SortOrder
+    type?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   EthAccountWhereInput: {
     // input type
@@ -3429,6 +3563,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['EthBlockWhereInput'] | null // EthBlockWhereInput
     some?: NexusGenInputs['EthBlockWhereInput'] | null // EthBlockWhereInput
   }
+  EthBlockOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   EthBlockWhereInput: {
     // input type
     AND?: NexusGenInputs['EthBlockWhereInput'][] | null // [EthBlockWhereInput!]
@@ -3468,7 +3606,7 @@ export interface NexusGenInputs {
   EthContractSourceCreateManyUserInput: {
     // input type
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name: string // String!
     source?: string | null // String
@@ -3516,7 +3654,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['UserCreateNestedOneWithoutEthContractSourcesInput']
       | null // UserCreateNestedOneWithoutEthContractSourcesInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name: string // String!
     source?: string | null // String
@@ -3528,7 +3666,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['EthAccountCreateNestedManyWithoutEthContractSourceInput']
       | null // EthAccountCreateNestedManyWithoutEthContractSourceInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    description?: NexusGenScalars['Json'] | null // Json
+    description?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name: string // String!
     source?: string | null // String
@@ -3539,6 +3677,24 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['EthContractSourceWhereInput'] | null // EthContractSourceWhereInput
     none?: NexusGenInputs['EthContractSourceWhereInput'] | null // EthContractSourceWhereInput
     some?: NexusGenInputs['EthContractSourceWhereInput'] | null // EthContractSourceWhereInput
+  }
+  EthContractSourceOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  EthContractSourceOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    EthAccount?:
+      | NexusGenInputs['EthAccountOrderByRelationAggregateInput']
+      | null // EthAccountOrderByRelationAggregateInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    source?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   EthContractSourceWhereInput: {
     // input type
@@ -3829,6 +3985,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['EthTransactionWhereInput'] | null // EthTransactionWhereInput
     some?: NexusGenInputs['EthTransactionWhereInput'] | null // EthTransactionWhereInput
   }
+  EthTransactionOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   EthTransactionWhereInput: {
     // input type
     AND?: NexusGenInputs['EthTransactionWhereInput'][] | null // [EthTransactionWhereInput!]
@@ -4067,11 +4227,21 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
     some?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
   }
-  FileOrderByInput: {
+  FileOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  FileOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Gallery?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Gallery_FileToGallery?:
+      | NexusGenInputs['GalleryOrderByWithRelationInput']
+      | null // GalleryOrderByWithRelationInput
     ImageResource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Projects?: NexusGenInputs['ProjectOrderByRelationAggregateInput'] | null // ProjectOrderByRelationAggregateInput
+    Resource?: NexusGenInputs['ResourceOrderByWithRelationInput'] | null // ResourceOrderByWithRelationInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     encoding?: NexusGenEnums['SortOrder'] | null // SortOrder
     filename?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -4236,6 +4406,24 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['GalleryWhereInput'] | null // GalleryWhereInput
     none?: NexusGenInputs['GalleryWhereInput'] | null // GalleryWhereInput
     some?: NexusGenInputs['GalleryWhereInput'] | null // GalleryWhereInput
+  }
+  GalleryOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  GalleryOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Files?: NexusGenInputs['FileOrderByRelationAggregateInput'] | null // FileOrderByRelationAggregateInput
+    Resource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Resource_GalleryToResource?:
+      | NexusGenInputs['ResourceOrderByWithRelationInput']
+      | null // ResourceOrderByWithRelationInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   GalleryWhereInput: {
     // input type
@@ -4573,6 +4761,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['GameWhereInput'] | null // GameWhereInput
     some?: NexusGenInputs['GameWhereInput'] | null // GameWhereInput
   }
+  GameOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   GameResultCreateManyGame_GameToGameResultInput: {
     // input type
     CreatedBy?: string | null // String
@@ -4799,6 +4991,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['GameResultWhereInput'] | null // GameResultWhereInput
     some?: NexusGenInputs['GameResultWhereInput'] | null // GameResultWhereInput
   }
+  GameResultOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   GameResultWhereInput: {
     // input type
     AND?: NexusGenInputs['GameResultWhereInput'][] | null // [GameResultWhereInput!]
@@ -4894,6 +5090,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ImportWhereInput'] | null // ImportWhereInput
     some?: NexusGenInputs['ImportWhereInput'] | null // ImportWhereInput
   }
+  ImportOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   ImportWhereInput: {
     // input type
     AND?: NexusGenInputs['ImportWhereInput'][] | null // [ImportWhereInput!]
@@ -4969,8 +5169,8 @@ export interface NexusGenInputs {
   }
   JsonNullableFilter: {
     // input type
-    equals?: NexusGenScalars['Json'] | null // Json
-    not?: NexusGenScalars['Json'] | null // Json
+    equals?: NexusGenEnums['JsonNullValueFilter'] | null // JsonNullValueFilter
+    not?: NexusGenEnums['JsonNullValueFilter'] | null // JsonNullValueFilter
   }
   LearnStrategyCreateInput: {
     // input type
@@ -5125,8 +5325,22 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
     some?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
   }
-  LearnStrategyOrderByInput: {
+  LearnStrategyOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  LearnStrategyOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    LearnStrategyStages?:
+      | NexusGenInputs['LearnStrategyStageOrderByRelationAggregateInput']
+      | null // LearnStrategyStageOrderByRelationAggregateInput
+    LearnStrategyStagesTargets?:
+      | NexusGenInputs['LearnStrategyStageOrderByRelationAggregateInput']
+      | null // LearnStrategyStageOrderByRelationAggregateInput
+    UserLearnStrategies?:
+      | NexusGenInputs['UserLearnStrategyOrderByRelationAggregateInput']
+      | null // UserLearnStrategyOrderByRelationAggregateInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdById?: NexusGenEnums['SortOrder'] | null // SortOrder
     description?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -5297,8 +5511,19 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
     some?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
   }
-  LearnStrategyStageOrderByInput: {
+  LearnStrategyStageOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  LearnStrategyStageOrderByWithRelationInput: {
+    // input type
+    LearnStrategy?:
+      | NexusGenInputs['LearnStrategyOrderByWithRelationInput']
+      | null // LearnStrategyOrderByWithRelationInput
+    LearnStrategyTarget?:
+      | NexusGenInputs['LearnStrategyOrderByWithRelationInput']
+      | null // LearnStrategyOrderByWithRelationInput
+    Technology?: NexusGenInputs['TechnologyOrderByWithRelationInput'] | null // TechnologyOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     learnStrategyId?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -5535,6 +5760,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['LetterWhereInput'] | null // LetterWhereInput
     some?: NexusGenInputs['LetterWhereInput'] | null // LetterWhereInput
   }
+  LetterOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   LetterWhereInput: {
     // input type
     AND?: NexusGenInputs['LetterWhereInput'][] | null // [LetterWhereInput!]
@@ -5668,6 +5897,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['LogedInWhereInput'] | null // LogedInWhereInput
     some?: NexusGenInputs['LogedInWhereInput'] | null // LogedInWhereInput
   }
+  LogedInOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   LogedInWhereInput: {
     // input type
     AND?: NexusGenInputs['LogedInWhereInput'][] | null // [LogedInWhereInput!]
@@ -5773,8 +6006,14 @@ export interface NexusGenInputs {
     menteeId: string // String!
     mentorId: string // String!
   }
-  MentorMenteeOrderByInput: {
+  MentorMenteeOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  MentorMenteeOrderByWithRelationInput: {
+    // input type
+    Mentee?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    Mentor?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     menteeId?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -6348,11 +6587,27 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
     some?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
   }
-  NoticeOrderByInput: {
+  NoticeOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  NoticeOrderByWithRelationInput: {
     // input type
     ChatMessage?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ChatMessage_ChatMessageToNotice?:
+      | NexusGenInputs['ChatMessageOrderByWithRelationInput']
+      | null // ChatMessageOrderByWithRelationInput
+    ChatRoomInvitations?:
+      | NexusGenInputs['ChatRoomInvitationOrderByRelationAggregateInput']
+      | null // ChatRoomInvitationOrderByRelationAggregateInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     User?: NexusGenEnums['SortOrder'] | null // SortOrder
+    User_Notice_CreatedByToUser?:
+      | NexusGenInputs['UserOrderByWithRelationInput']
+      | null // UserOrderByWithRelationInput
+    User_Notice_UserToUser?:
+      | NexusGenInputs['UserOrderByWithRelationInput']
+      | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     type?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -6465,9 +6720,19 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['NotificationTypeWhereInput'] | null // NotificationTypeWhereInput
     some?: NexusGenInputs['NotificationTypeWhereInput'] | null // NotificationTypeWhereInput
   }
-  NotificationTypeOrderByInput: {
+  NotificationTypeOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  NotificationTypeOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    User_NotificationTypeToUser?:
+      | NexusGenInputs['UserOrderByWithRelationInput']
+      | null // UserOrderByWithRelationInput
+    User_UserNotificationTypes?:
+      | NexusGenInputs['UserOrderByRelationAggregateInput']
+      | null // UserOrderByRelationAggregateInput
     code?: NexusGenEnums['SortOrder'] | null // SortOrder
     comment?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -6615,6 +6880,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['PlayerWhereInput'] | null // PlayerWhereInput
     some?: NexusGenInputs['PlayerWhereInput'] | null // PlayerWhereInput
   }
+  PlayerOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   PlayerWhereInput: {
     // input type
     AND?: NexusGenInputs['PlayerWhereInput'][] | null // [PlayerWhereInput!]
@@ -6716,6 +6985,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['PositionWhereInput'] | null // PositionWhereInput
     some?: NexusGenInputs['PositionWhereInput'] | null // PositionWhereInput
   }
+  PositionOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   PositionWhereInput: {
     // input type
     AND?: NexusGenInputs['PositionWhereInput'][] | null // [PositionWhereInput!]
@@ -6746,7 +7019,7 @@ export interface NexusGenInputs {
     Image?: string | null // String
     Resource?: string | null // String
     Team?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -6774,7 +7047,7 @@ export interface NexusGenInputs {
     CreatedBy?: string | null // String
     Resource?: string | null // String
     Team?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -6800,7 +7073,7 @@ export interface NexusGenInputs {
     CreatedBy?: string | null // String
     Image?: string | null // String
     Team?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -6828,7 +7101,7 @@ export interface NexusGenInputs {
     CreatedBy?: string | null // String
     Image?: string | null // String
     Resource?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -6854,7 +7127,7 @@ export interface NexusGenInputs {
     Image?: string | null // String
     Resource?: string | null // String
     Team?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7114,7 +7387,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7165,7 +7438,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7218,7 +7491,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7269,7 +7542,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7320,7 +7593,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7371,7 +7644,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7422,7 +7695,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7473,7 +7746,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7524,7 +7797,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7575,7 +7848,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7626,7 +7899,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7677,7 +7950,7 @@ export interface NexusGenInputs {
     User_ProjectToUser?:
       | NexusGenInputs['UserCreateNestedOneWithoutProjects_ProjectToUserInput']
       | null // UserCreateNestedOneWithoutProjects_ProjectToUserInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7728,7 +8001,7 @@ export interface NexusGenInputs {
     User_PrismaProjectUsers?:
       | NexusGenInputs['UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput']
       | null // UserCreateNestedManyWithoutProjects_PrismaProjectUsersInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -7934,6 +8207,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ProjectMemberWhereInput'] | null // ProjectMemberWhereInput
     some?: NexusGenInputs['ProjectMemberWhereInput'] | null // ProjectMemberWhereInput
   }
+  ProjectMemberOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   ProjectMemberWhereInput: {
     // input type
     AND?: NexusGenInputs['ProjectMemberWhereInput'][] | null // [ProjectMemberWhereInput!]
@@ -7955,13 +8232,50 @@ export interface NexusGenInputs {
     // input type
     id?: string | null // String
   }
-  ProjectOrderByInput: {
+  ProjectOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ProjectOrderByWithRelationInput: {
     // input type
     ChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ChatRoom_ChatRoomToProject?:
+      | NexusGenInputs['ChatRoomOrderByWithRelationInput']
+      | null // ChatRoomOrderByWithRelationInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    EthAccounts?:
+      | NexusGenInputs['EthAccountOrderByRelationAggregateInput']
+      | null // EthAccountOrderByRelationAggregateInput
+    File?: NexusGenInputs['FileOrderByWithRelationInput'] | null // FileOrderByWithRelationInput
     Image?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ProjectMembers?:
+      | NexusGenInputs['ProjectMemberOrderByRelationAggregateInput']
+      | null // ProjectMemberOrderByRelationAggregateInput
+    ProjectTasks?:
+      | NexusGenInputs['ProjectTaskOrderByRelationAggregateInput']
+      | null // ProjectTaskOrderByRelationAggregateInput
     Resource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Resource_Project_ResourceToResource?:
+      | NexusGenInputs['ResourceOrderByWithRelationInput']
+      | null // ResourceOrderByWithRelationInput
+    Resources_ProjectToResource_PrismaProject?:
+      | NexusGenInputs['ResourceOrderByRelationAggregateInput']
+      | null // ResourceOrderByRelationAggregateInput
     Team?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Team_ProjectCustomers?:
+      | NexusGenInputs['TeamOrderByRelationAggregateInput']
+      | null // TeamOrderByRelationAggregateInput
+    Team_ProjectToTeam?: NexusGenInputs['TeamOrderByWithRelationInput'] | null // TeamOrderByWithRelationInput
+    Templates_ProjectToTemplate_PrismaProject?:
+      | NexusGenInputs['TemplateOrderByRelationAggregateInput']
+      | null // TemplateOrderByRelationAggregateInput
+    Templates_ProjectToTemplate_Project?:
+      | NexusGenInputs['TemplateOrderByRelationAggregateInput']
+      | null // TemplateOrderByRelationAggregateInput
+    User_PrismaProjectUsers?:
+      | NexusGenInputs['UserOrderByRelationAggregateInput']
+      | null // UserOrderByRelationAggregateInput
+    User_ProjectToUser?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     content?: NexusGenEnums['SortOrder'] | null // SortOrder
     contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -8108,11 +8422,22 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ProjectTaskWhereInput'] | null // ProjectTaskWhereInput
     some?: NexusGenInputs['ProjectTaskWhereInput'] | null // ProjectTaskWhereInput
   }
-  ProjectTaskOrderByInput: {
+  ProjectTaskOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ProjectTaskOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Project?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Project_ProjectToProjectTask?:
+      | NexusGenInputs['ProjectOrderByWithRelationInput']
+      | null // ProjectOrderByWithRelationInput
     Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task_ProjectTaskToTask?:
+      | NexusGenInputs['TaskOrderByWithRelationInput']
+      | null // TaskOrderByWithRelationInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -8241,6 +8566,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
     some?: NexusGenInputs['ResetPasswordWhereInput'] | null // ResetPasswordWhereInput
   }
+  ResetPasswordOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   ResetPasswordProcessorWhereInput: {
     // input type
     User: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
@@ -8277,8 +8606,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8320,8 +8649,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8363,8 +8692,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8406,8 +8735,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8449,8 +8778,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8492,8 +8821,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8535,8 +8864,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8576,8 +8905,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8617,8 +8946,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -8971,8 +9300,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9046,8 +9375,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9123,8 +9452,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9198,8 +9527,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9276,8 +9605,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9351,8 +9680,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9426,8 +9755,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9498,8 +9827,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9573,8 +9902,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9648,8 +9977,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9723,8 +10052,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9798,8 +10127,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9873,8 +10202,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -9948,8 +10277,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -10023,8 +10352,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -10098,8 +10427,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -10175,8 +10504,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -10250,8 +10579,8 @@ export interface NexusGenInputs {
     class_key?: string | null // String
     code?: string | null // String
     commentOldID?: number | null // Int
-    components?: NexusGenScalars['Json'] | null // Json
-    content?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     deleted?: boolean | null // Boolean
@@ -10288,17 +10617,54 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
     some?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
   }
-  ResourceOrderByInput: {
+  ResourceOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ResourceOrderByWithRelationInput: {
     // input type
     Blog?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CodeChallenges?:
+      | NexusGenInputs['CodeChallengeOrderByRelationAggregateInput']
+      | null // CodeChallengeOrderByRelationAggregateInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     EthAccount?: NexusGenEnums['SortOrder'] | null // SortOrder
+    EthAccount_EthAccountToResource?:
+      | NexusGenInputs['EthAccountOrderByWithRelationInput']
+      | null // EthAccountOrderByWithRelationInput
+    Files?: NexusGenInputs['FileOrderByRelationAggregateInput'] | null // FileOrderByRelationAggregateInput
+    Galleries?: NexusGenInputs['GalleryOrderByRelationAggregateInput'] | null // GalleryOrderByRelationAggregateInput
     Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
     PrismaProject?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Project_ProjectToResource_PrismaProject?:
+      | NexusGenInputs['ProjectOrderByWithRelationInput']
+      | null // ProjectOrderByWithRelationInput
+    Projects_Project_ResourceToResource?:
+      | NexusGenInputs['ProjectOrderByRelationAggregateInput']
+      | null // ProjectOrderByRelationAggregateInput
+    ResourceTags?:
+      | NexusGenInputs['ResourceTagOrderByRelationAggregateInput']
+      | null // ResourceTagOrderByRelationAggregateInput
+    Resource_ResourceToResource_Blog?:
+      | NexusGenInputs['ResourceOrderByWithRelationInput']
+      | null // ResourceOrderByWithRelationInput
+    Resource_ResourceToResource_Parent?:
+      | NexusGenInputs['ResourceOrderByWithRelationInput']
+      | null // ResourceOrderByWithRelationInput
+    Resource_ResourceToResource_Topic?:
+      | NexusGenInputs['ResourceOrderByWithRelationInput']
+      | null // ResourceOrderByWithRelationInput
     Service?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Service_ResourceToService?:
+      | NexusGenInputs['ServiceOrderByWithRelationInput']
+      | null // ServiceOrderByWithRelationInput
     Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task_ResourceToTask?: NexusGenInputs['TaskOrderByWithRelationInput'] | null // TaskOrderByWithRelationInput
     Team?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Team_ResourceToTeam?: NexusGenInputs['TeamOrderByWithRelationInput'] | null // TeamOrderByWithRelationInput
     Topic?: NexusGenEnums['SortOrder'] | null // SortOrder
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    Votes?: NexusGenInputs['VoteOrderByRelationAggregateInput'] | null // VoteOrderByRelationAggregateInput
     class_key?: NexusGenEnums['SortOrder'] | null // SortOrder
     code?: NexusGenEnums['SortOrder'] | null // SortOrder
     commentOldID?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -10316,6 +10682,15 @@ export interface NexusGenInputs {
     negativeVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
     neutralVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
     oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    other_Resource_ResourceToResource_Blogs?:
+      | NexusGenInputs['ResourceOrderByRelationAggregateInput']
+      | null // ResourceOrderByRelationAggregateInput
+    other_Resource_ResourceToResource_Parents?:
+      | NexusGenInputs['ResourceOrderByRelationAggregateInput']
+      | null // ResourceOrderByRelationAggregateInput
+    other_Resource_ResourceToResource_Topics?:
+      | NexusGenInputs['ResourceOrderByRelationAggregateInput']
+      | null // ResourceOrderByRelationAggregateInput
     positiveVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
     published?: NexusGenEnums['SortOrder'] | null // SortOrder
     rating?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -10461,6 +10836,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['ResourceTagWhereInput'] | null // ResourceTagWhereInput
     none?: NexusGenInputs['ResourceTagWhereInput'] | null // ResourceTagWhereInput
     some?: NexusGenInputs['ResourceTagWhereInput'] | null // ResourceTagWhereInput
+  }
+  ResourceTagOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   ResourceTagWhereInput: {
     // input type
@@ -10679,6 +11058,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['RouteWhereInput'] | null // RouteWhereInput
     some?: NexusGenInputs['RouteWhereInput'] | null // RouteWhereInput
   }
+  RouteOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   RouteWhereInput: {
     // input type
     AND?: NexusGenInputs['RouteWhereInput'][] | null // [RouteWhereInput!]
@@ -10870,6 +11253,29 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
     none?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
     some?: NexusGenInputs['ServiceCategoryWhereInput'] | null // ServiceCategoryWhereInput
+  }
+  ServiceCategoryOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ServiceCategoryOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ServiceCategory?:
+      | NexusGenInputs['ServiceCategoryOrderByWithRelationInput']
+      | null // ServiceCategoryOrderByWithRelationInput
+    Services?: NexusGenInputs['ServiceOrderByRelationAggregateInput'] | null // ServiceOrderByRelationAggregateInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    code?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    other_ServiceCategories?:
+      | NexusGenInputs['ServiceCategoryOrderByRelationAggregateInput']
+      | null // ServiceCategoryOrderByRelationAggregateInput
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   ServiceCategoryWhereInput: {
     // input type
@@ -11185,6 +11591,36 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ServiceWhereInput'] | null // ServiceWhereInput
     some?: NexusGenInputs['ServiceWhereInput'] | null // ServiceWhereInput
   }
+  ServiceOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  ServiceOrderByWithRelationInput: {
+    // input type
+    Category?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ProjectMembers?:
+      | NexusGenInputs['ProjectMemberOrderByRelationAggregateInput']
+      | null // ProjectMemberOrderByRelationAggregateInput
+    Resources?: NexusGenInputs['ResourceOrderByRelationAggregateInput'] | null // ResourceOrderByRelationAggregateInput
+    Service?: NexusGenInputs['ServiceOrderByWithRelationInput'] | null // ServiceOrderByWithRelationInput
+    ServiceCategory?:
+      | NexusGenInputs['ServiceCategoryOrderByWithRelationInput']
+      | null // ServiceCategoryOrderByWithRelationInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    code?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    other_Services?:
+      | NexusGenInputs['ServiceOrderByRelationAggregateInput']
+      | null // ServiceOrderByRelationAggregateInput
+    rank?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   ServiceWhereInput: {
     // input type
     AND?: NexusGenInputs['ServiceWhereInput'][] | null // [ServiceWhereInput!]
@@ -11252,6 +11688,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['SettingsWhereInput'] | null // SettingsWhereInput
     none?: NexusGenInputs['SettingsWhereInput'] | null // SettingsWhereInput
     some?: NexusGenInputs['SettingsWhereInput'] | null // SettingsWhereInput
+  }
+  SettingsOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   SettingsWhereInput: {
     // input type
@@ -11375,6 +11815,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['SmsMessageWhereInput'] | null // SmsMessageWhereInput
     some?: NexusGenInputs['SmsMessageWhereInput'] | null // SmsMessageWhereInput
   }
+  SmsMessageOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   SmsMessageWhereInput: {
     // input type
     AND?: NexusGenInputs['SmsMessageWhereInput'][] | null // [SmsMessageWhereInput!]
@@ -11467,7 +11911,7 @@ export interface NexusGenInputs {
   SmsProviderCreateManyUserInput: {
     // input type
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    credentials?: NexusGenScalars['Json'] | null // Json
+    credentials?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name: string // String!
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
@@ -11508,7 +11952,7 @@ export interface NexusGenInputs {
     // input type
     User?: NexusGenInputs['UserCreateNestedOneWithoutSmsProvidersInput'] | null // UserCreateNestedOneWithoutSmsProvidersInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    credentials?: NexusGenScalars['Json'] | null // Json
+    credentials?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name: string // String!
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
@@ -11519,7 +11963,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['SmsMessageCreateNestedManyWithoutSmsProviderInput']
       | null // SmsMessageCreateNestedManyWithoutSmsProviderInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    credentials?: NexusGenScalars['Json'] | null // Json
+    credentials?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     id?: string | null // String
     name: string // String!
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
@@ -11529,6 +11973,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['SmsProviderWhereInput'] | null // SmsProviderWhereInput
     none?: NexusGenInputs['SmsProviderWhereInput'] | null // SmsProviderWhereInput
     some?: NexusGenInputs['SmsProviderWhereInput'] | null // SmsProviderWhereInput
+  }
+  SmsProviderOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   SmsProviderWhereInput: {
     // input type
@@ -11642,9 +12090,17 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
     some?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
   }
-  TagOrderByInput: {
+  TagOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TagOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ResourceTags?:
+      | NexusGenInputs['ResourceTagOrderByRelationAggregateInput']
+      | null // ResourceTagOrderByRelationAggregateInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -11689,7 +12145,7 @@ export interface NexusGenInputs {
     // input type
     CreatedBy?: string | null // String
     Parent?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -11711,7 +12167,7 @@ export interface NexusGenInputs {
     // input type
     ChatRoom?: string | null // String
     CreatedBy?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -11733,7 +12189,7 @@ export interface NexusGenInputs {
     // input type
     ChatRoom?: string | null // String
     Parent?: string | null // String
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -11972,7 +12428,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12013,7 +12469,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12057,7 +12513,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12097,7 +12553,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12138,7 +12594,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12181,7 +12637,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12222,7 +12678,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12263,7 +12719,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12304,7 +12760,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12347,7 +12803,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12390,7 +12846,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12431,7 +12887,7 @@ export interface NexusGenInputs {
     Tasks_A?: NexusGenInputs['TaskCreateNestedManyWithoutTasks_BInput'] | null // TaskCreateNestedManyWithoutTasks_BInput
     Tasks_B?: NexusGenInputs['TaskCreateNestedManyWithoutTasks_AInput'] | null // TaskCreateNestedManyWithoutTasks_AInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutTasksInput'] | null // UserCreateNestedOneWithoutTasksInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12474,7 +12930,7 @@ export interface NexusGenInputs {
     Timers?:
       | NexusGenInputs['TimerCreateNestedManyWithoutTask_TaskToTimerInput']
       | null // TimerCreateNestedManyWithoutTask_TaskToTimerInput
-    content?: NexusGenScalars['Json'] | null // Json
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     endDate?: NexusGenScalars['DateTime'] | null // DateTime
@@ -12641,6 +13097,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TaskMemberWhereInput'] | null // TaskMemberWhereInput
     some?: NexusGenInputs['TaskMemberWhereInput'] | null // TaskMemberWhereInput
   }
+  TaskMemberOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   TaskMemberWhereInput: {
     // input type
     AND?: NexusGenInputs['TaskMemberWhereInput'][] | null // [TaskMemberWhereInput!]
@@ -12661,11 +13121,39 @@ export interface NexusGenInputs {
     // input type
     id?: string | null // String
   }
-  TaskOrderByInput: {
+  TaskOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TaskOrderByWithRelationInput: {
     // input type
     ChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ChatRoom_ChatRoomToTask?:
+      | NexusGenInputs['ChatRoomOrderByWithRelationInput']
+      | null // ChatRoomOrderByWithRelationInput
+    CodeChallengeCompletions?:
+      | NexusGenInputs['CodeChallengeCompletionOrderByRelationAggregateInput']
+      | null // CodeChallengeCompletionOrderByRelationAggregateInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ProjectTasks?:
+      | NexusGenInputs['ProjectTaskOrderByRelationAggregateInput']
+      | null // ProjectTaskOrderByRelationAggregateInput
+    Resources?: NexusGenInputs['ResourceOrderByRelationAggregateInput'] | null // ResourceOrderByRelationAggregateInput
+    Task?: NexusGenInputs['TaskOrderByWithRelationInput'] | null // TaskOrderByWithRelationInput
+    TaskMembers?:
+      | NexusGenInputs['TaskMemberOrderByRelationAggregateInput']
+      | null // TaskMemberOrderByRelationAggregateInput
+    TaskReactions?:
+      | NexusGenInputs['TaskReactionOrderByRelationAggregateInput']
+      | null // TaskReactionOrderByRelationAggregateInput
+    TaskTechnologies?:
+      | NexusGenInputs['TaskTechnologyOrderByRelationAggregateInput']
+      | null // TaskTechnologyOrderByRelationAggregateInput
+    Tasks_A?: NexusGenInputs['TaskOrderByRelationAggregateInput'] | null // TaskOrderByRelationAggregateInput
+    Tasks_B?: NexusGenInputs['TaskOrderByRelationAggregateInput'] | null // TaskOrderByRelationAggregateInput
+    Timers?: NexusGenInputs['TimerOrderByRelationAggregateInput'] | null // TimerOrderByRelationAggregateInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     content?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     description?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -12674,6 +13162,7 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
     needHelp?: NexusGenEnums['SortOrder'] | null // SortOrder
+    other_Tasks?: NexusGenInputs['TaskOrderByRelationAggregateInput'] | null // TaskOrderByRelationAggregateInput
     startDate?: NexusGenEnums['SortOrder'] | null // SortOrder
     startDatePlaning?: NexusGenEnums['SortOrder'] | null // SortOrder
     status?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -12764,6 +13253,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['TaskReactionWhereInput'] | null // TaskReactionWhereInput
     none?: NexusGenInputs['TaskReactionWhereInput'] | null // TaskReactionWhereInput
     some?: NexusGenInputs['TaskReactionWhereInput'] | null // TaskReactionWhereInput
+  }
+  TaskReactionOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TaskReactionWhereInput: {
     // input type
@@ -12929,11 +13422,22 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TaskTechnologyWhereInput'] | null // TaskTechnologyWhereInput
     some?: NexusGenInputs['TaskTechnologyWhereInput'] | null // TaskTechnologyWhereInput
   }
-  TaskTechnologyOrderByInput: {
+  TaskTechnologyOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TaskTechnologyOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task_TaskToTaskTechnology?:
+      | NexusGenInputs['TaskOrderByWithRelationInput']
+      | null // TaskOrderByWithRelationInput
     Technology?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Technology_TaskTechnologyToTechnology?:
+      | NexusGenInputs['TechnologyOrderByWithRelationInput']
+      | null // TechnologyOrderByWithRelationInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     level?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -13609,6 +14113,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TeamMemberWhereInput'] | null // TeamMemberWhereInput
     some?: NexusGenInputs['TeamMemberWhereInput'] | null // TeamMemberWhereInput
   }
+  TeamMemberOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   TeamMemberWhereInput: {
     // input type
     AND?: NexusGenInputs['TeamMemberWhereInput'][] | null // [TeamMemberWhereInput!]
@@ -13628,6 +14136,42 @@ export interface NexusGenInputs {
   TeamMemberWhereUniqueInput: {
     // input type
     id?: string | null // String
+  }
+  TeamOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TeamOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    GameResults?:
+      | NexusGenInputs['GameResultOrderByRelationAggregateInput']
+      | null // GameResultOrderByRelationAggregateInput
+    Games?: NexusGenInputs['GameOrderByRelationAggregateInput'] | null // GameOrderByRelationAggregateInput
+    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Project_ProjectCustomers?:
+      | NexusGenInputs['ProjectOrderByRelationAggregateInput']
+      | null // ProjectOrderByRelationAggregateInput
+    Projects_ProjectToTeam?:
+      | NexusGenInputs['ProjectOrderByRelationAggregateInput']
+      | null // ProjectOrderByRelationAggregateInput
+    Resources?: NexusGenInputs['ResourceOrderByRelationAggregateInput'] | null // ResourceOrderByRelationAggregateInput
+    Team?: NexusGenInputs['TeamOrderByWithRelationInput'] | null // TeamOrderByWithRelationInput
+    TeamMembers?:
+      | NexusGenInputs['TeamMemberOrderByRelationAggregateInput']
+      | null // TeamMemberOrderByRelationAggregateInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    address?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    email?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    other_Teams?: NexusGenInputs['TeamOrderByRelationAggregateInput'] | null // TeamOrderByRelationAggregateInput
+    phone?: NexusGenEnums['SortOrder'] | null // SortOrder
+    status?: NexusGenEnums['SortOrder'] | null // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    website?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TeamWhereInput: {
     // input type
@@ -13670,7 +14214,7 @@ export interface NexusGenInputs {
   }
   TechnologyCreateManyUserInput: {
     // input type
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -13783,7 +14327,7 @@ export interface NexusGenInputs {
     UserTechnologies?:
       | NexusGenInputs['UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput']
       | null // UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -13809,7 +14353,7 @@ export interface NexusGenInputs {
     UserTechnologies?:
       | NexusGenInputs['UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput']
       | null // UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -13835,7 +14379,7 @@ export interface NexusGenInputs {
     UserTechnologies?:
       | NexusGenInputs['UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput']
       | null // UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -13863,7 +14407,7 @@ export interface NexusGenInputs {
     UserTechnologies?:
       | NexusGenInputs['UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput']
       | null // UserTechnologyCreateNestedManyWithoutTechnology_TechnologyToUserTechnologyInput
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -13889,7 +14433,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TechnologyLessonCreateNestedManyWithoutTechnology_TechnologyToTechnologyLessonInput']
       | null // TechnologyLessonCreateNestedManyWithoutTechnology_TechnologyToTechnologyLessonInput
     User: NexusGenInputs['UserCreateNestedOneWithoutTechnologiesInput'] // UserCreateNestedOneWithoutTechnologiesInput!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
@@ -13906,7 +14450,7 @@ export interface NexusGenInputs {
   TechnologyLessonCreateManyTechnology_TechnologyToTechnologyLessonInput: {
     // input type
     CreatedBy: string // String!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     id?: string | null // String
     name?: string | null // String
@@ -13921,7 +14465,7 @@ export interface NexusGenInputs {
   TechnologyLessonCreateManyUserInput: {
     // input type
     Technology: string // String!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     id?: string | null // String
     name?: string | null // String
@@ -14000,7 +14544,7 @@ export interface NexusGenInputs {
       | null // TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput
     Technology_TechnologyToTechnologyLesson: NexusGenInputs['TechnologyCreateNestedOneWithoutTechnologyLessonsInput'] // TechnologyCreateNestedOneWithoutTechnologyLessonsInput!
     User: NexusGenInputs['UserCreateNestedOneWithoutTechnologyLessonsInput'] // UserCreateNestedOneWithoutTechnologyLessonsInput!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     id?: string | null // String
     name?: string | null // String
@@ -14012,7 +14556,7 @@ export interface NexusGenInputs {
       | null // CommentCreateNestedManyWithoutTechnologyLesson_CommentToTechnologyLessonInput
     Technology_TechnologyToTechnologyLesson: NexusGenInputs['TechnologyCreateNestedOneWithoutTechnologyLessonsInput'] // TechnologyCreateNestedOneWithoutTechnologyLessonsInput!
     User: NexusGenInputs['UserCreateNestedOneWithoutTechnologyLessonsInput'] // UserCreateNestedOneWithoutTechnologyLessonsInput!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     id?: string | null // String
     name?: string | null // String
@@ -14026,7 +14570,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput']
       | null // TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput
     User: NexusGenInputs['UserCreateNestedOneWithoutTechnologyLessonsInput'] // UserCreateNestedOneWithoutTechnologyLessonsInput!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     id?: string | null // String
     name?: string | null // String
@@ -14040,7 +14584,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput']
       | null // TechnologyLessonUserCreateNestedManyWithoutTechnologyLessonInput
     Technology_TechnologyToTechnologyLesson: NexusGenInputs['TechnologyCreateNestedOneWithoutTechnologyLessonsInput'] // TechnologyCreateNestedOneWithoutTechnologyLessonsInput!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     id?: string | null // String
     name?: string | null // String
@@ -14050,6 +14594,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['TechnologyLessonWhereInput'] | null // TechnologyLessonWhereInput
     none?: NexusGenInputs['TechnologyLessonWhereInput'] | null // TechnologyLessonWhereInput
     some?: NexusGenInputs['TechnologyLessonWhereInput'] | null // TechnologyLessonWhereInput
+  }
+  TechnologyLessonOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TechnologyLessonUserCreateManyTechnologyLessonInput: {
     // input type
@@ -14141,6 +14689,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TechnologyLessonUserWhereInput'] | null // TechnologyLessonUserWhereInput
     some?: NexusGenInputs['TechnologyLessonUserWhereInput'] | null // TechnologyLessonUserWhereInput
   }
+  TechnologyLessonUserOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   TechnologyLessonUserWhereInput: {
     // input type
     AND?: NexusGenInputs['TechnologyLessonUserWhereInput'][] | null // [TechnologyLessonUserWhereInput!]
@@ -14190,9 +14742,26 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
     some?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
   }
-  TechnologyOrderByInput: {
+  TechnologyOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TechnologyOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    LearnStrategyStages?:
+      | NexusGenInputs['LearnStrategyStageOrderByRelationAggregateInput']
+      | null // LearnStrategyStageOrderByRelationAggregateInput
+    TaskTechnologies?:
+      | NexusGenInputs['TaskTechnologyOrderByRelationAggregateInput']
+      | null // TaskTechnologyOrderByRelationAggregateInput
+    TechnologyLessons?:
+      | NexusGenInputs['TechnologyLessonOrderByRelationAggregateInput']
+      | null // TechnologyLessonOrderByRelationAggregateInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    UserTechnologies?:
+      | NexusGenInputs['UserTechnologyOrderByRelationAggregateInput']
+      | null // UserTechnologyOrderByRelationAggregateInput
     components?: NexusGenEnums['SortOrder'] | null // SortOrder
     contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -14259,16 +14828,16 @@ export interface NexusGenInputs {
     Parent?: string | null // String
     Project?: string | null // String
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
     id?: string | null // String
     name?: string | null // String
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateCreateManyProject_ProjectToTemplate_PrismaProjectInputEnvelope: {
     // input type
@@ -14283,16 +14852,16 @@ export interface NexusGenInputs {
     Parent?: string | null // String
     PrismaProject?: string | null // String
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
     id?: string | null // String
     name?: string | null // String
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateCreateManyProject_ProjectToTemplate_ProjectInputEnvelope: {
     // input type
@@ -14307,16 +14876,16 @@ export interface NexusGenInputs {
     PrismaProject?: string | null // String
     Project?: string | null // String
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
     id?: string | null // String
     name?: string | null // String
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateCreateManyTemplateInputEnvelope: {
     // input type
@@ -14329,16 +14898,16 @@ export interface NexusGenInputs {
     PrismaProject?: string | null // String
     Project?: string | null // String
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
     id?: string | null // String
     name?: string | null // String
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateCreateManyUserInputEnvelope: {
     // input type
@@ -14437,16 +15006,16 @@ export interface NexusGenInputs {
       | null // TemplateCreateNestedOneWithoutOther_TemplatesInput
     User: NexusGenInputs['UserCreateNestedOneWithoutTemplatesInput'] // UserCreateNestedOneWithoutTemplatesInput!
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
     id?: string | null // String
     name?: string | null // String
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateCreateWithoutProject_ProjectToTemplate_PrismaProjectInput: {
     // input type
@@ -14458,7 +15027,7 @@ export interface NexusGenInputs {
       | null // TemplateCreateNestedOneWithoutOther_TemplatesInput
     User: NexusGenInputs['UserCreateNestedOneWithoutTemplatesInput'] // UserCreateNestedOneWithoutTemplatesInput!
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
@@ -14467,10 +15036,10 @@ export interface NexusGenInputs {
     other_Templates?:
       | NexusGenInputs['TemplateCreateNestedManyWithoutTemplateInput']
       | null // TemplateCreateNestedManyWithoutTemplateInput
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateCreateWithoutProject_ProjectToTemplate_ProjectInput: {
     // input type
@@ -14482,7 +15051,7 @@ export interface NexusGenInputs {
       | null // TemplateCreateNestedOneWithoutOther_TemplatesInput
     User: NexusGenInputs['UserCreateNestedOneWithoutTemplatesInput'] // UserCreateNestedOneWithoutTemplatesInput!
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
@@ -14491,10 +15060,10 @@ export interface NexusGenInputs {
     other_Templates?:
       | NexusGenInputs['TemplateCreateNestedManyWithoutTemplateInput']
       | null // TemplateCreateNestedManyWithoutTemplateInput
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateCreateWithoutTemplateInput: {
     // input type
@@ -14506,7 +15075,7 @@ export interface NexusGenInputs {
       | null // ProjectCreateNestedOneWithoutTemplates_ProjectToTemplate_ProjectInput
     User: NexusGenInputs['UserCreateNestedOneWithoutTemplatesInput'] // UserCreateNestedOneWithoutTemplatesInput!
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
@@ -14515,10 +15084,10 @@ export interface NexusGenInputs {
     other_Templates?:
       | NexusGenInputs['TemplateCreateNestedManyWithoutTemplateInput']
       | null // TemplateCreateNestedManyWithoutTemplateInput
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateCreateWithoutUserInput: {
     // input type
@@ -14532,7 +15101,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['TemplateCreateNestedOneWithoutOther_TemplatesInput']
       | null // TemplateCreateNestedOneWithoutOther_TemplatesInput
     component?: string | null // String
-    components: NexusGenScalars['Json'] // Json!
+    components: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     description?: string | null // String
     externalKey?: string | null // String
@@ -14541,16 +15110,20 @@ export interface NexusGenInputs {
     other_Templates?:
       | NexusGenInputs['TemplateCreateNestedManyWithoutTemplateInput']
       | null // TemplateCreateNestedManyWithoutTemplateInput
-    props: NexusGenScalars['Json'] // Json!
+    props: NexusGenEnums['JsonNullValueInput'] // JsonNullValueInput!
     rank?: number | null // Int
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-    vars?: NexusGenScalars['Json'] | null // Json
+    vars?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
   }
   TemplateListRelationFilter: {
     // input type
     every?: NexusGenInputs['TemplateWhereInput'] | null // TemplateWhereInput
     none?: NexusGenInputs['TemplateWhereInput'] | null // TemplateWhereInput
     some?: NexusGenInputs['TemplateWhereInput'] | null // TemplateWhereInput
+  }
+  TemplateOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TemplateWhereInput: {
     // input type
@@ -14669,10 +15242,16 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
     some?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
   }
-  TimerOrderByInput: {
+  TimerOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  TimerOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task_TaskToTimer?: NexusGenInputs['TaskOrderByWithRelationInput'] | null // TaskOrderByWithRelationInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     stopedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -14749,6 +15328,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['TokenWhereInput'] | null // TokenWhereInput
     none?: NexusGenInputs['TokenWhereInput'] | null // TokenWhereInput
     some?: NexusGenInputs['TokenWhereInput'] | null // TokenWhereInput
+  }
+  TokenOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TokenWhereInput: {
     // input type
@@ -14964,6 +15547,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TournamentGroupWhereInput'] | null // TournamentGroupWhereInput
     some?: NexusGenInputs['TournamentGroupWhereInput'] | null // TournamentGroupWhereInput
   }
+  TournamentGroupOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   TournamentGroupWhereInput: {
     // input type
     AND?: NexusGenInputs['TournamentGroupWhereInput'][] | null // [TournamentGroupWhereInput!]
@@ -14988,6 +15575,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['TournamentWhereInput'] | null // TournamentWhereInput
     none?: NexusGenInputs['TournamentWhereInput'] | null // TournamentWhereInput
     some?: NexusGenInputs['TournamentWhereInput'] | null // TournamentWhereInput
+  }
+  TournamentOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TournamentWhereInput: {
     // input type
@@ -15178,6 +15769,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TourneyWhereInput'] | null // TourneyWhereInput
     some?: NexusGenInputs['TourneyWhereInput'] | null // TourneyWhereInput
   }
+  TourneyOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   TourneyPlayerCreateManyTourney_TourneyToTourneyPlayerInput: {
     // input type
     User?: string | null // String
@@ -15258,6 +15853,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['TourneyPlayerWhereInput'] | null // TourneyPlayerWhereInput
     some?: NexusGenInputs['TourneyPlayerWhereInput'] | null // TourneyPlayerWhereInput
   }
+  TourneyPlayerOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   TourneyPlayerWhereInput: {
     // input type
     AND?: NexusGenInputs['TourneyPlayerWhereInput'][] | null // [TourneyPlayerWhereInput!]
@@ -15302,7 +15901,7 @@ export interface NexusGenInputs {
   UserCreateManyEthAccount_EthAccountToUser_EthAccountAuthedInput: {
     // input type
     CreatedBy?: string | null // String
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -15341,7 +15940,7 @@ export interface NexusGenInputs {
   UserCreateManyUserInput: {
     // input type
     EthAccountAuthed?: string | null // String
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -16509,7 +17108,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -16729,7 +17328,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -16949,7 +17548,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -17169,7 +17768,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -17389,7 +17988,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -17609,7 +18208,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -17829,7 +18428,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -18049,7 +18648,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -18269,7 +18868,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -18489,7 +19088,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -18709,7 +19308,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -18931,7 +19530,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -19153,7 +19752,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -19373,7 +19972,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -19593,7 +20192,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -19813,7 +20412,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -20035,7 +20634,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -20257,7 +20856,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -20477,7 +21076,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -20697,7 +21296,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -20917,7 +21516,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -21137,7 +21736,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -21357,7 +21956,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -21577,7 +22176,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -21797,7 +22396,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -22017,7 +22616,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -22237,7 +22836,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -22457,7 +23056,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -22677,7 +23276,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -22900,7 +23499,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -23121,7 +23720,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -23341,7 +23940,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -23561,7 +24160,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -23781,7 +24380,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -24001,7 +24600,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -24221,7 +24820,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -24441,7 +25040,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -24661,7 +25260,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -24881,7 +25480,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -25101,7 +25700,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -25323,7 +25922,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -25543,7 +26142,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -25765,7 +26364,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -25985,7 +26584,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -26205,7 +26804,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -26427,7 +27026,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -26647,7 +27246,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -26867,7 +27466,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -27087,7 +27686,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -27307,7 +27906,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -27529,7 +28128,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -27749,7 +28348,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -27969,7 +28568,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -28191,7 +28790,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -28411,7 +29010,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -28631,7 +29230,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -28851,7 +29450,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -29071,7 +29670,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -29293,7 +29892,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -29513,7 +30112,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -29733,7 +30332,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -29953,7 +30552,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -30175,7 +30774,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -30397,7 +30996,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -30617,7 +31216,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -30837,7 +31436,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -31057,7 +31656,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['UserTechnologyCreateNestedManyWithoutUserInput']
       | null // UserTechnologyCreateNestedManyWithoutUserInput
     Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -31279,7 +31878,7 @@ export interface NexusGenInputs {
     Votes?:
       | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
       | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
-    about?: NexusGenScalars['Json'] | null // Json
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     acceptChatMessageAnonymous?: boolean | null // Boolean
     acceptNewChatRoom?: boolean | null // Boolean
     acceptNewChatRoomAnonymous?: boolean | null // Boolean
@@ -31334,6 +31933,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['UserGroupWhereInput'] | null // UserGroupWhereInput
     none?: NexusGenInputs['UserGroupWhereInput'] | null // UserGroupWhereInput
     some?: NexusGenInputs['UserGroupWhereInput'] | null // UserGroupWhereInput
+  }
+  UserGroupOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   UserGroupWhereInput: {
     // input type
@@ -31441,8 +32044,16 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['UserLearnStrategyWhereInput'] | null // UserLearnStrategyWhereInput
     some?: NexusGenInputs['UserLearnStrategyWhereInput'] | null // UserLearnStrategyWhereInput
   }
-  UserLearnStrategyOrderByInput: {
+  UserLearnStrategyOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  UserLearnStrategyOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    LearnStrategy?:
+      | NexusGenInputs['LearnStrategyOrderByWithRelationInput']
+      | null // LearnStrategyOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdById?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -31475,10 +32086,189 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     some?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
   }
-  UserOrderByInput: {
+  UserOrderByRelationAggregateInput: {
     // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  UserOrderByWithRelationInput: {
+    // input type
+    CallRequests_CallRequest_CalledToUser?:
+      | NexusGenInputs['CallRequestOrderByRelationAggregateInput']
+      | null // CallRequestOrderByRelationAggregateInput
+    CallRequests_CallRequest_CallerToUser?:
+      | NexusGenInputs['CallRequestOrderByRelationAggregateInput']
+      | null // CallRequestOrderByRelationAggregateInput
+    Careers?: NexusGenInputs['CareerOrderByRelationAggregateInput'] | null // CareerOrderByRelationAggregateInput
+    ChatMessages?:
+      | NexusGenInputs['ChatMessageOrderByRelationAggregateInput']
+      | null // ChatMessageOrderByRelationAggregateInput
+    ChatMessagesReaded?:
+      | NexusGenInputs['ChatMessageReadedOrderByRelationAggregateInput']
+      | null // ChatMessageReadedOrderByRelationAggregateInput
+    ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?:
+      | NexusGenInputs['ChatRoomInvitationOrderByRelationAggregateInput']
+      | null // ChatRoomInvitationOrderByRelationAggregateInput
+    ChatRoomInvitations_ChatRoomInvitation_UserToUser?:
+      | NexusGenInputs['ChatRoomInvitationOrderByRelationAggregateInput']
+      | null // ChatRoomInvitationOrderByRelationAggregateInput
+    ChatRooms_ChatRoomToUser?:
+      | NexusGenInputs['ChatRoomOrderByRelationAggregateInput']
+      | null // ChatRoomOrderByRelationAggregateInput
+    ChatRooms_ChatRoomsMembers?:
+      | NexusGenInputs['ChatRoomOrderByRelationAggregateInput']
+      | null // ChatRoomOrderByRelationAggregateInput
+    CodeChallengeBlocks?:
+      | NexusGenInputs['CodeChallengeBlockOrderByRelationAggregateInput']
+      | null // CodeChallengeBlockOrderByRelationAggregateInput
+    CodeChallengeCompletions?:
+      | NexusGenInputs['CodeChallengeCompletionOrderByRelationAggregateInput']
+      | null // CodeChallengeCompletionOrderByRelationAggregateInput
+    CodeChallenges?:
+      | NexusGenInputs['CodeChallengeOrderByRelationAggregateInput']
+      | null // CodeChallengeOrderByRelationAggregateInput
+    Comments?: NexusGenInputs['CommentOrderByRelationAggregateInput'] | null // CommentOrderByRelationAggregateInput
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Donates?: NexusGenInputs['DonateOrderByRelationAggregateInput'] | null // DonateOrderByRelationAggregateInput
     EthAccountAuthed?: NexusGenEnums['SortOrder'] | null // SortOrder
+    EthAccount_EthAccountToUser_EthAccountAuthed?:
+      | NexusGenInputs['EthAccountOrderByWithRelationInput']
+      | null // EthAccountOrderByWithRelationInput
+    EthAccounts_EthAccount_CreatedByToUser?:
+      | NexusGenInputs['EthAccountOrderByRelationAggregateInput']
+      | null // EthAccountOrderByRelationAggregateInput
+    EthContractSources?:
+      | NexusGenInputs['EthContractSourceOrderByRelationAggregateInput']
+      | null // EthContractSourceOrderByRelationAggregateInput
+    Files?: NexusGenInputs['FileOrderByRelationAggregateInput'] | null // FileOrderByRelationAggregateInput
+    Galleries?: NexusGenInputs['GalleryOrderByRelationAggregateInput'] | null // GalleryOrderByRelationAggregateInput
+    GameResults_GameResult_CreatedByToUser?:
+      | NexusGenInputs['GameResultOrderByRelationAggregateInput']
+      | null // GameResultOrderByRelationAggregateInput
+    GameResults_GameResult_UserToUser?:
+      | NexusGenInputs['GameResultOrderByRelationAggregateInput']
+      | null // GameResultOrderByRelationAggregateInput
+    Games_GameToUser?:
+      | NexusGenInputs['GameOrderByRelationAggregateInput']
+      | null // GameOrderByRelationAggregateInput
+    Games_GameUsers?: NexusGenInputs['GameOrderByRelationAggregateInput'] | null // GameOrderByRelationAggregateInput
+    Imports?: NexusGenInputs['ImportOrderByRelationAggregateInput'] | null // ImportOrderByRelationAggregateInput
+    LearnStrategies?:
+      | NexusGenInputs['LearnStrategyOrderByRelationAggregateInput']
+      | null // LearnStrategyOrderByRelationAggregateInput
+    Letters?: NexusGenInputs['LetterOrderByRelationAggregateInput'] | null // LetterOrderByRelationAggregateInput
+    LogedIns?: NexusGenInputs['LogedInOrderByRelationAggregateInput'] | null // LogedInOrderByRelationAggregateInput
+    MentorMenteeMentees?:
+      | NexusGenInputs['MentorMenteeOrderByRelationAggregateInput']
+      | null // MentorMenteeOrderByRelationAggregateInput
+    MentorMenteeMentors?:
+      | NexusGenInputs['MentorMenteeOrderByRelationAggregateInput']
+      | null // MentorMenteeOrderByRelationAggregateInput
+    Notices_Notice_CreatedByToUser?:
+      | NexusGenInputs['NoticeOrderByRelationAggregateInput']
+      | null // NoticeOrderByRelationAggregateInput
+    Notices_Notice_UserToUser?:
+      | NexusGenInputs['NoticeOrderByRelationAggregateInput']
+      | null // NoticeOrderByRelationAggregateInput
+    NotificationTypes_NotificationTypeToUser?:
+      | NexusGenInputs['NotificationTypeOrderByRelationAggregateInput']
+      | null // NotificationTypeOrderByRelationAggregateInput
+    NotificationTypes_UserNotificationTypes?:
+      | NexusGenInputs['NotificationTypeOrderByRelationAggregateInput']
+      | null // NotificationTypeOrderByRelationAggregateInput
+    Players?: NexusGenInputs['PlayerOrderByRelationAggregateInput'] | null // PlayerOrderByRelationAggregateInput
+    Positions_PositionToUser?:
+      | NexusGenInputs['PositionOrderByRelationAggregateInput']
+      | null // PositionOrderByRelationAggregateInput
+    Positions_PositionUsers?:
+      | NexusGenInputs['PositionOrderByRelationAggregateInput']
+      | null // PositionOrderByRelationAggregateInput
+    ProjectMembers_ProjectMember_CreatedByToUser?:
+      | NexusGenInputs['ProjectMemberOrderByRelationAggregateInput']
+      | null // ProjectMemberOrderByRelationAggregateInput
+    ProjectMembers_ProjectMember_UserToUser?:
+      | NexusGenInputs['ProjectMemberOrderByRelationAggregateInput']
+      | null // ProjectMemberOrderByRelationAggregateInput
+    ProjectTasks?:
+      | NexusGenInputs['ProjectTaskOrderByRelationAggregateInput']
+      | null // ProjectTaskOrderByRelationAggregateInput
+    Projects_PrismaProjectUsers?:
+      | NexusGenInputs['ProjectOrderByRelationAggregateInput']
+      | null // ProjectOrderByRelationAggregateInput
+    Projects_ProjectToUser?:
+      | NexusGenInputs['ProjectOrderByRelationAggregateInput']
+      | null // ProjectOrderByRelationAggregateInput
+    ResetPasswords?:
+      | NexusGenInputs['ResetPasswordOrderByRelationAggregateInput']
+      | null // ResetPasswordOrderByRelationAggregateInput
+    ResourceTags?:
+      | NexusGenInputs['ResourceTagOrderByRelationAggregateInput']
+      | null // ResourceTagOrderByRelationAggregateInput
+    Resources?: NexusGenInputs['ResourceOrderByRelationAggregateInput'] | null // ResourceOrderByRelationAggregateInput
+    Routes?: NexusGenInputs['RouteOrderByRelationAggregateInput'] | null // RouteOrderByRelationAggregateInput
+    ServiceCategories?:
+      | NexusGenInputs['ServiceCategoryOrderByRelationAggregateInput']
+      | null // ServiceCategoryOrderByRelationAggregateInput
+    Services?: NexusGenInputs['ServiceOrderByRelationAggregateInput'] | null // ServiceOrderByRelationAggregateInput
+    Settings?: NexusGenInputs['SettingsOrderByRelationAggregateInput'] | null // SettingsOrderByRelationAggregateInput
+    SmsMessages?:
+      | NexusGenInputs['SmsMessageOrderByRelationAggregateInput']
+      | null // SmsMessageOrderByRelationAggregateInput
+    SmsProviders?:
+      | NexusGenInputs['SmsProviderOrderByRelationAggregateInput']
+      | null // SmsProviderOrderByRelationAggregateInput
+    Tags?: NexusGenInputs['TagOrderByRelationAggregateInput'] | null // TagOrderByRelationAggregateInput
+    TaskMembers_TaskMember_CreatedByToUser?:
+      | NexusGenInputs['TaskMemberOrderByRelationAggregateInput']
+      | null // TaskMemberOrderByRelationAggregateInput
+    TaskMembers_TaskMember_UserToUser?:
+      | NexusGenInputs['TaskMemberOrderByRelationAggregateInput']
+      | null // TaskMemberOrderByRelationAggregateInput
+    TaskReactions?:
+      | NexusGenInputs['TaskReactionOrderByRelationAggregateInput']
+      | null // TaskReactionOrderByRelationAggregateInput
+    TaskTechnologies?:
+      | NexusGenInputs['TaskTechnologyOrderByRelationAggregateInput']
+      | null // TaskTechnologyOrderByRelationAggregateInput
+    Tasks?: NexusGenInputs['TaskOrderByRelationAggregateInput'] | null // TaskOrderByRelationAggregateInput
+    TeamMembers_TeamMember_CreatedByToUser?:
+      | NexusGenInputs['TeamMemberOrderByRelationAggregateInput']
+      | null // TeamMemberOrderByRelationAggregateInput
+    TeamMembers_TeamMember_UserToUser?:
+      | NexusGenInputs['TeamMemberOrderByRelationAggregateInput']
+      | null // TeamMemberOrderByRelationAggregateInput
+    Teams?: NexusGenInputs['TeamOrderByRelationAggregateInput'] | null // TeamOrderByRelationAggregateInput
+    Technologies?:
+      | NexusGenInputs['TechnologyOrderByRelationAggregateInput']
+      | null // TechnologyOrderByRelationAggregateInput
+    TechnologyLessonUsers?:
+      | NexusGenInputs['TechnologyLessonUserOrderByRelationAggregateInput']
+      | null // TechnologyLessonUserOrderByRelationAggregateInput
+    TechnologyLessons?:
+      | NexusGenInputs['TechnologyLessonOrderByRelationAggregateInput']
+      | null // TechnologyLessonOrderByRelationAggregateInput
+    Templates?: NexusGenInputs['TemplateOrderByRelationAggregateInput'] | null // TemplateOrderByRelationAggregateInput
+    Timers?: NexusGenInputs['TimerOrderByRelationAggregateInput'] | null // TimerOrderByRelationAggregateInput
+    Tokens?: NexusGenInputs['TokenOrderByRelationAggregateInput'] | null // TokenOrderByRelationAggregateInput
+    TournamentGroups?:
+      | NexusGenInputs['TournamentGroupOrderByRelationAggregateInput']
+      | null // TournamentGroupOrderByRelationAggregateInput
+    Tournaments?:
+      | NexusGenInputs['TournamentOrderByRelationAggregateInput']
+      | null // TournamentOrderByRelationAggregateInput
+    TourneyPlayers?:
+      | NexusGenInputs['TourneyPlayerOrderByRelationAggregateInput']
+      | null // TourneyPlayerOrderByRelationAggregateInput
+    Tourneys?: NexusGenInputs['TourneyOrderByRelationAggregateInput'] | null // TourneyOrderByRelationAggregateInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
+    UserGroups?: NexusGenInputs['UserGroupOrderByRelationAggregateInput'] | null // UserGroupOrderByRelationAggregateInput
+    UserLearnStrategies?:
+      | NexusGenInputs['UserLearnStrategyOrderByRelationAggregateInput']
+      | null // UserLearnStrategyOrderByRelationAggregateInput
+    UserTechnologies?:
+      | NexusGenInputs['UserTechnologyOrderByRelationAggregateInput']
+      | null // UserTechnologyOrderByRelationAggregateInput
+    Votes?: NexusGenInputs['VoteOrderByRelationAggregateInput'] | null // VoteOrderByRelationAggregateInput
+    Worlds?: NexusGenInputs['WorldOrderByRelationAggregateInput'] | null // WorldOrderByRelationAggregateInput
     about?: NexusGenEnums['SortOrder'] | null // SortOrder
     acceptChatMessageAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
     acceptNewChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -31497,6 +32287,7 @@ export interface NexusGenInputs {
     isMentor?: NexusGenEnums['SortOrder'] | null // SortOrder
     marketplaceToken?: NexusGenEnums['SortOrder'] | null // SortOrder
     oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    other_Users?: NexusGenInputs['UserOrderByRelationAggregateInput'] | null // UserOrderByRelationAggregateInput
     password?: NexusGenEnums['SortOrder'] | null // SortOrder
     phone?: NexusGenEnums['SortOrder'] | null // SortOrder
     showEmail?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -31529,7 +32320,7 @@ export interface NexusGenInputs {
   UserTechnologyCreateManyTechnology_TechnologyToUserTechnologyInput: {
     // input type
     CreatedBy: string // String!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     date_from?: NexusGenScalars['DateTime'] | null // DateTime
     date_till?: NexusGenScalars['DateTime'] | null // DateTime
@@ -31550,7 +32341,7 @@ export interface NexusGenInputs {
   UserTechnologyCreateManyUserInput: {
     // input type
     Technology: string // String!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     date_from?: NexusGenScalars['DateTime'] | null // DateTime
     date_till?: NexusGenScalars['DateTime'] | null // DateTime
@@ -31603,7 +32394,7 @@ export interface NexusGenInputs {
   UserTechnologyCreateWithoutTechnology_TechnologyToUserTechnologyInput: {
     // input type
     User: NexusGenInputs['UserCreateNestedOneWithoutUserTechnologiesInput'] // UserCreateNestedOneWithoutUserTechnologiesInput!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     date_from?: NexusGenScalars['DateTime'] | null // DateTime
     date_till?: NexusGenScalars['DateTime'] | null // DateTime
@@ -31617,7 +32408,7 @@ export interface NexusGenInputs {
   UserTechnologyCreateWithoutUserInput: {
     // input type
     Technology_TechnologyToUserTechnology: NexusGenInputs['TechnologyCreateNestedOneWithoutUserTechnologiesInput'] // TechnologyCreateNestedOneWithoutUserTechnologiesInput!
-    components?: NexusGenScalars['Json'] | null // Json
+    components?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     date_from?: NexusGenScalars['DateTime'] | null // DateTime
     date_till?: NexusGenScalars['DateTime'] | null // DateTime
@@ -31639,10 +32430,18 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['UserTechnologyWhereInput'] | null // UserTechnologyWhereInput
     some?: NexusGenInputs['UserTechnologyWhereInput'] | null // UserTechnologyWhereInput
   }
-  UserTechnologyOrderByInput: {
+  UserTechnologyOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  UserTechnologyOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Technology?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Technology_TechnologyToUserTechnology?:
+      | NexusGenInputs['TechnologyOrderByWithRelationInput']
+      | null // TechnologyOrderByWithRelationInput
+    User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     components?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     date_from?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -31986,6 +32785,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['VoteWhereInput'] | null // VoteWhereInput
     some?: NexusGenInputs['VoteWhereInput'] | null // VoteWhereInput
   }
+  VoteOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   VoteWhereInput: {
     // input type
     AND?: NexusGenInputs['VoteWhereInput'][] | null // [VoteWhereInput!]
@@ -32087,6 +32890,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['WorldWhereInput'] | null // WorldWhereInput
     some?: NexusGenInputs['WorldWhereInput'] | null // WorldWhereInput
   }
+  WorldOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   WorldWhereInput: {
     // input type
     AND?: NexusGenInputs['WorldWhereInput'][] | null // [WorldWhereInput!]
@@ -32145,6 +32952,8 @@ export interface NexusGenEnums {
     | 'SendToken'
   Gamemode: 'ADVENTURE' | 'CREATIVE' | 'SPECTATOR' | 'SURVIVAL'
   ImportStatus: 'Completed' | 'Created' | 'Error' | 'Started' | 'Stoped'
+  JsonNullValueFilter: 'AnyNull' | 'DbNull' | 'JsonNull'
+  JsonNullValueInput: 'JsonNull'
   LetsadsSmsMessageStatusEnum: 'Complete' | 'Error'
   LetsadsSmsMessageStatusErrorCodeEnum:
     | 'API_DISABLED'
@@ -32165,6 +32974,7 @@ export interface NexusGenEnums {
   MentorMenteeStatus: 'Accepted' | 'Rejected' | 'Request'
   MessageType: 'ERROR' | 'INFO' | 'PLAYER' | 'SERVER'
   NoticeType: 'Call' | 'CallRequest' | 'ChatMessage' | 'ChatRoomInvitation'
+  NullableJsonNullValueInput: 'DbNull' | 'JsonNull'
   ProjectMemberStatus: 'Active' | 'Fired' | 'Invited' | 'Quit'
   ProjectStatus:
     | 'Accepted'
@@ -32231,7 +33041,6 @@ export interface NexusGenScalars {
   Decimal: any
   EditorComponentObject: EditorComponent.EditorComponentObject
   JSON: any
-  Json: any
   Upload: any
   UserTechnologyLevel: 1 | 2 | 3 | 4 | 5
 }
@@ -33589,7 +34398,9 @@ export interface NexusGenArgTypes {
   CodeChallenge: {
     CodeChallengeCompletions: {
       // args
-      orderBy?: NexusGenInputs['CodeChallengeCompletionOrderByInput'][] | null // [CodeChallengeCompletionOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['CodeChallengeCompletionOrderByWithRelationInput'][]
+        | null // [CodeChallengeCompletionOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
@@ -33598,11 +34409,13 @@ export interface NexusGenArgTypes {
   CodeChallengeBlock: {
     Challenges: {
       // args
-      orderBy?: NexusGenInputs['CodeChallengeOrderByInput'] | null // CodeChallengeOrderByInput
+      orderBy?: NexusGenInputs['CodeChallengeOrderByWithRelationInput'] | null // CodeChallengeOrderByWithRelationInput
     }
     Children: {
       // args
-      orderBy?: NexusGenInputs['CodeChallengeBlockOrderByInput'] | null // CodeChallengeBlockOrderByInput
+      orderBy?:
+        | NexusGenInputs['CodeChallengeBlockOrderByWithRelationInput']
+        | null // CodeChallengeBlockOrderByWithRelationInput
     }
   }
   EthAccount: {
@@ -33795,7 +34608,7 @@ export interface NexusGenArgTypes {
   Project: {
     ProjectTasks: {
       // args
-      orderBy?: NexusGenInputs['ProjectTaskOrderByInput'] | null // ProjectTaskOrderByInput
+      orderBy?: NexusGenInputs['ProjectTaskOrderByWithRelationInput'] | null // ProjectTaskOrderByWithRelationInput
     }
   }
   Query: {
@@ -33806,7 +34619,7 @@ export interface NexusGenArgTypes {
     chatMessages: {
       // args
       cursor?: NexusGenInputs['ChatMessageWhereUniqueInput'] | null // ChatMessageWhereUniqueInput
-      orderBy?: NexusGenInputs['ChatMessageOrderByInput'][] | null // [ChatMessageOrderByInput!]
+      orderBy?: NexusGenInputs['ChatMessageOrderByWithRelationInput'][] | null // [ChatMessageOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['ChatMessageWhereInput'] | null // ChatMessageWhereInput
@@ -33822,7 +34635,7 @@ export interface NexusGenArgTypes {
     chatRooms: {
       // args
       cursor?: NexusGenInputs['ChatRoomWhereUniqueInput'] | null // ChatRoomWhereUniqueInput
-      orderBy?: NexusGenInputs['ChatRoomOrderByInput'][] | null // [ChatRoomOrderByInput!]
+      orderBy?: NexusGenInputs['ChatRoomOrderByWithRelationInput'][] | null // [ChatRoomOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['ChatRoomWhereInput'] | null // ChatRoomWhereInput
@@ -33842,7 +34655,9 @@ export interface NexusGenArgTypes {
     codeChallengeBlocks: {
       // args
       cursor?: NexusGenInputs['CodeChallengeBlockWhereUniqueInput'] | null // CodeChallengeBlockWhereUniqueInput
-      orderBy?: NexusGenInputs['CodeChallengeBlockOrderByInput'][] | null // [CodeChallengeBlockOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['CodeChallengeBlockOrderByWithRelationInput'][]
+        | null // [CodeChallengeBlockOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['CodeChallengeBlockWhereInput'] | null // CodeChallengeBlockWhereInput
@@ -33858,7 +34673,9 @@ export interface NexusGenArgTypes {
     codeChallengeCompletions: {
       // args
       cursor?: NexusGenInputs['CodeChallengeCompletionWhereUniqueInput'] | null // CodeChallengeCompletionWhereUniqueInput
-      orderBy?: NexusGenInputs['CodeChallengeCompletionOrderByInput'][] | null // [CodeChallengeCompletionOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['CodeChallengeCompletionOrderByWithRelationInput'][]
+        | null // [CodeChallengeCompletionOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['CodeChallengeCompletionWhereInput'] | null // CodeChallengeCompletionWhereInput
@@ -33866,7 +34683,7 @@ export interface NexusGenArgTypes {
     codeChallenges: {
       // args
       cursor?: NexusGenInputs['CodeChallengeWhereUniqueInput'] | null // CodeChallengeWhereUniqueInput
-      orderBy?: NexusGenInputs['CodeChallengeOrderByInput'][] | null // [CodeChallengeOrderByInput!]
+      orderBy?: NexusGenInputs['CodeChallengeOrderByWithRelationInput'][] | null // [CodeChallengeOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['CodeChallengeWhereInput'] | null // CodeChallengeWhereInput
@@ -33878,7 +34695,7 @@ export interface NexusGenArgTypes {
     donates: {
       // args
       cursor?: NexusGenInputs['DonateWhereUniqueInput'] | null // DonateWhereUniqueInput
-      orderBy?: NexusGenInputs['DonateOrderByInput'][] | null // [DonateOrderByInput!]
+      orderBy?: NexusGenInputs['DonateOrderByWithRelationInput'][] | null // [DonateOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['DonateWhereInput'] | null // DonateWhereInput
@@ -33894,7 +34711,7 @@ export interface NexusGenArgTypes {
     files: {
       // args
       cursor?: NexusGenInputs['FileWhereUniqueInput'] | null // FileWhereUniqueInput
-      orderBy?: NexusGenInputs['FileOrderByInput'][] | null // [FileOrderByInput!]
+      orderBy?: NexusGenInputs['FileOrderByWithRelationInput'][] | null // [FileOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['FileWhereInput'] | null // FileWhereInput
@@ -33906,7 +34723,7 @@ export interface NexusGenArgTypes {
     learnStrategies: {
       // args
       cursor?: NexusGenInputs['LearnStrategyWhereUniqueInput'] | null // LearnStrategyWhereUniqueInput
-      orderBy?: NexusGenInputs['LearnStrategyOrderByInput'][] | null // [LearnStrategyOrderByInput!]
+      orderBy?: NexusGenInputs['LearnStrategyOrderByWithRelationInput'][] | null // [LearnStrategyOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['LearnStrategyWhereInput'] | null // LearnStrategyWhereInput
@@ -33926,7 +34743,9 @@ export interface NexusGenArgTypes {
     learnStrategyStages: {
       // args
       cursor?: NexusGenInputs['LearnStrategyStageWhereUniqueInput'] | null // LearnStrategyStageWhereUniqueInput
-      orderBy?: NexusGenInputs['LearnStrategyStageOrderByInput'][] | null // [LearnStrategyStageOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['LearnStrategyStageOrderByWithRelationInput'][]
+        | null // [LearnStrategyStageOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['LearnStrategyStageWhereInput'] | null // LearnStrategyStageWhereInput
@@ -33942,7 +34761,7 @@ export interface NexusGenArgTypes {
     mentorMentees: {
       // args
       cursor?: NexusGenInputs['MentorMenteeWhereUniqueInput'] | null // MentorMenteeWhereUniqueInput
-      orderBy?: NexusGenInputs['MentorMenteeOrderByInput'][] | null // [MentorMenteeOrderByInput!]
+      orderBy?: NexusGenInputs['MentorMenteeOrderByWithRelationInput'][] | null // [MentorMenteeOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['MentorMenteeWhereInput'] | null // MentorMenteeWhereInput
@@ -33958,7 +34777,7 @@ export interface NexusGenArgTypes {
     notices: {
       // args
       cursor?: NexusGenInputs['NoticeWhereUniqueInput'] | null // NoticeWhereUniqueInput
-      orderBy?: NexusGenInputs['NoticeOrderByInput'][] | null // [NoticeOrderByInput!]
+      orderBy?: NexusGenInputs['NoticeOrderByWithRelationInput'][] | null // [NoticeOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['NoticeWhereInput'] | null // NoticeWhereInput
@@ -33970,7 +34789,9 @@ export interface NexusGenArgTypes {
     notificationTypes: {
       // args
       cursor?: NexusGenInputs['NotificationTypeWhereUniqueInput'] | null // NotificationTypeWhereUniqueInput
-      orderBy?: NexusGenInputs['NotificationTypeOrderByInput'][] | null // [NotificationTypeOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['NotificationTypeOrderByWithRelationInput'][]
+        | null // [NotificationTypeOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['NotificationTypeWhereInput'] | null // NotificationTypeWhereInput
@@ -33986,7 +34807,7 @@ export interface NexusGenArgTypes {
     projectTasks: {
       // args
       cursor?: NexusGenInputs['ProjectTaskWhereUniqueInput'] | null // ProjectTaskWhereUniqueInput
-      orderBy?: NexusGenInputs['ProjectTaskOrderByInput'][] | null // [ProjectTaskOrderByInput!]
+      orderBy?: NexusGenInputs['ProjectTaskOrderByWithRelationInput'][] | null // [ProjectTaskOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['ProjectTaskWhereInput'] | null // ProjectTaskWhereInput
@@ -33994,7 +34815,7 @@ export interface NexusGenArgTypes {
     projects: {
       // args
       cursor?: NexusGenInputs['ProjectWhereUniqueInput'] | null // ProjectWhereUniqueInput
-      orderBy?: NexusGenInputs['ProjectOrderByInput'][] | null // [ProjectOrderByInput!]
+      orderBy?: NexusGenInputs['ProjectOrderByWithRelationInput'][] | null // [ProjectOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['ProjectWhereInput'] | null // ProjectWhereInput
@@ -34010,7 +34831,7 @@ export interface NexusGenArgTypes {
     resources: {
       // args
       cursor?: NexusGenInputs['ResourceWhereUniqueInput'] | null // ResourceWhereUniqueInput
-      orderBy?: NexusGenInputs['ResourceOrderByInput'][] | null // [ResourceOrderByInput!]
+      orderBy?: NexusGenInputs['ResourceOrderByWithRelationInput'][] | null // [ResourceOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
@@ -34026,7 +34847,7 @@ export interface NexusGenArgTypes {
     tags: {
       // args
       cursor?: NexusGenInputs['TagWhereUniqueInput'] | null // TagWhereUniqueInput
-      orderBy?: NexusGenInputs['TagOrderByInput'][] | null // [TagOrderByInput!]
+      orderBy?: NexusGenInputs['TagOrderByWithRelationInput'][] | null // [TagOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['TagWhereInput'] | null // TagWhereInput
@@ -34042,7 +34863,9 @@ export interface NexusGenArgTypes {
     taskTechnologies: {
       // args
       cursor?: NexusGenInputs['TaskTechnologyWhereUniqueInput'] | null // TaskTechnologyWhereUniqueInput
-      orderBy?: NexusGenInputs['TaskTechnologyOrderByInput'][] | null // [TaskTechnologyOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['TaskTechnologyOrderByWithRelationInput'][]
+        | null // [TaskTechnologyOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['TaskTechnologyWhereInput'] | null // TaskTechnologyWhereInput
@@ -34058,7 +34881,7 @@ export interface NexusGenArgTypes {
     tasks: {
       // args
       cursor?: NexusGenInputs['TaskWhereUniqueInput'] | null // TaskWhereUniqueInput
-      orderBy?: NexusGenInputs['TaskOrderByInput'][] | null // [TaskOrderByInput!]
+      orderBy?: NexusGenInputs['TaskOrderByWithRelationInput'][] | null // [TaskOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['TaskWhereInput'] | null // TaskWhereInput
@@ -34070,7 +34893,7 @@ export interface NexusGenArgTypes {
     technologies: {
       // args
       cursor?: NexusGenInputs['TechnologyWhereUniqueInput'] | null // TechnologyWhereUniqueInput
-      orderBy?: NexusGenInputs['TechnologyOrderByInput'][] | null // [TechnologyOrderByInput!]
+      orderBy?: NexusGenInputs['TechnologyOrderByWithRelationInput'][] | null // [TechnologyOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['TechnologyWhereInput'] | null // TechnologyWhereInput
@@ -34090,7 +34913,7 @@ export interface NexusGenArgTypes {
     timers: {
       // args
       cursor?: NexusGenInputs['TimerWhereUniqueInput'] | null // TimerWhereUniqueInput
-      orderBy?: NexusGenInputs['TimerOrderByInput'][] | null // [TimerOrderByInput!]
+      orderBy?: NexusGenInputs['TimerOrderByWithRelationInput'][] | null // [TimerOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
@@ -34106,7 +34929,9 @@ export interface NexusGenArgTypes {
     userLearnStrategies: {
       // args
       cursor?: NexusGenInputs['UserLearnStrategyWhereUniqueInput'] | null // UserLearnStrategyWhereUniqueInput
-      orderBy?: NexusGenInputs['UserLearnStrategyOrderByInput'][] | null // [UserLearnStrategyOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['UserLearnStrategyOrderByWithRelationInput'][]
+        | null // [UserLearnStrategyOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['UserLearnStrategyWhereInput'] | null // UserLearnStrategyWhereInput
@@ -34122,7 +34947,9 @@ export interface NexusGenArgTypes {
     userTechnologies: {
       // args
       cursor?: NexusGenInputs['UserTechnologyWhereUniqueInput'] | null // UserTechnologyWhereUniqueInput
-      orderBy?: NexusGenInputs['UserTechnologyOrderByInput'][] | null // [UserTechnologyOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['UserTechnologyOrderByWithRelationInput'][]
+        | null // [UserTechnologyOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['UserTechnologyWhereInput'] | null // UserTechnologyWhereInput
@@ -34138,7 +34965,7 @@ export interface NexusGenArgTypes {
     users: {
       // args
       cursor?: NexusGenInputs['UserWhereUniqueInput'] | null // UserWhereUniqueInput
-      orderBy?: NexusGenInputs['UserOrderByInput'][] | null // [UserOrderByInput!]
+      orderBy?: NexusGenInputs['UserOrderByWithRelationInput'][] | null // [UserOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
@@ -34151,29 +34978,31 @@ export interface NexusGenArgTypes {
   Resource: {
     Comments: {
       // args
-      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null // ResourceOrderByInput
+      orderBy?: NexusGenInputs['ResourceOrderByWithRelationInput'] | null // ResourceOrderByWithRelationInput
     }
   }
   Task: {
     Comments: {
       // args
-      orderBy?: NexusGenInputs['ResourceOrderByInput'] | null // ResourceOrderByInput
+      orderBy?: NexusGenInputs['ResourceOrderByWithRelationInput'] | null // ResourceOrderByWithRelationInput
       where?: NexusGenInputs['ResourceWhereInput'] | null // ResourceWhereInput
     }
     Timers: {
       // args
-      orderBy?: NexusGenInputs['TimerOrderByInput'] | null // TimerOrderByInput
+      orderBy?: NexusGenInputs['TimerOrderByWithRelationInput'] | null // TimerOrderByWithRelationInput
       where?: NexusGenInputs['TimerWhereInput'] | null // TimerWhereInput
     }
   }
   Technology: {
     LearnStrategyStages: {
       // args
-      orderBy?: NexusGenInputs['LearnStrategyStageOrderByInput'] | null // LearnStrategyStageOrderByInput
+      orderBy?:
+        | NexusGenInputs['LearnStrategyStageOrderByWithRelationInput']
+        | null // LearnStrategyStageOrderByWithRelationInput
     }
     UserTechnologies: {
       // args
-      orderBy?: NexusGenInputs['UserTechnologyOrderByInput'] | null // UserTechnologyOrderByInput
+      orderBy?: NexusGenInputs['UserTechnologyOrderByWithRelationInput'] | null // UserTechnologyOrderByWithRelationInput
     }
   }
   User: {

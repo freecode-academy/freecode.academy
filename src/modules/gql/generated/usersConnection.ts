@@ -4,6 +4,7 @@
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
 * Команда для генерирования этого файла: "yarn generate:types" 
 */
+// @ts-nocheck
 
 // @ts-ignore
 import { EditorComponentObject } from '@prisma-cms/front-editor'
@@ -18,7 +19,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type UsersConnectionQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.UserWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.UserOrderByInput> | Types.UserOrderByInput>;
+  orderBy?: Types.Maybe<Array<Types.UserOrderByWithRelationInput> | Types.UserOrderByWithRelationInput>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   first?: Types.Maybe<Types.Scalars['Int']>;
 }>;
@@ -31,7 +32,7 @@ export type UsersConnectionQuery = { __typename?: 'Query', usersCount: number, u
 
 
 export const UsersConnectionDocument = gql`
-    query usersConnection($where: UserWhereInput, $orderBy: [UserOrderByInput!] = {createdAt: asc}, $skip: Int, $first: Int = 10) {
+    query usersConnection($where: UserWhereInput, $orderBy: [UserOrderByWithRelationInput!] = {createdAt: asc}, $skip: Int, $first: Int = 10) {
   usersCount(where: $where)
   users(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
     ...usersConnectionUser

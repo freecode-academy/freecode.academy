@@ -25,7 +25,7 @@ query user(
 
 query usersConnection(
   $where: UserWhereInput
-  $orderBy: [UserOrderByInput!] = { createdAt: asc }
+  $orderBy: [UserOrderByWithRelationInput!] = { createdAt: asc }
   $skip: Int
   # $after: String
   # $before: String

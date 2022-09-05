@@ -91,585 +91,585 @@ interface NexusPrismaInputs {
   Query: {
     users: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
     tokens: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'expiredAt' | 'userId' | 'User'
-      ordering: 'id' | 'createdAt' | 'expiredAt' | 'userId'
+      ordering: 'id' | 'createdAt' | 'expiredAt' | 'userId' | 'User'
     }
     files: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt' | 'User' | 'Gallery_FileToGallery' | 'Resource' | 'Projects'
-      ordering: 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt' | 'User' | 'Gallery_FileToGallery' | 'Resource' | 'Projects'
     }
     blocks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'representation' | 'type' | 'x' | 'y' | 'z' | 'world' | 'World'
-      ordering: 'id' | 'representation' | 'type' | 'x' | 'y' | 'z' | 'world'
+      ordering: 'id' | 'representation' | 'type' | 'x' | 'y' | 'z' | 'world' | 'World'
     }
     callRequests: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt' | 'User_CallRequest_CalledToUser' | 'User_CallRequest_CallerToUser' | 'ChatRoom'
-      ordering: 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt' | 'User_CallRequest_CalledToUser' | 'User_CallRequest_CallerToUser' | 'ChatRoom'
     }
     careers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'start_date' | 'CreatedBy' | 'User'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'start_date' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'start_date' | 'CreatedBy' | 'User'
     }
     chatMessages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room' | 'User' | 'ChatRoom' | 'ChatMessagesReaded' | 'Notices'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room' | 'User' | 'ChatRoom' | 'ChatMessagesReaded' | 'Notices'
     }
     chatMessageReadeds: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User' | 'ChatMessage' | 'User_ChatMessageReadedToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User' | 'ChatMessage' | 'User_ChatMessageReadedToUser'
     }
     chatRooms: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox' | 'User_ChatRoomToUser' | 'CallRequests' | 'ChatMessages' | 'ChatRoomInvitations' | 'Projects' | 'Tasks' | 'User_ChatRoomsMembers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox' | 'User_ChatRoomToUser' | 'CallRequests' | 'ChatMessages' | 'ChatRoomInvitations' | 'Projects' | 'Tasks' | 'User_ChatRoomsMembers'
     }
     chatRoomInvitations: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
     }
     codeChallenges: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
-      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic'
+      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
     }
     codeChallengeBlocks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent' | 'User' | 'CodeChallengeBlock' | 'CodeChallenge' | 'other_CodeChallengeBlock'
-      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent'
+      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent' | 'User' | 'CodeChallengeBlock' | 'CodeChallenge' | 'other_CodeChallengeBlock'
     }
     codeChallengeCompletions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
     }
     comments: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson' | 'User' | 'TechnologyLesson_CommentToTechnologyLesson'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson' | 'User' | 'TechnologyLesson_CommentToTechnologyLesson'
     }
     ethAccounts: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy' | 'EthContractSource' | 'User_EthAccount_CreatedByToUser' | 'Project_EthAccountToProject' | 'EthBlock' | 'EthTransaction_EthAccountToEthTransaction_Account' | 'EthTransaction_EthAccountToEthTransaction_Receiver' | 'EthTransaction_EthAccountToEthTransaction_Sender' | 'Resource' | 'User_EthAccountToUser_EthAccountAuthed'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy' | 'EthContractSource' | 'User_EthAccount_CreatedByToUser' | 'Project_EthAccountToProject' | 'EthBlock' | 'EthTransaction_EthAccountToEthTransaction_Account' | 'EthTransaction_EthAccountToEthTransaction_Receiver' | 'EthTransaction_EthAccountToEthTransaction_Sender' | 'Resource' | 'User_EthAccountToUser_EthAccountAuthed'
     }
     ethBlocks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner' | 'EthAccount' | 'EthTransaction' | 'EthBlock_B' | 'EthBlock_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner' | 'EthAccount' | 'EthTransaction' | 'EthBlock_B' | 'EthBlock_A'
     }
     ethContractSources: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'source' | 'CreatedBy' | 'User' | 'EthAccount'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'source' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'source' | 'CreatedBy' | 'User' | 'EthAccount'
     }
     ethTransactions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
     }
     galleries: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt' | 'User' | 'Resource_GalleryToResource' | 'Files'
-      ordering: 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt' | 'User' | 'Resource_GalleryToResource' | 'Files'
     }
     games: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
     }
     gameResults: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
     }
     imports: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy' | 'User' | 'Log'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy' | 'User' | 'Log'
     }
     inventories: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cursor' | 'data' | 'Player'
-      ordering: 'id' | 'cursor' | 'data'
+      ordering: 'id' | 'cursor' | 'data' | 'Player'
     }
     letsadsSmsMessageStatuses: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'errorCode' | 'LetsadsSmsMessageStatusItem' | 'SmsMessage'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'errorCode'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'errorCode' | 'LetsadsSmsMessageStatusItem' | 'SmsMessage'
     }
     letsadsSmsMessageStatusItems: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'sms_id' | 'Status' | 'LetsadsSmsMessageStatus'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'sms_id' | 'Status'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'sms_id' | 'Status' | 'LetsadsSmsMessageStatus'
     }
     logedIns: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'fake' | 'updatedAt' | 'User' | 'User_LogedInToUser'
-      ordering: 'id' | 'createdAt' | 'fake' | 'updatedAt' | 'User'
+      ordering: 'id' | 'createdAt' | 'fake' | 'updatedAt' | 'User' | 'User_LogedInToUser'
     }
     messages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'sender' | 'body' | 'world' | 'World'
-      ordering: 'id' | 'type' | 'sender' | 'body' | 'world'
+      ordering: 'id' | 'type' | 'sender' | 'body' | 'world' | 'World'
     }
     notices: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy' | 'ChatMessage_ChatMessageToNotice' | 'User_Notice_CreatedByToUser' | 'User_Notice_UserToUser' | 'ChatRoomInvitations'
-      ordering: 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy' | 'ChatMessage_ChatMessageToNotice' | 'User_Notice_CreatedByToUser' | 'User_Notice_UserToUser' | 'ChatRoomInvitations'
     }
     notificationTypes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy' | 'User_NotificationTypeToUser' | 'User_UserNotificationTypes'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy' | 'User_NotificationTypeToUser' | 'User_UserNotificationTypes'
     }
     players: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user' | 'Inventory' | 'User' | 'World'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user' | 'Inventory' | 'User' | 'World'
     }
     positions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_PositionToUser' | 'User_PositionUsers'
-      ordering: 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_PositionToUser' | 'User_PositionUsers'
     }
     projects: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
-      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type'
+      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
     }
     projectMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
-      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
     }
     projectTasks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy' | 'User' | 'Project_ProjectToProjectTask' | 'Task_ProjectTaskToTask'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy' | 'User' | 'Project_ProjectToProjectTask' | 'Task_ProjectTaskToTask'
     }
     resetPasswords: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'code' | 'password' | 'validTill' | 'User' | 'User_ResetPasswordToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'code' | 'password' | 'validTill' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'code' | 'password' | 'validTill' | 'User' | 'User_ResetPasswordToUser'
     }
     resources: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     resourceTags: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag' | 'User' | 'Resource_ResourceToResourceTag' | 'Tag_ResourceTagToTag'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag' | 'User' | 'Resource_ResourceToResourceTag' | 'Tag_ResourceTagToTag'
     }
     routes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent' | 'User' | 'Route' | 'other_Routes'
-      ordering: 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent'
+      ordering: 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent' | 'User' | 'Route' | 'other_Routes'
     }
     services: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
-      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
     }
     serviceCategories: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'ServiceCategory' | 'Services' | 'other_ServiceCategories'
-      ordering: 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'ServiceCategory' | 'Services' | 'other_ServiceCategories'
     }
     settingss: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'renderDistance' | 'User' | 'User_SettingsToUser'
-      ordering: 'id' | 'renderDistance' | 'User'
+      ordering: 'id' | 'renderDistance' | 'User' | 'User_SettingsToUser'
     }
     smsMessages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider' | 'User' | 'SmsProvider' | 'LetsadsSmsMessageStatus' | 'SmsMessage_recipients'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider' | 'User' | 'SmsProvider' | 'LetsadsSmsMessageStatus' | 'SmsMessage_recipients'
     }
     smsmessageRecipientss: {
       filtering: 'AND' | 'OR' | 'NOT' | 'nodeId' | 'position' | 'value' | 'SmsMessage'
-      ordering: 'nodeId' | 'position' | 'value'
+      ordering: 'nodeId' | 'position' | 'value' | 'SmsMessage'
     }
     smsProviders: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'credentials' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'SmsMessages'
-      ordering: 'id' | 'name' | 'credentials' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'credentials' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'SmsMessages'
     }
     tags: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy' | 'User' | 'ResourceTags'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy' | 'User' | 'ResourceTags'
     }
     tasks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
     }
     taskMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TaskMember_CreatedByToUser' | 'Task_TaskToTaskMember' | 'User_TaskMember_UserToUser'
-      ordering: 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TaskMember_CreatedByToUser' | 'Task_TaskToTaskMember' | 'User_TaskMember_UserToUser'
     }
     taskReactions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskReaction'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskReaction'
     }
     taskTechnologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskTechnology' | 'Technology_TaskTechnologyToTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskTechnology' | 'Technology_TaskTechnologyToTechnology'
     }
     teams: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
-      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy'
+      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
     }
     teamMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TeamMember_CreatedByToUser' | 'Team_TeamToTeamMember' | 'User_TeamMember_UserToUser'
-      ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TeamMember_CreatedByToUser' | 'Team_TeamToTeamMember' | 'User_TeamMember_UserToUser'
     }
     technologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnologies' | 'TechnologyLessons' | 'UserTechnologies' | 'LearnStrategyStages'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnologies' | 'TechnologyLessons' | 'UserTechnologies' | 'LearnStrategyStages'
     }
     technologyLessons: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToTechnologyLesson' | 'Comments' | 'TechnologyLessonUsers'
-      ordering: 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'Technology'
+      ordering: 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToTechnologyLesson' | 'Comments' | 'TechnologyLessonUsers'
     }
     technologyLessonUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'User' | 'Lesson' | 'TechnologyLesson'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'Lesson'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'User' | 'Lesson' | 'TechnologyLesson'
     }
     templates: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
     }
     timers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTimer'
-      ordering: 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTimer'
     }
     tournaments: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Group' | 'TournamentGroup' | 'Tourneys'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'Group'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Group' | 'TournamentGroup' | 'Tourneys'
     }
     tournamentGroups: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Tournaments'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Tournaments'
     }
     tourneys: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'User' | 'Tournament' | 'Tournament_TournamentToTourney' | 'Games' | 'TourneyPlayers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'Tournament'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'User' | 'Tournament' | 'Tournament_TournamentToTourney' | 'Games' | 'TourneyPlayers'
     }
     tourneyPlayers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'User' | 'Tourney' | 'Tourney_TourneyToTourneyPlayer' | 'User_TourneyPlayerToUser'
-      ordering: 'id' | 'User' | 'Tourney'
+      ordering: 'id' | 'User' | 'Tourney' | 'Tourney_TourneyToTourneyPlayer' | 'User_TourneyPlayerToUser'
     }
     userGroups: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'createdAt' | 'updatedAt' | 'Users'
-      ordering: 'id' | 'name' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'createdAt' | 'updatedAt' | 'Users'
     }
     userTechnologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToUserTechnology' | 'level'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'Technology' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToUserTechnology' | 'level'
     }
     votes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User' | 'User_UserToVote' | 'Resource_ResourceToVote'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User' | 'User_UserToVote' | 'Resource_ResourceToVote'
     }
     worlds: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'seed' | 'type' | 'time' | 'timeChanger' | 'days' | 'lastPlayed' | 'CreatedBy' | 'User' | 'Blocks' | 'Messages' | 'Players'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'seed' | 'type' | 'time' | 'timeChanger' | 'days' | 'lastPlayed' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'seed' | 'type' | 'time' | 'timeChanger' | 'days' | 'lastPlayed' | 'CreatedBy' | 'User' | 'Blocks' | 'Messages' | 'Players'
     }
     letters: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User' | 'User_LetterToUser'
-      ordering: 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User'
+      ordering: 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User' | 'User_LetterToUser'
     }
     logs: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt' | 'Import_ImportToLog'
-      ordering: 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt' | 'Import_ImportToLog'
     }
     learnStrategies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById' | 'CreatedBy' | 'LearnStrategyStages' | 'LearnStrategyStagesTargets' | 'UserLearnStrategies'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById' | 'CreatedBy' | 'LearnStrategyStages' | 'LearnStrategyStagesTargets' | 'UserLearnStrategies'
     }
     learnStrategyStages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'learnStrategyTargetId' | 'technologyId' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
     }
     userLearnStrategies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'learnStrategyId'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
     }
     mentorMentees: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'Mentor' | 'menteeId' | 'Mentee'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'menteeId'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'Mentor' | 'menteeId' | 'Mentee'
     }
     donates: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'date' | 'sum' | 'title' | 'donatorId' | 'Donator'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'sum' | 'title' | 'donatorId'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'sum' | 'title' | 'donatorId' | 'Donator'
     }
   },
   User: {
     CallRequests_CallRequest_CalledToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt' | 'User_CallRequest_CalledToUser' | 'User_CallRequest_CallerToUser' | 'ChatRoom'
-      ordering: 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt' | 'User_CallRequest_CalledToUser' | 'User_CallRequest_CallerToUser' | 'ChatRoom'
     }
     CallRequests_CallRequest_CallerToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt' | 'User_CallRequest_CalledToUser' | 'User_CallRequest_CallerToUser' | 'ChatRoom'
-      ordering: 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt' | 'User_CallRequest_CalledToUser' | 'User_CallRequest_CallerToUser' | 'ChatRoom'
     }
     Careers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'start_date' | 'CreatedBy' | 'User'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'start_date' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'start_date' | 'CreatedBy' | 'User'
     }
     ChatMessages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room' | 'User' | 'ChatRoom' | 'ChatMessagesReaded' | 'Notices'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room' | 'User' | 'ChatRoom' | 'ChatMessagesReaded' | 'Notices'
     }
     ChatMessagesReaded: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User' | 'ChatMessage' | 'User_ChatMessageReadedToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User' | 'ChatMessage' | 'User_ChatMessageReadedToUser'
     }
     ChatRooms_ChatRoomToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox' | 'User_ChatRoomToUser' | 'CallRequests' | 'ChatMessages' | 'ChatRoomInvitations' | 'Projects' | 'Tasks' | 'User_ChatRoomsMembers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox' | 'User_ChatRoomToUser' | 'CallRequests' | 'ChatMessages' | 'ChatRoomInvitations' | 'Projects' | 'Tasks' | 'User_ChatRoomsMembers'
     }
     ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
     }
     ChatRoomInvitations_ChatRoomInvitation_UserToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
     }
     CodeChallenges: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
-      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic'
+      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
     }
     CodeChallengeBlocks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent' | 'User' | 'CodeChallengeBlock' | 'CodeChallenge' | 'other_CodeChallengeBlock'
-      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent'
+      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent' | 'User' | 'CodeChallengeBlock' | 'CodeChallenge' | 'other_CodeChallengeBlock'
     }
     CodeChallengeCompletions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
     }
     Comments: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson' | 'User' | 'TechnologyLesson_CommentToTechnologyLesson'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson' | 'User' | 'TechnologyLesson_CommentToTechnologyLesson'
     }
     EthAccounts_EthAccount_CreatedByToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy' | 'EthContractSource' | 'User_EthAccount_CreatedByToUser' | 'Project_EthAccountToProject' | 'EthBlock' | 'EthTransaction_EthAccountToEthTransaction_Account' | 'EthTransaction_EthAccountToEthTransaction_Receiver' | 'EthTransaction_EthAccountToEthTransaction_Sender' | 'Resource' | 'User_EthAccountToUser_EthAccountAuthed'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy' | 'EthContractSource' | 'User_EthAccount_CreatedByToUser' | 'Project_EthAccountToProject' | 'EthBlock' | 'EthTransaction_EthAccountToEthTransaction_Account' | 'EthTransaction_EthAccountToEthTransaction_Receiver' | 'EthTransaction_EthAccountToEthTransaction_Sender' | 'Resource' | 'User_EthAccountToUser_EthAccountAuthed'
     }
     EthContractSources: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'source' | 'CreatedBy' | 'User' | 'EthAccount'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'source' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'source' | 'CreatedBy' | 'User' | 'EthAccount'
     }
     Files: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt' | 'User' | 'Gallery_FileToGallery' | 'Resource' | 'Projects'
-      ordering: 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt' | 'User' | 'Gallery_FileToGallery' | 'Resource' | 'Projects'
     }
     Galleries: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt' | 'User' | 'Resource_GalleryToResource' | 'Files'
-      ordering: 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt' | 'User' | 'Resource_GalleryToResource' | 'Files'
     }
     Games_GameToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
     }
     GameResults_GameResult_CreatedByToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
     }
     GameResults_GameResult_UserToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
     }
     Imports: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy' | 'User' | 'Log'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy' | 'User' | 'Log'
     }
     Letters: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User' | 'User_LetterToUser'
-      ordering: 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User'
+      ordering: 'id' | 'email' | 'subject' | 'message' | 'status' | 'errorMessage' | 'rank' | 'deleteOnSend' | 'replyTo' | 'returnTo' | 'createdAt' | 'updatedAt' | 'User' | 'User_LetterToUser'
     }
     LogedIns: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'fake' | 'updatedAt' | 'User' | 'User_LogedInToUser'
-      ordering: 'id' | 'createdAt' | 'fake' | 'updatedAt' | 'User'
+      ordering: 'id' | 'createdAt' | 'fake' | 'updatedAt' | 'User' | 'User_LogedInToUser'
     }
     Notices_Notice_CreatedByToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy' | 'ChatMessage_ChatMessageToNotice' | 'User_Notice_CreatedByToUser' | 'User_Notice_UserToUser' | 'ChatRoomInvitations'
-      ordering: 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy' | 'ChatMessage_ChatMessageToNotice' | 'User_Notice_CreatedByToUser' | 'User_Notice_UserToUser' | 'ChatRoomInvitations'
     }
     Notices_Notice_UserToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy' | 'ChatMessage_ChatMessageToNotice' | 'User_Notice_CreatedByToUser' | 'User_Notice_UserToUser' | 'ChatRoomInvitations'
-      ordering: 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy' | 'ChatMessage_ChatMessageToNotice' | 'User_Notice_CreatedByToUser' | 'User_Notice_UserToUser' | 'ChatRoomInvitations'
     }
     NotificationTypes_NotificationTypeToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy' | 'User_NotificationTypeToUser' | 'User_UserNotificationTypes'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy' | 'User_NotificationTypeToUser' | 'User_UserNotificationTypes'
     }
     Players: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user' | 'Inventory' | 'User' | 'World'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user' | 'Inventory' | 'User' | 'World'
     }
     Positions_PositionToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_PositionToUser' | 'User_PositionUsers'
-      ordering: 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_PositionToUser' | 'User_PositionUsers'
     }
     Projects_ProjectToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
-      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type'
+      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
     }
     ProjectMembers_ProjectMember_CreatedByToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
-      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
     }
     ProjectMembers_ProjectMember_UserToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
-      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
     }
     ProjectTasks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy' | 'User' | 'Project_ProjectToProjectTask' | 'Task_ProjectTaskToTask'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy' | 'User' | 'Project_ProjectToProjectTask' | 'Task_ProjectTaskToTask'
     }
     ResetPasswords: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'code' | 'password' | 'validTill' | 'User' | 'User_ResetPasswordToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'code' | 'password' | 'validTill' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'code' | 'password' | 'validTill' | 'User' | 'User_ResetPasswordToUser'
     }
     Resources: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     ResourceTags: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag' | 'User' | 'Resource_ResourceToResourceTag' | 'Tag_ResourceTagToTag'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag' | 'User' | 'Resource_ResourceToResourceTag' | 'Tag_ResourceTagToTag'
     }
     Routes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent' | 'User' | 'Route' | 'other_Routes'
-      ordering: 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent'
+      ordering: 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent' | 'User' | 'Route' | 'other_Routes'
     }
     Services: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
-      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
     }
     ServiceCategories: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'ServiceCategory' | 'Services' | 'other_ServiceCategories'
-      ordering: 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'ServiceCategory' | 'Services' | 'other_ServiceCategories'
     }
     Settings: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'renderDistance' | 'User' | 'User_SettingsToUser'
-      ordering: 'id' | 'renderDistance' | 'User'
+      ordering: 'id' | 'renderDistance' | 'User' | 'User_SettingsToUser'
     }
     SmsMessages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider' | 'User' | 'SmsProvider' | 'LetsadsSmsMessageStatus' | 'SmsMessage_recipients'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider' | 'User' | 'SmsProvider' | 'LetsadsSmsMessageStatus' | 'SmsMessage_recipients'
     }
     SmsProviders: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'credentials' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'SmsMessages'
-      ordering: 'id' | 'name' | 'credentials' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'credentials' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'SmsMessages'
     }
     Tags: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy' | 'User' | 'ResourceTags'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'status' | 'CreatedBy' | 'User' | 'ResourceTags'
     }
     Tasks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
     }
     TaskMembers_TaskMember_CreatedByToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TaskMember_CreatedByToUser' | 'Task_TaskToTaskMember' | 'User_TaskMember_UserToUser'
-      ordering: 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TaskMember_CreatedByToUser' | 'Task_TaskToTaskMember' | 'User_TaskMember_UserToUser'
     }
     TaskMembers_TaskMember_UserToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TaskMember_CreatedByToUser' | 'Task_TaskToTaskMember' | 'User_TaskMember_UserToUser'
-      ordering: 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TaskMember_CreatedByToUser' | 'Task_TaskToTaskMember' | 'User_TaskMember_UserToUser'
     }
     TaskReactions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskReaction'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskReaction'
     }
     TaskTechnologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskTechnology' | 'Technology_TaskTechnologyToTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskTechnology' | 'Technology_TaskTechnologyToTechnology'
     }
     Teams: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
-      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy'
+      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
     }
     TeamMembers_TeamMember_CreatedByToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TeamMember_CreatedByToUser' | 'Team_TeamToTeamMember' | 'User_TeamMember_UserToUser'
-      ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TeamMember_CreatedByToUser' | 'Team_TeamToTeamMember' | 'User_TeamMember_UserToUser'
     }
     TeamMembers_TeamMember_UserToUser: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TeamMember_CreatedByToUser' | 'Team_TeamToTeamMember' | 'User_TeamMember_UserToUser'
-      ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TeamMember_CreatedByToUser' | 'Team_TeamToTeamMember' | 'User_TeamMember_UserToUser'
     }
     Technologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnologies' | 'TechnologyLessons' | 'UserTechnologies' | 'LearnStrategyStages'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'components' | 'contentText' | 'site_url' | 'level1hours' | 'level2hours' | 'level3hours' | 'level4hours' | 'level5hours' | 'CreatedBy' | 'User' | 'TaskTechnologies' | 'TechnologyLessons' | 'UserTechnologies' | 'LearnStrategyStages'
     }
     TechnologyLessons: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToTechnologyLesson' | 'Comments' | 'TechnologyLessonUsers'
-      ordering: 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'Technology'
+      ordering: 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToTechnologyLesson' | 'Comments' | 'TechnologyLessonUsers'
     }
     TechnologyLessonUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'User' | 'Lesson' | 'TechnologyLesson'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'Lesson'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'User' | 'Lesson' | 'TechnologyLesson'
     }
     Templates: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
     }
     Timers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTimer'
-      ordering: 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTimer'
     }
     Tournaments: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Group' | 'TournamentGroup' | 'Tourneys'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'Group'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Group' | 'TournamentGroup' | 'Tourneys'
     }
     TournamentGroups: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Tournaments'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Tournaments'
     }
     Tourneys: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'User' | 'Tournament' | 'Tournament_TournamentToTourney' | 'Games' | 'TourneyPlayers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'Tournament'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'User' | 'Tournament' | 'Tournament_TournamentToTourney' | 'Games' | 'TourneyPlayers'
     }
     TourneyPlayers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'User' | 'Tourney' | 'Tourney_TourneyToTourneyPlayer' | 'User_TourneyPlayerToUser'
-      ordering: 'id' | 'User' | 'Tourney'
+      ordering: 'id' | 'User' | 'Tourney' | 'Tourney_TourneyToTourneyPlayer' | 'User_TourneyPlayerToUser'
     }
     other_Users: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
     UserTechnologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToUserTechnology' | 'level'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'Technology' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToUserTechnology' | 'level'
     }
     Votes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User' | 'User_UserToVote' | 'Resource_ResourceToVote'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User' | 'User_UserToVote' | 'Resource_ResourceToVote'
     }
     Worlds: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'seed' | 'type' | 'time' | 'timeChanger' | 'days' | 'lastPlayed' | 'CreatedBy' | 'User' | 'Blocks' | 'Messages' | 'Players'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'seed' | 'type' | 'time' | 'timeChanger' | 'days' | 'lastPlayed' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'seed' | 'type' | 'time' | 'timeChanger' | 'days' | 'lastPlayed' | 'CreatedBy' | 'User' | 'Blocks' | 'Messages' | 'Players'
     }
     ChatRooms_ChatRoomsMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox' | 'User_ChatRoomToUser' | 'CallRequests' | 'ChatMessages' | 'ChatRoomInvitations' | 'Projects' | 'Tasks' | 'User_ChatRoomsMembers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'image' | 'code' | 'isPublic' | 'CreatedBy' | 'allowAnonymous' | 'sandbox' | 'User_ChatRoomToUser' | 'CallRequests' | 'ChatMessages' | 'ChatRoomInvitations' | 'Projects' | 'Tasks' | 'User_ChatRoomsMembers'
     }
     Games_GameUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
     }
     Positions_PositionUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_PositionToUser' | 'User_PositionUsers'
-      ordering: 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'code' | 'name' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_PositionToUser' | 'User_PositionUsers'
     }
     Projects_PrismaProjectUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
-      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type'
+      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
     }
     UserGroups: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'createdAt' | 'updatedAt' | 'Users'
-      ordering: 'id' | 'name' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'createdAt' | 'updatedAt' | 'Users'
     }
     NotificationTypes_UserNotificationTypes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy' | 'User_NotificationTypeToUser' | 'User_UserNotificationTypes'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'comment' | 'oldID' | 'CreatedBy' | 'User_NotificationTypeToUser' | 'User_UserNotificationTypes'
     }
     Tokens: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'expiredAt' | 'userId' | 'User'
-      ordering: 'id' | 'createdAt' | 'expiredAt' | 'userId'
+      ordering: 'id' | 'createdAt' | 'expiredAt' | 'userId' | 'User'
     }
     LearnStrategies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById' | 'CreatedBy' | 'LearnStrategyStages' | 'LearnStrategyStagesTargets' | 'UserLearnStrategies'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'level' | 'createdById' | 'CreatedBy' | 'LearnStrategyStages' | 'LearnStrategyStagesTargets' | 'UserLearnStrategies'
     }
     UserLearnStrategies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'learnStrategyId'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
     }
     MentorMenteeMentors: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'Mentor' | 'menteeId' | 'Mentee'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'menteeId'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'Mentor' | 'menteeId' | 'Mentee'
     }
     MentorMenteeMentees: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'Mentor' | 'menteeId' | 'Mentee'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'menteeId'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'mentorId' | 'Mentor' | 'menteeId' | 'Mentee'
     }
     Donates: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'date' | 'sum' | 'title' | 'donatorId' | 'Donator'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'sum' | 'title' | 'donatorId'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'sum' | 'title' | 'donatorId' | 'Donator'
     }
   }
   Token: {
@@ -678,7 +678,7 @@ interface NexusPrismaInputs {
   File: {
     Projects: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
-      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type'
+      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
     }
   }
   Block: {
@@ -693,11 +693,11 @@ interface NexusPrismaInputs {
   ChatMessage: {
     ChatMessagesReaded: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User' | 'ChatMessage' | 'User_ChatMessageReadedToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Message' | 'User' | 'ChatMessage' | 'User_ChatMessageReadedToUser'
     }
     Notices: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy' | 'ChatMessage_ChatMessageToNotice' | 'User_Notice_CreatedByToUser' | 'User_Notice_UserToUser' | 'ChatRoomInvitations'
-      ordering: 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'type' | 'updatedAt' | 'ChatMessage' | 'User' | 'CreatedBy' | 'ChatMessage_ChatMessageToNotice' | 'User_Notice_CreatedByToUser' | 'User_Notice_UserToUser' | 'ChatRoomInvitations'
     }
   }
   ChatMessageReaded: {
@@ -706,27 +706,27 @@ interface NexusPrismaInputs {
   ChatRoom: {
     CallRequests: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt' | 'User_CallRequest_CalledToUser' | 'User_CallRequest_CallerToUser' | 'ChatRoom'
-      ordering: 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'called_descriptions' | 'caller_descriptions' | 'status' | 'startedAt' | 'endedAt' | 'Room' | 'Called' | 'Caller' | 'createdAt' | 'updatedAt' | 'User_CallRequest_CalledToUser' | 'User_CallRequest_CallerToUser' | 'ChatRoom'
     }
     ChatMessages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room' | 'User' | 'ChatRoom' | 'ChatMessagesReaded' | 'Notices'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'content' | 'contentText' | 'CreatedBy' | 'Room' | 'User' | 'ChatRoom' | 'ChatMessagesReaded' | 'Notices'
     }
     ChatRoomInvitations: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
     }
     Projects: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
-      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type'
+      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
     }
     Tasks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
     }
     User_ChatRoomsMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
   }
   ChatRoomInvitation: {
@@ -735,17 +735,17 @@ interface NexusPrismaInputs {
   CodeChallenge: {
     CodeChallengeCompletions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
     }
   }
   CodeChallengeBlock: {
     CodeChallenge: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
-      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic'
+      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
     }
     other_CodeChallengeBlock: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent' | 'User' | 'CodeChallengeBlock' | 'CodeChallenge' | 'other_CodeChallengeBlock'
-      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent'
+      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'rank' | 'CreatedBy' | 'Parent' | 'User' | 'CodeChallengeBlock' | 'CodeChallenge' | 'other_CodeChallengeBlock'
     }
   }
   CodeChallengeCompletion: {
@@ -757,47 +757,47 @@ interface NexusPrismaInputs {
   EthAccount: {
     EthBlock: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner' | 'EthAccount' | 'EthTransaction' | 'EthBlock_B' | 'EthBlock_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner' | 'EthAccount' | 'EthTransaction' | 'EthBlock_B' | 'EthBlock_A'
     }
     EthTransaction_EthAccountToEthTransaction_Account: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
     }
     EthTransaction_EthAccountToEthTransaction_Receiver: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
     }
     EthTransaction_EthAccountToEthTransaction_Sender: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
     }
     Resource: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     User_EthAccountToUser_EthAccountAuthed: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
   }
   EthBlock: {
     EthTransaction: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'chainId' | 'amount' | 'input' | 'index' | 'address' | 'type' | 'v' | 'r' | 's' | 'Sender' | 'Block' | 'Receiver' | 'Account' | 'EthAccount_EthAccountToEthTransaction_Account' | 'EthBlock' | 'EthAccount_EthAccountToEthTransaction_Receiver' | 'EthAccount_EthAccountToEthTransaction_Sender'
     }
     EthBlock_B: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner' | 'EthAccount' | 'EthTransaction' | 'EthBlock_B' | 'EthBlock_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner' | 'EthAccount' | 'EthTransaction' | 'EthBlock_B' | 'EthBlock_A'
     }
     EthBlock_A: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner' | 'EthAccount' | 'EthTransaction' | 'EthBlock_B' | 'EthBlock_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'hash' | 'number' | 'difficulty' | 'totalDifficulty' | 'extraData' | 'gasLimit' | 'gasUsed' | 'mixHash' | 'nonce' | 'parentHash' | 'receiptsRoot' | 'sha3Uncles' | 'size' | 'stateRoot' | 'date' | 'transactionsRoot' | 'transactions_count' | 'Miner' | 'EthAccount' | 'EthTransaction' | 'EthBlock_B' | 'EthBlock_A'
     }
   }
   EthContractSource: {
     EthAccount: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy' | 'EthContractSource' | 'User_EthAccount_CreatedByToUser' | 'Project_EthAccountToProject' | 'EthBlock' | 'EthTransaction_EthAccountToEthTransaction_Account' | 'EthTransaction_EthAccountToEthTransaction_Receiver' | 'EthTransaction_EthAccountToEthTransaction_Sender' | 'Resource' | 'User_EthAccountToUser_EthAccountAuthed'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy' | 'EthContractSource' | 'User_EthAccount_CreatedByToUser' | 'Project_EthAccountToProject' | 'EthBlock' | 'EthTransaction_EthAccountToEthTransaction_Account' | 'EthTransaction_EthAccountToEthTransaction_Receiver' | 'EthTransaction_EthAccountToEthTransaction_Sender' | 'Resource' | 'User_EthAccountToUser_EthAccountAuthed'
     }
   }
   EthTransaction: {
@@ -806,25 +806,25 @@ interface NexusPrismaInputs {
   Gallery: {
     Files: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt' | 'User' | 'Gallery_FileToGallery' | 'Resource' | 'Projects'
-      ordering: 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt' | 'User' | 'Gallery_FileToGallery' | 'Resource' | 'Projects'
     }
   }
   Game: {
     other_Game: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
     }
     GameResult: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
     }
     Team: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
-      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy'
+      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
     }
     User_GameUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
   }
   GameResult: {
@@ -833,23 +833,23 @@ interface NexusPrismaInputs {
   Import: {
     Log: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt' | 'Import_ImportToLog'
-      ordering: 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'level' | 'objectType' | 'message' | 'stack' | 'Import' | 'createdAt' | 'updatedAt' | 'Import_ImportToLog'
     }
   }
   Inventory: {
     Player: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user' | 'Inventory' | 'User' | 'World'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user' | 'Inventory' | 'User' | 'World'
     }
   }
   LetsadsSmsMessageStatus: {
     LetsadsSmsMessageStatusItem: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'sms_id' | 'Status' | 'LetsadsSmsMessageStatus'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'sms_id' | 'Status'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'sms_id' | 'Status' | 'LetsadsSmsMessageStatus'
     }
     SmsMessage: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider' | 'User' | 'SmsProvider' | 'LetsadsSmsMessageStatus' | 'SmsMessage_recipients'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider' | 'User' | 'SmsProvider' | 'LetsadsSmsMessageStatus' | 'SmsMessage_recipients'
     }
   }
   LetsadsSmsMessageStatusItem: {
@@ -864,13 +864,13 @@ interface NexusPrismaInputs {
   Notice: {
     ChatRoomInvitations: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'User' | 'CreatedBy' | 'ChatRoom' | 'Notice' | 'ChatRoom_ChatRoomToChatRoomInvitation' | 'User_ChatRoomInvitation_CreatedByToUser' | 'Notice_ChatRoomInvitationToNotice' | 'User_ChatRoomInvitation_UserToUser'
     }
   }
   NotificationType: {
     User_UserNotificationTypes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
   }
   Player: {
@@ -879,47 +879,47 @@ interface NexusPrismaInputs {
   Position: {
     User_PositionUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
   }
   Project: {
     EthAccounts: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy' | 'EthContractSource' | 'User_EthAccount_CreatedByToUser' | 'Project_EthAccountToProject' | 'EthBlock' | 'EthTransaction_EthAccountToEthTransaction_Account' | 'EthTransaction_EthAccountToEthTransaction_Receiver' | 'EthTransaction_EthAccountToEthTransaction_Sender' | 'Resource' | 'User_EthAccountToUser_EthAccountAuthed'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'address' | 'type' | 'source' | 'bytecode' | 'abi' | 'ContractSource' | 'Project' | 'CreatedBy' | 'EthContractSource' | 'User_EthAccount_CreatedByToUser' | 'Project_EthAccountToProject' | 'EthBlock' | 'EthTransaction_EthAccountToEthTransaction_Account' | 'EthTransaction_EthAccountToEthTransaction_Receiver' | 'EthTransaction_EthAccountToEthTransaction_Sender' | 'Resource' | 'User_EthAccountToUser_EthAccountAuthed'
     }
     ProjectMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
-      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
     }
     ProjectTasks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy' | 'User' | 'Project_ProjectToProjectTask' | 'Task_ProjectTaskToTask'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy' | 'User' | 'Project_ProjectToProjectTask' | 'Task_ProjectTaskToTask'
     }
     Resources_ProjectToResource_PrismaProject: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     Templates_ProjectToTemplate_PrismaProject: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
     }
     Templates_ProjectToTemplate_Project: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
     }
     User_PrismaProjectUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
     Team_ProjectCustomers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
-      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy'
+      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
     }
   }
   ProjectMember: {
     Services: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
-      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
     }
   }
   ProjectTask: {
@@ -931,39 +931,39 @@ interface NexusPrismaInputs {
   Resource: {
     CodeChallenges: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
-      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic'
+      ordering: 'id' | 'externalKey' | 'createdAt' | 'updatedAt' | 'name' | 'dashedName' | 'localeTitle' | 'description' | 'challengeType' | 'forumTopicId' | 'translations' | 'tests' | 'solutions' | 'instructions' | 'files' | 'videoUrl' | 'order' | 'superOrder' | 'challengeOrder' | 'required' | 'isRequired' | 'isPrivate' | 'isBeta' | 'template' | 'time' | 'rank' | 'Block' | 'CreatedBy' | 'Topic' | 'CodeChallengeBlock' | 'User' | 'Resource' | 'CodeChallengeCompletions'
     }
     Files: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt' | 'User' | 'Gallery_FileToGallery' | 'Resource' | 'Projects'
-      ordering: 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'path' | 'name' | 'filename' | 'mimetype' | 'encoding' | 'hash' | 'size' | 'ImageResource' | 'CreatedBy' | 'rank' | 'Gallery' | 'createdAt' | 'updatedAt' | 'User' | 'Gallery_FileToGallery' | 'Resource' | 'Projects'
     }
     Galleries: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt' | 'User' | 'Resource_GalleryToResource' | 'Files'
-      ordering: 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'CreatedBy' | 'Resource' | 'createdAt' | 'updatedAt' | 'User' | 'Resource_GalleryToResource' | 'Files'
     }
     Projects_Project_ResourceToResource: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
-      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type'
+      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
     }
     other_Resource_ResourceToResource_Blogs: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     other_Resource_ResourceToResource_Parents: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     other_Resource_ResourceToResource_Topics: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     ResourceTags: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag' | 'User' | 'Resource_ResourceToResourceTag' | 'Tag_ResourceTagToTag'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag' | 'User' | 'Resource_ResourceToResourceTag' | 'Tag_ResourceTagToTag'
     }
     Votes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User' | 'User_UserToVote' | 'Resource_ResourceToVote'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'value' | 'Resource' | 'User' | 'User_UserToVote' | 'Resource_ResourceToVote'
     }
   }
   ResourceTag: {
@@ -972,31 +972,31 @@ interface NexusPrismaInputs {
   Route: {
     other_Routes: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent' | 'User' | 'Route' | 'other_Routes'
-      ordering: 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent'
+      ordering: 'id' | 'name' | 'path' | 'exact' | 'component' | 'CreatedBy' | 'Parent' | 'User' | 'Route' | 'other_Routes'
     }
   }
   Service: {
     Resources: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     other_Services: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
-      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
     }
     ProjectMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
-      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'CreatedBy' | 'Project' | 'createdAt' | 'updatedAt' | 'User_ProjectMember_CreatedByToUser' | 'Project_ProjectToProjectMember' | 'User_ProjectMember_UserToUser' | 'Services'
     }
   }
   ServiceCategory: {
     Services: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
-      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'description' | 'code' | 'rank' | 'oldID' | 'Category' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'ServiceCategory' | 'User' | 'Service' | 'Resources' | 'other_Services' | 'ProjectMembers'
     }
     other_ServiceCategories: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'ServiceCategory' | 'Services' | 'other_ServiceCategories'
-      ordering: 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'name' | 'description' | 'code' | 'Parent' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User' | 'ServiceCategory' | 'Services' | 'other_ServiceCategories'
     }
   }
   Settings: {
@@ -1005,7 +1005,7 @@ interface NexusPrismaInputs {
   SmsMessage: {
     SmsMessage_recipients: {
       filtering: 'AND' | 'OR' | 'NOT' | 'nodeId' | 'position' | 'value' | 'SmsMessage'
-      ordering: 'nodeId' | 'position' | 'value'
+      ordering: 'nodeId' | 'position' | 'value' | 'SmsMessage'
     }
   }
   SmsMessage_recipients: {
@@ -1014,55 +1014,55 @@ interface NexusPrismaInputs {
   SmsProvider: {
     SmsMessages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider' | 'User' | 'SmsProvider' | 'LetsadsSmsMessageStatus' | 'SmsMessage_recipients'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'from' | 'text' | 'deletOnSend' | 'Status' | 'CreatedBy' | 'Provider' | 'User' | 'SmsProvider' | 'LetsadsSmsMessageStatus' | 'SmsMessage_recipients'
     }
   }
   Tag: {
     ResourceTags: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag' | 'User' | 'Resource_ResourceToResourceTag' | 'Tag_ResourceTagToTag'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'CreatedBy' | 'Resource' | 'Tag' | 'User' | 'Resource_ResourceToResourceTag' | 'Tag_ResourceTagToTag'
     }
   }
   Task: {
     CodeChallengeCompletions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'CodeChallenge' | 'content' | 'success' | 'CodeChallenge_CodeChallengeToCodeChallengeCompletion' | 'User' | 'Task_CodeChallengeCompletionToTask'
     }
     ProjectTasks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy' | 'User' | 'Project_ProjectToProjectTask' | 'Task_ProjectTaskToTask'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'Project' | 'Task' | 'CreatedBy' | 'User' | 'Project_ProjectToProjectTask' | 'Task_ProjectTaskToTask'
     }
     Resources: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     other_Tasks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
     }
     TaskMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TaskMember_CreatedByToUser' | 'Task_TaskToTaskMember' | 'User_TaskMember_UserToUser'
-      ordering: 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'Task' | 'User' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TaskMember_CreatedByToUser' | 'Task_TaskToTaskMember' | 'User_TaskMember_UserToUser'
     }
     TaskReactions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskReaction'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'type' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskReaction'
     }
     TaskTechnologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskTechnology' | 'Technology_TaskTechnologyToTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskTechnology' | 'Technology_TaskTechnologyToTechnology'
     }
     Timers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTimer'
-      ordering: 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'stopedAt' | 'updatedAt' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTimer'
     }
     Tasks_B: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
     }
     Tasks_A: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'description' | 'content' | 'status' | 'startDatePlaning' | 'endDatePlaning' | 'startDate' | 'endDate' | 'CreatedBy' | 'Parent' | 'ChatRoom' | 'needHelp' | 'ChatRoom_ChatRoomToTask' | 'User' | 'Task' | 'CodeChallengeCompletions' | 'ProjectTasks' | 'Resources' | 'other_Tasks' | 'TaskMembers' | 'TaskReactions' | 'TaskTechnologies' | 'Timers' | 'Tasks_B' | 'Tasks_A'
     }
   }
   TaskMember: {
@@ -1077,31 +1077,31 @@ interface NexusPrismaInputs {
   Team: {
     GameResults: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'date' | 'name' | 'value' | 'CreatedBy' | 'Team' | 'Game' | 'User' | 'User_GameResult_CreatedByToUser' | 'Game_GameToGameResult' | 'Team_GameResultToTeam' | 'User_GameResult_UserToUser'
     }
     Projects_ProjectToTeam: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
-      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type'
+      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
     }
     Resources: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
-      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task'
+      ordering: 'id' | 'code' | 'createdAt' | 'updatedAt' | 'type' | 'name' | 'longtitle' | 'content' | 'contentText' | 'published' | 'deleted' | 'hidemenu' | 'searchable' | 'uri' | 'isfolder' | 'rating' | 'positiveVotesCount' | 'negativeVotesCount' | 'neutralVotesCount' | 'oldID' | 'commentOldID' | 'class_key' | 'template' | 'mockUpdate' | 'components' | 'Parent' | 'Team' | 'Service' | 'EthAccount' | 'PrismaProject' | 'CreatedBy' | 'Topic' | 'Blog' | 'Task' | 'Resource_ResourceToResource_Blog' | 'User' | 'EthAccount_EthAccountToResource' | 'Resource_ResourceToResource_Parent' | 'Project_ProjectToResource_PrismaProject' | 'Service_ResourceToService' | 'Task_ResourceToTask' | 'Team_ResourceToTeam' | 'Resource_ResourceToResource_Topic' | 'CodeChallenges' | 'Files' | 'Galleries' | 'Projects_Project_ResourceToResource' | 'other_Resource_ResourceToResource_Blogs' | 'other_Resource_ResourceToResource_Parents' | 'other_Resource_ResourceToResource_Topics' | 'ResourceTags' | 'Votes'
     }
     other_Teams: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
-      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy'
+      ordering: 'id' | 'name' | 'status' | 'oldID' | 'address' | 'website' | 'email' | 'phone' | 'Parent' | 'createdAt' | 'updatedAt' | 'CreatedBy' | 'User' | 'Team' | 'GameResults' | 'Projects_ProjectToTeam' | 'Resources' | 'other_Teams' | 'TeamMembers' | 'Games' | 'Project_ProjectCustomers'
     }
     TeamMembers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TeamMember_CreatedByToUser' | 'Team_TeamToTeamMember' | 'User_TeamMember_UserToUser'
-      ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'status' | 'User' | 'Team' | 'CreatedBy' | 'createdAt' | 'updatedAt' | 'User_TeamMember_CreatedByToUser' | 'Team_TeamToTeamMember' | 'User_TeamMember_UserToUser'
     }
     Games: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
     }
     Project_ProjectCustomers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
-      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type'
+      ordering: 'id' | 'name' | 'domain' | 'createdAt' | 'updatedAt' | 'description' | 'url' | 'sequence' | 'content' | 'contentText' | 'status' | 'public' | 'oldID' | 'CreatedBy' | 'Image' | 'ChatRoom' | 'Team' | 'Resource' | 'type' | 'ChatRoom_ChatRoomToProject' | 'User_ProjectToUser' | 'File' | 'Resource_Project_ResourceToResource' | 'Team_ProjectToTeam' | 'EthAccounts' | 'ProjectMembers' | 'ProjectTasks' | 'Resources_ProjectToResource_PrismaProject' | 'Templates_ProjectToTemplate_PrismaProject' | 'Templates_ProjectToTemplate_Project' | 'User_PrismaProjectUsers' | 'Team_ProjectCustomers'
     }
   }
   TeamMember: {
@@ -1110,29 +1110,29 @@ interface NexusPrismaInputs {
   Technology: {
     TaskTechnologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskTechnology' | 'Technology_TaskTechnologyToTechnology'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'level' | 'Technology' | 'Task' | 'CreatedBy' | 'User' | 'Task_TaskToTaskTechnology' | 'Technology_TaskTechnologyToTechnology'
     }
     TechnologyLessons: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToTechnologyLesson' | 'Comments' | 'TechnologyLessonUsers'
-      ordering: 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'Technology'
+      ordering: 'id' | 'name' | 'components' | 'contentText' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToTechnologyLesson' | 'Comments' | 'TechnologyLessonUsers'
     }
     UserTechnologies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToUserTechnology' | 'level'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'Technology' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'date_from' | 'date_till' | 'status' | 'hiring_status' | 'isMentor' | 'CreatedBy' | 'User' | 'Technology' | 'Technology_TechnologyToUserTechnology' | 'level'
     }
     LearnStrategyStages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'learnStrategyTargetId' | 'technologyId' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
     }
   }
   TechnologyLesson: {
     Comments: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson' | 'User' | 'TechnologyLesson_CommentToTechnologyLesson'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'components' | 'contentText' | 'CreatedBy' | 'TechnologyLesson' | 'User' | 'TechnologyLesson_CommentToTechnologyLesson'
     }
     TechnologyLessonUsers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'User' | 'Lesson' | 'TechnologyLesson'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'Lesson'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'status' | 'completedAt' | 'CreatedBy' | 'User' | 'Lesson' | 'TechnologyLesson'
     }
   }
   TechnologyLessonUser: {
@@ -1141,7 +1141,7 @@ interface NexusPrismaInputs {
   Template: {
     other_Templates: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'externalKey' | 'name' | 'description' | 'component' | 'props' | 'components' | 'vars' | 'rank' | 'PrismaProject' | 'Project' | 'Parent' | 'CreatedBy' | 'User' | 'Template' | 'Project_ProjectToTemplate_PrismaProject' | 'Project_ProjectToTemplate_Project' | 'other_Templates'
     }
   }
   Timer: {
@@ -1150,23 +1150,23 @@ interface NexusPrismaInputs {
   Tournament: {
     Tourneys: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'User' | 'Tournament' | 'Tournament_TournamentToTourney' | 'Games' | 'TourneyPlayers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'Tournament'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'date' | 'date_till' | 'CreatedBy' | 'User' | 'Tournament' | 'Tournament_TournamentToTourney' | 'Games' | 'TourneyPlayers'
     }
   }
   TournamentGroup: {
     Tournaments: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Group' | 'TournamentGroup' | 'Tourneys'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'Group'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'code' | 'CreatedBy' | 'User' | 'Group' | 'TournamentGroup' | 'Tourneys'
     }
   }
   Tourney: {
     Games: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'start_date' | 'end_date' | 'sequence' | 'Parent' | 'CreatedBy' | 'Tourney' | 'User_GameToUser' | 'Game' | 'Tourney_GameToTourney' | 'other_Game' | 'GameResult' | 'Team' | 'User_GameUsers'
     }
     TourneyPlayers: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'User' | 'Tourney' | 'Tourney_TourneyToTourneyPlayer' | 'User_TourneyPlayerToUser'
-      ordering: 'id' | 'User' | 'Tourney'
+      ordering: 'id' | 'User' | 'Tourney' | 'Tourney_TourneyToTourneyPlayer' | 'User_TourneyPlayerToUser'
     }
   }
   TourneyPlayer: {
@@ -1175,7 +1175,7 @@ interface NexusPrismaInputs {
   UserGroup: {
     Users: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'about' | 'telegram'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'phone' | 'showEmail' | 'showPhone' | 'showFullname' | 'password' | 'fullname' | 'image' | 'address' | 'active' | 'blocked' | 'activated' | 'deleted' | 'hidden' | 'sudo' | 'marketplaceToken' | 'oldID' | 'CreatedBy' | 'EthAccountAuthed' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoomAnonymous' | 'acceptNewChatRoom' | 'isMentor' | 'technologyLevel' | 'User' | 'EthAccount_EthAccountToUser_EthAccountAuthed' | 'CallRequests_CallRequest_CalledToUser' | 'CallRequests_CallRequest_CallerToUser' | 'Careers' | 'ChatMessages' | 'ChatMessagesReaded' | 'ChatRooms_ChatRoomToUser' | 'ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser' | 'ChatRoomInvitations_ChatRoomInvitation_UserToUser' | 'CodeChallenges' | 'CodeChallengeBlocks' | 'CodeChallengeCompletions' | 'Comments' | 'EthAccounts_EthAccount_CreatedByToUser' | 'EthContractSources' | 'Files' | 'Galleries' | 'Games_GameToUser' | 'GameResults_GameResult_CreatedByToUser' | 'GameResults_GameResult_UserToUser' | 'Imports' | 'Letters' | 'LogedIns' | 'Notices_Notice_CreatedByToUser' | 'Notices_Notice_UserToUser' | 'NotificationTypes_NotificationTypeToUser' | 'Players' | 'Positions_PositionToUser' | 'Projects_ProjectToUser' | 'ProjectMembers_ProjectMember_CreatedByToUser' | 'ProjectMembers_ProjectMember_UserToUser' | 'ProjectTasks' | 'ResetPasswords' | 'Resources' | 'ResourceTags' | 'Routes' | 'Services' | 'ServiceCategories' | 'Settings' | 'SmsMessages' | 'SmsProviders' | 'Tags' | 'Tasks' | 'TaskMembers_TaskMember_CreatedByToUser' | 'TaskMembers_TaskMember_UserToUser' | 'TaskReactions' | 'TaskTechnologies' | 'Teams' | 'TeamMembers_TeamMember_CreatedByToUser' | 'TeamMembers_TeamMember_UserToUser' | 'Technologies' | 'TechnologyLessons' | 'TechnologyLessonUsers' | 'Templates' | 'Timers' | 'Tournaments' | 'TournamentGroups' | 'Tourneys' | 'TourneyPlayers' | 'other_Users' | 'UserTechnologies' | 'Votes' | 'Worlds' | 'ChatRooms_ChatRoomsMembers' | 'Games_GameUsers' | 'Positions_PositionUsers' | 'Projects_PrismaProjectUsers' | 'UserGroups' | 'NotificationTypes_UserNotificationTypes' | 'Tokens' | 'LearnStrategies' | 'UserLearnStrategies' | 'MentorMenteeMentors' | 'MentorMenteeMentees' | 'about' | 'telegram' | 'Donates'
     }
   }
   UserTechnology: {
@@ -1187,15 +1187,15 @@ interface NexusPrismaInputs {
   World: {
     Blocks: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'representation' | 'type' | 'x' | 'y' | 'z' | 'world' | 'World'
-      ordering: 'id' | 'representation' | 'type' | 'x' | 'y' | 'z' | 'world'
+      ordering: 'id' | 'representation' | 'type' | 'x' | 'y' | 'z' | 'world' | 'World'
     }
     Messages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'sender' | 'body' | 'world' | 'World'
-      ordering: 'id' | 'type' | 'sender' | 'body' | 'world'
+      ordering: 'id' | 'type' | 'sender' | 'body' | 'world' | 'World'
     }
     Players: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user' | 'Inventory' | 'User' | 'World'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'isAdmin' | 'gamemode' | 'lastLogin' | 'x' | 'y' | 'z' | 'dirx' | 'diry' | 'world' | 'inventory' | 'user' | 'Inventory' | 'User' | 'World'
     }
   }
   Letter: {
@@ -1207,15 +1207,15 @@ interface NexusPrismaInputs {
   LearnStrategy: {
     LearnStrategyStages: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'learnStrategyTargetId' | 'technologyId' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
     }
     LearnStrategyStagesTargets: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'learnStrategyTargetId' | 'technologyId' | 'level'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'learnStrategyId' | 'LearnStrategy' | 'learnStrategyTargetId' | 'LearnStrategyTarget' | 'technologyId' | 'Technology' | 'level'
     }
     UserLearnStrategies: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'learnStrategyId'
+      ordering: 'id' | 'createdAt' | 'updatedAt' | 'createdById' | 'CreatedBy' | 'learnStrategyId' | 'LearnStrategy'
     }
   }
   LearnStrategyStage: {

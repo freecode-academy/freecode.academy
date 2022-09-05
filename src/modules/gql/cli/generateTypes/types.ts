@@ -40,6 +40,8 @@ const prependText = [
   '* Команда для генерирования этого файла: "yarn generate:types" \n',
   '*/',
   '\n',
+  '// @ts-nocheck',
+  '\n',
   '\n',
   // TODO проработать, чтобы это добавлялось только в корневой файл types.ts
   '// @ts-ignore',

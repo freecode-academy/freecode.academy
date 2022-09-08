@@ -21,16 +21,9 @@ import Context, {
   TestResult,
 } from './Context'
 
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog'
-
-import Button from 'material-ui/Button'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import { DesktopLayoutTabIndex } from './View/DesktopLayout/interfaces'
+import { CodeChallengeSuccessModal } from './SuccessModal'
 
 type CodeChallengePageInitialProps = {
   object: CodeChallengePageFragment
@@ -288,31 +281,15 @@ export const CodeChallengePageInitial: React.FC<
     setShowSuccessModal(false)
   }, [])
 
-  const successModal = useMemo(() => {
-    if (showSuccessModal === undefined) {
-      return null
-    }
+  // const successModal = useMemo(() => {
+  //   if (showSuccessModal === undefined) {
+  //     return null
+  //   }
 
-    return (
-      <Dialog
-        open={showSuccessModal}
-        onClose={closeDialog}
-        role="CodeChallengeSuccess"
-      >
-        <DialogTitle>Поздравляю!</DialogTitle>
-        <DialogContent>
-          <DialogContentText role="message">
-            Задание успешно выполнено!
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeDialog} color="primary" role="close">
-            OK
-          </Button>
-        </DialogActions>
-      </Dialog>
-    )
-  }, [closeDialog, showSuccessModal])
+  //   return (
+
+  //   )
+  // }, [closeDialog, showSuccessModal])
 
   if (!object || tabIndex === undefined) {
     return null
@@ -338,7 +315,10 @@ export const CodeChallengePageInitial: React.FC<
         />
       </Context.Provider>
 
-      {successModal}
+      <CodeChallengeSuccessModal
+        opened={showSuccessModal ?? false}
+        onClose={closeDialog}
+      />
     </>
   )
 }

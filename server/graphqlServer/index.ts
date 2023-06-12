@@ -14,8 +14,9 @@ export default new ApolloServer({
   schema: applyMiddleware(schema, permissions),
 
   // Run GraphQL playground in dev mode only
-  playground: process.env.NODE_ENV === 'development',
-  // playground: true,
+  // playground: process.env.NODE_ENV === 'development',
+  playground: true,
+  introspection: true,
 
   uploads: false,
 

@@ -2,9 +2,9 @@
 import OpenAI from 'openai'
 import { ChatCompletionMessageParam } from 'openai/resources'
 
-console.log('process.env.OPENAI_API_KEY', process.env.OPENAI_API_KEY)
-
 const client = new OpenAI({
+  // baseURL: 'https://api.openai.com/v1',
+  baseURL: process.env.OPENAI_API_BASE_URL || undefined,
   apiKey: process.env.OPENAI_API_KEY,
 })
 

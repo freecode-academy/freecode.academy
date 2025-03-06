@@ -118,12 +118,14 @@ model User {
   // Где является менти
   MentorMenteeMentees MentorMentee[] @relation("MentorMenteeMentee")
 
-
   about Json?
 
   telegram String?
 
   Donates Donate[]
+
+  AiMessages  AiMessage[]
+  AiSummaries AiSummary[]
 
   @@unique([email])
   @@unique([username])
@@ -1635,4 +1637,29 @@ model Donate {
   title     String?
   donatorId String?  @db.VarChar(32)
   Donator   User?    @relation(fields: [donatorId], references: [id])
+}
+
+model AiMessage {
+  id          String   @id @default(cuid()) @db.VarChar(32)
+  createdById String   @db.VarChar(32)
+  role        String
+  content     String
+  createdAt   DateTime @default(now()) @db.DateTime(0)
+  updatedAt   DateTime @default(now()) @updatedAt @db.DateTime(0)
+
+  CreatedBy User @relation(fields: [createdById], references: [id])
+
+  @@index([createdById], name: "AiMessageUser")
+}
+
+model AiSummary {
+  id          Int      @id @default(autoincrement())
+  createdById String   @db.VarChar(32)
+  summary     String   @db.Text
+  createdAt   DateTime @default(now()) @db.DateTime(0)
+  updatedAt   DateTime @default(now()) @updatedAt @db.DateTime(0)
+
+  CreatedBy User @relation(fields: [createdById], references: [id])
+
+  @@index([createdById], name: "AiSummaryUser")
 }

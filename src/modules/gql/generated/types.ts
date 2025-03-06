@@ -33,6 +33,122 @@ export type Scalars = {
   UserTechnologyLevel: 1 | 2 | 3 | 4 | 5;
 };
 
+export interface AiMessageCreateManyCreatedByInput {
+  content: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  role: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface AiMessageCreateManyCreatedByInputEnvelope {
+  data?: Maybe<Array<AiMessageCreateManyCreatedByInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface AiMessageCreateNestedManyWithoutCreatedByInput {
+  connect?: Maybe<Array<AiMessageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<AiMessageCreateOrConnectWithoutCreatedByInput>>;
+  create?: Maybe<Array<AiMessageCreateWithoutCreatedByInput>>;
+  createMany?: Maybe<AiMessageCreateManyCreatedByInputEnvelope>;
+}
+
+export interface AiMessageCreateOrConnectWithoutCreatedByInput {
+  create: AiMessageCreateWithoutCreatedByInput;
+  where: AiMessageWhereUniqueInput;
+}
+
+export interface AiMessageCreateWithoutCreatedByInput {
+  content: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  role: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface AiMessageListRelationFilter {
+  every?: Maybe<AiMessageWhereInput>;
+  none?: Maybe<AiMessageWhereInput>;
+  some?: Maybe<AiMessageWhereInput>;
+}
+
+export interface AiMessageOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface AiMessageWhereInput {
+  AND?: Maybe<Array<AiMessageWhereInput>>;
+  CreatedBy?: Maybe<UserWhereInput>;
+  NOT?: Maybe<Array<AiMessageWhereInput>>;
+  OR?: Maybe<Array<AiMessageWhereInput>>;
+  content?: Maybe<StringFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
+  createdById?: Maybe<StringFilter>;
+  id?: Maybe<StringFilter>;
+  role?: Maybe<StringFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface AiMessageWhereUniqueInput {
+  id?: Maybe<Scalars['String']>;
+}
+
+export interface AiSummaryCreateManyCreatedByInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['Int']>;
+  summary: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface AiSummaryCreateManyCreatedByInputEnvelope {
+  data?: Maybe<Array<AiSummaryCreateManyCreatedByInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface AiSummaryCreateNestedManyWithoutCreatedByInput {
+  connect?: Maybe<Array<AiSummaryWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<AiSummaryCreateOrConnectWithoutCreatedByInput>>;
+  create?: Maybe<Array<AiSummaryCreateWithoutCreatedByInput>>;
+  createMany?: Maybe<AiSummaryCreateManyCreatedByInputEnvelope>;
+}
+
+export interface AiSummaryCreateOrConnectWithoutCreatedByInput {
+  create: AiSummaryCreateWithoutCreatedByInput;
+  where: AiSummaryWhereUniqueInput;
+}
+
+export interface AiSummaryCreateWithoutCreatedByInput {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  summary: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface AiSummaryListRelationFilter {
+  every?: Maybe<AiSummaryWhereInput>;
+  none?: Maybe<AiSummaryWhereInput>;
+  some?: Maybe<AiSummaryWhereInput>;
+}
+
+export interface AiSummaryOrderByRelationAggregateInput {
+  _count?: Maybe<SortOrder>;
+}
+
+export interface AiSummaryWhereInput {
+  AND?: Maybe<Array<AiSummaryWhereInput>>;
+  CreatedBy?: Maybe<UserWhereInput>;
+  NOT?: Maybe<Array<AiSummaryWhereInput>>;
+  OR?: Maybe<Array<AiSummaryWhereInput>>;
+  createdAt?: Maybe<DateTimeFilter>;
+  createdById?: Maybe<StringFilter>;
+  id?: Maybe<IntFilter>;
+  summary?: Maybe<StringFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+}
+
+export interface AiSummaryWhereUniqueInput {
+  id?: Maybe<Scalars['Int']>;
+}
+
 /** Объект ответа мутации пользователя */
 export interface AuthPayload {
   __typename?: 'AuthPayload';
@@ -5350,6 +5466,7 @@ export interface Mutation {
   deleteNotice?: Maybe<Notice>;
   /** Удаление ресурса */
   deleteResource: Resource;
+  openAi?: Maybe<Scalars['String']>;
   resetPasswordProcessor: AuthPayload;
   /** Авторизация */
   signin: AuthPayload;
@@ -5481,6 +5598,11 @@ export type MutationDeleteNoticeArgs = {
 
 export type MutationDeleteResourceArgs = {
   where: ResourceWhereUniqueInput;
+};
+
+
+export type MutationOpenAiArgs = {
+  query: Scalars['String'];
 };
 
 
@@ -15001,6 +15123,8 @@ export interface UserCreateOrConnectWithoutWorldsInput {
 }
 
 export interface UserCreateWithoutCallRequestsCallRequestCalledToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
@@ -15107,6 +15231,8 @@ export interface UserCreateWithoutCallRequestsCallRequestCalledToUserInput {
 }
 
 export interface UserCreateWithoutCallRequestsCallRequestCallerToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
@@ -15213,6 +15339,8 @@ export interface UserCreateWithoutCallRequestsCallRequestCallerToUserInput {
 }
 
 export interface UserCreateWithoutChatMessagesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -15319,6 +15447,8 @@ export interface UserCreateWithoutChatMessagesInput {
 }
 
 export interface UserCreateWithoutChatMessagesReadedInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -15425,6 +15555,8 @@ export interface UserCreateWithoutChatMessagesReadedInput {
 }
 
 export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -15531,6 +15663,8 @@ export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationCreatedBy
 }
 
 export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -15637,6 +15771,8 @@ export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationUserToUse
 }
 
 export interface UserCreateWithoutChatRoomsChatRoomToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -15743,6 +15879,8 @@ export interface UserCreateWithoutChatRoomsChatRoomToUserInput {
 }
 
 export interface UserCreateWithoutChatRoomsChatRoomsMembersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -15849,6 +15987,8 @@ export interface UserCreateWithoutChatRoomsChatRoomsMembersInput {
 }
 
 export interface UserCreateWithoutCodeChallengeBlocksInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -15955,6 +16095,8 @@ export interface UserCreateWithoutCodeChallengeBlocksInput {
 }
 
 export interface UserCreateWithoutCodeChallengeCompletionsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16061,6 +16203,8 @@ export interface UserCreateWithoutCodeChallengeCompletionsInput {
 }
 
 export interface UserCreateWithoutCodeChallengesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16167,6 +16311,8 @@ export interface UserCreateWithoutCodeChallengesInput {
 }
 
 export interface UserCreateWithoutCommentsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16273,6 +16419,8 @@ export interface UserCreateWithoutCommentsInput {
 }
 
 export interface UserCreateWithoutDonatesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16379,6 +16527,8 @@ export interface UserCreateWithoutDonatesInput {
 }
 
 export interface UserCreateWithoutEthAccountEthAccountToUserEthAccountAuthedInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16485,6 +16635,8 @@ export interface UserCreateWithoutEthAccountEthAccountToUserEthAccountAuthedInpu
 }
 
 export interface UserCreateWithoutEthAccountsEthAccountCreatedByToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16591,6 +16743,8 @@ export interface UserCreateWithoutEthAccountsEthAccountCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutEthContractSourcesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16697,6 +16851,8 @@ export interface UserCreateWithoutEthContractSourcesInput {
 }
 
 export interface UserCreateWithoutFilesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16803,6 +16959,8 @@ export interface UserCreateWithoutFilesInput {
 }
 
 export interface UserCreateWithoutGalleriesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -16909,6 +17067,8 @@ export interface UserCreateWithoutGalleriesInput {
 }
 
 export interface UserCreateWithoutGameResultsGameResultCreatedByToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17015,6 +17175,8 @@ export interface UserCreateWithoutGameResultsGameResultCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutGameResultsGameResultUserToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17121,6 +17283,8 @@ export interface UserCreateWithoutGameResultsGameResultUserToUserInput {
 }
 
 export interface UserCreateWithoutGamesGameToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17227,6 +17391,8 @@ export interface UserCreateWithoutGamesGameToUserInput {
 }
 
 export interface UserCreateWithoutGamesGameUsersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17333,6 +17499,8 @@ export interface UserCreateWithoutGamesGameUsersInput {
 }
 
 export interface UserCreateWithoutLearnStrategiesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17439,6 +17607,8 @@ export interface UserCreateWithoutLearnStrategiesInput {
 }
 
 export interface UserCreateWithoutMentorMenteeMenteesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17545,6 +17715,8 @@ export interface UserCreateWithoutMentorMenteeMenteesInput {
 }
 
 export interface UserCreateWithoutMentorMenteeMentorsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17651,6 +17823,8 @@ export interface UserCreateWithoutMentorMenteeMentorsInput {
 }
 
 export interface UserCreateWithoutNoticesNoticeCreatedByToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17757,6 +17931,8 @@ export interface UserCreateWithoutNoticesNoticeCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutNoticesNoticeUserToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17863,6 +18039,8 @@ export interface UserCreateWithoutNoticesNoticeUserToUserInput {
 }
 
 export interface UserCreateWithoutNotificationTypesNotificationTypeToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -17969,6 +18147,8 @@ export interface UserCreateWithoutNotificationTypesNotificationTypeToUserInput {
 }
 
 export interface UserCreateWithoutNotificationTypesUserNotificationTypesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18075,6 +18255,8 @@ export interface UserCreateWithoutNotificationTypesUserNotificationTypesInput {
 }
 
 export interface UserCreateWithoutOtherUsersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18181,6 +18363,8 @@ export interface UserCreateWithoutOtherUsersInput {
 }
 
 export interface UserCreateWithoutPlayersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18287,6 +18471,8 @@ export interface UserCreateWithoutPlayersInput {
 }
 
 export interface UserCreateWithoutPositionsPositionToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18393,6 +18579,8 @@ export interface UserCreateWithoutPositionsPositionToUserInput {
 }
 
 export interface UserCreateWithoutPositionsPositionUsersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18499,6 +18687,8 @@ export interface UserCreateWithoutPositionsPositionUsersInput {
 }
 
 export interface UserCreateWithoutProjectMembersProjectMemberCreatedByToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18605,6 +18795,8 @@ export interface UserCreateWithoutProjectMembersProjectMemberCreatedByToUserInpu
 }
 
 export interface UserCreateWithoutProjectMembersProjectMemberUserToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18711,6 +18903,8 @@ export interface UserCreateWithoutProjectMembersProjectMemberUserToUserInput {
 }
 
 export interface UserCreateWithoutProjectTasksInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18817,6 +19011,8 @@ export interface UserCreateWithoutProjectTasksInput {
 }
 
 export interface UserCreateWithoutProjectsPrismaProjectUsersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -18923,6 +19119,8 @@ export interface UserCreateWithoutProjectsPrismaProjectUsersInput {
 }
 
 export interface UserCreateWithoutProjectsProjectToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19029,6 +19227,8 @@ export interface UserCreateWithoutProjectsProjectToUserInput {
 }
 
 export interface UserCreateWithoutResourceTagsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19135,6 +19335,8 @@ export interface UserCreateWithoutResourceTagsInput {
 }
 
 export interface UserCreateWithoutResourcesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19241,6 +19443,8 @@ export interface UserCreateWithoutResourcesInput {
 }
 
 export interface UserCreateWithoutRoutesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19347,6 +19551,8 @@ export interface UserCreateWithoutRoutesInput {
 }
 
 export interface UserCreateWithoutServiceCategoriesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19453,6 +19659,8 @@ export interface UserCreateWithoutServiceCategoriesInput {
 }
 
 export interface UserCreateWithoutServicesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19559,6 +19767,8 @@ export interface UserCreateWithoutServicesInput {
 }
 
 export interface UserCreateWithoutSmsMessagesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19665,6 +19875,8 @@ export interface UserCreateWithoutSmsMessagesInput {
 }
 
 export interface UserCreateWithoutSmsProvidersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19771,6 +19983,8 @@ export interface UserCreateWithoutSmsProvidersInput {
 }
 
 export interface UserCreateWithoutTagsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19877,6 +20091,8 @@ export interface UserCreateWithoutTagsInput {
 }
 
 export interface UserCreateWithoutTaskMembersTaskMemberCreatedByToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -19983,6 +20199,8 @@ export interface UserCreateWithoutTaskMembersTaskMemberCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutTaskMembersTaskMemberUserToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20089,6 +20307,8 @@ export interface UserCreateWithoutTaskMembersTaskMemberUserToUserInput {
 }
 
 export interface UserCreateWithoutTaskReactionsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20195,6 +20415,8 @@ export interface UserCreateWithoutTaskReactionsInput {
 }
 
 export interface UserCreateWithoutTaskTechnologiesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20301,6 +20523,8 @@ export interface UserCreateWithoutTaskTechnologiesInput {
 }
 
 export interface UserCreateWithoutTasksInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20407,6 +20631,8 @@ export interface UserCreateWithoutTasksInput {
 }
 
 export interface UserCreateWithoutTeamMembersTeamMemberCreatedByToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20513,6 +20739,8 @@ export interface UserCreateWithoutTeamMembersTeamMemberCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutTeamMembersTeamMemberUserToUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20619,6 +20847,8 @@ export interface UserCreateWithoutTeamMembersTeamMemberUserToUserInput {
 }
 
 export interface UserCreateWithoutTeamsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20725,6 +20955,8 @@ export interface UserCreateWithoutTeamsInput {
 }
 
 export interface UserCreateWithoutTechnologiesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20831,6 +21063,8 @@ export interface UserCreateWithoutTechnologiesInput {
 }
 
 export interface UserCreateWithoutTechnologyLessonUsersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -20937,6 +21171,8 @@ export interface UserCreateWithoutTechnologyLessonUsersInput {
 }
 
 export interface UserCreateWithoutTechnologyLessonsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21043,6 +21279,8 @@ export interface UserCreateWithoutTechnologyLessonsInput {
 }
 
 export interface UserCreateWithoutTemplatesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21149,6 +21387,8 @@ export interface UserCreateWithoutTemplatesInput {
 }
 
 export interface UserCreateWithoutTimersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21255,6 +21495,8 @@ export interface UserCreateWithoutTimersInput {
 }
 
 export interface UserCreateWithoutTournamentGroupsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21361,6 +21603,8 @@ export interface UserCreateWithoutTournamentGroupsInput {
 }
 
 export interface UserCreateWithoutTournamentsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21467,6 +21711,8 @@ export interface UserCreateWithoutTournamentsInput {
 }
 
 export interface UserCreateWithoutTourneyPlayersInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21573,6 +21819,8 @@ export interface UserCreateWithoutTourneyPlayersInput {
 }
 
 export interface UserCreateWithoutTourneysInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21679,6 +21927,8 @@ export interface UserCreateWithoutTourneysInput {
 }
 
 export interface UserCreateWithoutUserInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21785,6 +22035,8 @@ export interface UserCreateWithoutUserInput {
 }
 
 export interface UserCreateWithoutUserLearnStrategiesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21891,6 +22143,8 @@ export interface UserCreateWithoutUserLearnStrategiesInput {
 }
 
 export interface UserCreateWithoutUserTechnologiesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -21997,6 +22251,8 @@ export interface UserCreateWithoutUserTechnologiesInput {
 }
 
 export interface UserCreateWithoutVotesInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -22103,6 +22359,8 @@ export interface UserCreateWithoutVotesInput {
 }
 
 export interface UserCreateWithoutWorldsInput {
+  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
+  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
@@ -22382,6 +22640,8 @@ export interface UserOrderByRelationAggregateInput {
 }
 
 export interface UserOrderByWithRelationInput {
+  AiMessages?: Maybe<AiMessageOrderByRelationAggregateInput>;
+  AiSummaries?: Maybe<AiSummaryOrderByRelationAggregateInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestOrderByRelationAggregateInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestOrderByRelationAggregateInput>;
   Careers?: Maybe<CareerOrderByRelationAggregateInput>;
@@ -22749,6 +23009,8 @@ export interface UserUpdateInput {
 
 export interface UserWhereInput {
   AND?: Maybe<Array<UserWhereInput>>;
+  AiMessages?: Maybe<AiMessageListRelationFilter>;
+  AiSummaries?: Maybe<AiSummaryListRelationFilter>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestListRelationFilter>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestListRelationFilter>;
   Careers?: Maybe<CareerListRelationFilter>;

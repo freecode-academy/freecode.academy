@@ -6,35 +6,35 @@
 import type * as EditorComponent from '@prisma-cms/front-editor/dist/EditorComponent/interfaces'
 import type { PrismaContext } from './../context/index'
 import type {
-  File,
-  Resource,
-  ResourceTag,
   ChatMessage,
   ChatRoom,
   ChatRoomInvitation,
-  EthAccount,
-  CodeChallengeCompletion,
-  Timer,
-  Notice,
-  NotificationType,
-  ProjectMember,
-  Project,
-  ProjectTask,
-  Task,
-  TaskReaction,
-  Technology,
-  UserTechnology,
   CodeChallenge,
   CodeChallengeBlock,
-  Tag,
-  TaskTechnology,
-  ResetPassword,
+  CodeChallengeCompletion,
+  Donate,
+  EthAccount,
+  File,
   LearnStrategy,
-  UserLearnStrategy,
   LearnStrategyStage,
   MentorMentee,
-  Donate,
+  Notice,
+  NotificationType,
+  Project,
+  ProjectMember,
+  ProjectTask,
+  ResetPassword,
+  Resource,
+  ResourceTag,
+  Tag,
+  Task,
+  TaskReaction,
+  TaskTechnology,
+  Technology,
+  Timer,
   User,
+  UserLearnStrategy,
+  UserTechnology,
 } from '@prisma/client'
 import type { core } from 'nexus'
 declare global {
@@ -113,6 +113,130 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  AiMessageCreateManyCreatedByInput: {
+    // input type
+    content: string // String!
+    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
+    id?: string | null // String
+    role: string // String!
+    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  AiMessageCreateManyCreatedByInputEnvelope: {
+    // input type
+    data?: NexusGenInputs['AiMessageCreateManyCreatedByInput'][] | null // [AiMessageCreateManyCreatedByInput!]
+    skipDuplicates?: boolean | null // Boolean
+  }
+  AiMessageCreateNestedManyWithoutCreatedByInput: {
+    // input type
+    connect?: NexusGenInputs['AiMessageWhereUniqueInput'][] | null // [AiMessageWhereUniqueInput!]
+    connectOrCreate?:
+      | NexusGenInputs['AiMessageCreateOrConnectWithoutCreatedByInput'][]
+      | null // [AiMessageCreateOrConnectWithoutCreatedByInput!]
+    create?: NexusGenInputs['AiMessageCreateWithoutCreatedByInput'][] | null // [AiMessageCreateWithoutCreatedByInput!]
+    createMany?:
+      | NexusGenInputs['AiMessageCreateManyCreatedByInputEnvelope']
+      | null // AiMessageCreateManyCreatedByInputEnvelope
+  }
+  AiMessageCreateOrConnectWithoutCreatedByInput: {
+    // input type
+    create: NexusGenInputs['AiMessageCreateWithoutCreatedByInput'] // AiMessageCreateWithoutCreatedByInput!
+    where: NexusGenInputs['AiMessageWhereUniqueInput'] // AiMessageWhereUniqueInput!
+  }
+  AiMessageCreateWithoutCreatedByInput: {
+    // input type
+    content: string // String!
+    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
+    id?: string | null // String
+    role: string // String!
+    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  AiMessageListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['AiMessageWhereInput'] | null // AiMessageWhereInput
+    none?: NexusGenInputs['AiMessageWhereInput'] | null // AiMessageWhereInput
+    some?: NexusGenInputs['AiMessageWhereInput'] | null // AiMessageWhereInput
+  }
+  AiMessageOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  AiMessageWhereInput: {
+    // input type
+    AND?: NexusGenInputs['AiMessageWhereInput'][] | null // [AiMessageWhereInput!]
+    CreatedBy?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    NOT?: NexusGenInputs['AiMessageWhereInput'][] | null // [AiMessageWhereInput!]
+    OR?: NexusGenInputs['AiMessageWhereInput'][] | null // [AiMessageWhereInput!]
+    content?: NexusGenInputs['StringFilter'] | null // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    createdById?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    role?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  AiMessageWhereUniqueInput: {
+    // input type
+    id?: string | null // String
+  }
+  AiSummaryCreateManyCreatedByInput: {
+    // input type
+    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
+    id?: number | null // Int
+    summary: string // String!
+    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  AiSummaryCreateManyCreatedByInputEnvelope: {
+    // input type
+    data?: NexusGenInputs['AiSummaryCreateManyCreatedByInput'][] | null // [AiSummaryCreateManyCreatedByInput!]
+    skipDuplicates?: boolean | null // Boolean
+  }
+  AiSummaryCreateNestedManyWithoutCreatedByInput: {
+    // input type
+    connect?: NexusGenInputs['AiSummaryWhereUniqueInput'][] | null // [AiSummaryWhereUniqueInput!]
+    connectOrCreate?:
+      | NexusGenInputs['AiSummaryCreateOrConnectWithoutCreatedByInput'][]
+      | null // [AiSummaryCreateOrConnectWithoutCreatedByInput!]
+    create?: NexusGenInputs['AiSummaryCreateWithoutCreatedByInput'][] | null // [AiSummaryCreateWithoutCreatedByInput!]
+    createMany?:
+      | NexusGenInputs['AiSummaryCreateManyCreatedByInputEnvelope']
+      | null // AiSummaryCreateManyCreatedByInputEnvelope
+  }
+  AiSummaryCreateOrConnectWithoutCreatedByInput: {
+    // input type
+    create: NexusGenInputs['AiSummaryCreateWithoutCreatedByInput'] // AiSummaryCreateWithoutCreatedByInput!
+    where: NexusGenInputs['AiSummaryWhereUniqueInput'] // AiSummaryWhereUniqueInput!
+  }
+  AiSummaryCreateWithoutCreatedByInput: {
+    // input type
+    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
+    summary: string // String!
+    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  AiSummaryListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['AiSummaryWhereInput'] | null // AiSummaryWhereInput
+    none?: NexusGenInputs['AiSummaryWhereInput'] | null // AiSummaryWhereInput
+    some?: NexusGenInputs['AiSummaryWhereInput'] | null // AiSummaryWhereInput
+  }
+  AiSummaryOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  AiSummaryWhereInput: {
+    // input type
+    AND?: NexusGenInputs['AiSummaryWhereInput'][] | null // [AiSummaryWhereInput!]
+    CreatedBy?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
+    NOT?: NexusGenInputs['AiSummaryWhereInput'][] | null // [AiSummaryWhereInput!]
+    OR?: NexusGenInputs['AiSummaryWhereInput'][] | null // [AiSummaryWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    createdById?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['IntFilter'] | null // IntFilter
+    summary?: NexusGenInputs['StringFilter'] | null // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+  }
+  AiSummaryWhereUniqueInput: {
+    // input type
+    id?: number | null // Int
+  }
   BlockCreateManyWorldInput: {
     // input type
     id?: string | null // String
@@ -16920,6 +17044,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCallRequests_CallRequest_CalledToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CallerToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput
@@ -17140,6 +17270,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCallRequests_CallRequest_CallerToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -17360,6 +17496,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatMessagesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -17580,6 +17722,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatMessagesReadedInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -17800,6 +17948,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatRoomInvitations_ChatRoomInvitation_CreatedByToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18020,6 +18174,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatRoomInvitations_ChatRoomInvitation_UserToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18240,6 +18400,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatRooms_ChatRoomToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18460,6 +18626,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatRooms_ChatRoomsMembersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18680,6 +18852,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCodeChallengeBlocksInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18900,6 +19078,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCodeChallengeCompletionsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -19120,6 +19304,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCodeChallengesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -19340,6 +19530,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCommentsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -19562,6 +19758,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutDonatesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -19784,6 +19986,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20004,6 +20212,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutEthAccounts_EthAccount_CreatedByToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20224,6 +20438,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutEthContractSourcesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20444,6 +20664,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutFilesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20666,6 +20892,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGalleriesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20888,6 +21120,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGameResults_GameResult_CreatedByToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21108,6 +21346,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGameResults_GameResult_UserToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21328,6 +21572,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGames_GameToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21548,6 +21798,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGames_GameUsersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21768,6 +22024,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutLearnStrategiesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21988,6 +22250,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutMentorMenteeMenteesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22208,6 +22476,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutMentorMenteeMentorsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22428,6 +22702,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutNotices_Notice_CreatedByToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22648,6 +22928,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutNotices_Notice_UserToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22868,6 +23154,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutNotificationTypes_NotificationTypeToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23088,6 +23380,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutNotificationTypes_UserNotificationTypesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23308,6 +23606,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutOther_UsersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23530,6 +23834,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutPlayersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23752,6 +24062,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutPositions_PositionToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23972,6 +24288,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutPositions_PositionUsersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24192,6 +24514,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjectMembers_ProjectMember_CreatedByToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24412,6 +24740,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjectMembers_ProjectMember_UserToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24632,6 +24966,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjectTasksInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24852,6 +25192,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjects_PrismaProjectUsersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25072,6 +25418,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjects_ProjectToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25292,6 +25644,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutResourceTagsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25512,6 +25870,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutResourcesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25732,6 +26096,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutRoutesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25954,6 +26324,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutServiceCategoriesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -26174,6 +26550,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutServicesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -26396,6 +26778,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutSmsMessagesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -26616,6 +27004,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutSmsProvidersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -26836,6 +27230,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTagsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27058,6 +27458,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTaskMembers_TaskMember_CreatedByToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27278,6 +27684,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTaskMembers_TaskMember_UserToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27498,6 +27910,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTaskReactionsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27718,6 +28136,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTaskTechnologiesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27938,6 +28362,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTasksInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -28160,6 +28590,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTeamMembers_TeamMember_CreatedByToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -28380,6 +28816,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTeamMembers_TeamMember_UserToUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -28600,6 +29042,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTeamsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -28822,6 +29270,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTechnologiesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29042,6 +29496,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTechnologyLessonUsersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29262,6 +29722,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTechnologyLessonsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29482,6 +29948,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTemplatesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29702,6 +30174,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTimersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29924,6 +30402,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTournamentGroupsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -30144,6 +30628,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTournamentsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -30364,6 +30854,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTourneyPlayersInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -30584,6 +31080,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTourneysInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -30806,6 +31308,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutUserInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -31028,6 +31536,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutUserLearnStrategiesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -31248,6 +31762,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutUserTechnologiesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -31468,6 +31988,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutVotesInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -31688,6 +32214,12 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutWorldsInput: {
     // input type
+    AiMessages?:
+      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
+      | null // AiMessageCreateNestedManyWithoutCreatedByInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
+      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -32092,6 +32624,10 @@ export interface NexusGenInputs {
   }
   UserOrderByWithRelationInput: {
     // input type
+    AiMessages?: NexusGenInputs['AiMessageOrderByRelationAggregateInput'] | null // AiMessageOrderByRelationAggregateInput
+    AiSummaries?:
+      | NexusGenInputs['AiSummaryOrderByRelationAggregateInput']
+      | null // AiSummaryOrderByRelationAggregateInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestOrderByRelationAggregateInput']
       | null // CallRequestOrderByRelationAggregateInput
@@ -32517,6 +33053,8 @@ export interface NexusGenInputs {
   UserWhereInput: {
     // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
+    AiMessages?: NexusGenInputs['AiMessageListRelationFilter'] | null // AiMessageListRelationFilter
+    AiSummaries?: NexusGenInputs['AiSummaryListRelationFilter'] | null // AiSummaryListRelationFilter
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestListRelationFilter']
       | null // CallRequestListRelationFilter
@@ -33382,6 +33920,7 @@ export interface NexusGenFieldTypes {
     deleteLearnStrategyStage: NexusGenRootTypes['LearnStrategyStage'] // LearnStrategyStage!
     deleteNotice: NexusGenRootTypes['Notice'] | null // Notice
     deleteResource: NexusGenRootTypes['Resource'] // Resource!
+    openAi: string | null // String
     resetPasswordProcessor: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
@@ -33993,6 +34532,7 @@ export interface NexusGenFieldTypeNames {
     deleteLearnStrategyStage: 'LearnStrategyStage'
     deleteNotice: 'Notice'
     deleteResource: 'Resource'
+    openAi: 'String'
     resetPasswordProcessor: 'AuthPayload'
     signin: 'AuthPayload'
     signup: 'AuthPayload'
@@ -34508,6 +35048,10 @@ export interface NexusGenArgTypes {
     deleteResource: {
       // args
       where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
+    }
+    openAi: {
+      // args
+      query: string // String!
     }
     resetPasswordProcessor: {
       // args

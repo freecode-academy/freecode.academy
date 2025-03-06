@@ -97,6 +97,7 @@ export * from './officeProject';
 export * from './officeProjects';
 export * from './officeTask';
 export * from './officeTasks';
+export * from './openAi';
 export * from './project_';
 export * from './projects';
 export * from './projectsConnection';

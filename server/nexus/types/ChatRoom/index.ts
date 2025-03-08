@@ -1,15 +1,21 @@
 import { Prisma } from '@prisma/client'
 import { extendType, objectType } from 'nexus'
+import { getChatRoomsConditions } from './helpers'
+import { chatRoomResolver } from './resolvers/chatRoom'
+import { chatRoomsResolver } from './resolvers/chatRooms'
 
 // TODO Добавить проверку на владельца в запросах
 export const ChatRoomExtendQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.chatRoom()
+    t.crud.chatRoom({
+      resolve: chatRoomResolver,
+    })
 
     t.crud.chatRooms({
       filtering: true,
       ordering: true,
+      resolve: chatRoomsResolver,
     })
 
     t.nonNull.int('chatRoomsCount', {
@@ -18,10 +24,10 @@ export const ChatRoomExtendQuery = extendType({
         where: 'ChatRoomWhereInput',
       },
       resolve(_, args, ctx) {
-        const where = args.where as Prisma.ChatRoomWhereInput
+        const where = args.where as Prisma.ChatRoomWhereInput | undefined
 
         return ctx.prisma.chatRoom.count({
-          where,
+          where: getChatRoomsConditions(where, ctx),
         })
       },
     })

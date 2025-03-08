@@ -1,15 +1,21 @@
 import { Prisma } from '@prisma/client'
 import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
+import { getChatMessagesConditions } from './helpers'
+import { chatMessagesResolver } from './resolvers/chatMessages'
+import { chatMessageResolver } from './resolvers/chatMessage'
 
 // TODO Проработать доступы
 export const ChatMessageQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.chatMessage({})
+    t.crud.chatMessage({
+      resolve: chatMessageResolver,
+    })
 
     t.crud.chatMessages({
       filtering: true,
       ordering: true,
+      resolve: chatMessagesResolver,
     })
 
     t.nonNull.int('chatMessagesCount', {
@@ -18,7 +24,10 @@ export const ChatMessageQuery = extendType({
       },
       resolve(_, args, ctx) {
         return ctx.prisma.chatMessage.count({
-          where: args.where as Prisma.ChatMessageCountArgs['where'],
+          where: getChatMessagesConditions(
+            args.where as Prisma.ChatMessageWhereInput | undefined,
+            ctx
+          ),
         })
       },
     })

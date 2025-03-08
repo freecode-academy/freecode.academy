@@ -1,1 +1,1 @@
-export { default } from 'src/pages/_Error'
+export { ErrorPage as default } from 'src/pages/_Error'

@@ -27,8 +27,9 @@ import WithUser from './WithUser'
 import { AuthFormResponse } from '../../components/Auth/forms/interfaces'
 
 import moment from 'moment'
-import Page404 from '../_Error/404'
-import ErrorPage from '../_Error'
+import { Page401 } from '../_Error/401'
+import { Page404 } from '../_Error/404'
+import { ErrorPage } from '../_Error'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import Head from 'next/head'
 // import Pagination from '../../components/Pagination'
@@ -139,12 +140,11 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
      */
     if (statusCode && statusCode !== 200) {
       switch (statusCode) {
+        case 401:
+          content = <Page401 />
+          break
         case 404:
-          meta.noindex = true
-          meta.nofollow = true
-
           content = <Page404 />
-
           break
 
         default:

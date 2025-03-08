@@ -59,17 +59,30 @@ ChatMessagePage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
   // TODO Fix private rooms access
-  const result = await apolloClient.query<ChatMessageQuery>({
-    query: ChatMessageDocument,
+  const result = await apolloClient
+    .query<ChatMessageQuery>({
+      query: ChatMessageDocument,
 
-    /**
-     * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
-     * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
-     */
-    variables: {
-      ...getQueryParams(context.query),
-    },
-  })
+      /**
+       * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
+       * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
+       */
+      variables: {
+        ...getQueryParams(context.query),
+      },
+    })
+    .catch((error) => {
+      console.error(error)
+
+      return error
+    })
+
+  if (result instanceof Error) {
+    return {
+      statusCode: 401,
+    }
+  }
+
   return {
     statusCode: !result.data.object ? 404 : undefined,
   }

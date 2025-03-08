@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'src/tests/utils'
-import Component from '..'
+import { ErrorPage as Component } from '..'
 
 jest.mock('next/router', () => ({
   useRouter() {

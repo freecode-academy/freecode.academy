@@ -2,7 +2,7 @@ import React from 'react'
 import { NextSeo } from 'next-seo'
 import NextError from 'next/error'
 
-export default class ErrorPage extends NextError {
+export class ErrorPage extends NextError {
   render() {
     return (
       <div>

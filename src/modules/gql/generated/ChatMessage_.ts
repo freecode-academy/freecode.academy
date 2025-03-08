@@ -31,7 +31,7 @@ export type ChatMessageFragment = (
 );
 
 export const ChatMessageFragmentDoc = gql`
-    fragment chatMessage_ on ChatMessage {
+    fragment ChatMessage_ on ChatMessage {
   ...ChatMessageNoNesting
   Room {
     ...ChatRoomNoNesting

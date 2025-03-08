@@ -30,6 +30,7 @@ import { UserAbout } from './About'
 import { BlockUser } from './BlockUser'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
 import { UserStudyInfo } from './StudyInfo'
+import { PrivateChat } from './Chat'
 // import { UserProgress } from './Progress'
 
 // export const UserView: React.FC<UserPageViewProps> = ({ user }) => {
@@ -527,6 +528,9 @@ export const UserPageView: React.FC<UserPageViewProps> = ({ user }) => {
             </a>
           </div>
         ) : null}
+        {currentUser?.sudo && (
+          <PrivateChat currentUser={currentUser} user={userEdited} />
+        )}
         {chatRooms}
         {/* {userProgress} */}
         {level}

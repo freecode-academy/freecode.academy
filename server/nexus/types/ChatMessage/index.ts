@@ -3,6 +3,7 @@ import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
 import { getChatMessagesConditions } from './helpers'
 import { chatMessagesResolver } from './resolvers/chatMessages'
 import { chatMessageResolver } from './resolvers/chatMessage'
+import { createChatMessageProcessorResolver } from './resolvers/createChatMessageProcessor'
 
 // TODO Проработать доступы
 export const ChatMessageQuery = extendType({
@@ -43,13 +44,7 @@ export const ChatMessageExtendMutation = extendType({
         data: nonNull('ChatMessageCreateInput'),
       },
       // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
-      },
+      resolve: createChatMessageProcessorResolver,
     })
   },
 })
@@ -91,11 +86,14 @@ export const ChatMessageCreateInput = inputObjectType({
   name: 'ChatMessageCreateInput',
   definition(t) {
     t.field('content', {
-      type: 'JSON',
+      type: 'String',
     })
-    t.field('Room', {
-      type: 'ChatRoomCreateOneWithoutMessagesInput',
+    t.nonNull.field('toUser', {
+      type: 'UserWhereUniqueInput',
     })
+    // t.field('Room', {
+    //   type: 'ChatRoomCreateOneWithoutMessagesInput',
+    // })
   },
 })
 
@@ -118,6 +116,9 @@ export const ChatMessageResponse = objectType({
       type: 'RequestError',
     })
     t.field('data', {
+      type: 'ChatMessage',
+    })
+    t.field('reply', {
       type: 'ChatMessage',
     })
   },

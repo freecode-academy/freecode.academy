@@ -33,120 +33,66 @@ export type Scalars = {
   UserTechnologyLevel: 1 | 2 | 3 | 4 | 5;
 };
 
-export interface AiMessageCreateManyCreatedByInput {
-  content: Scalars['String'];
+export interface AiAgentCreateDataInput {
+  prompt: Scalars['String'];
+  userData: UserSignupDataInput;
+}
+
+export interface AiAgentCreateManyUserInput {
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
-  role: Scalars['String'];
+  prompt: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
-export interface AiMessageCreateManyCreatedByInputEnvelope {
-  data?: Maybe<Array<AiMessageCreateManyCreatedByInput>>;
+export interface AiAgentCreateManyUserInputEnvelope {
+  data?: Maybe<Array<AiAgentCreateManyUserInput>>;
   skipDuplicates?: Maybe<Scalars['Boolean']>;
 }
 
-export interface AiMessageCreateNestedManyWithoutCreatedByInput {
-  connect?: Maybe<Array<AiMessageWhereUniqueInput>>;
-  connectOrCreate?: Maybe<Array<AiMessageCreateOrConnectWithoutCreatedByInput>>;
-  create?: Maybe<Array<AiMessageCreateWithoutCreatedByInput>>;
-  createMany?: Maybe<AiMessageCreateManyCreatedByInputEnvelope>;
+export interface AiAgentCreateNestedManyWithoutUserInput {
+  connect?: Maybe<Array<AiAgentWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<AiAgentCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<AiAgentCreateWithoutUserInput>>;
+  createMany?: Maybe<AiAgentCreateManyUserInputEnvelope>;
 }
 
-export interface AiMessageCreateOrConnectWithoutCreatedByInput {
-  create: AiMessageCreateWithoutCreatedByInput;
-  where: AiMessageWhereUniqueInput;
+export interface AiAgentCreateOrConnectWithoutUserInput {
+  create: AiAgentCreateWithoutUserInput;
+  where: AiAgentWhereUniqueInput;
 }
 
-export interface AiMessageCreateWithoutCreatedByInput {
-  content: Scalars['String'];
+export interface AiAgentCreateWithoutUserInput {
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
-  role: Scalars['String'];
+  prompt: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
-export interface AiMessageListRelationFilter {
-  every?: Maybe<AiMessageWhereInput>;
-  none?: Maybe<AiMessageWhereInput>;
-  some?: Maybe<AiMessageWhereInput>;
+export interface AiAgentListRelationFilter {
+  every?: Maybe<AiAgentWhereInput>;
+  none?: Maybe<AiAgentWhereInput>;
+  some?: Maybe<AiAgentWhereInput>;
 }
 
-export interface AiMessageOrderByRelationAggregateInput {
+export interface AiAgentOrderByRelationAggregateInput {
   _count?: Maybe<SortOrder>;
 }
 
-export interface AiMessageWhereInput {
-  AND?: Maybe<Array<AiMessageWhereInput>>;
-  CreatedBy?: Maybe<UserWhereInput>;
-  NOT?: Maybe<Array<AiMessageWhereInput>>;
-  OR?: Maybe<Array<AiMessageWhereInput>>;
-  content?: Maybe<StringFilter>;
+export interface AiAgentWhereInput {
+  AND?: Maybe<Array<AiAgentWhereInput>>;
+  NOT?: Maybe<Array<AiAgentWhereInput>>;
+  OR?: Maybe<Array<AiAgentWhereInput>>;
+  User?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeFilter>;
-  createdById?: Maybe<StringFilter>;
   id?: Maybe<StringFilter>;
-  role?: Maybe<StringFilter>;
+  prompt?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+  userId?: Maybe<StringNullableFilter>;
 }
 
-export interface AiMessageWhereUniqueInput {
+export interface AiAgentWhereUniqueInput {
   id?: Maybe<Scalars['String']>;
-}
-
-export interface AiSummaryCreateManyCreatedByInput {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['Int']>;
-  summary: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-}
-
-export interface AiSummaryCreateManyCreatedByInputEnvelope {
-  data?: Maybe<Array<AiSummaryCreateManyCreatedByInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-}
-
-export interface AiSummaryCreateNestedManyWithoutCreatedByInput {
-  connect?: Maybe<Array<AiSummaryWhereUniqueInput>>;
-  connectOrCreate?: Maybe<Array<AiSummaryCreateOrConnectWithoutCreatedByInput>>;
-  create?: Maybe<Array<AiSummaryCreateWithoutCreatedByInput>>;
-  createMany?: Maybe<AiSummaryCreateManyCreatedByInputEnvelope>;
-}
-
-export interface AiSummaryCreateOrConnectWithoutCreatedByInput {
-  create: AiSummaryCreateWithoutCreatedByInput;
-  where: AiSummaryWhereUniqueInput;
-}
-
-export interface AiSummaryCreateWithoutCreatedByInput {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  summary: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-}
-
-export interface AiSummaryListRelationFilter {
-  every?: Maybe<AiSummaryWhereInput>;
-  none?: Maybe<AiSummaryWhereInput>;
-  some?: Maybe<AiSummaryWhereInput>;
-}
-
-export interface AiSummaryOrderByRelationAggregateInput {
-  _count?: Maybe<SortOrder>;
-}
-
-export interface AiSummaryWhereInput {
-  AND?: Maybe<Array<AiSummaryWhereInput>>;
-  CreatedBy?: Maybe<UserWhereInput>;
-  NOT?: Maybe<Array<AiSummaryWhereInput>>;
-  OR?: Maybe<Array<AiSummaryWhereInput>>;
-  createdAt?: Maybe<DateTimeFilter>;
-  createdById?: Maybe<StringFilter>;
-  id?: Maybe<IntFilter>;
-  summary?: Maybe<StringFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-}
-
-export interface AiSummaryWhereUniqueInput {
-  id?: Maybe<Scalars['Int']>;
 }
 
 /** Объект ответа мутации пользователя */
@@ -486,8 +432,8 @@ export interface ChatMessage {
 }
 
 export interface ChatMessageCreateInput {
-  Room?: Maybe<ChatRoomCreateOneWithoutMessagesInput>;
-  content?: Maybe<Scalars['JSON']>;
+  content?: Maybe<Scalars['String']>;
+  toUser: UserWhereUniqueInput;
 }
 
 export interface ChatMessageCreateManyChatRoomInput {
@@ -496,11 +442,27 @@ export interface ChatMessageCreateManyChatRoomInput {
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
+  toUser?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ChatMessageCreateManyChatRoomInputEnvelope {
   data?: Maybe<Array<ChatMessageCreateManyChatRoomInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+}
+
+export interface ChatMessageCreateManyToUserInput {
+  CreatedBy?: Maybe<Scalars['String']>;
+  Room?: Maybe<Scalars['String']>;
+  content?: Maybe<NullableJsonNullValueInput>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageCreateManyToUserInputEnvelope {
+  data?: Maybe<Array<ChatMessageCreateManyToUserInput>>;
   skipDuplicates?: Maybe<Scalars['Boolean']>;
 }
 
@@ -510,6 +472,7 @@ export interface ChatMessageCreateManyUserInput {
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
+  toUser?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 }
 
@@ -523,6 +486,13 @@ export interface ChatMessageCreateNestedManyWithoutChatRoomInput {
   connectOrCreate?: Maybe<Array<ChatMessageCreateOrConnectWithoutChatRoomInput>>;
   create?: Maybe<Array<ChatMessageCreateWithoutChatRoomInput>>;
   createMany?: Maybe<ChatMessageCreateManyChatRoomInputEnvelope>;
+}
+
+export interface ChatMessageCreateNestedManyWithoutToUserInput {
+  connect?: Maybe<Array<ChatMessageWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<ChatMessageCreateOrConnectWithoutToUserInput>>;
+  create?: Maybe<Array<ChatMessageCreateWithoutToUserInput>>;
+  createMany?: Maybe<ChatMessageCreateManyToUserInputEnvelope>;
 }
 
 export interface ChatMessageCreateNestedManyWithoutUserInput {
@@ -559,6 +529,11 @@ export interface ChatMessageCreateOrConnectWithoutNoticesInput {
   where: ChatMessageWhereUniqueInput;
 }
 
+export interface ChatMessageCreateOrConnectWithoutToUserInput {
+  create: ChatMessageCreateWithoutToUserInput;
+  where: ChatMessageWhereUniqueInput;
+}
+
 export interface ChatMessageCreateOrConnectWithoutUserInput {
   create: ChatMessageCreateWithoutUserInput;
   where: ChatMessageWhereUniqueInput;
@@ -567,6 +542,7 @@ export interface ChatMessageCreateOrConnectWithoutUserInput {
 export interface ChatMessageCreateWithoutChatMessagesReadedInput {
   ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
   Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
+  ToUser?: Maybe<UserCreateNestedOneWithoutChatMessagesIncomingInput>;
   User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
   content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
@@ -578,6 +554,7 @@ export interface ChatMessageCreateWithoutChatMessagesReadedInput {
 export interface ChatMessageCreateWithoutChatRoomInput {
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
   Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
+  ToUser?: Maybe<UserCreateNestedOneWithoutChatMessagesIncomingInput>;
   User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
   content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
@@ -589,6 +566,19 @@ export interface ChatMessageCreateWithoutChatRoomInput {
 export interface ChatMessageCreateWithoutNoticesInput {
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
   ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
+  ToUser?: Maybe<UserCreateNestedOneWithoutChatMessagesIncomingInput>;
+  User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
+  content?: Maybe<NullableJsonNullValueInput>;
+  contentText?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+}
+
+export interface ChatMessageCreateWithoutToUserInput {
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
+  ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
+  Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
   User?: Maybe<UserCreateNestedOneWithoutChatMessagesInput>;
   content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
@@ -601,6 +591,7 @@ export interface ChatMessageCreateWithoutUserInput {
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutChatMessageInput>;
   ChatRoom?: Maybe<ChatRoomCreateNestedOneWithoutChatMessagesInput>;
   Notices?: Maybe<NoticeCreateNestedManyWithoutChatMessageChatMessageToNoticeInput>;
+  ToUser?: Maybe<UserCreateNestedOneWithoutChatMessagesIncomingInput>;
   content?: Maybe<NullableJsonNullValueInput>;
   contentText?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -624,11 +615,13 @@ export interface ChatMessageOrderByWithRelationInput {
   CreatedBy?: Maybe<SortOrder>;
   Notices?: Maybe<NoticeOrderByRelationAggregateInput>;
   Room?: Maybe<SortOrder>;
+  ToUser?: Maybe<UserOrderByWithRelationInput>;
   User?: Maybe<UserOrderByWithRelationInput>;
   content?: Maybe<SortOrder>;
   contentText?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  toUser?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
 }
 
@@ -726,6 +719,7 @@ export interface ChatMessageResponse {
   data?: Maybe<ChatMessage>;
   errors: Array<RequestError>;
   message: Scalars['String'];
+  reply?: Maybe<ChatMessage>;
   success: Scalars['Boolean'];
 }
 
@@ -738,11 +732,13 @@ export interface ChatMessageWhereInput {
   Notices?: Maybe<NoticeListRelationFilter>;
   OR?: Maybe<Array<ChatMessageWhereInput>>;
   Room?: Maybe<StringNullableFilter>;
+  ToUser?: Maybe<UserWhereInput>;
   User?: Maybe<UserWhereInput>;
   content?: Maybe<JsonNullableFilter>;
   contentText?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<StringFilter>;
+  toUser?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 }
 
@@ -5444,6 +5440,8 @@ export interface Mutation {
   __typename?: 'Mutation';
   /** Заблокировать пользователя */
   blockUser: User;
+  /** Создать AI агента */
+  createAiAgentUser: AuthPayload;
   createBlogProcessor: ResourceResponse;
   createChatMessageProcessor: ChatMessageResponse;
   createCodeChallengeCompletionProcessor: CodeChallengeCompletionResponse;
@@ -5498,6 +5496,11 @@ export interface Mutation {
 
 export type MutationBlockUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationCreateAiAgentUserArgs = {
+  data: AiAgentCreateDataInput;
 };
 
 
@@ -14263,6 +14266,8 @@ export interface User {
   id: Scalars['String'];
   /** Avatar */
   image?: Maybe<Scalars['String']>;
+  /** Является ли пользователь AI агентом */
+  isAiAgent?: Maybe<Scalars['Boolean']>;
   /** Готов быть ментором */
   isMentor?: Maybe<Scalars['Boolean']>;
   phone?: Maybe<Scalars['String']>;
@@ -14422,6 +14427,12 @@ export interface UserCreateNestedOneWithoutCallRequestsCallRequestCallerToUserIn
   connect?: Maybe<UserWhereUniqueInput>;
   connectOrCreate?: Maybe<UserCreateOrConnectWithoutCallRequestsCallRequestCallerToUserInput>;
   create?: Maybe<UserCreateWithoutCallRequestsCallRequestCallerToUserInput>;
+}
+
+export interface UserCreateNestedOneWithoutChatMessagesIncomingInput {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutChatMessagesIncomingInput>;
+  create?: Maybe<UserCreateWithoutChatMessagesIncomingInput>;
 }
 
 export interface UserCreateNestedOneWithoutChatMessagesInput {
@@ -14792,6 +14803,11 @@ export interface UserCreateOrConnectWithoutCallRequestsCallRequestCallerToUserIn
   where: UserWhereUniqueInput;
 }
 
+export interface UserCreateOrConnectWithoutChatMessagesIncomingInput {
+  create: UserCreateWithoutChatMessagesIncomingInput;
+  where: UserWhereUniqueInput;
+}
+
 export interface UserCreateOrConnectWithoutChatMessagesInput {
   create: UserCreateWithoutChatMessagesInput;
   where: UserWhereUniqueInput;
@@ -15123,11 +15139,11 @@ export interface UserCreateOrConnectWithoutWorldsInput {
 }
 
 export interface UserCreateWithoutCallRequestsCallRequestCalledToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -15231,9 +15247,117 @@ export interface UserCreateWithoutCallRequestsCallRequestCalledToUserInput {
 }
 
 export interface UserCreateWithoutCallRequestsCallRequestCallerToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
+  ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
+  ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
+  ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
+  ChatRooms_ChatRoomsMembers?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomsMembersInput>;
+  CodeChallengeBlocks?: Maybe<CodeChallengeBlockCreateNestedManyWithoutUserInput>;
+  CodeChallengeCompletions?: Maybe<CodeChallengeCompletionCreateNestedManyWithoutUserInput>;
+  CodeChallenges?: Maybe<CodeChallengeCreateNestedManyWithoutUserInput>;
+  Comments?: Maybe<CommentCreateNestedManyWithoutUserInput>;
+  Donates?: Maybe<DonateCreateNestedManyWithoutDonatorInput>;
+  EthAccount_EthAccountToUser_EthAccountAuthed?: Maybe<EthAccountCreateNestedOneWithoutUserEthAccountToUserEthAccountAuthedInput>;
+  EthAccounts_EthAccount_CreatedByToUser?: Maybe<EthAccountCreateNestedManyWithoutUserEthAccountCreatedByToUserInput>;
+  EthContractSources?: Maybe<EthContractSourceCreateNestedManyWithoutUserInput>;
+  Files?: Maybe<FileCreateNestedManyWithoutUserInput>;
+  Galleries?: Maybe<GalleryCreateNestedManyWithoutUserInput>;
+  GameResults_GameResult_CreatedByToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultCreatedByToUserInput>;
+  GameResults_GameResult_UserToUser?: Maybe<GameResultCreateNestedManyWithoutUserGameResultUserToUserInput>;
+  Games_GameToUser?: Maybe<GameCreateNestedManyWithoutUserGameToUserInput>;
+  Games_GameUsers?: Maybe<GameCreateNestedManyWithoutUserGameUsersInput>;
+  Imports?: Maybe<ImportCreateNestedManyWithoutUserInput>;
+  LearnStrategies?: Maybe<LearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  Letters?: Maybe<LetterCreateNestedManyWithoutUserLetterToUserInput>;
+  LogedIns?: Maybe<LogedInCreateNestedManyWithoutUserLogedInToUserInput>;
+  MentorMenteeMentees?: Maybe<MentorMenteeCreateNestedManyWithoutMenteeInput>;
+  MentorMenteeMentors?: Maybe<MentorMenteeCreateNestedManyWithoutMentorInput>;
+  Notices_Notice_CreatedByToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeCreatedByToUserInput>;
+  Notices_Notice_UserToUser?: Maybe<NoticeCreateNestedManyWithoutUserNoticeUserToUserInput>;
+  NotificationTypes_NotificationTypeToUser?: Maybe<NotificationTypeCreateNestedManyWithoutUserNotificationTypeToUserInput>;
+  NotificationTypes_UserNotificationTypes?: Maybe<NotificationTypeCreateNestedManyWithoutUserUserNotificationTypesInput>;
+  Players?: Maybe<PlayerCreateNestedManyWithoutUserInput>;
+  Positions_PositionToUser?: Maybe<PositionCreateNestedManyWithoutUserPositionToUserInput>;
+  Positions_PositionUsers?: Maybe<PositionCreateNestedManyWithoutUserPositionUsersInput>;
+  ProjectMembers_ProjectMember_CreatedByToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberCreatedByToUserInput>;
+  ProjectMembers_ProjectMember_UserToUser?: Maybe<ProjectMemberCreateNestedManyWithoutUserProjectMemberUserToUserInput>;
+  ProjectTasks?: Maybe<ProjectTaskCreateNestedManyWithoutUserInput>;
+  Projects_PrismaProjectUsers?: Maybe<ProjectCreateNestedManyWithoutUserPrismaProjectUsersInput>;
+  Projects_ProjectToUser?: Maybe<ProjectCreateNestedManyWithoutUserProjectToUserInput>;
+  ResetPasswords?: Maybe<ResetPasswordCreateNestedManyWithoutUserResetPasswordToUserInput>;
+  ResourceTags?: Maybe<ResourceTagCreateNestedManyWithoutUserInput>;
+  Resources?: Maybe<ResourceCreateNestedManyWithoutUserInput>;
+  Routes?: Maybe<RouteCreateNestedManyWithoutUserInput>;
+  ServiceCategories?: Maybe<ServiceCategoryCreateNestedManyWithoutUserInput>;
+  Services?: Maybe<ServiceCreateNestedManyWithoutUserInput>;
+  Settings?: Maybe<SettingsCreateNestedManyWithoutUserSettingsToUserInput>;
+  SmsMessages?: Maybe<SmsMessageCreateNestedManyWithoutUserInput>;
+  SmsProviders?: Maybe<SmsProviderCreateNestedManyWithoutUserInput>;
+  Tags?: Maybe<TagCreateNestedManyWithoutUserInput>;
+  TaskMembers_TaskMember_CreatedByToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberCreatedByToUserInput>;
+  TaskMembers_TaskMember_UserToUser?: Maybe<TaskMemberCreateNestedManyWithoutUserTaskMemberUserToUserInput>;
+  TaskReactions?: Maybe<TaskReactionCreateNestedManyWithoutUserInput>;
+  TaskTechnologies?: Maybe<TaskTechnologyCreateNestedManyWithoutUserInput>;
+  Tasks?: Maybe<TaskCreateNestedManyWithoutUserInput>;
+  TeamMembers_TeamMember_CreatedByToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberCreatedByToUserInput>;
+  TeamMembers_TeamMember_UserToUser?: Maybe<TeamMemberCreateNestedManyWithoutUserTeamMemberUserToUserInput>;
+  Teams?: Maybe<TeamCreateNestedManyWithoutUserInput>;
+  Technologies?: Maybe<TechnologyCreateNestedManyWithoutUserInput>;
+  TechnologyLessonUsers?: Maybe<TechnologyLessonUserCreateNestedManyWithoutUserInput>;
+  TechnologyLessons?: Maybe<TechnologyLessonCreateNestedManyWithoutUserInput>;
+  Templates?: Maybe<TemplateCreateNestedManyWithoutUserInput>;
+  Timers?: Maybe<TimerCreateNestedManyWithoutUserInput>;
+  Tokens?: Maybe<TokenCreateNestedManyWithoutUserInput>;
+  TournamentGroups?: Maybe<TournamentGroupCreateNestedManyWithoutUserInput>;
+  Tournaments?: Maybe<TournamentCreateNestedManyWithoutUserInput>;
+  TourneyPlayers?: Maybe<TourneyPlayerCreateNestedManyWithoutUserTourneyPlayerToUserInput>;
+  Tourneys?: Maybe<TourneyCreateNestedManyWithoutUserInput>;
+  User?: Maybe<UserCreateNestedOneWithoutOtherUsersInput>;
+  UserGroups?: Maybe<UserGroupCreateNestedManyWithoutUsersInput>;
+  UserLearnStrategies?: Maybe<UserLearnStrategyCreateNestedManyWithoutCreatedByInput>;
+  UserTechnologies?: Maybe<UserTechnologyCreateNestedManyWithoutUserInput>;
+  Votes?: Maybe<VoteCreateNestedManyWithoutUserUserToVoteInput>;
+  Worlds?: Maybe<WorldCreateNestedManyWithoutUserInput>;
+  about?: Maybe<NullableJsonNullValueInput>;
+  acceptChatMessageAnonymous?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoom?: Maybe<Scalars['Boolean']>;
+  acceptNewChatRoomAnonymous?: Maybe<Scalars['Boolean']>;
+  activated?: Maybe<Scalars['Boolean']>;
+  active?: Maybe<Scalars['Boolean']>;
+  address?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deleted?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  fullname?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  isMentor?: Maybe<Scalars['Boolean']>;
+  marketplaceToken?: Maybe<Scalars['String']>;
+  oldID?: Maybe<Scalars['Int']>;
+  other_Users?: Maybe<UserCreateNestedManyWithoutUserInput>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  showEmail?: Maybe<Scalars['Boolean']>;
+  showFullname?: Maybe<Scalars['Boolean']>;
+  showPhone?: Maybe<Scalars['Boolean']>;
+  sudo?: Maybe<Scalars['Boolean']>;
+  technologyLevel?: Maybe<Scalars['Int']>;
+  telegram?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username?: Maybe<Scalars['String']>;
+}
+
+export interface UserCreateWithoutChatMessagesIncomingInput {
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
+  CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
+  CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
@@ -15339,11 +15463,11 @@ export interface UserCreateWithoutCallRequestsCallRequestCallerToUserInput {
 }
 
 export interface UserCreateWithoutChatMessagesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -15447,12 +15571,12 @@ export interface UserCreateWithoutChatMessagesInput {
 }
 
 export interface UserCreateWithoutChatMessagesReadedInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
   ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
@@ -15555,12 +15679,12 @@ export interface UserCreateWithoutChatMessagesReadedInput {
 }
 
 export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationCreatedByToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
   ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
@@ -15663,12 +15787,12 @@ export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationCreatedBy
 }
 
 export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationUserToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRooms_ChatRoomToUser?: Maybe<ChatRoomCreateNestedManyWithoutUserChatRoomToUserInput>;
@@ -15771,12 +15895,12 @@ export interface UserCreateWithoutChatRoomInvitationsChatRoomInvitationUserToUse
 }
 
 export interface UserCreateWithoutChatRoomsChatRoomToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -15879,12 +16003,12 @@ export interface UserCreateWithoutChatRoomsChatRoomToUserInput {
 }
 
 export interface UserCreateWithoutChatRoomsChatRoomsMembersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -15987,12 +16111,12 @@ export interface UserCreateWithoutChatRoomsChatRoomsMembersInput {
 }
 
 export interface UserCreateWithoutCodeChallengeBlocksInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16095,12 +16219,12 @@ export interface UserCreateWithoutCodeChallengeBlocksInput {
 }
 
 export interface UserCreateWithoutCodeChallengeCompletionsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16203,12 +16327,12 @@ export interface UserCreateWithoutCodeChallengeCompletionsInput {
 }
 
 export interface UserCreateWithoutCodeChallengesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16311,12 +16435,12 @@ export interface UserCreateWithoutCodeChallengesInput {
 }
 
 export interface UserCreateWithoutCommentsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16419,12 +16543,12 @@ export interface UserCreateWithoutCommentsInput {
 }
 
 export interface UserCreateWithoutDonatesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16527,12 +16651,12 @@ export interface UserCreateWithoutDonatesInput {
 }
 
 export interface UserCreateWithoutEthAccountEthAccountToUserEthAccountAuthedInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16635,12 +16759,12 @@ export interface UserCreateWithoutEthAccountEthAccountToUserEthAccountAuthedInpu
 }
 
 export interface UserCreateWithoutEthAccountsEthAccountCreatedByToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16743,12 +16867,12 @@ export interface UserCreateWithoutEthAccountsEthAccountCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutEthContractSourcesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16851,12 +16975,12 @@ export interface UserCreateWithoutEthContractSourcesInput {
 }
 
 export interface UserCreateWithoutFilesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -16959,12 +17083,12 @@ export interface UserCreateWithoutFilesInput {
 }
 
 export interface UserCreateWithoutGalleriesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17067,12 +17191,12 @@ export interface UserCreateWithoutGalleriesInput {
 }
 
 export interface UserCreateWithoutGameResultsGameResultCreatedByToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17175,12 +17299,12 @@ export interface UserCreateWithoutGameResultsGameResultCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutGameResultsGameResultUserToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17283,12 +17407,12 @@ export interface UserCreateWithoutGameResultsGameResultUserToUserInput {
 }
 
 export interface UserCreateWithoutGamesGameToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17391,12 +17515,12 @@ export interface UserCreateWithoutGamesGameToUserInput {
 }
 
 export interface UserCreateWithoutGamesGameUsersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17499,12 +17623,12 @@ export interface UserCreateWithoutGamesGameUsersInput {
 }
 
 export interface UserCreateWithoutLearnStrategiesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17607,12 +17731,12 @@ export interface UserCreateWithoutLearnStrategiesInput {
 }
 
 export interface UserCreateWithoutMentorMenteeMenteesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17715,12 +17839,12 @@ export interface UserCreateWithoutMentorMenteeMenteesInput {
 }
 
 export interface UserCreateWithoutMentorMenteeMentorsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17823,12 +17947,12 @@ export interface UserCreateWithoutMentorMenteeMentorsInput {
 }
 
 export interface UserCreateWithoutNoticesNoticeCreatedByToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -17931,12 +18055,12 @@ export interface UserCreateWithoutNoticesNoticeCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutNoticesNoticeUserToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18039,12 +18163,12 @@ export interface UserCreateWithoutNoticesNoticeUserToUserInput {
 }
 
 export interface UserCreateWithoutNotificationTypesNotificationTypeToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18147,12 +18271,12 @@ export interface UserCreateWithoutNotificationTypesNotificationTypeToUserInput {
 }
 
 export interface UserCreateWithoutNotificationTypesUserNotificationTypesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18255,12 +18379,12 @@ export interface UserCreateWithoutNotificationTypesUserNotificationTypesInput {
 }
 
 export interface UserCreateWithoutOtherUsersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18363,12 +18487,12 @@ export interface UserCreateWithoutOtherUsersInput {
 }
 
 export interface UserCreateWithoutPlayersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18471,12 +18595,12 @@ export interface UserCreateWithoutPlayersInput {
 }
 
 export interface UserCreateWithoutPositionsPositionToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18579,12 +18703,12 @@ export interface UserCreateWithoutPositionsPositionToUserInput {
 }
 
 export interface UserCreateWithoutPositionsPositionUsersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18687,12 +18811,12 @@ export interface UserCreateWithoutPositionsPositionUsersInput {
 }
 
 export interface UserCreateWithoutProjectMembersProjectMemberCreatedByToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18795,12 +18919,12 @@ export interface UserCreateWithoutProjectMembersProjectMemberCreatedByToUserInpu
 }
 
 export interface UserCreateWithoutProjectMembersProjectMemberUserToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -18903,12 +19027,12 @@ export interface UserCreateWithoutProjectMembersProjectMemberUserToUserInput {
 }
 
 export interface UserCreateWithoutProjectTasksInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19011,12 +19135,12 @@ export interface UserCreateWithoutProjectTasksInput {
 }
 
 export interface UserCreateWithoutProjectsPrismaProjectUsersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19119,12 +19243,12 @@ export interface UserCreateWithoutProjectsPrismaProjectUsersInput {
 }
 
 export interface UserCreateWithoutProjectsProjectToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19227,12 +19351,12 @@ export interface UserCreateWithoutProjectsProjectToUserInput {
 }
 
 export interface UserCreateWithoutResourceTagsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19335,12 +19459,12 @@ export interface UserCreateWithoutResourceTagsInput {
 }
 
 export interface UserCreateWithoutResourcesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19443,12 +19567,12 @@ export interface UserCreateWithoutResourcesInput {
 }
 
 export interface UserCreateWithoutRoutesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19551,12 +19675,12 @@ export interface UserCreateWithoutRoutesInput {
 }
 
 export interface UserCreateWithoutServiceCategoriesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19659,12 +19783,12 @@ export interface UserCreateWithoutServiceCategoriesInput {
 }
 
 export interface UserCreateWithoutServicesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19767,12 +19891,12 @@ export interface UserCreateWithoutServicesInput {
 }
 
 export interface UserCreateWithoutSmsMessagesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19875,12 +19999,12 @@ export interface UserCreateWithoutSmsMessagesInput {
 }
 
 export interface UserCreateWithoutSmsProvidersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -19983,12 +20107,12 @@ export interface UserCreateWithoutSmsProvidersInput {
 }
 
 export interface UserCreateWithoutTagsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20091,12 +20215,12 @@ export interface UserCreateWithoutTagsInput {
 }
 
 export interface UserCreateWithoutTaskMembersTaskMemberCreatedByToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20199,12 +20323,12 @@ export interface UserCreateWithoutTaskMembersTaskMemberCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutTaskMembersTaskMemberUserToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20307,12 +20431,12 @@ export interface UserCreateWithoutTaskMembersTaskMemberUserToUserInput {
 }
 
 export interface UserCreateWithoutTaskReactionsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20415,12 +20539,12 @@ export interface UserCreateWithoutTaskReactionsInput {
 }
 
 export interface UserCreateWithoutTaskTechnologiesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20523,12 +20647,12 @@ export interface UserCreateWithoutTaskTechnologiesInput {
 }
 
 export interface UserCreateWithoutTasksInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20631,12 +20755,12 @@ export interface UserCreateWithoutTasksInput {
 }
 
 export interface UserCreateWithoutTeamMembersTeamMemberCreatedByToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20739,12 +20863,12 @@ export interface UserCreateWithoutTeamMembersTeamMemberCreatedByToUserInput {
 }
 
 export interface UserCreateWithoutTeamMembersTeamMemberUserToUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20847,12 +20971,12 @@ export interface UserCreateWithoutTeamMembersTeamMemberUserToUserInput {
 }
 
 export interface UserCreateWithoutTeamsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -20955,12 +21079,12 @@ export interface UserCreateWithoutTeamsInput {
 }
 
 export interface UserCreateWithoutTechnologiesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21063,12 +21187,12 @@ export interface UserCreateWithoutTechnologiesInput {
 }
 
 export interface UserCreateWithoutTechnologyLessonUsersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21171,12 +21295,12 @@ export interface UserCreateWithoutTechnologyLessonUsersInput {
 }
 
 export interface UserCreateWithoutTechnologyLessonsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21279,12 +21403,12 @@ export interface UserCreateWithoutTechnologyLessonsInput {
 }
 
 export interface UserCreateWithoutTemplatesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21387,12 +21511,12 @@ export interface UserCreateWithoutTemplatesInput {
 }
 
 export interface UserCreateWithoutTimersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21495,12 +21619,12 @@ export interface UserCreateWithoutTimersInput {
 }
 
 export interface UserCreateWithoutTournamentGroupsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21603,12 +21727,12 @@ export interface UserCreateWithoutTournamentGroupsInput {
 }
 
 export interface UserCreateWithoutTournamentsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21711,12 +21835,12 @@ export interface UserCreateWithoutTournamentsInput {
 }
 
 export interface UserCreateWithoutTourneyPlayersInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21819,12 +21943,12 @@ export interface UserCreateWithoutTourneyPlayersInput {
 }
 
 export interface UserCreateWithoutTourneysInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -21927,12 +22051,12 @@ export interface UserCreateWithoutTourneysInput {
 }
 
 export interface UserCreateWithoutUserInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -22035,12 +22159,12 @@ export interface UserCreateWithoutUserInput {
 }
 
 export interface UserCreateWithoutUserLearnStrategiesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -22143,12 +22267,12 @@ export interface UserCreateWithoutUserLearnStrategiesInput {
 }
 
 export interface UserCreateWithoutUserTechnologiesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -22251,12 +22375,12 @@ export interface UserCreateWithoutUserTechnologiesInput {
 }
 
 export interface UserCreateWithoutVotesInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -22359,12 +22483,12 @@ export interface UserCreateWithoutVotesInput {
 }
 
 export interface UserCreateWithoutWorldsInput {
-  AiMessages?: Maybe<AiMessageCreateNestedManyWithoutCreatedByInput>;
-  AiSummaries?: Maybe<AiSummaryCreateNestedManyWithoutCreatedByInput>;
+  AiAgent?: Maybe<AiAgentCreateNestedManyWithoutUserInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCalledToUserInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestCreateNestedManyWithoutUserCallRequestCallerToUserInput>;
   Careers?: Maybe<CareerCreateNestedManyWithoutUserInput>;
   ChatMessages?: Maybe<ChatMessageCreateNestedManyWithoutUserInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageCreateNestedManyWithoutToUserInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedCreateNestedManyWithoutUserChatMessageReadedToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationCreatedByToUserInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationCreateNestedManyWithoutUserChatRoomInvitationUserToUserInput>;
@@ -22640,12 +22764,12 @@ export interface UserOrderByRelationAggregateInput {
 }
 
 export interface UserOrderByWithRelationInput {
-  AiMessages?: Maybe<AiMessageOrderByRelationAggregateInput>;
-  AiSummaries?: Maybe<AiSummaryOrderByRelationAggregateInput>;
+  AiAgent?: Maybe<AiAgentOrderByRelationAggregateInput>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestOrderByRelationAggregateInput>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestOrderByRelationAggregateInput>;
   Careers?: Maybe<CareerOrderByRelationAggregateInput>;
   ChatMessages?: Maybe<ChatMessageOrderByRelationAggregateInput>;
+  ChatMessagesIncoming?: Maybe<ChatMessageOrderByRelationAggregateInput>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedOrderByRelationAggregateInput>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationOrderByRelationAggregateInput>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationOrderByRelationAggregateInput>;
@@ -23009,12 +23133,12 @@ export interface UserUpdateInput {
 
 export interface UserWhereInput {
   AND?: Maybe<Array<UserWhereInput>>;
-  AiMessages?: Maybe<AiMessageListRelationFilter>;
-  AiSummaries?: Maybe<AiSummaryListRelationFilter>;
+  AiAgent?: Maybe<AiAgentListRelationFilter>;
   CallRequests_CallRequest_CalledToUser?: Maybe<CallRequestListRelationFilter>;
   CallRequests_CallRequest_CallerToUser?: Maybe<CallRequestListRelationFilter>;
   Careers?: Maybe<CareerListRelationFilter>;
   ChatMessages?: Maybe<ChatMessageListRelationFilter>;
+  ChatMessagesIncoming?: Maybe<ChatMessageListRelationFilter>;
   ChatMessagesReaded?: Maybe<ChatMessageReadedListRelationFilter>;
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?: Maybe<ChatRoomInvitationListRelationFilter>;
   ChatRoomInvitations_ChatRoomInvitation_UserToUser?: Maybe<ChatRoomInvitationListRelationFilter>;

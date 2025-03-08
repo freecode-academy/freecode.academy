@@ -12,9 +12,9 @@ import { EditorComponentObject } from '@prisma-cms/front-editor'
 
 import * as Types from './types';
 
-import { ChatMessageFragment } from './chatMessage_';
+import { ChatMessageFragment } from './ChatMessage_';
 import { gql } from '@apollo/client';
-import { ChatMessageFragmentDoc } from './chatMessage_';
+import { ChatMessageFragmentDoc } from './ChatMessage_';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type ChatMessagesConnectionQueryVariables = Types.Exact<{
@@ -35,7 +35,7 @@ export const ChatMessagesConnectionDocument = gql`
     query chatMessagesConnection($where: ChatMessageWhereInput, $orderBy: [ChatMessageOrderByWithRelationInput!], $skip: Int, $first: Int = 10) {
   chatMessagesCount(where: $where)
   chatMessages(where: $where, orderBy: $orderBy, skip: $skip, take: $first) {
-    ...chatMessage_
+    ...ChatMessage_
   }
 }
     ${ChatMessageFragmentDoc}`;

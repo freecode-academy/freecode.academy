@@ -141,6 +141,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
     if (statusCode && statusCode !== 200) {
       switch (statusCode) {
         case 401:
+        case 410:
           content = <Page401 />
           break
         case 404:

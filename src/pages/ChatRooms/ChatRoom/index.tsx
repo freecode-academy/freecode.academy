@@ -77,7 +77,7 @@ ChatRoomPage.getInitialProps = async (context) => {
 
   if (result instanceof Error) {
     return {
-      statusCode: 401,
+      statusCode: 410,
     }
   }
 

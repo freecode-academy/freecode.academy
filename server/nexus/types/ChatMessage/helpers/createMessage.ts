@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ChatMessage, Prisma, User } from '@prisma/client'
 import {
   ChatCompletionMessageParam,
@@ -111,8 +110,6 @@ export async function createMessage({
   const chatMessage = await prisma.chatMessage.create({
     data,
   })
-
-  console.log('chatMessage', chatMessage)
 
   /**
    * Если это AI агент, то нужно отправить сообщение на обработку
@@ -229,15 +226,10 @@ export async function createMessage({
         parallel_tool_calls: true,
       })
       .then(async (response) => {
-        console.log('response', response)
-        console.log('response.choices[0]', response.choices[0])
-
         // Это просто части ответа
         // console.log('response.choices[0].logprobs', response.choices[0].logprobs)
 
         const toolCalls = response.choices[0].message.tool_calls
-
-        console.log('toolCalls', toolCalls)
 
         if (toolCalls) {
           for (const call of toolCalls) {
@@ -271,11 +263,6 @@ export async function createMessage({
               if (!args.id) {
                 throw new Error('ID is required')
               }
-
-              console.log(
-                'getCodeChellangeSolution call',
-                call.function.arguments
-              )
 
               return {
                 content: await getCodeChellangeSolution({
@@ -312,8 +299,6 @@ export async function createMessage({
 
     // const response = await ctx.sendMessageToOpenAi(messages)
     const response = chatCompletion
-
-    console.log('openAiResolver response', response, typeof response)
 
     const responseMessage =
       response.response ?? response.content ?? response.value ?? response.error

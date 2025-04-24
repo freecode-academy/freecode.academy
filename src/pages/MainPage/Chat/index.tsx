@@ -1,39 +1,39 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import { MainPageChatMessages } from './Messages'
 import {
   MainPageChatStyled,
-  MobileChatButtonStyled,
-  MobileChatModalStyled,
-  MobileChatHeaderStyled,
+  // MobileChatButtonStyled,
+  // MobileChatModalStyled,
+  // MobileChatHeaderStyled,
   DesktopChatStyled,
 } from './styles'
 
 export const MainPageChat: React.FC = () => {
-  const [isMobileModalOpen, setIsMobileModalOpen] = useState(false)
+  // const [isMobileModalOpen, setIsMobileModalOpen] = useState(true)
 
-  const toggleMobileModal = useCallback(() => {
-    setIsMobileModalOpen((prev) => !prev)
-  }, [])
-
-  const chatContent = <MainPageChatMessages key="chat-content" />
+  // const toggleMobileModal = useCallback(() => {
+  //   setIsMobileModalOpen((prev) => !prev)
+  // }, [])
 
   return (
     <MainPageChatStyled>
       {/* Десктопная версия */}
-      <DesktopChatStyled>{chatContent}</DesktopChatStyled>
+      <DesktopChatStyled>
+        <MainPageChatMessages key="chat-content" />
+      </DesktopChatStyled>
 
       {/* Мобильная версия */}
-      <MobileChatButtonStyled onClick={toggleMobileModal}>
+      {/* <MobileChatButtonStyled onClick={toggleMobileModal}>
         💬
-      </MobileChatButtonStyled>
+      </MobileChatButtonStyled> */}
 
-      <MobileChatModalStyled isOpen={isMobileModalOpen}>
+      {/* <MobileChatModalStyled isOpen={isMobileModalOpen}>
         <MobileChatHeaderStyled>
           <h3>Глобальный ИИ-чат</h3>
           <button onClick={toggleMobileModal}>✕</button>
         </MobileChatHeaderStyled>
         {chatContent}
-      </MobileChatModalStyled>
+      </MobileChatModalStyled> */}
     </MainPageChatStyled>
   )
 }

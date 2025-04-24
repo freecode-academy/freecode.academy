@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   ChangeEvent,
   KeyboardEvent,
@@ -20,7 +19,7 @@ import {
   ChatInputStyled,
   ChatMessagesStyled,
   ChatMessageStyled,
-  NonAuthNoticeStyled,
+  // NonAuthNoticeStyled,
   ChatInputContainerStyled,
   SendButtonStyled,
   ErrorMessageStyled,
@@ -35,11 +34,7 @@ export const MainPageChatMessages: React.FC<MainPageChatMessagesProps> = (
 ) => {
   const context = useAppContext()
 
-  console.log('context', context)
-
   const { user, onAuthSuccess } = context || {}
-
-  console.log('MainPageChatMessages user', user)
 
   const [error, errorSetter] = useState<Error | null>(null)
 
@@ -56,8 +51,6 @@ export const MainPageChatMessages: React.FC<MainPageChatMessagesProps> = (
     [response.data]
   )
 
-  console.log('messages', messages)
-
   const [messagesContainer, messagesContainerSetter] =
     useState<HTMLDivElement | null>(null)
 
@@ -66,12 +59,12 @@ export const MainPageChatMessages: React.FC<MainPageChatMessagesProps> = (
       refetchQueries: [DialogDocument],
     })
 
-  const isAnonymous = !user
+  // const isAnonymous = !user
 
   const [inputValue, setInputValue] = useState('')
 
   // const [hasInteracted, setHasInteracted] = useState(false)
-  const hasInteracted = messages.length > 0
+  // const hasInteracted = messages.length > 0
 
   const handleSendMessage = useCallback(() => {
     setInputValue((text) => {
@@ -86,7 +79,6 @@ export const MainPageChatMessages: React.FC<MainPageChatMessagesProps> = (
         },
       })
         .then((r) => {
-          console.log('r.data?.response', r.data?.response)
           if (r.data?.response) {
             const { success, message, data, createdUser } = r.data.response
 
@@ -95,9 +87,6 @@ export const MainPageChatMessages: React.FC<MainPageChatMessagesProps> = (
 
               return
             } else {
-              console.log('createdUser', createdUser)
-              console.log('onAuthSuccess', onAuthSuccess)
-
               if (createdUser) {
                 onAuthSuccess?.call(null, createdUser)
               }
@@ -132,9 +121,6 @@ export const MainPageChatMessages: React.FC<MainPageChatMessagesProps> = (
     []
   )
 
-  console.log('inRequest', inRequest)
-  console.log('inputValue', inputValue)
-
   useEffect(() => {
     if (!messagesContainer || !messages.length) {
       return
@@ -146,19 +132,6 @@ export const MainPageChatMessages: React.FC<MainPageChatMessagesProps> = (
 
   return (
     <MainPageChatMessagesStyled {...other}>
-      {!hasInteracted && isAnonymous && (
-        <NonAuthNoticeStyled>
-          <p>
-            Если у вас уже есть аккаунт, <a href="/auth/login">авторизуйтесь</a>
-            .
-          </p>
-          <p>
-            Или продолжайте как гость - после отправки сообщения будет создан
-            анонимный аккаунт.
-          </p>
-        </NonAuthNoticeStyled>
-      )}
-
       <ChatMessagesStyled
         ref={messagesContainerSetter}
         isEmpty={messages.length === 0}
@@ -174,6 +147,19 @@ export const MainPageChatMessages: React.FC<MainPageChatMessagesProps> = (
               <li>Оценка вашего прогресса</li>
               <li>Актуализация навыков и резюме</li>
             </ul>
+
+            {/* {!hasInteracted && isAnonymous && (
+              <NonAuthNoticeStyled>
+                <p>
+                  Если у вас уже есть аккаунт,{' '}
+                  <a href="/auth/login">авторизуйтесь</a>.
+                </p>
+                <p>
+                  Или продолжайте как гость - после отправки сообщения будет
+                  создан анонимный аккаунт.
+                </p>
+              </NonAuthNoticeStyled>
+            )} */}
           </div>
         ) : (
           messages.map((msg, index) => (

@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react'
 // import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
 // import IconButton from 'material-ui/IconButton';
@@ -31,6 +29,11 @@ import Timer from './Timer'
 // import MainMenuNotices from './Notices'
 import { TaskStatus, TaskWhereInput } from 'src/modules/gql/generated'
 import { TelegramIconSvg } from 'src/uikit/icons/telegram'
+import {
+  MainMenuItemsDesktopStyled,
+  MainMenuItemsStyled,
+  MainMenuStyled,
+} from './styles'
 
 // export const defaultStyles = theme => {
 
@@ -173,25 +176,19 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
     const [ActiveTimer] = Timers || []
 
     return (
-      <AppBar
+      <MainMenuStyled
         // position="static"
         color="default"
         className={classes?.root}
       >
-        <Toolbar>
-          {/* <Button color="inherit">Login</Button> */}
+        {/* <Button color="inherit">Login</Button> */}
 
-          <Grid container alignItems="center" spacing={16}>
-            <Grid item xs={12} sm>
-              <Typography
-                variant="title"
-                color="inherit"
-                className={classes?.flex}
-              >
-                <Link href="/">FreeCode.Academy</Link>
-              </Typography>
-            </Grid>
+        <MainMenuItemsStyled>
+          <Typography variant="subheading" color="inherit">
+            <Link href="/">FreeCode.Academy</Link>
+          </Typography>
 
+          <MainMenuItemsDesktopStyled>
             <Grid item>
               <Link href="/learnstrategies/">
                 <a>
@@ -241,15 +238,15 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
               </Link>
             </Grid>
 
-            {this.renderTasksLink()}
+            {/* {this.renderTasksLink()} */}
 
-            <Grid item>
+            {/* <Grid item>
               <Link href="/timers/">
                 <a>
                   <Typography>{this.lexicon('Timers')}</Typography>
                 </a>
               </Link>
-            </Grid>
+            </Grid> */}
 
             <Grid item>
               <Link href="/topics/">
@@ -302,41 +299,38 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                 </a>
               </Link>
             </Grid>
+          </MainMenuItemsDesktopStyled>
+          <Grid item xs></Grid>
 
-            <Grid item>
-              <a
-                href="https://t.me/freecode_academy"
-                title="Freecode.Academy в Телеграме"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <TelegramIconSvg />
-              </a>
-            </Grid>
+          <Grid item>
+            <a
+              href="https://t.me/freecode_academy"
+              title="Freecode.Academy в Телеграме"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <TelegramIconSvg />
+            </a>
+          </Grid>
 
-            <Grid item xs></Grid>
-
-            {currentUser ? (
-              <Fragment>
-                <Grid key="callRequests" item>
-                  {/* <CallRequestButtons
+          {currentUser ? (
+            <Fragment>
+              <Grid key="callRequests" item>
+                {/* <CallRequestButtons
                     key={userId}
                     classes={{
                       icon: classes.link,
                     }}
                   /> */}
+              </Grid>
+
+              {ActiveTimer ? (
+                <Grid key="timer" item>
+                  <Timer timer={ActiveTimer} className={classes?.iconButton} />
                 </Grid>
+              ) : null}
 
-                {ActiveTimer ? (
-                  <Grid key="timer" item>
-                    <Timer
-                      timer={ActiveTimer}
-                      className={classes?.iconButton}
-                    />
-                  </Grid>
-                ) : null}
-
-                {/* {currentUser ? (
+              {/* {currentUser ? (
                   <Grid key="notifications" item>
                     <MainMenuNotices
                       key={currentUser.id}
@@ -345,35 +339,34 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                   </Grid>
                 ) : null} */}
 
-                {currentUser ? (
-                  <Grid key="user" item>
-                    {/* <UserItem key={userId} user={currentUser} classes={classes} /> */}
-                    <UserLink
-                      // classes={classes}
-                      user={currentUser}
-                      size="small"
-                      showName={false}
-                    />
-                  </Grid>
-                ) : null}
-                <Grid key="logout" item>
-                  <a href="#" onClick={this.logout}>
-                    {this.lexicon('Signout')}
-                  </a>
+              {currentUser ? (
+                <Grid key="user" item>
+                  {/* <UserItem key={userId} user={currentUser} classes={classes} /> */}
+                  <UserLink
+                    // classes={classes}
+                    user={currentUser}
+                    size="small"
+                    showName={false}
+                  />
                 </Grid>
-              </Fragment>
-            ) : (
-              <Grid key="login" item>
-                <Button onClick={this.openLoginForm}>
-                  <Typography component="span">
-                    {this.lexicon('Signin')}
-                  </Typography>
-                </Button>
+              ) : null}
+              <Grid key="logout" item>
+                <a href="#" onClick={this.logout}>
+                  {this.lexicon('Signout')}
+                </a>
               </Grid>
-            )}
-          </Grid>
-        </Toolbar>
-      </AppBar>
+            </Fragment>
+          ) : (
+            <Grid key="login" item>
+              <Button onClick={this.openLoginForm}>
+                <Typography component="span">
+                  {this.lexicon('Signin')}
+                </Typography>
+              </Button>
+            </Grid>
+          )}
+        </MainMenuItemsStyled>
+      </MainMenuStyled>
     )
   }
 }

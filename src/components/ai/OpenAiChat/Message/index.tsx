@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Dispatch, SetStateAction, useMemo } from 'react'
 import { useOpenAiMutation } from 'src/modules/gql/generated'
 import { ChatMessage } from './interfaces'
@@ -34,9 +33,6 @@ export const AiMessage: React.FC<AiMessageProps> = ({
   ...other
 }) => {
   const [sendMessageToOpenAi, { loading: inRequest }] = useOpenAiMutation({})
-
-  console.log('isNew', isNew, typeof isNew)
-  console.log('inRequest', inRequest)
 
   const onSubmit = useMemo<React.FormEventHandler | undefined>(() => {
     if (!isNew) {

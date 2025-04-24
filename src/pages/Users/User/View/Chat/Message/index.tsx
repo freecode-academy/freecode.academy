@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Dispatch, SetStateAction, useMemo, useRef } from 'react'
 import {
   ChatMessageFragment,
@@ -47,9 +46,6 @@ export const AiMessage: React.FC<AiMessageProps> = ({
   const [createChatMessage, { loading: inRequest }] =
     useCreateChatMessageProcessorMutation({})
 
-  console.log('isNew', isNew, typeof isNew)
-  console.log('inRequest', inRequest)
-
   const inputRef = useRef<HTMLTextAreaElement | null>(null)
 
   const onSubmit = useMemo<React.FormEventHandler | undefined>(() => {
@@ -69,7 +65,7 @@ export const AiMessage: React.FC<AiMessageProps> = ({
       createChatMessage({
         variables: {
           data: {
-            content: messageText,
+            content: messageText ?? '',
             toUser: {
               id: user.id,
             },

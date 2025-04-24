@@ -39,9 +39,9 @@ export const SendButtonStyled = styled.button<SendButtonStyledProps>`
     props.$inRequest &&
     css`
       cursor: wait;
-      background: linear-gradient(-45deg, #0062cc, #007bff, #3395ff, #0062cc);
+      background: linear-gradient(-45deg, rgb(9, 23, 216), rgb(192, 8, 242));
       background-size: 400% 400%;
-      animation: ${gradientAnimation} 3s ease infinite;
+      animation: ${gradientAnimation} 2s ease infinite;
     `}
 `
 
@@ -125,24 +125,24 @@ export const ChatMessageStyled = styled.div<ChatMessageStyledProps>`
   }
 `
 
-export const NonAuthNoticeStyled = styled.div`
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 15px;
+// export const NonAuthNoticeStyled = styled.div`
+//   background-color: #f8f9fa;
+//   border-radius: 8px;
+//   padding: 15px;
 
-  p {
-    font-size: 14px;
-  }
+//   p {
+//     font-size: 14px;
+//   }
 
-  a {
-    color: #007bff;
-    text-decoration: none;
+//   a {
+//     color: #007bff;
+//     text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`
+//     &:hover {
+//       text-decoration: underline;
+//     }
+//   }
+// `
 
 export const ChatInputContainerStyled = styled.div`
   display: flex;

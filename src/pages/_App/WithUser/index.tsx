@@ -6,6 +6,7 @@ import { useMeQuery } from 'src/modules/gql/generated'
 
 import { WithUserProps } from './interfaces'
 import useSubscriptionProvider from './useSubscriptionProvider'
+import { AppContextProvider } from '../Context'
 
 const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
   const { client } = context
@@ -60,7 +61,9 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
     TODO добавить подписку на объект пользователя
   */}
 
-      {children}
+      <AppContextProvider user={contextWithUser.user}>
+        {children}
+      </AppContextProvider>
     </Context.Provider>
   )
 }

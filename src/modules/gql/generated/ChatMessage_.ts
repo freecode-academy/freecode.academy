@@ -26,6 +26,9 @@ export type ChatMessageFragment = (
   )>, CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
+  )>, ToUser?: Types.Maybe<(
+    { __typename?: 'User' }
+    & UserNoNestingFragment
   )> }
   & ChatMessageNoNestingFragment
 );
@@ -37,6 +40,9 @@ export const ChatMessageFragmentDoc = gql`
     ...ChatRoomNoNesting
   }
   CreatedBy {
+    ...UserNoNesting
+  }
+  ToUser {
     ...UserNoNesting
   }
 }

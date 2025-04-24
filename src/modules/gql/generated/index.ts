@@ -1,5 +1,6 @@
 export * from './AuthFormUsersConnection';
 export * from './AuthFormUsersConnectionUser';
+export * from './AuthPayload_';
 export * from './AuthUser';
 export * from './BlogsConnectionResource';
 export * from './BlogsConnectionUser';
@@ -74,6 +75,7 @@ export * from './createUserTechnologyProcessor';
 export * from './deleteLearnStrategyStage';
 export * from './deleteNotice';
 export * from './deleteResource';
+export * from './dialog';
 export * from './donateNoNesting';
 export * from './donate_';
 export * from './donates';

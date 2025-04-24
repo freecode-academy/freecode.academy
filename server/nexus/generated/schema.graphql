@@ -392,6 +392,7 @@ input CareerWhereUniqueInput {
 type ChatMessage {
   CreatedBy: User
   Room: ChatRoom
+  ToUser: User
   content: JSON
   contentText: String
   createdAt: DateTime!
@@ -400,7 +401,7 @@ type ChatMessage {
 }
 
 input ChatMessageCreateInput {
-  content: String
+  content: String!
   toUser: UserWhereUniqueInput!
 }
 
@@ -7571,6 +7572,7 @@ type Query {
     where: ChatMessageWhereInput
   ): [ChatMessage!]!
   chatMessagesCount(where: ChatMessageWhereInput): Int!
+  chatMessagesDialog: [ChatMessage!]!
   chatRoom(where: ChatRoomWhereUniqueInput!): ChatRoom
   chatRooms(
     cursor: ChatRoomWhereUniqueInput

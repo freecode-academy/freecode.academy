@@ -424,6 +424,7 @@ export interface ChatMessage {
   __typename?: 'ChatMessage';
   CreatedBy?: Maybe<User>;
   Room?: Maybe<ChatRoom>;
+  ToUser?: Maybe<User>;
   content?: Maybe<Scalars['JSON']>;
   contentText?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
@@ -432,7 +433,7 @@ export interface ChatMessage {
 }
 
 export interface ChatMessageCreateInput {
-  content?: Maybe<Scalars['String']>;
+  content: Scalars['String'];
   toUser: UserWhereUniqueInput;
 }
 
@@ -716,6 +717,8 @@ export interface ChatMessageReadedWhereUniqueInput {
 
 export interface ChatMessageResponse {
   __typename?: 'ChatMessageResponse';
+  /** Created user for dialog, if user not authorized */
+  createdUser?: Maybe<AuthPayload>;
   data?: Maybe<ChatMessage>;
   errors: Array<RequestError>;
   message: Scalars['String'];
@@ -7705,6 +7708,7 @@ export interface Query {
   chatMessage?: Maybe<ChatMessage>;
   chatMessages: Array<ChatMessage>;
   chatMessagesCount: Scalars['Int'];
+  chatMessagesDialog: Array<ChatMessage>;
   chatRoom?: Maybe<ChatRoom>;
   chatRooms: Array<ChatRoom>;
   /** Количество чат-комнат */

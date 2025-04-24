@@ -1,6 +1,10 @@
 import { LayoutStyledProps } from 'src/pages/_App/interfaces'
 import styled, { css } from 'styled-components'
 
+export const LayoutContentStyled = styled.div``
+
+export const LayoutWrapperStyled = styled.div``
+
 export const LayoutStyled = styled.div<LayoutStyledProps>`
   height: 100%;
   display: flex;
@@ -47,12 +51,12 @@ export const LayoutStyled = styled.div<LayoutStyledProps>`
     }
   }
 
-  #wrapper {
+  ${LayoutWrapperStyled} {
     height: 100%;
     overflow: auto;
   }
 
-  #content {
+  ${LayoutContentStyled} {
     height: 100%;
   }
 
@@ -67,7 +71,7 @@ export const LayoutStyled = styled.div<LayoutStyledProps>`
 
       default:
         return css`
-          #content {
+          ${LayoutContentStyled} {
             /* border: 2px solid red; */
             padding: 20px 16px;
             max-width: 1200px;
@@ -77,6 +81,7 @@ export const LayoutStyled = styled.div<LayoutStyledProps>`
             /* 
               Footer padding
             */
+            /* TODO Remove */
             &::after {
               display: block;
               content: '';

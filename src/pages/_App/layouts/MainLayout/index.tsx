@@ -2,7 +2,11 @@ import React, { useContext, useMemo } from 'react'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import Header from 'src/components/MainMenu'
-import { LayoutStyled } from './styles'
+import {
+  LayoutContentStyled,
+  LayoutStyled,
+  LayoutWrapperStyled,
+} from './styles'
 import { LayoutStyledProps } from '../../interfaces'
 
 /**
@@ -20,9 +24,9 @@ const MainLayout: React.FC<{
       <>
         <LayoutStyled {...layout}>
           {header}
-          <div id="wrapper">
-            <div id="content">{children}</div>
-          </div>
+          <LayoutWrapperStyled id="wrapper">
+            <LayoutContentStyled id="content">{children}</LayoutContentStyled>
+          </LayoutWrapperStyled>
         </LayoutStyled>
       </>
     )

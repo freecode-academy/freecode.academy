@@ -7,18 +7,20 @@ export type AuthPayloadFieldPolicy = {
 	success?: FieldPolicy<any> | FieldReadFunction<any>,
 	token?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ChatMessageKeySpecifier = ('CreatedBy' | 'Room' | 'content' | 'contentText' | 'createdAt' | 'id' | 'updatedAt' | ChatMessageKeySpecifier)[];
+export type ChatMessageKeySpecifier = ('CreatedBy' | 'Room' | 'ToUser' | 'content' | 'contentText' | 'createdAt' | 'id' | 'updatedAt' | ChatMessageKeySpecifier)[];
 export type ChatMessageFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	Room?: FieldPolicy<any> | FieldReadFunction<any>,
+	ToUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	content?: FieldPolicy<any> | FieldReadFunction<any>,
 	contentText?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ChatMessageResponseKeySpecifier = ('data' | 'errors' | 'message' | 'reply' | 'success' | ChatMessageResponseKeySpecifier)[];
+export type ChatMessageResponseKeySpecifier = ('createdUser' | 'data' | 'errors' | 'message' | 'reply' | 'success' | ChatMessageResponseKeySpecifier)[];
 export type ChatMessageResponseFieldPolicy = {
+	createdUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	data?: FieldPolicy<any> | FieldReadFunction<any>,
 	errors?: FieldPolicy<any> | FieldReadFunction<any>,
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -297,11 +299,12 @@ export type ProjectTaskFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('chatMessage' | 'chatMessages' | 'chatMessagesCount' | 'chatRoom' | 'chatRooms' | 'chatRoomsCount' | 'codeChallenge' | 'codeChallengeBlock' | 'codeChallengeBlocks' | 'codeChallengeBlocksCount' | 'codeChallengeCompletion' | 'codeChallengeCompletions' | 'codeChallenges' | 'donate' | 'donates' | 'donatesCount' | 'file' | 'files' | 'filesCount' | 'learnStrategies' | 'learnStrategiesCount' | 'learnStrategy' | 'learnStrategyStage' | 'learnStrategyStages' | 'learnStrategyStagesCount' | 'me' | 'mentorMentee' | 'mentorMentees' | 'mentorMenteesCount' | 'notice' | 'notices' | 'noticesCount' | 'notificationTypes' | 'notificationTypesCount' | 'project' | 'projectTasks' | 'projects' | 'projectsCount' | 'resource' | 'resources' | 'resourcesCount' | 'tag' | 'tags' | 'tagsCount' | 'task' | 'taskTechnologies' | 'taskTechnology' | 'taskTechnologysCount' | 'tasks' | 'tasksCount' | 'technologies' | 'technologiesCount' | 'technology' | 'timer' | 'timers' | 'timersCount' | 'user' | 'userLearnStrategies' | 'userLearnStrategiesCount' | 'userLearnStrategy' | 'userTechnologies' | 'userTechnology' | 'userTechnologysCount' | 'users' | 'usersCount' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('chatMessage' | 'chatMessages' | 'chatMessagesCount' | 'chatMessagesDialog' | 'chatRoom' | 'chatRooms' | 'chatRoomsCount' | 'codeChallenge' | 'codeChallengeBlock' | 'codeChallengeBlocks' | 'codeChallengeBlocksCount' | 'codeChallengeCompletion' | 'codeChallengeCompletions' | 'codeChallenges' | 'donate' | 'donates' | 'donatesCount' | 'file' | 'files' | 'filesCount' | 'learnStrategies' | 'learnStrategiesCount' | 'learnStrategy' | 'learnStrategyStage' | 'learnStrategyStages' | 'learnStrategyStagesCount' | 'me' | 'mentorMentee' | 'mentorMentees' | 'mentorMenteesCount' | 'notice' | 'notices' | 'noticesCount' | 'notificationTypes' | 'notificationTypesCount' | 'project' | 'projectTasks' | 'projects' | 'projectsCount' | 'resource' | 'resources' | 'resourcesCount' | 'tag' | 'tags' | 'tagsCount' | 'task' | 'taskTechnologies' | 'taskTechnology' | 'taskTechnologysCount' | 'tasks' | 'tasksCount' | 'technologies' | 'technologiesCount' | 'technology' | 'timer' | 'timers' | 'timersCount' | 'user' | 'userLearnStrategies' | 'userLearnStrategiesCount' | 'userLearnStrategy' | 'userTechnologies' | 'userTechnology' | 'userTechnologysCount' | 'users' | 'usersCount' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	chatMessage?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatMessages?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatMessagesCount?: FieldPolicy<any> | FieldReadFunction<any>,
+	chatMessagesDialog?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatRoom?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatRooms?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatRoomsCount?: FieldPolicy<any> | FieldReadFunction<any>,

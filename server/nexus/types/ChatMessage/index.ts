@@ -4,6 +4,7 @@ import { getChatMessagesConditions } from './helpers'
 import { chatMessagesResolver } from './resolvers/chatMessages'
 import { chatMessageResolver } from './resolvers/chatMessage'
 import { createChatMessageProcessorResolver } from './resolvers/createChatMessageProcessor'
+import { chatMessagesDialogResolver } from './resolvers/chatMessagesDialog'
 
 // TODO Проработать доступы
 export const ChatMessageQuery = extendType({
@@ -31,6 +32,11 @@ export const ChatMessageQuery = extendType({
           ),
         })
       },
+    })
+
+    t.nonNull.list.nonNull.field('chatMessagesDialog', {
+      type: 'ChatMessage',
+      resolve: chatMessagesDialogResolver,
     })
   },
 })
@@ -71,6 +77,14 @@ export const ChatMessage = objectType({
           : null
       },
     })
+    t.field('ToUser', {
+      type: 'User',
+      resolve({ toUser }, _, ctx) {
+        return toUser
+          ? ctx.prisma.user.findUnique({ where: { id: toUser } })
+          : null
+      },
+    })
     t.field('Room', {
       type: 'ChatRoom',
       resolve({ Room }, _, ctx) {
@@ -85,9 +99,7 @@ export const ChatMessage = objectType({
 export const ChatMessageCreateInput = inputObjectType({
   name: 'ChatMessageCreateInput',
   definition(t) {
-    t.field('content', {
-      type: 'String',
-    })
+    t.nonNull.string('content')
     t.nonNull.field('toUser', {
       type: 'UserWhereUniqueInput',
     })

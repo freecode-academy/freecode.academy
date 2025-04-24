@@ -26,12 +26,21 @@ query chatMessage($where: ChatMessageWhereUniqueInput!) {
   }
 }
 
+query dialog {
+  chatMessagesDialog {
+    ...ChatMessage_
+  }
+}
+
 fragment ChatMessage_ on ChatMessage {
   ...ChatMessageNoNesting
   Room {
     ...ChatRoomNoNesting
   }
   CreatedBy {
+    ...UserNoNesting
+  }
+  ToUser {
     ...UserNoNesting
   }
 }
@@ -62,5 +71,8 @@ fragment ChatMessageResponse_ on ChatMessageResponse {
   }
   reply {
     ...ChatMessage_
+  }
+  createdUser {
+    ...AuthPayload_
   }
 }

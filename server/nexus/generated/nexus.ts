@@ -518,7 +518,7 @@ export interface NexusGenInputs {
   }
   ChatMessageCreateInput: {
     // input type
-    content?: string | null // String
+    content: string // String!
     toUser: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
   }
   ChatMessageCreateManyChatRoomInput: {
@@ -33835,6 +33835,7 @@ export interface NexusGenFieldTypes {
     // field return type
     CreatedBy: NexusGenRootTypes['User'] | null // User
     Room: NexusGenRootTypes['ChatRoom'] | null // ChatRoom
+    ToUser: NexusGenRootTypes['User'] | null // User
     content: NexusGenScalars['JSON'] | null // JSON
     contentText: string | null // String
     createdAt: NexusGenScalars['DateTime'] // DateTime!
@@ -34129,6 +34130,7 @@ export interface NexusGenFieldTypes {
     chatMessage: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     chatMessages: NexusGenRootTypes['ChatMessage'][] // [ChatMessage!]!
     chatMessagesCount: number // Int!
+    chatMessagesDialog: NexusGenRootTypes['ChatMessage'][] // [ChatMessage!]!
     chatRoom: NexusGenRootTypes['ChatRoom'] | null // ChatRoom
     chatRooms: NexusGenRootTypes['ChatRoom'][] // [ChatRoom!]!
     chatRoomsCount: number // Int!
@@ -34453,6 +34455,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     CreatedBy: 'User'
     Room: 'ChatRoom'
+    ToUser: 'User'
     content: 'JSON'
     contentText: 'String'
     createdAt: 'DateTime'
@@ -34745,6 +34748,7 @@ export interface NexusGenFieldTypeNames {
     chatMessage: 'ChatMessage'
     chatMessages: 'ChatMessage'
     chatMessagesCount: 'Int'
+    chatMessagesDialog: 'ChatMessage'
     chatRoom: 'ChatRoom'
     chatRooms: 'ChatRoom'
     chatRoomsCount: 'Int'

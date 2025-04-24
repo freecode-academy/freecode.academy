@@ -4,21 +4,13 @@
  */
 
 import React, { useMemo } from 'react'
-import {
-  useMainPageQuery,
-  MainPageDocument,
-  MainPageQuery,
-} from 'src/modules/gql/generated'
 
 import { Page } from '../_App/interfaces'
-import MainPageView from './View'
 import { NextSeo } from 'next-seo'
+import { MainPageGlobalStyled } from './styles'
+import { MainPageChat } from './Chat'
 
-const MainPage: Page = () => {
-  const response = useMainPageQuery({
-    onError: console.error,
-  })
-
+export const MainPage: Page = () => {
   return useMemo(
     () => (
       <>
@@ -26,22 +18,11 @@ const MainPage: Page = () => {
           title="FreeCode.Academy"
           description="Бесплатные онлайн курсы по JavaScript, React, NextJS и не только"
         />
+        <MainPageGlobalStyled />
 
-        <MainPageView data={response.data} />
+        <MainPageChat />
       </>
     ),
-    [response.data]
+    []
   )
 }
-
-MainPage.getInitialProps = async (context) => {
-  const { apolloClient } = context
-
-  await apolloClient.query<MainPageQuery>({
-    query: MainPageDocument,
-  })
-
-  return {}
-}
-
-export default MainPage

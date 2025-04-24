@@ -9,9 +9,9 @@ export const createChatMessageProcessorResolver: FieldResolver<
 > = async (_root, args, ctx) => {
   const { currentUser } = ctx
 
-  if (!currentUser) {
-    throw new Error('Access denied')
-  }
+  // if (!currentUser) {
+  //   throw new Error('Access denied')
+  // }
 
   const { toUser, content } = args.data
 

@@ -683,6 +683,10 @@ input ChatMessageReadedWhereUniqueInput {
 }
 
 type ChatMessageResponse {
+  """
+  Created user for dialog, if user not authorized
+  """
+  createdUser: AuthPayload
   data: ChatMessage
   errors: [RequestError!]!
   message: String!

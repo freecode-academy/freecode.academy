@@ -16,9 +16,9 @@ export async function createUser(
     // username,
   } = data
 
-  if (!passwordProps) {
-    throw new Error('Укажите пароль')
-  }
+  // if (!passwordProps) {
+  //   throw new Error('Укажите пароль')
+  // }
 
   const password = await createPassword(passwordProps)
 

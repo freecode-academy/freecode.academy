@@ -121,5 +121,9 @@ export const ChatMessageResponse = objectType({
     t.field('reply', {
       type: 'ChatMessage',
     })
+    t.field('createdUser', {
+      type: 'AuthPayload',
+      description: 'Created user for dialog, if user not authorized',
+    })
   },
 })

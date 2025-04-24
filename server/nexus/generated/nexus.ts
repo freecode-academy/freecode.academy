@@ -33705,6 +33705,7 @@ export interface NexusGenObjects {
   ChatMessage: ChatMessage
   ChatMessageResponse: {
     // root type
+    createdUser?: NexusGenRootTypes['AuthPayload'] | null // AuthPayload
     data?: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
     message: string // String!
@@ -33842,6 +33843,7 @@ export interface NexusGenFieldTypes {
   }
   ChatMessageResponse: {
     // field return type
+    createdUser: NexusGenRootTypes['AuthPayload'] | null // AuthPayload
     data: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
     message: string // String!
@@ -34459,6 +34461,7 @@ export interface NexusGenFieldTypeNames {
   }
   ChatMessageResponse: {
     // field return type name
+    createdUser: 'AuthPayload'
     data: 'ChatMessage'
     errors: 'RequestError'
     message: 'String'

@@ -9,10 +9,11 @@ import { NexusGenAllTypes } from 'server/nexus/generated/nexus'
 import { getLessons, getTechnologies, getUsers } from '../../OpenAi/helpers'
 import { getTopicAnalysis } from '../../../../modules/OpenAiApi/tools/getTopicAnalysis'
 import { getCodeChellangeSolution } from '../../../../modules/OpenAiApi/tools/getCodeChellangeSolution'
+import { createUser } from '../../User/resolvers/helpers/createUser'
 
 type createMessageProps = {
-  fromUser: User
-  toUser: Prisma.UserWhereUniqueInput
+  fromUser: User | null | undefined
+  toUser: Prisma.UserWhereUniqueInput | null | undefined
   message: string | null | undefined
   ctx: PrismaContext
 }
@@ -25,60 +26,90 @@ export async function createMessage({
 }: createMessageProps): Promise<NexusGenAllTypes['ChatMessageResponse']> {
   let reply: ChatMessage | null | undefined = undefined
 
+  let createdUser: NexusGenAllTypes['AuthPayload'] | undefined = undefined
+
   if (!message) {
     throw new Error('Message is required')
   }
 
+  if (!fromUser) {
+    if (!ctx.currentUser) {
+      createdUser = await createUser({}, ctx)
+
+      if (createdUser.data) {
+        fromUser = createdUser.data
+      }
+    }
+  }
+
+  if (!fromUser && !toUser) {
+    throw new Error('User is required')
+  }
+
   const { prisma, openai } = ctx
 
-  const FromUserAiAgent = await prisma.aiAgent.findFirst({
-    where: {
-      User: {
-        id: fromUser.id,
-      },
-    },
-  })
+  const FromUserAiAgent = fromUser
+    ? await prisma.aiAgent.findFirst({
+        where: {
+          User: {
+            id: fromUser.id,
+          },
+        },
+      })
+    : undefined
 
-  const ToUserAiAgent = await prisma.aiAgent.findFirst({
-    where: {
-      User: {
-        id: toUser.id,
-      },
-    },
-  })
+  const ToUserAiAgent = toUser
+    ? await prisma.aiAgent.findFirst({
+        where: {
+          User: {
+            id: toUser.id,
+          },
+        },
+      })
+    : undefined
 
-  const toUserWgere = toUser as Prisma.UserWhereUniqueInput
+  const toUserWgere = toUser as Prisma.UserWhereUniqueInput | null | undefined
 
-  const ToUser = await prisma.user.findUnique({
-    where: toUserWgere,
-  })
+  const ToUser = toUserWgere
+    ? await prisma.user.findUnique({
+        where: toUserWgere,
+      })
+    : undefined
 
-  if (!ToUser) {
-    throw new Error('User not found')
-  }
+  // if (!ToUser) {
+  //   throw new Error('User not found')
+  // }
 
-  if (fromUser.id === ToUser.id) {
-    throw new Error('You can not send message to yourself')
-  }
+  // if (fromUser.id === ToUser.id) {
+  //   throw new Error('You can not send message to yourself')
+  // }
 
   if (FromUserAiAgent && ToUserAiAgent) {
     throw new Error('AI agent can not send message to AI agent')
   }
 
+  const data: Prisma.ChatMessageCreateInput = {
+    contentText: message,
+  }
+
+  if (ToUser) {
+    data.ToUser = {
+      connect: {
+        id: ToUser.id,
+      },
+    }
+  }
+
+  if (fromUser) {
+    data.User = {
+      connect: {
+        id: fromUser.id,
+      },
+    }
+  }
+
   const chatMessage = await prisma.chatMessage.create({
-    data: {
-      contentText: message,
-      ToUser: {
-        connect: {
-          id: ToUser.id,
-        },
-      },
-      User: {
-        connect: {
-          id: fromUser.id,
-        },
-      },
-    },
+    data,
   })
 
   console.log('chatMessage', chatMessage)
@@ -91,20 +122,21 @@ export async function createMessage({
     /**
      * Сначала отмечаем сообщение прочтенным
      */
-    await prisma.chatMessageReaded.create({
-      data: {
-        ChatMessage: {
-          connect: {
-            id: chatMessage.id,
+    ToUser &&
+      (await prisma.chatMessageReaded.create({
+        data: {
+          ChatMessage: {
+            connect: {
+              id: chatMessage.id,
+            },
+          },
+          User_ChatMessageReadedToUser: {
+            connect: {
+              id: ToUser.id,
+            },
           },
         },
-        User_ChatMessageReadedToUser: {
-          connect: {
-            id: ToUser.id,
-          },
-        },
-      },
-    })
+      }))
 
     const chatCompletionMessage: ChatCompletionUserMessageParam = {
       /**
@@ -136,7 +168,7 @@ export async function createMessage({
         model: 'gpt-4-turbo',
         logprobs: process.env.NODE_ENV === 'development' ? true : undefined,
         top_logprobs: process.env.NODE_ENV === 'development' ? 5 : undefined,
-        user: fromUser.id,
+        user: fromUser?.id,
 
         messages: [...messages, chatCompletionMessage],
 
@@ -292,7 +324,7 @@ export async function createMessage({
 
     reply = await createMessage({
       fromUser: ToUser,
-      toUser: { id: fromUser.id },
+      toUser: fromUser ? { id: fromUser.id } : undefined,
       message: responseMessage,
       ctx,
     }).then((response) => response.data)
@@ -304,5 +336,6 @@ export async function createMessage({
     errors: [],
     data: chatMessage,
     reply,
+    createdUser,
   }
 }

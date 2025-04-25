@@ -77,6 +77,7 @@ export const ChatMessage = objectType({
           : null
       },
     })
+    t.string('toUser')
     t.field('ToUser', {
       type: 'User',
       resolve({ toUser }, _, ctx) {

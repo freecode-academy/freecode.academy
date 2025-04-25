@@ -1,3 +1,4 @@
+import { IconButton } from 'material-ui'
 import styled, { css, keyframes } from 'styled-components'
 
 type SendButtonStyledProps = {
@@ -16,8 +17,8 @@ const gradientAnimation = keyframes`
   }
 `
 
-export const SendButtonStyled = styled.button<SendButtonStyledProps>`
-  background-color: #007bff;
+export const SendButtonStyled = styled(IconButton)<SendButtonStyledProps>`
+  /* background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
@@ -42,7 +43,7 @@ export const SendButtonStyled = styled.button<SendButtonStyledProps>`
       background: linear-gradient(-45deg, rgb(9, 23, 216), rgb(192, 8, 242));
       background-size: 400% 400%;
       animation: ${gradientAnimation} 2s ease infinite;
-    `}
+    `} */
 `
 
 export const ChatInputStyled = styled.textarea`
@@ -61,88 +62,29 @@ export const ChatInputStyled = styled.textarea`
   }
 `
 
-interface ChatMessagesStyledProps {
-  isEmpty: boolean
-}
-
-export const ChatMessagesStyled = styled.div<ChatMessagesStyledProps>`
-  flex: 1;
-  overflow-y: auto;
-  padding: 15px;
-  background-color: #fff;
+export const NonAuthNoticeStyled = styled.div`
+  background-color: #f8f9fa;
   border-radius: 8px;
-  border: 1px solid #e1e4e8;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 300px;
+  padding: 15px;
 
-  ${(props) =>
-    props.isEmpty &&
-    `
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  `}
+  p {
+    font-size: 14px;
+  }
 
-  .empty-state {
-    max-width: 500px;
+  a {
+    color: #007bff;
+    text-decoration: none;
 
-    h3 {
-      font-size: 24px;
-      color: #333;
-    }
-
-    p {
-      color: #666;
-    }
-
-    ul {
-      text-align: left;
-      padding: 0 0 0 20px;
-
-      li {
-        color: #555;
-      }
+    &:hover {
+      text-decoration: underline;
     }
   }
 `
 
-interface ChatMessageStyledProps {
-  isUser: boolean
-}
-
-export const ChatMessageStyled = styled.div<ChatMessageStyledProps>`
-  display: flex;
-  justify-content: ${(props) => (props.isUser ? 'flex-end' : 'flex-start')};
-
-  .message-content {
-    max-width: 70%;
-    padding: 12px 15px;
-    border-radius: 8px;
-    background-color: ${(props) => (props.isUser ? '#007bff' : '#f1f1f1')};
-    color: ${(props) => (props.isUser ? '#fff' : '#333')};
-  }
+export const AuthLinkStyled = styled.span`
+  cursor: pointer;
+  color: #007bff;
 `
-
-// export const NonAuthNoticeStyled = styled.div`
-//   background-color: #f8f9fa;
-//   border-radius: 8px;
-//   padding: 15px;
-
-//   p {
-//     font-size: 14px;
-//   }
-
-//   a {
-//     color: #007bff;
-//     text-decoration: none;
-
-//     &:hover {
-//       text-decoration: underline;
-//     }
-//   }
-// `
 
 export const ChatInputContainerStyled = styled.div`
   display: flex;
@@ -185,6 +127,59 @@ export const ErrorMessageStyled = styled.div`
   }
 `
 
+interface ChatMessagesStyledProps {
+  isEmpty: boolean
+}
+
+export const ChatMessagesStyled = styled.div<ChatMessagesStyledProps>`
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e1e4e8;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+
+  ${(props) =>
+    props.isEmpty &&
+    css`
+      /* justify-content: center; */
+      align-items: center;
+      text-align: center;
+    `}
+
+  .empty-state {
+    max-width: 500px;
+
+    h3 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    ul {
+      text-align: left;
+      padding: 0 0 0 20px;
+
+      li {
+        color: #555;
+      }
+    }
+  }
+`
+
 export const MainPageChatMessagesStyled = styled.div`
-  display: contents;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
 `

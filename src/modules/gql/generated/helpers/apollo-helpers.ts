@@ -7,7 +7,7 @@ export type AuthPayloadFieldPolicy = {
 	success?: FieldPolicy<any> | FieldReadFunction<any>,
 	token?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ChatMessageKeySpecifier = ('CreatedBy' | 'Room' | 'ToUser' | 'content' | 'contentText' | 'createdAt' | 'id' | 'updatedAt' | ChatMessageKeySpecifier)[];
+export type ChatMessageKeySpecifier = ('CreatedBy' | 'Room' | 'ToUser' | 'content' | 'contentText' | 'createdAt' | 'id' | 'toUser' | 'updatedAt' | ChatMessageKeySpecifier)[];
 export type ChatMessageFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	Room?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -16,6 +16,7 @@ export type ChatMessageFieldPolicy = {
 	contentText?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	toUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type ChatMessageResponseKeySpecifier = ('createdUser' | 'data' | 'errors' | 'message' | 'reply' | 'success' | ChatMessageResponseKeySpecifier)[];

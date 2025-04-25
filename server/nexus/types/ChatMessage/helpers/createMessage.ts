@@ -9,6 +9,7 @@ import { getLessons, getTechnologies, getUsers } from '../../OpenAi/helpers'
 import { getTopicAnalysis } from '../../../../modules/OpenAiApi/tools/getTopicAnalysis'
 import { getCodeChellangeSolution } from '../../../../modules/OpenAiApi/tools/getCodeChellangeSolution'
 import { createUser } from '../../User/resolvers/helpers/createUser'
+import { AiChatTools } from './interfaces'
 
 type createMessageProps = {
   fromUser: User | null | undefined
@@ -148,12 +149,16 @@ export async function createMessage({
 
     const messages: ChatCompletionMessageParam[] = []
 
-    if (ToUserAiAgent.prompt) {
-      messages.push({
-        role: 'system',
-        content: ToUserAiAgent.prompt,
-      })
-    }
+    const prompt = `${ToUserAiAgent.prompt ?? ''}
+
+У нас на сайте вводится новый функцирнал - ИИ чат. Пользователи не знали об этом.
+Они могут прийти и не найти нужный им функционал. Поприветствуй и расскажи, что мы очень хотим сделать сайт более удобным для них, что практически все они в будущем смогут узнать и сделать через чат. Но сейчас пока многого тут нету. Поэтому пусть расскажут что они хотели бы тут видеть и в каком виде.
+    `
+
+    messages.push({
+      role: 'system',
+      content: prompt,
+    })
 
     const chatCompletion: {
       response?: string
@@ -173,54 +178,63 @@ export async function createMessage({
           {
             type: 'function',
             function: {
-              name: 'getLessons',
-              description: 'Получает список доступных уроков.',
-              parameters: { type: 'object', properties: {} },
-            },
-          },
-          {
-            type: 'function',
-            function: {
-              name: 'getUsers',
-              description: 'Получает список зарегистрированных пользователей.',
-              parameters: { type: 'object', properties: {} },
-            },
-          },
-          {
-            type: 'function',
-            function: {
-              name: 'getTechnologies',
+              name: AiChatTools.getMenu,
               description:
-                'Получает список технологий, которые изучаются в системе.',
+                'Получает ссылки на основные разделы сайта. Показываем только если пользователь хочет найти что-то конкретное или просит дать меню сайта.',
               parameters: { type: 'object', properties: {} },
             },
           },
-          {
-            type: 'function',
-            function: {
-              name: 'getTopicAnalysis',
-              description: 'Анализирует содержимое статьи на сайте',
-              parameters: {
-                type: 'object',
-                properties: {
-                  url: { type: 'string' },
-                },
-              },
-            },
-          },
-          {
-            type: 'function',
-            function: {
-              name: 'getCodeChellangeSolution',
-              description: 'Поиск решения по задаче',
-              parameters: {
-                type: 'object',
-                properties: {
-                  id: { type: 'string' },
-                },
-              },
-            },
-          },
+          // {
+          //   type: 'function',
+          //   function: {
+          //     name: 'getLessons',
+          //     description: 'Получает список доступных уроков.',
+          //     parameters: { type: 'object', properties: {} },
+          //   },
+          // },
+          // {
+          //   type: 'function',
+          //   function: {
+          //     name: 'getUsers',
+          //     description: 'Получает список зарегистрированных пользователей.',
+          //     parameters: { type: 'object', properties: {} },
+          //   },
+          // },
+          // {
+          //   type: 'function',
+          //   function: {
+          //     name: 'getTechnologies',
+          //     description:
+          //       'Получает список технологий, которые изучаются в системе.',
+          //     parameters: { type: 'object', properties: {} },
+          //   },
+          // },
+          // {
+          //   type: 'function',
+          //   function: {
+          //     name: 'getTopicAnalysis',
+          //     description: 'Анализирует содержимое статьи на сайте',
+          //     parameters: {
+          //       type: 'object',
+          //       properties: {
+          //         url: { type: 'string' },
+          //       },
+          //     },
+          //   },
+          // },
+          // {
+          //   type: 'function',
+          //   function: {
+          //     name: 'getCodeChellangeSolution',
+          //     description: 'Поиск решения по задаче',
+          //     parameters: {
+          //       type: 'object',
+          //       properties: {
+          //         id: { type: 'string' },
+          //       },
+          //     },
+          //   },
+          // },
         ],
         // tool_choice: 'auto',
         parallel_tool_calls: true,
@@ -233,6 +247,24 @@ export async function createMessage({
 
         if (toolCalls) {
           for (const call of toolCalls) {
+            if (call.function.name === AiChatTools.getMenu) {
+              return {
+                content: `## Основное меню сайта
+
+- [Главная](/) - Домашняя страница FreeCode.Academy
+- [Стратегии обучения](/learnstrategies/) - Эффективные методики изучения программирования
+- [Уроки](/learn/sections) - Учебные материалы и курсы
+- [Технологии](/technologies/) - Обзор технологий и инструментов
+- [Участники](/people/) - Сообщество разработчиков
+- [Проекты](/projects/) - Проекты для практики
+- [Топики](/topics/) - Обсуждения и статьи по темам
+- [Блоги](/blogs/) - Блоги разработчиков
+- [Офис](/office/) - Рабочее пространство
+- [О проекте](/about/) - Информация о FreeCode.Academy
+- [Наш Телеграм](https://t.me/freecode_academy) - Присоединяйтесь к сообществу
+`,
+              }
+            }
             if (call.function.name === 'getLessons') {
               return { content: (await getLessons()).join(', ') }
             }

@@ -1,19 +1,5 @@
 import styled from 'styled-components'
 
-export const MainPageChatStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
-
-  @media (max-width: 768px) {
-    padding: 10px;
-  }
-`
-
 // Стили для мобильной версии
 // export const MobileChatButtonStyled = styled.button`
 //   position: fixed;
@@ -83,15 +69,6 @@ export const MainPageChatStyled = styled.div`
 //   }
 // `
 
-export const DesktopChatStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  /* height: 100%; */
-  flex: 1;
-  overflow: auto;
-
-  /* @media (max-width: 768px) {
-    display: none;
-  } */
+export const MainPageChatStyled = styled.div`
+  display: contents;
 `

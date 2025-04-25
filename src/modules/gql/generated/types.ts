@@ -429,6 +429,7 @@ export interface ChatMessage {
   contentText?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
+  toUser?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 }
 

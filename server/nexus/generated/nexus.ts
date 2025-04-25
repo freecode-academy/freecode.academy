@@ -33840,6 +33840,7 @@ export interface NexusGenFieldTypes {
     contentText: string | null // String
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     id: string // ID!
+    toUser: string | null // String
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
   ChatMessageResponse: {
@@ -34460,6 +34461,7 @@ export interface NexusGenFieldTypeNames {
     contentText: 'String'
     createdAt: 'DateTime'
     id: 'ID'
+    toUser: 'String'
     updatedAt: 'DateTime'
   }
   ChatMessageResponse: {

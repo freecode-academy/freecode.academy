@@ -5,7 +5,6 @@ import {
   // MobileChatButtonStyled,
   // MobileChatModalStyled,
   // MobileChatHeaderStyled,
-  DesktopChatStyled,
 } from './styles'
 
 export const MainPageChat: React.FC = () => {
@@ -18,9 +17,8 @@ export const MainPageChat: React.FC = () => {
   return (
     <MainPageChatStyled>
       {/* Десктопная версия */}
-      <DesktopChatStyled>
-        <MainPageChatMessages key="chat-content" />
-      </DesktopChatStyled>
+
+      <MainPageChatMessages key="chat-content" />
 
       {/* Мобильная версия */}
       {/* <MobileChatButtonStyled onClick={toggleMobileModal}>

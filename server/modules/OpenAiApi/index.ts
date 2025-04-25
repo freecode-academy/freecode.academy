@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import OpenAI from 'openai'
 import { ChatCompletionMessageParam } from 'openai/resources'
 
@@ -35,9 +34,6 @@ export async function sendMessageToOpenAi(
       model: 'gpt-4-turbo',
     })
     .then((response) => {
-      console.log('response', response)
-      console.log('response.choices[0]', response.choices[0])
-
       const content = response.choices[0]?.message?.content
 
       try {

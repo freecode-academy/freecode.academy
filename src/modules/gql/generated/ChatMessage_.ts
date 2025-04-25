@@ -26,17 +26,23 @@ export type ChatMessageFragment = (
   )>, CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserNoNestingFragment
+  )>, ToUser?: Types.Maybe<(
+    { __typename?: 'User' }
+    & UserNoNestingFragment
   )> }
   & ChatMessageNoNestingFragment
 );
 
 export const ChatMessageFragmentDoc = gql`
-    fragment chatMessage_ on ChatMessage {
+    fragment ChatMessage_ on ChatMessage {
   ...ChatMessageNoNesting
   Room {
     ...ChatRoomNoNesting
   }
   CreatedBy {
+    ...UserNoNesting
+  }
+  ToUser {
     ...UserNoNesting
   }
 }

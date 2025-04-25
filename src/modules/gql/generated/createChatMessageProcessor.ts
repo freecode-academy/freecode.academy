@@ -12,9 +12,9 @@ import { EditorComponentObject } from '@prisma-cms/front-editor'
 
 import * as Types from './types';
 
-import { ChatMessageFragment } from './chatMessage_';
+import { ChatMessageResponseFragment } from './ChatMessageResponse_';
 import { gql } from '@apollo/client';
-import { ChatMessageFragmentDoc } from './chatMessage_';
+import { ChatMessageResponseFragmentDoc } from './ChatMessageResponse_';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type CreateChatMessageProcessorMutationVariables = Types.Exact<{
@@ -22,27 +22,19 @@ export type CreateChatMessageProcessorMutationVariables = Types.Exact<{
 }>;
 
 
-export type CreateChatMessageProcessorMutation = { __typename?: 'Mutation', response: { __typename?: 'ChatMessageResponse', success: boolean, message: string, errors: Array<{ __typename?: 'RequestError', key: string, message: string }>, data?: Types.Maybe<(
-      { __typename?: 'ChatMessage' }
-      & ChatMessageFragment
-    )> } };
+export type CreateChatMessageProcessorMutation = { __typename?: 'Mutation', response: (
+    { __typename?: 'ChatMessageResponse' }
+    & ChatMessageResponseFragment
+  ) };
 
 
 export const CreateChatMessageProcessorDocument = gql`
     mutation createChatMessageProcessor($data: ChatMessageCreateInput!) {
   response: createChatMessageProcessor(data: $data) {
-    success
-    message
-    errors {
-      key
-      message
-    }
-    data {
-      ...chatMessage_
-    }
+    ...ChatMessageResponse_
   }
 }
-    ${ChatMessageFragmentDoc}`;
+    ${ChatMessageResponseFragmentDoc}`;
 export type CreateChatMessageProcessorMutationFn = Apollo.MutationFunction<CreateChatMessageProcessorMutation, CreateChatMessageProcessorMutationVariables>;
 
 /**

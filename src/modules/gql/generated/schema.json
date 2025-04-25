@@ -10,12 +10,12 @@
     "types": [
       {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageCreateManyCreatedByInput",
+        "name": "AiAgentCreateDataInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "content",
+            "name": "prompt",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -30,6 +30,43 @@
             "isDeprecated": false,
             "deprecationReason": null
           },
+          {
+            "name": "userData",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "UserSignupDataInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String",
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "AiAgentCreateManyUserInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
           {
             "name": "createdAt",
             "description": null,
@@ -55,7 +92,7 @@
             "deprecationReason": null
           },
           {
-            "name": "role",
+            "name": "prompt",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -88,18 +125,8 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "String",
-        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageCreateManyCreatedByInputEnvelope",
+        "name": "AiAgentCreateManyUserInputEnvelope",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -114,7 +141,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AiMessageCreateManyCreatedByInput",
+                  "name": "AiAgentCreateManyUserInput",
                   "ofType": null
                 }
               }
@@ -152,7 +179,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
+        "name": "AiAgentCreateNestedManyWithoutUserInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -167,7 +194,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AiMessageWhereUniqueInput",
+                  "name": "AiAgentWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -187,7 +214,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AiMessageCreateOrConnectWithoutCreatedByInput",
+                  "name": "AiAgentCreateOrConnectWithoutUserInput",
                   "ofType": null
                 }
               }
@@ -207,7 +234,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AiMessageCreateWithoutCreatedByInput",
+                  "name": "AiAgentCreateWithoutUserInput",
                   "ofType": null
                 }
               }
@@ -221,7 +248,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateManyCreatedByInputEnvelope",
+              "name": "AiAgentCreateManyUserInputEnvelope",
               "ofType": null
             },
             "defaultValue": null,
@@ -235,7 +262,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageCreateOrConnectWithoutCreatedByInput",
+        "name": "AiAgentCreateOrConnectWithoutUserInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -247,7 +274,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "AiMessageCreateWithoutCreatedByInput",
+                "name": "AiAgentCreateWithoutUserInput",
                 "ofType": null
               }
             },
@@ -263,7 +290,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "AiMessageWhereUniqueInput",
+                "name": "AiAgentWhereUniqueInput",
                 "ofType": null
               }
             },
@@ -278,26 +305,10 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageCreateWithoutCreatedByInput",
+        "name": "AiAgentCreateWithoutUserInput",
         "description": null,
         "fields": null,
         "inputFields": [
-          {
-            "name": "content",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "createdAt",
             "description": null,
@@ -323,7 +334,7 @@
             "deprecationReason": null
           },
           {
-            "name": "role",
+            "name": "prompt",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -357,7 +368,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageListRelationFilter",
+        "name": "AiAgentListRelationFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -366,7 +377,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageWhereInput",
+              "name": "AiAgentWhereInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -378,7 +389,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageWhereInput",
+              "name": "AiAgentWhereInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -390,7 +401,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageWhereInput",
+              "name": "AiAgentWhereInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -404,7 +415,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageOrderByRelationAggregateInput",
+        "name": "AiAgentOrderByRelationAggregateInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -427,7 +438,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageWhereInput",
+        "name": "AiAgentWhereInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -442,22 +453,10 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AiMessageWhereInput",
+                  "name": "AiAgentWhereInput",
                   "ofType": null
                 }
               }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "CreatedBy",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserWhereInput",
-              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -474,7 +473,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AiMessageWhereInput",
+                  "name": "AiAgentWhereInput",
                   "ofType": null
                 }
               }
@@ -494,7 +493,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AiMessageWhereInput",
+                  "name": "AiAgentWhereInput",
                   "ofType": null
                 }
               }
@@ -504,11 +503,11 @@
             "deprecationReason": null
           },
           {
-            "name": "content",
+            "name": "User",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "UserWhereInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -528,18 +527,6 @@
             "deprecationReason": null
           },
           {
-            "name": "createdById",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": null,
             "type": {
@@ -552,7 +539,7 @@
             "deprecationReason": null
           },
           {
-            "name": "role",
+            "name": "prompt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -574,6 +561,18 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "userId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -582,7 +581,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AiMessageWhereUniqueInput",
+        "name": "AiAgentWhereUniqueInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -592,535 +591,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryCreateManyCreatedByInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "createdAt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryCreateManyCreatedByInputEnvelope",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "data",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "AiSummaryCreateManyCreatedByInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "skipDuplicates",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "connect",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "AiSummaryWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "connectOrCreate",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "AiSummaryCreateOrConnectWithoutCreatedByInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "create",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "AiSummaryCreateWithoutCreatedByInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createMany",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateManyCreatedByInputEnvelope",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryCreateOrConnectWithoutCreatedByInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "create",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "AiSummaryCreateWithoutCreatedByInput",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "where",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "AiSummaryWhereUniqueInput",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryCreateWithoutCreatedByInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "createdAt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryListRelationFilter",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "every",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "none",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "some",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryOrderByRelationAggregateInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "_count",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "SortOrder",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryWhereInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "AND",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "AiSummaryWhereInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "CreatedBy",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "NOT",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "AiSummaryWhereInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "OR",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "AiSummaryWhereInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "DateTimeFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdById",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "IntFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "DateTimeFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "AiSummaryWhereUniqueInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -1318,6 +788,16 @@
             "deprecationReason": null
           }
         ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "fields": null,
+        "inputFields": null,
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
@@ -4318,6 +3798,18 @@
             "deprecationReason": null
           },
           {
+            "name": "ToUser",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "User",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "content",
             "description": null,
             "args": [],
@@ -4374,6 +3866,18 @@
             "deprecationReason": null
           },
           {
+            "name": "toUser",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "args": [],
@@ -4412,24 +3916,32 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "Room",
+            "name": "content",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ChatRoomCreateOneWithoutMessagesInput",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "content",
+            "name": "toUser",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "UserWhereUniqueInput",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -4507,6 +4019,18 @@
             "deprecationReason": null
           },
           {
+            "name": "toUser",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "type": {
@@ -4541,6 +4065,144 @@
                 "ofType": {
                   "kind": "INPUT_OBJECT",
                   "name": "ChatMessageCreateManyChatRoomInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "skipDuplicates",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ChatMessageCreateManyToUserInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "CreatedBy",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Room",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "content",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "NullableJsonNullValueInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contentText",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ChatMessageCreateManyToUserInputEnvelope",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ChatMessageCreateManyToUserInput",
                   "ofType": null
                 }
               }
@@ -4622,6 +4284,18 @@
           },
           {
             "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toUser",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4764,6 +4438,89 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateManyChatRoomInputEnvelope",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ChatMessageCreateNestedManyWithoutToUserInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "connect",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ChatMessageWhereUniqueInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "connectOrCreate",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ChatMessageCreateOrConnectWithoutToUserInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "create",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ChatMessageCreateWithoutToUserInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createMany",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateManyToUserInputEnvelope",
               "ofType": null
             },
             "defaultValue": null,
@@ -5083,6 +4840,49 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "ChatMessageCreateOrConnectWithoutToUserInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "create",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "ChatMessageCreateWithoutToUserInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "where",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "ChatMessageWhereUniqueInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "ChatMessageCreateOrConnectWithoutUserInput",
         "description": null,
         "fields": null,
@@ -5148,6 +4948,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateNestedOneWithoutChatMessagesIncomingInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -5262,6 +5074,18 @@
             "deprecationReason": null
           },
           {
+            "name": "ToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateNestedOneWithoutChatMessagesIncomingInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "User",
             "description": null,
             "type": {
@@ -5362,6 +5186,137 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatRoomCreateNestedOneWithoutChatMessagesInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateNestedOneWithoutChatMessagesIncomingInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "User",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateNestedOneWithoutChatMessagesInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "content",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "NullableJsonNullValueInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contentText",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ChatMessageCreateWithoutToUserInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "ChatMessagesReaded",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageReadedCreateNestedManyWithoutChatMessageInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatRoom",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatRoomCreateNestedOneWithoutChatMessagesInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Notices",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -5481,6 +5436,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateNestedOneWithoutChatMessagesIncomingInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -5689,6 +5656,18 @@
             "deprecationReason": null
           },
           {
+            "name": "ToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserOrderByWithRelationInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "User",
             "description": null,
             "type": {
@@ -5738,6 +5717,18 @@
           },
           {
             "name": "id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toUser",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -6593,6 +6584,18 @@
         "description": null,
         "fields": [
           {
+            "name": "createdUser",
+            "description": "Created user for dialog, if user not authorized",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AuthPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "data",
             "description": null,
             "args": [],
@@ -6640,6 +6643,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "reply",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ChatMessage",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6793,6 +6808,18 @@
             "deprecationReason": null
           },
           {
+            "name": "ToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "User",
             "description": null,
             "type": {
@@ -6846,6 +6873,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -53503,6 +53542,39 @@
             "deprecationReason": null
           },
           {
+            "name": "createAiAgentUser",
+            "description": "Создать AI агента",
+            "args": [
+              {
+                "name": "data",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "AiAgentCreateDataInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AuthPayload",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createBlogProcessor",
             "description": null,
             "args": [
@@ -75424,6 +75496,30 @@
                 "kind": "SCALAR",
                 "name": "Int",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chatMessagesDialog",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ChatMessage",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -140460,6 +140556,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isAiAgent",
+            "description": "Является ли пользователь AI агентом",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isMentor",
             "description": "Готов быть ментором",
             "args": [],
@@ -142001,6 +142109,53 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UserCreateWithoutCallRequests_CallRequest_CallerToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UserCreateNestedOneWithoutChatMessagesIncomingInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "connect",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserWhereUniqueInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "connectOrCreate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateOrConnectWithoutChatMessagesIncomingInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "create",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateWithoutChatMessagesIncomingInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -144896,6 +145051,49 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "UserCreateOrConnectWithoutChatMessagesIncomingInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "create",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "UserCreateWithoutChatMessagesIncomingInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "where",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "UserWhereUniqueInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "UserCreateOrConnectWithoutChatMessagesInput",
         "description": null,
         "fields": null,
@@ -147739,23 +147937,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -147792,6 +147978,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -149010,23 +149208,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -149039,6 +149225,1289 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Careers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CareerCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessages",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesReaded",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatRoomInvitationCreateNestedManyWithoutUser_ChatRoomInvitation_CreatedByToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatRoomInvitations_ChatRoomInvitation_UserToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatRoomInvitationCreateNestedManyWithoutUser_ChatRoomInvitation_UserToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatRooms_ChatRoomToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatRoomCreateNestedManyWithoutUser_ChatRoomToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatRooms_ChatRoomsMembers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatRoomCreateNestedManyWithoutUser_ChatRoomsMembersInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CodeChallengeBlocks",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CodeChallengeBlockCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CodeChallengeCompletions",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CodeChallengeCompletionCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CodeChallenges",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CodeChallengeCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Comments",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CommentCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Donates",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "DonateCreateNestedManyWithoutDonatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EthAccount_EthAccountToUser_EthAccountAuthed",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "EthAccountCreateNestedOneWithoutUser_EthAccountToUser_EthAccountAuthedInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EthAccounts_EthAccount_CreatedByToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "EthAccountCreateNestedManyWithoutUser_EthAccount_CreatedByToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EthContractSources",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "EthContractSourceCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Files",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "FileCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Galleries",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "GalleryCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GameResults_GameResult_CreatedByToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "GameResultCreateNestedManyWithoutUser_GameResult_CreatedByToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GameResults_GameResult_UserToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "GameResultCreateNestedManyWithoutUser_GameResult_UserToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Games_GameToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "GameCreateNestedManyWithoutUser_GameToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Games_GameUsers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "GameCreateNestedManyWithoutUser_GameUsersInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Imports",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ImportCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "LearnStrategies",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "LearnStrategyCreateNestedManyWithoutCreatedByInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Letters",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "LetterCreateNestedManyWithoutUser_LetterToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "LogedIns",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "LogedInCreateNestedManyWithoutUser_LogedInToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MentorMenteeMentees",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "MentorMenteeCreateNestedManyWithoutMenteeInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MentorMenteeMentors",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "MentorMenteeCreateNestedManyWithoutMentorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Notices_Notice_CreatedByToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NoticeCreateNestedManyWithoutUser_Notice_CreatedByToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Notices_Notice_UserToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NoticeCreateNestedManyWithoutUser_Notice_UserToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NotificationTypes_NotificationTypeToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NotificationTypeCreateNestedManyWithoutUser_NotificationTypeToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NotificationTypes_UserNotificationTypes",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NotificationTypeCreateNestedManyWithoutUser_UserNotificationTypesInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Players",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "PlayerCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Positions_PositionToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "PositionCreateNestedManyWithoutUser_PositionToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Positions_PositionUsers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "PositionCreateNestedManyWithoutUser_PositionUsersInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ProjectMembers_ProjectMember_CreatedByToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectMemberCreateNestedManyWithoutUser_ProjectMember_CreatedByToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ProjectMembers_ProjectMember_UserToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectMemberCreateNestedManyWithoutUser_ProjectMember_UserToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ProjectTasks",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectTaskCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Projects_PrismaProjectUsers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectCreateNestedManyWithoutUser_PrismaProjectUsersInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Projects_ProjectToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectCreateNestedManyWithoutUser_ProjectToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ResetPasswords",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ResetPasswordCreateNestedManyWithoutUser_ResetPasswordToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ResourceTags",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ResourceTagCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Resources",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ResourceCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Routes",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "RouteCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ServiceCategories",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ServiceCategoryCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Services",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ServiceCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Settings",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "SettingsCreateNestedManyWithoutUser_SettingsToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SmsMessages",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "SmsMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SmsProviders",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "SmsProviderCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Tags",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TagCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TaskMembers_TaskMember_CreatedByToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TaskMemberCreateNestedManyWithoutUser_TaskMember_CreatedByToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TaskMembers_TaskMember_UserToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TaskMemberCreateNestedManyWithoutUser_TaskMember_UserToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TaskReactions",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TaskReactionCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TaskTechnologies",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TaskTechnologyCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Tasks",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TaskCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TeamMembers_TeamMember_CreatedByToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TeamMemberCreateNestedManyWithoutUser_TeamMember_CreatedByToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TeamMembers_TeamMember_UserToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TeamMemberCreateNestedManyWithoutUser_TeamMember_UserToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Teams",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TeamCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Technologies",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TechnologyCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TechnologyLessonUsers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TechnologyLessonUserCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TechnologyLessons",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TechnologyLessonCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Templates",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TemplateCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Timers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TimerCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Tokens",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TokenCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TournamentGroups",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TournamentGroupCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Tournaments",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TournamentCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TourneyPlayers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TourneyPlayerCreateNestedManyWithoutUser_TourneyPlayerToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Tourneys",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TourneyCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "User",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateNestedOneWithoutOther_UsersInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "UserGroups",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserGroupCreateNestedManyWithoutUsersInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "UserLearnStrategies",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserLearnStrategyCreateNestedManyWithoutCreatedByInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "UserTechnologies",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserTechnologyCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Votes",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "VoteCreateNestedManyWithoutUser_UserToVoteInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Worlds",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "WorldCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "about",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "NullableJsonNullValueInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "acceptChatMessageAnonymous",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "acceptNewChatRoom",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "acceptNewChatRoomAnonymous",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "activated",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "active",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "address",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "blocked",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "deleted",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "email",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fullname",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hidden",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isMentor",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "marketplaceToken",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "other_Users",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "password",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "phone",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showEmail",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showFullname",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showPhone",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sudo",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "technologyLevel",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "telegram",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "username",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UserCreateWithoutChatMessagesIncomingInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "AiAgent",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CallRequests_CallRequest_CalledToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CallRequests_CallRequest_CallerToUser",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -150281,23 +151750,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -150334,6 +151791,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "CareerCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -151552,23 +153021,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -151617,6 +153074,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -152823,23 +154292,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -152888,6 +154345,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -154094,23 +155563,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -154159,6 +155616,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -155365,23 +156834,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -155430,6 +156887,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -156636,23 +158105,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -156701,6 +158158,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -157907,23 +159376,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -157972,6 +159429,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -159178,23 +160647,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -159243,6 +160700,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -160449,23 +161918,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -160514,6 +161971,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -161720,23 +163189,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -161785,6 +163242,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -162991,23 +164460,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -163056,6 +164513,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -164262,23 +165731,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -164327,6 +165784,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -165533,23 +167002,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -165598,6 +167055,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -166804,23 +168273,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -166869,6 +168326,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -168075,23 +169544,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -168140,6 +169597,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -169346,23 +170815,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -169411,6 +170868,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -170617,23 +172086,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -170682,6 +172139,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -171888,23 +173357,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -171953,6 +173410,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -173159,23 +174628,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -173224,6 +174681,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -174430,23 +175899,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -174495,6 +175952,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -175701,23 +177170,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -175766,6 +177223,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -176972,23 +178441,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -177037,6 +178494,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -178243,23 +179712,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -178308,6 +179765,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -179514,23 +180983,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -179579,6 +181036,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -180785,23 +182254,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -180850,6 +182307,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -182056,23 +183525,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -182121,6 +183578,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -183327,23 +184796,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -183392,6 +184849,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -184598,23 +186067,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -184663,6 +186120,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -185869,23 +187338,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -185934,6 +187391,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -187140,23 +188609,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -187205,6 +188662,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -188411,23 +189880,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -188476,6 +189933,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -189682,23 +191151,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -189747,6 +191204,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -190953,23 +192422,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -191018,6 +192475,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -192224,23 +193693,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -192289,6 +193746,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -193495,23 +194964,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -193560,6 +195017,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -194766,23 +196235,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -194831,6 +196288,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -196037,23 +197506,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -196102,6 +197559,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -197308,23 +198777,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -197373,6 +198830,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -198579,23 +200048,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -198644,6 +200101,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -199850,23 +201319,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -199915,6 +201372,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -201121,23 +202590,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -201186,6 +202643,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -202392,23 +203861,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -202457,6 +203914,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -203663,23 +205132,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -203728,6 +205185,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -204934,23 +206403,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -204999,6 +206456,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -206205,23 +207674,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -206270,6 +207727,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -207476,23 +208945,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -207541,6 +208998,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -208747,23 +210216,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -208812,6 +210269,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -210018,23 +211487,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -210083,6 +211540,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -211289,23 +212758,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -211354,6 +212811,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -212560,23 +214029,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -212625,6 +214082,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -213831,23 +215300,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -213896,6 +215353,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -215102,23 +216571,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -215167,6 +216624,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -216373,23 +217842,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -216438,6 +217895,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -217644,23 +219113,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -217709,6 +219166,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -218915,23 +220384,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -218980,6 +220437,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -220186,23 +221655,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -220251,6 +221708,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -221457,23 +222926,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -221522,6 +222979,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -222728,23 +224197,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -222793,6 +224250,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -223999,23 +225468,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -224064,6 +225521,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -225270,23 +226739,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -225335,6 +226792,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -226541,23 +228010,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -226606,6 +228063,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -227812,23 +229281,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -227877,6 +229334,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -229083,23 +230552,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -229148,6 +230605,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -230354,23 +231823,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -230419,6 +231876,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -231625,23 +233094,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -231690,6 +233147,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -232896,23 +234365,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageCreateNestedManyWithoutCreatedByInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryCreateNestedManyWithoutCreatedByInput",
+              "name": "AiAgentCreateNestedManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -232961,6 +234418,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChatMessageCreateNestedManyWithoutUserInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageCreateNestedManyWithoutToUserInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -235760,23 +237229,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageOrderByRelationAggregateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryOrderByRelationAggregateInput",
+              "name": "AiAgentOrderByRelationAggregateInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -235821,6 +237278,18 @@
           },
           {
             "name": "ChatMessages",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageOrderByRelationAggregateInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -239445,23 +240914,11 @@
             "deprecationReason": null
           },
           {
-            "name": "AiMessages",
+            "name": "AiAgent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AiMessageListRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "AiSummaries",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "AiSummaryListRelationFilter",
+              "name": "AiAgentListRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -239506,6 +240963,18 @@
           },
           {
             "name": "ChatMessages",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ChatMessageListRelationFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ChatMessagesIncoming",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",

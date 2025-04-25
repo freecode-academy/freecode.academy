@@ -3,13 +3,19 @@ import { ExpressContext } from 'apollo-server-express'
 import fs from 'fs'
 import { Sendmail, SendmailProps } from '../../modules/Mailer/sendmail'
 import { NexusGenFieldTypes } from '../generated/nexus'
-import { sendMessageToOpenAi } from '../../modules/OpenAiApi'
+// import { sendMessageToOpenAi } from '../../modules/OpenAiApi'
+import OpenAI from 'openai'
 
 if (!process.env.APP_SECRET) {
   throw new Error('APP_SECRET env is not defined')
 }
 
 const APP_SECRET = process.env.APP_SECRET
+
+const openai = new OpenAI({
+  baseURL: process.env.OPENAI_API_BASE_URL || undefined,
+  apiKey: process.env.OPENAI_API_KEY,
+})
 
 export interface PrismaContext {
   prisma: PrismaClient
@@ -28,7 +34,9 @@ export interface PrismaContext {
   sendmail: ReturnType<typeof Sendmail> | undefined
   mailSender: string
 
-  sendMessageToOpenAi: typeof sendMessageToOpenAi // Add this line
+  // sendMessageToOpenAi: typeof sendMessageToOpenAi // Add this line
+
+  openai: OpenAI
 }
 
 const prisma = new PrismaClient()
@@ -91,5 +99,6 @@ export const context: PrismaContext = {
   Token: null,
   sendmail,
   mailSender: process.env.SendmailSender || 'no-reply@localhost',
-  sendMessageToOpenAi,
+  // sendMessageToOpenAi,
+  openai,
 }

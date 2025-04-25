@@ -12,9 +12,9 @@ import { EditorComponentObject } from '@prisma-cms/front-editor'
 
 import * as Types from './types';
 
-import { ChatMessageFragment } from './chatMessage_';
+import { ChatMessageFragment } from './ChatMessage_';
 import { gql } from '@apollo/client';
-import { ChatMessageFragmentDoc } from './chatMessage_';
+import { ChatMessageFragmentDoc } from './ChatMessage_';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type ChatMessageQueryVariables = Types.Exact<{
@@ -31,7 +31,7 @@ export type ChatMessageQuery = { __typename?: 'Query', object?: Types.Maybe<(
 export const ChatMessageDocument = gql`
     query chatMessage($where: ChatMessageWhereUniqueInput!) {
   object: chatMessage(where: $where) {
-    ...chatMessage_
+    ...ChatMessage_
   }
 }
     ${ChatMessageFragmentDoc}`;

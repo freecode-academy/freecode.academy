@@ -7,21 +7,25 @@ export type AuthPayloadFieldPolicy = {
 	success?: FieldPolicy<any> | FieldReadFunction<any>,
 	token?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ChatMessageKeySpecifier = ('CreatedBy' | 'Room' | 'content' | 'contentText' | 'createdAt' | 'id' | 'updatedAt' | ChatMessageKeySpecifier)[];
+export type ChatMessageKeySpecifier = ('CreatedBy' | 'Room' | 'ToUser' | 'content' | 'contentText' | 'createdAt' | 'id' | 'toUser' | 'updatedAt' | ChatMessageKeySpecifier)[];
 export type ChatMessageFieldPolicy = {
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
 	Room?: FieldPolicy<any> | FieldReadFunction<any>,
+	ToUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	content?: FieldPolicy<any> | FieldReadFunction<any>,
 	contentText?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	toUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ChatMessageResponseKeySpecifier = ('data' | 'errors' | 'message' | 'success' | ChatMessageResponseKeySpecifier)[];
+export type ChatMessageResponseKeySpecifier = ('createdUser' | 'data' | 'errors' | 'message' | 'reply' | 'success' | ChatMessageResponseKeySpecifier)[];
 export type ChatMessageResponseFieldPolicy = {
+	createdUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	data?: FieldPolicy<any> | FieldReadFunction<any>,
 	errors?: FieldPolicy<any> | FieldReadFunction<any>,
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
+	reply?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type ChatRoomKeySpecifier = ('CreatedBy' | 'Invitations' | 'Members' | 'Messages' | 'code' | 'createdAt' | 'description' | 'id' | 'image' | 'isPublic' | 'name' | 'updatedAt' | ChatRoomKeySpecifier)[];
@@ -183,9 +187,10 @@ export type MentorMenteeFieldPolicy = {
 	status?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('blockUser' | 'createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createMentorMentee' | 'createOneDonate' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'deleteResource' | 'openAi' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'unblockUser' | 'updateBlogProcessor' | 'updateCodeChallenge' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateCurrentUser' | 'updateLearnStrategy' | 'updateOneUser' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('blockUser' | 'createAiAgentUser' | 'createBlogProcessor' | 'createChatMessageProcessor' | 'createCodeChallengeCompletionProcessor' | 'createCommentProcessor' | 'createLearnStrategy' | 'createLearnStrategyStage' | 'createMentorMentee' | 'createOneDonate' | 'createProjectProcessor' | 'createResetPasswordProcessor' | 'createTaskProcessor' | 'createTaskTechnologyProcessor' | 'createTechnology' | 'createTimerProcessor' | 'createTopicProcessor' | 'createUserLearnStrategy' | 'createUserTechnologyProcessor' | 'deleteLearnStrategyStage' | 'deleteNotice' | 'deleteResource' | 'openAi' | 'resetPasswordProcessor' | 'signin' | 'signup' | 'singleUpload' | 'unblockUser' | 'updateBlogProcessor' | 'updateCodeChallenge' | 'updateCodeChallengeCompletionProcessor' | 'updateCommentProcessor' | 'updateCurrentUser' | 'updateLearnStrategy' | 'updateOneUser' | 'updateProjectProcessor' | 'updateTaskProcessor' | 'updateTaskTechnologyProcessor' | 'updateTechnology' | 'updateTimerProcessor' | 'updateTopicProcessor' | 'updateUserProcessor' | 'updateUserTechnologyProcessor' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	blockUser?: FieldPolicy<any> | FieldReadFunction<any>,
+	createAiAgentUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	createBlogProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createChatMessageProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
 	createCodeChallengeCompletionProcessor?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -295,11 +300,12 @@ export type ProjectTaskFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('chatMessage' | 'chatMessages' | 'chatMessagesCount' | 'chatRoom' | 'chatRooms' | 'chatRoomsCount' | 'codeChallenge' | 'codeChallengeBlock' | 'codeChallengeBlocks' | 'codeChallengeBlocksCount' | 'codeChallengeCompletion' | 'codeChallengeCompletions' | 'codeChallenges' | 'donate' | 'donates' | 'donatesCount' | 'file' | 'files' | 'filesCount' | 'learnStrategies' | 'learnStrategiesCount' | 'learnStrategy' | 'learnStrategyStage' | 'learnStrategyStages' | 'learnStrategyStagesCount' | 'me' | 'mentorMentee' | 'mentorMentees' | 'mentorMenteesCount' | 'notice' | 'notices' | 'noticesCount' | 'notificationTypes' | 'notificationTypesCount' | 'project' | 'projectTasks' | 'projects' | 'projectsCount' | 'resource' | 'resources' | 'resourcesCount' | 'tag' | 'tags' | 'tagsCount' | 'task' | 'taskTechnologies' | 'taskTechnology' | 'taskTechnologysCount' | 'tasks' | 'tasksCount' | 'technologies' | 'technologiesCount' | 'technology' | 'timer' | 'timers' | 'timersCount' | 'user' | 'userLearnStrategies' | 'userLearnStrategiesCount' | 'userLearnStrategy' | 'userTechnologies' | 'userTechnology' | 'userTechnologysCount' | 'users' | 'usersCount' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('chatMessage' | 'chatMessages' | 'chatMessagesCount' | 'chatMessagesDialog' | 'chatRoom' | 'chatRooms' | 'chatRoomsCount' | 'codeChallenge' | 'codeChallengeBlock' | 'codeChallengeBlocks' | 'codeChallengeBlocksCount' | 'codeChallengeCompletion' | 'codeChallengeCompletions' | 'codeChallenges' | 'donate' | 'donates' | 'donatesCount' | 'file' | 'files' | 'filesCount' | 'learnStrategies' | 'learnStrategiesCount' | 'learnStrategy' | 'learnStrategyStage' | 'learnStrategyStages' | 'learnStrategyStagesCount' | 'me' | 'mentorMentee' | 'mentorMentees' | 'mentorMenteesCount' | 'notice' | 'notices' | 'noticesCount' | 'notificationTypes' | 'notificationTypesCount' | 'project' | 'projectTasks' | 'projects' | 'projectsCount' | 'resource' | 'resources' | 'resourcesCount' | 'tag' | 'tags' | 'tagsCount' | 'task' | 'taskTechnologies' | 'taskTechnology' | 'taskTechnologysCount' | 'tasks' | 'tasksCount' | 'technologies' | 'technologiesCount' | 'technology' | 'timer' | 'timers' | 'timersCount' | 'user' | 'userLearnStrategies' | 'userLearnStrategiesCount' | 'userLearnStrategy' | 'userTechnologies' | 'userTechnology' | 'userTechnologysCount' | 'users' | 'usersCount' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	chatMessage?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatMessages?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatMessagesCount?: FieldPolicy<any> | FieldReadFunction<any>,
+	chatMessagesDialog?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatRoom?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatRooms?: FieldPolicy<any> | FieldReadFunction<any>,
 	chatRoomsCount?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -528,7 +534,7 @@ export type TimerResponseFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	success?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserKeySpecifier = ('CodeChallengeCompletions' | 'EthAccounts' | 'MentorMenteeMentees' | 'MentorMenteeMentors' | 'NotificationTypes' | 'Projects' | 'ProjectsCreated' | 'Timers' | 'UserTechnologies' | 'about' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoom' | 'acceptNewChatRoomAnonymous' | 'activated' | 'active' | 'address' | 'blocked' | 'createdAt' | 'deleted' | 'email' | 'fullname' | 'hasEmail' | 'hasPhone' | 'id' | 'image' | 'isMentor' | 'phone' | 'showEmail' | 'showFullname' | 'showPhone' | 'sudo' | 'technologyLevel' | 'telegram' | 'updatedAt' | 'username' | UserKeySpecifier)[];
+export type UserKeySpecifier = ('CodeChallengeCompletions' | 'EthAccounts' | 'MentorMenteeMentees' | 'MentorMenteeMentors' | 'NotificationTypes' | 'Projects' | 'ProjectsCreated' | 'Timers' | 'UserTechnologies' | 'about' | 'acceptChatMessageAnonymous' | 'acceptNewChatRoom' | 'acceptNewChatRoomAnonymous' | 'activated' | 'active' | 'address' | 'blocked' | 'createdAt' | 'deleted' | 'email' | 'fullname' | 'hasEmail' | 'hasPhone' | 'id' | 'image' | 'isAiAgent' | 'isMentor' | 'phone' | 'showEmail' | 'showFullname' | 'showPhone' | 'sudo' | 'technologyLevel' | 'telegram' | 'updatedAt' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
 	CodeChallengeCompletions?: FieldPolicy<any> | FieldReadFunction<any>,
 	EthAccounts?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -555,6 +561,7 @@ export type UserFieldPolicy = {
 	hasPhone?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	isAiAgent?: FieldPolicy<any> | FieldReadFunction<any>,
 	isMentor?: FieldPolicy<any> | FieldReadFunction<any>,
 	phone?: FieldPolicy<any> | FieldReadFunction<any>,
 	showEmail?: FieldPolicy<any> | FieldReadFunction<any>,

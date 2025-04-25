@@ -248,6 +248,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
                   loginCanceled={loginCanceled}
                   showRegForm={true}
                 />
+
                 {contentWithLayout}
               </WithUser>
             </Context.Provider>

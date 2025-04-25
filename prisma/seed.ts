@@ -11,9 +11,7 @@ async function main() {
   console.log(`Start seeding ...`)
 
   const password = process.env.SUDO_PASSWORD
-  if (!password) {
-    throw new Error('SUDO_PASSWORD env is empty')
-  } else {
+  if (password) {
     userData.push({
       username: 'admin',
       password: await createPassword(password),
@@ -21,16 +19,41 @@ async function main() {
     })
   }
 
+  const MAIN_AI_AGENT_USERNAME = process.env.MAIN_AI_AGENT_USERNAME
+  if (MAIN_AI_AGENT_USERNAME) {
+    userData.push({
+      username: MAIN_AI_AGENT_USERNAME,
+      password: await createPassword(''),
+      AiAgent: {
+        create: {
+          prompt: process.env.MAIN_AI_AGENT_PROMPT ?? '',
+        },
+      },
+    })
+  }
+
   for (const u of userData) {
-    await prisma.user
-      .create({
-        data: u,
+    if (u.username) {
+      const userExists = await prisma.user.findUnique({
+        where: {
+          username: u.username,
+        },
       })
-      .then((user) => {
-        // eslint-disable-next-line no-console
-        console.log(`Created user with id: ${user.id}`)
-      })
-      .catch(console.error)
+
+      if (userExists) {
+        continue
+      }
+
+      await prisma.user
+        .create({
+          data: u,
+        })
+        .then((user) => {
+          // eslint-disable-next-line no-console
+          console.log(`Created user with id: ${user.id}`)
+        })
+        .catch(console.error)
+    }
   }
 
   // Dev seed

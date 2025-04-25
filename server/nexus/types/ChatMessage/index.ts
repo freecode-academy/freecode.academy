@@ -3,6 +3,8 @@ import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
 import { getChatMessagesConditions } from './helpers'
 import { chatMessagesResolver } from './resolvers/chatMessages'
 import { chatMessageResolver } from './resolvers/chatMessage'
+import { createChatMessageProcessorResolver } from './resolvers/createChatMessageProcessor'
+import { chatMessagesDialogResolver } from './resolvers/chatMessagesDialog'
 
 // TODO Проработать доступы
 export const ChatMessageQuery = extendType({
@@ -31,6 +33,11 @@ export const ChatMessageQuery = extendType({
         })
       },
     })
+
+    t.nonNull.list.nonNull.field('chatMessagesDialog', {
+      type: 'ChatMessage',
+      resolve: chatMessagesDialogResolver,
+    })
   },
 })
 
@@ -43,13 +50,7 @@ export const ChatMessageExtendMutation = extendType({
         data: nonNull('ChatMessageCreateInput'),
       },
       // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        return {
-          success: false,
-          message: 'Not implemented',
-          errors: [],
-        }
-      },
+      resolve: createChatMessageProcessorResolver,
     })
   },
 })
@@ -76,6 +77,15 @@ export const ChatMessage = objectType({
           : null
       },
     })
+    t.string('toUser')
+    t.field('ToUser', {
+      type: 'User',
+      resolve({ toUser }, _, ctx) {
+        return toUser
+          ? ctx.prisma.user.findUnique({ where: { id: toUser } })
+          : null
+      },
+    })
     t.field('Room', {
       type: 'ChatRoom',
       resolve({ Room }, _, ctx) {
@@ -90,12 +100,13 @@ export const ChatMessage = objectType({
 export const ChatMessageCreateInput = inputObjectType({
   name: 'ChatMessageCreateInput',
   definition(t) {
-    t.field('content', {
-      type: 'JSON',
+    t.nonNull.string('content')
+    t.nonNull.field('toUser', {
+      type: 'UserWhereUniqueInput',
     })
-    t.field('Room', {
-      type: 'ChatRoomCreateOneWithoutMessagesInput',
-    })
+    // t.field('Room', {
+    //   type: 'ChatRoomCreateOneWithoutMessagesInput',
+    // })
   },
 })
 
@@ -119,6 +130,13 @@ export const ChatMessageResponse = objectType({
     })
     t.field('data', {
       type: 'ChatMessage',
+    })
+    t.field('reply', {
+      type: 'ChatMessage',
+    })
+    t.field('createdUser', {
+      type: 'AuthPayload',
+      description: 'Created user for dialog, if user not authorized',
     })
   },
 })

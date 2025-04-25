@@ -36,6 +36,7 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
     loading: inRequest,
   } = useProcessorMutation(createChatMessageTupple)
 
+  // @ts-expect-error types
   const { store, setValue } = useStore<ChatMessageCreateInput>({})
 
   const createChatMessage = useCallback(() => {
@@ -47,6 +48,8 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
       variables: {
         data: {
           ...store,
+          // TODO Restore rooms logic
+          // @ts-expect-error types
           Room: {
             to: user.id,
           },
@@ -85,6 +88,7 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
           <Editor
             // className="topic-editor"
             editorKey="comment"
+            // @ts-expect-error types
             value={store?.content || undefined}
             readOnly={false}
             // fullView={true}

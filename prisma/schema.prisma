@@ -41,7 +41,8 @@ model User {
   CallRequests_CallRequest_CalledToUser                  CallRequest[]             @relation("CallRequest_CalledToUser")
   CallRequests_CallRequest_CallerToUser                  CallRequest[]             @relation("CallRequest_CallerToUser")
   Careers                                                Career[]
-  ChatMessages                                           ChatMessage[]
+  ChatMessages                                           ChatMessage[]             @relation("UserChatMessages")
+  ChatMessagesIncoming                                   ChatMessage[]             @relation("UserChatMessagesIncoming")
   ChatMessagesReaded                                     ChatMessageReaded[]
   ChatRooms_ChatRoomToUser                               ChatRoom[]
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser ChatRoomInvitation[]      @relation("ChatRoomInvitation_CreatedByToUser")
@@ -123,9 +124,7 @@ model User {
   telegram String?
 
   Donates Donate[]
-
-  AiMessages  AiMessage[]
-  AiSummaries AiSummary[]
+  AiAgent AiAgent[]
 
   @@unique([email])
   @@unique([username])
@@ -237,10 +236,12 @@ model ChatMessage {
   contentText        String?             @db.MediumText
   CreatedBy          String?             @db.VarChar(32)
   Room               String?             @db.VarChar(32)
-  User               User?               @relation(fields: [CreatedBy], references: [id])
+  User               User?               @relation("UserChatMessages", fields: [CreatedBy], references: [id])
   ChatRoom           ChatRoom?           @relation(fields: [Room], references: [id])
   ChatMessagesReaded ChatMessageReaded[]
   Notices            Notice[]
+  toUser             String?             @db.VarChar(32)
+  ToUser             User?               @relation("UserChatMessagesIncoming", fields: [toUser], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Room], name: "Room")
@@ -1639,27 +1640,11 @@ model Donate {
   Donator   User?    @relation(fields: [donatorId], references: [id])
 }
 
-model AiMessage {
-  id          String   @id @default(cuid()) @db.VarChar(32)
-  createdById String   @db.VarChar(32)
-  role        String
-  content     String
-  createdAt   DateTime @default(now()) @db.DateTime(0)
-  updatedAt   DateTime @default(now()) @updatedAt @db.DateTime(0)
-
-  CreatedBy User @relation(fields: [createdById], references: [id])
-
-  @@index([createdById], name: "AiMessageUser")
-}
-
-model AiSummary {
-  id          Int      @id @default(autoincrement())
-  createdById String   @db.VarChar(32)
-  summary     String   @db.Text
-  createdAt   DateTime @default(now()) @db.DateTime(0)
-  updatedAt   DateTime @default(now()) @updatedAt @db.DateTime(0)
-
-  CreatedBy User @relation(fields: [createdById], references: [id])
-
-  @@index([createdById], name: "AiSummaryUser")
+model AiAgent {
+  id        String   @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.DateTime(0)
+  userId    String?  @db.VarChar(32)
+  User      User?    @relation(fields: [userId], references: [id])
+  prompt    String
 }

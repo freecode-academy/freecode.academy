@@ -1,0 +1,12 @@
+fragment AuthPayload_ on AuthPayload {
+  success
+  message
+  token
+  errors {
+    key
+    message
+  }
+  data {
+    ...UserNoNesting
+  }
+}

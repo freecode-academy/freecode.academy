@@ -113,129 +113,69 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  AiMessageCreateManyCreatedByInput: {
+  AiAgentCreateDataInput: {
     // input type
-    content: string // String!
+    prompt: string // String!
+    userData: NexusGenInputs['UserSignupDataInput'] // UserSignupDataInput!
+  }
+  AiAgentCreateManyUserInput: {
+    // input type
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
-    role: string // String!
+    prompt: string // String!
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
   }
-  AiMessageCreateManyCreatedByInputEnvelope: {
+  AiAgentCreateManyUserInputEnvelope: {
     // input type
-    data?: NexusGenInputs['AiMessageCreateManyCreatedByInput'][] | null // [AiMessageCreateManyCreatedByInput!]
+    data?: NexusGenInputs['AiAgentCreateManyUserInput'][] | null // [AiAgentCreateManyUserInput!]
     skipDuplicates?: boolean | null // Boolean
   }
-  AiMessageCreateNestedManyWithoutCreatedByInput: {
+  AiAgentCreateNestedManyWithoutUserInput: {
     // input type
-    connect?: NexusGenInputs['AiMessageWhereUniqueInput'][] | null // [AiMessageWhereUniqueInput!]
+    connect?: NexusGenInputs['AiAgentWhereUniqueInput'][] | null // [AiAgentWhereUniqueInput!]
     connectOrCreate?:
-      | NexusGenInputs['AiMessageCreateOrConnectWithoutCreatedByInput'][]
-      | null // [AiMessageCreateOrConnectWithoutCreatedByInput!]
-    create?: NexusGenInputs['AiMessageCreateWithoutCreatedByInput'][] | null // [AiMessageCreateWithoutCreatedByInput!]
-    createMany?:
-      | NexusGenInputs['AiMessageCreateManyCreatedByInputEnvelope']
-      | null // AiMessageCreateManyCreatedByInputEnvelope
+      | NexusGenInputs['AiAgentCreateOrConnectWithoutUserInput'][]
+      | null // [AiAgentCreateOrConnectWithoutUserInput!]
+    create?: NexusGenInputs['AiAgentCreateWithoutUserInput'][] | null // [AiAgentCreateWithoutUserInput!]
+    createMany?: NexusGenInputs['AiAgentCreateManyUserInputEnvelope'] | null // AiAgentCreateManyUserInputEnvelope
   }
-  AiMessageCreateOrConnectWithoutCreatedByInput: {
+  AiAgentCreateOrConnectWithoutUserInput: {
     // input type
-    create: NexusGenInputs['AiMessageCreateWithoutCreatedByInput'] // AiMessageCreateWithoutCreatedByInput!
-    where: NexusGenInputs['AiMessageWhereUniqueInput'] // AiMessageWhereUniqueInput!
+    create: NexusGenInputs['AiAgentCreateWithoutUserInput'] // AiAgentCreateWithoutUserInput!
+    where: NexusGenInputs['AiAgentWhereUniqueInput'] // AiAgentWhereUniqueInput!
   }
-  AiMessageCreateWithoutCreatedByInput: {
+  AiAgentCreateWithoutUserInput: {
     // input type
-    content: string // String!
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
-    role: string // String!
+    prompt: string // String!
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
   }
-  AiMessageListRelationFilter: {
+  AiAgentListRelationFilter: {
     // input type
-    every?: NexusGenInputs['AiMessageWhereInput'] | null // AiMessageWhereInput
-    none?: NexusGenInputs['AiMessageWhereInput'] | null // AiMessageWhereInput
-    some?: NexusGenInputs['AiMessageWhereInput'] | null // AiMessageWhereInput
+    every?: NexusGenInputs['AiAgentWhereInput'] | null // AiAgentWhereInput
+    none?: NexusGenInputs['AiAgentWhereInput'] | null // AiAgentWhereInput
+    some?: NexusGenInputs['AiAgentWhereInput'] | null // AiAgentWhereInput
   }
-  AiMessageOrderByRelationAggregateInput: {
+  AiAgentOrderByRelationAggregateInput: {
     // input type
     _count?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
-  AiMessageWhereInput: {
+  AiAgentWhereInput: {
     // input type
-    AND?: NexusGenInputs['AiMessageWhereInput'][] | null // [AiMessageWhereInput!]
-    CreatedBy?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    NOT?: NexusGenInputs['AiMessageWhereInput'][] | null // [AiMessageWhereInput!]
-    OR?: NexusGenInputs['AiMessageWhereInput'][] | null // [AiMessageWhereInput!]
-    content?: NexusGenInputs['StringFilter'] | null // StringFilter
+    AND?: NexusGenInputs['AiAgentWhereInput'][] | null // [AiAgentWhereInput!]
+    NOT?: NexusGenInputs['AiAgentWhereInput'][] | null // [AiAgentWhereInput!]
+    OR?: NexusGenInputs['AiAgentWhereInput'][] | null // [AiAgentWhereInput!]
+    User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-    createdById?: NexusGenInputs['StringFilter'] | null // StringFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
-    role?: NexusGenInputs['StringFilter'] | null // StringFilter
+    prompt?: NexusGenInputs['StringFilter'] | null // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    userId?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
   }
-  AiMessageWhereUniqueInput: {
+  AiAgentWhereUniqueInput: {
     // input type
     id?: string | null // String
-  }
-  AiSummaryCreateManyCreatedByInput: {
-    // input type
-    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    id?: number | null // Int
-    summary: string // String!
-    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-  }
-  AiSummaryCreateManyCreatedByInputEnvelope: {
-    // input type
-    data?: NexusGenInputs['AiSummaryCreateManyCreatedByInput'][] | null // [AiSummaryCreateManyCreatedByInput!]
-    skipDuplicates?: boolean | null // Boolean
-  }
-  AiSummaryCreateNestedManyWithoutCreatedByInput: {
-    // input type
-    connect?: NexusGenInputs['AiSummaryWhereUniqueInput'][] | null // [AiSummaryWhereUniqueInput!]
-    connectOrCreate?:
-      | NexusGenInputs['AiSummaryCreateOrConnectWithoutCreatedByInput'][]
-      | null // [AiSummaryCreateOrConnectWithoutCreatedByInput!]
-    create?: NexusGenInputs['AiSummaryCreateWithoutCreatedByInput'][] | null // [AiSummaryCreateWithoutCreatedByInput!]
-    createMany?:
-      | NexusGenInputs['AiSummaryCreateManyCreatedByInputEnvelope']
-      | null // AiSummaryCreateManyCreatedByInputEnvelope
-  }
-  AiSummaryCreateOrConnectWithoutCreatedByInput: {
-    // input type
-    create: NexusGenInputs['AiSummaryCreateWithoutCreatedByInput'] // AiSummaryCreateWithoutCreatedByInput!
-    where: NexusGenInputs['AiSummaryWhereUniqueInput'] // AiSummaryWhereUniqueInput!
-  }
-  AiSummaryCreateWithoutCreatedByInput: {
-    // input type
-    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
-    summary: string // String!
-    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
-  }
-  AiSummaryListRelationFilter: {
-    // input type
-    every?: NexusGenInputs['AiSummaryWhereInput'] | null // AiSummaryWhereInput
-    none?: NexusGenInputs['AiSummaryWhereInput'] | null // AiSummaryWhereInput
-    some?: NexusGenInputs['AiSummaryWhereInput'] | null // AiSummaryWhereInput
-  }
-  AiSummaryOrderByRelationAggregateInput: {
-    // input type
-    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
-  }
-  AiSummaryWhereInput: {
-    // input type
-    AND?: NexusGenInputs['AiSummaryWhereInput'][] | null // [AiSummaryWhereInput!]
-    CreatedBy?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
-    NOT?: NexusGenInputs['AiSummaryWhereInput'][] | null // [AiSummaryWhereInput!]
-    OR?: NexusGenInputs['AiSummaryWhereInput'][] | null // [AiSummaryWhereInput!]
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-    createdById?: NexusGenInputs['StringFilter'] | null // StringFilter
-    id?: NexusGenInputs['IntFilter'] | null // IntFilter
-    summary?: NexusGenInputs['StringFilter'] | null // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
-  }
-  AiSummaryWhereUniqueInput: {
-    // input type
-    id?: number | null // Int
   }
   BlockCreateManyWorldInput: {
     // input type
@@ -578,8 +518,8 @@ export interface NexusGenInputs {
   }
   ChatMessageCreateInput: {
     // input type
-    Room?: NexusGenInputs['ChatRoomCreateOneWithoutMessagesInput'] | null // ChatRoomCreateOneWithoutMessagesInput
-    content?: NexusGenScalars['JSON'] | null // JSON
+    content: string // String!
+    toUser: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
   }
   ChatMessageCreateManyChatRoomInput: {
     // input type
@@ -588,11 +528,27 @@ export interface NexusGenInputs {
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
+    toUser?: string | null // String
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
   }
   ChatMessageCreateManyChatRoomInputEnvelope: {
     // input type
     data?: NexusGenInputs['ChatMessageCreateManyChatRoomInput'][] | null // [ChatMessageCreateManyChatRoomInput!]
+    skipDuplicates?: boolean | null // Boolean
+  }
+  ChatMessageCreateManyToUserInput: {
+    // input type
+    CreatedBy?: string | null // String
+    Room?: string | null // String
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    contentText?: string | null // String
+    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
+    id?: string | null // String
+    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  ChatMessageCreateManyToUserInputEnvelope: {
+    // input type
+    data?: NexusGenInputs['ChatMessageCreateManyToUserInput'][] | null // [ChatMessageCreateManyToUserInput!]
     skipDuplicates?: boolean | null // Boolean
   }
   ChatMessageCreateManyUserInput: {
@@ -602,6 +558,7 @@ export interface NexusGenInputs {
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
     id?: string | null // String
+    toUser?: string | null // String
     updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
   }
   ChatMessageCreateManyUserInputEnvelope: {
@@ -619,6 +576,17 @@ export interface NexusGenInputs {
     createMany?:
       | NexusGenInputs['ChatMessageCreateManyChatRoomInputEnvelope']
       | null // ChatMessageCreateManyChatRoomInputEnvelope
+  }
+  ChatMessageCreateNestedManyWithoutToUserInput: {
+    // input type
+    connect?: NexusGenInputs['ChatMessageWhereUniqueInput'][] | null // [ChatMessageWhereUniqueInput!]
+    connectOrCreate?:
+      | NexusGenInputs['ChatMessageCreateOrConnectWithoutToUserInput'][]
+      | null // [ChatMessageCreateOrConnectWithoutToUserInput!]
+    create?: NexusGenInputs['ChatMessageCreateWithoutToUserInput'][] | null // [ChatMessageCreateWithoutToUserInput!]
+    createMany?:
+      | NexusGenInputs['ChatMessageCreateManyToUserInputEnvelope']
+      | null // ChatMessageCreateManyToUserInputEnvelope
   }
   ChatMessageCreateNestedManyWithoutUserInput: {
     // input type
@@ -662,6 +630,11 @@ export interface NexusGenInputs {
     create: NexusGenInputs['ChatMessageCreateWithoutNoticesInput'] // ChatMessageCreateWithoutNoticesInput!
     where: NexusGenInputs['ChatMessageWhereUniqueInput'] // ChatMessageWhereUniqueInput!
   }
+  ChatMessageCreateOrConnectWithoutToUserInput: {
+    // input type
+    create: NexusGenInputs['ChatMessageCreateWithoutToUserInput'] // ChatMessageCreateWithoutToUserInput!
+    where: NexusGenInputs['ChatMessageWhereUniqueInput'] // ChatMessageWhereUniqueInput!
+  }
   ChatMessageCreateOrConnectWithoutUserInput: {
     // input type
     create: NexusGenInputs['ChatMessageCreateWithoutUserInput'] // ChatMessageCreateWithoutUserInput!
@@ -675,6 +648,9 @@ export interface NexusGenInputs {
     Notices?:
       | NexusGenInputs['NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput']
       | null // NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
+    ToUser?:
+      | NexusGenInputs['UserCreateNestedOneWithoutChatMessagesIncomingInput']
+      | null // UserCreateNestedOneWithoutChatMessagesIncomingInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutChatMessagesInput'] | null // UserCreateNestedOneWithoutChatMessagesInput
     content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
@@ -690,6 +666,9 @@ export interface NexusGenInputs {
     Notices?:
       | NexusGenInputs['NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput']
       | null // NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
+    ToUser?:
+      | NexusGenInputs['UserCreateNestedOneWithoutChatMessagesIncomingInput']
+      | null // UserCreateNestedOneWithoutChatMessagesIncomingInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutChatMessagesInput'] | null // UserCreateNestedOneWithoutChatMessagesInput
     content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
@@ -705,6 +684,27 @@ export interface NexusGenInputs {
     ChatRoom?:
       | NexusGenInputs['ChatRoomCreateNestedOneWithoutChatMessagesInput']
       | null // ChatRoomCreateNestedOneWithoutChatMessagesInput
+    ToUser?:
+      | NexusGenInputs['UserCreateNestedOneWithoutChatMessagesIncomingInput']
+      | null // UserCreateNestedOneWithoutChatMessagesIncomingInput
+    User?: NexusGenInputs['UserCreateNestedOneWithoutChatMessagesInput'] | null // UserCreateNestedOneWithoutChatMessagesInput
+    content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    contentText?: string | null // String
+    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
+    id?: string | null // String
+    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
+  }
+  ChatMessageCreateWithoutToUserInput: {
+    // input type
+    ChatMessagesReaded?:
+      | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutChatMessageInput']
+      | null // ChatMessageReadedCreateNestedManyWithoutChatMessageInput
+    ChatRoom?:
+      | NexusGenInputs['ChatRoomCreateNestedOneWithoutChatMessagesInput']
+      | null // ChatRoomCreateNestedOneWithoutChatMessagesInput
+    Notices?:
+      | NexusGenInputs['NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput']
+      | null // NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
     User?: NexusGenInputs['UserCreateNestedOneWithoutChatMessagesInput'] | null // UserCreateNestedOneWithoutChatMessagesInput
     content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
@@ -723,6 +723,9 @@ export interface NexusGenInputs {
     Notices?:
       | NexusGenInputs['NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput']
       | null // NoticeCreateNestedManyWithoutChatMessage_ChatMessageToNoticeInput
+    ToUser?:
+      | NexusGenInputs['UserCreateNestedOneWithoutChatMessagesIncomingInput']
+      | null // UserCreateNestedOneWithoutChatMessagesIncomingInput
     content?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
     contentText?: string | null // String
     createdAt?: NexusGenScalars['DateTime'] | null // DateTime
@@ -748,11 +751,13 @@ export interface NexusGenInputs {
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Notices?: NexusGenInputs['NoticeOrderByRelationAggregateInput'] | null // NoticeOrderByRelationAggregateInput
     Room?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ToUser?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     content?: NexusGenEnums['SortOrder'] | null // SortOrder
     contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    toUser?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   ChatMessageReadedCreateManyChatMessageInput: {
@@ -876,11 +881,13 @@ export interface NexusGenInputs {
     Notices?: NexusGenInputs['NoticeListRelationFilter'] | null // NoticeListRelationFilter
     OR?: NexusGenInputs['ChatMessageWhereInput'][] | null // [ChatMessageWhereInput!]
     Room?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    ToUser?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     User?: NexusGenInputs['UserWhereInput'] | null // UserWhereInput
     content?: NexusGenInputs['JsonNullableFilter'] | null // JsonNullableFilter
     contentText?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null // StringFilter
+    toUser?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
   }
   ChatMessageWhereUniqueInput: {
@@ -16188,6 +16195,14 @@ export interface NexusGenInputs {
       | NexusGenInputs['UserCreateWithoutCallRequests_CallRequest_CallerToUserInput']
       | null // UserCreateWithoutCallRequests_CallRequest_CallerToUserInput
   }
+  UserCreateNestedOneWithoutChatMessagesIncomingInput: {
+    // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null // UserWhereUniqueInput
+    connectOrCreate?:
+      | NexusGenInputs['UserCreateOrConnectWithoutChatMessagesIncomingInput']
+      | null // UserCreateOrConnectWithoutChatMessagesIncomingInput
+    create?: NexusGenInputs['UserCreateWithoutChatMessagesIncomingInput'] | null // UserCreateWithoutChatMessagesIncomingInput
+  }
   UserCreateNestedOneWithoutChatMessagesInput: {
     // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null // UserWhereUniqueInput
@@ -16712,6 +16727,11 @@ export interface NexusGenInputs {
     create: NexusGenInputs['UserCreateWithoutCallRequests_CallRequest_CallerToUserInput'] // UserCreateWithoutCallRequests_CallRequest_CallerToUserInput!
     where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
   }
+  UserCreateOrConnectWithoutChatMessagesIncomingInput: {
+    // input type
+    create: NexusGenInputs['UserCreateWithoutChatMessagesIncomingInput'] // UserCreateWithoutChatMessagesIncomingInput!
+    where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
+  }
   UserCreateOrConnectWithoutChatMessagesInput: {
     // input type
     create: NexusGenInputs['UserCreateWithoutChatMessagesInput'] // UserCreateWithoutChatMessagesInput!
@@ -17044,12 +17064,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCallRequests_CallRequest_CalledToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CallerToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput
@@ -17057,6 +17072,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -17270,15 +17288,237 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCallRequests_CallRequest_CallerToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
+    Careers?: NexusGenInputs['CareerCreateNestedManyWithoutUserInput'] | null // CareerCreateNestedManyWithoutUserInput
+    ChatMessages?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
+      | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
+    ChatMessagesReaded?:
+      | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
+      | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
+    ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?:
+      | NexusGenInputs['ChatRoomInvitationCreateNestedManyWithoutUser_ChatRoomInvitation_CreatedByToUserInput']
+      | null // ChatRoomInvitationCreateNestedManyWithoutUser_ChatRoomInvitation_CreatedByToUserInput
+    ChatRoomInvitations_ChatRoomInvitation_UserToUser?:
+      | NexusGenInputs['ChatRoomInvitationCreateNestedManyWithoutUser_ChatRoomInvitation_UserToUserInput']
+      | null // ChatRoomInvitationCreateNestedManyWithoutUser_ChatRoomInvitation_UserToUserInput
+    ChatRooms_ChatRoomToUser?:
+      | NexusGenInputs['ChatRoomCreateNestedManyWithoutUser_ChatRoomToUserInput']
+      | null // ChatRoomCreateNestedManyWithoutUser_ChatRoomToUserInput
+    ChatRooms_ChatRoomsMembers?:
+      | NexusGenInputs['ChatRoomCreateNestedManyWithoutUser_ChatRoomsMembersInput']
+      | null // ChatRoomCreateNestedManyWithoutUser_ChatRoomsMembersInput
+    CodeChallengeBlocks?:
+      | NexusGenInputs['CodeChallengeBlockCreateNestedManyWithoutUserInput']
+      | null // CodeChallengeBlockCreateNestedManyWithoutUserInput
+    CodeChallengeCompletions?:
+      | NexusGenInputs['CodeChallengeCompletionCreateNestedManyWithoutUserInput']
+      | null // CodeChallengeCompletionCreateNestedManyWithoutUserInput
+    CodeChallenges?:
+      | NexusGenInputs['CodeChallengeCreateNestedManyWithoutUserInput']
+      | null // CodeChallengeCreateNestedManyWithoutUserInput
+    Comments?: NexusGenInputs['CommentCreateNestedManyWithoutUserInput'] | null // CommentCreateNestedManyWithoutUserInput
+    Donates?: NexusGenInputs['DonateCreateNestedManyWithoutDonatorInput'] | null // DonateCreateNestedManyWithoutDonatorInput
+    EthAccount_EthAccountToUser_EthAccountAuthed?:
+      | NexusGenInputs['EthAccountCreateNestedOneWithoutUser_EthAccountToUser_EthAccountAuthedInput']
+      | null // EthAccountCreateNestedOneWithoutUser_EthAccountToUser_EthAccountAuthedInput
+    EthAccounts_EthAccount_CreatedByToUser?:
+      | NexusGenInputs['EthAccountCreateNestedManyWithoutUser_EthAccount_CreatedByToUserInput']
+      | null // EthAccountCreateNestedManyWithoutUser_EthAccount_CreatedByToUserInput
+    EthContractSources?:
+      | NexusGenInputs['EthContractSourceCreateNestedManyWithoutUserInput']
+      | null // EthContractSourceCreateNestedManyWithoutUserInput
+    Files?: NexusGenInputs['FileCreateNestedManyWithoutUserInput'] | null // FileCreateNestedManyWithoutUserInput
+    Galleries?: NexusGenInputs['GalleryCreateNestedManyWithoutUserInput'] | null // GalleryCreateNestedManyWithoutUserInput
+    GameResults_GameResult_CreatedByToUser?:
+      | NexusGenInputs['GameResultCreateNestedManyWithoutUser_GameResult_CreatedByToUserInput']
+      | null // GameResultCreateNestedManyWithoutUser_GameResult_CreatedByToUserInput
+    GameResults_GameResult_UserToUser?:
+      | NexusGenInputs['GameResultCreateNestedManyWithoutUser_GameResult_UserToUserInput']
+      | null // GameResultCreateNestedManyWithoutUser_GameResult_UserToUserInput
+    Games_GameToUser?:
+      | NexusGenInputs['GameCreateNestedManyWithoutUser_GameToUserInput']
+      | null // GameCreateNestedManyWithoutUser_GameToUserInput
+    Games_GameUsers?:
+      | NexusGenInputs['GameCreateNestedManyWithoutUser_GameUsersInput']
+      | null // GameCreateNestedManyWithoutUser_GameUsersInput
+    Imports?: NexusGenInputs['ImportCreateNestedManyWithoutUserInput'] | null // ImportCreateNestedManyWithoutUserInput
+    LearnStrategies?:
+      | NexusGenInputs['LearnStrategyCreateNestedManyWithoutCreatedByInput']
+      | null // LearnStrategyCreateNestedManyWithoutCreatedByInput
+    Letters?:
+      | NexusGenInputs['LetterCreateNestedManyWithoutUser_LetterToUserInput']
+      | null // LetterCreateNestedManyWithoutUser_LetterToUserInput
+    LogedIns?:
+      | NexusGenInputs['LogedInCreateNestedManyWithoutUser_LogedInToUserInput']
+      | null // LogedInCreateNestedManyWithoutUser_LogedInToUserInput
+    MentorMenteeMentees?:
+      | NexusGenInputs['MentorMenteeCreateNestedManyWithoutMenteeInput']
+      | null // MentorMenteeCreateNestedManyWithoutMenteeInput
+    MentorMenteeMentors?:
+      | NexusGenInputs['MentorMenteeCreateNestedManyWithoutMentorInput']
+      | null // MentorMenteeCreateNestedManyWithoutMentorInput
+    Notices_Notice_CreatedByToUser?:
+      | NexusGenInputs['NoticeCreateNestedManyWithoutUser_Notice_CreatedByToUserInput']
+      | null // NoticeCreateNestedManyWithoutUser_Notice_CreatedByToUserInput
+    Notices_Notice_UserToUser?:
+      | NexusGenInputs['NoticeCreateNestedManyWithoutUser_Notice_UserToUserInput']
+      | null // NoticeCreateNestedManyWithoutUser_Notice_UserToUserInput
+    NotificationTypes_NotificationTypeToUser?:
+      | NexusGenInputs['NotificationTypeCreateNestedManyWithoutUser_NotificationTypeToUserInput']
+      | null // NotificationTypeCreateNestedManyWithoutUser_NotificationTypeToUserInput
+    NotificationTypes_UserNotificationTypes?:
+      | NexusGenInputs['NotificationTypeCreateNestedManyWithoutUser_UserNotificationTypesInput']
+      | null // NotificationTypeCreateNestedManyWithoutUser_UserNotificationTypesInput
+    Players?: NexusGenInputs['PlayerCreateNestedManyWithoutUserInput'] | null // PlayerCreateNestedManyWithoutUserInput
+    Positions_PositionToUser?:
+      | NexusGenInputs['PositionCreateNestedManyWithoutUser_PositionToUserInput']
+      | null // PositionCreateNestedManyWithoutUser_PositionToUserInput
+    Positions_PositionUsers?:
+      | NexusGenInputs['PositionCreateNestedManyWithoutUser_PositionUsersInput']
+      | null // PositionCreateNestedManyWithoutUser_PositionUsersInput
+    ProjectMembers_ProjectMember_CreatedByToUser?:
+      | NexusGenInputs['ProjectMemberCreateNestedManyWithoutUser_ProjectMember_CreatedByToUserInput']
+      | null // ProjectMemberCreateNestedManyWithoutUser_ProjectMember_CreatedByToUserInput
+    ProjectMembers_ProjectMember_UserToUser?:
+      | NexusGenInputs['ProjectMemberCreateNestedManyWithoutUser_ProjectMember_UserToUserInput']
+      | null // ProjectMemberCreateNestedManyWithoutUser_ProjectMember_UserToUserInput
+    ProjectTasks?:
+      | NexusGenInputs['ProjectTaskCreateNestedManyWithoutUserInput']
+      | null // ProjectTaskCreateNestedManyWithoutUserInput
+    Projects_PrismaProjectUsers?:
+      | NexusGenInputs['ProjectCreateNestedManyWithoutUser_PrismaProjectUsersInput']
+      | null // ProjectCreateNestedManyWithoutUser_PrismaProjectUsersInput
+    Projects_ProjectToUser?:
+      | NexusGenInputs['ProjectCreateNestedManyWithoutUser_ProjectToUserInput']
+      | null // ProjectCreateNestedManyWithoutUser_ProjectToUserInput
+    ResetPasswords?:
+      | NexusGenInputs['ResetPasswordCreateNestedManyWithoutUser_ResetPasswordToUserInput']
+      | null // ResetPasswordCreateNestedManyWithoutUser_ResetPasswordToUserInput
+    ResourceTags?:
+      | NexusGenInputs['ResourceTagCreateNestedManyWithoutUserInput']
+      | null // ResourceTagCreateNestedManyWithoutUserInput
+    Resources?:
+      | NexusGenInputs['ResourceCreateNestedManyWithoutUserInput']
+      | null // ResourceCreateNestedManyWithoutUserInput
+    Routes?: NexusGenInputs['RouteCreateNestedManyWithoutUserInput'] | null // RouteCreateNestedManyWithoutUserInput
+    ServiceCategories?:
+      | NexusGenInputs['ServiceCategoryCreateNestedManyWithoutUserInput']
+      | null // ServiceCategoryCreateNestedManyWithoutUserInput
+    Services?: NexusGenInputs['ServiceCreateNestedManyWithoutUserInput'] | null // ServiceCreateNestedManyWithoutUserInput
+    Settings?:
+      | NexusGenInputs['SettingsCreateNestedManyWithoutUser_SettingsToUserInput']
+      | null // SettingsCreateNestedManyWithoutUser_SettingsToUserInput
+    SmsMessages?:
+      | NexusGenInputs['SmsMessageCreateNestedManyWithoutUserInput']
+      | null // SmsMessageCreateNestedManyWithoutUserInput
+    SmsProviders?:
+      | NexusGenInputs['SmsProviderCreateNestedManyWithoutUserInput']
+      | null // SmsProviderCreateNestedManyWithoutUserInput
+    Tags?: NexusGenInputs['TagCreateNestedManyWithoutUserInput'] | null // TagCreateNestedManyWithoutUserInput
+    TaskMembers_TaskMember_CreatedByToUser?:
+      | NexusGenInputs['TaskMemberCreateNestedManyWithoutUser_TaskMember_CreatedByToUserInput']
+      | null // TaskMemberCreateNestedManyWithoutUser_TaskMember_CreatedByToUserInput
+    TaskMembers_TaskMember_UserToUser?:
+      | NexusGenInputs['TaskMemberCreateNestedManyWithoutUser_TaskMember_UserToUserInput']
+      | null // TaskMemberCreateNestedManyWithoutUser_TaskMember_UserToUserInput
+    TaskReactions?:
+      | NexusGenInputs['TaskReactionCreateNestedManyWithoutUserInput']
+      | null // TaskReactionCreateNestedManyWithoutUserInput
+    TaskTechnologies?:
+      | NexusGenInputs['TaskTechnologyCreateNestedManyWithoutUserInput']
+      | null // TaskTechnologyCreateNestedManyWithoutUserInput
+    Tasks?: NexusGenInputs['TaskCreateNestedManyWithoutUserInput'] | null // TaskCreateNestedManyWithoutUserInput
+    TeamMembers_TeamMember_CreatedByToUser?:
+      | NexusGenInputs['TeamMemberCreateNestedManyWithoutUser_TeamMember_CreatedByToUserInput']
+      | null // TeamMemberCreateNestedManyWithoutUser_TeamMember_CreatedByToUserInput
+    TeamMembers_TeamMember_UserToUser?:
+      | NexusGenInputs['TeamMemberCreateNestedManyWithoutUser_TeamMember_UserToUserInput']
+      | null // TeamMemberCreateNestedManyWithoutUser_TeamMember_UserToUserInput
+    Teams?: NexusGenInputs['TeamCreateNestedManyWithoutUserInput'] | null // TeamCreateNestedManyWithoutUserInput
+    Technologies?:
+      | NexusGenInputs['TechnologyCreateNestedManyWithoutUserInput']
+      | null // TechnologyCreateNestedManyWithoutUserInput
+    TechnologyLessonUsers?:
+      | NexusGenInputs['TechnologyLessonUserCreateNestedManyWithoutUserInput']
+      | null // TechnologyLessonUserCreateNestedManyWithoutUserInput
+    TechnologyLessons?:
+      | NexusGenInputs['TechnologyLessonCreateNestedManyWithoutUserInput']
+      | null // TechnologyLessonCreateNestedManyWithoutUserInput
+    Templates?:
+      | NexusGenInputs['TemplateCreateNestedManyWithoutUserInput']
+      | null // TemplateCreateNestedManyWithoutUserInput
+    Timers?: NexusGenInputs['TimerCreateNestedManyWithoutUserInput'] | null // TimerCreateNestedManyWithoutUserInput
+    Tokens?: NexusGenInputs['TokenCreateNestedManyWithoutUserInput'] | null // TokenCreateNestedManyWithoutUserInput
+    TournamentGroups?:
+      | NexusGenInputs['TournamentGroupCreateNestedManyWithoutUserInput']
+      | null // TournamentGroupCreateNestedManyWithoutUserInput
+    Tournaments?:
+      | NexusGenInputs['TournamentCreateNestedManyWithoutUserInput']
+      | null // TournamentCreateNestedManyWithoutUserInput
+    TourneyPlayers?:
+      | NexusGenInputs['TourneyPlayerCreateNestedManyWithoutUser_TourneyPlayerToUserInput']
+      | null // TourneyPlayerCreateNestedManyWithoutUser_TourneyPlayerToUserInput
+    Tourneys?: NexusGenInputs['TourneyCreateNestedManyWithoutUserInput'] | null // TourneyCreateNestedManyWithoutUserInput
+    User?: NexusGenInputs['UserCreateNestedOneWithoutOther_UsersInput'] | null // UserCreateNestedOneWithoutOther_UsersInput
+    UserGroups?:
+      | NexusGenInputs['UserGroupCreateNestedManyWithoutUsersInput']
+      | null // UserGroupCreateNestedManyWithoutUsersInput
+    UserLearnStrategies?:
+      | NexusGenInputs['UserLearnStrategyCreateNestedManyWithoutCreatedByInput']
+      | null // UserLearnStrategyCreateNestedManyWithoutCreatedByInput
+    UserTechnologies?:
+      | NexusGenInputs['UserTechnologyCreateNestedManyWithoutUserInput']
+      | null // UserTechnologyCreateNestedManyWithoutUserInput
+    Votes?:
+      | NexusGenInputs['VoteCreateNestedManyWithoutUser_UserToVoteInput']
+      | null // VoteCreateNestedManyWithoutUser_UserToVoteInput
+    Worlds?: NexusGenInputs['WorldCreateNestedManyWithoutUserInput'] | null // WorldCreateNestedManyWithoutUserInput
+    about?: NexusGenEnums['NullableJsonNullValueInput'] | null // NullableJsonNullValueInput
+    acceptChatMessageAnonymous?: boolean | null // Boolean
+    acceptNewChatRoom?: boolean | null // Boolean
+    acceptNewChatRoomAnonymous?: boolean | null // Boolean
+    activated?: boolean | null // Boolean
+    active?: boolean | null // Boolean
+    address?: string | null // String
+    blocked?: boolean | null // Boolean
+    createdAt?: NexusGenScalars['DateTime'] | null // DateTime
+    deleted?: boolean | null // Boolean
+    email?: string | null // String
+    fullname?: string | null // String
+    hidden?: boolean | null // Boolean
+    id?: string | null // String
+    image?: string | null // String
+    isMentor?: boolean | null // Boolean
+    marketplaceToken?: string | null // String
+    oldID?: number | null // Int
+    other_Users?: NexusGenInputs['UserCreateNestedManyWithoutUserInput'] | null // UserCreateNestedManyWithoutUserInput
+    password?: string | null // String
+    phone?: string | null // String
+    showEmail?: boolean | null // Boolean
+    showFullname?: boolean | null // Boolean
+    showPhone?: boolean | null // Boolean
+    sudo?: boolean | null // Boolean
+    technologyLevel?: number | null // Int
+    telegram?: string | null // String
+    updatedAt?: NexusGenScalars['DateTime'] | null // DateTime
+    username?: string | null // String
+  }
+  UserCreateWithoutChatMessagesIncomingInput: {
+    // input type
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
+    CallRequests_CallRequest_CalledToUser?:
+      | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
+      | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
+    CallRequests_CallRequest_CallerToUser?:
+      | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput']
+      | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput
     Careers?: NexusGenInputs['CareerCreateNestedManyWithoutUserInput'] | null // CareerCreateNestedManyWithoutUserInput
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
@@ -17496,12 +17736,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatMessagesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -17509,6 +17744,9 @@ export interface NexusGenInputs {
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CallerToUserInput
     Careers?: NexusGenInputs['CareerCreateNestedManyWithoutUserInput'] | null // CareerCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -17722,12 +17960,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatMessagesReadedInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -17738,6 +17971,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser?:
       | NexusGenInputs['ChatRoomInvitationCreateNestedManyWithoutUser_ChatRoomInvitation_CreatedByToUserInput']
       | null // ChatRoomInvitationCreateNestedManyWithoutUser_ChatRoomInvitation_CreatedByToUserInput
@@ -17948,12 +18184,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatRoomInvitations_ChatRoomInvitation_CreatedByToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -17964,6 +18195,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -18174,12 +18408,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatRoomInvitations_ChatRoomInvitation_UserToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18190,6 +18419,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -18400,12 +18632,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatRooms_ChatRoomToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18416,6 +18643,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -18626,12 +18856,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutChatRooms_ChatRoomsMembersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18642,6 +18867,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -18852,12 +19080,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCodeChallengeBlocksInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -18868,6 +19091,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -19078,12 +19304,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCodeChallengeCompletionsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -19094,6 +19315,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -19304,12 +19528,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCodeChallengesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -19320,6 +19539,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -19530,12 +19752,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutCommentsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -19546,6 +19763,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -19758,12 +19978,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutDonatesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -19774,6 +19989,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -19986,12 +20204,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutEthAccount_EthAccountToUser_EthAccountAuthedInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20002,6 +20215,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -20212,12 +20428,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutEthAccounts_EthAccount_CreatedByToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20228,6 +20439,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -20438,12 +20652,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutEthContractSourcesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20454,6 +20663,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -20664,12 +20876,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutFilesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20680,6 +20887,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -20892,12 +21102,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGalleriesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -20908,6 +21113,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -21120,12 +21328,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGameResults_GameResult_CreatedByToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21136,6 +21339,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -21346,12 +21552,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGameResults_GameResult_UserToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21362,6 +21563,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -21572,12 +21776,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGames_GameToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21588,6 +21787,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -21798,12 +22000,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutGames_GameUsersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -21814,6 +22011,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -22024,12 +22224,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutLearnStrategiesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22040,6 +22235,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -22250,12 +22448,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutMentorMenteeMenteesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22266,6 +22459,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -22476,12 +22672,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutMentorMenteeMentorsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22492,6 +22683,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -22702,12 +22896,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutNotices_Notice_CreatedByToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22718,6 +22907,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -22928,12 +23120,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutNotices_Notice_UserToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -22944,6 +23131,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -23154,12 +23344,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutNotificationTypes_NotificationTypeToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23170,6 +23355,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -23380,12 +23568,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutNotificationTypes_UserNotificationTypesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23396,6 +23579,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -23606,12 +23792,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutOther_UsersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23622,6 +23803,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -23834,12 +24018,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutPlayersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -23850,6 +24029,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -24062,12 +24244,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutPositions_PositionToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24078,6 +24255,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -24288,12 +24468,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutPositions_PositionUsersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24304,6 +24479,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -24514,12 +24692,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjectMembers_ProjectMember_CreatedByToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24530,6 +24703,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -24740,12 +24916,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjectMembers_ProjectMember_UserToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24756,6 +24927,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -24966,12 +25140,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjectTasksInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -24982,6 +25151,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -25192,12 +25364,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjects_PrismaProjectUsersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25208,6 +25375,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -25418,12 +25588,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutProjects_ProjectToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25434,6 +25599,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -25644,12 +25812,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutResourceTagsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25660,6 +25823,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -25870,12 +26036,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutResourcesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -25886,6 +26047,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -26096,12 +26260,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutRoutesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -26112,6 +26271,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -26324,12 +26486,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutServiceCategoriesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -26340,6 +26497,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -26550,12 +26710,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutServicesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -26566,6 +26721,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -26778,12 +26936,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutSmsMessagesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -26794,6 +26947,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -27004,12 +27160,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutSmsProvidersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27020,6 +27171,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -27230,12 +27384,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTagsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27246,6 +27395,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -27458,12 +27610,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTaskMembers_TaskMember_CreatedByToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27474,6 +27621,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -27684,12 +27834,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTaskMembers_TaskMember_UserToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27700,6 +27845,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -27910,12 +28058,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTaskReactionsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -27926,6 +28069,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -28136,12 +28282,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTaskTechnologiesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -28152,6 +28293,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -28362,12 +28506,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTasksInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -28378,6 +28517,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -28590,12 +28732,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTeamMembers_TeamMember_CreatedByToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -28606,6 +28743,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -28816,12 +28956,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTeamMembers_TeamMember_UserToUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -28832,6 +28967,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -29042,12 +29180,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTeamsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29058,6 +29191,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -29270,12 +29406,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTechnologiesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29286,6 +29417,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -29496,12 +29630,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTechnologyLessonUsersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29512,6 +29641,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -29722,12 +29854,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTechnologyLessonsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29738,6 +29865,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -29948,12 +30078,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTemplatesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -29964,6 +30089,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -30174,12 +30302,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTimersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -30190,6 +30313,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -30402,12 +30528,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTournamentGroupsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -30418,6 +30539,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -30628,12 +30752,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTournamentsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -30644,6 +30763,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -30854,12 +30976,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTourneyPlayersInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -30870,6 +30987,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -31080,12 +31200,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutTourneysInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -31096,6 +31211,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -31308,12 +31426,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutUserInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -31324,6 +31437,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -31536,12 +31652,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutUserLearnStrategiesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -31552,6 +31663,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -31762,12 +31876,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutUserTechnologiesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -31778,6 +31887,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -31988,12 +32100,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutVotesInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -32004,6 +32111,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -32214,12 +32324,7 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutWorldsInput: {
     // input type
-    AiMessages?:
-      | NexusGenInputs['AiMessageCreateNestedManyWithoutCreatedByInput']
-      | null // AiMessageCreateNestedManyWithoutCreatedByInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryCreateNestedManyWithoutCreatedByInput']
-      | null // AiSummaryCreateNestedManyWithoutCreatedByInput
+    AiAgent?: NexusGenInputs['AiAgentCreateNestedManyWithoutUserInput'] | null // AiAgentCreateNestedManyWithoutUserInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput']
       | null // CallRequestCreateNestedManyWithoutUser_CallRequest_CalledToUserInput
@@ -32230,6 +32335,9 @@ export interface NexusGenInputs {
     ChatMessages?:
       | NexusGenInputs['ChatMessageCreateNestedManyWithoutUserInput']
       | null // ChatMessageCreateNestedManyWithoutUserInput
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageCreateNestedManyWithoutToUserInput']
+      | null // ChatMessageCreateNestedManyWithoutToUserInput
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput']
       | null // ChatMessageReadedCreateNestedManyWithoutUser_ChatMessageReadedToUserInput
@@ -32624,10 +32732,7 @@ export interface NexusGenInputs {
   }
   UserOrderByWithRelationInput: {
     // input type
-    AiMessages?: NexusGenInputs['AiMessageOrderByRelationAggregateInput'] | null // AiMessageOrderByRelationAggregateInput
-    AiSummaries?:
-      | NexusGenInputs['AiSummaryOrderByRelationAggregateInput']
-      | null // AiSummaryOrderByRelationAggregateInput
+    AiAgent?: NexusGenInputs['AiAgentOrderByRelationAggregateInput'] | null // AiAgentOrderByRelationAggregateInput
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestOrderByRelationAggregateInput']
       | null // CallRequestOrderByRelationAggregateInput
@@ -32636,6 +32741,9 @@ export interface NexusGenInputs {
       | null // CallRequestOrderByRelationAggregateInput
     Careers?: NexusGenInputs['CareerOrderByRelationAggregateInput'] | null // CareerOrderByRelationAggregateInput
     ChatMessages?:
+      | NexusGenInputs['ChatMessageOrderByRelationAggregateInput']
+      | null // ChatMessageOrderByRelationAggregateInput
+    ChatMessagesIncoming?:
       | NexusGenInputs['ChatMessageOrderByRelationAggregateInput']
       | null // ChatMessageOrderByRelationAggregateInput
     ChatMessagesReaded?:
@@ -33053,8 +33161,7 @@ export interface NexusGenInputs {
   UserWhereInput: {
     // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null // [UserWhereInput!]
-    AiMessages?: NexusGenInputs['AiMessageListRelationFilter'] | null // AiMessageListRelationFilter
-    AiSummaries?: NexusGenInputs['AiSummaryListRelationFilter'] | null // AiSummaryListRelationFilter
+    AiAgent?: NexusGenInputs['AiAgentListRelationFilter'] | null // AiAgentListRelationFilter
     CallRequests_CallRequest_CalledToUser?:
       | NexusGenInputs['CallRequestListRelationFilter']
       | null // CallRequestListRelationFilter
@@ -33063,6 +33170,9 @@ export interface NexusGenInputs {
       | null // CallRequestListRelationFilter
     Careers?: NexusGenInputs['CareerListRelationFilter'] | null // CareerListRelationFilter
     ChatMessages?: NexusGenInputs['ChatMessageListRelationFilter'] | null // ChatMessageListRelationFilter
+    ChatMessagesIncoming?:
+      | NexusGenInputs['ChatMessageListRelationFilter']
+      | null // ChatMessageListRelationFilter
     ChatMessagesReaded?:
       | NexusGenInputs['ChatMessageReadedListRelationFilter']
       | null // ChatMessageReadedListRelationFilter
@@ -33595,9 +33705,11 @@ export interface NexusGenObjects {
   ChatMessage: ChatMessage
   ChatMessageResponse: {
     // root type
+    createdUser?: NexusGenRootTypes['AuthPayload'] | null // AuthPayload
     data?: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
     message: string // String!
+    reply?: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     success: boolean // Boolean!
   }
   ChatRoom: ChatRoom
@@ -33723,17 +33835,21 @@ export interface NexusGenFieldTypes {
     // field return type
     CreatedBy: NexusGenRootTypes['User'] | null // User
     Room: NexusGenRootTypes['ChatRoom'] | null // ChatRoom
+    ToUser: NexusGenRootTypes['User'] | null // User
     content: NexusGenScalars['JSON'] | null // JSON
     contentText: string | null // String
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     id: string // ID!
+    toUser: string | null // String
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
   ChatMessageResponse: {
     // field return type
+    createdUser: NexusGenRootTypes['AuthPayload'] | null // AuthPayload
     data: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     errors: NexusGenRootTypes['RequestError'][] // [RequestError!]!
     message: string // String!
+    reply: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     success: boolean // Boolean!
   }
   ChatRoom: {
@@ -33900,6 +34016,7 @@ export interface NexusGenFieldTypes {
   Mutation: {
     // field return type
     blockUser: NexusGenRootTypes['User'] // User!
+    createAiAgentUser: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     createBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse'] // ChatMessageResponse!
     createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
@@ -34014,6 +34131,7 @@ export interface NexusGenFieldTypes {
     chatMessage: NexusGenRootTypes['ChatMessage'] | null // ChatMessage
     chatMessages: NexusGenRootTypes['ChatMessage'][] // [ChatMessage!]!
     chatMessagesCount: number // Int!
+    chatMessagesDialog: NexusGenRootTypes['ChatMessage'][] // [ChatMessage!]!
     chatRoom: NexusGenRootTypes['ChatRoom'] | null // ChatRoom
     chatRooms: NexusGenRootTypes['ChatRoom'][] // [ChatRoom!]!
     chatRoomsCount: number // Int!
@@ -34271,6 +34389,7 @@ export interface NexusGenFieldTypes {
     hasPhone: boolean | null // Boolean
     id: string // String!
     image: string | null // String
+    isAiAgent: boolean | null // Boolean
     isMentor: boolean | null // Boolean
     phone: string | null // String
     showEmail: boolean | null // Boolean
@@ -34337,17 +34456,21 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     CreatedBy: 'User'
     Room: 'ChatRoom'
+    ToUser: 'User'
     content: 'JSON'
     contentText: 'String'
     createdAt: 'DateTime'
     id: 'ID'
+    toUser: 'String'
     updatedAt: 'DateTime'
   }
   ChatMessageResponse: {
     // field return type name
+    createdUser: 'AuthPayload'
     data: 'ChatMessage'
     errors: 'RequestError'
     message: 'String'
+    reply: 'ChatMessage'
     success: 'Boolean'
   }
   ChatRoom: {
@@ -34512,6 +34635,7 @@ export interface NexusGenFieldTypeNames {
   Mutation: {
     // field return type name
     blockUser: 'User'
+    createAiAgentUser: 'AuthPayload'
     createBlogProcessor: 'ResourceResponse'
     createChatMessageProcessor: 'ChatMessageResponse'
     createCodeChallengeCompletionProcessor: 'CodeChallengeCompletionResponse'
@@ -34626,6 +34750,7 @@ export interface NexusGenFieldTypeNames {
     chatMessage: 'ChatMessage'
     chatMessages: 'ChatMessage'
     chatMessagesCount: 'Int'
+    chatMessagesDialog: 'ChatMessage'
     chatRoom: 'ChatRoom'
     chatRooms: 'ChatRoom'
     chatRoomsCount: 'Int'
@@ -34881,6 +35006,7 @@ export interface NexusGenFieldTypeNames {
     hasPhone: 'Boolean'
     id: 'String'
     image: 'String'
+    isAiAgent: 'Boolean'
     isMentor: 'Boolean'
     phone: 'String'
     showEmail: 'Boolean'
@@ -34968,6 +35094,10 @@ export interface NexusGenArgTypes {
     blockUser: {
       // args
       where: NexusGenInputs['UserWhereUniqueInput'] // UserWhereUniqueInput!
+    }
+    createAiAgentUser: {
+      // args
+      data: NexusGenInputs['AiAgentCreateDataInput'] // AiAgentCreateDataInput!
     }
     createBlogProcessor: {
       // args

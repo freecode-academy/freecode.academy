@@ -53,12 +53,6 @@ fragment ChatMessageNoNesting on ChatMessage {
   contentText
 }
 
-mutation createChatMessageProcessor($data: ChatMessageCreateInput!) {
-  response: createChatMessageProcessor(data: $data) {
-    ...ChatMessageResponse_
-  }
-}
-
 fragment ChatMessageResponse_ on ChatMessageResponse {
   success
   message

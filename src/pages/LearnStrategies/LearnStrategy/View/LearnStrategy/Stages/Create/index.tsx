@@ -58,9 +58,13 @@ export const CreateLearnStrategyStage: React.FC<
     variablesSetter(defaultVariables)
   }, [defaultVariables, opened, stageType])
 
-  const onChangeTabIndex = useCallback((index) => {
-    stageTypeSetter(index)
-  }, [])
+  const onChangeTabIndex = useCallback(
+    // @ts-expect-error types
+    (index) => {
+      stageTypeSetter(index)
+    },
+    []
+  )
 
   const submit = useCallback(() => {
     if (inRequest) {

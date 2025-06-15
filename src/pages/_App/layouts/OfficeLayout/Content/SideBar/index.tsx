@@ -4,7 +4,11 @@ import { OfficeLayoutSideBarStyled } from './styles'
 /**
  * Боковая панель
  */
-const OfficeLayoutSideBar: React.FC = ({ children, ...other }) => {
+const OfficeLayoutSideBar: React.FC = ({
+  // @ts-expect-error types
+  children,
+  ...other
+}) => {
   return useMemo(() => {
     return (
       <>

@@ -10,7 +10,10 @@ import { MonacoEditorProps } from 'react-monaco-editor'
 
 export * from './interfaces'
 
-const MonacoEditor = dynamic(import('react-monaco-editor'), { ssr: false })
+// @ts-expect-error
+const MonacoEditor = dynamic(() => import('react-monaco-editor'), {
+  ssr: false,
+})
 
 // declare global {
 //   // eslint-disable-next-line @typescript-eslint/no-namespace

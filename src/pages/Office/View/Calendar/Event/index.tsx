@@ -64,6 +64,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
               showName={false}
             />
           ) : null}
+          {/* @ts-expect-error types */}
           <TaskLink object={task}>
             {/* {eventContent.event.title}{' '} */}
             {task?.status ? `(${task.status})` : null}

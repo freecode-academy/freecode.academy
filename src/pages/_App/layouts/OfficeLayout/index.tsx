@@ -11,7 +11,7 @@ import OfficeContext, { OfficeContextValue } from './Context'
 /**
  * Шаблон для личного кабинета
  */
-const OfficeLayout: React.FC = ({ children }) => {
+const OfficeLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
 
   const { projects, tasks } = useOfficeData({
@@ -41,6 +41,7 @@ const OfficeLayout: React.FC = ({ children }) => {
           <OfficeLayoutStyled>
             <OfficeLayoutNavBar></OfficeLayoutNavBar>
 
+            {/* @ts-expect-error types */}
             <OfficeLayoutContent>{children}</OfficeLayoutContent>
 
             {/* 

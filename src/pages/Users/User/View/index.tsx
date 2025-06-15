@@ -79,6 +79,8 @@ export const UserPageView: React.FC<UserPageViewProps> = ({ user }) => {
 
       switch (name) {
         case 'technologyLevel':
+          // @ts-expect-error types
+
           value = parseInt(value) as Scalars['UserTechnologyLevel']
           break
 

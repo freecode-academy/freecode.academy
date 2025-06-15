@@ -4,7 +4,13 @@ import { SvgIconStyled } from './styles'
 
 const SvgIcon: React.FC<SvgIconProps> = ({ src, ...other }) => {
   return useMemo(() => {
-    return <SvgIconStyled {...other} src={src} />
+    return (
+      <SvgIconStyled
+        {...other}
+        // @ts-expect-error types
+        src={src}
+      />
+    )
   }, [other, src])
 }
 

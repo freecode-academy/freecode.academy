@@ -4,7 +4,7 @@ import Button from 'src/components/ui/Button'
 import { CodeChallengeStatus } from 'src/hooks/useCodeChallengStatus'
 import {
   CodeChallengeFragment,
-  SortOrder,
+  // SortOrder,
   useCodeChallengesQuery,
 } from 'src/gql/generated'
 
@@ -19,9 +19,9 @@ export const NextLesson: React.FC<NextLessonProps> = ({ challenge }) => {
       cursor: {
         id: challenge.id,
       },
-      orderBy: {
-        rank: SortOrder.ASC,
-      },
+      // orderBy: {
+      //   rank: SortOrder.ASC,
+      // },
       where: {
         Block: {
           equals: challenge.Block,

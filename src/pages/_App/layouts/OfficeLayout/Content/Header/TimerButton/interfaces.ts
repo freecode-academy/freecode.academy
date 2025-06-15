@@ -1,19 +1,19 @@
 import { Scalars } from 'src/gql/generated'
 
-export type TimerButtonStyledProps = {
+export type TimerButtonStyledProps = React.PropsWithChildren<{
   status: 'play' | 'pause'
-}
+}>
 
 export type TimerButtonProps = TimerButtonStyledProps & {
   /**
    * Обработчик по клику
    */
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onClick: React.MouseEventHandler<HTMLButtonElement>
 
   /**
    * ID таймера. Нужен для корректной отработки останова таймера.
    */
-  timerId: Scalars['ID'] | undefined
+  timerId: Scalars['ID']['input'] | undefined
 
   title: string
 

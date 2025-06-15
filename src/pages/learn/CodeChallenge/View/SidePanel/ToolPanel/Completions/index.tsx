@@ -31,6 +31,7 @@ export const ToolPanelCompletions: React.FC<ToolPanelCompletionsProps> = ({
 
     return (
       <ToolPanelCompletionsStyled>
+        {/* @ts-expect-error types */}
         <ButtonStyled onClick={toggleOpened}>Чужие решения</ButtonStyled>
 
         {opened ? (

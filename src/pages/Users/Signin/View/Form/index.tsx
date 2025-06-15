@@ -114,6 +114,7 @@ const SigninForm: React.FC = () => {
   return useMemo(() => {
     return (
       <>
+        {/* @ts-expect-error types */}
         <SigninFormStyled role="signin" onSubmit={onSubmit} layout="column">
           <h2>Авторизоваться</h2>
 

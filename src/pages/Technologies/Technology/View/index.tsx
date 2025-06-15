@@ -33,15 +33,26 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
       <GridTableItemStyled>
         {showActions ? <GridTableAttributeStyled /> : null}
 
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Пользователь</GridTableAttributeStyled>
 
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Уровень</GridTableAttributeStyled>
+
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Статус</GridTableAttributeStyled>
+
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Готовность к найму</GridTableAttributeStyled>
+
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Менторство</GridTableAttributeStyled>
 
         <GridTableAttributesContainerStyled>
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>Используется С</GridTableAttributeStyled>
+
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>Используется До</GridTableAttributeStyled>
         </GridTableAttributesContainerStyled>
       </GridTableItemStyled>
@@ -206,6 +217,7 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
               </Grid>
             </Grid>
 
+            {/* @ts-expect-error types */}
             <TechnologyGridTableStyled
               showActions={showActions}
               showCreateBy={true}

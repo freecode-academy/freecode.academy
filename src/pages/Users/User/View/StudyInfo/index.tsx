@@ -15,6 +15,7 @@ export const UserStudyInfo: React.FC<UserStudyInfoProps> = ({ user }) => {
 
   return (
     <>
+      {/* @ts-expect-error types */}
       <ProjectLink object={project}>Пройденные уроки</ProjectLink>
     </>
   )

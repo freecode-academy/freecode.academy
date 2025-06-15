@@ -220,7 +220,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
     return context
   }, [apolloClient, logout, muiTheme, openLoginForm, router])
 
-  return (
+  const template = (
     <>
       <Head>
         <meta
@@ -257,6 +257,18 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
       </MuiThemeProvider>
     </>
   )
+
+  const [inited, initedSetter] = useState(
+    process.env.NODE_ENV === 'development'
+      ? process.env.NEXT_PUBLIC_SSR !== 'false'
+      : true
+  )
+
+  useEffect(() => {
+    initedSetter(true)
+  }, [inited])
+
+  return inited ? template : null
 }
 
 App.getInitialProps = async (appContext: AppContext) => {

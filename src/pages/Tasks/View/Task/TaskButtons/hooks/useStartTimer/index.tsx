@@ -7,7 +7,7 @@ type useStartTimerProps = {
   /**
    * ID задачи
    */
-  taskId: Scalars['ID']
+  taskId: Scalars['ID']['input']
 }
 
 /**

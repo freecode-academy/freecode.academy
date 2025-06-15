@@ -34,6 +34,8 @@ export const Editor: React.FC<ContainerProps> = ({
   const [value, setValue] = useState(valueProp)
 
   const onChangeCallback = useCallback(
+    // @ts-expect-error types
+
     (content, state) => {
       setValue(content)
 

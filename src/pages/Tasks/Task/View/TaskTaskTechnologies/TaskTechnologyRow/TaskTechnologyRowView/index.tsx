@@ -18,8 +18,12 @@ const TaskTechnologyRowView: React.FC<TaskTechnologyRowViewProps> = ({
     return (
       <>
         <GridTableItemStyled as="form" className={className} {...other}>
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>{buttons}</GridTableAttributeStyled>
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>{technology}</GridTableAttributeStyled>
+
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>{level}</GridTableAttributeStyled>
         </GridTableItemStyled>
       </>

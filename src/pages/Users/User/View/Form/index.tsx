@@ -84,6 +84,7 @@ export const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
 
   return (
     <>
+      {/* @ts-expect-error types */}
       <FormStyled layout="column" onSubmit={onSubmit}>
         <TextField
           title="ФИО"

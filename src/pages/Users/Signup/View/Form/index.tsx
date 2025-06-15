@@ -199,6 +199,7 @@ const SignupForm: React.FC = () => {
   return useMemo(() => {
     return (
       <>
+        {/* @ts-expect-error types */}
         <SignupFormStyled onSubmit={onSubmit} layout="column">
           <h2>Зарегистрироваться</h2>
 

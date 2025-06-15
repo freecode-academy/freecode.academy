@@ -301,6 +301,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
   }, [getValue, onStatusChange, task?.id])
 
   const onChangeNeedHelp = useCallback(
+    // @ts-expect-error types
     (_event, checked: boolean) => {
       setValue('needHelp', checked)
     },

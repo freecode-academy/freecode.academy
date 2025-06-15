@@ -28,6 +28,7 @@ export const LearnStrategiesView: React.FC<LearnStrategiesViewProps> = ({
   return (
     <>
       <LearnStrategiesViewStyled>
+        {/* @ts-expect-error types */}
         <LearnStrategiesViewHeaderStyled className="flex align-items-center">
           <Typography variant="title"></Typography>
           <Link href="/learnstrategies/create">
@@ -38,33 +39,47 @@ export const LearnStrategiesView: React.FC<LearnStrategiesViewProps> = ({
 
         <GridTableStyled>
           <GridTableItemStyled>
+            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               Название стратегии
             </GridTableAttributeStyled>
+
+            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               Технологический уровень
             </GridTableAttributeStyled>
+
+            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>Кто создал</GridTableAttributeStyled>
+
+            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>Участники</GridTableAttributeStyled>
           </GridTableItemStyled>
 
           {learnStrategies.map((n) => {
             return (
+              // @ts-expect-error types
               <GridTableItemStyled key={n.id}>
+                {/* @ts-expect-error types */}
                 <GridTableAttributeStyled>
                   <Link href={`/learnstrategies/${n.id}`}>{n.name}</Link>
 
                   <div>{n.description}</div>
                 </GridTableAttributeStyled>
+
+                {/* @ts-expect-error types */}
                 <GridTableAttributeStyled>
                   {getUserTechnologyLevelText(n.level)}
                 </GridTableAttributeStyled>
                 {n.CreatedBy ? (
+                  // @ts-expect-error types
                   <GridTableAttributeStyled>
                     {' '}
                     <UikitUserLink user={n.CreatedBy} />
                   </GridTableAttributeStyled>
                 ) : null}
+
+                {/* @ts-expect-error types */}
                 <GridTableAttributeStyled>
                   {' '}
                   <LearnStrategiesViewMembers

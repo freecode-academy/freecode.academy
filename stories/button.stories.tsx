@@ -19,9 +19,10 @@ type ButtonProps = {
   disabled?: boolean
 }
 
-type ButtonStyledProps = {
+type ButtonStyledProps = React.PropsWithChildren<{
   backgroundColor?: string
-}
+  color?: string
+}>
 
 const Button = styled.button<ButtonStyledProps>`
   border-radius: 3px;
@@ -50,6 +51,7 @@ export const withText: React.FC<ButtonProps> = (props) => {
   return (
     <Button
       {...other}
+      // @ts-expect-error types
       onClick={action('clicked')}
       backgroundColor={backgroundColor}
     >
@@ -59,7 +61,11 @@ export const withText: React.FC<ButtonProps> = (props) => {
 }
 
 export const withSomeEmoji: React.FC<ButtonProps> = (props) => (
-  <Button {...props} onClick={action('clicked')}>
+  <Button
+    {...props}
+    // @ts-expect-error types
+    onClick={action('clicked')}
+  >
     <span role="img" aria-label="so cool">
       😀 😎 👍 💯
     </span>

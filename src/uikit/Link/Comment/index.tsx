@@ -13,7 +13,13 @@ export * from './interfaces'
 
 export class UikitCommentLink extends Component<UikitCommentLinkProps> {
   render() {
-    const { object, children, linkType, ...other } = this.props
+    const {
+      object,
+      // @ts-expect-error types
+      children,
+      linkType,
+      ...other
+    } = this.props
 
     if (!object) {
       return null

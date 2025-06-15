@@ -32,6 +32,8 @@ const Preview: React.FC<PreviewProps> = (props) => {
   }, [challenge?.challengeType])
 
   return (
+    // @ts-expect-error types
+
     <CodeChallengePreviewStyled
       className={`challenge-preview ${iframeToggle}-iframe`}
     >

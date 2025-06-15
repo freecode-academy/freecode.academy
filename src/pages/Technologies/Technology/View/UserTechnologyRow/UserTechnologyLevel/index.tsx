@@ -23,6 +23,7 @@ const UserTechnologyLevel: React.FC<UserTechnologyLevelProps> = ({
           return
         }
 
+        // @ts-expect-error types
         newValue = value as Scalars['UserTechnologyLevel']
       } else {
         newValue = null

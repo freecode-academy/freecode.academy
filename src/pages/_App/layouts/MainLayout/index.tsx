@@ -9,12 +9,14 @@ import {
 } from './styles'
 import { LayoutStyledProps } from '../../interfaces'
 
+type MainLayoutProps = React.PropsWithChildren<{
+  layout: LayoutStyledProps | undefined
+}>
+
 /**
  * Главный шаблон для все основных страниц
  */
-const MainLayout: React.FC<{
-  layout: LayoutStyledProps | undefined
-}> = ({ children, layout }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ children, layout }) => {
   const context = useContext(Context) as PrismaCmsContext
 
   const header = useMemo(() => <Header user={context.user} />, [context.user])
@@ -24,7 +26,9 @@ const MainLayout: React.FC<{
       <>
         <LayoutStyled {...layout}>
           {header}
+          {/* @ts-expect-error types */}
           <LayoutWrapperStyled id="wrapper">
+            {/* @ts-expect-error types */}
             <LayoutContentStyled id="content">{children}</LayoutContentStyled>
           </LayoutWrapperStyled>
         </LayoutStyled>

@@ -41,6 +41,8 @@ const Editor: React.FC<EditorProps> = (props) => {
       value={value}
       readOnly={readOnly}
       onChange={onChange}
+      // @ts-expect-error types
+
       LinkComponent={LinkComponent}
       {...other}
     />

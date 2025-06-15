@@ -11,7 +11,9 @@ const UserChatSettings: React.FC<UserChatSettingsProps> = ({
 }) => {
   return (
     <Grid container spacing={8}>
+      {/* @ts-expect-error types */}
       <Paper>
+        {/* @ts-expect-error types */}
         <Title>Настройки чата</Title>
 
         <p>

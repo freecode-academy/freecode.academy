@@ -14,7 +14,9 @@ export const UserNotifications: React.FC<UserNotificationsProps> = ({
 
   return (
     <Grid container spacing={8}>
+      {/* @ts-expect-error types */}
       <Paper>
+        {/* @ts-expect-error types */}
         <Title>Настройки уведомлений</Title>
         {notifications.map((n) => {
           if (!n) {

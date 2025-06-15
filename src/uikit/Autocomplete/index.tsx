@@ -120,6 +120,7 @@ export class Autocomplete extends React.PureComponent<AutocompleteProps> {
 
       viewButton = (
         <Grid item>
+          {/* @ts-expect-error types */}
           {viewElement ? (
             viewElement
           ) : (

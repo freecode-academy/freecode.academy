@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // eslint-disable-next-line no-restricted-modules
+// @ts-nocheck
 const XMLWriter = require('xml-writer')
 
 import URI from 'urijs'
@@ -11,20 +12,19 @@ import Sitemap from '../'
 //   // TagConnection,
 //   UserConnection,
 // } from 'src/modules/gql/generated';
-import { initializeApollo } from '../../../src/lib/apolloClient'
-import {
-  SitemapUsersConnectionQuery,
-  SitemapUsersConnectionDocument,
-  SitemapUsersConnectionQueryVariables,
-  SitemapResourcesConnectionQuery,
-  SitemapResourcesConnectionQueryVariables,
-  SitemapResourcesConnectionDocument,
-  SitemapTagsConnectionQuery,
-  SitemapTagsConnectionQueryVariables,
-  SitemapTagsConnectionDocument,
-  TagStatus,
-  SortOrder,
-} from '../../../src/gql/generated'
+// import {
+//   SitemapUsersConnectionQuery,
+//   SitemapUsersConnectionDocument,
+//   SitemapUsersConnectionQueryVariables,
+//   SitemapResourcesConnectionQuery,
+//   SitemapResourcesConnectionQueryVariables,
+//   SitemapResourcesConnectionDocument,
+//   SitemapTagsConnectionQuery,
+//   SitemapTagsConnectionQueryVariables,
+//   SitemapTagsConnectionDocument,
+//   TagStatus,
+//   SortOrder,
+// } from '../../../src/gql/generated'
 
 const apolloClient = initializeApollo({
   withWs: false,

@@ -1,28 +1,6 @@
+/* eslint-disable no-console */
 import { Prisma } from '@prisma/client'
 import { extendType, objectType } from 'nexus'
-
-export const CodeChallengeBlockQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.codeChallengeBlocks({
-      filtering: true,
-      ordering: true,
-    })
-
-    t.nonNull.int('codeChallengeBlocksCount', {
-      args: {
-        where: 'CodeChallengeBlockWhereInput',
-      },
-      resolve(_, args, ctx) {
-        return ctx.prisma.codeChallengeBlock.count({
-          where: args.where as Prisma.CodeChallengeBlockCountArgs['where'],
-        })
-      },
-    })
-
-    t.crud.codeChallengeBlock({})
-  },
-})
 
 export const CodeChallengeBlock = objectType({
   name: 'CodeChallengeBlock',
@@ -35,6 +13,7 @@ export const CodeChallengeBlock = objectType({
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
     t.string('name')
+    t.int('rank')
 
     t.field('Parent', {
       type: 'CodeChallengeBlock',
@@ -78,5 +57,55 @@ export const CodeChallengeBlock = objectType({
         })
       },
     })
+  },
+})
+
+export const CodeChallengeBlockQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.codeChallengeBlocks({
+      filtering: true,
+      ordering: true,
+      /**
+       * Сортировка в новой версии не работает, когда массив передан. Да и вообще
+       */
+      // resolve(_, args, ctx) {
+      //   const orderBy = args.orderBy
+
+      //   console.log('orderBy', orderBy)
+
+      //   const rank = orderBy?.[0]?.rank
+
+      //   if (orderBy?.[0] && rank?.sort) {
+      //     console.log('rank', rank?.sort)
+
+      //     // @ts-expect-error Бага с типизацией сортировки
+      //     orderBy[0].rank = rank?.sort
+      //   }
+
+      //   // if(orderBy && !Array.isArray(orderBy) && orderBy)
+
+      //   return ctx.prisma.codeChallengeBlock.findMany({
+      //     ...(args as Prisma.CodeChallengeBlockFindManyArgs),
+      //     orderBy: {
+      //       // createdAt: 'desc',
+      //       rank: 'asc',
+      //     },
+      //   })
+      // },
+    })
+
+    t.nonNull.int('codeChallengeBlocksCount', {
+      args: {
+        where: 'CodeChallengeBlockWhereInput',
+      },
+      resolve(_, args, ctx) {
+        return ctx.prisma.codeChallengeBlock.count({
+          where: args.where as Prisma.CodeChallengeBlockCountArgs['where'],
+        })
+      },
+    })
+
+    t.crud.codeChallengeBlock({})
   },
 })

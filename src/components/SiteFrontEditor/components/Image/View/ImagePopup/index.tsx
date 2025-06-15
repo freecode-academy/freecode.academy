@@ -53,6 +53,7 @@ const ImagePopup: React.FC<ImagePopupProps> = ({ path }) => {
 
           <ImagePopupImageWrapperStyled>
             <ImagePopupImageStyled
+              //  @ts-expect-error types
               src={`/images/resized/origin/${path}`}
               onClick={onClick}
               role="popup"
@@ -61,6 +62,7 @@ const ImagePopup: React.FC<ImagePopupProps> = ({ path }) => {
         </Dialog>
 
         <ImagePopupImageStyled
+          //  @ts-expect-error types
           src={`/images/resized/middle/${path}`}
           onClick={onClick}
           role="main"

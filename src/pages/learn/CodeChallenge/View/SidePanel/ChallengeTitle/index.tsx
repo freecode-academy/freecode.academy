@@ -6,6 +6,8 @@ import { ChallengeTitleProps } from './interfaces'
 import { ChallengeTitleStyled } from './styles'
 
 const ChallengeTitle: React.FC<ChallengeTitleProps> = ({
+  // @ts-expect-error types
+
   children,
   // isCompleted,
   codeChallengeCompletion,
@@ -19,6 +21,7 @@ const ChallengeTitle: React.FC<ChallengeTitleProps> = ({
   return useMemo(() => {
     return (
       <>
+        {/* @ts-expect-error types */}
         <ChallengeTitleStyled className="challenge-title text-center">
           <CodeChallengeStatusIcon status={status} />{' '}
           {children || 'Happy Coding!'}

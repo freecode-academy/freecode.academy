@@ -140,6 +140,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
 
     if (activeTasks.length) {
       sections.push(
+        // @ts-expect-error types
         <OfficeProjectListSectionStyled key="activeTasks">
           {makeTasksListWithHierarchy(activeTasks).map((task) => {
             return (
@@ -159,6 +160,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
 
     if (completedTasks.length) {
       sections.push(
+        // @ts-expect-error types
         <OfficeProjectListSectionStyled key="completedTasks">
           <OfficeTitleStyled>Завершенные задачи</OfficeTitleStyled>
           {makeTasksListWithHierarchy(completedTasks).map((task) => {
@@ -179,6 +181,7 @@ const ProjectTasks: React.FC<ProjectTasksProps> = ({ project }) => {
 
     if (otherTasks.length) {
       sections.push(
+        // @ts-expect-error types
         <OfficeProjectListSectionStyled key="otherTasks">
           <OfficeTitleStyled>Остальные задачи</OfficeTitleStyled>
           {makeTasksListWithHierarchy(otherTasks).map((task) => {

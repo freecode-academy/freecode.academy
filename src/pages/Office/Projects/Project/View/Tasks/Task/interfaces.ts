@@ -8,7 +8,7 @@ export type OfficeProjectPageViewTaskProps = {
   }
 
   project?: {
-    id: Scalars['ID']
+    id: Scalars['ID']['input']
   }
 
   projects: OfficeProjectPageViewTaskProjectProps['project'][]

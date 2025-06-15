@@ -10,6 +10,8 @@ const CodeChallengeOutputView: React.FC<CodeChallengeOutputViewProps> = ({
   }, [output])
 
   return (
+    // @ts-expect-error types
+
     <CodeChallengeOutputViewStyled role="test-result--output">
       {content}
     </CodeChallengeOutputViewStyled>

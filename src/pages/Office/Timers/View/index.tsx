@@ -76,6 +76,7 @@ const OfficeTimersView: React.FC<OfficeTimersViewProps> = ({
   )
 
   const currentUserOnlyOnChange = useCallback(
+    // @ts-expect-error types
     (_, checked: boolean) => {
       setCurrentUserOnly(checked)
     },

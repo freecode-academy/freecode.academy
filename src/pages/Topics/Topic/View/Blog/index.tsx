@@ -9,7 +9,7 @@ import BlogAutocomplete from './BlogAutocomplete'
 import Typography from 'material-ui/Typography'
 import BlogLink from 'src/uikit/Link/Blog'
 import { TopicBlogProps } from './interfaces'
-import { ResourceType, SortOrder } from 'src/gql/generated'
+import { ResourceType } from 'src/gql/generated'
 
 // TODO Восстановить выбор блога
 
@@ -65,6 +65,7 @@ const TopicBlog: React.FC<TopicBlogProps> = (props) => {
 
   if (inEditMode && !Blog) {
     content = (
+      // @ts-expect-error types
       <BlogAutocomplete
         value={value}
         // getFilters={() => this.getFilters()}
@@ -82,9 +83,9 @@ const TopicBlog: React.FC<TopicBlogProps> = (props) => {
             equals: ResourceType.BLOG,
           },
         }}
-        orderBy={{
-          name: SortOrder.ASC,
-        }}
+        // orderBy={{
+        //   name: SortOrder.ASC,
+        // }}
       />
     )
   } else if (Blog) {

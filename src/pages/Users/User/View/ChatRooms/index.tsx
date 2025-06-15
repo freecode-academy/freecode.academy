@@ -1,15 +1,15 @@
-import React, { useCallback, useMemo } from 'react'
+import React from 'react'
 
-import { IconButton, Typography } from 'material-ui'
-import useStore from 'src/hooks/useStore'
-import { useCreateChatMessageProcessorMutation } from 'src/gql/generated/createChatMessageProcessor'
-import useProcessorMutation from 'src/hooks/useProcessorMutation'
-import { ChatMessageCreateInput } from 'src/gql/generated'
-import Grid from 'src/uikit/Grid'
-import Editor from 'src/uikit/Editor'
+import { Typography } from 'material-ui'
+// import useStore from 'src/hooks/useStore'
+// import { useCreateChatMessageProcessorMutation } from 'src/gql/generated/createChatMessageProcessor'
+// import useProcessorMutation from 'src/hooks/useProcessorMutation'
+// import { ChatMessageCreateInput } from 'src/gql/generated'
+// import Grid from 'src/uikit/Grid'
+// import Editor from 'src/uikit/Editor'
 import { UserChatRoomsProps } from './interfaces'
-import SendIcon from 'material-ui-icons/Send'
-import { useRouter } from 'next/router'
+// import SendIcon from 'material-ui-icons/Send'
+// import { useRouter } from 'next/router'
 
 const UserChatRooms: React.FC<UserChatRoomsProps> = ({
   user,
@@ -26,89 +26,88 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
 
   // render() {
 
-  const router = useRouter()
+  // const router = useRouter()
 
-  const createChatMessageTupple = useCreateChatMessageProcessorMutation()
+  // const createChatMessageTupple = useCreateChatMessageProcessorMutation()
 
-  const {
-    snakbar,
-    mutation: createChatMessageMutation,
-    loading: inRequest,
-  } = useProcessorMutation(createChatMessageTupple)
+  // const {
+  //   snakbar,
+  //   mutation: createChatMessageMutation,
+  //   loading: inRequest,
+  // } = useProcessorMutation(createChatMessageTupple)
 
-  // @ts-expect-error types
-  const { store, setValue } = useStore<ChatMessageCreateInput>({})
+  // const { store, setValue } = useStore<ChatMessageCreateInput>({})
 
-  const createChatMessage = useCallback(() => {
-    if (!store?.content || inRequest) {
-      return
-    }
+  // const createChatMessage = useCallback(() => {
+  //   if (!store?.content || inRequest) {
+  //     return
+  //   }
 
-    createChatMessageMutation({
-      variables: {
-        data: {
-          ...store,
-          // TODO Restore rooms logic
-          // @ts-expect-error types
-          Room: {
-            to: user.id,
-          },
-        },
-      },
-    }).then((r) => {
-      if (
-        !(r instanceof Error) &&
-        r.data?.response.success &&
-        r.data.response.data
-      ) {
-        if (r.data.response.data.Room) {
-          router.push(`/chat-rooms/${r.data.response.data.Room.id}`)
-        } else {
-          router.push(`/chat-messages/${r.data.response.data.id}`)
-        }
-      }
-    })
-  }, [createChatMessageMutation, inRequest, router, store, user.id])
+  //   createChatMessageMutation({
+  //     variables: {
+  //       data: {
+  //         ...store,
+  //         // TODO Restore rooms logic
+  //         // @ts-expect-error types
+  //         Room: {
+  //           to: user.id,
+  //         },
+  //       },
+  //     },
+  //   }).then((r) => {
+  //     if (
+  //       !(r instanceof Error) &&
+  //       r.data?.response.success &&
+  //       r.data.response.data
+  //     ) {
+  //       if (r.data.response.data.Room) {
+  //         router.push(`/chat-rooms/${r.data.response.data.Room.id}`)
+  //       } else {
+  //         router.push(`/chat-messages/${r.data.response.data.id}`)
+  //       }
+  //     }
+  //   })
+  // }, [createChatMessageMutation, inRequest, router, store, user.id])
 
-  const onEditComment = useCallback(
-    (content: ChatMessageCreateInput['content']) => {
-      setValue('content', content)
-    },
-    [setValue]
-  )
+  // const onEditComment = useCallback(
+  //   (content: ChatMessageCreateInput['content']) => {
+  //     setValue('content', content)
+  //   },
+  //   [setValue]
+  // )
 
-  const newMessage = useMemo(() => {
-    if (!user) {
-      return null
-    }
+  // const newMessage = useMemo(() => {
+  //   if (!user) {
+  //     return null
+  //   }
 
-    return (
-      <Grid container>
-        <Grid item xs>
-          <Editor
-            // className="topic-editor"
-            editorKey="comment"
-            // @ts-expect-error types
-            value={store?.content || undefined}
-            readOnly={false}
-            // fullView={true}
-            // allow_edit={allow_edit}
-            onChange={onEditComment}
-          />
-        </Grid>
+  //   return (
+  //     <Grid container>
+  //       <Grid item xs>
+  //         <Editor
+  //           // className="topic-editor"
+  //           editorKey="comment"
+  //           // @ts-expect-error types
+  //           value={store?.content || undefined}
+  //           readOnly={false}
+  //           // fullView={true}
+  //           // allow_edit={allow_edit}
+  //           onChange={onEditComment}
+  //         />
+  //       </Grid>
 
-        <Grid item>
-          <IconButton
-            onClick={createChatMessage}
-            disabled={inRequest}
-            title="Отправить сообщение"
-          >
-            <SendIcon color={store?.content ? 'primary' : undefined} />
-          </IconButton>
-        </Grid>
-      </Grid>
-    )
-  }, [createChatMessage, inRequest, onEditComment, store?.content, user])
+  //       <Grid item>
+  //         <IconButton
+  //           onClick={createChatMessage}
+  //           disabled={inRequest}
+  //           title="Отправить сообщение"
+  //         >
+  //           <SendIcon color={store?.content ? 'primary' : undefined} />
+  //         </IconButton>
+  //       </Grid>
+  //     </Grid>
+  //   )
+  // }, [createChatMessage, inRequest, onEditComment, store?.content, user])
 
   if (!user) {
     return null
@@ -126,7 +125,7 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
 
   if (!currentUserId || currentUserId !== userId) {
     // TODO Restore
-    newMessage
+    // newMessage
     Typography
 
     // sendMessage = (
@@ -144,7 +143,7 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
 
   return (
     <>
-      {snakbar}
+      {/* {snakbar} */}
 
       {sendMessage}
 

@@ -1,13 +1,13 @@
-import { Dispatch, SetStateAction, useMemo, useRef } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import {
   ChatMessageFragment,
-  useCreateChatMessageProcessorMutation,
+  // useCreateChatMessageProcessorMutation,
   UserFragment,
 } from 'src/gql/generated'
 import { ChatMessageType } from './interfaces'
 import {
   AiMessageContentStyled,
-  AiMessageInputStyled,
+  // AiMessageInputStyled,
   AiMessageFormStyled,
 } from './styles'
 
@@ -36,76 +36,81 @@ export const AiMessage: React.FC<AiMessageProps> = ({
   message,
   type,
   isNew,
-  onChange,
-  setMessages,
-  newMessageSetter,
-  user,
+  // onChange,
+  // setMessages,
+  // newMessageSetter,
+  // user,
   // currentUser,
   ...other
 }) => {
-  const [createChatMessage, { loading: inRequest }] =
-    useCreateChatMessageProcessorMutation({})
+  // const [createChatMessage, { loading: inRequest }] =
+  //   useCreateChatMessageProcessorMutation({})
 
-  const inputRef = useRef<HTMLTextAreaElement | null>(null)
+  // const inputRef = useRef<HTMLTextAreaElement | null>(null)
 
-  const onSubmit = useMemo<React.FormEventHandler | undefined>(() => {
-    if (!isNew) {
-      return
-    }
+  // const onSubmit = useMemo<React.FormEventHandler | undefined>(() => {
+  //   if (!isNew) {
+  //     return
+  //   }
 
-    return (event) => {
-      event.preventDefault()
-      // newMessageSetter((message) => {
-      const messageText = inputRef.current?.value
+  //   return (event) => {
+  //     event.preventDefault()
+  //     // newMessageSetter((message) => {
+  //     const messageText = inputRef.current?.value
 
-      if (!messageText) {
-        alert('Message is empty')
-      }
+  //     if (!messageText) {
+  //       alert('Message is empty')
+  //     }
 
-      createChatMessage({
-        variables: {
-          data: {
-            content: messageText ?? '',
-            toUser: {
-              id: user.id,
-            },
-          },
-        },
-      })
-        .then((response) => {
-          const openAiResponse = response.data?.response
+  //     createChatMessage({
+  //       variables: {
+  //         data: {
+  //           content: messageText ?? '',
+  //           toUser: {
+  //             id: user.id,
+  //           },
+  //         },
+  //       },
+  //     })
+  //       .then((response) => {
+  //         const openAiResponse = response.data?.response
 
-          const responseMessage = openAiResponse?.data
-          const responseMessageReply = openAiResponse?.reply
+  //         const responseMessage = openAiResponse?.data
+  //         const responseMessageReply = openAiResponse?.reply
 
-          if (responseMessage) {
-            newMessageSetter('')
+  //         if (responseMessage) {
+  //           newMessageSetter('')
 
-            setMessages((prev) => {
-              const messages = [...prev, responseMessage]
+  //           setMessages((prev) => {
+  //             const messages = [...prev, responseMessage]
 
-              if (responseMessageReply) {
-                messages.push(responseMessageReply)
-              }
+  //             if (responseMessageReply) {
+  //               messages.push(responseMessageReply)
+  //             }
 
-              return messages
-            })
-          }
-        })
-        .catch((error) => {
-          console.error('error', error)
-          alert(error.message)
-        })
+  //             return messages
+  //           })
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error('error', error)
+  //         alert(error.message)
+  //       })
 
-      //   return message
-      // })
-    }
-  }, [createChatMessage, isNew, newMessageSetter, setMessages, user.id])
+  //     //   return message
+  //     // })
+  //   }
+  // }, [createChatMessage, isNew, newMessageSetter, setMessages, user.id])
 
   return (
-    <AiMessageFormStyled type={type} onSubmit={onSubmit} {...other}>
+    // @ts-expect-error types
+    <AiMessageFormStyled
+      type={type}
+      // onSubmit={onSubmit}
+      {...other}
+    >
       <AiMessageContentStyled>
-        {isNew ? (
+        {/* {isNew ? (
           <AiMessageInputStyled
             ref={inputRef}
             value={message}
@@ -114,14 +119,15 @@ export const AiMessage: React.FC<AiMessageProps> = ({
           />
         ) : (
           message.contentText
-        )}
+        )} */}
+        {isNew ? null : message.contentText}
       </AiMessageContentStyled>
 
-      {isNew && (
+      {/* {isNew && (
         <button type="submit" disabled={inRequest}>
           Send
         </button>
-      )}
+      )} */}
     </AiMessageFormStyled>
   )
 }

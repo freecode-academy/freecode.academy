@@ -33937,6 +33937,7 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['DateTime'] // DateTime!
     id: string // ID!
     name: string | null // String
+    rank: number | null // Int
     updatedAt: NexusGenScalars['DateTime'] // DateTime!
   }
   CodeChallengeCompletion: {
@@ -34555,6 +34556,7 @@ export interface NexusGenFieldTypeNames {
     createdAt: 'DateTime'
     id: 'ID'
     name: 'String'
+    rank: 'Int'
     updatedAt: 'DateTime'
   }
   CodeChallengeCompletion: {

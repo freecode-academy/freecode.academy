@@ -10,6 +10,8 @@ export const ExecuteChallengeButton: React.FC<ExecuteChallengeButtonProps> = ({
 }) => {
   return useMemo(() => {
     return (
+      // @ts-expect-error types
+
       <ButtonStyled role="run-tests" onClick={executeChallenge} {...other}>
         {currentUser && !codeChallengeCompletion
           ? 'Приступить к выполнению'

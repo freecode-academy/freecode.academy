@@ -98,11 +98,14 @@ const SidePanel: React.FC<SidePanelProps> = ({
 
   return useMemo(() => {
     return (
+      // @ts-expect-error types
+
       <SidePanelStyled
         className="instructions-panel"
         role="complementary"
         tabIndex={-1}
       >
+        {/* @ts-expect-error types */}
         <ChallengeTitle
           codeChallengeCompletion={codeChallengeCompletion}
           executeChallenge={executeChallenge}

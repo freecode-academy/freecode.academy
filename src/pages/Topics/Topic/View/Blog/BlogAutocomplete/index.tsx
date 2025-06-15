@@ -42,9 +42,13 @@ const BlogAutocomplete: React.FC<BlogAutocompleteProps> = (props) => {
     })
   }, [props])
 
-  const onMenuVisibilityChange = useCallback((opened) => {
-    setOpened(opened)
-  }, [])
+  const onMenuVisibilityChange = useCallback(
+    // @ts-expect-error types
+    (opened) => {
+      setOpened(opened)
+    },
+    []
+  )
 
   // onSelect = (value, item) => {
   //   const { updateObject } = props
@@ -144,6 +148,7 @@ const BlogAutocomplete: React.FC<BlogAutocompleteProps> = (props) => {
         onSelect={onSelect}
         viewElement={
           !opened && object ? (
+            // @ts-expect-error types
             <BlogLink object={object} target="_blank">
               <ViewIcon />
             </BlogLink>

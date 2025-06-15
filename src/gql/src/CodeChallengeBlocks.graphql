@@ -1,12 +1,14 @@
 query codeChallengeBlocks(
   $where: CodeChallengeBlockWhereInput = { Parent: null }
-  $orderBy: [CodeChallengeBlockOrderByWithRelationInput!] = { rank: asc }
+  # $orderBy: [CodeChallengeBlockOrderByWithRelationInput!] = {
+  #   rank: { sort: asc }
+  # }
   $take: Int
   $skip: Int
 ) {
   codeChallengeBlocks(
     where: $where
-    orderBy: $orderBy
+    # orderBy: $orderBy
     take: $take
     skip: $skip
   ) {
@@ -20,14 +22,27 @@ query codeChallengeBlock($where: CodeChallengeBlockWhereUniqueInput!) {
   }
 }
 
+# fragment codeChallengeBlocksBlock on CodeChallengeBlock {
+#   ...challengeBlockNoNesting
+#   Challenges(orderBy: { rank: { sort: asc } }) {
+#     ...challenge
+#   }
+#   Children(orderBy: { rank: { sort: asc } }) {
+#     ...challengeBlockNoNesting
+#     Challenges(orderBy: { rank: { sort: asc } }) {
+#       ...challenge
+#     }
+#   }
+# }
+
 fragment codeChallengeBlocksBlock on CodeChallengeBlock {
   ...challengeBlockNoNesting
-  Challenges(orderBy: { rank: asc }) {
+  Challenges {
     ...challenge
   }
-  Children(orderBy: { rank: asc }) {
+  Children {
     ...challengeBlockNoNesting
-    Challenges(orderBy: { rank: asc }) {
+    Challenges {
       ...challenge
     }
   }

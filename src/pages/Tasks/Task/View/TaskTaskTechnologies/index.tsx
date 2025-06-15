@@ -102,9 +102,13 @@ const TaskTaskTechnologies: React.FC<TaskTaskTechnologiesProps> = ({
   const header = useMemo(() => {
     return (
       <GridTableItemStyled>
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>{buttons}</GridTableAttributeStyled>
 
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Технология</GridTableAttributeStyled>
+
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Требуемый уровень</GridTableAttributeStyled>
 
         {/* <GridTableAttributeStyled>Технологический уровень</GridTableAttributeStyled>

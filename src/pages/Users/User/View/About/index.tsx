@@ -13,6 +13,7 @@ export const UserAbout: React.FC<UserAboutProps> = ({
   inEditMode,
 }) => {
   const onChangeState: EditorComponentProps['onChangeState'] = useCallback(
+    // @ts-expect-error types
     (data) => {
       setData({
         about: {

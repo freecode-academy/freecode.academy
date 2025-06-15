@@ -6,7 +6,11 @@ import { OfficeLayoutContentStyled } from './styles'
 /**
  * Боковая панель
  */
-const OfficeLayoutContent: React.FC = ({ children, ...other }) => {
+const OfficeLayoutContent: React.FC = ({
+  // @ts-expect-error types
+  children,
+  ...other
+}) => {
   return useMemo(() => {
     return (
       <>

@@ -11,9 +11,9 @@ import {
 // import { muiTheme } from './MUI/theme'
 import { AppContext, AppInitialProps as NextAppInitialProps } from 'next/app'
 
-export interface LayoutStyledProps {
+export type LayoutStyledProps = React.PropsWithChildren<{
   variant?: 'default' | 'fullwidth' | 'office'
-}
+}>
 
 /**
  * Расширенный контекст страниц приложения

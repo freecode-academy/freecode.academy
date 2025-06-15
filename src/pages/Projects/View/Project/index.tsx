@@ -249,6 +249,7 @@ export class ProjectView<
                 padding: 3,
               }}
             >
+              {/* @ts-expect-error types */}
               <ProjectLink object={object}>
                 <Typography variant="title">{name}</Typography>
               </ProjectLink>

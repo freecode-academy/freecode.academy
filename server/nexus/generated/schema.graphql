@@ -1256,6 +1256,7 @@ type CodeChallengeBlock {
   createdAt: DateTime!
   id: ID!
   name: String
+  rank: Int
   updatedAt: DateTime!
 }
 

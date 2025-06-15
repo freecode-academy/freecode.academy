@@ -179,8 +179,10 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
     return (
       <LearnStageTechnologyStyled>
         <div className="flex align-items-center">
-          Требуемая технология:{' '}
-          <TechnologyLink object={technology}>{technology.name}</TechnologyLink>{' '}
+          Требуемая технология: {/* @ts-expect-error types */}
+          <TechnologyLink object={technology}>
+            {technology.name}
+          </TechnologyLink>{' '}
           {learnStrategyStage.level
             ? ` Уровень: ${learnStrategyStage.level}`
             : null}

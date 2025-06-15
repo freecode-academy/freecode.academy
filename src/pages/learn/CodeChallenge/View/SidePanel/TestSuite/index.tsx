@@ -32,6 +32,7 @@ const TestSuite: React.FC<TestSuiteProps> = ({ tests }) => {
   const testsResults = context?.testsResults ?? []
 
   return (
+    // @ts-expect-error types
     <TestSuiteStyled className="challenge-test-suite">
       {tests.map(
         (

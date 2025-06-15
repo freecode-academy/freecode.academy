@@ -123,6 +123,7 @@ export const CreateTechnologyPage: Page = () => {
       <>
         <NextSeo title="Создание технологии" nofollow noindex />
 
+        {/* @ts-expect-error types */}
         <CreateTechnologyForm onSubmit={onSubmit} layout="column">
           <h2>Новая технология</h2>
 

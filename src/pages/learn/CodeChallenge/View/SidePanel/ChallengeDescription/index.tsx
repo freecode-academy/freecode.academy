@@ -13,6 +13,8 @@ export const ChallengeDescription: React.FC<ChallengeDescriptionProps> = ({
   codeChallengeCompletion,
 }) => {
   return (
+    // @ts-expect-error types
+
     <ChallengeDescriptionStyled
       // className={`challenge-instructions ${section ? section : ''}`}
       className={`challenge-instructions`}

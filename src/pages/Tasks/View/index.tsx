@@ -19,24 +19,43 @@ const TasksView: React.FC<TasksViewProps> = ({
   const header = useMemo(() => {
     return (
       <GridTableItemStyled>
-        <GridTableAttributeStyled className="buttons" />
+        <GridTableAttributeStyled
+          // @ts-expect-error types
+          className="buttons"
+        />
+
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled className="status">
           Статус
         </GridTableAttributeStyled>
+
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Задача</GridTableAttributeStyled>
         <GridTableAttributesContainerStyled>
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>Дата создания</GridTableAttributeStyled>
+
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>
             Планируемая дата начала
           </GridTableAttributeStyled>
+
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>
             Планируемая дата выполнения
           </GridTableAttributeStyled>
 
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>Дата начала</GridTableAttributeStyled>
+
+          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>Дата выполнения</GridTableAttributeStyled>
         </GridTableAttributesContainerStyled>
+
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Постановщик</GridTableAttributeStyled>
+
+        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Кто работает</GridTableAttributeStyled>
       </GridTableItemStyled>
     )

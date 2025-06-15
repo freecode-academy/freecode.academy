@@ -142,6 +142,7 @@ export class ForumView<
 
           return (
             <div>
+              {/* @ts-expect-error types */}
               <TopicLink object={record}>
                 <Typography variant="subheading">{name}</Typography>
               </TopicLink>
@@ -164,6 +165,7 @@ export class ForumView<
 
           return (
             (value && (
+              // @ts-expect-error types
               <BlogLink object={value} variant="button">
                 {name}
               </BlogLink>

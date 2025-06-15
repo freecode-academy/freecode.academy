@@ -71,7 +71,7 @@ class UikitUserLink extends Component<UikitUserLinkProps> {
 
     const name = fullname || username
 
-    const url = `/profile/${username}/`
+    const url = username ? `/profile/${username}/` : `/profile/id/${id}/`
     // const url = `/users/${id}`;
 
     const avatarLink = (

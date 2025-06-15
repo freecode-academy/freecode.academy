@@ -12,16 +12,35 @@ import { Page, NextPageContextCustom } from '../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 
+/**
+ * Здесь сейчас расчет на то, что точно передан или айди, или юзернейм
+ */
 function getVariables(
   router: NextRouter | NextPageContextCustom
 ): UserQueryVariables {
+  let where: UserQueryVariables['where']
+
+  const id =
+    router.query.id && typeof router.query.id === 'string'
+      ? router.query.id
+      : undefined
+  const username =
+    router.query.username && typeof router.query.username === 'string'
+      ? router.query.username
+      : undefined
+
+  if (id) {
+    where = {
+      id,
+    }
+  } else {
+    where = {
+      username,
+    }
+  }
+
   return {
-    where: {
-      username:
-        router.query.username && typeof router.query.username === 'string'
-          ? router.query.username
-          : undefined,
-    },
+    where,
     withEducationProjects: true,
   }
 }

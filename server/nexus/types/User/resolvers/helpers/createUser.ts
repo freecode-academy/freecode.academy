@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
-import { createPassword, createToken } from '..'
+import { createPassword, createToken } from '../helpers'
 
 export async function createUser(
   data: Prisma.UserCreateInput,

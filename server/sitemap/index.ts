@@ -1,16 +1,6 @@
-// TODO Move to front
-
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-// import { ApolloProvider } from 'react-apollo';
-// import { ApolloClient } from 'apollo-client';
-// import { createHttpLink } from 'apollo-link-http';
-// import Express from 'express';
-// import { StaticRouter } from 'react-router';
-// import { InMemoryCache } from "apollo-cache-inmemory";
-
-// import fetch from 'node-fetch';
-
-// declare module 'xml-writer'
+// @ts-nocheck
+// TODO Move to front
 
 import chalk from 'chalk'
 

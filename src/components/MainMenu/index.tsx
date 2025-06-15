@@ -15,7 +15,6 @@ import Grid from 'src/uikit/Grid'
 // import UserItem from './User'
 import UserLink from 'src/uikit/Link/User'
 
-// import { Link } from 'react-router-dom'
 import Link from 'next/link'
 
 import PrismaCmsComponent from '@prisma-cms/component'

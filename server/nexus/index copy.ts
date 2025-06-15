@@ -1,28 +1,18 @@
-import {
-  // intArg,
-  makeSchema,
-  // nonNull,
-  // objectType,
-  // stringArg,
-  // inputObjectType,
-  // arg,
-  asNexusMethod,
-  // enumType,
-} from 'nexus'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 
-import './fix/pluralize'
+import { makeSchema, asNexusMethod } from 'nexus'
 
 import { GraphQLDateTime } from 'graphql-iso-date'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 
+import './fix/pluralize'
+
 import * as types from './types'
-import { applyMiddleware } from 'graphql-middleware'
-import { permissions } from '../graphqlServer/permissions'
 
-// @ts-expect-error types
-export const DateTime = asNexusMethod(GraphQLDateTime, 'date')
+export const DateTime = asNexusMethod(GraphQLDateTime, 'date', 'Date')
 
-const schemaBase = makeSchema({
+export const schema = makeSchema({
   /**
    * Надо будет перепроверить правильно ли использовать эти настройки
    */
@@ -45,8 +35,6 @@ const schemaBase = makeSchema({
   ],
   types: {
     ...types,
-    // Query,
-    // Resource,
     DateTime,
   },
   outputs: {
@@ -65,31 +53,6 @@ const schemaBase = makeSchema({
         module: '@prisma-cms/front-editor/dist/EditorComponent/interfaces',
         onlyTypes: ['EditorComponentObject'],
       },
-      // {
-      //   module: '@prisma/client',
-      //   alias: 'prisma',
-      // },
-      // {
-      //   module: require.resolve('/disk480/www/gorodskie-bani.ru/v2/front/node_modules/.prisma/client/index.d.ts'),
-      //   alias: 'prisma',
-      // },
-      // {
-      //   module: require.resolve('/disk480/www/gorodskie-bani.ru/v2/front/server/nexus/types/index.ts'),
-      //   alias: 'inputs',
-      // },
-      // {
-      //   module: '@prisma/client',
-      //   alias: 'bani684_site_contentWhereInput',
-      // },
-      // sourceType: {
-      // },
-      // {
-      //   module: path.join(
-      //     __dirname,
-      //     './endpoints/landing-public/api/generated/PromoCode_.ts'
-      //   ),
-      //   alias: 'PromoCode_',
-      // },
     ],
   },
   prettierConfig:
@@ -97,5 +60,3 @@ const schemaBase = makeSchema({
       ? require.resolve(process.cwd() + '/.prettierrc')
       : undefined,
 })
-
-export const schema = applyMiddleware(schemaBase, permissions)

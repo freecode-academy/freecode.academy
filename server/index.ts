@@ -2,14 +2,10 @@ import express from 'express'
 import next from 'next'
 
 import './config'
-import graphqlServer from './graphqlServer'
 
-import { graphqlUploadExpress } from 'graphql-upload'
 import { imageResizerMiddleware } from './middleware/imageResizer'
-import { startMailer } from './modules/Mailer'
-import { context } from './nexus/context'
-
-import Sitemap from './sitemap/prisma-cms.com'
+import { setupGraphqlServer } from './graphqlServer/setupGraphqlServer'
+import { createProxyMiddleware } from 'http-proxy-middleware'
 
 const cwd = process.cwd()
 
@@ -19,31 +15,25 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
-  if (process.env.Sendmail === 'true') {
-    startMailer(context)
-  }
-
   const server = express()
 
   server.use('/images/', imageResizerMiddleware)
 
   server.use(express.static(cwd + '/shared'))
 
-  // TODO Restore images
-  // server.use(
-  //   '/images/',
-  //   createProxy({
-  //     pathRewrite: {
-  //       '^/images/resized/([^/]+)/uploads/(.+)': '/images/$1/$2',
-  //       '^/images/resized/([^/]+)/(.+)': '/images/$1/$2',
-  //       '^/images/([^/]+)/uploads/(.+)': '/images/$1/$2',
-  //     },
-  //   })
-  // )
-
-  // server.use('/uploads', express.static('/'))
-
   server.use('/uploads', (req, res) => {
+    res.sendFile(
+      cwd + '/uploads/' + decodeURI(req.url),
+      (error: Error & { status?: number; statusCode?: number }) => {
+        if (error) {
+          console.error('server /uploads', error)
+          res.status(error.status || 404).end()
+        }
+      }
+    )
+  })
+
+  server.use('/assets', (req, res) => {
     res.sendFile(
       cwd + '/uploads/' + decodeURI(req.url),
       (error: Error & { status?: number; statusCode?: number }) => {
@@ -60,31 +50,56 @@ app.prepare().then(() => {
    */
   server.use(express.static(cwd + '/.next/public'))
 
-  // server.use(
-  //   '/api',
-  //   graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
-  //   // graphqlHTTP({ schema })
-  // )
+  // Запускаем GraphQL сервер и получаем его порт
+  return setupGraphqlServer().then(({ port: graphqlPort }) => {
+    // console.log('setupGraphqlServer graphqlPort', graphqlPort)
 
-  server.use(graphqlUploadExpress())
+    /**
+     * Здесь мы дополнительно проксируем с :3000/api на :4000/api
+     * Но на проде лучше это делать через кэдди
+     */
+    // Настраиваем прокси от /api к GraphQL серверу
+    // server.use(
+    //   '/api',
+    //   createProxyMiddleware({
+    //     target: `http://localhost:${graphqlPort}/api`,
+    //     changeOrigin: true,
+    //     // ws: true,
+    //   })
+    // )
 
-  /**
-   * API requests
-   */
-  graphqlServer.applyMiddleware({
-    app: server,
-    path: '/api',
-  })
+    const proxy = createProxyMiddleware('/api', {
+      target: `http://localhost:${graphqlPort}`,
+      changeOrigin: true,
+      ws: false, // отключаем автоматическое ws-проксирование
+    })
 
-  server.get('/sitemap.xml', new Sitemap({}).middleware)
+    server.use(proxy)
 
-  server.all('*', (req, res) => {
-    return handle(req, res)
-  })
+    /**
+     * С некстом этот номер не проходит, сюда даже не долетает событие.
+     * А если сразу проксировать с вс, то тогда его hmr ломается.
+     * так что пока что вс только через кэдди
+     */
+    // server.on('upgrade', (req, socket, head) => {
+    //   console.log('on upgrade req.url', req.url)
 
-  server.listen(port, (err?: Error) => {
-    if (err) throw err
-    // eslint-disable-next-line no-console
-    console.info(`> Ready on http://localhost:${port}`)
+    //   if (req.url?.startsWith('/api')) {
+    //     proxy.upgrade?.(req, socket, head)
+    //   }
+    // })
+
+    server.get('*', (req, res) => {
+      return handle(req, res)
+    })
+
+    // Запускаем основной сервер Next.js
+    server.listen(port, (err?: Error) => {
+      if (err) throw err
+      // eslint-disable-next-line no-console
+      console.info(`> Ready on http://localhost:${port}`)
+      // eslint-disable-next-line no-console
+      console.info(`> API proxied to http://localhost:${graphqlPort}/api`)
+    })
   })
 })

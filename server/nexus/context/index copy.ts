@@ -1,36 +1,46 @@
-import { User, PrismaClient, Token } from '@prisma/client'
-// import { Knex } from 'knex'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
+import { PrismaClient, Token, User } from '@prisma/client'
+import { ExpressContext } from 'apollo-server-express'
 import fs from 'fs'
 import { Sendmail, SendmailProps } from '../../modules/Mailer/sendmail'
-// import { ExpressContext } from 'apollo-server-express'
-// import { knexClient } from '../knex'
-import { PubSub } from 'graphql-subscriptions'
-import { ExpressContextFunctionArgument } from '@apollo/server/dist/esm/express4'
-import { pubsub, PubSubInterface } from '../../PubSub'
-
-export interface PrismaContext {
-  prisma: PrismaClient
-  req: ExpressContextFunctionArgument['req'] | undefined
-  // knex: Knex
-  sendmail: ReturnType<typeof Sendmail> | undefined
-  mailSender: string
-  APP_SECRET: string
-  pubsub: PubSub<PubSubInterface>
-
-  // Authorized user
-  currentUser: User | null
-
-  /**
-   * Токен авторизации
-   */
-  Token: (Token & { User: User | null }) | null
-}
+import { NexusGenFieldTypes } from '../generated/nexus'
+// import { sendMessageToOpenAi } from '../../modules/OpenAiApi'
+import OpenAI from 'openai'
 
 if (!process.env.APP_SECRET) {
   throw new Error('APP_SECRET env is not defined')
 }
 
 const APP_SECRET = process.env.APP_SECRET
+
+const openai = new OpenAI({
+  baseURL: process.env.OPENAI_API_BASE_URL || undefined,
+  apiKey: process.env.OPENAI_API_KEY,
+})
+
+export interface PrismaContext {
+  prisma: PrismaClient
+  APP_SECRET: string
+
+  // Authorized user
+  currentUser: NexusGenFieldTypes['Query']['me']
+
+  express: ExpressContext | null
+
+  /**
+   * Токен авторизации
+   */
+  Token: (Token & { User: User | null }) | null
+
+  sendmail: ReturnType<typeof Sendmail> | undefined
+  mailSender: string
+
+  // sendMessageToOpenAi: typeof sendMessageToOpenAi // Add this line
+
+  openai: OpenAI
+}
 
 const prisma = new PrismaClient()
 
@@ -60,7 +70,7 @@ if (process.env.Sendmail === 'true') {
    * dev
    */
   if (process.env.SendmailDevHost) {
-    sendmailProps.devHost = process.env.SendmailDevHost
+    sendmailProps.devHost = process.env.SendmailDevPort
   }
 
   if (process.env.SendmailDevPort) {
@@ -80,16 +90,18 @@ if (process.env.Sendmail === 'true') {
   sendmail = Sendmail(sendmailProps)
 }
 
-// TODO Move to createContext
+/**
+ * Eof Sendmail
+ */
+
 export const context: PrismaContext = {
   prisma: prisma,
-  // knex: knexClient,
-  sendmail,
-  mailSender: process.env.SendmailSender || 'no-reply@gorodskie-bani.ru',
   APP_SECRET,
   currentUser: null,
+  express: null,
   Token: null,
-  req: undefined,
-  // Заглушка для PubSub, реальный экземпляр будет добавлен в graphqlServer/index.ts
-  pubsub,
+  sendmail,
+  mailSender: process.env.SendmailSender || 'no-reply@localhost',
+  // sendMessageToOpenAi,
+  openai,
 }

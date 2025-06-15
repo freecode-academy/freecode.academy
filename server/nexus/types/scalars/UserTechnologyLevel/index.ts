@@ -22,6 +22,7 @@ export const UserTechnologyLevel = asNexusMethod(
       return value
     },
     serialize: (value) => {
+      // @ts-expect-error types
       if (validateUserTechnologyLevel(value)) {
         return value
       }

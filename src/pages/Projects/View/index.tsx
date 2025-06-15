@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Typography from 'material-ui/Typography'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
-// import Filters from '@prisma-cms/filters'
 
 import ProjectsList from './List'
 

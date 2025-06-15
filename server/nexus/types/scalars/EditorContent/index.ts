@@ -50,6 +50,7 @@ export const EditorComponentObject = asNexusMethod(
     name: 'EditorComponentObject',
     description: 'Контент для фронт-редактора',
     parseValue(value) {
+      // @ts-expect-error types
       return validateEditorContent(value)
     },
     // serialize: (value) => {

@@ -3,7 +3,6 @@ import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
 import { getChatMessagesConditions } from './helpers'
 import { chatMessagesResolver } from './resolvers/chatMessages'
 import { chatMessageResolver } from './resolvers/chatMessage'
-import { createChatMessageProcessorResolver } from './resolvers/createChatMessageProcessor'
 import { chatMessagesDialogResolver } from './resolvers/chatMessagesDialog'
 
 // TODO Проработать доступы
@@ -44,13 +43,12 @@ export const ChatMessageQuery = extendType({
 export const ChatMessageExtendMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.nonNull.field('createChatMessageProcessor', {
+    t.field('createChatMessageProcessor', {
+      deprecation: 'legacy',
       type: 'ChatMessageResponse',
       args: {
         data: nonNull('ChatMessageCreateInput'),
       },
-      // TODO Restore logic
-      resolve: createChatMessageProcessorResolver,
     })
   },
 })

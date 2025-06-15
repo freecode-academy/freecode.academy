@@ -26,8 +26,6 @@ import { Theme } from 'material-ui/styles'
 
 // import PageNotFound from "../../../pages/404";
 
-// import Filters from '@prisma-cms/filters'
-
 // import { ForumViewProps, TableViewProps } from './interfaces';
 import {
   // ColumnConfig,

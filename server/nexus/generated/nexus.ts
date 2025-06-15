@@ -748,16 +748,16 @@ export interface NexusGenInputs {
       | NexusGenInputs['ChatMessageReadedOrderByRelationAggregateInput']
       | null // ChatMessageReadedOrderByRelationAggregateInput
     ChatRoom?: NexusGenInputs['ChatRoomOrderByWithRelationInput'] | null // ChatRoomOrderByWithRelationInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Notices?: NexusGenInputs['NoticeOrderByRelationAggregateInput'] | null // NoticeOrderByRelationAggregateInput
-    Room?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Room?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ToUser?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    content?: NexusGenEnums['SortOrder'] | null // SortOrder
-    contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    contentText?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    toUser?: NexusGenEnums['SortOrder'] | null // SortOrder
+    toUser?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   ChatMessageReadedCreateManyChatMessageInput: {
@@ -1488,22 +1488,22 @@ export interface NexusGenInputs {
     ChatRoomInvitations?:
       | NexusGenInputs['ChatRoomInvitationOrderByRelationAggregateInput']
       | null // ChatRoomInvitationOrderByRelationAggregateInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Projects?: NexusGenInputs['ProjectOrderByRelationAggregateInput'] | null // ProjectOrderByRelationAggregateInput
     Tasks?: NexusGenInputs['TaskOrderByRelationAggregateInput'] | null // TaskOrderByRelationAggregateInput
     User_ChatRoomToUser?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     User_ChatRoomsMembers?:
       | NexusGenInputs['UserOrderByRelationAggregateInput']
       | null // UserOrderByRelationAggregateInput
-    allowAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null // SortOrder
+    allowAnonymous?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    code?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    image?: NexusGenEnums['SortOrder'] | null // SortOrder
-    isPublic?: NexusGenEnums['SortOrder'] | null // SortOrder
+    image?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    isPublic?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    sandbox?: NexusGenEnums['SortOrder'] | null // SortOrder
+    sandbox?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   ChatRoomWhereInput: {
@@ -1723,17 +1723,17 @@ export interface NexusGenInputs {
     CodeChallengeBlock?:
       | NexusGenInputs['CodeChallengeBlockOrderByWithRelationInput']
       | null // CodeChallengeBlockOrderByWithRelationInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    Parent?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    externalKey?: NexusGenEnums['SortOrder'] | null // SortOrder
+    externalKey?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     other_CodeChallengeBlock?:
       | NexusGenInputs['CodeChallengeBlockOrderByRelationAggregateInput']
       | null // CodeChallengeBlockOrderByRelationAggregateInput
-    rank?: NexusGenEnums['SortOrder'] | null // SortOrder
+    rank?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   CodeChallengeBlockWhereInput: {
@@ -1921,20 +1921,20 @@ export interface NexusGenInputs {
   }
   CodeChallengeCompletionOrderByWithRelationInput: {
     // input type
-    CodeChallenge?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CodeChallenge?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     CodeChallenge_CodeChallengeToCodeChallengeCompletion?:
       | NexusGenInputs['CodeChallengeOrderByWithRelationInput']
       | null // CodeChallengeOrderByWithRelationInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    Task?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Task_CodeChallengeCompletionToTask?:
       | NexusGenInputs['TaskOrderByWithRelationInput']
       | null // TaskOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    content?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    success?: NexusGenEnums['SortOrder'] | null // SortOrder
+    success?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   CodeChallengeCompletionUpdateInput: {
@@ -2312,43 +2312,43 @@ export interface NexusGenInputs {
   }
   CodeChallengeOrderByWithRelationInput: {
     // input type
-    Block?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Block?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     CodeChallengeBlock?:
       | NexusGenInputs['CodeChallengeBlockOrderByWithRelationInput']
       | null // CodeChallengeBlockOrderByWithRelationInput
     CodeChallengeCompletions?:
       | NexusGenInputs['CodeChallengeCompletionOrderByRelationAggregateInput']
       | null // CodeChallengeCompletionOrderByRelationAggregateInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Resource?: NexusGenInputs['ResourceOrderByWithRelationInput'] | null // ResourceOrderByWithRelationInput
-    Topic?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Topic?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    challengeOrder?: NexusGenEnums['SortOrder'] | null // SortOrder
-    challengeType?: NexusGenEnums['SortOrder'] | null // SortOrder
+    challengeOrder?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    challengeType?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    dashedName?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
-    externalKey?: NexusGenEnums['SortOrder'] | null // SortOrder
-    files?: NexusGenEnums['SortOrder'] | null // SortOrder
-    forumTopicId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    dashedName?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    externalKey?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    files?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    forumTopicId?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    instructions?: NexusGenEnums['SortOrder'] | null // SortOrder
-    isBeta?: NexusGenEnums['SortOrder'] | null // SortOrder
-    isPrivate?: NexusGenEnums['SortOrder'] | null // SortOrder
-    isRequired?: NexusGenEnums['SortOrder'] | null // SortOrder
-    localeTitle?: NexusGenEnums['SortOrder'] | null // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    order?: NexusGenEnums['SortOrder'] | null // SortOrder
-    rank?: NexusGenEnums['SortOrder'] | null // SortOrder
-    required?: NexusGenEnums['SortOrder'] | null // SortOrder
-    solutions?: NexusGenEnums['SortOrder'] | null // SortOrder
-    superOrder?: NexusGenEnums['SortOrder'] | null // SortOrder
-    template?: NexusGenEnums['SortOrder'] | null // SortOrder
-    tests?: NexusGenEnums['SortOrder'] | null // SortOrder
-    time?: NexusGenEnums['SortOrder'] | null // SortOrder
-    translations?: NexusGenEnums['SortOrder'] | null // SortOrder
+    instructions?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    isBeta?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    isPrivate?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    isRequired?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    localeTitle?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    name?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    order?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    rank?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    required?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    solutions?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    superOrder?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    template?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    tests?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    time?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    translations?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    videoUrl?: NexusGenEnums['SortOrder'] | null // SortOrder
+    videoUrl?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
   }
   CodeChallengeUpdateInput: {
     // input type
@@ -2639,10 +2639,10 @@ export interface NexusGenInputs {
     Donator?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     date?: NexusGenEnums['SortOrder'] | null // SortOrder
-    donatorId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    donatorId?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     sum?: NexusGenEnums['SortOrder'] | null // SortOrder
-    title?: NexusGenEnums['SortOrder'] | null // SortOrder
+    title?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   DonateWhereInput: {
@@ -3400,8 +3400,8 @@ export interface NexusGenInputs {
   }
   EthAccountOrderByWithRelationInput: {
     // input type
-    ContractSource?: NexusGenEnums['SortOrder'] | null // SortOrder
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ContractSource?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     EthBlock?: NexusGenInputs['EthBlockOrderByRelationAggregateInput'] | null // EthBlockOrderByRelationAggregateInput
     EthContractSource?:
       | NexusGenInputs['EthContractSourceOrderByWithRelationInput']
@@ -3415,7 +3415,7 @@ export interface NexusGenInputs {
     EthTransaction_EthAccountToEthTransaction_Sender?:
       | NexusGenInputs['EthTransactionOrderByRelationAggregateInput']
       | null // EthTransactionOrderByRelationAggregateInput
-    Project?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Project?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Project_EthAccountToProject?:
       | NexusGenInputs['ProjectOrderByWithRelationInput']
       | null // ProjectOrderByWithRelationInput
@@ -3426,14 +3426,14 @@ export interface NexusGenInputs {
     User_EthAccount_CreatedByToUser?:
       | NexusGenInputs['UserOrderByWithRelationInput']
       | null // UserOrderByWithRelationInput
-    abi?: NexusGenEnums['SortOrder'] | null // SortOrder
+    abi?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     address?: NexusGenEnums['SortOrder'] | null // SortOrder
-    bytecode?: NexusGenEnums['SortOrder'] | null // SortOrder
+    bytecode?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    source?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    source?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     type?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
@@ -3815,16 +3815,16 @@ export interface NexusGenInputs {
   }
   EthContractSourceOrderByWithRelationInput: {
     // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     EthAccount?:
       | NexusGenInputs['EthAccountOrderByRelationAggregateInput']
       | null // EthAccountOrderByRelationAggregateInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    source?: NexusGenEnums['SortOrder'] | null // SortOrder
+    source?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   EthContractSourceWhereInput: {
@@ -4364,25 +4364,25 @@ export interface NexusGenInputs {
   }
   FileOrderByWithRelationInput: {
     // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Gallery?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    Gallery?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Gallery_FileToGallery?:
       | NexusGenInputs['GalleryOrderByWithRelationInput']
       | null // GalleryOrderByWithRelationInput
-    ImageResource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ImageResource?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Projects?: NexusGenInputs['ProjectOrderByRelationAggregateInput'] | null // ProjectOrderByRelationAggregateInput
     Resource?: NexusGenInputs['ResourceOrderByWithRelationInput'] | null // ResourceOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     encoding?: NexusGenEnums['SortOrder'] | null // SortOrder
-    filename?: NexusGenEnums['SortOrder'] | null // SortOrder
-    hash?: NexusGenEnums['SortOrder'] | null // SortOrder
+    filename?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    hash?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     mimetype?: NexusGenEnums['SortOrder'] | null // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     path?: NexusGenEnums['SortOrder'] | null // SortOrder
-    rank?: NexusGenEnums['SortOrder'] | null // SortOrder
-    size?: NexusGenEnums['SortOrder'] | null // SortOrder
+    rank?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    size?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   FileWhereInput: {
@@ -4546,14 +4546,14 @@ export interface NexusGenInputs {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
     Files?: NexusGenInputs['FileOrderByRelationAggregateInput'] | null // FileOrderByRelationAggregateInput
-    Resource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Resource?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Resource_GalleryToResource?:
       | NexusGenInputs['ResourceOrderByWithRelationInput']
       | null // ResourceOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   GalleryWhereInput: {
@@ -5300,8 +5300,19 @@ export interface NexusGenInputs {
   }
   JsonNullableFilter: {
     // input type
-    equals?: NexusGenEnums['JsonNullValueFilter'] | null // JsonNullValueFilter
-    not?: NexusGenEnums['JsonNullValueFilter'] | null // JsonNullValueFilter
+    array_contains?: NexusGenScalars['Json'] | null // Json
+    array_ends_with?: NexusGenScalars['Json'] | null // Json
+    array_starts_with?: NexusGenScalars['Json'] | null // Json
+    equals?: NexusGenScalars['Json'] | null // Json
+    gt?: NexusGenScalars['Json'] | null // Json
+    gte?: NexusGenScalars['Json'] | null // Json
+    lt?: NexusGenScalars['Json'] | null // Json
+    lte?: NexusGenScalars['Json'] | null // Json
+    not?: NexusGenScalars['Json'] | null // Json
+    path?: string | null // String
+    string_contains?: string | null // String
+    string_ends_with?: string | null // String
+    string_starts_with?: string | null // String
   }
   LearnStrategyCreateInput: {
     // input type
@@ -5474,7 +5485,7 @@ export interface NexusGenInputs {
       | null // UserLearnStrategyOrderByRelationAggregateInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdById?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     level?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -5658,9 +5669,9 @@ export interface NexusGenInputs {
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     learnStrategyId?: NexusGenEnums['SortOrder'] | null // SortOrder
-    learnStrategyTargetId?: NexusGenEnums['SortOrder'] | null // SortOrder
-    level?: NexusGenEnums['SortOrder'] | null // SortOrder
-    technologyId?: NexusGenEnums['SortOrder'] | null // SortOrder
+    learnStrategyTargetId?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    level?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    technologyId?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   LearnStrategyStageWhereInput: {
@@ -6724,15 +6735,15 @@ export interface NexusGenInputs {
   }
   NoticeOrderByWithRelationInput: {
     // input type
-    ChatMessage?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ChatMessage?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ChatMessage_ChatMessageToNotice?:
       | NexusGenInputs['ChatMessageOrderByWithRelationInput']
       | null // ChatMessageOrderByWithRelationInput
     ChatRoomInvitations?:
       | NexusGenInputs['ChatRoomInvitationOrderByRelationAggregateInput']
       | null // ChatRoomInvitationOrderByRelationAggregateInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    User?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    User?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     User_Notice_CreatedByToUser?:
       | NexusGenInputs['UserOrderByWithRelationInput']
       | null // UserOrderByWithRelationInput
@@ -6857,19 +6868,19 @@ export interface NexusGenInputs {
   }
   NotificationTypeOrderByWithRelationInput: {
     // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     User_NotificationTypeToUser?:
       | NexusGenInputs['UserOrderByWithRelationInput']
       | null // UserOrderByWithRelationInput
     User_UserNotificationTypes?:
       | NexusGenInputs['UserOrderByRelationAggregateInput']
       | null // UserOrderByRelationAggregateInput
-    code?: NexusGenEnums['SortOrder'] | null // SortOrder
-    comment?: NexusGenEnums['SortOrder'] | null // SortOrder
+    code?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    comment?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   NotificationTypeWhereInput: {
@@ -8369,30 +8380,30 @@ export interface NexusGenInputs {
   }
   ProjectOrderByWithRelationInput: {
     // input type
-    ChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ChatRoom?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ChatRoom_ChatRoomToProject?:
       | NexusGenInputs['ChatRoomOrderByWithRelationInput']
       | null // ChatRoomOrderByWithRelationInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     EthAccounts?:
       | NexusGenInputs['EthAccountOrderByRelationAggregateInput']
       | null // EthAccountOrderByRelationAggregateInput
     File?: NexusGenInputs['FileOrderByWithRelationInput'] | null // FileOrderByWithRelationInput
-    Image?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Image?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ProjectMembers?:
       | NexusGenInputs['ProjectMemberOrderByRelationAggregateInput']
       | null // ProjectMemberOrderByRelationAggregateInput
     ProjectTasks?:
       | NexusGenInputs['ProjectTaskOrderByRelationAggregateInput']
       | null // ProjectTaskOrderByRelationAggregateInput
-    Resource?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Resource?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Resource_Project_ResourceToResource?:
       | NexusGenInputs['ResourceOrderByWithRelationInput']
       | null // ResourceOrderByWithRelationInput
     Resources_ProjectToResource_PrismaProject?:
       | NexusGenInputs['ResourceOrderByRelationAggregateInput']
       | null // ResourceOrderByRelationAggregateInput
-    Team?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Team?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Team_ProjectCustomers?:
       | NexusGenInputs['TeamOrderByRelationAggregateInput']
       | null // TeamOrderByRelationAggregateInput
@@ -8407,20 +8418,20 @@ export interface NexusGenInputs {
       | NexusGenInputs['UserOrderByRelationAggregateInput']
       | null // UserOrderByRelationAggregateInput
     User_ProjectToUser?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    content?: NexusGenEnums['SortOrder'] | null // SortOrder
-    contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    contentText?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
-    domain?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    domain?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
-    public?: NexusGenEnums['SortOrder'] | null // SortOrder
-    sequence?: NexusGenEnums['SortOrder'] | null // SortOrder
-    status?: NexusGenEnums['SortOrder'] | null // SortOrder
-    type?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    public?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    sequence?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    status?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    type?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    url?: NexusGenEnums['SortOrder'] | null // SortOrder
+    url?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
   }
   ProjectTaskCreateManyProject_ProjectToProjectTaskInput: {
     // input type
@@ -8559,12 +8570,12 @@ export interface NexusGenInputs {
   }
   ProjectTaskOrderByWithRelationInput: {
     // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Project?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    Project?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Project_ProjectToProjectTask?:
       | NexusGenInputs['ProjectOrderByWithRelationInput']
       | null // ProjectOrderByWithRelationInput
-    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Task_ProjectTaskToTask?:
       | NexusGenInputs['TaskOrderByWithRelationInput']
       | null // TaskOrderByWithRelationInput
@@ -10754,19 +10765,19 @@ export interface NexusGenInputs {
   }
   ResourceOrderByWithRelationInput: {
     // input type
-    Blog?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Blog?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     CodeChallenges?:
       | NexusGenInputs['CodeChallengeOrderByRelationAggregateInput']
       | null // CodeChallengeOrderByRelationAggregateInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    EthAccount?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    EthAccount?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     EthAccount_EthAccountToResource?:
       | NexusGenInputs['EthAccountOrderByWithRelationInput']
       | null // EthAccountOrderByWithRelationInput
     Files?: NexusGenInputs['FileOrderByRelationAggregateInput'] | null // FileOrderByRelationAggregateInput
     Galleries?: NexusGenInputs['GalleryOrderByRelationAggregateInput'] | null // GalleryOrderByRelationAggregateInput
-    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
-    PrismaProject?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Parent?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    PrismaProject?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Project_ProjectToResource_PrismaProject?:
       | NexusGenInputs['ProjectOrderByWithRelationInput']
       | null // ProjectOrderByWithRelationInput
@@ -10785,34 +10796,34 @@ export interface NexusGenInputs {
     Resource_ResourceToResource_Topic?:
       | NexusGenInputs['ResourceOrderByWithRelationInput']
       | null // ResourceOrderByWithRelationInput
-    Service?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Service?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Service_ResourceToService?:
       | NexusGenInputs['ServiceOrderByWithRelationInput']
       | null // ServiceOrderByWithRelationInput
-    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Task_ResourceToTask?: NexusGenInputs['TaskOrderByWithRelationInput'] | null // TaskOrderByWithRelationInput
-    Team?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Team?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Team_ResourceToTeam?: NexusGenInputs['TeamOrderByWithRelationInput'] | null // TeamOrderByWithRelationInput
-    Topic?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Topic?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     Votes?: NexusGenInputs['VoteOrderByRelationAggregateInput'] | null // VoteOrderByRelationAggregateInput
-    class_key?: NexusGenEnums['SortOrder'] | null // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null // SortOrder
-    commentOldID?: NexusGenEnums['SortOrder'] | null // SortOrder
-    components?: NexusGenEnums['SortOrder'] | null // SortOrder
-    content?: NexusGenEnums['SortOrder'] | null // SortOrder
-    contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
+    class_key?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    code?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    commentOldID?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    components?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    content?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    contentText?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     deleted?: NexusGenEnums['SortOrder'] | null // SortOrder
     hidemenu?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     isfolder?: NexusGenEnums['SortOrder'] | null // SortOrder
-    longtitle?: NexusGenEnums['SortOrder'] | null // SortOrder
-    mockUpdate?: NexusGenEnums['SortOrder'] | null // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    negativeVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
-    neutralVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    longtitle?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    mockUpdate?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    name?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    negativeVotesCount?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    neutralVotesCount?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    oldID?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     other_Resource_ResourceToResource_Blogs?:
       | NexusGenInputs['ResourceOrderByRelationAggregateInput']
       | null // ResourceOrderByRelationAggregateInput
@@ -10822,11 +10833,11 @@ export interface NexusGenInputs {
     other_Resource_ResourceToResource_Topics?:
       | NexusGenInputs['ResourceOrderByRelationAggregateInput']
       | null // ResourceOrderByRelationAggregateInput
-    positiveVotesCount?: NexusGenEnums['SortOrder'] | null // SortOrder
+    positiveVotesCount?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     published?: NexusGenEnums['SortOrder'] | null // SortOrder
-    rating?: NexusGenEnums['SortOrder'] | null // SortOrder
+    rating?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     searchable?: NexusGenEnums['SortOrder'] | null // SortOrder
-    template?: NexusGenEnums['SortOrder'] | null // SortOrder
+    template?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     type?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     uri?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -11391,16 +11402,16 @@ export interface NexusGenInputs {
   }
   ServiceCategoryOrderByWithRelationInput: {
     // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    Parent?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ServiceCategory?:
       | NexusGenInputs['ServiceCategoryOrderByWithRelationInput']
       | null // ServiceCategoryOrderByWithRelationInput
     Services?: NexusGenInputs['ServiceOrderByRelationAggregateInput'] | null // ServiceOrderByRelationAggregateInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    code?: NexusGenEnums['SortOrder'] | null // SortOrder
+    code?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
     other_ServiceCategories?:
@@ -11728,9 +11739,9 @@ export interface NexusGenInputs {
   }
   ServiceOrderByWithRelationInput: {
     // input type
-    Category?: NexusGenEnums['SortOrder'] | null // SortOrder
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Category?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    Parent?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ProjectMembers?:
       | NexusGenInputs['ProjectMemberOrderByRelationAggregateInput']
       | null // ProjectMemberOrderByRelationAggregateInput
@@ -11740,16 +11751,16 @@ export interface NexusGenInputs {
       | NexusGenInputs['ServiceCategoryOrderByWithRelationInput']
       | null // ServiceCategoryOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    code?: NexusGenEnums['SortOrder'] | null // SortOrder
+    code?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    name?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    oldID?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     other_Services?:
       | NexusGenInputs['ServiceOrderByRelationAggregateInput']
       | null // ServiceOrderByRelationAggregateInput
-    rank?: NexusGenEnums['SortOrder'] | null // SortOrder
+    rank?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   ServiceWhereInput: {
@@ -12127,6 +12138,11 @@ export interface NexusGenInputs {
     // input type
     id?: string | null // String
   }
+  SortOrderInput: {
+    // input type
+    nulls?: NexusGenEnums['NullsOrder'] | null // NullsOrder
+    sort: NexusGenEnums['SortOrder'] // SortOrder!
+  }
   StringFilter: {
     // input type
     contains?: string | null // String
@@ -12227,7 +12243,7 @@ export interface NexusGenInputs {
   }
   TagOrderByWithRelationInput: {
     // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ResourceTags?:
       | NexusGenInputs['ResourceTagOrderByRelationAggregateInput']
       | null // ResourceTagOrderByRelationAggregateInput
@@ -13258,15 +13274,15 @@ export interface NexusGenInputs {
   }
   TaskOrderByWithRelationInput: {
     // input type
-    ChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ChatRoom?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ChatRoom_ChatRoomToTask?:
       | NexusGenInputs['ChatRoomOrderByWithRelationInput']
       | null // ChatRoomOrderByWithRelationInput
     CodeChallengeCompletions?:
       | NexusGenInputs['CodeChallengeCompletionOrderByRelationAggregateInput']
       | null // CodeChallengeCompletionOrderByRelationAggregateInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    Parent?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     ProjectTasks?:
       | NexusGenInputs['ProjectTaskOrderByRelationAggregateInput']
       | null // ProjectTaskOrderByRelationAggregateInput
@@ -13285,17 +13301,17 @@ export interface NexusGenInputs {
     Tasks_B?: NexusGenInputs['TaskOrderByRelationAggregateInput'] | null // TaskOrderByRelationAggregateInput
     Timers?: NexusGenInputs['TimerOrderByRelationAggregateInput'] | null // TimerOrderByRelationAggregateInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    content?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
-    endDate?: NexusGenEnums['SortOrder'] | null // SortOrder
-    endDatePlaning?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    endDate?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    endDatePlaning?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    needHelp?: NexusGenEnums['SortOrder'] | null // SortOrder
+    needHelp?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     other_Tasks?: NexusGenInputs['TaskOrderByRelationAggregateInput'] | null // TaskOrderByRelationAggregateInput
-    startDate?: NexusGenEnums['SortOrder'] | null // SortOrder
-    startDatePlaning?: NexusGenEnums['SortOrder'] | null // SortOrder
+    startDate?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    startDatePlaning?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     status?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
@@ -13560,18 +13576,18 @@ export interface NexusGenInputs {
   TaskTechnologyOrderByWithRelationInput: {
     // input type
     CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Task?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Task_TaskToTaskTechnology?:
       | NexusGenInputs['TaskOrderByWithRelationInput']
       | null // TaskOrderByWithRelationInput
-    Technology?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Technology?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Technology_TaskTechnologyToTechnology?:
       | NexusGenInputs['TechnologyOrderByWithRelationInput']
       | null // TechnologyOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    level?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TaskTechnologyTaskTechnologyCompoundUniqueInput: {
@@ -14279,7 +14295,7 @@ export interface NexusGenInputs {
       | NexusGenInputs['GameResultOrderByRelationAggregateInput']
       | null // GameResultOrderByRelationAggregateInput
     Games?: NexusGenInputs['GameOrderByRelationAggregateInput'] | null // GameOrderByRelationAggregateInput
-    Parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    Parent?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Project_ProjectCustomers?:
       | NexusGenInputs['ProjectOrderByRelationAggregateInput']
       | null // ProjectOrderByRelationAggregateInput
@@ -14292,17 +14308,17 @@ export interface NexusGenInputs {
       | NexusGenInputs['TeamMemberOrderByRelationAggregateInput']
       | null // TeamMemberOrderByRelationAggregateInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    address?: NexusGenEnums['SortOrder'] | null // SortOrder
+    address?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    email?: NexusGenEnums['SortOrder'] | null // SortOrder
+    email?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    oldID?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     other_Teams?: NexusGenInputs['TeamOrderByRelationAggregateInput'] | null // TeamOrderByRelationAggregateInput
-    phone?: NexusGenEnums['SortOrder'] | null // SortOrder
+    phone?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     status?: NexusGenEnums['SortOrder'] | null // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    website?: NexusGenEnums['SortOrder'] | null // SortOrder
+    website?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
   }
   TeamWhereInput: {
     // input type
@@ -14893,18 +14909,18 @@ export interface NexusGenInputs {
     UserTechnologies?:
       | NexusGenInputs['UserTechnologyOrderByRelationAggregateInput']
       | null // UserTechnologyOrderByRelationAggregateInput
-    components?: NexusGenEnums['SortOrder'] | null // SortOrder
-    contentText?: NexusGenEnums['SortOrder'] | null // SortOrder
+    components?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    contentText?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    description?: NexusGenEnums['SortOrder'] | null // SortOrder
+    description?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    level1hours?: NexusGenEnums['SortOrder'] | null // SortOrder
-    level2hours?: NexusGenEnums['SortOrder'] | null // SortOrder
-    level3hours?: NexusGenEnums['SortOrder'] | null // SortOrder
-    level4hours?: NexusGenEnums['SortOrder'] | null // SortOrder
-    level5hours?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level1hours?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    level2hours?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    level3hours?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    level4hours?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    level5hours?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     name?: NexusGenEnums['SortOrder'] | null // SortOrder
-    site_url?: NexusGenEnums['SortOrder'] | null // SortOrder
+    site_url?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TechnologyUpdateInput: {
@@ -15379,13 +15395,13 @@ export interface NexusGenInputs {
   }
   TimerOrderByWithRelationInput: {
     // input type
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
-    Task?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    Task?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Task_TaskToTimer?: NexusGenInputs['TaskOrderByWithRelationInput'] | null // TaskOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    stopedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    stopedAt?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   TimerUpdateInput: {
@@ -32771,9 +32787,9 @@ export interface NexusGenInputs {
       | NexusGenInputs['CodeChallengeOrderByRelationAggregateInput']
       | null // CodeChallengeOrderByRelationAggregateInput
     Comments?: NexusGenInputs['CommentOrderByRelationAggregateInput'] | null // CommentOrderByRelationAggregateInput
-    CreatedBy?: NexusGenEnums['SortOrder'] | null // SortOrder
+    CreatedBy?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     Donates?: NexusGenInputs['DonateOrderByRelationAggregateInput'] | null // DonateOrderByRelationAggregateInput
-    EthAccountAuthed?: NexusGenEnums['SortOrder'] | null // SortOrder
+    EthAccountAuthed?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     EthAccount_EthAccountToUser_EthAccountAuthed?:
       | NexusGenInputs['EthAccountOrderByWithRelationInput']
       | null // EthAccountOrderByWithRelationInput
@@ -32913,35 +32929,35 @@ export interface NexusGenInputs {
       | null // UserTechnologyOrderByRelationAggregateInput
     Votes?: NexusGenInputs['VoteOrderByRelationAggregateInput'] | null // VoteOrderByRelationAggregateInput
     Worlds?: NexusGenInputs['WorldOrderByRelationAggregateInput'] | null // WorldOrderByRelationAggregateInput
-    about?: NexusGenEnums['SortOrder'] | null // SortOrder
-    acceptChatMessageAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
-    acceptNewChatRoom?: NexusGenEnums['SortOrder'] | null // SortOrder
-    acceptNewChatRoomAnonymous?: NexusGenEnums['SortOrder'] | null // SortOrder
-    activated?: NexusGenEnums['SortOrder'] | null // SortOrder
-    active?: NexusGenEnums['SortOrder'] | null // SortOrder
-    address?: NexusGenEnums['SortOrder'] | null // SortOrder
+    about?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    acceptChatMessageAnonymous?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    acceptNewChatRoom?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    acceptNewChatRoomAnonymous?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    activated?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    active?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    address?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     blocked?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    deleted?: NexusGenEnums['SortOrder'] | null // SortOrder
-    email?: NexusGenEnums['SortOrder'] | null // SortOrder
-    fullname?: NexusGenEnums['SortOrder'] | null // SortOrder
-    hidden?: NexusGenEnums['SortOrder'] | null // SortOrder
+    deleted?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    email?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    fullname?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    hidden?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    image?: NexusGenEnums['SortOrder'] | null // SortOrder
+    image?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     isMentor?: NexusGenEnums['SortOrder'] | null // SortOrder
-    marketplaceToken?: NexusGenEnums['SortOrder'] | null // SortOrder
-    oldID?: NexusGenEnums['SortOrder'] | null // SortOrder
+    marketplaceToken?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    oldID?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     other_Users?: NexusGenInputs['UserOrderByRelationAggregateInput'] | null // UserOrderByRelationAggregateInput
-    password?: NexusGenEnums['SortOrder'] | null // SortOrder
-    phone?: NexusGenEnums['SortOrder'] | null // SortOrder
+    password?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    phone?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     showEmail?: NexusGenEnums['SortOrder'] | null // SortOrder
     showFullname?: NexusGenEnums['SortOrder'] | null // SortOrder
     showPhone?: NexusGenEnums['SortOrder'] | null // SortOrder
-    sudo?: NexusGenEnums['SortOrder'] | null // SortOrder
-    technologyLevel?: NexusGenEnums['SortOrder'] | null // SortOrder
-    telegram?: NexusGenEnums['SortOrder'] | null // SortOrder
+    sudo?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    technologyLevel?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    telegram?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    username?: NexusGenEnums['SortOrder'] | null // SortOrder
+    username?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
   }
   UserSigninDataInput: {
     // input type
@@ -33086,15 +33102,15 @@ export interface NexusGenInputs {
       | NexusGenInputs['TechnologyOrderByWithRelationInput']
       | null // TechnologyOrderByWithRelationInput
     User?: NexusGenInputs['UserOrderByWithRelationInput'] | null // UserOrderByWithRelationInput
-    components?: NexusGenEnums['SortOrder'] | null // SortOrder
+    components?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    date_from?: NexusGenEnums['SortOrder'] | null // SortOrder
-    date_till?: NexusGenEnums['SortOrder'] | null // SortOrder
-    hiring_status?: NexusGenEnums['SortOrder'] | null // SortOrder
+    date_from?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    date_till?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    hiring_status?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     isMentor?: NexusGenEnums['SortOrder'] | null // SortOrder
-    level?: NexusGenEnums['SortOrder'] | null // SortOrder
-    status?: NexusGenEnums['SortOrder'] | null // SortOrder
+    level?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    status?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     updatedAt?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   UserTechnologyUpdateInput: {
@@ -33600,7 +33616,6 @@ export interface NexusGenEnums {
     | 'SendToken'
   Gamemode: 'ADVENTURE' | 'CREATIVE' | 'SPECTATOR' | 'SURVIVAL'
   ImportStatus: 'Completed' | 'Created' | 'Error' | 'Started' | 'Stoped'
-  JsonNullValueFilter: 'AnyNull' | 'DbNull' | 'JsonNull'
   JsonNullValueInput: 'JsonNull'
   LetsadsSmsMessageStatusEnum: 'Complete' | 'Error'
   LetsadsSmsMessageStatusErrorCodeEnum:
@@ -33623,6 +33638,7 @@ export interface NexusGenEnums {
   MessageType: 'ERROR' | 'INFO' | 'PLAYER' | 'SERVER'
   NoticeType: 'Call' | 'CallRequest' | 'ChatMessage' | 'ChatRoomInvitation'
   NullableJsonNullValueInput: 'DbNull' | 'JsonNull'
+  NullsOrder: 'first' | 'last'
   ProjectMemberStatus: 'Active' | 'Fired' | 'Invited' | 'Quit'
   ProjectStatus:
     | 'Accepted'
@@ -33685,10 +33701,11 @@ export interface NexusGenScalars {
   Float: number
   Boolean: boolean
   ID: string
-  DateTime: Date
+  DateTime: any
   Decimal: any
   EditorComponentObject: EditorComponent.EditorComponentObject
   JSON: any
+  Json: any
   Upload: any
   UserTechnologyLevel: 1 | 2 | 3 | 4 | 5
 }
@@ -34018,7 +34035,7 @@ export interface NexusGenFieldTypes {
     blockUser: NexusGenRootTypes['User'] // User!
     createAiAgentUser: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     createBlogProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
-    createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse'] // ChatMessageResponse!
+    createChatMessageProcessor: NexusGenRootTypes['ChatMessageResponse'] | null // ChatMessageResponse
     createCodeChallengeCompletionProcessor: NexusGenRootTypes['CodeChallengeCompletionResponse'] // CodeChallengeCompletionResponse!
     createCommentProcessor: NexusGenRootTypes['ResourceResponse'] // ResourceResponse!
     createLearnStrategy: NexusGenRootTypes['LearnStrategy'] // LearnStrategy!
@@ -34037,7 +34054,6 @@ export interface NexusGenFieldTypes {
     deleteLearnStrategyStage: NexusGenRootTypes['LearnStrategyStage'] // LearnStrategyStage!
     deleteNotice: NexusGenRootTypes['Notice'] | null // Notice
     deleteResource: NexusGenRootTypes['Resource'] // Resource!
-    openAi: string | null // String
     resetPasswordProcessor: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signin: NexusGenRootTypes['AuthPayload'] // AuthPayload!
     signup: NexusGenRootTypes['AuthPayload'] // AuthPayload!
@@ -34656,7 +34672,6 @@ export interface NexusGenFieldTypeNames {
     deleteLearnStrategyStage: 'LearnStrategyStage'
     deleteNotice: 'Notice'
     deleteResource: 'Resource'
-    openAi: 'String'
     resetPasswordProcessor: 'AuthPayload'
     signin: 'AuthPayload'
     signup: 'AuthPayload'
@@ -35178,10 +35193,6 @@ export interface NexusGenArgTypes {
     deleteResource: {
       // args
       where: NexusGenInputs['ResourceWhereUniqueInput'] // ResourceWhereUniqueInput!
-    }
-    openAi: {
-      // args
-      query: string // String!
     }
     resetPasswordProcessor: {
       // args

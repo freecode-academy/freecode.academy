@@ -64,7 +64,10 @@ export const updateCodeChallengeCompletionProcessor: FieldResolver<
     if (task) {
       const [timer] = task.Timers || []
 
-      let Timers: Prisma.TimerUpdateManyWithoutTask_TaskToTimerInput | undefined
+      // let Timers: Prisma.TimerUpdateManyWithoutTask_TaskToTimerInput | undefined
+      let Timers:
+        | Prisma.TimerUpdateManyWithoutTask_TaskToTimerNestedInput
+        | undefined
 
       if (timer && !timer.stopedAt) {
         Timers = {
@@ -79,12 +82,13 @@ export const updateCodeChallengeCompletionProcessor: FieldResolver<
         }
       }
 
-      const Task: Prisma.TaskUpdateOneWithoutCodeChallengeCompletionsInput = {
-        update: {
-          status: 'Completed',
-          Timers,
-        },
-      }
+      const Task: Prisma.TaskUpdateOneWithoutCodeChallengeCompletionsNestedInput =
+        {
+          update: {
+            status: 'Completed',
+            Timers,
+          },
+        }
 
       // Object.assign(data, {
       //   Task,

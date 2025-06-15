@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
-import { createPassword } from '.'
+import { createPassword } from './helpers'
 import { sanitizeTelegram } from './helpers/sanitizeTelegram'
 
 export const updateUserProcessor: FieldResolver<
@@ -37,7 +37,7 @@ export const updateUserProcessor: FieldResolver<
 
   const NotificationTypes_UserNotificationTypes = NotificationTypes as
     | Pick<
-        Prisma.NotificationTypeUpdateManyWithoutUser_UserNotificationTypesInput,
+        Prisma.NotificationTypeUpdateManyWithoutUser_UserNotificationTypesNestedInput,
         'connect' | 'disconnect'
       >
     | undefined

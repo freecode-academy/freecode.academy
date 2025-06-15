@@ -1,5 +1,5 @@
 import { rule } from 'graphql-shield'
-import { PrismaContext } from 'server/nexus/context'
+import { PrismaContext } from '../../../nexus/context'
 
 /**
  * Авторизованный пользователь является sudo

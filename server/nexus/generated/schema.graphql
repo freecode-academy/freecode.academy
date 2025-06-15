@@ -582,16 +582,16 @@ input ChatMessageOrderByRelationAggregateInput {
 input ChatMessageOrderByWithRelationInput {
   ChatMessagesReaded: ChatMessageReadedOrderByRelationAggregateInput
   ChatRoom: ChatRoomOrderByWithRelationInput
-  CreatedBy: SortOrder
+  CreatedBy: SortOrderInput
   Notices: NoticeOrderByRelationAggregateInput
-  Room: SortOrder
+  Room: SortOrderInput
   ToUser: UserOrderByWithRelationInput
   User: UserOrderByWithRelationInput
-  content: SortOrder
-  contentText: SortOrder
+  content: SortOrderInput
+  contentText: SortOrderInput
   createdAt: SortOrder
   id: SortOrder
-  toUser: SortOrder
+  toUser: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -1162,20 +1162,20 @@ input ChatRoomOrderByWithRelationInput {
   CallRequests: CallRequestOrderByRelationAggregateInput
   ChatMessages: ChatMessageOrderByRelationAggregateInput
   ChatRoomInvitations: ChatRoomInvitationOrderByRelationAggregateInput
-  CreatedBy: SortOrder
+  CreatedBy: SortOrderInput
   Projects: ProjectOrderByRelationAggregateInput
   Tasks: TaskOrderByRelationAggregateInput
   User_ChatRoomToUser: UserOrderByWithRelationInput
   User_ChatRoomsMembers: UserOrderByRelationAggregateInput
-  allowAnonymous: SortOrder
-  code: SortOrder
+  allowAnonymous: SortOrderInput
+  code: SortOrderInput
   createdAt: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
-  image: SortOrder
-  isPublic: SortOrder
+  image: SortOrderInput
+  isPublic: SortOrderInput
   name: SortOrder
-  sandbox: SortOrder
+  sandbox: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -1396,15 +1396,15 @@ input CodeChallengeBlockOrderByRelationAggregateInput {
 input CodeChallengeBlockOrderByWithRelationInput {
   CodeChallenge: CodeChallengeOrderByRelationAggregateInput
   CodeChallengeBlock: CodeChallengeBlockOrderByWithRelationInput
-  CreatedBy: SortOrder
-  Parent: SortOrder
+  CreatedBy: SortOrderInput
+  Parent: SortOrderInput
   User: UserOrderByWithRelationInput
   createdAt: SortOrder
-  externalKey: SortOrder
+  externalKey: SortOrderInput
   id: SortOrder
-  name: SortOrder
+  name: SortOrderInput
   other_CodeChallengeBlock: CodeChallengeBlockOrderByRelationAggregateInput
-  rank: SortOrder
+  rank: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -1567,16 +1567,16 @@ input CodeChallengeCompletionOrderByRelationAggregateInput {
 }
 
 input CodeChallengeCompletionOrderByWithRelationInput {
-  CodeChallenge: SortOrder
+  CodeChallenge: SortOrderInput
   CodeChallenge_CodeChallengeToCodeChallengeCompletion: CodeChallengeOrderByWithRelationInput
-  CreatedBy: SortOrder
-  Task: SortOrder
+  CreatedBy: SortOrderInput
+  Task: SortOrderInput
   Task_CodeChallengeCompletionToTask: TaskOrderByWithRelationInput
   User: UserOrderByWithRelationInput
-  content: SortOrder
+  content: SortOrderInput
   createdAt: SortOrder
   id: SortOrder
-  success: SortOrder
+  success: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -1915,39 +1915,39 @@ input CodeChallengeOrderByRelationAggregateInput {
 }
 
 input CodeChallengeOrderByWithRelationInput {
-  Block: SortOrder
+  Block: SortOrderInput
   CodeChallengeBlock: CodeChallengeBlockOrderByWithRelationInput
   CodeChallengeCompletions: CodeChallengeCompletionOrderByRelationAggregateInput
-  CreatedBy: SortOrder
+  CreatedBy: SortOrderInput
   Resource: ResourceOrderByWithRelationInput
-  Topic: SortOrder
+  Topic: SortOrderInput
   User: UserOrderByWithRelationInput
-  challengeOrder: SortOrder
-  challengeType: SortOrder
+  challengeOrder: SortOrderInput
+  challengeType: SortOrderInput
   createdAt: SortOrder
-  dashedName: SortOrder
-  description: SortOrder
-  externalKey: SortOrder
-  files: SortOrder
-  forumTopicId: SortOrder
+  dashedName: SortOrderInput
+  description: SortOrderInput
+  externalKey: SortOrderInput
+  files: SortOrderInput
+  forumTopicId: SortOrderInput
   id: SortOrder
-  instructions: SortOrder
-  isBeta: SortOrder
-  isPrivate: SortOrder
-  isRequired: SortOrder
-  localeTitle: SortOrder
-  name: SortOrder
-  order: SortOrder
-  rank: SortOrder
-  required: SortOrder
-  solutions: SortOrder
-  superOrder: SortOrder
-  template: SortOrder
-  tests: SortOrder
-  time: SortOrder
-  translations: SortOrder
+  instructions: SortOrderInput
+  isBeta: SortOrderInput
+  isPrivate: SortOrderInput
+  isRequired: SortOrderInput
+  localeTitle: SortOrderInput
+  name: SortOrderInput
+  order: SortOrderInput
+  rank: SortOrderInput
+  required: SortOrderInput
+  solutions: SortOrderInput
+  superOrder: SortOrderInput
+  template: SortOrderInput
+  tests: SortOrderInput
+  time: SortOrderInput
+  translations: SortOrderInput
   updatedAt: SortOrder
-  videoUrl: SortOrder
+  videoUrl: SortOrderInput
 }
 
 input CodeChallengeUpdateInput {
@@ -2236,10 +2236,10 @@ input DonateOrderByWithRelationInput {
   Donator: UserOrderByWithRelationInput
   createdAt: SortOrder
   date: SortOrder
-  donatorId: SortOrder
+  donatorId: SortOrderInput
   id: SortOrder
   sum: SortOrder
-  title: SortOrder
+  title: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -2824,26 +2824,26 @@ input EthAccountOrderByRelationAggregateInput {
 }
 
 input EthAccountOrderByWithRelationInput {
-  ContractSource: SortOrder
-  CreatedBy: SortOrder
+  ContractSource: SortOrderInput
+  CreatedBy: SortOrderInput
   EthBlock: EthBlockOrderByRelationAggregateInput
   EthContractSource: EthContractSourceOrderByWithRelationInput
   EthTransaction_EthAccountToEthTransaction_Account: EthTransactionOrderByRelationAggregateInput
   EthTransaction_EthAccountToEthTransaction_Receiver: EthTransactionOrderByRelationAggregateInput
   EthTransaction_EthAccountToEthTransaction_Sender: EthTransactionOrderByRelationAggregateInput
-  Project: SortOrder
+  Project: SortOrderInput
   Project_EthAccountToProject: ProjectOrderByWithRelationInput
   Resource: ResourceOrderByRelationAggregateInput
   User_EthAccountToUser_EthAccountAuthed: UserOrderByRelationAggregateInput
   User_EthAccount_CreatedByToUser: UserOrderByWithRelationInput
-  abi: SortOrder
+  abi: SortOrderInput
   address: SortOrder
-  bytecode: SortOrder
+  bytecode: SortOrderInput
   createdAt: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
-  name: SortOrder
-  source: SortOrder
+  name: SortOrderInput
+  source: SortOrderInput
   type: SortOrder
   updatedAt: SortOrder
 }
@@ -3189,14 +3189,14 @@ input EthContractSourceOrderByRelationAggregateInput {
 }
 
 input EthContractSourceOrderByWithRelationInput {
-  CreatedBy: SortOrder
+  CreatedBy: SortOrderInput
   EthAccount: EthAccountOrderByRelationAggregateInput
   User: UserOrderByWithRelationInput
   createdAt: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
   name: SortOrder
-  source: SortOrder
+  source: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -3719,23 +3719,23 @@ input FileOrderByRelationAggregateInput {
 }
 
 input FileOrderByWithRelationInput {
-  CreatedBy: SortOrder
-  Gallery: SortOrder
+  CreatedBy: SortOrderInput
+  Gallery: SortOrderInput
   Gallery_FileToGallery: GalleryOrderByWithRelationInput
-  ImageResource: SortOrder
+  ImageResource: SortOrderInput
   Projects: ProjectOrderByRelationAggregateInput
   Resource: ResourceOrderByWithRelationInput
   User: UserOrderByWithRelationInput
   createdAt: SortOrder
   encoding: SortOrder
-  filename: SortOrder
-  hash: SortOrder
+  filename: SortOrderInput
+  hash: SortOrderInput
   id: SortOrder
   mimetype: SortOrder
-  name: SortOrder
+  name: SortOrderInput
   path: SortOrder
-  rank: SortOrder
-  size: SortOrder
+  rank: SortOrderInput
+  size: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -3879,12 +3879,12 @@ input GalleryOrderByRelationAggregateInput {
 input GalleryOrderByWithRelationInput {
   CreatedBy: SortOrder
   Files: FileOrderByRelationAggregateInput
-  Resource: SortOrder
+  Resource: SortOrderInput
   Resource_GalleryToResource: ResourceOrderByWithRelationInput
   User: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
-  name: SortOrder
+  name: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -4517,19 +4517,26 @@ input InventoryWhereUniqueInput {
 
 scalar JSON
 
-enum JsonNullValueFilter {
-  AnyNull
-  DbNull
-  JsonNull
-}
+scalar Json
 
 enum JsonNullValueInput {
   JsonNull
 }
 
 input JsonNullableFilter {
-  equals: JsonNullValueFilter
-  not: JsonNullValueFilter
+  array_contains: Json
+  array_ends_with: Json
+  array_starts_with: Json
+  equals: Json
+  gt: Json
+  gte: Json
+  lt: Json
+  lte: Json
+  not: Json
+  path: String
+  string_contains: String
+  string_ends_with: String
+  string_starts_with: String
 }
 
 type LearnStrategy {
@@ -4675,7 +4682,7 @@ input LearnStrategyOrderByWithRelationInput {
   UserLearnStrategies: UserLearnStrategyOrderByRelationAggregateInput
   createdAt: SortOrder
   createdById: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
   level: SortOrder
   name: SortOrder
@@ -4856,9 +4863,9 @@ input LearnStrategyStageOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   learnStrategyId: SortOrder
-  learnStrategyTargetId: SortOrder
-  level: SortOrder
-  technologyId: SortOrder
+  learnStrategyTargetId: SortOrderInput
+  level: SortOrderInput
+  technologyId: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -5466,7 +5473,7 @@ type Mutation {
   createBlogProcessor(data: BlogCreateInput!): ResourceResponse!
   createChatMessageProcessor(
     data: ChatMessageCreateInput!
-  ): ChatMessageResponse!
+  ): ChatMessageResponse @deprecated(reason: "legacy")
   createCodeChallengeCompletionProcessor(
     data: CodeChallengeCompletionCreateInput!
   ): CodeChallengeCompletionResponse!
@@ -5507,7 +5514,6 @@ type Mutation {
   Удаление ресурса
   """
   deleteResource(where: ResourceWhereUniqueInput!): Resource!
-  openAi(query: String!): String
   resetPasswordProcessor(where: ResetPasswordProcessorWhereInput!): AuthPayload!
 
   """
@@ -6045,11 +6051,11 @@ input NoticeOrderByRelationAggregateInput {
 }
 
 input NoticeOrderByWithRelationInput {
-  ChatMessage: SortOrder
+  ChatMessage: SortOrderInput
   ChatMessage_ChatMessageToNotice: ChatMessageOrderByWithRelationInput
   ChatRoomInvitations: ChatRoomInvitationOrderByRelationAggregateInput
-  CreatedBy: SortOrder
-  User: SortOrder
+  CreatedBy: SortOrderInput
+  User: SortOrderInput
   User_Notice_CreatedByToUser: UserOrderByWithRelationInput
   User_Notice_UserToUser: UserOrderByWithRelationInput
   createdAt: SortOrder
@@ -6167,15 +6173,15 @@ input NotificationTypeOrderByRelationAggregateInput {
 }
 
 input NotificationTypeOrderByWithRelationInput {
-  CreatedBy: SortOrder
+  CreatedBy: SortOrderInput
   User_NotificationTypeToUser: UserOrderByWithRelationInput
   User_UserNotificationTypes: UserOrderByRelationAggregateInput
-  code: SortOrder
-  comment: SortOrder
+  code: SortOrderInput
+  comment: SortOrderInput
   createdAt: SortOrder
   id: SortOrder
   name: SortOrder
-  oldID: SortOrder
+  oldID: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -6209,6 +6215,11 @@ input NotificationType_UserNotificationTypes_UpdateInput {
 enum NullableJsonNullValueInput {
   DbNull
   JsonNull
+}
+
+enum NullsOrder {
+  first
+  last
 }
 
 input PlayerCreateManyUserInput {
@@ -7301,38 +7312,38 @@ input ProjectOrderByRelationAggregateInput {
 }
 
 input ProjectOrderByWithRelationInput {
-  ChatRoom: SortOrder
+  ChatRoom: SortOrderInput
   ChatRoom_ChatRoomToProject: ChatRoomOrderByWithRelationInput
-  CreatedBy: SortOrder
+  CreatedBy: SortOrderInput
   EthAccounts: EthAccountOrderByRelationAggregateInput
   File: FileOrderByWithRelationInput
-  Image: SortOrder
+  Image: SortOrderInput
   ProjectMembers: ProjectMemberOrderByRelationAggregateInput
   ProjectTasks: ProjectTaskOrderByRelationAggregateInput
-  Resource: SortOrder
+  Resource: SortOrderInput
   Resource_Project_ResourceToResource: ResourceOrderByWithRelationInput
   Resources_ProjectToResource_PrismaProject: ResourceOrderByRelationAggregateInput
-  Team: SortOrder
+  Team: SortOrderInput
   Team_ProjectCustomers: TeamOrderByRelationAggregateInput
   Team_ProjectToTeam: TeamOrderByWithRelationInput
   Templates_ProjectToTemplate_PrismaProject: TemplateOrderByRelationAggregateInput
   Templates_ProjectToTemplate_Project: TemplateOrderByRelationAggregateInput
   User_PrismaProjectUsers: UserOrderByRelationAggregateInput
   User_ProjectToUser: UserOrderByWithRelationInput
-  content: SortOrder
-  contentText: SortOrder
+  content: SortOrderInput
+  contentText: SortOrderInput
   createdAt: SortOrder
-  description: SortOrder
-  domain: SortOrder
+  description: SortOrderInput
+  domain: SortOrderInput
   id: SortOrder
   name: SortOrder
-  oldID: SortOrder
-  public: SortOrder
-  sequence: SortOrder
-  status: SortOrder
-  type: SortOrder
+  oldID: SortOrderInput
+  public: SortOrderInput
+  sequence: SortOrderInput
+  status: SortOrderInput
+  type: SortOrderInput
   updatedAt: SortOrder
-  url: SortOrder
+  url: SortOrderInput
 }
 
 type ProjectResponse {
@@ -7470,10 +7481,10 @@ input ProjectTaskOrderByRelationAggregateInput {
 }
 
 input ProjectTaskOrderByWithRelationInput {
-  CreatedBy: SortOrder
-  Project: SortOrder
+  CreatedBy: SortOrderInput
+  Project: SortOrderInput
   Project_ProjectToProjectTask: ProjectOrderByWithRelationInput
-  Task: SortOrder
+  Task: SortOrderInput
   Task_ProjectTaskToTask: TaskOrderByWithRelationInput
   User: UserOrderByWithRelationInput
   createdAt: SortOrder
@@ -9354,55 +9365,55 @@ input ResourceOrderByRelationAggregateInput {
 }
 
 input ResourceOrderByWithRelationInput {
-  Blog: SortOrder
+  Blog: SortOrderInput
   CodeChallenges: CodeChallengeOrderByRelationAggregateInput
-  CreatedBy: SortOrder
-  EthAccount: SortOrder
+  CreatedBy: SortOrderInput
+  EthAccount: SortOrderInput
   EthAccount_EthAccountToResource: EthAccountOrderByWithRelationInput
   Files: FileOrderByRelationAggregateInput
   Galleries: GalleryOrderByRelationAggregateInput
-  Parent: SortOrder
-  PrismaProject: SortOrder
+  Parent: SortOrderInput
+  PrismaProject: SortOrderInput
   Project_ProjectToResource_PrismaProject: ProjectOrderByWithRelationInput
   Projects_Project_ResourceToResource: ProjectOrderByRelationAggregateInput
   ResourceTags: ResourceTagOrderByRelationAggregateInput
   Resource_ResourceToResource_Blog: ResourceOrderByWithRelationInput
   Resource_ResourceToResource_Parent: ResourceOrderByWithRelationInput
   Resource_ResourceToResource_Topic: ResourceOrderByWithRelationInput
-  Service: SortOrder
+  Service: SortOrderInput
   Service_ResourceToService: ServiceOrderByWithRelationInput
-  Task: SortOrder
+  Task: SortOrderInput
   Task_ResourceToTask: TaskOrderByWithRelationInput
-  Team: SortOrder
+  Team: SortOrderInput
   Team_ResourceToTeam: TeamOrderByWithRelationInput
-  Topic: SortOrder
+  Topic: SortOrderInput
   User: UserOrderByWithRelationInput
   Votes: VoteOrderByRelationAggregateInput
-  class_key: SortOrder
-  code: SortOrder
-  commentOldID: SortOrder
-  components: SortOrder
-  content: SortOrder
-  contentText: SortOrder
+  class_key: SortOrderInput
+  code: SortOrderInput
+  commentOldID: SortOrderInput
+  components: SortOrderInput
+  content: SortOrderInput
+  contentText: SortOrderInput
   createdAt: SortOrder
   deleted: SortOrder
   hidemenu: SortOrder
   id: SortOrder
   isfolder: SortOrder
-  longtitle: SortOrder
-  mockUpdate: SortOrder
-  name: SortOrder
-  negativeVotesCount: SortOrder
-  neutralVotesCount: SortOrder
-  oldID: SortOrder
+  longtitle: SortOrderInput
+  mockUpdate: SortOrderInput
+  name: SortOrderInput
+  negativeVotesCount: SortOrderInput
+  neutralVotesCount: SortOrderInput
+  oldID: SortOrderInput
   other_Resource_ResourceToResource_Blogs: ResourceOrderByRelationAggregateInput
   other_Resource_ResourceToResource_Parents: ResourceOrderByRelationAggregateInput
   other_Resource_ResourceToResource_Topics: ResourceOrderByRelationAggregateInput
-  positiveVotesCount: SortOrder
+  positiveVotesCount: SortOrderInput
   published: SortOrder
-  rating: SortOrder
+  rating: SortOrderInput
   searchable: SortOrder
-  template: SortOrder
+  template: SortOrderInput
   type: SortOrder
   updatedAt: SortOrder
   uri: SortOrder
@@ -9895,14 +9906,14 @@ input ServiceCategoryOrderByRelationAggregateInput {
 }
 
 input ServiceCategoryOrderByWithRelationInput {
-  CreatedBy: SortOrder
-  Parent: SortOrder
+  CreatedBy: SortOrderInput
+  Parent: SortOrderInput
   ServiceCategory: ServiceCategoryOrderByWithRelationInput
   Services: ServiceOrderByRelationAggregateInput
   User: UserOrderByWithRelationInput
-  code: SortOrder
+  code: SortOrderInput
   createdAt: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
   name: SortOrder
   other_ServiceCategories: ServiceCategoryOrderByRelationAggregateInput
@@ -10162,22 +10173,22 @@ input ServiceOrderByRelationAggregateInput {
 }
 
 input ServiceOrderByWithRelationInput {
-  Category: SortOrder
-  CreatedBy: SortOrder
-  Parent: SortOrder
+  Category: SortOrderInput
+  CreatedBy: SortOrderInput
+  Parent: SortOrderInput
   ProjectMembers: ProjectMemberOrderByRelationAggregateInput
   Resources: ResourceOrderByRelationAggregateInput
   Service: ServiceOrderByWithRelationInput
   ServiceCategory: ServiceCategoryOrderByWithRelationInput
   User: UserOrderByWithRelationInput
-  code: SortOrder
+  code: SortOrderInput
   createdAt: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
-  name: SortOrder
-  oldID: SortOrder
+  name: SortOrderInput
+  oldID: SortOrderInput
   other_Services: ServiceOrderByRelationAggregateInput
-  rank: SortOrder
+  rank: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -10526,6 +10537,11 @@ enum SortOrder {
   desc
 }
 
+input SortOrderInput {
+  nulls: NullsOrder
+  sort: SortOrder!
+}
+
 input StringFilter {
   contains: String
   endsWith: String
@@ -10628,7 +10644,7 @@ input TagOrderByRelationAggregateInput {
 }
 
 input TagOrderByWithRelationInput {
-  CreatedBy: SortOrder
+  CreatedBy: SortOrderInput
   ResourceTags: ResourceTagOrderByRelationAggregateInput
   User: UserOrderByWithRelationInput
   createdAt: SortOrder
@@ -11438,11 +11454,11 @@ input TaskOrderByRelationAggregateInput {
 }
 
 input TaskOrderByWithRelationInput {
-  ChatRoom: SortOrder
+  ChatRoom: SortOrderInput
   ChatRoom_ChatRoomToTask: ChatRoomOrderByWithRelationInput
   CodeChallengeCompletions: CodeChallengeCompletionOrderByRelationAggregateInput
-  CreatedBy: SortOrder
-  Parent: SortOrder
+  CreatedBy: SortOrderInput
+  Parent: SortOrderInput
   ProjectTasks: ProjectTaskOrderByRelationAggregateInput
   Resources: ResourceOrderByRelationAggregateInput
   Task: TaskOrderByWithRelationInput
@@ -11453,17 +11469,17 @@ input TaskOrderByWithRelationInput {
   Tasks_B: TaskOrderByRelationAggregateInput
   Timers: TimerOrderByRelationAggregateInput
   User: UserOrderByWithRelationInput
-  content: SortOrder
+  content: SortOrderInput
   createdAt: SortOrder
-  description: SortOrder
-  endDate: SortOrder
-  endDatePlaning: SortOrder
+  description: SortOrderInput
+  endDate: SortOrderInput
+  endDatePlaning: SortOrderInput
   id: SortOrder
   name: SortOrder
-  needHelp: SortOrder
+  needHelp: SortOrderInput
   other_Tasks: TaskOrderByRelationAggregateInput
-  startDate: SortOrder
-  startDatePlaning: SortOrder
+  startDate: SortOrderInput
+  startDatePlaning: SortOrderInput
   status: SortOrder
   updatedAt: SortOrder
 }
@@ -11727,14 +11743,14 @@ input TaskTechnologyOrderByRelationAggregateInput {
 
 input TaskTechnologyOrderByWithRelationInput {
   CreatedBy: SortOrder
-  Task: SortOrder
+  Task: SortOrderInput
   Task_TaskToTaskTechnology: TaskOrderByWithRelationInput
-  Technology: SortOrder
+  Technology: SortOrderInput
   Technology_TaskTechnologyToTechnology: TechnologyOrderByWithRelationInput
   User: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
-  level: SortOrder
+  level: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -12311,24 +12327,24 @@ input TeamOrderByWithRelationInput {
   CreatedBy: SortOrder
   GameResults: GameResultOrderByRelationAggregateInput
   Games: GameOrderByRelationAggregateInput
-  Parent: SortOrder
+  Parent: SortOrderInput
   Project_ProjectCustomers: ProjectOrderByRelationAggregateInput
   Projects_ProjectToTeam: ProjectOrderByRelationAggregateInput
   Resources: ResourceOrderByRelationAggregateInput
   Team: TeamOrderByWithRelationInput
   TeamMembers: TeamMemberOrderByRelationAggregateInput
   User: UserOrderByWithRelationInput
-  address: SortOrder
+  address: SortOrderInput
   createdAt: SortOrder
-  email: SortOrder
+  email: SortOrderInput
   id: SortOrder
   name: SortOrder
-  oldID: SortOrder
+  oldID: SortOrderInput
   other_Teams: TeamOrderByRelationAggregateInput
-  phone: SortOrder
+  phone: SortOrderInput
   status: SortOrder
   updatedAt: SortOrder
-  website: SortOrder
+  website: SortOrderInput
 }
 
 enum TeamStatus {
@@ -12863,18 +12879,18 @@ input TechnologyOrderByWithRelationInput {
   TechnologyLessons: TechnologyLessonOrderByRelationAggregateInput
   User: UserOrderByWithRelationInput
   UserTechnologies: UserTechnologyOrderByRelationAggregateInput
-  components: SortOrder
-  contentText: SortOrder
+  components: SortOrderInput
+  contentText: SortOrderInput
   createdAt: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
-  level1hours: SortOrder
-  level2hours: SortOrder
-  level3hours: SortOrder
-  level4hours: SortOrder
-  level5hours: SortOrder
+  level1hours: SortOrderInput
+  level2hours: SortOrderInput
+  level3hours: SortOrderInput
+  level4hours: SortOrderInput
+  level5hours: SortOrderInput
   name: SortOrder
-  site_url: SortOrder
+  site_url: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -13286,13 +13302,13 @@ input TimerOrderByRelationAggregateInput {
 }
 
 input TimerOrderByWithRelationInput {
-  CreatedBy: SortOrder
-  Task: SortOrder
+  CreatedBy: SortOrderInput
+  Task: SortOrderInput
   Task_TaskToTimer: TaskOrderByWithRelationInput
   User: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
-  stopedAt: SortOrder
+  stopedAt: SortOrderInput
   updatedAt: SortOrder
 }
 
@@ -22440,9 +22456,9 @@ input UserOrderByWithRelationInput {
   CodeChallengeCompletions: CodeChallengeCompletionOrderByRelationAggregateInput
   CodeChallenges: CodeChallengeOrderByRelationAggregateInput
   Comments: CommentOrderByRelationAggregateInput
-  CreatedBy: SortOrder
+  CreatedBy: SortOrderInput
   Donates: DonateOrderByRelationAggregateInput
-  EthAccountAuthed: SortOrder
+  EthAccountAuthed: SortOrderInput
   EthAccount_EthAccountToUser_EthAccountAuthed: EthAccountOrderByWithRelationInput
   EthAccounts_EthAccount_CreatedByToUser: EthAccountOrderByRelationAggregateInput
   EthContractSources: EthContractSourceOrderByRelationAggregateInput
@@ -22504,35 +22520,35 @@ input UserOrderByWithRelationInput {
   UserTechnologies: UserTechnologyOrderByRelationAggregateInput
   Votes: VoteOrderByRelationAggregateInput
   Worlds: WorldOrderByRelationAggregateInput
-  about: SortOrder
-  acceptChatMessageAnonymous: SortOrder
-  acceptNewChatRoom: SortOrder
-  acceptNewChatRoomAnonymous: SortOrder
-  activated: SortOrder
-  active: SortOrder
-  address: SortOrder
+  about: SortOrderInput
+  acceptChatMessageAnonymous: SortOrderInput
+  acceptNewChatRoom: SortOrderInput
+  acceptNewChatRoomAnonymous: SortOrderInput
+  activated: SortOrderInput
+  active: SortOrderInput
+  address: SortOrderInput
   blocked: SortOrder
   createdAt: SortOrder
-  deleted: SortOrder
-  email: SortOrder
-  fullname: SortOrder
-  hidden: SortOrder
+  deleted: SortOrderInput
+  email: SortOrderInput
+  fullname: SortOrderInput
+  hidden: SortOrderInput
   id: SortOrder
-  image: SortOrder
+  image: SortOrderInput
   isMentor: SortOrder
-  marketplaceToken: SortOrder
-  oldID: SortOrder
+  marketplaceToken: SortOrderInput
+  oldID: SortOrderInput
   other_Users: UserOrderByRelationAggregateInput
-  password: SortOrder
-  phone: SortOrder
+  password: SortOrderInput
+  phone: SortOrderInput
   showEmail: SortOrder
   showFullname: SortOrder
   showPhone: SortOrder
-  sudo: SortOrder
-  technologyLevel: SortOrder
-  telegram: SortOrder
+  sudo: SortOrderInput
+  technologyLevel: SortOrderInput
+  telegram: SortOrderInput
   updatedAt: SortOrder
-  username: SortOrder
+  username: SortOrderInput
 }
 
 type UserResponse {
@@ -22723,15 +22739,15 @@ input UserTechnologyOrderByWithRelationInput {
   Technology: SortOrder
   Technology_TechnologyToUserTechnology: TechnologyOrderByWithRelationInput
   User: UserOrderByWithRelationInput
-  components: SortOrder
+  components: SortOrderInput
   createdAt: SortOrder
-  date_from: SortOrder
-  date_till: SortOrder
-  hiring_status: SortOrder
+  date_from: SortOrderInput
+  date_till: SortOrderInput
+  hiring_status: SortOrderInput
   id: SortOrder
   isMentor: SortOrder
-  level: SortOrder
-  status: SortOrder
+  level: SortOrderInput
+  status: SortOrderInput
   updatedAt: SortOrder
 }
 

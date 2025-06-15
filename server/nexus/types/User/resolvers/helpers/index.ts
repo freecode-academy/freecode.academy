@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { User } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
-import { randomBytes } from 'crypto'
+import { generateId } from '../../../../../helpers/generateId'
 
 export type AuthTokenData = {
   tokenId: string
@@ -12,12 +12,7 @@ export type AuthTokenData = {
  * Создание пароля
  */
 export const createPassword = async (password: string | null | undefined) => {
-  if (!password) {
-    const length = 10
-    password = randomBytes(length).toString('base64').slice(0, length)
-  }
-
-  return await bcrypt.hash(password, 10)
+  return await bcrypt.hash(password ?? generateId(), 10)
 }
 
 /**

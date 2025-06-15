@@ -48,12 +48,12 @@ function compare<T>(title: string, a: T, b?: T): boolean {
       // TODO: реализовать проверку полей в обе стороны
       const compareFields = (objectA: typeof a, objectB: typeof b) => {
         for (const i in objectA) {
-          if (objectA[i] !== objectB[i]) {
+          if (objectA[i] !== objectB?.[i]) {
             console.error(
               title,
               `a["${i}"] !== b["${i}"]`,
               objectA[i],
-              objectB[i]
+              objectB?.[i]
             )
           }
         }

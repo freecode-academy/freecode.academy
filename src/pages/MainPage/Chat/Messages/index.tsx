@@ -18,7 +18,6 @@ import { useAppContext } from 'src/pages/_App/Context'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 
 const MainPageChatMessage = dynamic(
-  // @ts-expect-error Видимо пройдет после обновления некста
   () => import('./Message').then((m) => m.MainPageChatMessage),
   { ssr: false }
 )

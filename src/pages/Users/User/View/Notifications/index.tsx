@@ -28,8 +28,9 @@ export const UserNotifications: React.FC<UserNotificationsProps> = ({
               <UserNotification
                 object={n}
                 checked={
-                  NotificationTypes?.findIndex((n) => n.id === id) !== -1 ??
-                  false
+                  NotificationTypes?.findIndex((n) => n.id === id) !== -1
+                    ? true
+                    : false
                 }
                 label={comment || name}
               />

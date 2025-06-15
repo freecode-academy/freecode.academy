@@ -6,8 +6,6 @@
         "validate": false
       }
     ],
-    // Moved into next-env.d.ts
-    // "types": ["jest", "cypress"],
     "target": "esnext",
     "module": "esnext",
     "jsx": "preserve",
@@ -31,7 +29,7 @@
     "incremental": true
   },
   "exclude": [
-    // "node_modules",
+    "node_modules",
     "dist",
     ".next",
     "out",

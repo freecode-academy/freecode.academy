@@ -6,7 +6,7 @@ import {
   useDeleteLearnStrategyStageMutation,
   UserTechnologyHiringStatus,
   UserTechnologyStatus,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import TechnologyLink from 'src/uikit/Link/Technology'
 import UikitUserLink from 'src/uikit/Link/User'
 import { LearnStageTechnologyProps } from './interfaces'

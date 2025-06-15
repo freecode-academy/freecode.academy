@@ -1,8 +1,4 @@
-import {
-  MeUserTimerFragment,
-  Scalars,
-  TaskFragment,
-} from 'src/modules/gql/generated'
+import { MeUserTimerFragment, Scalars, TaskFragment } from 'src/gql/generated'
 import { UikitUserLinkProps } from 'src/uikit/Link/User'
 import { OfficeProjectPageViewTaskProjectProps } from './Project/interfaces'
 

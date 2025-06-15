@@ -24,7 +24,7 @@ import {
   SitemapTagsConnectionDocument,
   TagStatus,
   SortOrder,
-} from '../../../src/modules/gql/generated'
+} from '../../../src/gql/generated'
 
 const apolloClient = initializeApollo({
   withWs: false,

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 
-import { useMeQuery } from 'src/modules/gql/generated'
+import { useMeQuery } from 'src/gql/generated'
 
 import { WithUserProps } from './interfaces'
 import useSubscriptionProvider from './useSubscriptionProvider'

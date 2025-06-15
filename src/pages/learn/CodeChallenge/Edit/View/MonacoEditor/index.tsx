@@ -2,7 +2,7 @@ import { editor } from 'monaco-editor'
 import React, { useCallback } from 'react'
 import { useMonacoEditor } from 'src/hooks/useMonacoEditor'
 import { monacoEditorInstance } from 'src/hooks/useMonacoEditor/MonacoEditor/interfaces'
-import { CodeChallengeFragment } from 'src/modules/gql/generated'
+import { CodeChallengeFragment } from 'src/gql/generated'
 import { CodeChallengeEditMonacoEditorProps } from './interfaces'
 
 /**

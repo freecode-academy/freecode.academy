@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { IconButton } from 'material-ui'
 import DeleteIcon from 'material-ui-icons/Delete'
-import { useDeleteResourceMutation } from 'src/modules/gql/generated'
+import { useDeleteResourceMutation } from 'src/gql/generated'
 import { DeleteResourceProps } from './interfaces'
 
 /**

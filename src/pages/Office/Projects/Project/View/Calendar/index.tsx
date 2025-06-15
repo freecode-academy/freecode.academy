@@ -1,10 +1,7 @@
 // import { DateSelectArg } from '@fullcalendar/react'
 import React, { useMemo } from 'react'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
-import {
-  TaskStatus,
-  useCreateTaskProcessorMutation,
-} from 'src/modules/gql/generated'
+import { TaskStatus, useCreateTaskProcessorMutation } from 'src/gql/generated'
 import Calendar from 'src/pages/Office/View/Calendar'
 import { ProjectCalendarProps } from './interfaces'
 

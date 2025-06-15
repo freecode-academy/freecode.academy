@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useMemo } from 'react'
-import { useOpenAiMutation } from 'src/modules/gql/generated'
+import { useOpenAiMutation } from 'src/gql/generated'
 import { ChatMessage } from './interfaces'
 import {
   AiMessageContentStyled,

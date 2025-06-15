@@ -4,7 +4,7 @@ import { UserEditFormProps } from './interfaces'
 import {
   CurrentUserUpdateInput,
   useUpdateCurrentUserMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import TextField from '@prisma-cms/ui/dist/form/TextField'
 import { FormStyled } from 'src/components/ui/form/styles'
 import Button from 'src/components/ui/Button'

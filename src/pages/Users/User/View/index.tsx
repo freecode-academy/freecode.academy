@@ -11,7 +11,7 @@ import {
   Scalars,
   UserUpdateInput,
   useUpdateUserProcessorMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import IconButton from 'material-ui/IconButton'
 import SaveIcon from 'material-ui-icons/Save'
 import ResetIcon from 'material-ui-icons/Restore'

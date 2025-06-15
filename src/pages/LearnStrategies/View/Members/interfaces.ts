@@ -1,5 +1,5 @@
 import { PrismaCmsContext } from '@prisma-cms/context'
-import { LearnStrategyFragment } from 'src/modules/gql/generated'
+import { LearnStrategyFragment } from 'src/gql/generated'
 
 export type LearnStrategiesViewMembersProps = {
   learnStrategy: LearnStrategyFragment

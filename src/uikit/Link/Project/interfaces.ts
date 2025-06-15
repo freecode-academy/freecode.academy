@@ -1,4 +1,4 @@
-import { Maybe } from 'src/modules/gql/generated'
+import { Maybe } from 'src/gql/generated'
 
 export interface ProjectLinkProps {
   object?: Maybe<{

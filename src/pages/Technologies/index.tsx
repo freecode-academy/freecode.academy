@@ -5,7 +5,7 @@ import {
   TechnologiesConnectionQueryVariables,
   useTechnologiesConnectionQuery,
   SortOrder,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import View from './View'
 

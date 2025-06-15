@@ -1,4 +1,4 @@
-import { CodeChallengeBlocksBlockFragment } from 'src/modules/gql/generated'
+import { CodeChallengeBlocksBlockFragment } from 'src/gql/generated'
 
 export interface CodeChallengeBlocksPageBlockViewProps {
   object: CodeChallengeBlocksBlockFragment

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import Button from 'src/components/ui/Button'
-import { useCreateUserLearnStrategyMutation } from 'src/modules/gql/generated'
+import { useCreateUserLearnStrategyMutation } from 'src/gql/generated'
 import { ConnectLearnStrategyButtonProps } from './interfaces'
 
 export const ConnectLearnStrategyButton: React.FC<

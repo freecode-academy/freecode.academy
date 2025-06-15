@@ -1,4 +1,4 @@
-import { Timer } from 'src/modules/gql/generated'
+import { Timer } from 'src/gql/generated'
 
 export interface TimersListViewProps {
   timers: Timer[]

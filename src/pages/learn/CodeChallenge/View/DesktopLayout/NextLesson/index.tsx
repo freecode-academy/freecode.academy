@@ -6,7 +6,7 @@ import {
   CodeChallengeFragment,
   SortOrder,
   useCodeChallengesQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 export type NextLessonProps = {
   challenge: CodeChallengeFragment

@@ -4,7 +4,7 @@ import {
   LearnStrategiesConnectionQueryVariables,
   useLearnStrategiesConnectionQuery,
   SortOrder,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { LearnStrategiesView } from './View'
 

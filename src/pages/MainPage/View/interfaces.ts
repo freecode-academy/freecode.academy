@@ -1,4 +1,4 @@
-import { MainPageQuery } from 'src/modules/gql/generated'
+import { MainPageQuery } from 'src/gql/generated'
 
 export type MainPageProps = {
   data: MainPageQuery | undefined

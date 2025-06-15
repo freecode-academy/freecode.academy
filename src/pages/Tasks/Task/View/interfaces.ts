@@ -1,4 +1,4 @@
-import { TaskQuery } from 'src/modules/gql/generated'
+import { TaskQuery } from 'src/gql/generated'
 
 export interface TaskViewProps {
   object: NonNullable<TaskQuery['object']>

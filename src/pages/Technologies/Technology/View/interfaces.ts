@@ -1,4 +1,4 @@
-import { TechnologyFragment } from 'src/modules/gql/generated'
+import { TechnologyFragment } from 'src/gql/generated'
 
 export interface TechnologyViewProps {
   technology: TechnologyFragment

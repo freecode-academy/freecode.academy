@@ -10,7 +10,7 @@ import { CreateTechnologyForm } from './styles'
 import {
   TechnologyCreateInput,
   useCreateTechnologyMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import TextField from 'src/components/ui/form/TextField'
 import { useRouter } from 'next/router'
 import Button from 'src/components/ui/Button'

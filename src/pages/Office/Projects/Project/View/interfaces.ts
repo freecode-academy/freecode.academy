@@ -1,4 +1,4 @@
-import { ProjectFragment } from 'src/modules/gql/generated'
+import { ProjectFragment } from 'src/gql/generated'
 import { ProjectCalendarProps } from './Calendar/interfaces'
 
 export type OfficeProjectPageViewProps = {

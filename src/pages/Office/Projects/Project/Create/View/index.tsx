@@ -4,7 +4,7 @@ import useStore from 'src/hooks/useStore'
 import {
   ProjectCreateInput,
   useCreateProjectProcessorMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { OfficeProjectsCreateProps } from './interfaces'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
 import { useRouter } from 'next/router'

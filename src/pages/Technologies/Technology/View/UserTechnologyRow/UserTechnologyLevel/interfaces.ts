@@ -1,5 +1,5 @@
 import { PrismaCmsComponentError } from '@prisma-cms/component'
-import { Scalars, UserTechnology } from 'src/modules/gql/generated'
+import { Scalars, UserTechnology } from 'src/gql/generated'
 
 export type UserTechnologyLevelProps = {
   inEditMode: boolean

@@ -1,4 +1,4 @@
-import { CodeChallengePageFragment } from 'src/modules/gql/generated'
+import { CodeChallengePageFragment } from 'src/gql/generated'
 import { CodeChallengeContext } from '../Context'
 import { DesktopLayoutProps } from './DesktopLayout/interfaces'
 

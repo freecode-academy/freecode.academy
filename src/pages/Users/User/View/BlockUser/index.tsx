@@ -1,10 +1,7 @@
 import React, { useCallback } from 'react'
 import { IconButton } from 'material-ui'
 import BlockIcon from 'material-ui-icons/Block'
-import {
-  useBlockUserMutation,
-  useUnblockUserMutation,
-} from 'src/modules/gql/generated'
+import { useBlockUserMutation, useUnblockUserMutation } from 'src/gql/generated'
 import { BlockUserProps } from './interfaces'
 
 /**

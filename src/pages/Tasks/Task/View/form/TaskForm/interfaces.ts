@@ -3,7 +3,7 @@ import {
   CreateTaskProcessorMutationVariables,
   TaskNoNestingFragment,
   UpdateTaskProcessorMutationVariables,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 // export type TaskFormProps = {
 //   data?: Task

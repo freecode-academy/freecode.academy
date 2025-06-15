@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import {
   NoticesConnectionQueryVariables,
   useNoticesConnectionQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import View from './View'
 

@@ -1,4 +1,4 @@
-import { MeUserTimerFragment } from 'src/modules/gql/generated'
+import { MeUserTimerFragment } from 'src/gql/generated'
 
 export type MainMenuTimerProps = {
   timer: MeUserTimerFragment

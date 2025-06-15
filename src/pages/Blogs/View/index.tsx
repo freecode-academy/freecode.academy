@@ -4,7 +4,7 @@ import { ObjectsListView, styles } from 'src/components/view/List'
 import withStyles from 'material-ui/styles/withStyles'
 import { BlogsViewProps } from './interfaces'
 import { ColumnConfig } from 'apollo-cms/dist/DataView/List/Table'
-import { BlogsConnectionResourceFragment } from 'src/modules/gql/generated'
+import { BlogsConnectionResourceFragment } from 'src/gql/generated'
 import UserLink from 'src/uikit/Link/User'
 import BlogLink from 'src/uikit/Link/Blog'
 

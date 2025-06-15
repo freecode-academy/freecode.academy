@@ -10,7 +10,7 @@ import {
   ResourceType,
   ResourceDocument,
   ResourceQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 // import View from './View'
 

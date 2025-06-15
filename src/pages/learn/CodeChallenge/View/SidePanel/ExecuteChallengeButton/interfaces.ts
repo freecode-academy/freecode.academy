@@ -1,4 +1,4 @@
-import { MeUserCodeChallengeCompletionFragment } from 'src/modules/gql/generated'
+import { MeUserCodeChallengeCompletionFragment } from 'src/gql/generated'
 import { SidePanelProps } from '../interfaces'
 import { ToolPanelProps } from '../ToolPanel/interfaces'
 

@@ -7,7 +7,7 @@ import {
   GridTableItemStyled,
 } from 'src/components/GridTable/styles'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
-import { UsersConnectionUserFragment } from 'src/modules/gql/generated'
+import { UsersConnectionUserFragment } from 'src/gql/generated'
 import Link from 'src/uikit/Link'
 import ProjectLink from 'src/uikit/Link/Project'
 import UserLink from 'src/uikit/Link/User'

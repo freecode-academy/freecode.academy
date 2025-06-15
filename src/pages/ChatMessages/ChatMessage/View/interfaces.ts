@@ -1,4 +1,4 @@
-import { ChatMessageFragment } from 'src/modules/gql/generated'
+import { ChatMessageFragment } from 'src/gql/generated'
 
 export interface ChatMessageViewProps {
   object: ChatMessageFragment | null | undefined

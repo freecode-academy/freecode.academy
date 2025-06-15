@@ -27,7 +27,7 @@ import { MainMenuProps, MainMenuState } from './interfaces'
 
 import Timer from './Timer'
 // import MainMenuNotices from './Notices'
-import { TaskStatus, TaskWhereInput } from 'src/modules/gql/generated'
+import { TaskStatus, TaskWhereInput } from 'src/gql/generated'
 import { TelegramIconSvg } from 'src/uikit/icons/telegram'
 import {
   MainMenuItemsDesktopStyled,

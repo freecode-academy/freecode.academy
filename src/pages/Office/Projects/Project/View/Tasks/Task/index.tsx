@@ -16,7 +16,7 @@ import CreateSubtask from './CreateSubtask'
 import { IconButton } from 'material-ui'
 import TaskChangeStatusButton from './ChangeStatusButton'
 import UikitUserLink from 'src/uikit/Link/User'
-import { CreateTaskProcessorMutationVariables } from 'src/modules/gql/generated'
+import { CreateTaskProcessorMutationVariables } from 'src/gql/generated'
 
 const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   task,

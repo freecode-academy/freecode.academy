@@ -1,4 +1,4 @@
-import { UserNoNestingFragment } from 'src/modules/gql/generated'
+import { UserNoNestingFragment } from 'src/gql/generated'
 
 export interface UserAvatarProps {
   classes?: Record<string, any>

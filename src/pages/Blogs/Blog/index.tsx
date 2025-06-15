@@ -5,7 +5,7 @@ import {
   ResourceFragment,
   TopicsConnectionQuery,
   TopicsConnectionDocument,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import View, { getBlogTopicsVariables } from './View'
 

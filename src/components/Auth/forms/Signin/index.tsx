@@ -5,7 +5,7 @@ import PrismaCmsComponent from '@prisma-cms/component'
 
 import { AuthUsersFormProps, AuthUsersFormState } from './interfaces'
 import AuthUsersConnector from './AuthUsersConnector'
-import { UserWhereInput } from 'src/modules/gql/generated'
+import { UserWhereInput } from 'src/gql/generated'
 
 type Filters = { search: string }
 

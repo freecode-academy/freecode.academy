@@ -6,7 +6,7 @@ import {
   TopicCreateInput,
   useCreateTopicProcessorMutation,
   useUpdateTopicProcessorMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import TopicView from 'src/pages/Topics/Topic/View'
 import { CodeChallengeDiscussProps } from './interfacse'
 

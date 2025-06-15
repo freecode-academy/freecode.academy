@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
-import { useResourceQuery } from 'src/modules/gql/generated'
+import { useResourceQuery } from 'src/gql/generated'
 import { getResourceVariables } from 'src/pages/Resource'
 import { Page } from 'src/pages/_App/interfaces'
 import Comment from 'src/uikit/Comments/Comment'

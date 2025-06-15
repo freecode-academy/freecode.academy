@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNotificationTypesQuery } from 'src/modules/gql/generated'
+import { useNotificationTypesQuery } from 'src/gql/generated'
 import Grid from 'src/uikit/Grid'
 import Paper from 'src/uikit/Paper'
 import Title from 'src/uikit/Title'

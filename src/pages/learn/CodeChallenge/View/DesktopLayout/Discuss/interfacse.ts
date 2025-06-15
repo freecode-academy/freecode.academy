@@ -1,4 +1,4 @@
-import { CodeChallengeFragment, Scalars } from 'src/modules/gql/generated'
+import { CodeChallengeFragment, Scalars } from 'src/gql/generated'
 
 export type CodeChallengeDiscussProps = {
   challenge: CodeChallengeFragment

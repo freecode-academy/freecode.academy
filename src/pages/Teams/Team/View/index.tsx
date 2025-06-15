@@ -1,5 +1,5 @@
 import { Typography } from 'material-ui'
-import { ResourceFragment } from 'src/modules/gql/generated'
+import { ResourceFragment } from 'src/gql/generated'
 
 type TeamViewProps = {
   resource: ResourceFragment

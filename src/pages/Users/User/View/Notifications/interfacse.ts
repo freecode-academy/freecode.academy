@@ -1,4 +1,4 @@
-import { NotificationTypeNoNestingFragment } from 'src/modules/gql/generated'
+import { NotificationTypeNoNestingFragment } from 'src/gql/generated'
 
 export type UserNotificationsProps = {
   /**

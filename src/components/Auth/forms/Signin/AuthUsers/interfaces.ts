@@ -1,4 +1,4 @@
-import { AuthFormUsersConnectionQuery, Maybe } from 'src/modules/gql/generated'
+import { AuthFormUsersConnectionQuery, Maybe } from 'src/gql/generated'
 import { AuthFormProps, AuthFormState } from '../../interfaces'
 
 export interface AuthUsersProps extends AuthFormProps {

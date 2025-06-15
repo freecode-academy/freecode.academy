@@ -6,7 +6,7 @@ import {
   // TechnologiesConnectionTechnologyFragment,
   useCreateTaskTechnologyProcessorMutation,
   useTechnologiesConnectionQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { NewTaskTaskTechnologyProps } from './interfaces'
 import { NewTaskTaskTechnologyStyled } from './styles'
 import IconButton from 'material-ui/IconButton'

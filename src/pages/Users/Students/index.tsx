@@ -3,7 +3,7 @@ import {
   UsersConnectionDocument,
   UsersConnectionQueryVariables,
   useUsersConnectionQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { UsersView } from '../View'
 

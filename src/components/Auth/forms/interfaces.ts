@@ -4,7 +4,7 @@ import {
 } from '@prisma-cms/component'
 import { DialogProps } from 'material-ui/Dialog'
 
-import { AuthUserFragment } from 'src/modules/gql/generated'
+import { AuthUserFragment } from 'src/gql/generated'
 
 export type AuthFormResponse = {
   token: string

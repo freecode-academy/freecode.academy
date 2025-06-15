@@ -14,7 +14,7 @@ import Grid from 'src/uikit/Grid'
 import UserLink from 'src/uikit/Link/User'
 import ProjectLink from 'src/uikit/Link/Project'
 import TaskLink from 'src/uikit/Link/Task'
-// import { Timer } from 'src/modules/gql/generated'
+// import { Timer } from 'src/gql/generated'
 import { TimerViewProps } from './interfaces'
 
 const styles = () => {

@@ -4,7 +4,7 @@ import {
   LearnStrategyDocument,
   LearnStrategyQuery,
   LearnStrategyQueryVariables,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { LearnStrategyPageView } from './View'
 

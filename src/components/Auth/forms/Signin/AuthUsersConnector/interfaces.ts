@@ -1,4 +1,4 @@
-import { AuthFormUsersConnectionQueryVariables } from 'src/modules/gql/generated'
+import { AuthFormUsersConnectionQueryVariables } from 'src/gql/generated'
 import { AuthFormProps } from '../../interfaces'
 import AuthUsers from '../AuthUsers'
 

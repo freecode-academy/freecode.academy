@@ -1,5 +1,5 @@
 import { PrismaCmsContext } from '@prisma-cms/context'
-import { UserProfileFragment } from 'src/modules/gql/generated'
+import { UserProfileFragment } from 'src/gql/generated'
 // import { UserPageViewProps } from '../interfaces'
 
 export type UserViewTechnologiesProps = {

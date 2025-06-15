@@ -1,6 +1,6 @@
 import { Typography } from 'material-ui'
 import React from 'react'
-import { DonateFragment } from 'src/modules/gql/generated'
+import { DonateFragment } from 'src/gql/generated'
 import { DonateForm } from 'src/pages/About/DonateForm'
 import { Donate } from './Donate'
 import { DonatesPageViewStyled } from './styles'

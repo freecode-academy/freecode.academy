@@ -13,7 +13,7 @@ import {
   UpdateCodeChallengeCompletionProcessorMutation,
   UpdateCodeChallengeCompletionProcessorMutationVariables,
   UpdateCodeChallengeCompletionProcessorDocument,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 
 function useExecuteChallenge() {

@@ -1,4 +1,4 @@
-import { Maybe, Resource } from 'src/modules/gql/generated'
+import { Maybe, Resource } from 'src/gql/generated'
 import { UiLinkProps } from '../interfaces'
 
 export interface BlogLinkProps {

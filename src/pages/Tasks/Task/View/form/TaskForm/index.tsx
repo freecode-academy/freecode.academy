@@ -7,7 +7,7 @@ import { PrismaCmsEditorRawContent } from '@prisma-cms/editor/dist'
 import TextField from 'material-ui/TextField'
 import Typography from 'material-ui/Typography'
 import { TaskFormProps } from './interfaces'
-import { TaskStatus } from 'src/modules/gql/generated'
+import { TaskStatus } from 'src/gql/generated'
 import Autocomplete from 'src/uikit/Autocomplete'
 import CheckBox from 'src/uikit/CheckBox'
 

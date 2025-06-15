@@ -1,4 +1,4 @@
-import { UserTechnologyHiringStatus } from 'src/modules/gql/generated'
+import { UserTechnologyHiringStatus } from 'src/gql/generated'
 
 /**
  * Возвращает перевод статуса заинтересованности в трудоустройстве

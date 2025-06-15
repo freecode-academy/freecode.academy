@@ -5,10 +5,7 @@ import Dialog from 'material-ui/Dialog' // DialogContent, // DialogActions,
 
 import PrismaCmsComponent from '@prisma-cms/component'
 import { AuthFormProps, AuthFormState } from './interfaces'
-import {
-  SigninMutationResult,
-  SignupMutationResult,
-} from 'src/modules/gql/generated'
+import { SigninMutationResult, SignupMutationResult } from 'src/gql/generated'
 // import { PrismaCmsContext } from 'src/pages/_App/interfaces';
 
 const defaultLocales = {

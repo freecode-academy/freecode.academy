@@ -5,7 +5,7 @@ import { CodeChallengeFileExt } from 'src/pages/learn/CodeChallenge/View/Editor'
 import {
   CodeChallengeFragment,
   MeUserCodeChallengeCompletionFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { PrismaCmsContext } from '@prisma-cms/context'
 
 export type TestError = {

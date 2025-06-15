@@ -2,7 +2,7 @@ import {
   ResourceOrderByWithRelationInput,
   ResourceWhereInput,
   TopicCreateInput,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 export type BlogAutocompleteProps = {
   value: string

@@ -15,7 +15,7 @@ import {
   SignupDocument,
   SignupMutationResult,
   SignupMutationVariables,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 class SignupForm extends AuthForm<SignupFormProps, SignupFormState> {
   // static propTypes = {

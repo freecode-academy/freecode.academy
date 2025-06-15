@@ -1,4 +1,4 @@
-import { UserTechnologyStatus } from 'src/modules/gql/generated'
+import { UserTechnologyStatus } from 'src/gql/generated'
 
 /**
  * Возвращает перевод статуса

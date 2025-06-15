@@ -4,7 +4,7 @@ import {
   MainPageCodeChallengeCompletionFragment,
   ResourceFragment,
   UserNoNestingFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import MainPageCodeChallengeCompletions from './CodeChallengeCompletions'
 import MainPageComments from './Comments'
 import MainPageStudents from './Students'

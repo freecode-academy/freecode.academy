@@ -5,7 +5,7 @@ import CheckBox from 'src/uikit/CheckBox'
 import {
   UpdateUserProcessorMutationVariables,
   useUpdateUserProcessorMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 export const UserNotification: React.FC<UserNotificationProps> = ({
   object,

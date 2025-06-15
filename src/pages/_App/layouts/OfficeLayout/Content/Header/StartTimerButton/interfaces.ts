@@ -1,4 +1,4 @@
-import { OfficeTaskFragment } from 'src/modules/gql/generated'
+import { OfficeTaskFragment } from 'src/gql/generated'
 
 export type StartTimerButtonProps = {
   task: OfficeTaskFragment

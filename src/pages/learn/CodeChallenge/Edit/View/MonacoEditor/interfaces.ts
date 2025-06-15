@@ -1,4 +1,4 @@
-import { CodeChallengeFragment } from 'src/modules/gql/generated'
+import { CodeChallengeFragment } from 'src/gql/generated'
 
 export type CodeChallengeEditMonacoEditorProps<
   T extends keyof CodeChallengeFragment

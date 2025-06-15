@@ -5,7 +5,7 @@ import {
   TaskStatus,
   useOfficeProjectsQuery,
   useOfficeTasksQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { useOfficeDataProps } from './interfaces'
 
 /**

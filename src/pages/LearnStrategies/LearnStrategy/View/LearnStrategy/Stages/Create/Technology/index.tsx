@@ -6,7 +6,7 @@ import {
   LearnStrategyStageCreateTechnologyInput,
   SortOrder,
   useTechnologiesQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { CreateLearnStrategyStageTechnologyProps } from './interfaces'
 
 /**

@@ -1,10 +1,6 @@
 import Head from 'next/head'
 import React, { useMemo } from 'react'
-import {
-  useTaskQuery,
-  TaskDocument,
-  TaskQuery,
-} from 'src/modules/gql/generated'
+import { useTaskQuery, TaskDocument, TaskQuery } from 'src/gql/generated'
 
 import View from './View'
 

@@ -7,7 +7,7 @@ import {
   CodeChallengeQuery,
   CodeChallengeQueryVariables,
   useCodeChallengeQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { Page } from 'src/pages/_App/interfaces'
 import { CodeChallengeEditView } from './View'
 

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import {
   useResourceQuery,
   // useUpdateTeamProcessorMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { getResourceVariables } from 'src/pages/Resource'
 

@@ -4,7 +4,7 @@ import {
   CodeChallengeDocument,
   CodeChallengeQuery,
   CodeChallengeQueryVariables,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { useRouter, NextRouter } from 'next/router'
 

@@ -10,7 +10,7 @@ import BlogAutocomplete from './BlogAutocomplete'
 import Typography from 'material-ui/Typography'
 import BlogLink from 'src/uikit/Link/Blog'
 import { TopicBlogProps } from './interfaces'
-import { ResourceType, SortOrder } from 'src/modules/gql/generated'
+import { ResourceType, SortOrder } from 'src/gql/generated'
 
 // TODO Восстановить выбор блога
 

@@ -1,11 +1,11 @@
 import { IconButton } from 'material-ui'
 import React, { useCallback, useMemo } from 'react'
-import { NoticeType } from 'src/modules/gql/generated'
+import { NoticeType } from 'src/gql/generated'
 import UiChatMessage from 'src/uikit/Chat/ChatMessage'
 import { NoticeViewProps } from './interfaces'
 import { NoticeViewHeaderStyled, NoticeViewStyled } from './styles'
 import DoneIcon from 'material-ui-icons/Done'
-import { useDeleteNoticeMutation } from 'src/modules/gql/generated/deleteNotice'
+import { useDeleteNoticeMutation } from 'src/gql/generated/deleteNotice'
 
 const NoticeView: React.FC<NoticeViewProps> = ({ notice, ...other }) => {
   const [deleteMutation, { loading, client }] = useDeleteNoticeMutation({

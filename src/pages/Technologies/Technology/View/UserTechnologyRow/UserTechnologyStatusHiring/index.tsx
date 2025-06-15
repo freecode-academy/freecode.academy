@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react'
 import { getUserTechnologyHiringStatusText } from 'src/helpers/getUserTechnologyHiringStatusText'
-import { UserTechnologyHiringStatus } from 'src/modules/gql/generated'
+import { UserTechnologyHiringStatus } from 'src/gql/generated'
 import { Autocomplete } from 'src/uikit/Autocomplete'
 import { UserTechnologyHiringStatusViewProps } from './interfaces'
 

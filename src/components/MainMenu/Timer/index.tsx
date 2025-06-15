@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton'
 import StopIcon from 'material-ui-icons/Stop'
 
 import { MainMenuTimerProps } from './interfaces'
-import { useUpdateTimerProcessorMutation } from 'src/modules/gql/generated'
+import { useUpdateTimerProcessorMutation } from 'src/gql/generated'
 
 // import Context, { PrismaCmsContext } from '@prisma-cms/context';
 

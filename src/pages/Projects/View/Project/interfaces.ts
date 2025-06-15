@@ -2,7 +2,7 @@ import {
   ProjectViewProps,
   ProjectViewState,
 } from 'src/components/@prisma-cms/cooperation/components/pages/Projects/View/Project'
-// import { ProjectsConnectionProjectFragment } from 'src/modules/gql/generated'
+// import { ProjectsConnectionProjectFragment } from 'src/gql/generated'
 
 export interface ProjectProps extends ProjectViewProps {
   // object: ProjectsConnectionProjectFragment | null | undefined

@@ -6,7 +6,7 @@ import { initEditorObject } from 'src/components/SiteFrontEditor'
 import {
   CreateTopicProcessorMutation,
   useCreateTopicProcessorMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { useRouter } from 'next/router'
 
 const TopicView = dynamic(import('../View'), { ssr: false })

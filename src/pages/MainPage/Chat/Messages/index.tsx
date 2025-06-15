@@ -12,7 +12,7 @@ import {
   DialogDocument,
   useCreateChatMessageProcessorMutation,
   useDialogQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { useAppContext } from 'src/pages/_App/Context'
 
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'

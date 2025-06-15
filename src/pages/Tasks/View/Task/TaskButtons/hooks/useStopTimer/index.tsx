@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import { useUpdateTimerProcessorMutation } from 'src/modules/gql/generated'
+import { useUpdateTimerProcessorMutation } from 'src/gql/generated'
 
 /**
  * Завершение работы таймера.

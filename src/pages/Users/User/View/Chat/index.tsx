@@ -5,7 +5,7 @@ import {
   ChatMessageFragment,
   MeUserFragment,
   UserFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 type PrivateChatProps = {
   user: UserFragment

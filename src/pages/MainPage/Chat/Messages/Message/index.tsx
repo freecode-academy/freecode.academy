@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown'
-import { ChatMessageFragment } from 'src/modules/gql/generated'
+import { ChatMessageFragment } from 'src/gql/generated'
 import { ContextValue } from 'src/pages/_App/Context'
 import Link from 'src/uikit/Link'
 import { ChatMessageContentStyled, ChatMessageStyled } from './styles'

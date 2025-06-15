@@ -1,8 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import {
-  TaskStatus,
-  useUpdateTaskProcessorMutation,
-} from 'src/modules/gql/generated'
+import { TaskStatus, useUpdateTaskProcessorMutation } from 'src/gql/generated'
 import DoneIcon from 'material-ui-icons/Done'
 import { IconButton } from 'material-ui'
 import { TaskChangeStatusButtonProps } from './interfaces'

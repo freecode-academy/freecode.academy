@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {
   AuthFormUsersConnectionQuery,
   useAuthFormUsersConnectionQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import AuthUsers from '../AuthUsers'
 import { AuthUsersConnectorProps } from './interfaces'
 

@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback, useState } from 'react'
 
-import { TaskStatus, TaskFragment } from 'src/modules/gql/generated'
+import { TaskStatus, TaskFragment } from 'src/gql/generated'
 import { OfficeProjectListSectionStyled } from 'src/pages/Office/components/ui/list/styles'
 import { OfficeTitleStyled } from 'src/pages/Office/components/ui/Title/styles'
 
@@ -11,7 +11,7 @@ import useActiveTimer from 'src/hooks/useActiveTimer'
 
 import CreateTaskForm from 'src/pages/Tasks/Task/View/form/CreateTask'
 import { Button, Paper } from 'material-ui'
-import { CreateTaskProcessorMutation } from 'src/modules/gql/generated'
+import { CreateTaskProcessorMutation } from 'src/gql/generated'
 
 import { ProjectTasksProps } from './interfaces'
 // import Link from 'next/link'

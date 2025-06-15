@@ -3,7 +3,7 @@ import {
   TimersConnectionQueryVariables,
   useTimersConnectionQuery,
   SortOrder,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import moment from 'moment'
 

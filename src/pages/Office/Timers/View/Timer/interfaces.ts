@@ -1,4 +1,4 @@
-import { TimerFragment } from 'src/modules/gql/generated'
+import { TimerFragment } from 'src/gql/generated'
 import { OfficeProjectPageViewTaskProps } from 'src/pages/Office/Projects/Project/View/Tasks/Task/interfaces'
 
 export type OfficeTimersTimerProps = {

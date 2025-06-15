@@ -1,4 +1,4 @@
-import { LearnStrategyNoNestingFragment } from 'src/modules/gql/generated'
+import { LearnStrategyNoNestingFragment } from 'src/gql/generated'
 
 export type LearnStrategyUpdateFormProps = {
   learnStrategy: LearnStrategyNoNestingFragment

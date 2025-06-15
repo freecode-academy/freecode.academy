@@ -12,7 +12,7 @@ import {
   LearnStrategyCreateInput,
   Scalars,
   useCreateLearnStrategyMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import {
   CreateLearnStrategyFormStyled,
   CreateLearnStrategyPageStyled,

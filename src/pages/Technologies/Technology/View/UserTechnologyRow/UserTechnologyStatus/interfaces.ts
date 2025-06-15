@@ -1,8 +1,5 @@
 import { PrismaCmsComponentError } from '@prisma-cms/component'
-import {
-  UserTechnology,
-  UserTechnologyUpdateInput,
-} from 'src/modules/gql/generated'
+import { UserTechnology, UserTechnologyUpdateInput } from 'src/gql/generated'
 
 export type UserTechnologyStatusViewProps = {
   inEditMode: boolean

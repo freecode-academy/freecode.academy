@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
 
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
-import { useCreateUserTechnologyProcessorMutation } from 'src/modules/gql/generated'
+import { useCreateUserTechnologyProcessorMutation } from 'src/gql/generated'
 import Button from 'material-ui/Button'
 import { ConnectUserTechnologyProps } from './interfaces'
 

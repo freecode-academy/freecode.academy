@@ -21,7 +21,7 @@ import {
   ResetPasswordProcessorMutationOptions,
   SigninDocument,
   SigninMutationResult,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import UsersList from './UsersList'
 
 class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {

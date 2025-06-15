@@ -1,4 +1,4 @@
-import { TasksConnectionTaskFragment } from 'src/modules/gql/generated'
+import { TasksConnectionTaskFragment } from 'src/gql/generated'
 
 export type TasksViewTaskProps = {
   object: TasksConnectionTaskFragment

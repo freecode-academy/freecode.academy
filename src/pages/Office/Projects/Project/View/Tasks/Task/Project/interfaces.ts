@@ -1,4 +1,4 @@
-import { OfficeProjectFragment } from 'src/modules/gql/generated'
+import { OfficeProjectFragment } from 'src/gql/generated'
 
 export type OfficeProjectPageViewTaskProjectProps = {
   project: OfficeProjectFragment

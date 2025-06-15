@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
 import {
   LearnStrategyUpdateInput,
   useUpdateLearnStrategyMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { LearnStrategyUpdateFormProps } from './interfaces'
 import Button from 'src/components/ui/Button'

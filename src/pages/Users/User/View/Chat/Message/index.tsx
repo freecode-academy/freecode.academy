@@ -3,7 +3,7 @@ import {
   ChatMessageFragment,
   useCreateChatMessageProcessorMutation,
   UserFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { ChatMessageType } from './interfaces'
 import {
   AiMessageContentStyled,

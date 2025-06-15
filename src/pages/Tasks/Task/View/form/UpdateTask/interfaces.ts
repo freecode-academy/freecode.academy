@@ -1,7 +1,7 @@
 import {
   TaskNoNestingFragment,
   UpdateTaskProcessorMutationOptions,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { TaskFormProps } from '../TaskForm/interfaces'
 
 export type UpdateTaskFormProps = {

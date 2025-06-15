@@ -18,7 +18,7 @@ import { UikitCommentStyled } from './styles'
 import {
   CreateCommentProcessorDocument,
   UpdateCommentProcessorDocument,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import SiteFrontEditor from 'src/components/SiteFrontEditor'
 import { EditorComponentProps } from '@prisma-cms/front-editor/dist'
 import { DeleteResource } from 'src/components/DeleteResource'

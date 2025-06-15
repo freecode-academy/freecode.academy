@@ -12,7 +12,7 @@ import {
   UserTechnologyUpdateInput,
   UserUpdateInput,
   useUpdateUserTechnologyProcessorMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
 import IconButton from 'material-ui/IconButton'
 import SaveIcon from 'material-ui-icons/Save'

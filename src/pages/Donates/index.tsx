@@ -5,7 +5,7 @@ import {
   DonatesQueryVariables,
   SortOrder,
   useDonatesQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { Page } from '../_App/interfaces'
 import { DonatesPageView } from './View'
 

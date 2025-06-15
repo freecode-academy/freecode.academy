@@ -4,10 +4,7 @@ import { Controller, ControllerProps, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { SchemaOf } from 'yup'
-import {
-  SigninMutationVariables,
-  useSigninMutation,
-} from 'src/modules/gql/generated'
+import { SigninMutationVariables, useSigninMutation } from 'src/gql/generated'
 import TextField from 'src/components/ui/form/TextField'
 import Button from 'src/components/ui/Button'
 // import { FormStyled } from "src/components/ui/form/styles";

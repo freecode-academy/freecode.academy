@@ -2,7 +2,7 @@ import React, { useMemo, useCallback } from 'react'
 import { UserTechnologyLevelProps } from './interfaces'
 import TextField from 'material-ui/TextField'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
-import { Scalars } from 'src/modules/gql/generated'
+import { Scalars } from 'src/gql/generated'
 
 const UserTechnologyLevel: React.FC<UserTechnologyLevelProps> = ({
   inEditMode,

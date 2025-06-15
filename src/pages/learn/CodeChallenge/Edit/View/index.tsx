@@ -15,7 +15,7 @@ import { CodeChallengeEditMonacoEditor } from './MonacoEditor'
 import {
   CodeChallengeUpdateInput,
   useUpdateCodeChallengeMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import useStore from 'src/hooks/useStore'
 import TextField from 'src/components/ui/form/TextField'
 

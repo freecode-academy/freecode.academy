@@ -16,7 +16,7 @@ import { styles, ObjectsListView as TableView } from '../../List'
 import {
   TopicsConnectionTopicFragment,
   TopicsConnectionUserFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import TagLink from 'src/uikit/Link/Tag'
 import TopicLink from 'src/uikit/Link/Topic'

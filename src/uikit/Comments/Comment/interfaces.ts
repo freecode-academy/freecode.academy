@@ -6,7 +6,7 @@ import {
   Resource,
   TaskNoNestingFragment,
   User,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import {
   UikitCommentLinkObject,
   UikitCommentLinkProps,

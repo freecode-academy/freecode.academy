@@ -12,7 +12,7 @@ import { ProjectsViewProps } from './interfaces'
 import Pagination from 'src/components/Pagination'
 import Grid from 'src/uikit/Grid'
 import Link from 'next/link'
-// import { ProjectsConnectionProjectFragment } from 'src/modules/gql/generated'
+// import { ProjectsConnectionProjectFragment } from 'src/gql/generated'
 
 class ProjectsView extends Component<ProjectsViewProps> {
   static propTypes = {

@@ -1,4 +1,4 @@
-import { UserUpdateInput } from 'src/modules/gql/generated'
+import { UserUpdateInput } from 'src/gql/generated'
 
 export type ChatSettingProps = {
   name: keyof UserUpdateInput

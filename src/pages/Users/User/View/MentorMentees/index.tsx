@@ -3,7 +3,7 @@ import { Typography } from 'material-ui'
 import {
   useCreateMentorMenteeMutation,
   UserNoNestingFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import UikitUserLinkWithStyles from 'src/uikit/Link/User'
 import { MentorMenteesProps } from './interfaces'
 import { MentorMenteesStyled } from './styles'

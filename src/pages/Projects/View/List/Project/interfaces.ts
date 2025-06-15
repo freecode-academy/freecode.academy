@@ -1,4 +1,4 @@
-// import { Project } from "src/modules/gql/generated";
+// import { Project } from "src/gql/generated";
 import { ProjectProps } from '../../Project/interfaces'
 import { TasksListProps } from '../../Project/Tasks/interfaces'
 

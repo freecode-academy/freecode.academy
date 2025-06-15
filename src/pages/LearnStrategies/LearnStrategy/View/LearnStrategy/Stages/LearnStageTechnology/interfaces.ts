@@ -4,7 +4,7 @@ import {
   // TechnologyNoNestingFragment,
   LearnStrategyStageTechnologyFragment,
   LearnStrategyFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 export type LearnStageTechnologyProps = {
   learnStrategyStage: LearnStrategyStageNoNestingFragment

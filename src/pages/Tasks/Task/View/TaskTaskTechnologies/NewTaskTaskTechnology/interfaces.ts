@@ -1,4 +1,4 @@
-import { TaskTechnologyCreateInput } from 'src/modules/gql/generated'
+import { TaskTechnologyCreateInput } from 'src/gql/generated'
 import { PrismaCmsContext } from '@prisma-cms/context'
 
 export type NewTaskTaskTechnologyProps = {

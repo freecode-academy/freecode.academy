@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { CreateTaskFormProps } from './interfaces'
 
-import { useCreateTaskProcessorMutation } from 'src/modules/gql/generated'
+import { useCreateTaskProcessorMutation } from 'src/gql/generated'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
 import TaskForm from '../TaskForm'
 

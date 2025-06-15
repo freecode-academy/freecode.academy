@@ -13,7 +13,7 @@
 //   testOutput: PropTypes.element
 
 import { PrismaCmsContext } from '@prisma-cms/context'
-import { CodeChallengeFragment } from 'src/modules/gql/generated'
+import { CodeChallengeFragment } from 'src/gql/generated'
 import { CodeChallengeContext, TestFile } from '../../Context'
 import { CodeChallengeDiscussProps } from './Discuss/interfacse'
 

@@ -1,4 +1,4 @@
-import { FChatRoomFragment } from 'src/modules/gql/generated'
+import { FChatRoomFragment } from 'src/gql/generated'
 
 export interface ChatRoomViewProps {
   object: FChatRoomFragment | null | undefined

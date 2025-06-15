@@ -1,7 +1,7 @@
 import moment from 'moment'
 import React from 'react'
 import NumberFormat from 'react-number-format'
-import { DonateFragment } from 'src/modules/gql/generated'
+import { DonateFragment } from 'src/gql/generated'
 import UikitUserLinkWithStyles from 'src/uikit/Link/User'
 
 type DonateProps = {

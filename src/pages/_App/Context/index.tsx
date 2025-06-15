@@ -6,7 +6,7 @@ import {
   MeQuery,
   SigninMutation,
   SignupMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 export type ContextValue = {
   user: MeQuery['me']

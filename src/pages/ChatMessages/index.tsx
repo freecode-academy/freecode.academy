@@ -5,7 +5,7 @@ import {
   ChatMessagesConnectionQueryVariables,
   useChatMessagesConnectionQuery,
   // ChatMessageFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'

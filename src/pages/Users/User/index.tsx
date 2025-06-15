@@ -4,7 +4,7 @@ import {
   UserDocument,
   UserQuery,
   UserQueryVariables,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { UserPageView } from './View'
 

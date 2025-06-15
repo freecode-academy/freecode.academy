@@ -4,7 +4,7 @@ import Button from 'src/components/ui/Button'
 import {
   CreateLearnStrategyStageMutationVariables,
   useCreateLearnStrategyStageMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { CreateLearnStrategyStageProps } from './interfaces'
 import { CreateLearnStrategyStageLearnStrategy } from './LearnStage'
 import { CreateLearnStrategyStageStyled } from './styles'

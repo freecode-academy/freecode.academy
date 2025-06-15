@@ -2,7 +2,7 @@ import { PrismaCmsContext } from '@prisma-cms/context'
 import {
   TechnologyNoNestingFragment,
   TechnologyUserTechnologyFragment,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 export type UserTechnologyRowProps = {
   userTechnology: TechnologyUserTechnologyFragment

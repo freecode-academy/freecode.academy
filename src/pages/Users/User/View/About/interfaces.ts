@@ -1,4 +1,4 @@
-import { UserUpdateInput } from 'src/modules/gql/generated'
+import { UserUpdateInput } from 'src/gql/generated'
 import { UserPageViewProps } from '../interfaces'
 
 export type UserAboutProps = {

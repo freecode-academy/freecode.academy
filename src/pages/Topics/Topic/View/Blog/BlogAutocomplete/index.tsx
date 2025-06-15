@@ -11,7 +11,7 @@ import {
   BlogsConnectionQueryVariables,
   useBlogsConnectionQuery,
   useResourceQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 import { AutocompleteItem } from 'src/uikit/Autocomplete/ReactAutocomplete/interfaces'
 
 const BlogAutocomplete: React.FC<BlogAutocompleteProps> = (props) => {

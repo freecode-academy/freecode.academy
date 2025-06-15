@@ -1,7 +1,4 @@
-import {
-  LearnStrategyFragment,
-  MeUserFragment,
-} from 'src/modules/gql/generated'
+import { LearnStrategyFragment, MeUserFragment } from 'src/gql/generated'
 
 export type LearnStrategyViewStagesProps = {
   learnStrategy: LearnStrategyFragment

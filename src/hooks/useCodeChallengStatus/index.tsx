@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { TaskStatus } from 'src/modules/gql/generated'
+import { TaskStatus } from 'src/gql/generated'
 import { CodeChallengeContext } from 'src/pages/learn/CodeChallenge/Context'
 
 export enum CodeChallengeStatus {

@@ -1,4 +1,4 @@
-import { TaskFragment } from 'src/modules/gql/generated'
+import { TaskFragment } from 'src/gql/generated'
 
 export type TaskButtonsProps = {
   object: TaskFragment

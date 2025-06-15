@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography'
 import { NextSeo } from 'next-seo'
 import TasksView from 'src/pages/Tasks/View'
 import CreateTaskForm from 'src/pages/Tasks/Task/View/form/CreateTask'
-import { CreateTaskProcessorMutation } from 'src/modules/gql/generated'
+import { CreateTaskProcessorMutation } from 'src/gql/generated'
 import { Button } from 'material-ui'
 import { TasksViewProps } from 'src/pages/Tasks/View/interfaces'
 

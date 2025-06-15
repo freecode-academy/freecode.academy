@@ -12,7 +12,7 @@ import TasksListView from '../../Project/Tasks'
 import { ProjectsListProjectProps } from './interfaces'
 import Link from 'next/link'
 import { TasksListProps } from '../../Project/Tasks/interfaces'
-// import { Project } from 'src/modules/gql/generated'
+// import { Project } from 'src/gql/generated'
 
 class ProjectView extends BaseProjectView<ProjectsListProjectProps> {
   static defaultProps = {

@@ -1,5 +1,5 @@
-import { Scalars } from 'src/modules/gql/generated'
-import { TypedTypePolicies } from 'src/modules/gql/generated/helpers/apollo-helpers'
+import { Scalars } from 'src/gql/generated'
+import { TypedTypePolicies } from 'src/gql/generated/helpers/apollo-helpers'
 
 const DateTime = (
   v: string | null | undefined

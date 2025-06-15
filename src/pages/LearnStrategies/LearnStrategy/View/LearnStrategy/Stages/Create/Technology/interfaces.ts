@@ -4,7 +4,7 @@ import {
   LearnStrategyFragment,
   LearnStrategyStageCreateInput,
   // useCreateLearnStrategyStageMutation,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 export type CreateLearnStrategyStageTechnologyProps = {
   // mutation: ReturnType<typeof useCreateLearnStrategyStageMutation>

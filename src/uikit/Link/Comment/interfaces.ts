@@ -1,4 +1,4 @@
-import { Resource, TaskNoNestingFragment } from 'src/modules/gql/generated'
+import { Resource, TaskNoNestingFragment } from 'src/gql/generated'
 
 export interface UikitCommentLinkObjectResource {
   __typename?: 'Resource'

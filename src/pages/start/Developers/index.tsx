@@ -5,7 +5,7 @@ import { DevelopersStartPageStyled } from './styles'
 import Typography from 'material-ui/Typography'
 import Link from 'next/link'
 import { prepareTasksFiltersUrl } from 'src/components/MainMenu'
-import { TaskStatus, TaskWhereInput } from 'src/modules/gql/generated'
+import { TaskStatus, TaskWhereInput } from 'src/gql/generated'
 
 /**
  * Стартовая страница Программистам

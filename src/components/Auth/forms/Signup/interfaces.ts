@@ -1,4 +1,4 @@
-import { SignupMutationVariables } from 'src/modules/gql/generated'
+import { SignupMutationVariables } from 'src/gql/generated'
 import { AuthFormProps, AuthFormState } from '../interfaces'
 
 export interface SignupFormProps extends AuthFormProps {

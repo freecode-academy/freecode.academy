@@ -1,5 +1,5 @@
 import PrismaCmsComponent from '@prisma-cms/component'
-import { AuthFormUsersConnectionUserFragment } from 'src/modules/gql/generated'
+import { AuthFormUsersConnectionUserFragment } from 'src/gql/generated'
 import { AuthUsersProps } from '../interfaces'
 
 export interface UsersListProps {

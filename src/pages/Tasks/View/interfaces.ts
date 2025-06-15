@@ -2,7 +2,7 @@ import { PaginationProps } from 'src/components/Pagination'
 import {
   TasksConnectionTaskFragment,
   // TasksConnectionQueryVariables,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 export interface TasksViewProps extends PaginationProps {
   // createTimerProcessor: (data: any) => Promise<any>

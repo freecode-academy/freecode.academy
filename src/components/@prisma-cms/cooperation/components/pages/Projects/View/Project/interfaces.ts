@@ -2,7 +2,7 @@ import {
   EditableObjectProps,
   EditableObjectState,
 } from 'apollo-cms/dist/DataView/Object/Editable'
-import { ProjectsConnectionProjectFragment } from 'src/modules/gql/generated'
+import { ProjectsConnectionProjectFragment } from 'src/gql/generated'
 
 export interface ProjectViewProps extends EditableObjectProps {
   object: ProjectsConnectionProjectFragment | null | undefined

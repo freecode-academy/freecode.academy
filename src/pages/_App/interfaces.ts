@@ -7,7 +7,7 @@ import {
 } from '@apollo/client'
 // import URI from 'urijs'
 // import { NextRouter } from 'next/router'
-// import { Maybe, MeUserFragment } from 'src/modules/gql/generated'
+// import { Maybe, MeUserFragment } from 'src/gql/generated'
 // import { muiTheme } from './MUI/theme'
 import { AppContext, AppInitialProps as NextAppInitialProps } from 'next/app'
 

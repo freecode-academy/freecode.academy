@@ -5,7 +5,7 @@ import IconButton from 'material-ui/IconButton'
 import NoticesIcon from 'material-ui-icons/Notifications'
 import NoticesActiveIcon from 'material-ui-icons/NotificationsActive'
 
-import { useNoticesCountQuery } from 'src/modules/gql/generated'
+import { useNoticesCountQuery } from 'src/gql/generated'
 import Link from 'next/link'
 
 const MainMenuNotices: React.FC<MainMenuNoticesProps> = ({

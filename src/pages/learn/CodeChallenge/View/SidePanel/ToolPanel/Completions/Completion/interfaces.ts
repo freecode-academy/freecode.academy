@@ -1,4 +1,4 @@
-import { CodeChallengePageChallengeCompletionFragment } from 'src/modules/gql/generated'
+import { CodeChallengePageChallengeCompletionFragment } from 'src/gql/generated'
 
 export type ToolPanelCompletionProps = {
   codeChallengeCompletion: CodeChallengePageChallengeCompletionFragment

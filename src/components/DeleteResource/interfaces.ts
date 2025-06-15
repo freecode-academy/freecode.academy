@@ -1,4 +1,4 @@
-import { Scalars } from 'src/modules/gql/generated'
+import { Scalars } from 'src/gql/generated'
 
 export type DeleteResourceProps = {
   resource: {

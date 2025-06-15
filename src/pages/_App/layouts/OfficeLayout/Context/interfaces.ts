@@ -1,9 +1,6 @@
 import { PrismaCmsContext } from '@prisma-cms/context'
 
-import {
-  OfficeProjectFragment,
-  OfficeTaskFragment,
-} from 'src/modules/gql/generated'
+import { OfficeProjectFragment, OfficeTaskFragment } from 'src/gql/generated'
 
 export type OfficeContextValue = {
   /**

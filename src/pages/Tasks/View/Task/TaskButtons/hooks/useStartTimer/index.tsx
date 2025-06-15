@@ -1,9 +1,6 @@
 import { useMemo, useCallback } from 'react'
 
-import {
-  Scalars,
-  useCreateTimerProcessorMutation,
-} from 'src/modules/gql/generated'
+import { Scalars, useCreateTimerProcessorMutation } from 'src/gql/generated'
 import useProcessorMutation from 'src/hooks/useProcessorMutation'
 
 type useStartTimerProps = {

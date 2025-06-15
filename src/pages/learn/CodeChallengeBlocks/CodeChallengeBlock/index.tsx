@@ -4,7 +4,7 @@ import {
   useCodeChallengeBlockQuery,
   CodeChallengeBlockDocument,
   CodeChallengeBlockQuery,
-} from 'src/modules/gql/generated'
+} from 'src/gql/generated'
 
 import { Page, NextPageContextCustom } from '../../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'

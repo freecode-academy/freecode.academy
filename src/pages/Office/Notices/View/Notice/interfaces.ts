@@ -1,4 +1,4 @@
-import { NoticeFragment } from 'src/modules/gql/generated'
+import { NoticeFragment } from 'src/gql/generated'
 
 export interface NoticeViewProps {
   notice: NoticeFragment

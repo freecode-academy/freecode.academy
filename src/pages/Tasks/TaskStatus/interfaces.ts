@@ -18,7 +18,7 @@ export const locales = {
   },
 }
 
-export type TaskStatusValue = keyof typeof locales['ru']['values']
+export type TaskStatusValue = keyof (typeof locales)['ru']['values']
 
 export interface TaskStatusProps extends PrismaCmsComponentProps {
   classes?: any

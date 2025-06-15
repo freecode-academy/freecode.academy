@@ -158,6 +158,7 @@ export const CreateLearnStrategyPage: Page = () => {
             {...field}
             onChange={onLevelChange}
             value={field.value}
+            // @ts-expect-error types
             error={
               formState.errors[field.name]
                 ? {

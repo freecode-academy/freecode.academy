@@ -4,7 +4,6 @@ import React from 'react'
 
 // import PrismaCmsComponent from '@prisma-cms/component'
 // import { graphql } from '@apollo/client'
-// import gql from 'graphql-tag'
 
 import BlogAutocomplete from './BlogAutocomplete'
 import Typography from 'material-ui/Typography'

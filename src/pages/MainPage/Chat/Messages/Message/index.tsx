@@ -24,6 +24,7 @@ export const MainPageChatMessage: React.FC<MainPageChatMessageProps> = ({
           components={{
             a: ({ node: _node, ...props }) => (
               <>
+                {/* @ts-expect-error types */}
                 <Link {...props} />
               </>
             ),

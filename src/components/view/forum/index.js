@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 // import PrismaCmsComponent from "@prisma-cms/component";
 import Context from '@prisma-cms/context'
 
-// import gql from "graphql-tag";
-
 import View from './view'
 
 import { TopicsConnector } from '../../pages/Topics/query'

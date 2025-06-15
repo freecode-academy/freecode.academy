@@ -5,12 +5,9 @@ import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import { useMeQuery } from 'src/gql/generated'
 
 import { WithUserProps } from './interfaces'
-import useSubscriptionProvider from './useSubscriptionProvider'
 import { AppContextProvider } from '../Context'
 
 const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
-  const { client } = context
-
   // TODO Надо проработать перезапрос пользователя.
   /**
    * Дело в том, что сейчас у нас не передаются параметры в запрос
@@ -33,8 +30,6 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
   })
 
   const user = data?.me
-
-  useSubscriptionProvider({ client })
 
   /**
    * Контекст обновляем только в случае если объект пользователя изменился.

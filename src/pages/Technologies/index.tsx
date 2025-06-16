@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import {
   TechnologiesConnectionDocument,
   TechnologiesConnectionQueryVariables,
@@ -12,6 +12,7 @@ import View from './View'
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
+import { useBoolean } from 'src/hooks/useBoolean'
 
 const first = 10
 
@@ -73,6 +74,10 @@ const TechnologiesPage: Page = () => {
 
   const { variables, loading } = response
 
+  const [inited, initedOn] = useBoolean(false)
+
+  useEffect(() => initedOn(), [initedOn])
+
   return (
     <>
       <Head>
@@ -83,15 +88,17 @@ const TechnologiesPage: Page = () => {
         />
       </Head>
 
-      <View
-        // {...queryResult}
-        loading={loading}
-        // data={response || null}
-        objects={response.data?.technologies || []}
-        count={response.data?.technologiesCount}
-        variables={variables}
-        page={page}
-      />
+      {inited && (
+        <View
+          // {...queryResult}
+          loading={loading}
+          // data={response || null}
+          objects={response.data?.technologies || []}
+          count={response.data?.technologiesCount}
+          variables={variables}
+          page={page}
+        />
+      )}
     </>
   )
 }

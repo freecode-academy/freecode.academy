@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import {
   BlogsConnectionDocument,
   BlogsConnectionQueryVariables,
@@ -12,6 +12,7 @@ import View from './View'
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
+import { useBoolean } from 'src/hooks/useBoolean'
 
 const first = 10
 
@@ -60,6 +61,10 @@ const BlogsPage: Page = () => {
 
   const { variables, loading } = response
 
+  const [inited, initedOn] = useBoolean(false)
+
+  useEffect(() => initedOn(), [initedOn])
+
   return (
     <>
       <Head>
@@ -67,15 +72,17 @@ const BlogsPage: Page = () => {
         <meta name="description" content="Все блоги" />
       </Head>
 
-      <View
-        // {...queryResult}
-        loading={loading}
-        // data={response || null}
-        objects={response.data?.resources || []}
-        count={response.data?.resourcesCount || 0}
-        variables={variables}
-        page={page}
-      />
+      {inited && (
+        <View
+          // {...queryResult}
+          loading={loading}
+          // data={response || null}
+          objects={response.data?.resources || []}
+          count={response.data?.resourcesCount || 0}
+          variables={variables}
+          page={page}
+        />
+      )}
     </>
   )
 }

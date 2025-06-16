@@ -7,6 +7,7 @@ import { Sendmail, SendmailProps } from '../../modules/Mailer/sendmail'
 import { PubSub } from 'graphql-subscriptions'
 import { ExpressContextFunctionArgument } from '@apollo/server/dist/esm/express4'
 import { pubsub, PubSubInterface } from '../../PubSub'
+import { prismaClient } from '../../prismaClient'
 
 export interface PrismaContext {
   prisma: PrismaClient
@@ -31,8 +32,6 @@ if (!process.env.APP_SECRET) {
 }
 
 const APP_SECRET = process.env.APP_SECRET
-
-const prisma = new PrismaClient()
 
 /**
  * Sendmail
@@ -82,7 +81,7 @@ if (process.env.Sendmail === 'true') {
 
 // TODO Move to createContext
 export const context: PrismaContext = {
-  prisma: prisma,
+  prisma: prismaClient,
   // knex: knexClient,
   sendmail,
   mailSender: process.env.SendmailSender || 'no-reply@gorodskie-bani.ru',

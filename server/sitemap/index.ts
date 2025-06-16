@@ -1,99 +1,73 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-// TODO Move to front
-
-import chalk from 'chalk'
-
-import URI from 'urijs'
-
-// import { Prisma } from 'prisma-binding'
-
-import { Request, Response } from 'express'
-
-// eslint-disable-next-line no-restricted-modules
 const XMLWriter = require('xml-writer')
 
-// let apiSchema;
+import URI from 'urijs'
+import { Request, Response } from 'express'
 
-// let api: Prisma | undefined
+import { Sitemap } from './Sitemap'
+import { prismaClient } from '../prismaClient'
+import { TagStatus } from '@prisma/client'
 
-export default class Sitemap {
-  declare props: Record<string, any>
+const limit = 1000
 
-  constructor(props: Record<string, any>) {
-    this.props = props
-  }
+const usersWhere = {
+  active: {
+    equals: true,
+  },
+  deleted: {
+    equals: false,
+  },
+} as const
 
-  // getApi(props?: Record<string, any>) {
-  //   if (!api) {
-  //     const { API_ENDPOINT = 'http://localhost:4000' } = this.props
+const resourcesWhere = {
+  published: {
+    equals: true,
+  },
+  searchable: {
+    equals: true,
+  },
+  deleted: {
+    equals: false,
+  },
+} as const
 
-  //     api = new Prisma({
-  //       typeDefs: 'src/schema/generated/api.graphql',
-  //       endpoint: API_ENDPOINT,
-  //       debug: false,
-  //       ...(props || {}),
-  //     })
-  //   }
+const tagsWhere = {
+  status: {
+    not: {
+      equals: TagStatus.Blocked,
+    },
+  },
+} as const
 
-  //   return api
-  // }
-
-  middleware = async (req: Request, res: Response) => {
-    const protocol = req.headers['server-protocol'] || req.protocol || 'http'
-
-    const host = req.get('host')
-
-    const uri = new URI(`${protocol}://${host}${req.url}`)
-
-    const urlPath = uri.path()
-
-    let response
-
-    switch (urlPath.toLowerCase()) {
-      case '/sitemap.xml':
-        response = await this.renderSitemap(req, res, uri).catch((error) => {
-          console.error(chalk.red('Server error'), error)
-          res.status(500)
-          res.end(error.message)
-        })
-
-        break
-
-      default:
-        return res.sendStatus(404)
-    }
-
-    return response
-  }
-
-  /**
-   * Рендеринк карты сайта.
-   */
+export class SitemapBuilder extends Sitemap {
   async renderSitemap(req: Request, res: Response, uri: URI) {
     const { section } = uri.query(true)
 
     switch (section) {
       case 'main':
         return this.renderMainSitemap(req, res, uri)
-      // break;
+
+      case 'users':
+        return this.renderUsersSitemap(req, res, uri)
+
+      case 'resources':
+        return this.renderResourcesSitemap(req, res, uri)
+
+      case 'tags':
+        return this.renderTagsSitemap(req, res, uri)
+
+      case undefined:
+        return this.renderRootSitemap(req, res, uri)
 
       default:
-        return this.renderRootSitemap(req, res, uri)
+        res.status(404)
+        res.send('Invalid section')
     }
   }
 
-  renderRootSitemap(_req: Request, res: Response, uri: URI) {
-    // @ts-ignore
-    const cleanUri: URI = uri.clone().query(null)
+  async renderRootSitemap(_req: Request, res: Response, uri: URI) {
+    // @ts-expect-error types
+    const cleanUri = uri.clone().query(null)
 
-    if (!cleanUri) {
-      throw new Error('cleanUri is empty')
-    }
-
-    /**
-     * Выводим ссылки на разделы
-     */
     const xml = new XMLWriter()
 
     xml.startDocument('1.0', 'UTF-8')
@@ -101,22 +75,21 @@ export default class Sitemap {
     xml
       .startElement('sitemapindex')
       .writeAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
-    /**
-     * Формируем ссылки на разделы
-     */
+
+    const mainUri = cleanUri.clone().query({
+      section: 'main',
+    })
 
     xml
       .startElement('sitemap')
-      .writeElement(
-        'loc',
-        cleanUri
-          .clone()
-          .query({
-            section: 'main',
-          })
-          .toString()
-      )
+      .writeElement('loc', mainUri.toString())
       .endElement()
+
+    await this.addUsersSitemaps(xml, uri)
+
+    await this.addResourcesSitemaps(xml, uri)
+
+    await this.addTagsSitemaps(xml, uri)
 
     xml.endDocument()
 
@@ -139,10 +112,30 @@ export default class Sitemap {
 
     xml
       .startElement('urlset')
-      .writeAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
+      .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
     this.addSitemapDocument(xml, uri, {
       url: `/`,
       priority: 1,
+    })
+
+    this.addSitemapDocument(xml, uri, {
+      url: `/comments`,
+      priority: 0.6,
+    })
+
+    this.addSitemapDocument(xml, uri, {
+      url: `/people`,
+      priority: 0.5,
+    })
+
+    this.addSitemapDocument(xml, uri, {
+      url: `/about`,
+      priority: 0.5,
+    })
+
+    this.addSitemapDocument(xml, uri, {
+      url: `/start/developers`,
+      priority: 0.5,
     })
 
     xml.endDocument()
@@ -158,41 +151,263 @@ export default class Sitemap {
     return
   }
 
-  addSitemapDocument(
-    xml: any,
-    uri: URI,
-    doc: Record<string, string | number> & {
-      url: string
+  async addUsersSitemaps(xml: any, uri: URI) {
+    const usersCount = await prismaClient.user.count({
+      where: usersWhere,
+    })
+
+    const pages = Math.ceil(usersCount / limit)
+
+    let i = 0
+
+    while (pages > i) {
+      i++
+
+      const query: URI.QueryDataMap = {
+        section: 'users',
+        page: String(i),
+      }
+
+      const pageUri = uri.clone().query(query)
+
+      xml
+        .startElement('sitemap')
+        .writeElement('loc', pageUri.toString())
+        .endElement()
     }
-  ) {
-    const { url, updatedAt, changefreq, priority } = doc
-
-    /**
-     * Skip if url empty
-     */
-    if (!url) {
-      return
-    }
-
-    const locUri = new URI(uri.origin()).path(url)
-
-    xml.startElement('url').writeElement('loc', locUri.toString())
-
-    updatedAt && xml.writeElement('lastmod', updatedAt)
-
-    changefreq && xml.writeElement('changefreq', changefreq)
-
-    priority && xml.writeElement('priority', priority)
-
-    xml.endElement()
   }
 
-  getQueryPage(uri: URI) {
-    const { page: queryPage } = uri.query(true)
+  async renderUsersSitemap(_req: Request, res: Response, uri: URI) {
+    const page = this.getQueryPage(uri)
 
-    return (
-      (queryPage && typeof queryPage === 'string' && parseInt(queryPage)) ||
-      undefined
-    )
+    if (!page) {
+      throw new Error('page is empty')
+    }
+
+    const users = await prismaClient.user.findMany({
+      where: usersWhere,
+      take: limit,
+      skip: page && page > 1 ? (page - 1) * limit : undefined,
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      select: {
+        id: true,
+        username: true,
+        updatedAt: true,
+      },
+    })
+
+    const xml = new XMLWriter()
+
+    xml.startDocument('1.0', 'UTF-8')
+
+    if (page) {
+      xml
+        .startElement('urlset')
+        .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
+      users.map((user) => {
+        if (!user) {
+          return null
+        }
+
+        const { id, username, updatedAt } = user
+
+        this.addSitemapDocument(xml, uri, {
+          url: username ? `/profile/${username}` : `/profile/id/${id}`,
+          updatedAt: updatedAt.toISOString(),
+          priority: 0.8,
+        })
+      })
+    }
+
+    xml.endDocument()
+
+    res.charset = 'utf-8'
+
+    res.writeHead(200, {
+      'Content-Type': 'application/xml',
+    })
+
+    res.end(xml.toString())
+
+    return
+  }
+
+  async addResourcesSitemaps(xml: any, uri: URI) {
+    const resourcesCount = await prismaClient.resource.count({
+      where: resourcesWhere,
+    })
+
+    const pages = Math.ceil(resourcesCount / limit)
+
+    let i = 0
+
+    while (pages > i) {
+      i++
+
+      const query: URI.QueryDataMap = {
+        section: 'resources',
+        page: String(i),
+      }
+
+      const pageUri = uri.clone().query(query)
+
+      xml
+        .startElement('sitemap')
+        .writeElement('loc', pageUri.toString())
+        .endElement()
+    }
+  }
+
+  async renderResourcesSitemap(_req: Request, res: Response, uri: URI) {
+    const page = this.getQueryPage(uri)
+
+    if (!page) {
+      throw new Error('page is empty')
+    }
+
+    uri = uri.query({
+      section: 'resources',
+    })
+
+    const objects = await prismaClient.resource.findMany({
+      where: resourcesWhere,
+      take: limit,
+      skip: page && page > 1 ? (page - 1) * limit : undefined,
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      select: {
+        uri: true,
+        updatedAt: true,
+      },
+    })
+
+    // const pages = Math.ceil(total / limit)
+
+    const xml = new XMLWriter()
+
+    xml.startDocument('1.0', 'UTF-8')
+
+    if (page) {
+      xml
+        .startElement('urlset')
+        .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
+      objects.map((n) => {
+        if (!n) {
+          return null
+        }
+
+        const { uri: url, updatedAt } = n
+
+        url &&
+          this.addSitemapDocument(xml, uri, {
+            url: url.replace(/\/+$/, ''),
+            updatedAt: updatedAt.toISOString(),
+            priority: 0.9,
+          })
+      })
+    }
+
+    xml.endDocument()
+
+    res.charset = 'utf-8'
+
+    res.writeHead(200, {
+      'Content-Type': 'application/xml',
+    })
+
+    res.end(xml.toString())
+
+    return
+  }
+
+  async addTagsSitemaps(xml: any, uri: URI) {
+    const usersCount = await prismaClient.tag.count({
+      where: tagsWhere,
+    })
+
+    const pages = Math.ceil(usersCount / limit)
+
+    let i = 0
+
+    while (pages > i) {
+      i++
+
+      const query: URI.QueryDataMap = {
+        section: 'tags',
+        page: String(i),
+      }
+
+      const pageUri = uri.clone().query(query)
+
+      xml
+        .startElement('sitemap')
+        .writeElement('loc', pageUri.toString())
+        .endElement()
+    }
+  }
+
+  async renderTagsSitemap(_req: Request, res: Response, uri: URI) {
+    const page = this.getQueryPage(uri)
+
+    if (!page) {
+      throw new Error('page is empty')
+    }
+
+    uri = uri.query({
+      section: 'tags',
+    })
+
+    const objects = await prismaClient.tag.findMany({
+      where: tagsWhere,
+      take: limit,
+      skip: page && page > 1 ? (page - 1) * limit : undefined,
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      select: {
+        name: true,
+        updatedAt: true,
+      },
+    })
+
+    const xml = new XMLWriter()
+
+    xml.startDocument('1.0', 'UTF-8')
+
+    if (page) {
+      xml
+        .startElement('urlset')
+        .writeAttribute('xmlns', 'https://www.sitemaps.org/schemas/sitemap/0.9')
+      objects.map((n) => {
+        if (!n) {
+          return null
+        }
+
+        const { name, updatedAt } = n
+
+        const url = `/tag/${name}`
+
+        this.addSitemapDocument(xml, uri, {
+          url,
+          updatedAt: updatedAt.toISOString(),
+          priority: 0.9,
+        })
+      })
+    }
+
+    xml.endDocument()
+
+    res.charset = 'utf-8'
+
+    res.writeHead(200, {
+      'Content-Type': 'application/xml',
+    })
+
+    res.end(xml.toString())
+
+    return
   }
 }

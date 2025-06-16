@@ -1,0 +1,5 @@
+User-agent: *
+Host: https://freecode.academy/
+Sitemap: https://freecode.academy/sitemap.xml
+Disallow: 
+Disallow: *?*=

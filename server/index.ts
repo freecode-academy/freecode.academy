@@ -6,6 +6,7 @@ import './config'
 import { imageResizerMiddleware } from './middleware/imageResizer'
 import { setupGraphqlServer } from './graphqlServer/setupGraphqlServer'
 import { createProxyMiddleware } from 'http-proxy-middleware'
+import { SitemapBuilder } from './sitemap'
 
 const cwd = process.cwd()
 
@@ -49,6 +50,8 @@ app.prepare().then(() => {
    * PWA and other public generated files
    */
   server.use(express.static(cwd + '/.next/public'))
+
+  server.get('/sitemap.xml', new SitemapBuilder({}).middleware)
 
   // Запускаем GraphQL сервер и получаем его порт
   return setupGraphqlServer().then(({ port: graphqlPort }) => {

@@ -1,1 +1,1 @@
-export { default } from 'src/pages/start/Developers'
+export { DevelopersStartPage as default } from 'src/pages/start/Developers'

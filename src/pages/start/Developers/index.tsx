@@ -10,7 +10,7 @@ import { TaskStatus, TaskWhereInput } from 'src/gql/generated'
 /**
  * Стартовая страница Программистам
  */
-const DevelopersStartPage: Page = () => {
+export const DevelopersStartPage: Page = () => {
   const needHelpTasksLink = useMemo(() => {
     const filter: TaskWhereInput = {
       status: {
@@ -204,5 +204,3 @@ const DevelopersStartPage: Page = () => {
     </>
   )
 }
-
-export default DevelopersStartPage

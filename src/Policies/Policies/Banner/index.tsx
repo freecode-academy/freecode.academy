@@ -13,6 +13,7 @@ import {
 import Link from 'src/uikit/Link'
 import { useSignupMutation } from 'src/gql/generated'
 import { useAppContext } from 'src/AppContext'
+import { useRouter } from 'next/router'
 
 export const PoliciesBanner: React.FC = () => {
   const { user, loginComplete } = useAppContext()
@@ -53,6 +54,8 @@ export const PoliciesBanner: React.FC = () => {
 
   const [mutation] = useSignupMutation()
 
+  const router = useRouter()
+
   const handleAnimationEnd = useCallback(() => {
     if (isClosing) {
       stateSetter('closed')
@@ -77,6 +80,8 @@ export const PoliciesBanner: React.FC = () => {
             token,
             user,
           })
+
+          router.push('/')
         } else {
           console.error(errors)
           throw new Error(message || 'Ошибка выполнения запроса')
@@ -86,7 +91,7 @@ export const PoliciesBanner: React.FC = () => {
       console.error(error)
       alert('Ой, а что-то пошло не так...')
     }
-  }, [loginComplete, mutation])
+  }, [loginComplete, mutation, router])
 
   const banner = (
     <>

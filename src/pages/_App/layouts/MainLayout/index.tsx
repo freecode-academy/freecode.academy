@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
-import Header from 'src/components/MainMenu'
+import { MainMenuWithStyles as Header } from 'src/components/MainMenu'
 import {
   LayoutContentStyled,
   LayoutStyled,

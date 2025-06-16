@@ -145,8 +145,8 @@ class UikitUserLink extends Component<UikitUserLinkProps> {
   }
 }
 
-const UikitUserLinkWithStyles = withStyles<any>(styles)(
-  (props: UikitUserLinkProps) => <UikitUserLink {...props} />
-) as unknown as typeof UikitUserLink
+const UserLink = withStyles<any>(styles)((props: UikitUserLinkProps) => (
+  <UikitUserLink {...props} />
+)) as unknown as typeof UikitUserLink
 
-export default UikitUserLinkWithStyles
+export default UserLink

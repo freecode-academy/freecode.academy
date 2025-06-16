@@ -8,6 +8,7 @@ import React, { useMemo } from 'react'
 import { Page } from '../_App/interfaces'
 import { NextSeo } from 'next-seo'
 import { MainPageGlobalStyled } from './styles'
+import { HeroSection } from './Promo'
 
 export const MainPage: Page = () => {
   return useMemo(
@@ -18,7 +19,8 @@ export const MainPage: Page = () => {
           description="Бесплатные онлайн курсы по JavaScript, React, NextJS и не только"
         />
         <MainPageGlobalStyled />
-        Main page
+
+        <HeroSection />
       </>
     ),
     []

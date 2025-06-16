@@ -338,6 +338,12 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                   </Grid>
                 ) : null} */}
 
+              {currentUser.sudo && (
+                <Grid key="admin" item>
+                  <Link href="/admin">Админка</Link>
+                </Grid>
+              )}
+
               {currentUser ? (
                 <Grid key="user" item>
                   {/* <UserItem key={userId} user={currentUser} classes={classes} /> */}
@@ -370,6 +376,6 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
   }
 }
 
-export default withStyles<any>(styles as any)((props: MainMenuProps) => (
-  <MainMenu {...props} />
-))
+export const MainMenuWithStyles = withStyles<any>(styles as any)(
+  (props: MainMenuProps) => <MainMenu {...props} />
+)

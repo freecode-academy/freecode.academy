@@ -13,7 +13,7 @@ import { useAppTabSwitcher } from 'src/TabSwitcher/hooks/useAppTabSwitcher'
 import dynamic from 'next/dynamic'
 import { useAppContext } from 'src/AppContext'
 import { AppActions } from 'src/AppContext/reducer/interfaces'
-import MainMenu from 'src/components/MainMenu'
+import { MainMenuWithStyles as MainMenu } from 'src/components/MainMenu'
 import { usePolicies } from 'src/Policies/hooks/usePolicies'
 
 const AiChat = dynamic(() => import('src/Chat').then((r) => r.AiChat), {

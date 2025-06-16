@@ -89,8 +89,6 @@ export const LearnStrategyView: React.FC<LearnStrategyViewProps> = ({
 
     return (
       <LearnStrategyViewStyled>
-        {/* @ts-expect-error types */}
-
         <LearnStrategyViewToolbarStyled className="flex align-items-center">
           {inEditMode ? (
             <LearnStrategyUpdateForm

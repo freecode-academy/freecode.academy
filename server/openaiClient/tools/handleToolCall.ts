@@ -1,0 +1,43 @@
+import { PrismaContext } from '../../nexus/context'
+// import { MindLogType } from '../../nexus/types/MindLog/interfaces'
+import { toolName } from './interfaces'
+import { tools } from '.'
+import { ToolCall, User } from '../interfaces'
+import { MindLogType } from '@prisma/client'
+
+/**
+ * Обработчик вызовов инструментов
+ */
+
+type handleToolCallProps = {
+  ctx: PrismaContext
+  user: User
+  toolCall: ToolCall
+}
+
+export async function handleToolCall({
+  // agentId,
+  user,
+  ctx,
+  toolCall,
+}: handleToolCallProps): Promise<string | undefined> {
+  const { name, arguments: argsString } = toolCall.function
+  const args = JSON.parse(argsString)
+
+  if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line no-console
+    console.log('handleToolCall', name, JSON.stringify(args, null, 2))
+  }
+
+  const tool = tools[name as keyof typeof tools]
+
+  if (tool) {
+    return tool.handler(args, ctx, user)
+  }
+
+  if (Object.values<string>(MindLogType).includes(name)) {
+    return `Ошибка вызова несуществующего тулза ${name}. Если вы хотели записать MindLog, то следует вызывать тулзу ${toolName.createMindLog}`
+  }
+
+  return `Неизвестный инструмент: ${name}`
+}

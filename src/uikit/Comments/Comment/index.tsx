@@ -260,8 +260,6 @@ class UikitComment extends EditableView<UikitCommentProps> {
     }
 
     return (
-      // @ts-expect-error types
-
       <UikitCommentStyled className={className}>
         {super.render()}
       </UikitCommentStyled>

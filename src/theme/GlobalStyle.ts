@@ -32,6 +32,14 @@ export const GlobalStyle = createGlobalStyle`
     white-space: pre-wrap;
   }
 
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   p {
     margin-top: 1rem;
     margin-bottom: 1rem;

@@ -12,8 +12,7 @@ import {
   AppProps,
 } from './interfaces'
 
-import { useApollo, initializeApollo } from 'src/lib/apolloClient'
-import { getSubscriptionClient } from 'src/lib/apolloClient/createApolloClient'
+import { useApollo, initializeApollo } from 'src/gql/apolloClient'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import URI from 'urijs'
@@ -23,7 +22,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { getMuiTheme } from './MUI/theme'
 
 import Auth from 'src/components/Auth'
-import WithUser from './WithUser'
+import { WithUser } from './WithUser'
 import { AuthFormResponse } from '../../components/Auth/forms/interfaces'
 
 import moment from 'moment'
@@ -42,7 +41,7 @@ import Link from '../../uikit/Link'
 moment.locale('ru')
 import { GlobalStyle } from 'src/theme/GlobalStyle'
 import OfficeLayout from './layouts/OfficeLayout'
-import MainLayout from './layouts/MainLayout'
+import { Layout } from 'src/Layout'
 
 // TODO Restore WebSockets
 const withWs = false
@@ -89,17 +88,6 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
         global.localStorage.setItem('token', token)
       } else {
         global.localStorage.removeItem('token')
-      }
-
-      /**
-       * Переподключаем веб-сокет
-       */
-      const subscriptionClient = getSubscriptionClient(withWs)
-
-      try {
-        subscriptionClient?.close(false, false)
-      } catch (error) {
-        console.error(error)
       }
 
       await apolloClient.resetStore().catch(console.error)
@@ -181,7 +169,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
 
       default:
         return {
-          contentWithLayout: <MainLayout layout={layout}>{content}</MainLayout>,
+          contentWithLayout: <Layout>{content}</Layout>,
           muiTheme: getMuiTheme({}),
         }
     }
@@ -239,7 +227,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
           <GlobalStyle />
           <ApolloProvider client={apolloClient}>
             <Context.Provider value={contextValue}>
-              <WithUser context={contextValue}>
+              <WithUser context={contextValue} loginComplete={loginComplete}>
                 <Auth
                   open={authOpen}
                   // TODO Restore metamask

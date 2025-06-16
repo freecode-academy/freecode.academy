@@ -37,7 +37,6 @@ export const Tabs: React.FC<TabsProps> = ({
         <TabsToolbarStyled>
           {tabs.map((n, index) => {
             return (
-              //  @ts-expect-error types
               <TabStyled
                 key={index}
                 active={index === tabIndex}

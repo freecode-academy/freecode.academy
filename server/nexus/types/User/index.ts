@@ -256,7 +256,7 @@ export const UserExtendMutation = extendType({
       description: 'Регистрация',
       type: 'AuthPayload',
       args: {
-        data: nonNull('UserSignupDataInput'),
+        data: 'UserSignupDataInput',
       },
       resolve: signup,
     })

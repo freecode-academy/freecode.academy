@@ -328,7 +328,6 @@ export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
       <>
         <NextSeo title="Создание технологии" nofollow noindex />
 
-        {/* @ts-expect-error types */}
         <UpdateTechnologyForm onSubmit={onSubmit} layout="column">
           <Controller name="name" control={control} render={nameFieldRender} />
           <Controller

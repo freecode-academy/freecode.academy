@@ -15,8 +15,9 @@ type MainLayoutProps = React.PropsWithChildren<{
 
 /**
  * Главный шаблон для все основных страниц
+ * @deprecated Use src/Layout instead
  */
-const MainLayout: React.FC<MainLayoutProps> = ({ children, layout }) => {
+export const MainLayout: React.FC<MainLayoutProps> = ({ children, layout }) => {
   const context = useContext(Context) as PrismaCmsContext
 
   const header = useMemo(() => <Header user={context.user} />, [context.user])
@@ -26,9 +27,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, layout }) => {
       <>
         <LayoutStyled {...layout}>
           {header}
-          {/* @ts-expect-error types */}
           <LayoutWrapperStyled id="wrapper">
-            {/* @ts-expect-error types */}
             <LayoutContentStyled id="content">{children}</LayoutContentStyled>
           </LayoutWrapperStyled>
         </LayoutStyled>
@@ -36,5 +35,3 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, layout }) => {
     )
   }, [children, header, layout])
 }
-
-export default MainLayout

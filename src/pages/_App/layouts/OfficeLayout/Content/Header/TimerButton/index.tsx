@@ -15,7 +15,6 @@ const TimerButton: React.FC<TimerButtonProps> = ({
     return (
       <TimerButtonStyled
         status={status}
-        // @ts-expect-error types
         onClick={onClick}
         value={timerId}
         {...other}

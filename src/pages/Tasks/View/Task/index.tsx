@@ -89,17 +89,14 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
     return (
       <>
         <GridTableItemStyled {...other}>
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled className="buttons">
             {buttons}
           </GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled data-label="Статус" className="status">
             <TaskStatus value={object.status} />
           </GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled className="content" data-label="Описание">
             <p>
               Задача: <TaskLink object={object} />{' '}
@@ -123,44 +120,37 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
           </GridTableAttributeStyled>
 
           <GridTableAttributesContainerStyled>
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               {object.createdAt ? moment(object.createdAt).format('lll') : null}
             </GridTableAttributeStyled>
 
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               {object.startDatePlaning
                 ? moment(object.startDatePlaning).format('lll')
                 : null}
             </GridTableAttributeStyled>
 
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               {object.endDatePlaning
                 ? moment(object.endDatePlaning).format('lll')
                 : null}
             </GridTableAttributeStyled>
 
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               {object.startDate ? moment(object.startDate).format('lll') : null}
             </GridTableAttributeStyled>
 
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               {object.endDate ? moment(object.endDate).format('lll') : null}
             </GridTableAttributeStyled>
           </GridTableAttributesContainerStyled>
 
           {object.CreatedBy ? (
-            // @ts-expect-error types
             <GridTableAttributeStyled data-label="Постановщик">
               <UikitUserLink user={object.CreatedBy} />
             </GridTableAttributeStyled>
           ) : null}
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled data-label="Кто работает">
             {timers}
           </GridTableAttributeStyled>

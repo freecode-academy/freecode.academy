@@ -1,6 +1,5 @@
 import { useApolloClient } from '@apollo/client'
 import { useContext, useCallback } from 'react'
-// import { Context } from 'src/pages/_App/Context'
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 
 /**

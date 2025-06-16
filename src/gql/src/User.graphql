@@ -65,7 +65,7 @@ mutation updateUserProcessor(
   }
 }
 
-mutation signup($data: UserSignupDataInput!) {
+mutation signup($data: UserSignupDataInput) {
   response: signup(data: $data) {
     success
     message

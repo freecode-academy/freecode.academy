@@ -24,7 +24,6 @@ export const DonateForm: React.FC = () => {
 
   return (
     <>
-      {/* @ts-expect-error types */}
       <DonateFormStyled
         method="POST"
         action="https://yoomoney.ru/quickpay/confirm.xml"

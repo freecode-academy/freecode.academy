@@ -57,28 +57,18 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
         {showActions ? (
           <GridTableAttributeStyled></GridTableAttributeStyled>
         ) : null}
-        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Технология</GridTableAttributeStyled>
-        {/* @ts-expect-error types */}
 
         <GridTableAttributeStyled>
           Технологический уровень
         </GridTableAttributeStyled>
-        {/* @ts-expect-error types */}
 
         <GridTableAttributeStyled>Статус</GridTableAttributeStyled>
-        {/* @ts-expect-error types */}
-
         <GridTableAttributeStyled>Готовность к найму</GridTableAttributeStyled>
-        {/* @ts-expect-error types */}
 
         <GridTableAttributeStyled>Менторство</GridTableAttributeStyled>
         <GridTableAttributesContainerStyled>
-          {/* @ts-expect-error types */}
-
           <GridTableAttributeStyled>Используется С</GridTableAttributeStyled>
-
-          {/* @ts-expect-error types */}
 
           <GridTableAttributeStyled>Использовалось По</GridTableAttributeStyled>
         </GridTableAttributesContainerStyled>
@@ -143,7 +133,6 @@ const UserViewTechnologies: React.FC<UserViewTechnologiesProps> = ({
       <Typography variant="subheading">Используемые технологии</Typography>
 
       <UserViewTechnologiesGridViewStyled>
-        {/* @ts-expect-error types */}
         <TechnologyGridTableStyled
           showActions={showActions}
           showCreateBy={false}

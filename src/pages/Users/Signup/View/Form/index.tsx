@@ -10,7 +10,7 @@ import Button from 'src/components/ui/Button'
 // import { FormStyled } from "src/components/ui/form/styles";
 
 import { SignupFormStyled } from './styles'
-import { Context } from 'src/pages/_App/Context'
+import { Context } from 'src/AppContext'
 import FormControl from '@prisma-cms/ui/dist/form/FormControl'
 
 /**
@@ -199,7 +199,6 @@ const SignupForm: React.FC = () => {
   return useMemo(() => {
     return (
       <>
-        {/* @ts-expect-error types */}
         <SignupFormStyled onSubmit={onSubmit} layout="column">
           <h2>Зарегистрироваться</h2>
 

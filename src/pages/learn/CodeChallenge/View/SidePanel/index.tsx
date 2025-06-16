@@ -98,8 +98,6 @@ const SidePanel: React.FC<SidePanelProps> = ({
 
   return useMemo(() => {
     return (
-      // @ts-expect-error types
-
       <SidePanelStyled
         className="instructions-panel"
         role="complementary"

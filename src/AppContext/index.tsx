@@ -1,5 +1,5 @@
 import { useApolloClient } from '@apollo/client'
-import React, { useCallback, useMemo } from 'react'
+import React, { Dispatch, useCallback, useMemo } from 'react'
 
 import {
   AuthPayloadFragment,
@@ -7,9 +7,13 @@ import {
   SigninMutation,
   SignupMutation,
 } from 'src/gql/generated'
+import { useAppReducer } from './reducer'
+import { AppAction, AppState } from './reducer/interfaces'
+import { AuthFormResponse } from 'src/components/Auth/forms/interfaces'
 
-export type ContextValue = {
+export type AppContextValue = {
   user: MeQuery['me']
+  loginComplete: (data: AuthFormResponse) => Promise<void>
 
   onAuthSuccess: (
     data:
@@ -17,12 +21,16 @@ export type ContextValue = {
       | SigninMutation['response']
       | AuthPayloadFragment
   ) => void
+
+  appDispatch: Dispatch<AppAction>
+  appState: AppState
 }
 
-export const Context = React.createContext<ContextValue | null>(null)
+export const Context = React.createContext<AppContextValue | null>(null)
 
 type AppContextProviderProps = React.PropsWithChildren<{
-  user: ContextValue['user']
+  user: AppContextValue['user']
+  loginComplete: AppContextValue['loginComplete']
 }>
 
 /**
@@ -30,11 +38,12 @@ type AppContextProviderProps = React.PropsWithChildren<{
  */
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   user,
+  loginComplete,
   children,
 }) => {
   const apolloClient = useApolloClient()
 
-  const onAuthSuccess = useCallback<ContextValue['onAuthSuccess']>(
+  const onAuthSuccess = useCallback<AppContextValue['onAuthSuccess']>(
     async (data) => {
       const { token } = data
 
@@ -49,16 +58,27 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
     [apolloClient]
   )
 
-  const context = useMemo<ContextValue>(() => {
+  const { state: appState, dispatch: appDispatch } = useAppReducer()
+
+  const context = useMemo<AppContextValue>(() => {
     return {
       onAuthSuccess,
       user,
+      loginComplete,
+      appDispatch,
+      appState,
     }
-  }, [onAuthSuccess, user])
+  }, [onAuthSuccess, user, loginComplete, appDispatch, appState])
 
   return <Context.Provider value={context}>{children}</Context.Provider>
 }
 
 export const useAppContext = () => {
-  return React.useContext(Context)
+  const context = React.useContext(Context)
+
+  if (!context) {
+    throw new Error('Please, provide AppContextProvider')
+  }
+
+  return context
 }

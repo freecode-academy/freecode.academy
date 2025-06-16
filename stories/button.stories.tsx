@@ -51,7 +51,6 @@ export const withText: React.FC<ButtonProps> = (props) => {
   return (
     <Button
       {...other}
-      // @ts-expect-error types
       onClick={action('clicked')}
       backgroundColor={backgroundColor}
     >
@@ -61,11 +60,7 @@ export const withText: React.FC<ButtonProps> = (props) => {
 }
 
 export const withSomeEmoji: React.FC<ButtonProps> = (props) => (
-  <Button
-    {...props}
-    // @ts-expect-error types
-    onClick={action('clicked')}
-  >
+  <Button {...props} onClick={action('clicked')}>
     <span role="img" aria-label="so cool">
       😀 😎 👍 💯
     </span>

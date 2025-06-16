@@ -51,8 +51,6 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
 
     if (guideUrl) {
       items.push(
-        // @ts-expect-error types
-
         <MenuItem
           key="guideUrl"
           href={guideUrl}
@@ -66,8 +64,6 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
 
     if (videoUrl) {
       items.push(
-        // @ts-expect-error types
-
         <MenuItem
           // onClick={openVideoModal}
           key="videoUrl"
@@ -81,16 +77,12 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
     }
 
     return (
-      // @ts-expect-error types
-
       <ToolPanelStyled className={'tool-panel-group button-group'}>
         <ExecuteChallengeButton
           executeChallenge={executeChallenge}
           codeChallengeCompletion={codeChallengeCompletion}
           currentUser={currentUser}
         />
-
-        {/* @ts-expect-error types */}
         <ButtonStyled className="btn-invert" onClick={resetChallengeData}>
           Восстановить код
         </ButtonStyled>

@@ -181,7 +181,6 @@ export const CreateLearnStrategyPage: Page = () => {
         <NextSeo noindex nofollow title="Новая стратегия развития" />
 
         <CreateLearnStrategyPageStyled>
-          {/* @ts-expect-error types */}
           <CreateLearnStrategyFormStyled onSubmit={onSubmit} layout="default">
             <h2>Новая стратегия развития</h2>
 

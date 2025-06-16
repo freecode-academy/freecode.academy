@@ -19,8 +19,6 @@ const Loader: React.FC<LoaderProps> = ({ fullScreen, timeout }) => {
     }
   }, [setShowSpinner, showSpinner, timeout])
   return (
-    // @ts-expect-error types
-
     <CodeChallengeLoaderStyled
       className={`fcc-loader ${fullScreen ? 'full-screen-wrapper' : ''}`}
     >
@@ -30,9 +28,4 @@ const Loader: React.FC<LoaderProps> = ({ fullScreen, timeout }) => {
 }
 
 Loader.displayName = 'Loader'
-// Loader.propTypes = {
-//   fullScreen: PropTypes.bool,
-//   timeout: PropTypes.number
-// };
-
 export default Loader

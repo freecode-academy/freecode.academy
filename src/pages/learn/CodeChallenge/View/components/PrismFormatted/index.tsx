@@ -42,8 +42,6 @@ export const PrismFormatted: React.FC<PrismFormattedProps> = ({
 
   return (
     <PrismFormattedStyled
-      // @ts-expect-error types
-
       className={className}
       dangerouslySetInnerHTML={{ __html: text }}
       ref={ref}

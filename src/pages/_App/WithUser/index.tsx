@@ -5,9 +5,13 @@ import Context, { PrismaCmsContext } from '@prisma-cms/context'
 import { useMeQuery } from 'src/gql/generated'
 
 import { WithUserProps } from './interfaces'
-import { AppContextProvider } from '../Context'
+import { AppContextProvider } from 'src/AppContext'
 
-const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
+export const WithUser: React.FC<WithUserProps> = ({
+  children,
+  loginComplete,
+  context,
+}) => {
   // TODO Надо проработать перезапрос пользователя.
   /**
    * Дело в том, что сейчас у нас не передаются параметры в запрос
@@ -27,6 +31,7 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
     //    * метод не выполняется.
     //    */
     // },
+    ssr: false,
   })
 
   const user = data?.me
@@ -56,11 +61,12 @@ const WithUser: React.FC<WithUserProps> = ({ children, context }) => {
     TODO добавить подписку на объект пользователя
   */}
 
-      <AppContextProvider user={contextWithUser.user}>
+      <AppContextProvider
+        user={contextWithUser.user}
+        loginComplete={loginComplete}
+      >
         {children}
       </AppContextProvider>
     </Context.Provider>
   )
 }
-
-export default WithUser

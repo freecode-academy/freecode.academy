@@ -21,30 +21,22 @@ export const UsersView: React.FC<UsersViewProps> = ({
   const header = useMemo(() => {
     return (
       <GridTableItemStyled>
-        {/* <GridTableAttributeStyled className="buttons" /> */}
-
-        {/* @ts-expect-error types */}
         <GridTableAttributeStyled className="status">
           Пользователь
         </GridTableAttributeStyled>
 
-        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>
           Технологический уровень
         </GridTableAttributeStyled>
 
-        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>Создал проекты</GridTableAttributeStyled>
 
-        {/* @ts-expect-error types */}
         <GridTableAttributeStyled>
           Участвует в проектах
         </GridTableAttributeStyled>
         <GridTableAttributesContainerStyled>
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>Дата регистрации</GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>Дата обновления</GridTableAttributeStyled>
         </GridTableAttributesContainerStyled>
       </GridTableItemStyled>

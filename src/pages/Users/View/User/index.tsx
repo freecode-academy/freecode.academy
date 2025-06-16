@@ -97,29 +97,24 @@ export const UsersViewUser: React.FC<UsersViewUserProps> = ({ user }) => {
     return (
       <>
         <GridTableItemStyled>
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled data-label="Пользователь">
             <UserLink user={user} />
           </GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled data-label="Технологический уровень">
             {user.technologyLevel &&
               getUserTechnologyLevelText(user.technologyLevel)}
           </GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled data-label="Создал проекты">
             {projectsCreated}
           </GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled data-label="Участвует в проектах">
             {projectsMember}
           </GridTableAttributeStyled>
 
           <GridTableAttributesContainerStyled>
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               <span
                 style={{
@@ -130,7 +125,6 @@ export const UsersViewUser: React.FC<UsersViewUserProps> = ({ user }) => {
               </span>
             </GridTableAttributeStyled>
 
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>
               <span
                 style={{

@@ -10,7 +10,7 @@ import Button from 'src/components/ui/Button'
 // import { FormStyled } from "src/components/ui/form/styles";
 
 import { SigninFormStyled } from './styles'
-import { Context } from 'src/pages/_App/Context'
+import { Context } from 'src/AppContext'
 import Link from 'next/link'
 
 type FormData = Pick<SigninMutationVariables['where'], 'username'> &
@@ -114,7 +114,6 @@ const SigninForm: React.FC = () => {
   return useMemo(() => {
     return (
       <>
-        {/* @ts-expect-error types */}
         <SigninFormStyled role="signin" onSubmit={onSubmit} layout="column">
           <h2>Авторизоваться</h2>
 

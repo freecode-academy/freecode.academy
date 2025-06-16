@@ -7,35 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum userType {
+  Human
+  AI
+}
+
 model User {
-  id                                                     String                    @id @default(cuid()) @db.VarChar(32)
-  createdAt                                              DateTime                  @default(now()) @db.DateTime(0)
-  updatedAt                                              DateTime                  @default(now()) @updatedAt @db.DateTime(0)
-  username                                               String?
-  email                                                  String?
-  phone                                                  String?
-  showEmail                                              Boolean                   @default(false)
-  showPhone                                              Boolean                   @default(false)
-  showFullname                                           Boolean                   @default(true)
-  password                                               String?
-  fullname                                               String?
-  image                                                  String?                   @db.Text
-  address                                                String?                   @db.Text
-  active                                                 Boolean?
-  blocked                                                Boolean                   @default(false)
-  activated                                              Boolean?
-  deleted                                                Boolean?
-  hidden                                                 Boolean?
-  sudo                                                   Boolean?
-  marketplaceToken                                       String?
-  oldID                                                  Int?                      @unique
-  CreatedBy                                              String?                   @db.VarChar(32)
-  EthAccountAuthed                                       String?                   @db.VarChar(32)
-  acceptChatMessageOldAnonymous                          Boolean?
-  acceptNewChatRoomAnonymous                             Boolean?
-  acceptNewChatRoom                                      Boolean?
-  isMentor                                               Boolean                   @default(value: false)
-  technologyLevel                                        Int?                      @db.UnsignedTinyInt
+  id                            String   @id @default(cuid()) @db.VarChar(32)
+  createdAt                     DateTime @default(now()) @db.DateTime(0)
+  updatedAt                     DateTime @default(now()) @updatedAt @db.DateTime(0)
+  username                      String?
+  email                         String?
+  phone                         String?
+  showEmail                     Boolean  @default(false)
+  showPhone                     Boolean  @default(false)
+  showFullname                  Boolean  @default(true)
+  password                      String?
+  fullname                      String?
+  image                         String?  @db.Text
+  address                       String?  @db.Text
+  active                        Boolean?
+  blocked                       Boolean  @default(false)
+  activated                     Boolean?
+  deleted                       Boolean?
+  hidden                        Boolean?
+  sudo                          Boolean?
+  marketplaceToken              String?
+  oldID                         Int?     @unique
+  CreatedBy                     String?  @db.VarChar(32)
+  EthAccountAuthed              String?  @db.VarChar(32)
+  acceptChatMessageOldAnonymous Boolean?
+  acceptNewChatRoomAnonymous    Boolean?
+  acceptNewChatRoom             Boolean?
+  isMentor                      Boolean  @default(value: false)
+  technologyLevel               Int?     @db.UnsignedTinyInt
+
+  type userType @default(Human)
+  data Json?
+
   User                                                   User?                     @relation("UserToUser_CreatedBy", fields: [CreatedBy], references: [id])
   EthAccount_EthAccountToUser_EthAccountAuthed           EthAccount?               @relation("EthAccountToUser_EthAccountAuthed", fields: [EthAccountAuthed], references: [id])
   CallRequests_CallRequest_CalledToUser                  CallRequest[]             @relation("CallRequest_CalledToUser")
@@ -125,6 +134,11 @@ model User {
 
   Donates Donate[]
   AiAgent AiAgent[]
+
+  ChatMessages       ChatMessage[] @relation(name: "ChatMessageCreatedBy")
+  IncomeChatMessages ChatMessage[] @relation(name: "ChatMessageUserTo")
+  MindLogs           MindLog[]
+  Activities         Activity[]
 
   @@unique([email])
   @@unique([username])
@@ -1647,4 +1661,81 @@ model AiAgent {
   userId    String?  @db.VarChar(32)
   User      User?    @relation(fields: [userId], references: [id])
   prompt    String
+}
+
+enum MindLogType {
+  Stimulus // Раздражитель
+  Reaction // Реакция
+  Reasoning // Рассуждение
+  Intention // Намерение
+  Action // Действие
+  Progress // Ход выполнения
+  Conclusion // Вывод
+  Result // Результат
+  Confirmation // Подтверждение
+  Refutation // Опровержение
+  Correction // Коррекция
+  Evaluation // Оценка
+  Suggestion // Предложение
+  OptimizedMemory // Оптимизированное знание
+  ForgottenMemory // Забытая или неактуальная память
+  ChunkedKnowledge // Сгруппированное знание
+  ReinforcedAction // Усиленное действие (после положительного отклика)
+  Mentoring // Передача знаний от опытного агента
+  Guidance // Направление по решению будущих задач
+  ProcessSummary // Краткое резюме всего процесса с выделением ключевых точек
+}
+
+model MindLog {
+  id        String      @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime    @default(now()) @db.Timestamp(3)
+  updatedAt DateTime    @default(now()) @updatedAt @db.Timestamp(3)
+  type      MindLogType
+  data      String      @db.Text
+  quality   Float?
+
+  createdById String @db.VarChar(36)
+  CreatedBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid()) @db.VarChar(36)
+  text      String   @db.Text
+  createdAt DateTime @default(now()) @db.DateTime(0)
+
+  // -1 (злость) ... 0 (нейтрал) ... +1 (радость)
+  mood          Float   @default(0)
+  // -1 (неуверенность) ... +1 (уверенность)
+  assertiveness Float   @default(0)
+  // -1 (жалоба / агрессия) ... +1 (предложение / помощь)
+  intentTone    Float   @default(0)
+  // 'предложение', 'покупка', 'продажа', 'самоутверждение', 'манипуляция'
+  socialGoal    String?
+
+  // Список тегов просто через запятую
+  tags String?
+
+  createdBy String @db.VarChar(36)
+  CreatedBy User   @relation(fields: [createdBy], references: [id], onDelete: Cascade, name: "ChatMessageCreatedBy")
+
+  toUserId String? @db.VarChar(36)
+  ToUser   User?   @relation(fields: [toUserId], references: [id], onDelete: Cascade, name: "ChatMessageUserTo")
+}
+
+enum ActivityType {
+  UserCreated
+  UrlChanged
+  SendMessaged
+  MindLog
+}
+
+model Activity {
+  id        String       @id @default(cuid()) @db.VarChar(36)
+  createdAt DateTime     @default(now())
+  type      ActivityType
+  userId    String       @db.VarChar(36)
+  User      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  data      Json?
+
+  @@index([type])
 }

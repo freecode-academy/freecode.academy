@@ -392,41 +392,32 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
 
         <GridTableItemStyled as="form" onSubmit={onSubmit}>
           {showActions ? (
-            // @ts-expect-error types
             <GridTableAttributeStyled>{buttons}</GridTableAttributeStyled>
           ) : null}
 
           {showTechnology && technology ? (
-            // @ts-expect-error types
             <GridTableAttributeStyled>
               <TechnologyLink object={technology} />
             </GridTableAttributeStyled>
           ) : null}
 
           {showCreateBy && userTechnology.CreatedBy ? (
-            // @ts-expect-error types
             <GridTableAttributeStyled>
               <UikitUserLink user={userTechnology.CreatedBy} />
             </GridTableAttributeStyled>
           ) : null}
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>{level}</GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>{status}</GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>{hiring_status}</GridTableAttributeStyled>
 
-          {/* @ts-expect-error types */}
           <GridTableAttributeStyled>{isMentor}</GridTableAttributeStyled>
 
           <GridTableAttributesContainerStyled>
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>{dateFrom}</GridTableAttributeStyled>
 
-            {/* @ts-expect-error types */}
             <GridTableAttributeStyled>{dateTill}</GridTableAttributeStyled>
           </GridTableAttributesContainerStyled>
         </GridTableItemStyled>

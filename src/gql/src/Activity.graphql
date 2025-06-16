@@ -1,0 +1,32 @@
+subscription activity($globalEvents: Boolean!) {
+  activity(globalEvents: $globalEvents) {
+    ...Activity_
+  }
+}
+
+fragment Activity_ on Activity {
+  id
+  createdAt
+  userId
+  data
+  type
+
+  ... on ActivityUrl {
+    url
+  }
+  ... on ActivityUser {
+    User {
+      ...user_
+    }
+  }
+  ... on ActivityMessage {
+    ChatMessage {
+      ...ChatMessage_
+    }
+  }
+  ... on ActivityMindLog {
+    MindLog {
+      ...MindLog_
+    }
+  }
+}

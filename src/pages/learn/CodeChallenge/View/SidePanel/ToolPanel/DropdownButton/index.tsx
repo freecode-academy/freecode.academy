@@ -39,7 +39,6 @@ const DropdownButton: React.FC = ({ children }) => {
 
   return (
     <DropdownButtonStyled>
-      {/* @ts-expect-error types */}
       <ButtonStyled onClick={toggleOpener}>Помощь</ButtonStyled>
       {content}
     </DropdownButtonStyled>

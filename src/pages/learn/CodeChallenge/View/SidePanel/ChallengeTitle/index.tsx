@@ -21,7 +21,6 @@ const ChallengeTitle: React.FC<ChallengeTitleProps> = ({
   return useMemo(() => {
     return (
       <>
-        {/* @ts-expect-error types */}
         <ChallengeTitleStyled className="challenge-title text-center">
           <CodeChallengeStatusIcon status={status} />{' '}
           {children || 'Happy Coding!'}

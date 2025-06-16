@@ -2,16 +2,10 @@ import { User } from '@prisma/client'
 import { PrismaContext } from '../../nexus/context'
 import { AiAgents, AiAgentUsername } from '../interfaces'
 
-const OPENAI_API_BASE_URL = process.env.OPENAI_API_BASE_URL
-const OPENAI_DEFAULT_MODEL = process.env.OPENAI_DEFAULT_MODEL
+const OPENAI_API_BASE_URL =
+  process.env.OPENAI_API_BASE_URL || 'https://api.openai.com/v1'
 
-if (!OPENAI_API_BASE_URL) {
-  throw new Error('OPENAI_API_BASE_URL env is empty')
-}
-
-if (!OPENAI_DEFAULT_MODEL) {
-  throw new Error('OPENAI_DEFAULT_MODEL env is empty')
-}
+const OPENAI_DEFAULT_MODEL = process.env.OPENAI_DEFAULT_MODEL || 'gpt-4.1-mini'
 
 type getAiUserProps = {
   ctx: PrismaContext

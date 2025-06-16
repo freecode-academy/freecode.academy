@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { useChat } from 'src/Chat/hooks/useChat'
 import styled from 'styled-components'
 
 const Hero = styled.section`
@@ -71,7 +72,19 @@ const ChatButton = styled.button`
 `
 
 export function HeroSection() {
-  const onStartChat = undefined
+  const { sendChatMessage, textSetter, loading } = useChat()
+
+  const onClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
+    (event) => {
+      event.preventDefault()
+      event.stopPropagation()
+
+      textSetter(`Привет! Расскажи коротко что и как.`)
+
+      sendChatMessage()
+    },
+    [sendChatMessage, textSetter]
+  )
 
   return (
     <Hero>
@@ -84,7 +97,7 @@ export function HeroSection() {
         гуру JS/ИИ. Без лишних кликов, меню и поисков. Просто начни чат и
         погнали!
       </Subtitle>
-      <ChatButton onClick={onStartChat}>
+      <ChatButton onClick={onClick} disabled={loading}>
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 4h16v12H5.17L4 17.17V4z" fill="currentColor" />
           <circle cx="8" cy="10" r="1" fill="currentColor" />

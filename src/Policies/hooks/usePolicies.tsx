@@ -4,7 +4,7 @@ import { PoliciesBanner } from '../Policies/Banner'
 export function usePolicies() {
   const router = useRouter()
 
-  if (router.asPath === '/signin') {
+  if (router.asPath.startsWith('/signin')) {
     return {}
   }
 

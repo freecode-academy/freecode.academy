@@ -100,7 +100,7 @@ export const locales = {
       Signin: 'Войти',
       Signout: 'Выйти',
       Chats: 'Чаты',
-      Office: 'Офис',
+      // Office: 'Офис',
       Users: 'Участники',
       Ethereum: 'Ethereum',
       'API Schema': 'API схема',
@@ -273,13 +273,13 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
                 </a>
               </Grid> */}
 
-            <Grid item>
+            {/* <Grid item>
               <Link href="/office/">
                 <a>
                   <Typography>{this.lexicon('Office')}</Typography>
                 </a>
               </Link>
-            </Grid>
+            </Grid> */}
 
             {/* <Grid item>
               <a

@@ -70,12 +70,6 @@ export const sendAiMessage = async ({
     messages = [...messages, ...userMessagesHistory]
   }
 
-  // const aiMessage: ChatCompletionMessageParam = {
-  //   role: 'user',
-  //   content: message.text,
-  //   name: fromUser.fullname ?? undefined,
-  // }
-
   messages.push(...messagesProps)
 
   userMessagesHistory.push(...messagesProps)

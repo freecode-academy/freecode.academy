@@ -41,7 +41,10 @@ export const sendAiMessageResolver: FieldResolver<
   const aiMessage: ChatCompletionMessageParam = {
     role: 'user',
     content: message.text,
-    name: fromUser.fullname ?? undefined,
+    /**
+     * Нельзя передавать кириллицу, ошибка позникает
+     */
+    // name: fromUser.fullname ?? undefined,
   }
 
   messages.push({

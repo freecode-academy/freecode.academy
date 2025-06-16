@@ -28,8 +28,8 @@ mutation deleteNotice($where: NoticeWhereUniqueInput!) {
 
 fragment notice on Notice {
   ...NoticeNoNesting
-  ChatMessage {
-    ...ChatMessageNoNesting
+  ChatMessageOld {
+    ...ChatMessageOldNoNesting
     CreatedBy {
       ...UserNoNesting
     }

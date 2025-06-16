@@ -1,1 +1,1 @@
-export type ChatMessageType = 'user' | 'assistant'
+export type ChatMessageOldType = 'user' | 'assistant'

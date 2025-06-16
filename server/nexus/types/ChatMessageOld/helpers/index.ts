@@ -2,11 +2,11 @@ import { Prisma } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
 import { getChatRoomsConditions } from '../../ChatRoom/helpers'
 
-type Where = NonNullable<Prisma.ChatMessageFindManyArgs['where']>
+type Where = NonNullable<Prisma.ChatMessageOldFindManyArgs['where']>
 type WhereAnd = NonNullable<Where['AND']>
 type WhereOr = NonNullable<Where['OR']>
 
-export function getChatMessagesConditions(
+export function getChatMessageOldsConditions(
   whereProps: Where | undefined,
   ctx: PrismaContext
 ) {
@@ -21,7 +21,7 @@ export function getChatMessagesConditions(
   if (!currentUser?.sudo) {
     const whereOr: WhereOr = []
 
-    // TODO Adde isPublic field to ChatMessage
+    // TODO Adde isPublic field to ChatMessageOld
     // whereOr.push({
     //   isPublic: true,
     // })

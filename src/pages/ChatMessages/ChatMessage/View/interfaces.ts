@@ -1,5 +1,5 @@
-import { ChatMessageFragment } from 'src/gql/generated'
+import { ChatMessageOldFragment } from 'src/gql/generated'
 
-export interface ChatMessageViewProps {
-  object: ChatMessageFragment | null | undefined
+export interface ChatMessageOldViewProps {
+  object: ChatMessageOldFragment | null | undefined
 }

@@ -1,3 +1,3 @@
 import styled from 'styled-components'
 
-export const ChatMessageViewStyled = styled.section``
+export const ChatMessageOldViewStyled = styled.section``

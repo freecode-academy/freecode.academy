@@ -38,9 +38,9 @@ const UserChatSettings: React.FC<UserChatSettingsProps> = ({
 
         <p>
           <ChatSetting
-            name={"acceptChatMessageAnonymous"}
+            name={"acceptChatMessageOldAnonymous"}
             title="Анонимным пользователям разрешено отправлять вам сообщения"
-            checked={user.acceptChatMessageAnonymous || false}
+            checked={user.acceptChatMessageOldAnonymous || false}
             setValue={setValue}
           />
         </p> 

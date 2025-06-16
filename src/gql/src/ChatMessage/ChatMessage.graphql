@@ -1,14 +1,14 @@
-query chatMessagesConnection(
-  $where: ChatMessageWhereInput
-  $orderBy: [ChatMessageOrderByWithRelationInput!]
+query chatMessageOldsConnection(
+  $where: ChatMessageOldWhereInput
+  $orderBy: [ChatMessageOldOrderByWithRelationInput!]
   $skip: Int
   # $after: String
   # $before: String
   $first: Int = 10 # $last: Int
 ) {
-  chatMessagesCount(where: $where)
+  chatMessageOldsCount(where: $where)
 
-  chatMessages(
+  chatMessageOlds(
     where: $where
     orderBy: $orderBy
     skip: $skip
@@ -16,24 +16,24 @@ query chatMessagesConnection(
     # before: $before
     take: $first # last: $last
   ) {
-    ...ChatMessage_
+    ...ChatMessageOld_
   }
 }
 
-query chatMessage($where: ChatMessageWhereUniqueInput!) {
-  object: chatMessage(where: $where) {
-    ...ChatMessage_
+query chatMessageOld($where: ChatMessageOldWhereUniqueInput!) {
+  object: chatMessageOld(where: $where) {
+    ...ChatMessageOld_
   }
 }
 
 query dialog {
-  chatMessagesDialog {
-    ...ChatMessage_
+  chatMessageOldsDialog {
+    ...ChatMessageOld_
   }
 }
 
-fragment ChatMessage_ on ChatMessage {
-  ...ChatMessageNoNesting
+fragment ChatMessageOld_ on ChatMessageOld {
+  ...ChatMessageOldNoNesting
   Room {
     ...ChatRoomNoNesting
   }
@@ -45,7 +45,7 @@ fragment ChatMessage_ on ChatMessage {
   }
 }
 
-fragment ChatMessageNoNesting on ChatMessage {
+fragment ChatMessageOldNoNesting on ChatMessageOld {
   id
   createdAt
   updatedAt
@@ -53,7 +53,7 @@ fragment ChatMessageNoNesting on ChatMessage {
   contentText
 }
 
-fragment ChatMessageResponse_ on ChatMessageResponse {
+fragment ChatMessageOldResponse_ on ChatMessageOldResponse {
   success
   message
   errors {
@@ -61,10 +61,10 @@ fragment ChatMessageResponse_ on ChatMessageResponse {
     message
   }
   data {
-    ...ChatMessage_
+    ...ChatMessageOld_
   }
   reply {
-    ...ChatMessage_
+    ...ChatMessageOld_
   }
   createdUser {
     ...AuthPayload_

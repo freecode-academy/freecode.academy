@@ -1,24 +1,24 @@
 import React from 'react'
-import { ChatMessageViewProps } from './interfaces'
-import { ChatMessageViewStyled } from './styles'
-import UiChatMessage from 'src/uikit/Chat/ChatMessage'
+import { ChatMessageOldViewProps } from './interfaces'
+import { ChatMessageOldViewStyled } from './styles'
+import UiChatMessageOld from 'src/uikit/Chat/ChatMessageOld'
 import Link from 'next/link'
 
-const ChatMessageView: React.FC<ChatMessageViewProps> = (props) => {
-  const chatMessage = props.object
+const ChatMessageOldView: React.FC<ChatMessageOldViewProps> = (props) => {
+  const chatMessageOld = props.object
 
-  if (!chatMessage) {
+  if (!chatMessageOld) {
     return null
   }
 
   return (
-    <ChatMessageViewStyled>
-      <UiChatMessage object={chatMessage} />
+    <ChatMessageOldViewStyled>
+      <UiChatMessageOld object={chatMessageOld} />
       <Link href="/chat-messages">
         <a className="chat-message--all-messages-link">Все сообщения</a>
       </Link>
-    </ChatMessageViewStyled>
+    </ChatMessageOldViewStyled>
   )
 }
 
-export default ChatMessageView
+export default ChatMessageOldView

@@ -1,7 +1,7 @@
 import { IconButton } from 'material-ui'
 import React, { useCallback, useMemo } from 'react'
 import { NoticeType } from 'src/gql/generated'
-import UiChatMessage from 'src/uikit/Chat/ChatMessage'
+import UiChatMessageOld from 'src/uikit/Chat/ChatMessageOld'
 import { NoticeViewProps } from './interfaces'
 import { NoticeViewHeaderStyled, NoticeViewStyled } from './styles'
 import DoneIcon from 'material-ui-icons/Done'
@@ -27,11 +27,11 @@ const NoticeView: React.FC<NoticeViewProps> = ({ notice, ...other }) => {
     let title: JSX.Element | string | undefined
 
     switch (notice.type) {
-      case NoticeType.CHATMESSAGE:
-        if (notice.ChatMessage) {
-          title = `Сообщение в чате ${notice.ChatMessage.Room?.name}`
+      case NoticeType.CHATMESSAGEOLD:
+        if (notice.ChatMessageOld) {
+          title = `Сообщение в чате ${notice.ChatMessageOld.Room?.name}`
 
-          content = <UiChatMessage object={notice.ChatMessage} />
+          content = <UiChatMessageOld object={notice.ChatMessageOld} />
         }
 
         break
@@ -59,7 +59,7 @@ const NoticeView: React.FC<NoticeViewProps> = ({ notice, ...other }) => {
         {content}
       </NoticeViewStyled>
     )
-  }, [deleteNotice, loading, notice.ChatMessage, notice.type, other])
+  }, [deleteNotice, loading, notice.ChatMessageOld, notice.type, other])
 }
 
 export default NoticeView

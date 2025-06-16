@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Typography } from 'material-ui'
 // import useStore from 'src/hooks/useStore'
-// import { useCreateChatMessageProcessorMutation } from 'src/gql/generated/createChatMessageProcessor'
+// import { useCreateChatMessageOldProcessorMutation } from 'src/gql/generated/createChatMessageOldProcessor'
 // import useProcessorMutation from 'src/hooks/useProcessorMutation'
-// import { ChatMessageCreateInput } from 'src/gql/generated'
+// import { ChatMessageOldCreateInput } from 'src/gql/generated'
 // import Grid from 'src/uikit/Grid'
 // import Editor from 'src/uikit/Editor'
 import { UserChatRoomsProps } from './interfaces'
@@ -28,22 +28,22 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
 
   // const router = useRouter()
 
-  // const createChatMessageTupple = useCreateChatMessageProcessorMutation()
+  // const createChatMessageOldTupple = useCreateChatMessageOldProcessorMutation()
 
   // const {
   //   snakbar,
-  //   mutation: createChatMessageMutation,
+  //   mutation: createChatMessageOldMutation,
   //   loading: inRequest,
-  // } = useProcessorMutation(createChatMessageTupple)
+  // } = useProcessorMutation(createChatMessageOldTupple)
 
-  // const { store, setValue } = useStore<ChatMessageCreateInput>({})
+  // const { store, setValue } = useStore<ChatMessageOldCreateInput>({})
 
-  // const createChatMessage = useCallback(() => {
+  // const createChatMessageOld = useCallback(() => {
   //   if (!store?.content || inRequest) {
   //     return
   //   }
 
-  //   createChatMessageMutation({
+  //   createChatMessageOldMutation({
   //     variables: {
   //       data: {
   //         ...store,
@@ -67,10 +67,10 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
   //       }
   //     }
   //   })
-  // }, [createChatMessageMutation, inRequest, router, store, user.id])
+  // }, [createChatMessageOldMutation, inRequest, router, store, user.id])
 
   // const onEditComment = useCallback(
-  //   (content: ChatMessageCreateInput['content']) => {
+  //   (content: ChatMessageOldCreateInput['content']) => {
   //     setValue('content', content)
   //   },
   //   [setValue]
@@ -98,7 +98,7 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
 
   //       <Grid item>
   //         <IconButton
-  //           onClick={createChatMessage}
+  //           onClick={createChatMessageOld}
   //           disabled={inRequest}
   //           title="Отправить сообщение"
   //         >
@@ -107,7 +107,7 @@ const UserChatRooms: React.FC<UserChatRoomsProps> = ({
   //       </Grid>
   //     </Grid>
   //   )
-  // }, [createChatMessage, inRequest, onEditComment, store?.content, user])
+  // }, [createChatMessageOld, inRequest, onEditComment, store?.content, user])
 
   if (!user) {
     return null

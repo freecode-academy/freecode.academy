@@ -4,13 +4,13 @@ import Editor from 'src/uikit/Editor'
 import Grid from 'src/uikit/Grid'
 import ChatRoomLink from 'src/uikit/Link/ChatRoom'
 import UikitUserLink from 'src/uikit/Link/User'
-import { UiChatMessageProps } from './interfaces'
-import { UiChatMessageStyled } from './styles'
+import { UiChatMessageOldProps } from './interfaces'
+import { UiChatMessageOldStyled } from './styles'
 import Link from 'next/link'
 
 export * from './interfaces'
 
-const UiChatMessage: React.FC<UiChatMessageProps> = (props) => {
+const UiChatMessageOld: React.FC<UiChatMessageOldProps> = (props) => {
   const object = props.object
 
   if (!object) {
@@ -20,7 +20,7 @@ const UiChatMessage: React.FC<UiChatMessageProps> = (props) => {
   const { id, createdAt, CreatedBy, content, Room } = object
 
   return (
-    <UiChatMessageStyled>
+    <UiChatMessageOldStyled>
       <Grid container spacing={8} alignItems="center">
         <Grid item>
           {CreatedBy ? (
@@ -48,8 +48,8 @@ const UiChatMessage: React.FC<UiChatMessageProps> = (props) => {
           <Editor editorKey="chat-message-editor" value={content} />
         </Grid>
       </Grid>
-    </UiChatMessageStyled>
+    </UiChatMessageOldStyled>
   )
 }
 
-export default UiChatMessage
+export default UiChatMessageOld

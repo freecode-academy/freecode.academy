@@ -4,7 +4,7 @@ import { ChatRoomViewProps } from './interfaces'
 import { ChatRoomViewStyled } from './styles'
 import Grid from 'src/uikit/Grid'
 import UikitUserLink from 'src/uikit/Link/User'
-import UiChatMessage from 'src/uikit/Chat/ChatMessage'
+import UiChatMessageOld from 'src/uikit/Chat/ChatMessageOld'
 
 const ChatRoomView: React.FC<ChatRoomViewProps> = (props) => {
   const chatRoom = props.object
@@ -41,7 +41,7 @@ const ChatRoomView: React.FC<ChatRoomViewProps> = (props) => {
 
       <div className="chat-room--messages">
         {Messages?.map((n) => {
-          return <UiChatMessage key={n.id} object={n} />
+          return <UiChatMessageOld key={n.id} object={n} />
         })}
       </div>
     </ChatRoomViewStyled>

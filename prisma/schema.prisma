@@ -31,7 +31,7 @@ model User {
   oldID                                                  Int?                      @unique
   CreatedBy                                              String?                   @db.VarChar(32)
   EthAccountAuthed                                       String?                   @db.VarChar(32)
-  acceptChatMessageAnonymous                             Boolean?
+  acceptChatMessageOldAnonymous                          Boolean?
   acceptNewChatRoomAnonymous                             Boolean?
   acceptNewChatRoom                                      Boolean?
   isMentor                                               Boolean                   @default(value: false)
@@ -41,9 +41,9 @@ model User {
   CallRequests_CallRequest_CalledToUser                  CallRequest[]             @relation("CallRequest_CalledToUser")
   CallRequests_CallRequest_CallerToUser                  CallRequest[]             @relation("CallRequest_CallerToUser")
   Careers                                                Career[]
-  ChatMessages                                           ChatMessage[]             @relation("UserChatMessages")
-  ChatMessagesIncoming                                   ChatMessage[]             @relation("UserChatMessagesIncoming")
-  ChatMessagesReaded                                     ChatMessageReaded[]
+  ChatMessageOlds                                        ChatMessageOld[]          @relation("UserChatMessageOlds")
+  ChatMessageOldsIncoming                                ChatMessageOld[]          @relation("UserChatMessageOldsIncoming")
+  ChatMessageOldsReaded                                  ChatMessageOldReaded[]
   ChatRooms_ChatRoomToUser                               ChatRoom[]
   ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser ChatRoomInvitation[]      @relation("ChatRoomInvitation_CreatedByToUser")
   ChatRoomInvitations_ChatRoomInvitation_UserToUser      ChatRoomInvitation[]      @relation("ChatRoomInvitation_UserToUser")
@@ -228,33 +228,33 @@ model Career {
   @@index([CreatedBy], name: "CreatedBy")
 }
 
-model ChatMessage {
-  id                 String              @id @default(cuid()) @db.VarChar(32)
-  createdAt          DateTime            @default(now()) @db.DateTime(0)
-  updatedAt          DateTime            @default(now()) @updatedAt @db.DateTime(0)
-  content            Json?
-  contentText        String?             @db.MediumText
-  CreatedBy          String?             @db.VarChar(32)
-  Room               String?             @db.VarChar(32)
-  User               User?               @relation("UserChatMessages", fields: [CreatedBy], references: [id])
-  ChatRoom           ChatRoom?           @relation(fields: [Room], references: [id])
-  ChatMessagesReaded ChatMessageReaded[]
-  Notices            Notice[]
-  toUser             String?             @db.VarChar(32)
-  ToUser             User?               @relation("UserChatMessagesIncoming", fields: [toUser], references: [id])
+model ChatMessageOld {
+  id                    String                 @id @default(cuid()) @db.VarChar(32)
+  createdAt             DateTime               @default(now()) @db.DateTime(0)
+  updatedAt             DateTime               @default(now()) @updatedAt @db.DateTime(0)
+  content               Json?
+  contentText           String?                @db.MediumText
+  CreatedBy             String?                @db.VarChar(32)
+  Room                  String?                @db.VarChar(32)
+  User                  User?                  @relation("UserChatMessageOlds", fields: [CreatedBy], references: [id])
+  ChatRoom              ChatRoom?              @relation(fields: [Room], references: [id])
+  ChatMessageOldsReaded ChatMessageOldReaded[]
+  Notices               Notice[]
+  toUser                String?                @db.VarChar(32)
+  ToUser                User?                  @relation("UserChatMessageOldsIncoming", fields: [toUser], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Room], name: "Room")
 }
 
-model ChatMessageReaded {
-  id                           String       @id @default(cuid()) @db.VarChar(32)
-  createdAt                    DateTime     @default(now()) @db.DateTime(0)
-  updatedAt                    DateTime     @default(now()) @updatedAt @db.DateTime(0)
-  Message                      String?      @db.VarChar(32)
-  User                         String?      @db.VarChar(32)
-  ChatMessage                  ChatMessage? @relation(fields: [Message], references: [id])
-  User_ChatMessageReadedToUser User?        @relation(fields: [User], references: [id])
+model ChatMessageOldReaded {
+  id                              String          @id @default(cuid()) @db.VarChar(32)
+  createdAt                       DateTime        @default(now()) @db.DateTime(0)
+  updatedAt                       DateTime        @default(now()) @updatedAt @db.DateTime(0)
+  Message                         String?         @db.VarChar(32)
+  User                            String?         @db.VarChar(32)
+  ChatMessageOld                  ChatMessageOld? @relation(fields: [Message], references: [id])
+  User_ChatMessageOldReadedToUser User?           @relation(fields: [User], references: [id])
 
   @@index([Message], name: "Message")
   @@index([User], name: "User")
@@ -274,7 +274,7 @@ model ChatRoom {
   sandbox               Boolean?
   User_ChatRoomToUser   User?                @relation(fields: [CreatedBy], references: [id])
   CallRequests          CallRequest[]
-  ChatMessages          ChatMessage[]
+  ChatMessageOlds       ChatMessageOld[]
   ChatRoomInvitations   ChatRoomInvitation[]
   Projects              Project[]
   Tasks                 Task[]
@@ -681,25 +681,25 @@ model Message {
 }
 
 model Notice {
-  id                              String               @id @default(cuid()) @db.VarChar(32)
-  createdAt                       DateTime             @default(now()) @db.DateTime(0)
-  type                            NoticeType
-  updatedAt                       DateTime             @default(now()) @updatedAt @db.DateTime(0)
-  ChatMessage                     String?              @db.VarChar(32)
-  User                            String?              @db.VarChar(32)
-  CreatedBy                       String?              @db.VarChar(32)
-  ChatMessage_ChatMessageToNotice ChatMessage?         @relation(fields: [ChatMessage], references: [id])
-  User_Notice_CreatedByToUser     User?                @relation("Notice_CreatedByToUser", fields: [CreatedBy], references: [id])
-  User_Notice_UserToUser          User?                @relation("Notice_UserToUser", fields: [User], references: [id])
-  ChatRoomInvitations             ChatRoomInvitation[]
+  id                                    String               @id @default(cuid()) @db.VarChar(32)
+  createdAt                             DateTime             @default(now()) @db.DateTime(0)
+  type                                  NoticeType
+  updatedAt                             DateTime             @default(now()) @updatedAt @db.DateTime(0)
+  ChatMessageOld                        String?              @db.VarChar(32)
+  User                                  String?              @db.VarChar(32)
+  CreatedBy                             String?              @db.VarChar(32)
+  ChatMessageOld_ChatMessageOldToNotice ChatMessageOld?      @relation(fields: [ChatMessageOld], references: [id])
+  User_Notice_CreatedByToUser           User?                @relation("Notice_CreatedByToUser", fields: [CreatedBy], references: [id])
+  User_Notice_UserToUser                User?                @relation("Notice_UserToUser", fields: [User], references: [id])
+  ChatRoomInvitations                   ChatRoomInvitation[]
 
-  @@index([ChatMessage], name: "ChatMessage")
+  @@index([ChatMessageOld], name: "ChatMessageOld")
   @@index([CreatedBy], name: "CreatedBy")
   @@index([User], name: "User")
 }
 
 enum NoticeType {
-  ChatMessage
+  ChatMessageOld
   Call
   CallRequest
   ChatRoomInvitation

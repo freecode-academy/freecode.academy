@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from 'react'
 import {
-  ChatMessageFragment,
-  // useCreateChatMessageProcessorMutation,
+  ChatMessageOldFragment,
+  // useCreateChatMessageOldProcessorMutation,
   UserFragment,
 } from 'src/gql/generated'
-import { ChatMessageType } from './interfaces'
+import { ChatMessageOldType } from './interfaces'
 import {
   AiMessageContentStyled,
   // AiMessageInputStyled,
@@ -14,18 +14,18 @@ import {
 type AiMessageProps = {
   user: UserFragment
   // currentUser: MeUserFragment
-  type: ChatMessageType
+  type: ChatMessageOldType
 } & (
   | {
       isNew: true
       message: string
       onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
-      setMessages: Dispatch<SetStateAction<ChatMessageFragment[]>>
+      setMessages: Dispatch<SetStateAction<ChatMessageOldFragment[]>>
       newMessageSetter: Dispatch<SetStateAction<string>>
     }
   | {
       isNew: false
-      message: ChatMessageFragment
+      message: ChatMessageOldFragment
       onChange?: never
       setMessages?: never
       newMessageSetter?: never
@@ -43,8 +43,8 @@ export const AiMessage: React.FC<AiMessageProps> = ({
   // currentUser,
   ...other
 }) => {
-  // const [createChatMessage, { loading: inRequest }] =
-  //   useCreateChatMessageProcessorMutation({})
+  // const [createChatMessageOld, { loading: inRequest }] =
+  //   useCreateChatMessageOldProcessorMutation({})
 
   // const inputRef = useRef<HTMLTextAreaElement | null>(null)
 
@@ -62,7 +62,7 @@ export const AiMessage: React.FC<AiMessageProps> = ({
   //       alert('Message is empty')
   //     }
 
-  //     createChatMessage({
+  //     createChatMessageOld({
   //       variables: {
   //         data: {
   //           content: messageText ?? '',
@@ -100,7 +100,7 @@ export const AiMessage: React.FC<AiMessageProps> = ({
   //     //   return message
   //     // })
   //   }
-  // }, [createChatMessage, isNew, newMessageSetter, setMessages, user.id])
+  // }, [createChatMessageOld, isNew, newMessageSetter, setMessages, user.id])
 
   return (
     // @ts-expect-error types

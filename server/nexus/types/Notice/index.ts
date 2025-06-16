@@ -79,11 +79,13 @@ export const Notice = objectType({
         return User ? ctx.prisma.user.findUnique({ where: { id: User } }) : null
       },
     })
-    t.field('ChatMessage', {
-      type: 'ChatMessage',
-      resolve({ ChatMessage }, _, ctx) {
-        return ChatMessage
-          ? ctx.prisma.chatMessage.findUnique({ where: { id: ChatMessage } })
+    t.field('ChatMessageOld', {
+      type: 'ChatMessageOld',
+      resolve({ ChatMessageOld }, _, ctx) {
+        return ChatMessageOld
+          ? ctx.prisma.chatMessageOld.findUnique({
+              where: { id: ChatMessageOld },
+            })
           : null
       },
     })
@@ -100,5 +102,5 @@ export const Notice = objectType({
 
 export const NoticeType = enumType({
   name: 'NoticeType',
-  members: ['ChatMessage', 'Call', 'CallRequest', 'ChatRoomInvitation'],
+  members: ['ChatMessageOld', 'Call', 'CallRequest', 'ChatRoomInvitation'],
 })

@@ -1,20 +1,20 @@
 import Head from 'next/head'
 import React, { useMemo } from 'react'
 import {
-  ChatMessagesConnectionDocument,
-  ChatMessagesConnectionQueryVariables,
-  useChatMessagesConnectionQuery,
-  // ChatMessageFragment,
+  ChatMessageOldsConnectionDocument,
+  ChatMessageOldsConnectionQueryVariables,
+  useChatMessageOldsConnectionQuery,
+  // ChatMessageOldFragment,
 } from 'src/gql/generated'
 
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
-import ChatMessagesView from './View'
+import ChatMessageOldsView from './View'
 
 const first = 10
 
-const topicsVariables: ChatMessagesConnectionQueryVariables = {
+const topicsVariables: ChatMessageOldsConnectionQueryVariables = {
   where: {},
   first,
 }
@@ -36,7 +36,7 @@ function getQueryParams(query: ParsedUrlQuery) {
   }
 }
 
-const ChatMessagesPage: Page = () => {
+const ChatMessageOldsPage: Page = () => {
   const router = useRouter()
 
   const { query } = router
@@ -49,7 +49,7 @@ const ChatMessagesPage: Page = () => {
   }, [query])
 
   // TODO Fix reload on frontend due user permissions
-  const response = useChatMessagesConnectionQuery({
+  const response = useChatMessageOldsConnectionQuery({
     variables: queryVariables,
     onError: console.error,
   })
@@ -63,21 +63,21 @@ const ChatMessagesPage: Page = () => {
         <meta name="description" content="Все чат-сообщения" />
       </Head>
 
-      <ChatMessagesView
-        objects={response.data?.chatMessages || []}
+      <ChatMessageOldsView
+        objects={response.data?.chatMessageOlds || []}
         limit={variables?.first}
         page={page}
-        total={response.data?.chatMessagesCount || 0}
+        total={response.data?.chatMessageOldsCount || 0}
       />
     </>
   )
 }
 
-ChatMessagesPage.getInitialProps = async (context) => {
+ChatMessageOldsPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
   await apolloClient.query({
-    query: ChatMessagesConnectionDocument,
+    query: ChatMessageOldsConnectionDocument,
 
     /**
      * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
@@ -92,4 +92,4 @@ ChatMessagesPage.getInitialProps = async (context) => {
   return {}
 }
 
-export default ChatMessagesPage
+export default ChatMessageOldsPage

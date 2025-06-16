@@ -13,13 +13,13 @@ import {
 } from '@storybook/addon-docs/blocks'
 
 import Component from '..'
-import { UiChatMessageProps as ComponentProps } from '../interfaces'
+import { UiChatMessageOldProps as ComponentProps } from '../interfaces'
 
-const title = 'prisma-cms.com/UI/Chat/ChatMessage'
+const title = 'prisma-cms.com/UI/Chat/ChatMessageOld'
 
 interface ContainerProps extends ComponentProps {}
 
-export const ChatMessage: React.FC<ContainerProps> = ({
+export const ChatMessageOld: React.FC<ContainerProps> = ({
   // readOnly: readOnlyProp,
   // value: valueProp,
   // onChange,
@@ -110,7 +110,7 @@ const args: Partial<ContainerProps> = {
     },
     contentText:
       'а слушай, такой вопрос, я аот делаю меню через pdomenu (вот ссылка, меню слева - http://aboev.top-dom.by/zhenskoe/3d-futbolki/), но у меня не получается сделать,  чтобы все пункты были свернут, но только пункт, где активный кружок раскрыт был.',
-    __typename: 'ChatMessage',
+    __typename: 'ChatMessageOld',
     Room: {
       id: 'cjqm9bu634uvn0989ghla52cz',
       createdAt: new Date('2019-01-07T11:43:03.292Z'),

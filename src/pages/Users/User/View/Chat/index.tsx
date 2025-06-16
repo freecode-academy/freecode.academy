@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { OpenAiChatStyled } from './styles'
 import { AiMessage } from './Message'
 import {
-  ChatMessageFragment,
+  ChatMessageOldFragment,
   MeUserFragment,
   UserFragment,
 } from 'src/gql/generated'
@@ -17,7 +17,7 @@ export const PrivateChat: React.FC<PrivateChatProps> = ({
   user,
   ...other
 }) => {
-  const [messagesStore, setMessages] = useState<ChatMessageFragment[]>([])
+  const [messagesStore, setMessages] = useState<ChatMessageOldFragment[]>([])
 
   const messages = useMemo(() => [...messagesStore].reverse(), [messagesStore])
 

@@ -140,7 +140,7 @@ fragment UserNoNesting on User {
   hasPhone
   # marketplaceToken
   # hidden
-  acceptChatMessageAnonymous
+  acceptChatMessageOldAnonymous
   acceptNewChatRoomAnonymous
   acceptNewChatRoom
   technologyLevel

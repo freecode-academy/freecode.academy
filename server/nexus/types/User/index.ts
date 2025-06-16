@@ -70,7 +70,7 @@ export const User = objectType({
     t.string('phone')
     t.string('fullname')
     t.string('address')
-    t.boolean('acceptChatMessageAnonymous')
+    t.boolean('acceptChatMessageOldAnonymous')
     t.boolean('acceptNewChatRoomAnonymous')
     t.boolean('acceptNewChatRoom')
     t.boolean('isMentor', {
@@ -399,7 +399,7 @@ export const UserUpdateInput = inputObjectType({
     t.string('image')
     t.string('address')
     t.string('password')
-    t.boolean('acceptChatMessageAnonymous')
+    t.boolean('acceptChatMessageOldAnonymous')
     t.boolean('acceptNewChatRoomAnonymous')
     t.boolean('acceptNewChatRoom')
     t.technologyLevel('technologyLevel')

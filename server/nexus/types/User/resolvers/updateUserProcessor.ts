@@ -16,7 +16,7 @@ export const updateUserProcessor: FieldResolver<
   const {
     data: {
       password,
-      acceptChatMessageAnonymous,
+      acceptChatMessageOldAnonymous,
       acceptNewChatRoom,
       acceptNewChatRoomAnonymous,
       address,
@@ -44,7 +44,7 @@ export const updateUserProcessor: FieldResolver<
 
   const data: Prisma.UserUpdateInput = {
     password: passwordUpdate,
-    acceptChatMessageAnonymous,
+    acceptChatMessageOldAnonymous,
     acceptNewChatRoom,
     acceptNewChatRoomAnonymous,
     address,

@@ -1,5 +1,5 @@
 export * from './scalars'
-export * from './ChatMessage'
+export * from './ChatMessageOld'
 export * from './ChatRoom'
 export * from './ChatRoomInvitation'
 export * from './CodeChallenge'

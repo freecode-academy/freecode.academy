@@ -1,8 +1,8 @@
 import { FieldResolver } from 'nexus'
 
-export const chatMessagesDialogResolver: FieldResolver<
+export const chatMessageOldsDialogResolver: FieldResolver<
   'Query',
-  'chatMessagesDialog'
+  'chatMessageOldsDialog'
 > = async (_root, _args, ctx) => {
   const { currentUser } = ctx
 
@@ -39,7 +39,7 @@ export const chatMessagesDialogResolver: FieldResolver<
     ],
   }
 
-  return ctx.prisma.chatMessage.findMany({
+  return ctx.prisma.chatMessageOld.findMany({
     where,
     orderBy: {
       createdAt: 'asc',

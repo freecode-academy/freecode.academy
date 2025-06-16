@@ -50,9 +50,9 @@ export const ChatRoom = objectType({
     t.id('code')
     t.boolean('isPublic')
     t.list.nonNull.field('Messages', {
-      type: 'ChatMessage',
+      type: 'ChatMessageOld',
       resolve({ id }, _, ctx) {
-        return ctx.prisma.chatMessage.findMany({
+        return ctx.prisma.chatMessageOld.findMany({
           where: {
             Room: id,
           },

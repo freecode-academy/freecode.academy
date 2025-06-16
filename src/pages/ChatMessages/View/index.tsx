@@ -1,21 +1,23 @@
 import React from 'react'
 import Pagination from 'src/components/Pagination'
-import UiChatMessage from 'src/uikit/Chat/ChatMessage'
-import { ChatMessagesPageViewProps } from './interfaces'
-import { ChatMessagesPageViewStyled } from './styles'
+import UiChatMessageOld from 'src/uikit/Chat/ChatMessageOld'
+import { ChatMessageOldsPageViewProps } from './interfaces'
+import { ChatMessageOldsPageViewStyled } from './styles'
 
-const ChatMessagesPageView: React.FC<ChatMessagesPageViewProps> = (props) => {
+const ChatMessageOldsPageView: React.FC<ChatMessageOldsPageViewProps> = (
+  props
+) => {
   const { objects, limit, page, total } = props
 
   return (
-    <ChatMessagesPageViewStyled>
+    <ChatMessageOldsPageViewStyled>
       {objects.map((n) => {
-        return <UiChatMessage key={n.id} object={n} />
+        return <UiChatMessageOld key={n.id} object={n} />
       })}
 
       <Pagination limit={limit} page={page} total={total} />
-    </ChatMessagesPageViewStyled>
+    </ChatMessageOldsPageViewStyled>
   )
 }
 
-export default ChatMessagesPageView
+export default ChatMessageOldsPageView

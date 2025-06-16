@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { ChatMessageType } from './interfaces'
+import { ChatMessageOldType } from './interfaces'
 
 export const AiMessageInputStyled = styled.textarea`
   line-height: 1.5;
@@ -20,7 +20,7 @@ export const AiMessageContentStyled = styled.div`
 `
 
 type AiMessageFormStyledProps = {
-  type: ChatMessageType
+  type: ChatMessageOldType
 }
 
 export const AiMessageFormStyled = styled.form<AiMessageFormStyledProps>`

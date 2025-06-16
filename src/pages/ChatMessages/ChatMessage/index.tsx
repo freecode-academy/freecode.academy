@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import React, { useMemo } from 'react'
 import {
-  useChatMessageQuery,
-  ChatMessageDocument,
-  ChatMessageQuery,
+  useChatMessageOldQuery,
+  ChatMessageOldDocument,
+  ChatMessageOldQuery,
 } from 'src/gql/generated'
 
 import View from './View'
@@ -22,7 +22,7 @@ function getQueryParams(query: ParsedUrlQuery) {
   }
 }
 
-const ChatMessagePage: Page = () => {
+const ChatMessageOldPage: Page = () => {
   const router = useRouter()
 
   const { query } = router
@@ -33,7 +33,7 @@ const ChatMessagePage: Page = () => {
     }
   }, [query])
 
-  const response = useChatMessageQuery({
+  const response = useChatMessageOldQuery({
     variables: queryVariables,
     onError: console.error,
   })
@@ -55,13 +55,13 @@ const ChatMessagePage: Page = () => {
   )
 }
 
-ChatMessagePage.getInitialProps = async (context) => {
+ChatMessageOldPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
   // TODO Fix private rooms access
   const result = await apolloClient
-    .query<ChatMessageQuery>({
-      query: ChatMessageDocument,
+    .query<ChatMessageOldQuery>({
+      query: ChatMessageOldDocument,
 
       /**
        * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
@@ -88,4 +88,4 @@ ChatMessagePage.getInitialProps = async (context) => {
   }
 }
 
-export default ChatMessagePage
+export default ChatMessageOldPage

@@ -1,63 +1,63 @@
 import { Prisma } from '@prisma/client'
 import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
-import { getChatMessagesConditions } from './helpers'
-import { chatMessagesResolver } from './resolvers/chatMessages'
-import { chatMessageResolver } from './resolvers/chatMessage'
-import { chatMessagesDialogResolver } from './resolvers/chatMessagesDialog'
+import { getChatMessageOldsConditions } from './helpers'
+import { chatMessageOldsResolver } from './resolvers/chatMessages'
+import { chatMessageOldResolver } from './resolvers/chatMessage'
+import { chatMessageOldsDialogResolver } from './resolvers/chatMessagesDialog'
 
 // TODO Проработать доступы
-export const ChatMessageQuery = extendType({
+export const ChatMessageOldQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.chatMessage({
-      resolve: chatMessageResolver,
+    t.crud.chatMessageOld({
+      resolve: chatMessageOldResolver,
     })
 
-    t.crud.chatMessages({
+    t.crud.chatMessageOlds({
       filtering: true,
       ordering: true,
-      resolve: chatMessagesResolver,
+      resolve: chatMessageOldsResolver,
     })
 
-    t.nonNull.int('chatMessagesCount', {
+    t.nonNull.int('chatMessageOldsCount', {
       args: {
-        where: 'ChatMessageWhereInput',
+        where: 'ChatMessageOldWhereInput',
       },
       resolve(_, args, ctx) {
-        return ctx.prisma.chatMessage.count({
-          where: getChatMessagesConditions(
-            args.where as Prisma.ChatMessageWhereInput | undefined,
+        return ctx.prisma.chatMessageOld.count({
+          where: getChatMessageOldsConditions(
+            args.where as Prisma.ChatMessageOldWhereInput | undefined,
             ctx
           ),
         })
       },
     })
 
-    t.nonNull.list.nonNull.field('chatMessagesDialog', {
-      type: 'ChatMessage',
-      resolve: chatMessagesDialogResolver,
+    t.nonNull.list.nonNull.field('chatMessageOldsDialog', {
+      type: 'ChatMessageOld',
+      resolve: chatMessageOldsDialogResolver,
     })
   },
 })
 
-export const ChatMessageExtendMutation = extendType({
+export const ChatMessageOldExtendMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.field('createChatMessageProcessor', {
+    t.field('createChatMessageOldProcessor', {
       deprecation: 'legacy',
-      type: 'ChatMessageResponse',
+      type: 'ChatMessageOldResponse',
       args: {
-        data: nonNull('ChatMessageCreateInput'),
+        data: nonNull('ChatMessageOldCreateInput'),
       },
     })
   },
 })
 
-export const ChatMessage = objectType({
-  name: 'ChatMessage',
+export const ChatMessageOld = objectType({
+  name: 'ChatMessageOld',
   sourceType: {
     module: '@prisma/client',
-    export: 'ChatMessage',
+    export: 'ChatMessageOld',
   },
   definition(t) {
     t.nonNull.id('id')
@@ -95,8 +95,8 @@ export const ChatMessage = objectType({
   },
 })
 
-export const ChatMessageCreateInput = inputObjectType({
-  name: 'ChatMessageCreateInput',
+export const ChatMessageOldCreateInput = inputObjectType({
+  name: 'ChatMessageOldCreateInput',
   definition(t) {
     t.nonNull.string('content')
     t.nonNull.field('toUser', {
@@ -118,8 +118,8 @@ export const ChatRoomCreateOneWithoutMessagesInput = inputObjectType({
   },
 })
 
-export const ChatMessageResponse = objectType({
-  name: 'ChatMessageResponse',
+export const ChatMessageOldResponse = objectType({
+  name: 'ChatMessageOldResponse',
   definition(t) {
     t.nonNull.boolean('success')
     t.nonNull.string('message')
@@ -127,10 +127,10 @@ export const ChatMessageResponse = objectType({
       type: 'RequestError',
     })
     t.field('data', {
-      type: 'ChatMessage',
+      type: 'ChatMessageOld',
     })
     t.field('reply', {
-      type: 'ChatMessage',
+      type: 'ChatMessageOld',
     })
     t.field('createdUser', {
       type: 'AuthPayload',

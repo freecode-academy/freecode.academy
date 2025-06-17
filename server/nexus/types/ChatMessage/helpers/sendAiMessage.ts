@@ -28,16 +28,17 @@ export const sendAiMessage = async ({
 }: sendAiMessageProps): Promise<ChatMessage | null> => {
   const historyKey = [fromUser.id, toUser.id].join(',')
 
-  const userMessagesHistory =
-    (withHistory && messagesHistory.get(historyKey)) || []
+  // const userMessagesHistory =
+  //   (withHistory && messagesHistory.get(historyKey)) || []
 
-  if (process.env.NODE_ENV === 'development') {
-    // eslint-disable-next-line no-console
-    console.log('sendMessage fromUser.sudo', fromUser.sudo)
-  }
+  // if (!messagesHistory.has(historyKey) && withHistory) {
+  //   messagesHistory.set(historyKey, userMessagesHistory)
+  // }
+
+  const messages = (withHistory && messagesHistory.get(historyKey)) || []
 
   if (!messagesHistory.has(historyKey) && withHistory) {
-    messagesHistory.set(historyKey, userMessagesHistory)
+    messagesHistory.set(historyKey, messages)
   }
 
   if (process.env.NODE_ENV === 'development') {
@@ -47,18 +48,17 @@ export const sendAiMessage = async ({
 
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
-    console.log(
-      'sendMessage userMessagesHistory.length',
-      userMessagesHistory.length
-    )
+    console.log('sendMessage userMessagesHistory.length', messages.length)
   }
 
-  let messages: ChatCompletionMessageParam[] = []
+  // let messages: ChatCompletionMessageParam[] = []
 
-  const systemPrompt = getSystemPrompt()
+  if (!messages.length) {
+    const systemPrompt = getSystemPrompt()
 
-  if (systemPrompt) {
-    messages.push({ role: 'system', content: systemPrompt })
+    if (systemPrompt) {
+      messages.push({ role: 'system', content: systemPrompt })
+    }
   }
 
   messages.push({
@@ -66,20 +66,20 @@ export const sendAiMessage = async ({
     content: `ID пользователя (userId): ${fromUser.id}`,
   })
 
-  if (userMessagesHistory.length) {
-    messages = [...messages, ...userMessagesHistory]
-  }
+  // if (userMessagesHistory.length) {
+  //   messages = [...messages, ...userMessagesHistory]
+  // }
 
   messages.push(...messagesProps)
 
-  userMessagesHistory.push(...messagesProps)
+  // userMessagesHistory.push(...messagesProps)
 
   const aiAgentResponse = await sendOpenAiRequest({
     ctx,
     fromUser,
     toUser,
     messages,
-    userMessagesHistory,
+    // userMessagesHistory,
     // model,
   })
 

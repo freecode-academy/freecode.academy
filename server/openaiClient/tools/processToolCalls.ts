@@ -17,7 +17,7 @@ type processToolCallsProps = {
   // agentId: string
   toolCalls: ToolCall[]
   messages: ChatCompletionMessageParam[]
-  userMessagesHistory: ChatCompletionMessageParam[]
+  // userMessagesHistory: ChatCompletionMessageParam[]
 
   /**
    * Объект пользователя, от имени которого вызывается тулза.
@@ -31,7 +31,7 @@ export async function processToolCalls({
   user,
   context,
   messages,
-  userMessagesHistory,
+  // userMessagesHistory,
   toolCalls,
 }: processToolCallsProps) {
   for (const toolCall of toolCalls) {
@@ -68,6 +68,6 @@ export async function processToolCalls({
       })
 
     messages.push(result)
-    userMessagesHistory.push(result)
+    // userMessagesHistory.push(result)
   }
 }

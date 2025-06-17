@@ -26,7 +26,7 @@ type sendOpenAiRequestProps = {
   fromUser: User
   toUser: User
 
-  userMessagesHistory: ChatCompletionMessageParam[]
+  // userMessagesHistory: ChatCompletionMessageParam[]
 }
 
 export async function sendOpenAiRequest({
@@ -34,8 +34,8 @@ export async function sendOpenAiRequest({
   fromUser,
   toUser,
   messages,
-  userMessagesHistory,
-}: sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
+}: // userMessagesHistory,
+sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
   let model: string | undefined = undefined
 
   if (
@@ -72,13 +72,19 @@ export async function sendOpenAiRequest({
 
     const responseMessage = completion.choices[0].message
 
+    /**
+     * Перенес сохранение ответа в историю сюда.
+     * При чем судя по всему была бага и в текущую цепочку не передавался
+     * этот ответ перед вызовом тулзов
+     */
+    messages.push(responseMessage)
+
     // Обрабатываем инструменты, если они есть
     if (responseMessage.tool_calls && responseMessage.tool_calls.length > 0) {
       /**
        * Перед вызовом тулзов надо добавить ответ ИИхи в историю сообщений
        */
-      messages.push(responseMessage)
-      userMessagesHistory.push(responseMessage)
+      // userMessagesHistory.push(responseMessage)
 
       // TODO Возможно тут вообзе надо убрать await,
       // так как вероятнее всего выполнение будет последовательное
@@ -87,7 +93,7 @@ export async function sendOpenAiRequest({
         user: toUser,
         toolCalls: responseMessage.tool_calls,
         messages,
-        userMessagesHistory,
+        // userMessagesHistory,
       })
 
       return sendOpenAiRequest({
@@ -95,7 +101,7 @@ export async function sendOpenAiRequest({
         messages,
         fromUser,
         toUser,
-        userMessagesHistory,
+        // userMessagesHistory,
       })
     }
 
@@ -105,9 +111,9 @@ export async function sendOpenAiRequest({
      * Записываем именно здесь, пропуская тулзы, потому что история с тулзами требует ответов
      * по всем тулзам. Отсутствие приводит к ошибкам
      */
-    if (responseMessage.content) {
-      userMessagesHistory.push(responseMessage)
-    }
+    // if (responseMessage.content) {
+    //   userMessagesHistory.push(responseMessage)
+    // }
 
     if (content) {
       return await createMessage({

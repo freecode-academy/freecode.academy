@@ -8,8 +8,13 @@ import {
   SignupMutation,
 } from 'src/gql/generated'
 import { useAppReducer } from './reducer'
-import { AppAction, AppState } from './reducer/interfaces'
+import { AppAction, AppActions, AppState } from './reducer/interfaces'
 import { AuthFormResponse } from 'src/components/Auth/forms/interfaces'
+import {
+  useActivitiesSubscription,
+  useActivitiesSubscriptionProps,
+} from './hooks/useActivitiesSubscription'
+import { ApolloClientNormolized } from 'src/pages/_App/interfaces'
 
 export type AppContextValue = {
   user: MeQuery['me']
@@ -59,6 +64,31 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   )
 
   const { state: appState, dispatch: appDispatch } = useAppReducer()
+
+  const onData = useCallback<
+    NonNullable<useActivitiesSubscriptionProps['onData']>
+  >(
+    (activity) => {
+      switch (activity.__typename) {
+        case 'ActivityMessage':
+          appDispatch({
+            type: AppActions.ChatAddMessage,
+            message: activity.ChatMessage,
+          })
+          break
+      }
+    },
+    [appDispatch]
+  )
+
+  useActivitiesSubscription({
+    currentUser: user,
+    client: apolloClient as ApolloClientNormolized,
+    variables: {
+      globalEvents: false,
+    },
+    onData,
+  })
 
   const context = useMemo<AppContextValue>(() => {
     return {

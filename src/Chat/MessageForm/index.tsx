@@ -63,13 +63,7 @@ export const ChatMessageForm: React.FC<ChatMessageFormProps> = ({
 
   // Обработчик нажатия Ctrl+Enter для отправки сообщения
   const handleKeyDown = useCallback<React.KeyboardEventHandler>((event) => {
-    if (
-      event.key === 'Enter' &&
-      (event.ctrlKey ||
-        event.shiftKey ||
-        event.code === 'ShiftRight' ||
-        event.code === 'ShiftLeft')
-    ) {
+    if (event.key === 'Enter' && event.ctrlKey) {
       event.preventDefault()
       event.stopPropagation()
       submitRef.current?.click()

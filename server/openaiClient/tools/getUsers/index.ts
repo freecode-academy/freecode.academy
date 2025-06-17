@@ -1,15 +1,13 @@
-import { Prisma } from '@prisma/client'
-import { execute, parse } from 'graphql'
-
 import { BaseAiTool, toolName } from '../interfaces'
-import { schema } from '../../../nexus'
+import { getUsers } from './helpers/getUsers'
 
 /** Тип аргументов для getUsers */
 export interface GetUsersArgs {
-  ids?: string[]
+  ids: string[] | undefined
   search?: string
   // limit?: number
   withSkills?: boolean
+  withMentors?: boolean
 }
 
 /** Инструмент getUsers */
@@ -44,83 +42,20 @@ export const getUsersTool: GetUsersTool = {
               'Если надо получить в том числе скилы пользователей (список используемых ими технологий)',
             type: 'boolean',
           },
+          withMentors: {
+            description:
+              'Если надо получить в том числе менторов и менти пользователя',
+            type: 'boolean',
+          },
         },
         required: [],
       },
     },
   },
   handler: async (args, ctx) => {
-    const { ids, withSkills = false, search } = args
-
-    const query = `query users($where: UserWhereInput, $limit: Int, $withSkills: Boolean = false) {
-  usersCount(where: $where)
-
-  users(take: $limit, where: $where, orderBy: { updatedAt: desc }) {
-    id
-    fullname
-    username
-    technologyLevel
-    about
-    UserTechnologies @include(if: $withSkills) {
-      id
-      date_from
-      date_till
-      hiring_status
-      isMentor
-      level
-      status
-      updatedAt
-      Technology {
-        id
-        name
-      }
-    }
-  }
-}
-  `
-
-    const where: Prisma.UserWhereInput = {
-      UserTechnologies: {
-        some: {
-          id: {},
-        },
-      },
-    }
-
-    if (search) {
-      where.AND = [
-        {
-          OR: [
-            {
-              username: {
-                contains: search,
-              },
-            },
-            {
-              fullname: {
-                contains: search,
-              },
-            },
-          ],
-        },
-      ]
-    }
-
-    if (ids?.length) {
-      where.id = {
-        in: ids,
-      }
-    }
-
-    const result = await execute({
-      schema: schema,
-      document: parse(query),
-      contextValue: ctx,
-      variableValues: {
-        where,
-        // limit,
-        withSkills,
-      },
+    const result = getUsers({
+      args,
+      ctx,
     })
 
     return JSON.stringify(result, null, 2)

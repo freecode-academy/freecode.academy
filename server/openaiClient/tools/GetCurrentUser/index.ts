@@ -1,5 +1,6 @@
+import { getUsersTool } from '../getUsers'
+import { formatUserData } from '../getUsers/helpers/formatUserData'
 import { BaseAiTool, toolName } from '../interfaces'
-import { formatUserData } from './helpers/formatUserData'
 
 /** Тип аргументов для GetCurrentUser */
 export interface GetUserArgs {
@@ -27,17 +28,30 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
       },
     },
   },
-  handler: async (_args, ctx) => {
+  handler: async (_args, ctx, user) => {
     const { currentUser } = ctx
 
     if (!currentUser) {
       throw new Error('Не были получены данные текущего пользователя')
     }
 
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line no-console
-      console.log('GetCurrentUserTool currentUser', currentUser)
+    const permissions: string[] = []
+
+    if (currentUser.sudo) {
+      permissions.push(
+        `Суперпользователь. Имеет право выполнять любые действия, включая обновление компаний и получать списки пользователей`
+      )
     }
+
+    const extendedData = await getUsersTool.handler(
+      {
+        ids: [currentUser.id],
+      },
+      ctx,
+      user
+    )
+
+    extendedData
 
     return JSON.stringify(formatUserData({ user: currentUser }), null, 2)
   },

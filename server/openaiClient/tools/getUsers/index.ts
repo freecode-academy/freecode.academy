@@ -53,7 +53,7 @@ export const getUsersTool: GetUsersTool = {
     },
   },
   handler: async (args, ctx) => {
-    const result = getUsers({
+    const result = await getUsers({
       args,
       ctx,
     })

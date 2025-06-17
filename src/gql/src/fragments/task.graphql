@@ -11,9 +11,10 @@ fragment task_ on Task {
   # }
   Timers(orderBy: { createdAt: desc }, where: $timersWhere) {
     ...TimerNoNesting
-    CreatedBy {
+    CreatedBy: TimerCreatedBy {
       ...UserNoNesting
     }
+    ...Timer_
   }
   TaskProjects {
     id
@@ -89,103 +90,3 @@ fragment taskTaskTechnology_ on TaskTechnology {
     ...TechnologyNoNesting
   }
 }
-
-# fragment tasksConnectionTask on Task {
-#   ...tasksConnectionTaskNoNesting
-#   CreatedBy {
-#     ...tasksConnectionUser
-#   }
-#   Timers(orderBy: createdAt_DESC, where: { stopedAt: null }) {
-#     id
-#     createdAt
-#     updatedAt
-#     stopedAt
-#     CreatedBy {
-#       ...tasksConnectionUser
-#     }
-#     Task {
-#       id
-#       createdAt
-#       updatedAt
-#       name
-#       status
-#     }
-#   }
-#   TaskProjects {
-#     id
-#     createdAt
-#     updatedAt
-#     Project {
-#       id
-#       name
-#       domain
-#       createdAt
-#       updatedAt
-#       description
-#       url
-#       sequence
-#       content
-#       contentText
-#       status
-#       public
-#       oldID
-#       CreatedBy {
-#         ...tasksConnectionUser
-#       }
-#       Resource {
-#         id
-#         name
-#         uri
-#       }
-#     }
-#   }
-#   RelatedTo {
-#     ...tasksConnectionTaskNoNesting
-#   }
-#   Reactions {
-#     id
-#     createdAt
-#     updatedAt
-#     type
-#     CreatedBy {
-#       ...tasksConnectionUser
-#     }
-#   }
-# }
-
-# fragment tasksConnectionTaskNoNesting on Task {
-#   id
-#   createdAt
-#   updatedAt
-#   name
-#   description
-#   content
-#   status
-#   startDatePlaning
-#   endDatePlaning
-#   startDate
-#   endDate
-# }
-
-# fragment tasksConnectionUser on User {
-#   id
-#   createdAt
-#   updatedAt
-#   username
-#   email
-#   phone
-#   showEmail
-#   showPhone
-#   password
-#   fullname
-#   image
-#   address
-#   sudo
-#   active
-#   activated
-#   deleted
-#   hasEmail
-#   hasPhone
-#   marketplaceToken
-#   hidden
-# }

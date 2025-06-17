@@ -24,10 +24,6 @@ export const ResetPasswordExtendMutation = extendType({
 
 export const ResetPassword = objectType({
   name: 'ResetPassword',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'ResetPassword',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.string('foo')

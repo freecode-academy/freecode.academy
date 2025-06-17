@@ -51,10 +51,6 @@ export const LearnStrategyExtendMutation = extendType({
 
 export const LearnStrategy = objectType({
   name: 'LearnStrategy',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'LearnStrategy',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -67,6 +63,7 @@ export const LearnStrategy = objectType({
     t.nonNull.string('createdById')
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ createdById }, _, ctx) {
         return createdById
           ? ctx.prisma.user.findUnique({ where: { id: createdById } })

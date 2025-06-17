@@ -2,10 +2,6 @@ import { enumType, objectType } from 'nexus'
 
 export const EthAccount = objectType({
   name: 'EthAccount',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'EthAccount',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')

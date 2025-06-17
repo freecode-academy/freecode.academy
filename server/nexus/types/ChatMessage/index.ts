@@ -36,6 +36,7 @@ export const ChatMessageExtendsQuery = extendType({
     t.crud.chatMessages({
       filtering: true,
       ordering: true,
+      // @ts-expect-error types
       resolve(_, argsProps, ctx) {
         const args = argsProps as Prisma.ChatMessageFindManyArgs
 

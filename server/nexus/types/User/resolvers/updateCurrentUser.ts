@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
 import { createPassword } from './helpers'
 
+// @ts-expect-error types
 export const updateCurrentUser: FieldResolver<
   'Mutation',
   'updateCurrentUser'

@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client'
 import moment from 'moment'
 import { FieldResolver } from 'nexus'
 
+// @ts-expect-error types
 export const updateUserTechnologyProcessor: FieldResolver<
   'Mutation',
   'updateUserTechnologyProcessor'

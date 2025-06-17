@@ -74,8 +74,8 @@ fragment learnStrategy_ on LearnStrategy {
 fragment learnStrategyStageTechnology on Technology {
   ...TechnologyNoNesting
   UserTechnologies {
-    ...UserTechnologyNoNesting
-    CreatedBy {
+    ...UserTechnology_
+    CreatedBy: UserTechnologyCreatedBy {
       ...UserNoNesting
     }
   }

@@ -50,10 +50,6 @@ export const MentorMenteeExtendMutation = extendType({
 export const MentorMentee = objectType({
   name: 'MentorMentee',
   description: 'Связка Метнор-Менти',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'MentorMentee',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -65,6 +61,7 @@ export const MentorMentee = objectType({
     t.field('Mentor', {
       description: 'Ментор',
       type: 'User',
+      // @ts-expect-error types
       resolve({ mentorId }, _args, ctx) {
         return ctx.prisma.user.findUnique({
           where: {
@@ -77,6 +74,7 @@ export const MentorMentee = objectType({
     t.field('Mentee', {
       description: 'Менти',
       type: 'User',
+      // @ts-expect-error types
       resolve({ menteeId }, _args, ctx) {
         return ctx.prisma.user.findUnique({
           where: {

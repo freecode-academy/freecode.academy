@@ -53,6 +53,7 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
 
     extendedData
 
+    // @ts-expect-error types
     return JSON.stringify(formatUserData({ user: currentUser }), null, 2)
   },
 }

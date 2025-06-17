@@ -42,10 +42,6 @@ export const UserLearnStrategyExtendMutation = extendType({
 
 export const UserLearnStrategy = objectType({
   name: 'UserLearnStrategy',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'UserLearnStrategy',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -56,6 +52,7 @@ export const UserLearnStrategy = objectType({
     t.string('createdById')
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ createdById }, _, ctx) {
         return createdById
           ? ctx.prisma.user.findUnique({ where: { id: createdById } })
@@ -65,6 +62,7 @@ export const UserLearnStrategy = objectType({
     t.string('learnStrategyId')
     t.field('LearnStrategy', {
       type: 'LearnStrategy',
+      // @ts-expect-error types
       resolve({ learnStrategyId }, _, ctx) {
         return learnStrategyId
           ? ctx.prisma.learnStrategy.findUnique({

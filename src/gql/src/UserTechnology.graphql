@@ -46,3 +46,10 @@ fragment UserTechnologyNoNesting on UserTechnology {
   technologyId
   isMentor
 }
+
+fragment technology_UserTechnology on UserTechnology {
+  ...UserTechnologyNoNesting
+  CreatedBy: UserTechnologyCreatedBy {
+    ...UserNoNesting
+  }
+}

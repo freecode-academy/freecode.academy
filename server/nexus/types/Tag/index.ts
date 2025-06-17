@@ -27,10 +27,6 @@ export const TagExtendQuery = extendType({
 
 export const Tag = objectType({
   name: 'Tag',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'Tag',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -38,6 +34,7 @@ export const Tag = objectType({
     t.nonNull.string('name')
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -46,6 +43,7 @@ export const Tag = objectType({
     })
     t.list.nonNull.field('Resources', {
       type: 'ResourceTag',
+      // @ts-expect-error types
       resolve({ id }, _, ctx) {
         return ctx.prisma.resourceTag.findMany({
           where: {

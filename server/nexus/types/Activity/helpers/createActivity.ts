@@ -71,6 +71,7 @@ export function createActivity({
         case ActivityType.UserCreated:
           activityInterface = {
             ...activity,
+            // @ts-expect-error types
             User: payload.user,
           }
 

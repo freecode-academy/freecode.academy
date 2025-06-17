@@ -57,10 +57,6 @@ export const TaskExtendMutation = extendType({
 
 export const Task = objectType({
   name: 'Task',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'Task',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -80,6 +76,7 @@ export const Task = objectType({
     t.boolean('needHelp')
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -98,6 +95,7 @@ export const Task = objectType({
     })
     t.list.nonNull.field('TaskTechnologies', {
       type: 'TaskTechnology',
+      // @ts-expect-error types
       resolve({ id }, _, ctx) {
         return ctx.prisma.taskTechnology.findMany({
           where: {
@@ -109,6 +107,7 @@ export const Task = objectType({
 
     t.field('Parent', {
       type: 'Task',
+      // @ts-expect-error types
       resolve({ Parent }, _, ctx) {
         return Parent
           ? ctx.prisma.task.findUnique({ where: { id: Parent } })
@@ -152,6 +151,7 @@ export const Task = objectType({
         orderBy: 'ResourceOrderByWithRelationInput',
         where: 'ResourceWhereInput',
       },
+      // @ts-expect-error types
       resolve({ id }, args, ctx) {
         const where = {
           ...args.where,

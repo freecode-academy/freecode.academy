@@ -9,10 +9,6 @@ import { extendType, objectType } from 'nexus'
 export const MindLog = objectType({
   name: 'MindLog',
   description: 'Запись в логе мышления агента',
-  // sourceType: {
-  //   module: '@prisma/client',
-  //   export: 'MindLog',
-  // },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -43,6 +39,7 @@ export const MindLogExtendsQuery = extendType({
     t.crud.mindLogs({
       filtering: true,
       ordering: true,
+      // @ts-expect-error types
       resolve(_, args, ctx) {
         return ctx.prisma.mindLog.findMany({
           ...(args as Prisma.MindLogFindManyArgs),

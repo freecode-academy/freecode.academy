@@ -54,10 +54,6 @@ export const NoticeExtendType = extendType({
 
 export const Notice = objectType({
   name: 'Notice',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'Notice',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -67,6 +63,7 @@ export const Notice = objectType({
     })
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -75,12 +72,14 @@ export const Notice = objectType({
     })
     t.field('User', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ User }, _, ctx) {
         return User ? ctx.prisma.user.findUnique({ where: { id: User } }) : null
       },
     })
     t.field('ChatMessageOld', {
       type: 'ChatMessageOld',
+      // @ts-expect-error types
       resolve({ ChatMessageOld }, _, ctx) {
         return ChatMessageOld
           ? ctx.prisma.chatMessageOld.findUnique({

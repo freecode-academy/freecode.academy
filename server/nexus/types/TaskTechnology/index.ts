@@ -4,10 +4,6 @@ import { createTaskTechnologyProcessor } from './resolvers/createTaskTechnologyP
 
 export const TaskTechnology = objectType({
   name: 'TaskTechnology',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'TaskTechnology',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -16,6 +12,7 @@ export const TaskTechnology = objectType({
 
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
       },
@@ -23,6 +20,7 @@ export const TaskTechnology = objectType({
 
     t.field('Technology', {
       type: 'Technology',
+      // @ts-expect-error types
       resolve({ Technology }, _, ctx) {
         return Technology
           ? ctx.prisma.technology.findUnique({ where: { id: Technology } })
@@ -32,6 +30,7 @@ export const TaskTechnology = objectType({
 
     t.field('Task', {
       type: 'Task',
+      // @ts-expect-error types
       resolve({ Task }, _, ctx) {
         return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
       },

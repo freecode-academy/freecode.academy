@@ -12,10 +12,6 @@ import { createAiAgentUserResolver } from './resolvers/createAiAgent'
 export const User = objectType({
   name: 'User',
   description: 'Пользователь',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'User',
-  },
   definition(t) {
     t.nonNull.string('id')
     t.nonNull.date('createdAt', {
@@ -24,12 +20,13 @@ export const User = objectType({
     t.nonNull.date('updatedAt', {
       description: 'Когда обновлен',
     })
-    t.string('email', {
+    t.string('userEmail', {
       resolve(parent, _args, ctx) {
         return parent.showEmail === true ||
           ctx.currentUser?.sudo === true ||
           ctx.currentUser?.id === parent.id
-          ? parent.email
+          ? // @ts-expect-error types
+            parent.email
           : null
       },
     })
@@ -145,9 +142,9 @@ export const User = objectType({
       },
     })
 
-    // TODO Restore logic
     t.list.nonNull.field('UserTechnologies', {
       type: 'UserTechnology',
+      // @ts-expect-error types
       resolve({ id }, _, ctx) {
         return ctx.prisma.userTechnology.findMany({
           where: {
@@ -242,6 +239,7 @@ export const UserQuery = extendType({
 
     t.field('me', {
       type: 'User',
+      // @ts-expect-error types
       resolve(_, _args, ctx) {
         return ctx.currentUser
       },

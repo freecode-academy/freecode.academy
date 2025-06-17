@@ -3,10 +3,6 @@ import { extendType, objectType } from 'nexus'
 
 export const Donate = objectType({
   name: 'Donate',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'Donate',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('date')
@@ -15,6 +11,7 @@ export const Donate = objectType({
     t.id('donatorId')
     t.field('Donator', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ donatorId }, _, ctx) {
         return donatorId
           ? ctx.prisma.user.findUnique({

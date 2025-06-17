@@ -12,9 +12,5 @@ query AuthFormUsersConnection(
 }
 
 fragment AuthFormUsersConnectionUser on User {
-  id
-  username
-  fullname
-  email
-  image
+  ...UserNoNesting
 }

@@ -71,10 +71,6 @@ export const SingleUploadInput = inputObjectType({
 export const File = objectType({
   name: 'File',
   description: 'Файл',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'File',
-  },
   definition(t) {
     t.nonNull.string('id')
     t.nonNull.date('createdAt', {

@@ -6,10 +6,6 @@ import { updateTechnology } from './resolvers/updateTechnology'
 
 export const Technology = objectType({
   name: 'Technology',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'Technology',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -18,6 +14,7 @@ export const Technology = objectType({
     t.string('description')
     // t.field('components', { type: 'JSON' })
     t.editorComponentObject('components', {
+      // @ts-expect-error types
       resolve({ components }) {
         const value = components
           ? Array.isArray(components)
@@ -47,6 +44,7 @@ export const Technology = objectType({
     })
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -58,6 +56,7 @@ export const Technology = objectType({
       args: {
         orderBy: 'UserTechnologyOrderByWithRelationInput',
       },
+      // @ts-expect-error types
       resolve({ id }, args, ctx) {
         const orderBy =
           args.orderBy as Prisma.UserTechnologyOrderByWithRelationInput

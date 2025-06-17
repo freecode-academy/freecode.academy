@@ -36,10 +36,6 @@ export const CodeChallengeExtendMutation = extendType({
 
 export const CodeChallenge = objectType({
   name: 'CodeChallenge',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'CodeChallenge',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -73,6 +69,7 @@ export const CodeChallenge = objectType({
 
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -82,6 +79,7 @@ export const CodeChallenge = objectType({
 
     t.field('Topic', {
       type: 'Resource',
+      // @ts-expect-error types
       resolve({ Topic }, _, ctx) {
         return Topic
           ? ctx.prisma.resource.findUnique({ where: { id: Topic } })

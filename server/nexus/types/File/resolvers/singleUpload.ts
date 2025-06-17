@@ -160,6 +160,7 @@ export const processUpload = async (
     //   .catch(error => {
     //     throw error;
     //   });
+    // @ts-expect-error types
     return await ctx.prisma.file.create({
       data: uploaded,
     })

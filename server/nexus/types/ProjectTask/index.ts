@@ -12,16 +12,13 @@ export const ProjectTaskExtendQuery = extendType({
 
 export const ProjectTask = objectType({
   name: 'ProjectTask',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'ProjectTask',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -30,6 +27,7 @@ export const ProjectTask = objectType({
     })
     t.field('Project', {
       type: 'Project',
+      // @ts-expect-error types
       resolve({ Project }, _, ctx) {
         return Project
           ? ctx.prisma.project.findUnique({ where: { id: Project } })
@@ -38,6 +36,7 @@ export const ProjectTask = objectType({
     })
     t.field('Task', {
       type: 'Task',
+      // @ts-expect-error types
       resolve({ Task }, _, ctx) {
         return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
       },

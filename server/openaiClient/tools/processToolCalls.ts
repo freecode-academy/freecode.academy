@@ -53,6 +53,8 @@ export async function processToolCalls({
         let errorMessage = 'Неизвестная ошибка'
 
         if (error instanceof Error) {
+          errorMessage = error.message || errorMessage
+
           if (error.stack) {
             errorMessage = errorMessage + `\n\n## Stack ${error.stack}`
           }

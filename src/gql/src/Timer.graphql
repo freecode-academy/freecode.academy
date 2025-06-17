@@ -1,0 +1,88 @@
+query timersConnection(
+  $where: TimerWhereInput
+  $orderBy: [TimerOrderByWithRelationInput!] = { createdAt: desc }
+  $skip: Int
+  # $after: String
+  # $before: String
+  $first: Int # $last: Int
+) {
+  timersCount(where: $where)
+
+  timers(
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    # after: $after
+    # before: $before
+    take: $first # last: $last
+  ) {
+    ...timersConnectionTimer
+  }
+}
+
+# fragment Timer_ on Timer {
+#   ...TimerNoNesting
+
+#   # Task: TimerTask {
+#   #   id
+#   #   name
+#   #   status
+#   #   TaskProjects {
+#   #     id
+#   #     createdAt
+#   #     updatedAt
+#   #     Project {
+#   #       id
+#   #       type
+#   #       name
+#   #     }
+#   #   }
+#   # }
+# }
+
+fragment Timer_ on Timer {
+  ...TimerNoNesting
+
+  CreatedBy: TimerCreatedBy {
+    ...UserNoNesting
+  }
+  Task: TimerTask {
+    ...TaskNoNesting
+    TaskProjects {
+      id
+      createdAt
+      updatedAt
+      Project {
+        ...ProjectNoNesting
+        CreatedBy {
+          ...UserNoNesting
+        }
+        Resource {
+          id
+          name
+          uri
+        }
+      }
+    }
+    # RelatedTo {
+    #   ...TaskNoNesting
+    # }
+    # Reactions {
+    #   ...TaskReactionNoNesting
+    #   CreatedBy {
+    #     ...UserNoNesting
+    #   }
+    # }
+  }
+}
+
+fragment TimerNoNesting on Timer {
+  id
+  createdAt
+  updatedAt
+  stopedAt
+}
+
+fragment timersConnectionTimer on Timer {
+  ...Timer_
+}

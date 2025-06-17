@@ -1,6 +1,7 @@
 import { Prisma } from '.prisma/client'
 import { FieldResolver } from 'nexus'
 
+// @ts-expect-error types
 export const updateLearnStrategy: FieldResolver<
   'Mutation',
   'updateLearnStrategy'

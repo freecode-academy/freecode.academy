@@ -51,10 +51,6 @@ export const LearnStrategyStageExtendMutation = extendType({
 
 export const LearnStrategyStage = objectType({
   name: 'LearnStrategyStage',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'LearnStrategyStage',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -63,6 +59,7 @@ export const LearnStrategyStage = objectType({
     t.nonNull.string('learnStrategyId')
     t.field('LearnStrategy', {
       type: 'LearnStrategy',
+      // @ts-expect-error types
       resolve({ learnStrategyId }, _, ctx) {
         return learnStrategyId
           ? ctx.prisma.learnStrategy.findUnique({
@@ -74,6 +71,7 @@ export const LearnStrategyStage = objectType({
     t.string('learnStrategyTargetId')
     t.field('LearnStrategyTarget', {
       type: 'LearnStrategy',
+      // @ts-expect-error types
       resolve({ learnStrategyTargetId }, _, ctx) {
         return learnStrategyTargetId
           ? ctx.prisma.learnStrategy.findUnique({

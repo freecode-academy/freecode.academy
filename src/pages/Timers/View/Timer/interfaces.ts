@@ -1,5 +1,5 @@
 import { EditableObjectProps } from 'apollo-cms/dist/DataView/Object/Editable'
-import { Timer } from 'src/gql/generated'
+import { TimerFragment } from 'src/gql/generated'
 
 export interface TimerViewProps extends EditableObjectProps {
   classes?: any
@@ -8,5 +8,5 @@ export interface TimerViewProps extends EditableObjectProps {
   //   object?: Timer
   // }
 
-  object: Timer | null | undefined
+  object: TimerFragment | null | undefined
 }

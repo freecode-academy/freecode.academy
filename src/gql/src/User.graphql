@@ -80,26 +80,26 @@ mutation signup($data: UserSignupDataInput) {
   }
 }
 
-fragment MeUserTimer on Timer {
-  id
-  createdAt
-  stopedAt
-  Task {
-    id
-    name
-    status
-    TaskProjects {
-      id
-      createdAt
-      updatedAt
-      Project {
-        id
-        type
-        name
-      }
-    }
-  }
-}
+# fragment MeUserTimer on Timer {
+#   id
+#   createdAt
+#   stopedAt
+#   Task {
+#     id
+#     name
+#     status
+#     TaskProjects {
+#       id
+#       createdAt
+#       updatedAt
+#       Project {
+#         id
+#         type
+#         name
+#       }
+#     }
+#   }
+# }
 
 mutation blockUser($where: UserWhereUniqueInput!) {
   blockUser(where: $where) {
@@ -124,7 +124,7 @@ fragment UserNoNesting on User {
   createdAt
   updatedAt
   username
-  email
+  email: userEmail
   phone
   showEmail
   showPhone
@@ -158,7 +158,7 @@ fragment meUser on User {
   #   balance(convert: ether)
   # }
   Timers(first: 1, where: { stopedAt: null }) {
-    ...MeUserTimer
+    ...Timer_
   }
 }
 
@@ -210,7 +210,7 @@ fragment userProfile on User {
   }
   UserTechnologies @include(if: $withUserTechnologies) {
     ...technology_UserTechnology
-    Technology {
+    Technology: UserTechnologyTechnology {
       ...TechnologyNoNesting
     }
   }

@@ -27,7 +27,7 @@ export async function getUsers({ args, ctx }: getUsersProps) {
       level
       status
       updatedAt
-      Technology {
+      Technology: UserTechnologyTechnology {
         id
         name
       }

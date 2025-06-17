@@ -10,10 +10,6 @@ import { createProjectProcessor } from './resolvers/createProjectProcessor'
 
 export const Project = objectType({
   name: 'Project',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'Project',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -40,6 +36,7 @@ export const Project = objectType({
 
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -48,6 +45,7 @@ export const Project = objectType({
     })
     t.field('Resource', {
       type: 'Resource',
+      // @ts-expect-error types
       resolve({ Resource }, _, ctx) {
         return Resource
           ? ctx.prisma.resource.findUnique({ where: { id: Resource } })

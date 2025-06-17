@@ -31,13 +31,7 @@ fragment projectsConnectionProject on Project {
         ...projectsConnectionUser
       }
       Timers(where: { stopedAt: null }) {
-        id
-        createdAt
-        updatedAt
-        stopedAt
-        CreatedBy {
-          ...projectsConnectionUser
-        }
+        ...Timer_
       }
       CreatedBy {
         ...projectsConnectionUser

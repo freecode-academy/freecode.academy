@@ -3,6 +3,33 @@ import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
 import { createTimerProcessor } from './resolvers/createTimerProcessor'
 import { updateTimerProcessor } from './resolvers/updateTimerProcessor'
 
+export const Timer = objectType({
+  name: 'Timer',
+  definition(t) {
+    t.nonNull.id('id')
+    t.nonNull.date('createdAt')
+    t.nonNull.date('updatedAt')
+    t.date('stopedAt')
+    t.id('CreatedBy')
+    t.field('TimerCreatedBy', {
+      type: 'User',
+      // @ts-expect-error types
+      resolve({ CreatedBy }, _, ctx) {
+        return CreatedBy
+          ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
+          : null
+      },
+    })
+    t.id('Task')
+    t.field('TimerTask', {
+      type: 'Task',
+      resolve({ Task }, _, ctx) {
+        return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
+      },
+    })
+  },
+})
+
 export const TimerExtendQuery = extendType({
   type: 'Query',
   definition(t) {
@@ -44,34 +71,6 @@ export const TimerExtendMutation = extendType({
         where: nonNull('TimerWhereUniqueInput'),
       },
       resolve: updateTimerProcessor,
-    })
-  },
-})
-
-export const Timer = objectType({
-  name: 'Timer',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'Timer',
-  },
-  definition(t) {
-    t.nonNull.id('id')
-    t.nonNull.date('createdAt')
-    t.nonNull.date('updatedAt')
-    t.date('stopedAt')
-    t.field('CreatedBy', {
-      type: 'User',
-      resolve({ CreatedBy }, _, ctx) {
-        return CreatedBy
-          ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
-          : null
-      },
-    })
-    t.field('Task', {
-      type: 'Task',
-      resolve({ Task }, _, ctx) {
-        return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
-      },
     })
   },
 })

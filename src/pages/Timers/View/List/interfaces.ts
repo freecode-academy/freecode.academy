@@ -1,5 +1,5 @@
-import { Timer } from 'src/gql/generated'
+import { TimerFragment } from 'src/gql/generated'
 
 export interface TimersListViewProps {
-  timers: Timer[]
+  timers: TimerFragment[]
 }

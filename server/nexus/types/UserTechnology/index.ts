@@ -57,10 +57,6 @@ export const UserTechnologyExtendMutation = extendType({
 
 export const UserTechnology = objectType({
   name: 'UserTechnology',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'UserTechnology',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -80,21 +76,26 @@ export const UserTechnology = objectType({
     t.boolean('isMentor', {
       description: 'Готов быть ментором',
     })
-    t.field('CreatedBy', {
+    t.id('CreatedBy')
+    t.field('UserTechnologyCreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
           : null
       },
     })
+    // t.nonNull.id('Technology')
     t.nonNull.string('technologyId', {
+      // @ts-expect-error types
       resolve({ Technology }) {
         return Technology
       },
     })
-    t.field('Technology', {
+    t.field('UserTechnologyTechnology', {
       type: 'Technology',
+      // @ts-expect-error types
       resolve({ Technology }, _, ctx) {
         return Technology
           ? ctx.prisma.technology.findUnique({ where: { id: Technology } })

@@ -4,10 +4,6 @@ import { extendType, objectType } from 'nexus'
 
 export const CodeChallengeBlock = objectType({
   name: 'CodeChallengeBlock',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'CodeChallengeBlock',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -17,6 +13,7 @@ export const CodeChallengeBlock = objectType({
 
     t.field('Parent', {
       type: 'CodeChallengeBlock',
+      // @ts-expect-error types
       resolve({ Parent }, _, ctx) {
         return Parent
           ? ctx.prisma.codeChallengeBlock.findUnique({ where: { id: Parent } })

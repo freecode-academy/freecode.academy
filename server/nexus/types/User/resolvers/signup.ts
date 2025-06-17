@@ -1,6 +1,7 @@
 import { FieldResolver } from 'nexus'
 import { createUser } from './helpers/createUser'
 
+// @ts-expect-error types
 export const signup: FieldResolver<'Mutation', 'signup'> = async (
   _,
   args,

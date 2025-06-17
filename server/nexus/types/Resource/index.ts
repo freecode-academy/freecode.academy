@@ -8,10 +8,6 @@ export * from './Topic'
 
 export const Resource = objectType({
   name: 'Resource',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'Resource',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -26,6 +22,7 @@ export const Resource = objectType({
     // То в редактировании топика используется старый редактор, а не новый
     t.field('content', {
       type: 'JSON',
+      // @ts-expect-error types
       resolve: ({ content, components }) => {
         /**
          * Так как ввели новое поле components, если оно заполнено,
@@ -57,6 +54,7 @@ export const Resource = objectType({
 
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -71,6 +69,7 @@ export const Resource = objectType({
       args: {
         orderBy: 'ResourceOrderByWithRelationInput',
       },
+      // @ts-expect-error types
       resolve({ id }, args, ctx) {
         const orderBy = args.orderBy as Prisma.ResourceOrderByWithRelationInput
 
@@ -87,6 +86,7 @@ export const Resource = objectType({
 
     t.field('Topic', {
       type: 'Resource',
+      // @ts-expect-error types
       resolve({ Topic }, _, ctx) {
         return Topic
           ? ctx.prisma.resource.findUnique({ where: { id: Topic } })
@@ -96,6 +96,7 @@ export const Resource = objectType({
 
     t.field('Blog', {
       type: 'Resource',
+      // @ts-expect-error types
       resolve({ Blog }, _, ctx) {
         return Blog
           ? ctx.prisma.resource.findUnique({ where: { id: Blog } })
@@ -104,12 +105,14 @@ export const Resource = objectType({
     })
     t.field('Task', {
       type: 'Task',
+      // @ts-expect-error types
       resolve({ Task }, _, ctx) {
         return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
       },
     })
     t.field('Image', {
       type: 'File',
+      // @ts-expect-error types
       resolve({ id }, _, ctx) {
         return id
           ? ctx.prisma.file.findFirst({ where: { ImageResource: id } })
@@ -130,6 +133,7 @@ export const Resource = objectType({
       type: 'ResourceTag',
       // args: {
       // },
+      // @ts-expect-error types
       resolve({ id }, _args, ctx) {
         return id
           ? ctx.prisma.resourceTag.findMany({

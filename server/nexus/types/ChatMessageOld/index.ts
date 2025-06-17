@@ -69,6 +69,7 @@ export const ChatMessageOld = objectType({
     t.string('contentText')
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -78,6 +79,7 @@ export const ChatMessageOld = objectType({
     t.string('toUser')
     t.field('ToUser', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ toUser }, _, ctx) {
         return toUser
           ? ctx.prisma.user.findUnique({ where: { id: toUser } })

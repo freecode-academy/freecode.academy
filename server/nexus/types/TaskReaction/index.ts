@@ -2,10 +2,6 @@ import { enumType, objectType } from 'nexus'
 
 export const TaskReaction = objectType({
   name: 'TaskReaction',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'TaskReaction',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')

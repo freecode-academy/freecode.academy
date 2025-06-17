@@ -1,4 +1,4 @@
-import { MeUserTimerFragment, Scalars, TaskFragment } from 'src/gql/generated'
+import { TimerFragment, Scalars, TaskFragment } from 'src/gql/generated'
 import { UikitUserLinkProps } from 'src/uikit/Link/User'
 import { OfficeProjectPageViewTaskProjectProps } from './Project/interfaces'
 
@@ -22,7 +22,7 @@ export type OfficeProjectPageViewTaskProps = {
    */
   info?: JSX.Element
 
-  activeTimer: MeUserTimerFragment | null | undefined
+  activeTimer: TimerFragment | null | undefined
 
   // TODO сейчас это хак, потому что в этот компонент приходит по сути или Задача или Задача таймера,
   // в которой не все сущности имеются. Надо будет переделать компонент

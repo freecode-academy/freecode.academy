@@ -56,7 +56,7 @@ fragment technologiesConnectionTechnology on Technology {
   }
   UserTechnologies {
     ...technologiesConnectionUserTechnology
-    CreatedBy {
+    CreatedBy: UserTechnologyCreatedBy {
       ...technologiesConnectionUser
     }
   }
@@ -106,11 +106,4 @@ fragment TechnologyNoNesting on Technology {
   level3hours
   level4hours
   level5hours
-}
-
-fragment technology_UserTechnology on UserTechnology {
-  ...UserTechnologyNoNesting
-  CreatedBy {
-    ...UserNoNesting
-  }
 }

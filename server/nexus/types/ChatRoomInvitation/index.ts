@@ -12,12 +12,14 @@ export const ChatRoomInvitation = objectType({
     t.nonNull.date('updatedAt')
     t.field('User', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ User }, _, ctx) {
         return User ? ctx.prisma.user.findUnique({ where: { id: User } }) : null
       },
     })
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })

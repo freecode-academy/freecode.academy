@@ -27,10 +27,6 @@ export const NotificationTypeExtendQuery = extendType({
 
 export const NotificationType = objectType({
   name: 'NotificationType',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'NotificationType',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')

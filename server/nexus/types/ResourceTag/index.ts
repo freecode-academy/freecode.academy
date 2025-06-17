@@ -2,10 +2,6 @@ import { enumType, objectType } from 'nexus'
 
 export const ResourceTag = objectType({
   name: 'ResourceTag',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'ResourceTag',
-  },
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -16,6 +12,7 @@ export const ResourceTag = objectType({
 
     t.field('CreatedBy', {
       type: 'User',
+      // @ts-expect-error types
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -24,6 +21,7 @@ export const ResourceTag = objectType({
     })
     t.field('Resource', {
       type: 'Resource',
+      // @ts-expect-error types
       resolve({ Resource }, _, ctx) {
         return Resource
           ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
@@ -32,6 +30,7 @@ export const ResourceTag = objectType({
     })
     t.field('Tag', {
       type: 'Tag',
+      // @ts-expect-error types
       resolve({ Tag }, _, ctx) {
         return Tag ? ctx.prisma.tag.findUnique({ where: { id: Tag } }) : null
       },

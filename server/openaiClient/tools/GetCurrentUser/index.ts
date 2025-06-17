@@ -30,21 +30,15 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
   handler: async (_args, ctx) => {
     const { currentUser } = ctx
 
-    try {
-      if (!currentUser) {
-        throw new Error('Не были получены данные текущего пользователя')
-      }
-
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.log('GetCurrentUserTool currentUser', currentUser)
-      }
-
-      return JSON.stringify(formatUserData({ user: currentUser }), null, 2)
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error)
-      return `Ошибка при получении пользователей: ${errorMessage}`
+    if (!currentUser) {
+      throw new Error('Не были получены данные текущего пользователя')
     }
+
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.log('GetCurrentUserTool currentUser', currentUser)
+    }
+
+    return JSON.stringify(formatUserData({ user: currentUser }), null, 2)
   },
 }

@@ -29,7 +29,7 @@ export async function createApolloContext({
   req,
   type,
 }: {
-  req?: any
+  req?: PrismaContext['req']
   type: 'ws' | 'other'
 }): Promise<PrismaContext> {
   let currentUser: PrismaContext['currentUser'] = null

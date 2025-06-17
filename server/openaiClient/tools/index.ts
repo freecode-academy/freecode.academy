@@ -1,6 +1,6 @@
 import { createMindLogTool } from './createMindLog'
 import { sendMessageTool } from './sendMessage'
-import { getUserTool } from './getUser'
+import { getUsersTool } from './getUsers'
 import { GetCurrentUserTool } from './GetCurrentUser'
 
 /**
@@ -9,6 +9,6 @@ import { GetCurrentUserTool } from './GetCurrentUser'
 export const tools = {
   [createMindLogTool.name]: createMindLogTool,
   [sendMessageTool.name]: sendMessageTool,
-  [getUserTool.name]: getUserTool,
+  [getUsersTool.name]: getUsersTool,
   [GetCurrentUserTool.name]: GetCurrentUserTool,
 } as const

@@ -66,9 +66,5 @@ export const createMindLogTool: CreateMindLogTool = {
 
         return `Сделана запись с id "${mindLog.id}"`
       })
-      .catch((error) => {
-        console.error(error)
-        return `Ошибка выполнения запроса. ${error.toString()}`
-      })
   },
 }

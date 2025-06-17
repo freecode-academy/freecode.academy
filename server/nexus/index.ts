@@ -1,14 +1,4 @@
-import {
-  // intArg,
-  makeSchema,
-  // nonNull,
-  // objectType,
-  // stringArg,
-  // inputObjectType,
-  // arg,
-  asNexusMethod,
-  // enumType,
-} from 'nexus'
+import { makeSchema, asNexusMethod } from 'nexus'
 
 import './fix/pluralize'
 

@@ -11,7 +11,10 @@ import { prismaClient } from '../../prismaClient'
 
 export interface PrismaContext {
   prisma: PrismaClient
-  req: ExpressContextFunctionArgument['req'] | undefined
+  req:
+    | ExpressContextFunctionArgument['req']
+    | { headers: { authorization: string | undefined } }
+    | undefined
   // knex: Knex
   sendmail: ReturnType<typeof Sendmail> | undefined
   mailSender: string

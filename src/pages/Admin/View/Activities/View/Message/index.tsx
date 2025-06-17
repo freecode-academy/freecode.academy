@@ -1,6 +1,7 @@
 import React from 'react'
 import { ChatMessageFragment } from 'src/gql/generated'
 import { ActivityUser } from '../User'
+import { MarkdownField } from 'src/components/MarkdownField'
 
 export type ActivityMessageProps = {
   message: ChatMessageFragment
@@ -12,7 +13,8 @@ export const ActivityMessage: React.FC<ActivityMessageProps> = ({
   const { toUserId } = message
   return (
     <>
-      {toUserId && <ActivityUser userId={toUserId} />} {message.text}
+      {toUserId && <ActivityUser userId={toUserId} />}
+      <MarkdownField>{message.text}</MarkdownField>
     </>
   )
 }

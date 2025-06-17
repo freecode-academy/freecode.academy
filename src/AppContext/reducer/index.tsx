@@ -60,7 +60,7 @@ const initialState: AppState = {
   chatMessages: [],
   chatInRequest: false,
   activeTab: 'site',
-  chatTabOpened: false,
+  chatTabOpened: true,
   slidePosition: MainLayoutTabs.site.position,
 }
 

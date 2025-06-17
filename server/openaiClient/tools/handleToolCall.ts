@@ -29,15 +29,23 @@ export async function handleToolCall({
     console.log('handleToolCall', name, JSON.stringify(args, null, 2))
   }
 
-  const tool = tools[name as keyof typeof tools]
+  try {
+    const tool = tools[name as keyof typeof tools]
 
-  if (tool) {
-    return tool.handler(args, ctx, user)
+    if (tool) {
+      return await tool.handler(args, ctx, user)
+    }
+
+    if (Object.values<string>(MindLogType).includes(name)) {
+      throw new Error(
+        `Ошибка вызова несуществующего тулза ${name}. Если вы хотели записать MindLog, то следует вызывать тулзу ${toolName.createMindLog}`
+      )
+    } else {
+      throw new Error(`Ошибка: Неизвестный инструмент: ${name}`)
+    }
+  } catch (error) {
+    throw new Error(
+      `Ошибка: ${(error as Error | undefined)?.message || 'Неизвестная ошибка'}`
+    )
   }
-
-  if (Object.values<string>(MindLogType).includes(name)) {
-    return `Ошибка вызова несуществующего тулза ${name}. Если вы хотели записать MindLog, то следует вызывать тулзу ${toolName.createMindLog}`
-  }
-
-  return `Неизвестный инструмент: ${name}`
 }

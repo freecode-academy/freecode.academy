@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Prisma } from '@prisma/client'
 import { extendType, objectType } from 'nexus'
 

@@ -1,6 +1,6 @@
 import { User } from '@prisma/client'
 import { PrismaContext } from '../../nexus/context'
-import { AiAgents, AiAgentUsername } from '../interfaces'
+import { AiAgents, AiAgentUserData, AiAgentUsername } from '../interfaces'
 
 const OPENAI_API_BASE_URL =
   process.env.OPENAI_API_BASE_URL || 'https://api.openai.com/v1'
@@ -32,7 +32,7 @@ export async function getAiUser({ ctx }: getAiUserProps): Promise<User> {
   if (!aiUser) {
     const { model } = AiAgents[aiUserUsername]
 
-    const aiAgentData = {
+    const aiAgentData: AiAgentUserData = {
       model: model || OPENAI_DEFAULT_MODEL,
       endpoint: OPENAI_API_BASE_URL,
     }

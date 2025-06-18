@@ -13,6 +13,7 @@ export enum toolName {
   GetCurrentUser = 'GetCurrentUser',
   getUserMessages = 'getUserMessages',
   summarizeContext = 'summarizeContext',
+  updateSystemPrompt = 'updateSystemPrompt',
 }
 
 /**

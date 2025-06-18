@@ -1,5 +1,11 @@
 import { User as PrismaUser } from '@prisma/client'
 
+export type AiAgentUserData = {
+  model: string
+  endpoint: string
+  systemPrompt?: string
+}
+
 export type User = PrismaUser
 
 interface ToolCallFunction {

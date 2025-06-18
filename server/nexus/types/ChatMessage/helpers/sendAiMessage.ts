@@ -5,6 +5,7 @@ import { sendOpenAiRequest } from '../../../../openaiClient/processOpenAIRequest
 import { ChatCompletionMessageParam } from 'openai/resources/chat'
 import { getSystemPrompt } from '../../../../openaiClient/prompts/systemPrompt'
 import { ChatMessage, User } from '@prisma/client'
+import { AiAgentUserData } from '../../../../openaiClient/interfaces'
 
 /**
  * Временное решение для сохранения текущей истории сообщений между пользователями и ИИ
@@ -35,6 +36,8 @@ export const sendAiMessage = async ({
   //   messagesHistory.set(historyKey, userMessagesHistory)
   // }
 
+  const aiUserData = toUser.data as AiAgentUserData | undefined
+
   const messages = (withHistory && messagesHistory.get(historyKey)) || []
 
   if (!messagesHistory.has(historyKey) && withHistory) {
@@ -53,11 +56,15 @@ export const sendAiMessage = async ({
 
   // let messages: ChatCompletionMessageParam[] = []
 
-  if (!messages.length) {
-    const systemPrompt = getSystemPrompt()
+  const systemPrompt = aiUserData?.systemPrompt || getSystemPrompt()
 
-    if (systemPrompt) {
-      messages.push({ role: 'system', content: systemPrompt })
+  if (systemPrompt) {
+    const firstMessage = messages.at(0)
+
+    if (firstMessage?.role !== 'system') {
+      messages.unshift({ role: 'system', content: systemPrompt })
+    } else {
+      firstMessage.content = systemPrompt
     }
   }
 

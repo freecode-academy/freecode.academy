@@ -36,7 +36,7 @@ const styles = {
   },
 }
 
-export class Pagination extends Component<PaginationProps> {
+class Pagination extends Component<PaginationProps> {
   static contextType = Context
 
   static defaultProps = {
@@ -183,6 +183,8 @@ export class Pagination extends Component<PaginationProps> {
   }
 }
 
-export default withStyles<any>(styles)((props: PaginationProps) => (
-  <Pagination {...props} />
-))
+export const PaginationWithStyles = withStyles<any>(styles)(
+  (props: PaginationProps) => <Pagination {...props} />
+)
+
+export default PaginationWithStyles

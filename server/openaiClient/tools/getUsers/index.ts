@@ -8,6 +8,7 @@ export interface GetUsersArgs {
   // limit?: number
   withSkills?: boolean
   withMentors?: boolean
+  includeInactive?: boolean
 }
 
 /** Инструмент getUsers */
@@ -45,6 +46,11 @@ export const getUsersTool: GetUsersTool = {
           withMentors: {
             description:
               'Если надо получить в том числе менторов и менти пользователя',
+            type: 'boolean',
+          },
+          includeInactive: {
+            description:
+              'Если надо получить в том числе неактивных пользователей. По умолчанию ложь. Указывать только если сказано явно и только суперпользователем',
             type: 'boolean',
           },
         },

@@ -18,6 +18,11 @@ export async function getUsers({ args, ctx }: getUsersProps) {
 
   users(take: $limit, where: $where, orderBy: { updatedAt: desc }) {
     ...UserNoNesting
+
+    intro
+    content
+    about
+
     UserTechnologies @include(if: $withSkills) {
       id
       date_from
@@ -56,7 +61,6 @@ fragment UserNoNesting on User {
   fullname
   username
   technologyLevel
-  # about
 }
   `
 

@@ -37,6 +37,12 @@ const styles = {
   },
 }
 
+export function createUserLink(user: UikitUserLinkProps['user']): string {
+  const { id, username } = user
+
+  return username ? `/profile/${username}` : `/profile/id/${id}`
+}
+
 class UikitUserLink extends Component<UikitUserLinkProps> {
   static defaultProps = {
     withAvatar: true,
@@ -71,7 +77,7 @@ class UikitUserLink extends Component<UikitUserLinkProps> {
 
     const name = fullname || username
 
-    const url = username ? `/profile/${username}/` : `/profile/id/${id}/`
+    const url = createUserLink(user)
     // const url = `/users/${id}`;
 
     const avatarLink = (

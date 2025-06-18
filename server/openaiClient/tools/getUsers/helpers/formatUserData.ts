@@ -5,7 +5,17 @@ type formatUserDataProps = {
 }
 
 export function formatUserData({ user }: formatUserDataProps) {
-  const { id, username, fullname, sudo, active, createdAt } = user
+  const {
+    id,
+    username,
+    fullname,
+    sudo,
+    active,
+    about,
+    intro,
+    content,
+    createdAt,
+  } = user
 
   return {
     id,
@@ -13,6 +23,9 @@ export function formatUserData({ user }: formatUserDataProps) {
     fullname,
     sudo,
     active,
+    about,
+    intro,
+    content,
     createdAt,
     url: username ? `/profile/${username}` : `/profile/id/${id}`,
   }

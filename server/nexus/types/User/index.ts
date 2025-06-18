@@ -76,7 +76,11 @@ export const User = objectType({
     t.boolean('isAiAgent', {
       description: 'Является ли пользователь AI агентом',
     })
-    t.editorComponentObject('about')
+    t.nonNull.string('intro')
+    t.nonNull.string('content')
+    t.editorComponentObject('about', {
+      deprecation: 'Use content instead',
+    })
     t.string('telegram', {
       description: 'Аккаунт в телеграм',
     })

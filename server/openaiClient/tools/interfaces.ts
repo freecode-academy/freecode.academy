@@ -10,6 +10,7 @@ export enum toolName {
   sendMessage = 'sendMessage',
   getUsers = 'getUsers',
   getUser = 'getUser',
+  updateUser = 'updateUser',
   GetCurrentUser = 'GetCurrentUser',
   getUserMessages = 'getUserMessages',
   summarizeContext = 'summarizeContext',

@@ -2,13 +2,17 @@ import { useRouter } from 'next/router'
 import { AdminViewStyled, AdminViewToolbarStyled } from './styles'
 import React from 'react'
 import { ActivitiesView } from './Activities/View'
+import Link from 'src/uikit/Link'
+import { AsminUsersView } from './Users'
 
 enum AdminSections {
   Activities = 'activities',
+  Users = 'users',
 }
 
 const sections: Record<AdminSections, React.FC> = {
   [AdminSections.Activities]: ActivitiesView,
+  [AdminSections.Users]: AsminUsersView,
 }
 
 export const AdminView: React.FC = () => {
@@ -25,11 +29,21 @@ export const AdminView: React.FC = () => {
       content = <Component />
       break
     }
+
+    case AdminSections.Users: {
+      const Component = sections[section]
+
+      content = <Component />
+      break
+    }
   }
 
   return (
     <AdminViewStyled>
-      <AdminViewToolbarStyled></AdminViewToolbarStyled>
+      <AdminViewToolbarStyled>
+        <Link href={'/admin'}>Админка</Link>
+        <Link href={'/admin/users'}>Пользователи</Link>
+      </AdminViewToolbarStyled>
       {content}
     </AdminViewStyled>
   )

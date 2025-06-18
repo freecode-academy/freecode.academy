@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { execute, parse } from 'graphql'
 import { FieldResolver } from 'nexus'
 import { schema } from '../../..'
@@ -51,8 +50,6 @@ export const aiToolUsersResolver: FieldResolver<
       limit,
     },
   })
-
-  console.log('result', result)
 
   return result
 }

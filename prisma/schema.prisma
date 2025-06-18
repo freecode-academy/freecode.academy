@@ -41,9 +41,14 @@ model User {
   acceptNewChatRoom             Boolean?
   isMentor                      Boolean  @default(value: false)
   technologyLevel               Int?     @db.UnsignedTinyInt
+  // @deprecated
+  about                         Json?
+  telegram                      String?
 
-  type userType @default(Human)
-  data Json?
+  type    userType @default(Human)
+  data    Json?
+  intro   String   @default("") @db.Text
+  content String   @default("") @db.MediumText
 
   User                                                   User?                     @relation("UserToUser_CreatedBy", fields: [CreatedBy], references: [id])
   EthAccount_EthAccountToUser_EthAccountAuthed           EthAccount?               @relation("EthAccountToUser_EthAccountAuthed", fields: [EthAccountAuthed], references: [id])
@@ -127,10 +132,6 @@ model User {
 
   // Где является менти
   MentorMenteeMentees MentorMentee[] @relation("MentorMenteeMentee")
-
-  about Json?
-
-  telegram String?
 
   Donates Donate[]
   AiAgent AiAgent[]

@@ -30,6 +30,7 @@ query usersConnection(
   # $after: String
   # $before: String
   $first: Int = 10 # $last: Int
+  $withContent: Boolean! = false
 ) {
   usersCount(where: $where)
   users(
@@ -117,37 +118,6 @@ mutation updateCurrentUser($data: CurrentUserUpdateInput!) {
   updateCurrentUser(data: $data) {
     ...user_
   }
-}
-
-fragment UserNoNesting on User {
-  id
-  createdAt
-  updatedAt
-  username
-  email: userEmail
-  phone
-  showEmail
-  showPhone
-  showFullname
-  # password
-  fullname
-  image
-  address
-  sudo
-  activated
-  deleted
-  hasEmail
-  hasPhone
-  # marketplaceToken
-  # hidden
-  acceptChatMessageOldAnonymous
-  acceptNewChatRoomAnonymous
-  acceptNewChatRoom
-  technologyLevel
-  isMentor
-  telegram
-  active
-  blocked
 }
 
 fragment meUser on User {
@@ -273,47 +243,78 @@ fragment MeUserCodeChallengeCompletion on CodeChallengeCompletion {
 }
 
 fragment usersConnectionUser on User {
-  ...UserNoNesting
-  EthAccounts {
-    id
-    createdAt
-    updatedAt
-    name
-    description
-    address
-    type
-    source
-    bytecode
-    abi
-    balance
-  }
-  NotificationTypes {
-    id
-    createdAt
-    updatedAt
-    name
-    code
-    comment
-    oldID
-  }
-  Projects {
-    id
-    createdAt
-    updatedAt
-    status
-    Project {
-      ...usersConnectionProject
-      Resource {
-        ...usersConnectionResource
-      }
-    }
-  }
-  ProjectsCreated {
-    ...usersConnectionProject
-    Resource {
-      ...usersConnectionResource
-    }
-  }
+  id
+  createdAt
+  updatedAt
+  username
+  email: userEmail
+  phone
+  showEmail
+  showPhone
+  showFullname
+  # password
+  fullname
+  image
+  address
+  sudo
+  activated
+  deleted
+  hasEmail
+  hasPhone
+  # marketplaceToken
+  # hidden
+  acceptChatMessageOldAnonymous
+  acceptNewChatRoomAnonymous
+  acceptNewChatRoom
+  technologyLevel
+  isMentor
+  telegram
+  active
+  blocked
+  intro
+  content @include(if: $withContent)
+  about @include(if: $withContent)
+
+  # EthAccounts {
+  #   id
+  #   createdAt
+  #   updatedAt
+  #   name
+  #   description
+  #   address
+  #   type
+  #   source
+  #   bytecode
+  #   abi
+  #   balance
+  # }
+  # NotificationTypes {
+  #   id
+  #   createdAt
+  #   updatedAt
+  #   name
+  #   code
+  #   comment
+  #   oldID
+  # }
+  # Projects {
+  #   id
+  #   createdAt
+  #   updatedAt
+  #   status
+  #   Project {
+  #     ...usersConnectionProject
+  #     Resource {
+  #       ...usersConnectionResource
+  #     }
+  #   }
+  # }
+  # ProjectsCreated {
+  #   ...usersConnectionProject
+  #   Resource {
+  #     ...usersConnectionResource
+  #   }
+  # }
 }
 
 fragment usersConnectionProject on Project {
@@ -357,4 +358,54 @@ fragment usersConnectionResource on Resource {
   class_key
   template
   mockUpdate
+}
+
+# Получение списка пользователей для формы авторизации
+query AuthFormUsersConnection(
+  $where: UserWhereInput
+  $first: Int = 10
+  $skip: Int
+  $orderBy: [UserOrderByWithRelationInput!]
+) {
+  usersCount(where: $where)
+  users(where: $where, take: $first, skip: $skip, orderBy: $orderBy) {
+    ...AuthFormUsersConnectionUser
+  }
+}
+
+fragment AuthFormUsersConnectionUser on User {
+  ...UserNoNesting
+}
+
+fragment UserNoNesting on User {
+  id
+  createdAt
+  updatedAt
+  username
+  email: userEmail
+  phone
+  showEmail
+  showPhone
+  showFullname
+  # password
+  fullname
+  image
+  address
+  sudo
+  activated
+  deleted
+  hasEmail
+  hasPhone
+  # marketplaceToken
+  # hidden
+  acceptChatMessageOldAnonymous
+  acceptNewChatRoomAnonymous
+  acceptNewChatRoom
+  technologyLevel
+  isMentor
+  telegram
+  active
+  blocked
+  intro
+  content
 }

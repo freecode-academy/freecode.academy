@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React, { useMemo } from 'react'
 import {
   SortOrder,
@@ -13,6 +12,7 @@ import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import { PaginationProps } from 'src/components/Pagination'
+import { NextSeo } from 'next-seo'
 
 const first = 10
 
@@ -101,10 +101,11 @@ export const UsersPage: Page = () => {
 
   return (
     <>
-      <Head>
-        <title>Пользователи</title>
-        <meta name="description" content="Все пользователи" />
-      </Head>
+      <NextSeo
+        title="Пользователи"
+        description="Все пользователи"
+        canonical="/users"
+      />
 
       <UsersView
         // {...queryResult}

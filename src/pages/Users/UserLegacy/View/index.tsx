@@ -35,7 +35,11 @@ import { PrivateChat } from './Chat'
 
 // export const UserView: React.FC<UserPageViewProps> = ({ user }) => {
 //   const context = useContext(Context) as PrismaCmsContext
-export const UserPageView: React.FC<UserPageViewProps> = ({ user }) => {
+
+/**
+ * @deprecated
+ */
+export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
   const { user: currentUser } = useCurrentUser()
 
   const isCurrentUser = user ? user.id === currentUser?.id : false

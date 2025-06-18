@@ -6,9 +6,9 @@ import {
   UserQueryVariables,
 } from 'src/gql/generated'
 
-import { UserPageLegacyView as UserPageView } from './View'
+import { UserPageView } from './View'
 
-import { Page, NextPageContextCustom } from '../../_App/interfaces'
+import { NextPageContextCustom, Page } from '../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { createUserLink } from 'src/uikit/Link/User'
@@ -69,8 +69,6 @@ export const UserPage: Page = () => {
       <NextSeo
         title={user.fullname || user.username || ''}
         description={`Страница пользователя ${user.fullname || user.username}`}
-        noindex
-        nofollow
         canonical={createUserLink(user)}
       />
 

@@ -28,7 +28,7 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
       },
     },
   },
-  handler: async (_args, ctx, user) => {
+  handler: async (_args, ctx, user, messages) => {
     const { currentUser } = ctx
 
     if (!currentUser) {
@@ -48,7 +48,8 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
         ids: [currentUser.id],
       },
       ctx,
-      user
+      user,
+      messages
     )
 
     extendedData

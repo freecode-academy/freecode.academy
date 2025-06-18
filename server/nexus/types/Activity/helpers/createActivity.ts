@@ -7,7 +7,10 @@ import {
 } from '@prisma/client'
 import { PrismaContext } from '../../../context'
 import { PUBSUB_TYPE } from '../../../../PubSub/interfaces'
-import { NexusGenInterfaces } from 'server/nexus/generated/nexus'
+import {
+  NexusGenInterfaces,
+  NexusGenRootTypes,
+} from 'server/nexus/generated/nexus'
 
 type createActivityProps = {
   ctx: PrismaContext
@@ -29,6 +32,9 @@ type createActivityProps = {
         type: typeof ActivityType.MindLog
         MindLog: MindLog
       }
+    | ({
+        type: typeof ActivityType.ToolCall
+      } & Pick<NexusGenRootTypes['ActivityToolCall'], 'name' | 'args'>)
 }
 
 export function createActivity({
@@ -53,7 +59,7 @@ export function createActivity({
       let activityInterface: NexusGenInterfaces['Activity']
 
       switch (payload.type) {
-        case ActivityType.UrlChanged:
+        case 'UrlChanged':
           activityInterface = {
             ...activity,
             url: '/???',
@@ -61,14 +67,15 @@ export function createActivity({
 
           break
 
-        case ActivityType.SendMessaged:
+        case 'SendMessaged':
           activityInterface = {
             ...activity,
             ChatMessage: payload.message,
           }
 
           break
-        case ActivityType.UserCreated:
+
+        case 'UserCreated':
           activityInterface = {
             ...activity,
             // @ts-expect-error types
@@ -76,10 +83,19 @@ export function createActivity({
           }
 
           break
-        case ActivityType.MindLog:
+
+        case 'MindLog':
           activityInterface = {
             ...activity,
             MindLog: payload.MindLog,
+          }
+
+          break
+
+        case 'ToolCall':
+          activityInterface = {
+            ...activity,
+            ...payload,
           }
 
           break

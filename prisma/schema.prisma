@@ -1727,6 +1727,7 @@ enum ActivityType {
   UrlChanged
   SendMessaged
   MindLog
+  ToolCall
 }
 
 model Activity {
@@ -1735,7 +1736,7 @@ model Activity {
   type      ActivityType
   userId    String       @db.VarChar(36)
   User      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  data      Json?
+  data      String?      @db.Text
 
   @@index([type])
 }

@@ -29,4 +29,8 @@ fragment Activity_ on Activity {
       ...MindLog_
     }
   }
+  ... on ActivityToolCall {
+    name
+    args
+  }
 }

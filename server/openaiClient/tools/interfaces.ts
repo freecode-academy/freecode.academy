@@ -1,4 +1,7 @@
-import { ChatCompletionTool } from 'openai/resources/chat'
+import {
+  ChatCompletionMessageParam,
+  ChatCompletionTool,
+} from 'openai/resources/chat'
 import { PrismaContext } from '../../nexus/context'
 import { User } from '../interfaces'
 
@@ -9,6 +12,7 @@ export enum toolName {
   getUser = 'getUser',
   GetCurrentUser = 'GetCurrentUser',
   getUserMessages = 'getUserMessages',
+  summarizeContext = 'summarizeContext',
 }
 
 /**
@@ -18,7 +22,8 @@ export enum toolName {
 export type ToolHandler<T> = (
   args: T,
   ctx: PrismaContext,
-  user: User
+  user: User,
+  messages: ChatCompletionMessageParam[]
 ) => Promise<string | undefined>
 
 /**

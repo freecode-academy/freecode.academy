@@ -8,25 +8,24 @@ export const Activity = interfaceType({
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
     t.nonNull.id('userId')
-    t.field('data', {
-      type: 'Json',
-    })
+    t.string('data')
     t.nonNull.field('type', {
       type: 'ActivityType',
     })
   },
   resolveType(object) {
-    if ('url' in object) {
-      return 'ActivityUrl'
-    } else if ('ChatMessage' in object) {
-      return 'ActivityMessage'
-    } else if ('User' in object) {
-      return 'ActivityUser'
-    } else if ('MindLog' in object) {
-      return 'ActivityMindLog'
+    switch (object.type) {
+      case 'MindLog':
+        return 'ActivityMindLog'
+      case 'SendMessaged':
+        return 'ActivityMessage'
+      case 'ToolCall':
+        return 'ActivityToolCall'
+      case 'UrlChanged':
+        return 'ActivityUrl'
+      case 'UserCreated':
+        return 'ActivityUser'
     }
-
-    return null
   },
 })
 
@@ -65,6 +64,17 @@ export const ActivityUrl = objectType({
   definition(t) {
     t.implements('Activity')
     t.nonNull.string('url')
+  },
+})
+
+export const ActivityToolCall = objectType({
+  name: 'ActivityToolCall',
+  definition(t) {
+    t.implements('Activity')
+    t.nonNull.string('name')
+    t.field('args', {
+      type: 'Json',
+    })
   },
 })
 

@@ -7,7 +7,7 @@ import {
   NormalizedCacheObject,
   useApolloClient,
 } from '@apollo/client'
-import { ActivityFragment, ActivityType } from 'src/gql/generated'
+import { ActivityFragment } from 'src/gql/generated'
 import { ActivityMessage } from './Message'
 import { GridCell, GridRow } from 'src/components/Grid/styles'
 import { ActivityUser } from './User'
@@ -39,40 +39,57 @@ export const ActivitiesView: React.FC = () => {
           let title: string
           let dataContent: React.ReactNode = null
 
-          switch (n.type) {
-            case ActivityType.USERCREATED:
+          switch (n.__typename) {
+            case 'ActivityUser':
               title = 'Новый пользователь'
               break
 
-            case ActivityType.URLCHANGED:
+            case 'ActivityUrl':
               title = 'Изменен УРЛ'
-
               break
 
-            case ActivityType.SENDMESSAGED: {
+            case 'ActivityMessage': {
               title = 'Сообщение'
 
-              if ('ChatMessage' in n) {
-                dataContent = <ActivityMessage message={n.ChatMessage} />
-              }
+              dataContent = <ActivityMessage message={n.ChatMessage} />
 
               break
             }
 
-            case ActivityType.MINDLOG:
+            case 'ActivityMindLog':
               title = 'MindLog'
 
-              if ('MindLog' in n) {
-                dataContent = (
-                  <>
-                    <h3>{n.MindLog.type}</h3>
+              dataContent = (
+                <>
+                  <h3>{n.MindLog.type}</h3>
 
-                    {n.MindLog.data}
-                  </>
-                )
-              }
+                  {n.MindLog.data}
+                </>
+              )
 
               break
+
+            case 'ActivityToolCall':
+              title = 'Tool call'
+
+              dataContent = (
+                <pre>
+                  {JSON.stringify(
+                    {
+                      name: n.name,
+                      args: n.args,
+                    },
+                    null,
+                    2
+                  )}
+                </pre>
+              )
+
+              break
+
+            default:
+              title = 'Unknown'
+              console.error('unknown type', n.__typename)
           }
 
           return (

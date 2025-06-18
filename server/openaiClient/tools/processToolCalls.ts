@@ -39,6 +39,7 @@ export async function processToolCalls({
       toolCall,
       ctx: context,
       user,
+      messages,
     })
       .then((r) => {
         return {

@@ -4,6 +4,8 @@ import { toolName } from './interfaces'
 import { tools } from '.'
 import { ToolCall, User } from '../interfaces'
 import { MindLogType } from '@prisma/client'
+import { createActivity } from '../../nexus/types/Activity/helpers/createActivity'
+import { ChatCompletionMessageParam } from 'openai/resources'
 
 /**
  * Обработчик вызовов инструментов
@@ -13,6 +15,7 @@ type handleToolCallProps = {
   ctx: PrismaContext
   user: User
   toolCall: ToolCall
+  messages: ChatCompletionMessageParam[]
 }
 
 export async function handleToolCall({
@@ -20,9 +23,20 @@ export async function handleToolCall({
   user,
   ctx,
   toolCall,
+  messages,
 }: handleToolCallProps): Promise<string | undefined> {
   const { name, arguments: argsString } = toolCall.function
   const args = JSON.parse(argsString)
+
+  createActivity({
+    ctx,
+    userId: user.id,
+    payload: {
+      type: 'ToolCall',
+      name,
+      args,
+    },
+  })
 
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
@@ -33,7 +47,7 @@ export async function handleToolCall({
     const tool = tools[name as keyof typeof tools]
 
     if (tool) {
-      return await tool.handler(args, ctx, user)
+      return await tool.handler(args, ctx, user, messages)
     }
 
     if (Object.values<string>(MindLogType).includes(name)) {

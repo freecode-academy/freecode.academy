@@ -12,4 +12,8 @@ export const ActivitiesViewTable = styled(GridTable)`
 
 export const ActivitiesViewStyled = styled.div`
   height: 100%;
+
+  pre {
+    white-space: pre-line;
+  }
 `

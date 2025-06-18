@@ -1,1 +1,1 @@
-export { UserPage as default } from 'src/pages/Users/User'
+export { UserPage as default } from 'src/pages/Users/UserLegacy'

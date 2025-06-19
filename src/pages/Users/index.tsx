@@ -67,7 +67,7 @@ function getVariables(
     page,
     where,
     orderBy: {
-      updatedAt: SortOrder.DESC,
+      rating: SortOrder.DESC,
     },
   }
 }

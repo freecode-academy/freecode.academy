@@ -78,6 +78,9 @@ export const User = objectType({
     })
     t.nonNull.string('intro')
     t.nonNull.string('content')
+    t.int('rating', {
+      description: 'Рейтинг от 0 до 1000',
+    })
     t.editorComponentObject('about', {
       deprecation: 'Use content instead',
     })

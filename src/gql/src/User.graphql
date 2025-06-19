@@ -274,6 +274,7 @@ fragment usersConnectionUser on User {
   intro
   content @include(if: $withContent)
   about @include(if: $withContent)
+  rating
 
   # EthAccounts {
   #   id
@@ -408,4 +409,5 @@ fragment UserNoNesting on User {
   blocked
   intro
   content
+  rating
 }

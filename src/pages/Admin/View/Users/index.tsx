@@ -23,7 +23,7 @@ export const AsminUsersView: React.FC = () => {
       },
       first: limit,
       orderBy: {
-        updatedAt: SortOrder.DESC,
+        rating: SortOrder.DESC,
       },
       withContent: true,
       skip,
@@ -43,6 +43,7 @@ export const AsminUsersView: React.FC = () => {
       <AsminUsersViewTable>
         {response.data?.users.map((n) => (
           <GridRow key={n.id}>
+            <GridCell>{n.rating}</GridCell>
             <GridCell>
               <UserLink user={n} />
             </GridCell>

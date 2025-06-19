@@ -14,6 +14,7 @@ export const GridTableAttributeStyled = styled.div<GridTableAttributeStyledProps
 
     &::before {
       content: attr(data-label);
+      padding-right: 5px;
     }
   }
 `

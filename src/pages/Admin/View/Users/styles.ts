@@ -2,7 +2,7 @@ import { GridCell, GridTable } from 'src/components/Grid/styles'
 import styled from 'styled-components'
 
 export const AsminUsersViewTable = styled(GridTable)`
-  grid-template-columns: max-content max-content auto auto auto auto;
+  grid-template-columns: max-content max-content repeat(5, auto);
 
   ${GridCell} {
     max-height: 300px;

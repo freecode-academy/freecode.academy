@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Pagination } from 'src/components/Pagination'
+import { PaginationWithStyles as Pagination } from 'src/components/Pagination'
 import { NoticesViewProps } from './interfaces'
 import NoticeView from './Notice'
 import { NoticesViewStyled } from './styles'

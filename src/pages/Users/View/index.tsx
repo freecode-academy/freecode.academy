@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import {
-  GridTableAttributesContainerStyled,
   GridTableAttributeStyled,
   GridTableItemStyled,
 } from 'src/components/GridTable/styles'
@@ -24,21 +23,17 @@ export const UsersView: React.FC<UsersViewProps> = ({
         <GridTableAttributeStyled className="status">
           Пользователь
         </GridTableAttributeStyled>
+        <GridTableAttributeStyled>Рейтинг</GridTableAttributeStyled>
 
-        <GridTableAttributeStyled>
-          Технологический уровень
-        </GridTableAttributeStyled>
+        <GridTableAttributeStyled>Техуровень</GridTableAttributeStyled>
 
-        <GridTableAttributeStyled>Создал проекты</GridTableAttributeStyled>
+        <GridTableAttributeStyled>О себе</GridTableAttributeStyled>
 
-        <GridTableAttributeStyled>
-          Участвует в проектах
-        </GridTableAttributeStyled>
-        <GridTableAttributesContainerStyled>
+        {/* <GridTableAttributesContainerStyled>
           <GridTableAttributeStyled>Дата регистрации</GridTableAttributeStyled>
 
           <GridTableAttributeStyled>Дата обновления</GridTableAttributeStyled>
-        </GridTableAttributesContainerStyled>
+        </GridTableAttributesContainerStyled> */}
       </GridTableItemStyled>
     )
   }, [])

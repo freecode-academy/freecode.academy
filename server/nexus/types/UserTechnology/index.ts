@@ -64,6 +64,9 @@ export const UserTechnology = objectType({
     t.field('components', {
       type: 'JSON',
     })
+    t.nonNull.int('rating', {
+      description: 'Рейтинг от 0 до 1000',
+    })
     t.date('date_from')
     t.date('date_till')
     t.field('status', {

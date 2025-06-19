@@ -22,6 +22,7 @@ export async function getUsers({ args, ctx }: getUsersProps) {
     intro
     content
     about
+    rating
 
     UserTechnologies @include(if: $withSkills) {
       id
@@ -32,6 +33,7 @@ export async function getUsers({ args, ctx }: getUsersProps) {
       level
       status
       updatedAt
+      rating
       Technology: UserTechnologyTechnology {
         id
         name

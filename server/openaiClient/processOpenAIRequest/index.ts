@@ -67,7 +67,8 @@ sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
        */
       tools: openAiTools,
       tool_choice: 'auto',
-      parallel_tool_calls: false,
+      parallel_tool_calls: true,
+      max_completion_tokens: 20000,
     })
 
     const responseMessage = completion.choices[0].message

@@ -50,6 +50,9 @@ model User {
   intro   String   @default("") @db.Text
   content String   @default("") @db.MediumText
 
+  // Рейтинг от 0 до 1000
+  rating Int @default(0)
+
   User                                                   User?                     @relation("UserToUser_CreatedBy", fields: [CreatedBy], references: [id])
   EthAccount_EthAccountToUser_EthAccountAuthed           EthAccount?               @relation("EthAccountToUser_EthAccountAuthed", fields: [EthAccountAuthed], references: [id])
   CallRequests_CallRequest_CalledToUser                  CallRequest[]             @relation("CallRequest_CalledToUser")
@@ -1453,6 +1456,9 @@ model UserTechnology {
   Technology                            String                      @db.VarChar(32)
   Technology_TechnologyToUserTechnology Technology                  @relation(fields: [Technology], references: [id])
   level                                 Int?                        @db.UnsignedTinyInt
+
+  // Рейтинг от 0 до 1000
+  rating Int @default(0)
 
   @@unique([CreatedBy, Technology])
   @@index([CreatedBy], name: "CreatedBy")

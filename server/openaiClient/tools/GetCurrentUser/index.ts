@@ -1,5 +1,4 @@
 import { getUsersTool } from '../getUsers'
-import { formatUserData } from '../getUsers/helpers/formatUserData'
 import { BaseAiTool, toolName } from '../interfaces'
 
 /** Тип аргументов для GetCurrentUser */
@@ -35,14 +34,6 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
       throw new Error('Не были получены данные текущего пользователя')
     }
 
-    const permissions: string[] = []
-
-    if (currentUser.sudo) {
-      permissions.push(
-        `Суперпользователь. Имеет право выполнять любые действия, включая обновление компаний и получать списки пользователей`
-      )
-    }
-
     const extendedData = await getUsersTool.handler(
       {
         ids: [currentUser.id],
@@ -52,9 +43,6 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
       messages
     )
 
-    extendedData
-
-    // @ts-expect-error types
-    return JSON.stringify(formatUserData({ user: currentUser }), null, 2)
+    return extendedData
   },
 }

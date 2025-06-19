@@ -1,7 +1,7 @@
-import { NexusGenRootTypes } from 'server/nexus/generated/nexus'
+import { User } from '@prisma/client'
 
 type formatUserDataProps = {
-  user: NexusGenRootTypes['User']
+  user: User
 }
 
 export function formatUserData({ user }: formatUserDataProps) {
@@ -15,6 +15,7 @@ export function formatUserData({ user }: formatUserDataProps) {
     intro,
     content,
     createdAt,
+    rating,
   } = user
 
   return {
@@ -27,6 +28,7 @@ export function formatUserData({ user }: formatUserDataProps) {
     intro,
     content,
     createdAt,
+    rating,
     url: username ? `/profile/${username}` : `/profile/id/${id}`,
   }
 }

@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
-export const TabButtonStyled = styled.button<{
+type TabButtonStyledProps = {
   $active?: boolean
   $hasNewMessages?: boolean
-}>`
+}
+
+export const TabButtonStyled = styled.button<TabButtonStyledProps>`
   flex: 1;
   padding: 12px;
   font-size: 16px;

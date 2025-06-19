@@ -45,6 +45,10 @@ export const GlobalStyle = createGlobalStyle`
     margin-bottom: 1rem;
   }
 
+  pre, code {
+    white-space: pre-line !important;
+  }
+
   .flex {
     display: flex;
 

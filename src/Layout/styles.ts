@@ -88,6 +88,7 @@ export const LayoutContentContainerStyled = styled.div<LayoutContentContainerSty
   > * {
     height: 100%;
     min-height: 0;
+    min-width: 0;
   }
 
   /* Стили для дочерних элементов на мобильных устройствах */

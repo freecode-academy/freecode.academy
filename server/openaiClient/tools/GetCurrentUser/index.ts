@@ -34,7 +34,15 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
       throw new Error('Не были получены данные текущего пользователя')
     }
 
-    const extendedData = await getUsersTool.handler(
+    const permissions: string[] = []
+
+    if (currentUser.sudo) {
+      permissions.push(
+        `Суперпользователь. Имеет право выполнять любые действия, включая обновление компаний и получать списки пользователей`
+      )
+    }
+
+    let extendedData = await getUsersTool.handler(
       {
         ids: [currentUser.id],
       },
@@ -42,6 +50,17 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
       user,
       messages
     )
+
+    if (permissions.length) {
+      extendedData =
+        (extendedData || '') +
+        `
+
+## Важно! Права пользователя
+
+${JSON.stringify(permissions, null, 2)}
+`
+    }
 
     return extendedData
   },

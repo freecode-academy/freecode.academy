@@ -26,17 +26,17 @@ query chatMessageOld($where: ChatMessageOldWhereUniqueInput!) {
   }
 }
 
-query dialog {
-  chatMessageOldsDialog {
-    ...ChatMessageOld_
-  }
-}
+# query dialog {
+#   chatMessageOldsDialog {
+#     ...ChatMessageOld_
+#   }
+# }
 
 fragment ChatMessageOld_ on ChatMessageOld {
   ...ChatMessageOldNoNesting
-  Room {
-    ...ChatRoomNoNesting
-  }
+  # Room {
+  #   ...ChatRoomNoNesting
+  # }
   CreatedBy {
     ...UserNoNesting
   }
@@ -53,20 +53,20 @@ fragment ChatMessageOldNoNesting on ChatMessageOld {
   contentText
 }
 
-fragment ChatMessageOldResponse_ on ChatMessageOldResponse {
-  success
-  message
-  errors {
-    key
-    message
-  }
-  data {
-    ...ChatMessageOld_
-  }
-  reply {
-    ...ChatMessageOld_
-  }
-  createdUser {
-    ...AuthPayload_
-  }
-}
+# fragment ChatMessageOldResponse_ on ChatMessageOldResponse {
+#   success
+#   message
+#   errors {
+#     key
+#     message
+#   }
+#   data {
+#     ...ChatMessageOld_
+#   }
+#   reply {
+#     ...ChatMessageOld_
+#   }
+#   createdUser {
+#     ...AuthPayload_
+#   }
+# }

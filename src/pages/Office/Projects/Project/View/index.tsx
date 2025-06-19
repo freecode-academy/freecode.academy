@@ -7,7 +7,7 @@ import { OfficeProjectPageViewStyled } from './styles'
 // import Tasks from './Tasks'
 import ProjectCalendar from './Calendar'
 import ProjectTasks from './Tasks'
-import { CalendarProps } from 'src/pages/Office/View/Calendar/interfaces'
+// import { CalendarProps } from 'src/pages/Office/View/Calendar/interfaces'
 
 const OfficeProjectPageView: React.FC<OfficeProjectPageViewProps> = ({
   project,
@@ -20,27 +20,25 @@ const OfficeProjectPageView: React.FC<OfficeProjectPageViewProps> = ({
   //   setCreateTaskOpened(true);
   // }, []);
 
-  const tasks = useMemo(() => {
-    const tasks: CalendarProps['tasks'] = []
+  // const tasks = useMemo(() => {
+  //   const tasks: CalendarProps['tasks'] = []
 
-    project.ProjectTasks?.forEach((n) => {
-      n.Task && tasks.push(n.Task)
-    }) || []
+  //   project.ProjectTasks?.forEach((n) => {
+  //     n.Task && tasks.push(n.Task)
+  //   }) || []
 
-    return tasks
-  }, [project.ProjectTasks])
+  //   return tasks
+  // }, [project.ProjectTasks])
 
   const viewContent = useMemo(() => {
     if (view === 'taskslist') {
       return <ProjectTasks project={project} />
     } else if (view.type === 'calendar') {
-      return (
-        <ProjectCalendar tasks={tasks} project={project} range={view.range} />
-      )
+      return <ProjectCalendar tasks={[]} project={project} range={view.range} />
     } else {
       return null
     }
-  }, [project, tasks, view])
+  }, [project, view])
 
   return useMemo(() => {
     return (

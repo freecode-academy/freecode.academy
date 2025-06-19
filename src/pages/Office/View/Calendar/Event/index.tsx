@@ -6,7 +6,6 @@ import { CalendarEventProps } from './interfaces'
 import useActiveTimer from 'src/hooks/useActiveTimer'
 import TimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/TimerButton'
 import StartTimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/StartTimerButton'
-import TaskChangeStatusButton from 'src/pages/Office/Projects/Project/View/Tasks/Task/ChangeStatusButton'
 import TaskLink from 'src/uikit/Link/Task'
 
 /**
@@ -69,7 +68,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             {/* {eventContent.event.title}{' '} */}
             {task?.status ? `(${task.status})` : null}
           </TaskLink>{' '}
-          {timer} <TaskChangeStatusButton task={task} />
+          {timer}
         </i>
         <p>
           {task.TaskProjects?.map((n) =>

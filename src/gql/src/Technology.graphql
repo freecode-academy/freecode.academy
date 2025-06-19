@@ -30,24 +30,24 @@ query technologiesConnection(
   }
 }
 
-mutation createTechnology(
-  $data: TechnologyCreateInput!
-  $withLearnStrategies: Boolean! = false
-) {
-  createTechnology(data: $data) {
-    ...technology_
-  }
-}
+# mutation createTechnology(
+#   $data: TechnologyCreateInput!
+#   $withLearnStrategies: Boolean! = false
+# ) {
+#   createTechnology(data: $data) {
+#     ...technology_
+#   }
+# }
 
-mutation updateTechnology(
-  $data: TechnologyUpdateInput!
-  $where: TechnologyWhereUniqueInput!
-  $withLearnStrategies: Boolean! = false
-) {
-  updateTechnology(data: $data, where: $where) {
-    ...technology_
-  }
-}
+# mutation updateTechnology(
+#   $data: TechnologyUpdateInput!
+#   $where: TechnologyWhereUniqueInput!
+#   $withLearnStrategies: Boolean! = false
+# ) {
+#   updateTechnology(data: $data, where: $where) {
+#     ...technology_
+#   }
+# }
 
 fragment technologiesConnectionTechnology on Technology {
   ...TechnologyNoNesting

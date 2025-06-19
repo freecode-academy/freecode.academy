@@ -1,12 +1,8 @@
 import { PrismaCmsComponentError } from '@prisma-cms/component'
-import { UserTechnology, UserTechnologyUpdateInput } from 'src/gql/generated'
+import { UserTechnology } from 'src/gql/generated'
 
 export type UserTechnologyStatusViewProps = {
-  inEditMode: boolean
-  setValue?: (
-    name: 'status',
-    value: UserTechnologyUpdateInput['status']
-  ) => void
+  inEditMode?: boolean
   value: UserTechnology['status']
-  error: PrismaCmsComponentError | undefined
+  error?: PrismaCmsComponentError | undefined
 }

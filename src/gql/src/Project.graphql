@@ -1,0 +1,147 @@
+# mutation createProjectProcessor($data: ProjectCreateInput!) {
+#   response: createProjectProcessor(data: $data) {
+#     success
+#     message
+#     errors {
+#       key
+#       message
+#     }
+#     data {
+#       id
+#     }
+#   }
+# }
+
+query projectsConnection(
+  $first: Int = 12
+  $skip: Int
+  $where: ProjectWhereInput
+  $orderBy: [ProjectOrderByWithRelationInput!] = { updatedAt: desc }
+) {
+  projectsCount(where: $where)
+  projects(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
+    ...projectsConnectionProject
+  }
+}
+
+fragment projectsConnectionProject on Project {
+  ...ProjectNoNesting
+  CreatedBy {
+    ...projectsConnectionUser
+  }
+  Members {
+    id
+    User {
+      ...projectsConnectionUser
+    }
+  }
+  # ProjectTasks {
+  #   id
+  #   createdAt
+  #   updatedAt
+  #   Task {
+  #     ...TaskNoNesting
+  #     CreatedBy {
+  #       ...projectsConnectionUser
+  #     }
+  #     Timers(where: { stopedAt: null }) {
+  #       ...Timer_
+  #     }
+  #     CreatedBy {
+  #       ...projectsConnectionUser
+  #     }
+  #     Parent {
+  #       ...TaskNoNesting
+  #     }
+  #   }
+  # }
+  Resource {
+    id
+    uri
+    Image {
+      id
+      path
+    }
+  }
+}
+
+fragment projectsConnectionUser on User {
+  ...UserNoNesting
+}
+
+# query project($where: ResourceWhereUniqueInput!) {
+#   object: resource(where: $where) {
+#     id
+#     name
+#     uri
+#     type
+#     Project {
+#       ...project_
+#     }
+#   }
+# }
+
+# Так как проекты дергаются в том числе через ресурс,
+# придется искать не по уникальному ключу
+
+query projects(
+  $where: ProjectWhereInput
+  $first: Int
+  $timersWhere: TimerWhereInput
+) {
+  projects(where: $where, take: $first) {
+    ...project_
+  }
+}
+
+fragment project_ on Project {
+  ...ProjectNoNesting
+  CreatedBy {
+    ...UserNoNesting
+  }
+  Members {
+    id
+    User {
+      ...UserNoNesting
+    }
+  }
+  # ProjectTasks(orderBy: { createdAt: desc }) {
+  #   id
+  #   createdAt
+  #   updatedAt
+  #   Task {
+  #     # ...TaskNoNesting
+  #     # CreatedBy {
+  #     #   ...UserNoNesting
+  #     # }
+  #     # Timers(where: { stopedAt: null }) {
+  #     #   id
+  #     #   createdAt
+  #     #   updatedAt
+  #     #   stopedAt
+  #     #   CreatedBy {
+  #     #     ...UserNoNesting
+  #     #   }
+  #     # }
+  #     # CreatedBy {
+  #     #   ...UserNoNesting
+  #     # }
+  #     # Parent {
+  #     #   ...TaskNoNesting
+  #     # }
+
+  #     # ...tasksConnectionTask
+  #     ...task_
+  #   }
+  # }
+  Resource {
+    id
+    uri
+    name
+    type
+    Image {
+      id
+      path
+    }
+  }
+}

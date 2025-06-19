@@ -78,8 +78,8 @@ fragment ResourceNoNesting on Resource {
 #   }
 # }
 
-mutation deleteResource($where: ResourceWhereUniqueInput!) {
-  deleteResource(where: $where) {
-    ...ResourceNoNesting
-  }
-}
+# mutation deleteResource($where: ResourceWhereUniqueInput!) {
+#   deleteResource(where: $where) {
+#     ...ResourceNoNesting
+#   }
+# }

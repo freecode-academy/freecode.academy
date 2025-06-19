@@ -20,6 +20,37 @@ query timersConnection(
   }
 }
 
+mutation createTimerProcessor($data: TimerCreateInput!) {
+  response: createTimerProcessor(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...TimerNoNesting
+    }
+  }
+}
+
+mutation updateTimerProcessor(
+  $data: TimerUpdateInput!
+  $where: TimerWhereUniqueInput!
+) {
+  response: updateTimerProcessor(data: $data, where: $where) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...TimerNoNesting
+    }
+  }
+}
+
 # fragment Timer_ on Timer {
 #   ...TimerNoNesting
 

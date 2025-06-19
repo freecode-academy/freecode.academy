@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React from 'react'
 import Grid from 'src/uikit/Grid'
 import Paper from 'src/uikit/Paper'

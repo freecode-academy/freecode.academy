@@ -10,49 +10,49 @@ export const CodeChallengeBlock = objectType({
     t.string('name')
     t.int('rank')
 
-    // t.field('Parent', {
-    //   type: 'CodeChallengeBlock',
-    //   // @ts-expect-error types
-    //   resolve({ Parent }, _, ctx) {
-    //     return Parent
-    //       ? ctx.prisma.codeChallengeBlock.findUnique({ where: { id: Parent } })
-    //       : null
-    //   },
-    // })
+    t.field('Parent', {
+      type: 'CodeChallengeBlock',
+      // @ts-expect-error types
+      resolve({ Parent }, _, ctx) {
+        return Parent
+          ? ctx.prisma.codeChallengeBlock.findUnique({ where: { id: Parent } })
+          : null
+      },
+    })
 
-    // t.list.nonNull.field('Challenges', {
-    //   type: 'CodeChallenge',
-    //   args: {
-    //     orderBy: 'CodeChallengeOrderByWithRelationInput',
-    //   },
-    //   resolve({ id }, args, ctx) {
-    //     const orderBy = args.orderBy as
-    //       | Prisma.CodeChallengeOrderByWithRelationInput
-    //       | undefined
+    t.list.nonNull.field('Challenges', {
+      type: 'CodeChallenge',
+      args: {
+        orderBy: 'CodeChallengeOrderByWithRelationInput',
+      },
+      resolve({ id }, args, ctx) {
+        const orderBy = args.orderBy as
+          | Prisma.CodeChallengeOrderByWithRelationInput
+          | undefined
 
-    //     return ctx.prisma.codeChallenge.findMany({
-    //       where: { Block: id },
-    //       orderBy: orderBy ? [orderBy] : undefined,
-    //     })
-    //   },
-    // })
+        return ctx.prisma.codeChallenge.findMany({
+          where: { Block: id },
+          orderBy: orderBy ? [orderBy] : undefined,
+        })
+      },
+    })
 
-    // t.list.nonNull.field('Children', {
-    //   type: 'CodeChallengeBlock',
-    //   args: {
-    //     orderBy: 'CodeChallengeBlockOrderByWithRelationInput',
-    //   },
-    //   resolve({ id }, args, ctx) {
-    //     const orderBy = args.orderBy as
-    //       | Prisma.CodeChallengeBlockOrderByWithRelationInput
-    //       | undefined
+    t.list.nonNull.field('Children', {
+      type: 'CodeChallengeBlock',
+      args: {
+        orderBy: 'CodeChallengeBlockOrderByWithRelationInput',
+      },
+      resolve({ id }, args, ctx) {
+        const orderBy = args.orderBy as
+          | Prisma.CodeChallengeBlockOrderByWithRelationInput
+          | undefined
 
-    //     return ctx.prisma.codeChallengeBlock.findMany({
-    //       where: { Parent: id },
-    //       orderBy: orderBy ? [orderBy] : undefined,
-    //     })
-    //   },
-    // })
+        return ctx.prisma.codeChallengeBlock.findMany({
+          where: { Parent: id },
+          orderBy: orderBy ? [orderBy] : undefined,
+        })
+      },
+    })
   },
 })
 

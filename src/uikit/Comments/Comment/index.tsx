@@ -21,7 +21,6 @@ import {
 } from 'src/gql/generated'
 import SiteFrontEditor from 'src/components/SiteFrontEditor'
 import { EditorComponentProps } from '@prisma-cms/front-editor/dist'
-import { DeleteResource } from 'src/components/DeleteResource'
 // import moment from 'moment';
 
 export * from './interfaces'
@@ -162,16 +161,6 @@ class UikitComment extends EditableView<UikitCommentProps> {
         originButtons.forEach((n) => buttons.push(n))
       } else {
         buttons.push(originButtons)
-      }
-    }
-
-    const { user: currentUser } = this.context
-
-    if (this.props.object) {
-      if (currentUser?.sudo) {
-        buttons.push(
-          <DeleteResource key="DeleteResource" resource={this.props.object} />
-        )
       }
     }
 

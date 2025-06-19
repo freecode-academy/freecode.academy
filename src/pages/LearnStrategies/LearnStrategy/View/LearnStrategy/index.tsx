@@ -3,14 +3,12 @@ import React, { useCallback, useMemo, useState } from 'react'
 import Button from 'src/components/ui/Button'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
 import { useLearnStrategyQuery } from 'src/gql/generated'
-import { ConnectLearnStrategyButton } from 'src/pages/LearnStrategies/View/Members/ConnectLearnStrategyButton'
 import { LearnStrategyViewProps } from './interfaces'
 import { LearnStrategyViewStages } from './Stages'
 import {
   LearnStrategyViewStyled,
   LearnStrategyViewToolbarStyled,
 } from './styles'
-import { LearnStrategyUpdateForm } from './UpdateForm'
 
 /**
  * Рекурсивный вывод стратегии развития с дочерними подстратегиями
@@ -21,7 +19,7 @@ export const LearnStrategyView: React.FC<LearnStrategyViewProps> = ({
   currentUser,
   showChilds,
   editable,
-  isRoot,
+  // isRoot,
 }) => {
   const response = useLearnStrategyQuery({
     /**
@@ -90,33 +88,23 @@ export const LearnStrategyView: React.FC<LearnStrategyViewProps> = ({
     return (
       <LearnStrategyViewStyled>
         <LearnStrategyViewToolbarStyled className="flex align-items-center">
-          {inEditMode ? (
-            <LearnStrategyUpdateForm
-              learnStrategy={learnStrategy}
-              inEditModeSetter={inEditModeSetter}
-            />
-          ) : (
-            <>
-              <span>Стратегия развития: </span>
-              <Link href={`/learnstrategies/${learnStrategy.id}`}>
-                {learnStrategy.name}
-              </Link>{' '}
-              {learnStrategy.level
-                ? ` (Уровень: ${getUserTechnologyLevelText(
-                    learnStrategy.level
-                  )})`
-                : null}
-            </>
-          )}
-
+          <>
+            <span>Стратегия развития: </span>
+            <Link href={`/learnstrategies/${learnStrategy.id}`}>
+              {learnStrategy.name}
+            </Link>{' '}
+            {learnStrategy.level
+              ? ` (Уровень: ${getUserTechnologyLevelText(learnStrategy.level)})`
+              : null}
+          </>
           <div className="flex-1" />
           {buttons}
 
-          <ConnectLearnStrategyButton
+          {/* <ConnectLearnStrategyButton
             currentUser={currentUser}
             learnStrategy={learnStrategy}
             canConnect={isRoot}
-          />
+          /> */}
         </LearnStrategyViewToolbarStyled>
         <div>{!inEditMode ? learnStrategy.description : null}</div>
 
@@ -131,12 +119,11 @@ export const LearnStrategyView: React.FC<LearnStrategyViewProps> = ({
       </LearnStrategyViewStyled>
     )
   }, [
-    learnStrategy,
-    inEditMode,
     buttons,
     currentUser,
-    isRoot,
-    showChilds,
+    inEditMode,
+    learnStrategy,
     loadedIDsWithCurrent,
+    showChilds,
   ])
 }

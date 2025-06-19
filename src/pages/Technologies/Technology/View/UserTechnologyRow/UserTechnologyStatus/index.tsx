@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react'
+import React, { useMemo } from 'react'
 import { getUserTechnologyStatusText } from 'src/helpers/getUserTechnologyStatusText'
 import { UserTechnologyStatus } from 'src/gql/generated'
 import { Autocomplete } from 'src/uikit/Autocomplete'
@@ -7,21 +7,8 @@ import { UserTechnologyStatusViewProps } from './interfaces'
 const UserTechnologyStatusView: React.FC<UserTechnologyStatusViewProps> = ({
   value,
   inEditMode,
-  setValue,
   error,
 }) => {
-  const onStatusChange = useCallback(
-    (value: keyof typeof UserTechnologyStatus) => {
-      // console.log('onStatusChange value', value);
-      // console.log('onStatusChange item', item);
-
-      const status = UserTechnologyStatus[value]
-
-      setValue && setValue('status', status)
-    },
-    [setValue]
-  )
-
   return useMemo(() => {
     if (inEditMode) {
       const keys = Object.keys(UserTechnologyStatus) as Array<
@@ -36,7 +23,6 @@ const UserTechnologyStatusView: React.FC<UserTechnologyStatusViewProps> = ({
         <Autocomplete
           items={items}
           value={value || ''}
-          onSelect={onStatusChange}
           inputProps={{
             label: 'Статус',
             fullWidth: true,
@@ -51,7 +37,7 @@ const UserTechnologyStatusView: React.FC<UserTechnologyStatusViewProps> = ({
     }
 
     return <>{value ? getUserTechnologyStatusText(value) : null}</>
-  }, [error, inEditMode, onStatusChange, value])
+  }, [error, inEditMode, value])
 }
 
 export default UserTechnologyStatusView

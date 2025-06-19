@@ -34,29 +34,29 @@ export const Project = objectType({
     t.boolean('public')
     t.int('oldID')
 
-    // t.field('CreatedBy', {
-    //   type: 'User',
-    //   // @ts-expect-error types
-    //   resolve({ CreatedBy }, _, ctx) {
-    //     return CreatedBy
-    //       ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
-    //       : null
-    //   },
-    // })
-    // t.field('Resource', {
-    //   type: 'Resource',
-    //   // @ts-expect-error types
-    //   resolve({ Resource }, _, ctx) {
-    //     return Resource
-    //       ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
-    //       : null
-    //   },
-    // })
+    t.field('CreatedBy', {
+      type: 'User',
+      // @ts-expect-error types
+      resolve({ CreatedBy }, _, ctx) {
+        return CreatedBy
+          ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
+          : null
+      },
+    })
+    t.field('Resource', {
+      type: 'Resource',
+      // @ts-expect-error types
+      resolve({ Resource }, _, ctx) {
+        return Resource
+          ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
+          : null
+      },
+    })
 
-    // // TODO Restore logic
-    // t.list.nonNull.field('Members', {
-    //   type: 'ProjectMember',
-    // })
+    // TODO Restore logic
+    t.list.nonNull.field('Members', {
+      type: 'ProjectMember',
+    })
 
     // // TODO Restore logic
     // t.list.nonNull.field('ProjectTasks', {

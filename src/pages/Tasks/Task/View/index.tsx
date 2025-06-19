@@ -10,7 +10,7 @@ import Grid from 'src/uikit/Grid'
 import TaskStatus from '../../TaskStatus'
 import TaskButtons from '../../View/Task/TaskButtons'
 import Editor from 'src/uikit/Editor'
-import UpdateTaskForm from './form/UpdateTask'
+// import UpdateTaskForm from './form/UpdateTask'
 import IconButton from 'material-ui/IconButton'
 import EditModeIcon from 'material-ui-icons/ModeEdit'
 import moment from 'moment'
@@ -47,31 +47,31 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
     setOpened(true)
   }, [])
 
-  const onCancel = useCallback(() => {
-    setOpened(false)
-  }, [])
+  // const onCancel = useCallback(() => {
+  //   setOpened(false)
+  // }, [])
 
-  const form = useMemo(() => {
-    if (!opened) {
-      return null
-    }
+  // const form = useMemo(() => {
+  //   if (!opened) {
+  //     return null
+  //   }
 
-    return (
-      <UpdateTaskForm
-        task={object}
-        options={{
-          variables: {
-            where: {
-              id: object.id,
-            },
-            data: {},
-          },
-        }}
-        cancel={onCancel}
-        onSuccess={onCancel}
-      />
-    )
-  }, [onCancel, opened, object])
+  //   return (
+  //     <UpdateTaskForm
+  //       task={object}
+  //       options={{
+  //         variables: {
+  //           where: {
+  //             id: object.id,
+  //           },
+  //           data: {},
+  //         },
+  //       }}
+  //       cancel={onCancel}
+  //       onSuccess={onCancel}
+  //     />
+  //   )
+  // }, [onCancel, opened, object])
 
   const lesson = useMemo(() => {
     if (object.CodeChallengeCompletion) {
@@ -201,7 +201,7 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
           </>
         ) : null}
 
-        {form}
+        {/* {form} */}
 
         {taskTechnologies}
 
@@ -211,23 +211,22 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
       </TaskViewStyled>
     )
   }, [
-    other,
-    object.name,
-    object.status,
-    object.TaskProjects,
-    object.startDatePlaning,
-    object.startDate,
-    object.endDatePlaning,
-    object.endDate,
-    object.content,
     buttons,
-    opened,
-    startEdit,
+    comments,
     lesson,
-    form,
+    object.TaskProjects,
+    object.content,
+    object.endDate,
+    object.endDatePlaning,
+    object.name,
+    object.startDate,
+    object.startDatePlaning,
+    object.status,
+    opened,
+    other,
+    startEdit,
     taskTechnologies,
     timersList,
-    comments,
   ])
 }
 

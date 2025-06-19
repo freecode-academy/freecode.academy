@@ -21,13 +21,13 @@ class ProjectView extends BaseProjectView<ProjectsListProjectProps> {
   }
 
   renderTasks() {
-    const { id: projectId, ProjectTasks } = this.getObjectWithMutations() || {}
+    const { id: projectId } = this.getObjectWithMutations() || {}
 
     const Tasks: TasksListProps['tasks'] = []
 
-    ProjectTasks?.forEach((n) => {
-      n.Task && Tasks.push(n.Task)
-    })
+    // ProjectTasks?.forEach((n) => {
+    //   n.Task && Tasks.push(n.Task)
+    // })
 
     const { tasksLimit } = this.props
 

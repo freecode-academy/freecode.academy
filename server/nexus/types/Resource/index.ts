@@ -62,27 +62,27 @@ export const Resource = objectType({
       },
     })
 
-    // // TODO Перепроверить логику
-    // t.list.nonNull.field('Comments', {
-    //   type: 'Resource',
-    //   description: 'Комментарии',
-    //   args: {
-    //     orderBy: 'ResourceOrderByWithRelationInput',
-    //   },
-    //   // @ts-expect-error types
-    //   resolve({ id }, args, ctx) {
-    //     const orderBy = args.orderBy as Prisma.ResourceOrderByWithRelationInput
+    // TODO Перепроверить логику
+    t.list.nonNull.field('Comments', {
+      type: 'Resource',
+      description: 'Комментарии',
+      args: {
+        orderBy: 'ResourceOrderByWithRelationInput',
+      },
+      // @ts-expect-error types
+      resolve({ id }, args, ctx) {
+        const orderBy = args.orderBy as Prisma.ResourceOrderByWithRelationInput
 
-    //     return id
-    //       ? ctx.prisma.resource.findMany({
-    //           where: {
-    //             Topic: id,
-    //           },
-    //           orderBy: orderBy ? [orderBy] : undefined,
-    //         })
-    //       : []
-    //   },
-    // })
+        return id
+          ? ctx.prisma.resource.findMany({
+              where: {
+                Topic: id,
+              },
+              orderBy: orderBy ? [orderBy] : undefined,
+            })
+          : []
+      },
+    })
 
     t.field('Topic', {
       type: 'Resource',

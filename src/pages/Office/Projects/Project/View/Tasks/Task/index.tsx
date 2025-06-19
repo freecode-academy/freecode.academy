@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import StartTimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/StartTimerButton'
 import TimerButton from 'src/pages/_App/layouts/OfficeLayout/Content/Header/TimerButton'
-import AddIcon from 'material-ui-icons/Add'
+// import AddIcon from 'material-ui-icons/Add'
 import HelpIcon from 'material-ui-icons/Help'
 import moment from 'moment'
 import { OfficeProjectPageViewTaskProps } from './interfaces'
@@ -12,11 +12,11 @@ import {
 import Link from 'next/link'
 import useActiveTimer from 'src/hooks/useActiveTimer'
 import OfficeProjectPageViewTaskProject from './Project'
-import CreateSubtask from './CreateSubtask'
-import { IconButton } from 'material-ui'
-import TaskChangeStatusButton from './ChangeStatusButton'
+// import CreateSubtask from './CreateSubtask'
+// import { IconButton } from 'material-ui'
+// import TaskChangeStatusButton from './ChangeStatusButton'
 import UikitUserLink from 'src/uikit/Link/User'
-import { CreateTaskProcessorMutationVariables } from 'src/gql/generated'
+// import { CreateTaskProcessorMutationVariables } from 'src/gql/generated'
 
 const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   task,
@@ -91,89 +91,89 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
   /**
    * Состояние формы добавления подзадачи открыта/закрыта
    */
-  const [createTaskFormOpened, createTaskFormOpenedSetter] = useState(false)
+  // const [createTaskFormOpened, createTaskFormOpenedSetter] = useState(false)
 
   /**
    * Открываем форму
    */
-  const createTaskFormOpen = useCallback(() => {
-    createTaskFormOpenedSetter(true)
-  }, [])
+  // const createTaskFormOpen = useCallback(() => {
+  //   createTaskFormOpenedSetter(true)
+  // }, [])
 
   /**
    * Закрываем форму
    */
-  const createTaskFormCancel = useCallback(() => {
-    createTaskFormOpenedSetter(false)
-  }, [])
+  // const createTaskFormCancel = useCallback(() => {
+  //   createTaskFormOpenedSetter(false)
+  // }, [])
 
   /**
    * При успешном сохранении задачи закрываем форму
    */
-  const createTaskonSuccess = useCallback(() => {
-    createTaskFormCancel()
-  }, [createTaskFormCancel])
+  // const createTaskonSuccess = useCallback(() => {
+  //   createTaskFormCancel()
+  // }, [createTaskFormCancel])
 
   /**
    * Создание подзадачи
    */
-  const createSubTask = useMemo(() => {
-    if (!project) {
-      return null
-    }
+  // const createSubTask = useMemo(() => {
+  //   if (!project) {
+  //     return null
+  //   }
 
-    const variables: CreateTaskProcessorMutationVariables = {
-      data: {
-        name: '',
-        Project: {
-          connect: {
-            id: project.id,
-          },
-        },
-        Parent: {
-          connect: {
-            id: task.id,
-          },
-        },
-      },
-    }
+  //   const variables: CreateTaskProcessorMutationVariables = {
+  //     data: {
+  //       name: '',
+  //       Project: {
+  //         connect: {
+  //           id: project.id,
+  //         },
+  //       },
+  //       Parent: {
+  //         connect: {
+  //           id: task.id,
+  //         },
+  //       },
+  //     },
+  //   }
 
-    return (
-      <CreateSubtask
-        opened={createTaskFormOpened}
-        cancel={createTaskFormCancel}
-        onSuccess={createTaskonSuccess}
-        options={{
-          variables,
-        }}
-      />
-    )
-  }, [
-    createTaskFormCancel,
-    createTaskFormOpened,
-    createTaskonSuccess,
-    project,
-    task.id,
-  ])
+  //   return (
+  //     <CreateSubtask
+  //       opened={createTaskFormOpened}
+  //       cancel={createTaskFormCancel}
+  //       onSuccess={createTaskonSuccess}
+  //       options={{
+  //         variables,
+  //       }}
+  //     />
+  //   )
+  // }, [
+  //   createTaskFormCancel,
+  //   createTaskFormOpened,
+  //   createTaskonSuccess,
+  //   project,
+  //   task.id,
+  // ])
 
   /**
    * Кнопка добавления подзадачи
    */
-  const addSubtaskButton = useMemo(() => {
-    // TODO вообще задачи имеют связь один-ко-многим проектам. В дальнейшем надо будет переделать.
-    /**
-     * Если проект не указан, то не выводим кнопку
-     */
-    if (!project) {
-      return null
-    }
+  // const addSubtaskButton = useMemo(() => {
+  //   // TODO вообще задачи имеют связь один-ко-многим проектам. В дальнейшем надо будет переделать.
+  //   /**
+  //    * Если проект не указан, то не выводим кнопку
+  //    */
+  //   if (!project) {
+  //     return null
+  //   }
 
-    return (
-      <IconButton onClick={createTaskFormOpen} title="Добавить подзадачу">
-        <AddIcon />
-      </IconButton>
-    )
-  }, [createTaskFormOpen, project])
+  //   return (
+  //     <IconButton onClick={createTaskFormOpen} title="Добавить подзадачу">
+  //       <AddIcon />
+  //     </IconButton>
+  //   )
+  // }, [createTaskFormOpen, project])
 
   /**
    * Рендерим дочерние таски
@@ -259,26 +259,24 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
           </div>
           <div className="timer">{duration}</div>
           {info}
-          <TaskChangeStatusButton task={task} />
-          {addSubtaskButton}
+          {/* <TaskChangeStatusButton task={task} /> */}
+          {/* {addSubtaskButton} */}
         </OfficeTaskListItemStyled>
 
-        {createSubTask}
+        {/* {createSubTask} */}
 
         {childTasks}
       </OfficeProjectPageViewTaskStyled>
     )
   }, [
     CreatedBy,
-    timer,
-    task,
-    projects,
-    duration,
-    info,
-    addSubtaskButton,
-    createSubTask,
     childTasks,
+    duration,
     filterByProject,
+    info,
+    projects,
+    task,
+    timer,
   ])
 }
 

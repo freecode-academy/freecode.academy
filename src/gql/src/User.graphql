@@ -1,6 +1,5 @@
 query me(
   $withMentorMentee: Boolean = true
-  $withNotificationTypes: Boolean = true
   $withUserTechnologies: Boolean = true
   $withCodeChallengeCompletions: Boolean = true
   $withEducationProjects: Boolean = false
@@ -13,7 +12,6 @@ query me(
 query user(
   $where: UserWhereUniqueInput!
   $withMentorMentee: Boolean = true
-  $withNotificationTypes: Boolean = true
   $withUserTechnologies: Boolean = true
   $withCodeChallengeCompletions: Boolean = false
   $withEducationProjects: Boolean = false
@@ -48,7 +46,6 @@ query usersConnection(
 mutation updateUserProcessor(
   $data: UserUpdateInput!
   $withMentorMentee: Boolean = false
-  $withNotificationTypes: Boolean = true
   $withUserTechnologies: Boolean = false
   $withCodeChallengeCompletions: Boolean = false
   $withEducationProjects: Boolean = false
@@ -102,23 +99,23 @@ mutation signup($data: UserSignupDataInput) {
 #   }
 # }
 
-mutation blockUser($where: UserWhereUniqueInput!) {
-  blockUser(where: $where) {
-    ...user_
-  }
-}
+# mutation blockUser($where: UserWhereUniqueInput!) {
+#   blockUser(where: $where) {
+#     ...user_
+#   }
+# }
 
-mutation unblockUser($where: UserWhereUniqueInput!) {
-  unblockUser(where: $where) {
-    ...user_
-  }
-}
+# mutation unblockUser($where: UserWhereUniqueInput!) {
+#   unblockUser(where: $where) {
+#     ...user_
+#   }
+# }
 
-mutation updateCurrentUser($data: CurrentUserUpdateInput!) {
-  updateCurrentUser(data: $data) {
-    ...user_
-  }
-}
+# mutation updateCurrentUser($data: CurrentUserUpdateInput!) {
+#   updateCurrentUser(data: $data) {
+#     ...user_
+#   }
+# }
 
 fragment meUser on User {
   ...userProfile
@@ -134,9 +131,9 @@ fragment meUser on User {
 
 fragment user_ on User {
   ...UserNoNesting
-  EthAccounts {
-    ...EthAccountNoNesting
-  }
+  # EthAccounts {
+  #   ...EthAccountNoNesting
+  # }
   # Projects {
   #   ...ProjectMemberNoNesting
   #   Project {
@@ -174,10 +171,6 @@ fragment userProfile on User {
       ...UserNoNesting
     }
   }
-  about
-  NotificationTypes @include(if: $withNotificationTypes) {
-    ...NotificationTypeNoNesting
-  }
   UserTechnologies @include(if: $withUserTechnologies) {
     ...technology_UserTechnology
     Technology: UserTechnologyTechnology {
@@ -200,29 +193,19 @@ fragment userProfile on User {
   ...user_
 }
 
-fragment EthAccountNoNesting on EthAccount {
-  id
-  createdAt
-  updatedAt
-  name
-  description
-  address
-  type
-  source
-  bytecode
-  abi
-  balance
-}
-
-fragment NotificationTypeNoNesting on NotificationType {
-  id
-  createdAt
-  updatedAt
-  name
-  code
-  comment
-  oldID
-}
+# fragment EthAccountNoNesting on EthAccount {
+#   id
+#   createdAt
+#   updatedAt
+#   name
+#   description
+#   address
+#   type
+#   source
+#   bytecode
+#   abi
+#   balance
+# }
 
 fragment ProjectMemberNoNesting on ProjectMember {
   id
@@ -263,9 +246,9 @@ fragment usersConnectionUser on User {
   hasPhone
   # marketplaceToken
   # hidden
-  acceptChatMessageOldAnonymous
-  acceptNewChatRoomAnonymous
-  acceptNewChatRoom
+  # acceptChatMessageOldAnonymous
+  # acceptNewChatRoomAnonymous
+  # acceptNewChatRoom
   technologyLevel
   isMentor
   telegram
@@ -273,7 +256,6 @@ fragment usersConnectionUser on User {
   blocked
   intro
   content @include(if: $withContent)
-  about @include(if: $withContent)
   rating
 
   # EthAccounts {
@@ -399,9 +381,9 @@ fragment UserNoNesting on User {
   hasPhone
   # marketplaceToken
   # hidden
-  acceptChatMessageOldAnonymous
-  acceptNewChatRoomAnonymous
-  acceptNewChatRoom
+  # acceptChatMessageOldAnonymous
+  # acceptNewChatRoomAnonymous
+  # acceptNewChatRoom
   technologyLevel
   isMentor
   telegram

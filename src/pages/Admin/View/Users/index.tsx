@@ -59,7 +59,7 @@ export const AsminUsersView: React.FC = () => {
               {' '}
               <MarkdownField>{n.content}</MarkdownField>
             </GridCell>
-            <GridCell>{JSON.stringify(n.about, null, 2)}</GridCell>
+            <GridCell>{null}</GridCell>
           </GridRow>
         ))}
       </AsminUsersViewTable>

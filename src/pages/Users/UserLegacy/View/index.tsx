@@ -5,7 +5,7 @@ import { UserViewStyled } from './styles'
 import Typography from 'material-ui/Typography'
 import UserAvatar from 'src/uikit/Avatar'
 // import Context, { PrismaCmsContext } from '@prisma-cms/context'
-import { UserNotifications } from './Notifications'
+// import { UserNotifications } from './Notifications'
 import Grid from 'src/uikit/Grid'
 import {
   Scalars,
@@ -151,13 +151,13 @@ export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
   /**
    * Уведомления
    */
-  const notifications = useMemo(() => {
-    if (!user?.NotificationTypes || !isCurrentUser || !inEditMode) {
-      return null
-    }
+  // const notifications = useMemo(() => {
+  //   if (!user?.NotificationTypes || !isCurrentUser || !inEditMode) {
+  //     return null
+  //   }
 
-    return <UserNotifications NotificationTypes={user.NotificationTypes} />
-  }, [inEditMode, isCurrentUser, user.NotificationTypes])
+  //   return <UserNotifications NotificationTypes={user.NotificationTypes} />
+  // }, [inEditMode, isCurrentUser, user.NotificationTypes])
 
   /**
    * Настройки чатов
@@ -438,11 +438,11 @@ export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
               </Grid>
             ) : null}
 
-            {notifications ? (
+            {/* {notifications ? (
               <Grid item xs={12}>
                 {notifications}
               </Grid>
-            ) : null}
+            ) : null} */}
 
             {chatSettings ? (
               <Grid item xs={12}>
@@ -460,7 +460,6 @@ export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
     emailField,
     fullname,
     isMentor,
-    notifications,
     password,
     save,
     technologyLevel,

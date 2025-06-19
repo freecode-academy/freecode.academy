@@ -19,15 +19,15 @@ export const ResourceTag = objectType({
           : null
       },
     })
-    // t.field('Resource', {
-    //   type: 'Resource',
-    //   // @ts-expect-error types
-    //   resolve({ Resource }, _, ctx) {
-    //     return Resource
-    //       ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
-    //       : null
-    //   },
-    // })
+    t.field('Resource', {
+      type: 'Resource',
+      // @ts-expect-error types
+      resolve({ Resource }, _, ctx) {
+        return Resource
+          ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
+          : null
+      },
+    })
     t.field('Tag', {
       type: 'Tag',
       // @ts-expect-error types

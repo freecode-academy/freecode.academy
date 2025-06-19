@@ -6,7 +6,7 @@ import { TechnologyGridTableStyled, TechnologyViewStyled } from './styles'
 import Typography from 'material-ui/Typography'
 import Grid from 'src/uikit/Grid'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
-import ConnectUserTechnology from './ConnectUserTechnology'
+// import ConnectUserTechnology from './ConnectUserTechnology'
 import { NextSeo } from 'next-seo'
 import {
   GridTableAttributeStyled,
@@ -18,7 +18,7 @@ import SiteFrontEditor from 'src/components/SiteFrontEditor'
 import Link from 'src/uikit/Link'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
 import Button from 'src/components/ui/Button'
-import { TechnologyUpdateForm } from './UpdateForm'
+// import { TechnologyUpdateForm } from './UpdateForm'
 import { TechnologyLearnStrategyStages } from './LearnStrategyStages'
 
 const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
@@ -160,34 +160,27 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
         {editButton}
 
         <TechnologyViewStyled>
-          {editFormOpened ? (
-            <TechnologyUpdateForm
-              technology={technology}
-              editFormOpenedSetter={editFormOpenedSetter}
-            />
-          ) : (
-            <Grid container spacing={8}>
-              <Grid item xs>
-                <Typography variant="title">{technology.name}</Typography>
-                {technology.description ? (
-                  <Typography variant="caption">{technology.name}</Typography>
-                ) : null}
-              </Grid>
-              <Grid item></Grid>
-
-              {technology.site_url ? (
-                <Grid item xs={12}>
-                  <Link href={technology.site_url} target="_blank">
-                    {technology.site_url}
-                  </Link>
-                </Grid>
+          <Grid container spacing={8}>
+            <Grid item xs>
+              <Typography variant="title">{technology.name}</Typography>
+              {technology.description ? (
+                <Typography variant="caption">{technology.name}</Typography>
               ) : null}
-
-              <Grid item xs={12}>
-                {content}
-              </Grid>
             </Grid>
-          )}
+            <Grid item></Grid>
+
+            {technology.site_url ? (
+              <Grid item xs={12}>
+                <Link href={technology.site_url} target="_blank">
+                  {technology.site_url}
+                </Link>
+              </Grid>
+            ) : null}
+
+            <Grid item xs={12}>
+              {content}
+            </Grid>
+          </Grid>
 
           {learnTimes}
 
@@ -203,10 +196,10 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
                 <Typography variant="subheading">Кто использует</Typography>
               </Grid>
               <Grid item>
-                <ConnectUserTechnology
+                {/* <ConnectUserTechnology
                   technology={technology}
                   currentUser={context.user}
-                />
+                /> */}
               </Grid>
             </Grid>
 
@@ -223,15 +216,16 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
       </>
     )
   }, [
-    technology,
-    editButton,
-    editFormOpened,
     content,
-    learnTimes,
-    context.user,
-    showActions,
+    editButton,
     header,
     items,
+    learnTimes,
+    showActions,
+    technology.LearnStrategyStages,
+    technology.description,
+    technology.name,
+    technology.site_url,
   ])
 }
 

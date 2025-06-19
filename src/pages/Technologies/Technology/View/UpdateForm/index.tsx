@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { NextSeo } from 'next-seo'
 
@@ -8,7 +10,7 @@ import { SchemaOf } from 'yup'
 import { UpdateTechnologyForm } from './styles'
 import {
   TechnologyUpdateInput,
-  useUpdateTechnologyMutation,
+  // useUpdateTechnologyMutation,
 } from 'src/gql/generated'
 import TextField from 'src/components/ui/form/TextField'
 import Button from 'src/components/ui/Button'
@@ -22,7 +24,7 @@ import {
 type DateType = Omit<TechnologyUpdateInput, 'components'>
 
 /**
- * Редактирование технологии
+ * @deprecated
  */
 export const TechnologyUpdateForm: React.FC<TechnologyUpdateFormProps> = ({
   technology,

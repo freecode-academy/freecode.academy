@@ -1,7 +1,7 @@
 // import { DateSelectArg } from '@fullcalendar/react'
 import React, { useMemo } from 'react'
-import useProcessorMutation from 'src/hooks/useProcessorMutation'
-import { TaskStatus, useCreateTaskProcessorMutation } from 'src/gql/generated'
+// import useProcessorMutation from 'src/hooks/useProcessorMutation'
+import { TaskStatus } from 'src/gql/generated'
 import Calendar from 'src/pages/Office/View/Calendar'
 import { ProjectCalendarProps } from './interfaces'
 
@@ -13,13 +13,13 @@ const ProjectCalendar: React.FC<ProjectCalendarProps> = ({
   // project,
   ...other
 }) => {
-  const createTaskTuple = useCreateTaskProcessorMutation()
+  // const createTaskTuple = useCreateTaskProcessorMutation()
 
-  const {
-    snakbar,
-    // loading,
-    // mutation: createTask,
-  } = useProcessorMutation(createTaskTuple)
+  // const {
+  //   snakbar,
+  //   // loading,
+  //   // mutation: createTask,
+  // } = useProcessorMutation(createTaskTuple)
 
   const tasks = useMemo(() => {
     /**
@@ -73,18 +73,16 @@ const ProjectCalendar: React.FC<ProjectCalendarProps> = ({
   //   [createTask, loading, project.id]
   // )
 
-  return useMemo(() => {
-    return (
-      <>
-        {snakbar}
-        <Calendar
-          tasks={tasks}
-          // select={handleDateSelect}
-          {...other}
-        />
-      </>
-    )
-  }, [snakbar, tasks, other])
+  return (
+    <>
+      {/* {snakbar} */}
+      <Calendar
+        tasks={tasks}
+        // select={handleDateSelect}
+        {...other}
+      />
+    </>
+  )
 }
 
 export default ProjectCalendar

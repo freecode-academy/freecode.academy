@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react'
 // import Uploader, { UploadResponse } from '@prisma-cms/uploader'
 import { UserEditFormProps } from './interfaces'

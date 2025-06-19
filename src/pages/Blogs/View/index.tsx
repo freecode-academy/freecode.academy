@@ -1,43 +1,60 @@
 import React from 'react'
-import { ObjectsListView, styles } from 'src/components/view/List'
-
-import withStyles from 'material-ui/styles/withStyles'
-import { BlogsViewProps } from './interfaces'
-import { ColumnConfig } from 'apollo-cms/dist/DataView/List/Table'
 import { BlogsConnectionResourceFragment } from 'src/gql/generated'
 import UserLink from 'src/uikit/Link/User'
 import BlogLink from 'src/uikit/Link/Blog'
+import styled from 'styled-components'
+import {
+  GridCell,
+  GridCellHeader,
+  GridRow,
+  GridTable,
+} from 'src/components/Grid/styles'
+import PaginationWithStyles from 'src/components/Pagination'
 
-class BlogsView<
-  P extends BlogsViewProps = BlogsViewProps
-> extends ObjectsListView<P> {
-  static defaultProps = {
-    ...ObjectsListView.defaultProps,
-    title: 'Блоги',
-  }
+const BlogsViewGridStyled = styled(GridTable)`
+  grid-template-columns: auto max-content;
+`
 
-  getColumns<CC extends BlogsConnectionResourceFragment>(): ColumnConfig<CC>[] {
-    return [
-      {
-        id: 'name',
-        key: 'name',
-        label: 'Название',
-        renderer: (_name: CC['name'], record) => {
-          return <BlogLink object={record} />
-        },
-      },
-      {
-        id: 'CreatedBy',
-        key: 'CreatedBy',
-        label: 'Автор',
-        renderer: (value: CC['CreatedBy']) => {
-          return value ? <UserLink user={value} /> : null
-        },
-      },
-    ]
-  }
+const BlogsViewStyled = styled.div``
+
+type BlogsViewProps = {
+  objects: BlogsConnectionResourceFragment[]
+  // loading: boolean
+  count: number | undefined
+  page: number
+  limit: number | undefined | null
 }
 
-export default withStyles<any>(styles)((props: BlogsViewProps) => (
-  <BlogsView {...props} />
-))
+export const BlogsView: React.FC<BlogsViewProps> = ({
+  objects,
+  count,
+  // loading,
+  page,
+  limit,
+}) => {
+  return (
+    <BlogsViewStyled>
+      <BlogsViewGridStyled>
+        <GridRow>
+          <GridCellHeader>Название</GridCellHeader>
+          <GridCellHeader>Автор</GridCellHeader>
+        </GridRow>
+
+        {objects.map((n) => {
+          return (
+            <GridRow key={n.id}>
+              <GridCell>
+                <BlogLink object={n} />
+              </GridCell>
+              <GridCell>
+                {n.CreatedBy && <UserLink user={n.CreatedBy} />}{' '}
+              </GridCell>
+            </GridRow>
+          )
+        })}
+      </BlogsViewGridStyled>
+
+      <PaginationWithStyles total={count ?? 0} page={page} limit={limit} />
+    </BlogsViewStyled>
+  )
+}

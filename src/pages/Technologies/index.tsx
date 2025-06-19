@@ -7,7 +7,7 @@ import {
   SortOrder,
 } from 'src/gql/generated'
 
-import View from './View'
+import { TechnologiesView as View } from './View'
 
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
@@ -72,7 +72,7 @@ const TechnologiesPage: Page = () => {
   //   )
   // }, [response.data?.objectsConnection.edges])
 
-  const { variables, loading } = response
+  const { variables } = response
 
   const [inited, initedOn] = useBoolean(false)
 
@@ -91,11 +91,11 @@ const TechnologiesPage: Page = () => {
       {inited && (
         <View
           // {...queryResult}
-          loading={loading}
+          // loading={loading}
           // data={response || null}
           objects={response.data?.technologies || []}
           count={response.data?.technologiesCount}
-          variables={variables}
+          limit={variables?.take}
           page={page}
         />
       )}

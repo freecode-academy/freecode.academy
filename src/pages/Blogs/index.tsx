@@ -7,7 +7,7 @@ import {
   ResourceType,
 } from 'src/gql/generated'
 
-import View from './View'
+import { BlogsView as View } from './View'
 
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
@@ -59,7 +59,7 @@ const BlogsPage: Page = () => {
     onError: console.error,
   })
 
-  const { variables, loading } = response
+  const { variables } = response
 
   const [inited, initedOn] = useBoolean(false)
 
@@ -74,12 +74,9 @@ const BlogsPage: Page = () => {
 
       {inited && (
         <View
-          // {...queryResult}
-          loading={loading}
-          // data={response || null}
           objects={response.data?.resources || []}
           count={response.data?.resourcesCount || 0}
-          variables={variables}
+          limit={variables?.first}
           page={page}
         />
       )}

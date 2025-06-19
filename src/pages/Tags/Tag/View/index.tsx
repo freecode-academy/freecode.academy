@@ -52,7 +52,7 @@ const TagView: React.FC<TagViewProps> = (props) => {
     variables,
   })
 
-  const { loading } = response
+  // const { loading } = response
 
   if (!tag) {
     return null
@@ -63,11 +63,12 @@ const TagView: React.FC<TagViewProps> = (props) => {
       <Typography variant="title">{tag.name}</Typography>
 
       <TopicsView
-        title={`Топики с тегом "${tag.name}"`}
-        loading={loading}
+        // title={`Топики с тегом "${tag.name}"`}
+        // loading={loading}
         objects={response.data?.resources || []}
         count={response.data?.resourcesCount || 0}
-        variables={response.variables}
+        limit={response.variables?.first}
+        page={0}
       />
 
       <Link href="/tags" className="tag--all-tags-link">

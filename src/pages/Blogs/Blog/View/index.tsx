@@ -56,7 +56,7 @@ const BlogView: React.FC<BlogViewProps> = (props) => {
 
   // console.log('BlogView response', response);
 
-  const { loading } = response
+  // const { loading } = response
 
   if (!blog) {
     return null
@@ -67,11 +67,12 @@ const BlogView: React.FC<BlogViewProps> = (props) => {
       <Typography variant="title">{blog.name}</Typography>
 
       <TopicsView
-        title={`Топики в блоге "${blog.name}"`}
-        loading={loading}
+        // title={`Топики в блоге "${blog.name}"`}
+        // loading={loading}
         objects={response.data?.resources || []}
         count={response.data?.resourcesCount || 0}
-        variables={response.variables}
+        limit={response.variables?.first}
+        page={0}
       />
     </BlogViewStyled>
   )

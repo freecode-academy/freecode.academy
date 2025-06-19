@@ -63,7 +63,7 @@ const TopicsPage: Page = () => {
     onError: console.error,
   })
 
-  const { variables, loading } = response
+  const { variables } = response
 
   const [inited, initedOn] = useBoolean(false)
 
@@ -78,10 +78,10 @@ const TopicsPage: Page = () => {
 
       {inited && (
         <TopicsView
-          loading={loading}
+          // loading={loading}
           objects={response.data?.resources || []}
           count={response.data?.resourcesCount || 0}
-          variables={variables}
+          limit={variables?.first}
           page={page}
         />
       )}

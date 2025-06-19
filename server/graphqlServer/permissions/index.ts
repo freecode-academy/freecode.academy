@@ -48,7 +48,7 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
 
     createOneDonate: isSudo,
 
-    createAiAgentUser: isSudo,
+    // createAiAgentUser: isSudo,
     // createChatMessageProcessor: isSudo,
 
     singleUpload: isAuthenticated,

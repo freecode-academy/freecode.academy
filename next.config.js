@@ -84,9 +84,7 @@ const webpack = (config, options) => {
 
 module.exports = (phase, defaultConfig) => {
   // Базовая конфигурация для runtime
-  const publicRuntimeConfig = {
-    MAIN_AI_AGENT_USERNAME: process.env.MAIN_AI_AGENT_USERNAME || 'freecoder',
-  }
+  const publicRuntimeConfig = {}
 
   if (phase !== 'phase-production-server') {
     const withBundleAnalyzer = require('@next/bundle-analyzer')({

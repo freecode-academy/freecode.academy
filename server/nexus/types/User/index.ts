@@ -7,7 +7,6 @@ import { unblockUser } from './resolvers/unblockUser'
 import { updateUserProcessor } from './resolvers/updateUserProcessor'
 import { updateCurrentUser } from './resolvers/updateCurrentUser'
 import { updateOneUser } from './resolvers/updateOneUser'
-import { createAiAgentUserResolver } from './resolvers/createAiAgent'
 
 export const User = objectType({
   name: 'User',
@@ -321,25 +320,6 @@ export const UserExtendMutation = extendType({
       },
       resolve: updateCurrentUser,
     })
-
-    t.nonNull.field('createAiAgentUser', {
-      description: 'Создать AI агента',
-      type: 'AuthPayload',
-      args: {
-        data: nonNull('AiAgentCreateDataInput'),
-      },
-      resolve: createAiAgentUserResolver,
-    })
-  },
-})
-
-export const AiAgentCreateDataInput = inputObjectType({
-  name: 'AiAgentCreateDataInput',
-  definition(t) {
-    t.nonNull.field('userData', {
-      type: 'UserSignupDataInput',
-    })
-    t.nonNull.string('prompt')
   },
 })
 

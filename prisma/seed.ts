@@ -19,19 +19,6 @@ async function main() {
     })
   }
 
-  const MAIN_AI_AGENT_USERNAME = process.env.MAIN_AI_AGENT_USERNAME
-  if (MAIN_AI_AGENT_USERNAME) {
-    userData.push({
-      username: MAIN_AI_AGENT_USERNAME,
-      password: await createPassword(''),
-      AiAgent: {
-        create: {
-          prompt: process.env.MAIN_AI_AGENT_PROMPT ?? '',
-        },
-      },
-    })
-  }
-
   for (const u of userData) {
     if (u.username) {
       const userExists = await prisma.user.findUnique({

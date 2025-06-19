@@ -7,9 +7,7 @@ import {
   Subtitle,
   Description,
   Primary,
-  ArgsTable,
   Stories,
-  PRIMARY_STORY,
 } from '@storybook/addon-docs/blocks'
 import styled from 'styled-components'
 
@@ -88,7 +86,6 @@ export default {
           <Subtitle></Subtitle>
           <Description></Description>
           <Primary></Primary>
-          <ArgsTable story={PRIMARY_STORY} />
           <Stories />
         </>
       ),

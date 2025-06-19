@@ -159,9 +159,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
       <Grid item>
         {/* <Link href="/tasks/?status_in=New&status_in=Accepted&status_in=Progress&status_in=Paused&status_in=RevisionsRequired&status_in=Discuss&status_in=Approved&status_in=Done"> */}
         <Link href={`/tasks/?where=${where}`}>
-          <a>
-            <Typography>{this.lexicon('Tasks')}</Typography>
-          </a>
+          <Typography>{this.lexicon('Tasks')}</Typography>
         </Link>
       </Grid>
     )
@@ -190,25 +188,19 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
           <MainMenuItemsDesktopStyled>
             <Grid item>
               <Link href="/learnstrategies/">
-                <a>
-                  <Typography>{this.lexicon('LearnStrategies')}</Typography>
-                </a>
+                <Typography>{this.lexicon('LearnStrategies')}</Typography>
               </Link>
             </Grid>
 
             <Grid item>
-              <Link href="/learn/sections">
-                <a title={this.lexicon('Learn')}>
-                  <Typography>{this.lexicon('Learn')}</Typography>
-                </a>
+              <Link href="/learn/sections" title={this.lexicon('Learn')}>
+                <Typography>{this.lexicon('Learn')}</Typography>
               </Link>
             </Grid>
 
             <Grid item>
               <Link href="/technologies/">
-                <a>
-                  <Typography>{this.lexicon('Technologies')}</Typography>
-                </a>
+                <Typography>{this.lexicon('Technologies')}</Typography>
               </Link>
             </Grid>
 
@@ -223,17 +215,13 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
 
             <Grid item>
               <Link href="/people/">
-                <a>
-                  <Typography>{this.lexicon('Users')}</Typography>
-                </a>
+                <Typography>{this.lexicon('Users')}</Typography>
               </Link>
             </Grid>
 
             <Grid item>
               <Link href="/projects/">
-                <a>
-                  <Typography>{this.lexicon('Projects')}</Typography>
-                </a>
+                <Typography>{this.lexicon('Projects')}</Typography>
               </Link>
             </Grid>
 
@@ -248,18 +236,14 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
             </Grid> */}
 
             <Grid item>
-              <Link href="/topics/">
-                <a title={this.lexicon('Topics')}>
-                  <Typography>{this.lexicon('Topics')}</Typography>
-                </a>
+              <Link href="/topics/" title={this.lexicon('Topics')}>
+                <Typography>{this.lexicon('Topics')}</Typography>
               </Link>
             </Grid>
 
             <Grid item>
               <Link href="/blogs/">
-                <a>
-                  <Typography>{this.lexicon('Blogs')}</Typography>
-                </a>
+                <Typography>{this.lexicon('Blogs')}</Typography>
               </Link>
             </Grid>
 
@@ -293,9 +277,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
 
             <Grid item>
               <Link href="/about/">
-                <a>
-                  <Typography>{this.lexicon('About')}</Typography>
-                </a>
+                <Typography>{this.lexicon('About')}</Typography>
               </Link>
             </Grid>
           </MainMenuItemsDesktopStyled>

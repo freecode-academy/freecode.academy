@@ -96,12 +96,10 @@ export const CodeChallengeBlocksPageBlockView: React.FC<
   return (
     <CodeChallengeBlocksPageBlockViewStyled>
       <div>
-        <Link href={`/learn/sections/${block.id}`}>
-          <a title={block.name || ''}>
-            <Typography className="title opener" component="span">
-              {!opened ? '↳' : '↴'} {block.name}
-            </Typography>
-          </a>
+        <Link href={`/learn/sections/${block.id}`} title={block.name || ''}>
+          <Typography className="title opener" component="span">
+            {!opened ? '↳' : '↴'} {block.name}
+          </Typography>
         </Link>{' '}
       </div>
       {content}

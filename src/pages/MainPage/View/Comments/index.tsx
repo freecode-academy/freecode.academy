@@ -19,9 +19,7 @@ const MainPageComments: React.FC<MainPageCommentsProps> = ({ objects }) => {
         ))}
 
         <p>
-          <Link href="/comments">
-            <a>Все комментарии</a>
-          </Link>
+          <Link href="/comments">Все комментарии</Link>
         </p>
       </Paper>
     </>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Typography from 'material-ui/Typography'
+// import Typography from 'material-ui/Typography'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
 
@@ -10,7 +10,7 @@ import ProjectsList from './List'
 import { ProjectsViewProps } from './interfaces'
 import Pagination from 'src/components/Pagination'
 import Grid from 'src/uikit/Grid'
-import Link from 'next/link'
+// import Link from 'next/link'
 // import { ProjectsConnectionProjectFragment } from 'src/gql/generated'
 
 class ProjectsView extends Component<ProjectsViewProps> {
@@ -74,13 +74,13 @@ class ProjectsView extends Component<ProjectsViewProps> {
           {/* {this.renderFilters()} */}
         </Grid>
 
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Link href="/office/projects/create">
             <a>
               <Typography>Добавить проект</Typography>
             </a>
           </Link>
-        </Grid>
+        </Grid> */}
 
         {output}
       </Grid>

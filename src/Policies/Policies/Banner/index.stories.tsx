@@ -8,7 +8,13 @@ export default {
 } as Meta
 
 export const Default = () => {
-  return <Component />
+  return (
+    <Component
+      // eslint-disable-next-line no-console, react/jsx-no-bind
+      loginComplete={async (e) => console.log(e)}
+      user={undefined}
+    />
+  )
 }
 
 Default.storyName = 'Баннер согласия'

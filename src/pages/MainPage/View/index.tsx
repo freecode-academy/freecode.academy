@@ -49,10 +49,8 @@ const MainPageView: React.FC<MainPageProps> = (props) => {
           Изучайте современный JavaScript с нами совершенно бесплатно!
         </Typography>
         <Typography>
-          <Link href="/start/developers">
-            <a title="С чего начать программисту">
-              С чего начать программисту.
-            </a>
+          <Link href="/start/developers" title="С чего начать программисту">
+            С чего начать программисту.
           </Link>
         </Typography>
 

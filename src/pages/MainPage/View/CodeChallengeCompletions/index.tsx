@@ -40,17 +40,15 @@ const MainPageCodeChallengeCompletions: React.FC<
                   <Grid container alignItems="center">
                     <Grid item xs>
                       <Typography variant="subheading">
-                        <Link href={`/learn/exercises/${n.CodeChallenge.id}`}>
-                          <a
-                            title={
-                              n.CodeChallenge.localeTitle ||
-                              n.CodeChallenge.name ||
-                              ''
-                            }
-                          >
-                            {n.CodeChallenge.localeTitle ||
-                              n.CodeChallenge.name}
-                          </a>
+                        <Link
+                          href={`/learn/exercises/${n.CodeChallenge.id}`}
+                          title={
+                            n.CodeChallenge.localeTitle ||
+                            n.CodeChallenge.name ||
+                            ''
+                          }
+                        >
+                          {n.CodeChallenge.localeTitle || n.CodeChallenge.name}
                         </Link>
                       </Typography>
                     </Grid>

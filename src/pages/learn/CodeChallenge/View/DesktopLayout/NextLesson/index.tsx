@@ -44,12 +44,13 @@ export const NextLesson: React.FC<NextLessonProps> = ({ challenge }) => {
   const title = localeTitle || name
 
   return (
-    <Link href={`/learn/exercises/${codeChallenge.id}`}>
-      <a title={`Перейти к выполнению задания "${title}"` || ''}>
-        <Button variant="success" size="small">
-          Следующее задание
-        </Button>
-      </a>
+    <Link
+      href={`/learn/exercises/${codeChallenge.id}`}
+      title={`Перейти к выполнению задания "${title}"` || ''}
+    >
+      <Button variant="success" size="small">
+        Следующее задание
+      </Button>
     </Link>
   )
 }

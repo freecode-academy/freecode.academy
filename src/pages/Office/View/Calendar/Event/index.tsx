@@ -73,8 +73,12 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
         <p>
           {task.TaskProjects?.map((n) =>
             n.Project ? (
-              <Link key={n.id} href={`/office/projects/${n.Project.id}`}>
-                <a title={`Проект "${n.Project.name}"`}>{n.Project.name}</a>
+              <Link
+                key={n.id}
+                href={`/office/projects/${n.Project.id}`}
+                title={`Проект "${n.Project.name}"`}
+              >
+                {n.Project.name}
               </Link>
             ) : null
           ).reduce<React.ReactNode[]>(

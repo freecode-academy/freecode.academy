@@ -44,8 +44,11 @@ const SidePanel: React.FC<SidePanelProps> = ({
 
     const parent = rootBlock ? (
       <span>
-        <Link href={`/learn/sections/${rootBlock.id}`}>
-          <a title={rootBlock.name || ''}>{rootBlock.name}</a>
+        <Link
+          href={`/learn/sections/${rootBlock.id}`}
+          title={rootBlock.name || ''}
+        >
+          {rootBlock.name}
         </Link>{' '}
         /
       </span>
@@ -54,8 +57,8 @@ const SidePanel: React.FC<SidePanelProps> = ({
     return (
       <div>
         {parent}{' '}
-        <Link href={`/learn/sections/${block.id}`}>
-          <a title={block.name || ''}>{block.name}</a>
+        <Link href={`/learn/sections/${block.id}`} title={block.name || ''}>
+          {block.name}
         </Link>
       </div>
     )

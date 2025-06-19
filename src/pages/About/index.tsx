@@ -25,10 +25,11 @@ export const AboutPage: Page = () => {
 
         <p>
           Специальная страничка{' '}
-          <Link href="/start/developers">
-            <a title="С чего начать изучать веб-программирование">
-              С чего начать изучать веб-программирование
-            </a>
+          <Link
+            href="/start/developers"
+            title="С чего начать изучать веб-программирование"
+          >
+            С чего начать изучать веб-программирование
           </Link>{' '}
           поможет вам сделать свои первые шаги.
         </p>
@@ -53,11 +54,6 @@ export const AboutPage: Page = () => {
           Любые вопросы/предложения можно слать на почту{' '}
           <a href="mailto:info@freecode.academy">info@freecode.academy</a>
         </p>
-
-        <div>
-          Если вам нравится наш проект, вы можете{' '}
-          <Link href="/donates">поддержать его</Link>.
-        </div>
       </div>
     </>
   )

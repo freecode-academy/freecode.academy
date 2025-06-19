@@ -70,8 +70,8 @@ const TagView: React.FC<TagViewProps> = (props) => {
         variables={response.variables}
       />
 
-      <Link href="/tags">
-        <a className="tag--all-tags-link">Все теги</a>
+      <Link href="/tags" className="tag--all-tags-link">
+        Все теги
       </Link>
     </TagViewStyled>
   )

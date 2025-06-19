@@ -12,12 +12,18 @@ import {
 } from './styles'
 import Link from 'src/uikit/Link'
 import { useSignupMutation } from 'src/gql/generated'
-import { useAppContext } from 'src/AppContext'
+import { AppContextValue } from 'src/AppContext'
 import { useRouter } from 'next/router'
 
-export const PoliciesBanner: React.FC = () => {
-  const { user, loginComplete } = useAppContext()
+type PoliciesBannerProps = {
+  user: AppContextValue['user']
+  loginComplete: AppContextValue['loginComplete']
+}
 
+export const PoliciesBanner: React.FC<PoliciesBannerProps> = ({
+  loginComplete,
+  user,
+}) => {
   const [state, stateSetter] = useState<'closed' | 'opened' | 'closing'>()
 
   useEffect(() => {

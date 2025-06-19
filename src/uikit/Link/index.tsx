@@ -44,10 +44,12 @@ export class UiLink<P extends UiLinkProps> extends Component<P> {
     // )
 
     return (
-      <Link href={href}>
-        <a className={[classes?.root, className].join(' ')} {...other}>
-          {children}
-        </a>
+      <Link
+        href={href}
+        className={[classes?.root, className].join(' ')}
+        {...other}
+      >
+        {children}
       </Link>
     )
   }

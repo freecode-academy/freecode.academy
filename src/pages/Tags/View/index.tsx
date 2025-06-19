@@ -29,8 +29,8 @@ class TagsView<
           }
 
           return (
-            <Link href={`/tag/${record.name}`}>
-              <a title={record.name}>{record.name}</a>
+            <Link href={`/tag/${record.name}`} title={record.name}>
+              {record.name}
             </Link>
           )
         },
@@ -48,8 +48,8 @@ class TagsView<
 
               return (
                 <Grid key={n.id} item>
-                  <Link href={n.Resource.uri}>
-                    <a title={n.Resource.name || ''}>{n.Resource.name}</a>
+                  <Link href={n.Resource.uri} title={n.Resource.name || ''}>
+                    {n.Resource.name}
                   </Link>
                 </Grid>
               )

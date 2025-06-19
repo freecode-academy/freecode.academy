@@ -45,26 +45,20 @@ const OfficeLayoutNavBar: React.FC = ({ ...other }) => {
       <>
         <OfficeLayoutNavBarStyled {...other}>
           <div className="mainLinks">
-            <Link href="/">
-              <a title="На главную">
-                <IconButton>
-                  <HomeIcon />
-                </IconButton>
-              </a>
+            <Link href="/" title="На главную">
+              <IconButton>
+                <HomeIcon />
+              </IconButton>
             </Link>
-            <Link href="/office">
-              <a title="Офис">
-                <IconButton>
-                  <OfficeIcon />
-                </IconButton>
-              </a>
+            <Link href="/office" title="Офис">
+              <IconButton>
+                <OfficeIcon />
+              </IconButton>
             </Link>
-            <Link href="/office/timers">
-              <a title="Лог выполнения">
-                <IconButton>
-                  <TimerIcon />
-                </IconButton>
-              </a>
+            <Link href="/office/timers" title="Лог выполнения">
+              <IconButton>
+                <TimerIcon />
+              </IconButton>
             </Link>
 
             {/* <MainMenuNotices /> */}

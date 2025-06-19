@@ -88,8 +88,11 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
 
       const parent = rootBlock ? (
         <span>
-          <Link href={`/learn/sections/${rootBlock.id}`}>
-            <a title={rootBlock.name || ''}>{rootBlock.name}</a>
+          <Link
+            href={`/learn/sections/${rootBlock.id}`}
+            title={rootBlock.name || ''}
+          >
+            {rootBlock.name}
           </Link>{' '}
           /
         </span>
@@ -99,14 +102,15 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
         <div>
           <p>
             Урок: {parent}{' '}
-            <Link href={`/learn/sections/${block.id}`}>
-              <a title={block.name || ''}>{block.name}</a>
+            <Link href={`/learn/sections/${block.id}`} title={block.name || ''}>
+              {block.name}
             </Link>{' '}
             /{' '}
-            <Link href={`/learn/exercises/${codeChallenge.id}`}>
-              <a title={codeChallenge.localeTitle || codeChallenge.name || ''}>
-                {codeChallenge.localeTitle || codeChallenge.name}
-              </a>
+            <Link
+              href={`/learn/exercises/${codeChallenge.id}`}
+              title={codeChallenge.localeTitle || codeChallenge.name || ''}
+            >
+              {codeChallenge.localeTitle || codeChallenge.name}
             </Link>
           </p>
         </div>

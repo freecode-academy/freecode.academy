@@ -113,8 +113,8 @@ class Pagination extends Component<PaginationProps> {
 
       rows.push(
         <li key="page-1-0" className={controlClass}>
-          <Link href={href}>
-            <a className={linkClass}>«</a>
+          <Link href={href} className={linkClass}>
+            «
           </Link>
         </li>
       )
@@ -148,14 +148,11 @@ class Pagination extends Component<PaginationProps> {
 
         rows.push(
           <li key={i} className={controlClass}>
-            <Link href={href}>
-              <a
-                className={[linkClass, i === page ? activeClass : null].join(
-                  ' '
-                )}
-              >
-                {i}
-              </a>
+            <Link
+              href={href}
+              className={[linkClass, i === page ? activeClass : null].join(' ')}
+            >
+              {i}
             </Link>
           </li>
         )
@@ -166,8 +163,8 @@ class Pagination extends Component<PaginationProps> {
 
       rows.push(
         <li key={'page-' + pages + '-0'} className={controlClass}>
-          <Link href={href}>
-            <a className={linkClass}>»</a>
+          <Link href={href} className={linkClass}>
+            »
           </Link>
         </li>
       )

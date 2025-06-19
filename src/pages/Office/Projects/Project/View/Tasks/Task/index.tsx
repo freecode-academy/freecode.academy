@@ -203,8 +203,8 @@ const OfficeProjectPageViewTask: React.FC<OfficeProjectPageViewTaskProps> = ({
           {timer}
           <div className="task">
             <div className="task-info">
-              <Link href={`/tasks/${task.id}`}>
-                <a title={task.name}>{task.name}</a>
+              <Link href={`/tasks/${task.id}`} title={task.name}>
+                {task.name}
               </Link>{' '}
               ({task.status}){' '}
               {task.needHelp ? (

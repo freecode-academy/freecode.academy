@@ -10,7 +10,7 @@ import { CardContent } from 'material-ui/Card'
 
 import TasksListView from '../../Project/Tasks'
 import { ProjectsListProjectProps } from './interfaces'
-import Link from 'next/link'
+// import Link from 'next/link'
 import { TasksListProps } from '../../Project/Tasks/interfaces'
 // import { Project } from 'src/gql/generated'
 
@@ -21,7 +21,7 @@ class ProjectView extends BaseProjectView<ProjectsListProjectProps> {
   }
 
   renderTasks() {
-    const { id: projectId } = this.getObjectWithMutations() || {}
+    // const { id: projectId } = this.getObjectWithMutations() || {}
 
     const Tasks: TasksListProps['tasks'] = []
 
@@ -41,11 +41,9 @@ class ProjectView extends BaseProjectView<ProjectsListProjectProps> {
           // showDetails={false}
         />
 
-        <Link href={`/tasks/create/${projectId}`}>
-          <a>
-            <Typography>Поставить задачу</Typography>
-          </a>
-        </Link>
+        {/* <Link href={`/tasks/create/${projectId}`}>
+          <Typography>Поставить задачу</Typography>
+        </Link> */}
       </CardContent>
     ) : null
   }

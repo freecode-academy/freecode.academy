@@ -30,8 +30,11 @@ export const DevelopersStartPage: Page = () => {
     const where = prepareTasksFiltersUrl(filter)
 
     return (
-      <Link href={`/tasks?where=${where}`}>
-        <a title="Все задачи, по которых требуется помощь">отдельный список</a>
+      <Link
+        href={`/tasks?where=${where}`}
+        title="Все задачи, по которых требуется помощь"
+      >
+        отдельный список
       </Link>
     )
   }, [])
@@ -56,11 +59,7 @@ export const DevelopersStartPage: Page = () => {
         </Typography>
 
         <Typography variant="subheading" paragraph>
-          1. Тестовые{' '}
-          <Link href="/learn/sections">
-            <a title="">онлайн-задания</a>
-          </Link>
-          .
+          1. Тестовые <Link href="/learn/sections">онлайн-задания</Link>.
         </Typography>
 
         <Typography paragraph>
@@ -73,50 +72,64 @@ export const DevelopersStartPage: Page = () => {
           Для начала освоить
           <ul>
             <li>
-              <Link href="/learn/sections/ck4h36qjt0hoq0782jj6hbcni">
-                <a title="Онлайн-уроки Basic HTML And HTML5">
-                  Basic HTML And HTML5
-                </a>
+              <Link
+                href="/learn/sections/ck4h36qjt0hoq0782jj6hbcni"
+                title="Онлайн-уроки Basic HTML And HTML5"
+              >
+                Basic HTML And HTML5
               </Link>
             </li>
             <li>
-              <Link href="/learn/sections/ck4h36qjt0hor0782m410lvse">
-                <a title="Онлайн-уроки Basic CSS">Basic CSS</a>
+              <Link
+                href="/learn/sections/ck4h36qjt0hor0782m410lvse"
+                title="Онлайн-уроки Basic CSS"
+              >
+                Basic CSS
               </Link>
             </li>
             <li>
-              <Link href="/learn/sections/ck4h36qju0hp007829wpno3v1">
-                <a title="Онлайн-уроки Basic JavaScript">Basic JavaScript</a>
+              <Link
+                href="/learn/sections/ck4h36qju0hp007829wpno3v1"
+                title="Онлайн-уроки Basic JavaScript"
+              >
+                Basic JavaScript
               </Link>
             </li>
             <li>
-              <Link href="/learn/sections/ck4h36qju0hoy0782vykvhkz3">
-                <a title="Онлайн-уроки ES6">ES6</a>
+              <Link
+                href="/learn/sections/ck4h36qju0hoy0782vykvhkz3"
+                title="Онлайн-уроки ES6"
+              >
+                ES6
               </Link>
             </li>
             <li>
-              <Link href="/learn/sections/ck4h36qjs0hob07829yk84yu7">
-                <a title="Онлайн-уроки React">React</a>
+              <Link
+                href="/learn/sections/ck4h36qjs0hob07829yk84yu7"
+                title="Онлайн-уроки React"
+              >
+                React
               </Link>
             </li>
           </ul>
           При чем лучше не последовательно полностью по курсу, а в первый день{' '}
-          <Link href="/technologies/ck1fasxk228gk0a89k3vnmroa">
-            <a title="HTML">HTML</a>
+          <Link href="/technologies/ck1fasxk228gk0a89k3vnmroa" title="HTML">
+            HTML
           </Link>{' '}
           и{' '}
-          <Link href="/technologies/ck1fatvnc28jj0a89oymmo65i">
-            <a title="CSS">CSS</a>
+          <Link href="/technologies/ck1fatvnc28jj0a89oymmo65i" title="CSS">
+            CSS
           </Link>
           , во второй{' '}
-          <Link href="/technologies/ck1faudv928l40a89c4u9zxlm">
-            <a title="JavaScript">JavaScript</a>
+          <Link
+            href="/technologies/ck1faudv928l40a89c4u9zxlm"
+            title="JavaScript"
+          >
+            JavaScript
           </Link>
           , в третий{' '}
-          <Link href="/technologies/ck1fawbdw28v20a891k4wlh27">
-            <a title="React">React</a>
-          </Link>
-          , и далее по кругу. Реакт будет на первых парах сложен в восприятии,
+          <Link href="/technologies/ck1fawbdw28v20a891k4wlh27">React</Link>, и
+          далее по кругу. Реакт будет на первых парах сложен в восприятии,
           поэтому его можно в начале поменьше. Чувствуете, что ничего не
           понимаете - переключайтесь опять на HTML/CSS/JS. Все потому что Реакт,
           по сути, это JS+HTML - Переменные, свойства которых являются
@@ -130,10 +143,7 @@ export const DevelopersStartPage: Page = () => {
           умеете, а что нет (хотя и это тоже), а в том, чтобы вы научились
           чему-то новому, так что если что-то не ясно, обязательно спрашивайте.
           Все обсуждения попадают в общий блог{' '}
-          <Link href="/blogs/uroki">
-            <a title="Все публикации в блоге Уроки">Уроки</a>
-          </Link>
-          .
+          <Link href="/blogs/uroki">Уроки</Link>.
         </Typography>
 
         <Typography variant="subheading" paragraph>
@@ -144,7 +154,7 @@ export const DevelopersStartPage: Page = () => {
           Если вы хотите закрепить свои знания на практике, здесь можно создать
           публичный проект или присоединиться к уже существующему. Вот{' '}
           <Link href="/projects/uchebnyy-proekt-na-next-js.-pokemony.">
-            <a title="">пример такого проекта</a>
+            пример такого проекта
           </Link>
           .
         </Typography>
@@ -153,7 +163,7 @@ export const DevelopersStartPage: Page = () => {
           В рамках проекта создаются отдельные задачи и обсуждаются решения с
           публикацией кода в гитхаб. Вот{' '}
           <Link href="/tasks/ckkzgb01fwmn00730jcb8ngyf">
-            <a title="">одна из таких задач</a>
+            одна из таких задач
           </Link>
         </Typography>
 
@@ -164,18 +174,14 @@ export const DevelopersStartPage: Page = () => {
         </Typography>
 
         <Typography variant="subheading" paragraph>
-          3.{' '}
-          <Link href="/technologies">
-            <a title="">Справочник технологий</a>
-          </Link>
-          .
+          3. <Link href="/technologies">Справочник технологий</Link>.
         </Typography>
 
         <Typography paragraph>
           Укажите какие технологии вы изучаете и самостоятельно актуализируйте
           статусы и уровни владения технологиями. В дальнейшем вы можете найти{' '}
           <Link href="/tasks?status_in=New&status_in=Accepted&status_in=Progress&status_in=Paused&status_in=RevisionsRequired&status_in=Discuss&status_in=Approved&status_in=Done">
-            <a title="">задачи</a>
+            задачи
           </Link>
           , в которых указаны списки и уровни требуемых технологий. Таким
           образом вам будет проще подобрать задачи под себя, а потенциальному
@@ -195,10 +201,8 @@ export const DevelopersStartPage: Page = () => {
 
         <Typography paragraph>
           В любой другой непонятной ситуации не стесняйтесь,{' '}
-          <Link href="/add-topic.html">
-            <a title="">пишите публикации</a>
-          </Link>
-          , задавайте вопросы, предлагайте идеи.
+          <Link href="/add-topic.html">пишите публикации</Link>, задавайте
+          вопросы, предлагайте идеи.
         </Typography>
       </DevelopersStartPageStyled>
     </>

@@ -14,8 +14,8 @@ const ChatMessageOldView: React.FC<ChatMessageOldViewProps> = (props) => {
   return (
     <ChatMessageOldViewStyled>
       <UiChatMessageOld object={chatMessageOld} />
-      <Link href="/chat-messages">
-        <a className="chat-message--all-messages-link">Все сообщения</a>
+      <Link href="/chat-messages" className="chat-message--all-messages-link">
+        Все сообщения
       </Link>
     </ChatMessageOldViewStyled>
   )

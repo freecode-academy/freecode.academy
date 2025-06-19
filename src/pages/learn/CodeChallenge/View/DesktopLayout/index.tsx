@@ -169,12 +169,13 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = ({
           ) : null}
 
           {currentUser?.sudo ? (
-            <Link href={`/learn/exercises/edit/${challenge.id}`}>
-              <a rel="noindex nofollow">
-                <IconButton title="Редактировать">
-                  <EditIcon />
-                </IconButton>
-              </a>
+            <Link
+              href={`/learn/exercises/edit/${challenge.id}`}
+              rel="noindex nofollow"
+            >
+              <IconButton title="Редактировать">
+                <EditIcon />
+              </IconButton>
             </Link>
           ) : null}
         </DesktopLayoutToolbarStyled>

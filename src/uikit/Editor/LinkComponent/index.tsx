@@ -9,8 +9,8 @@ const LinkComponent: React.FC<LinkComponentProps> = ({
   ...other
 }) => {
   return (
-    <Link href={href}>
-      <a {...other}>{children}</a>
+    <Link href={href} {...other}>
+      {children}
     </Link>
   )
 }

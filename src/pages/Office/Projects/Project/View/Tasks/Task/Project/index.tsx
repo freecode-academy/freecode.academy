@@ -18,8 +18,8 @@ const OfficeProjectPageViewTaskProject: React.FC<
   return useMemo(() => {
     return (
       <OfficeProjectPageViewTaskProjectStyled {...other}>
-        <Link href={`/office/projects/${project.id}`}>
-          <a title={project.name}>{project.name}</a>
+        <Link href={`/office/projects/${project.id}`} title={project.name}>
+          {project.name}
         </Link>{' '}
         {filterByProject ? (
           <IconButton

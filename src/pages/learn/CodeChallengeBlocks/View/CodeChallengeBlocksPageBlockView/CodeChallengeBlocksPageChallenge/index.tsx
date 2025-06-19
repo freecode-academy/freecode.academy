@@ -19,8 +19,11 @@ const CodeChallengeBlocksPageChallenge: React.FC<
   return (
     <CodeChallengeBlocksPageChallengeStyled>
       <CodeChallengeStatusIcon status={status} />{' '}
-      <Link href={`/learn/exercises/${object.id}`}>
-        <a title={`Перейти к выполнению задания "${title}"` || ''}>{title}</a>
+      <Link
+        href={`/learn/exercises/${object.id}`}
+        title={`Перейти к выполнению задания "${title}"` || ''}
+      >
+        {title}
       </Link>{' '}
     </CodeChallengeBlocksPageChallengeStyled>
   )

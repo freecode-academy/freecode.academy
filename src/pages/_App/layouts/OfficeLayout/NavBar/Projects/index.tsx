@@ -35,11 +35,12 @@ const SideBarProject: React.FC<SideBarProjectProps> = ({ projects, tasks }) => {
 
             return (
               <div key={project.id}>
-                <Link href={`/office/projects/${project.id}`}>
-                  <a
-                    title={project.name}
-                    className={['project', isActive ? 'active' : ''].join(' ')}
-                  >
+                <Link
+                  href={`/office/projects/${project.id}`}
+                  title={project.name}
+                  className={['project', isActive ? 'active' : ''].join(' ')}
+                >
+                  <>
                     {project.name}{' '}
                     {tasksCount ? (
                       <span title="Количество активных задач в проекте">
@@ -47,7 +48,7 @@ const SideBarProject: React.FC<SideBarProjectProps> = ({ projects, tasks }) => {
                         ({tasksCount})
                       </span>
                     ) : null}
-                  </a>
+                  </>
                 </Link>
               </div>
             )

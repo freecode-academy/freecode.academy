@@ -24,9 +24,7 @@ const MainPageStudents: React.FC<MainPageStudentsProps> = ({ objects }) => {
         </Grid>
 
         <p>
-          <Link href="/people/students">
-            <a>Все ученики</a>
-          </Link>
+          <Link href="/people/students">Все ученики</Link>
         </p>
       </Paper>
     </>

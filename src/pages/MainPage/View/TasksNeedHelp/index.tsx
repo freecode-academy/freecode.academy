@@ -20,7 +20,7 @@ const MainPageTasksNeedHelps: React.FC<MainPageTasksNeedHelpsProps> = ({
 
         <p>
           <Link href="/tasks?needHelp=true&status_in=New&status_in=Accepted&status_in=Progress&status_in=Paused&status_in=RevisionsRequired&status_in=Discuss&status_in=Approved&status_in=Done">
-            <a>Все задачи где нужна помощь</a>
+            Все задачи где нужна помощь
           </Link>
         </p>
       </Paper>

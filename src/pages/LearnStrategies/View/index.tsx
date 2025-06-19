@@ -30,9 +30,9 @@ export const LearnStrategiesView: React.FC<LearnStrategiesViewProps> = ({
       <LearnStrategiesViewStyled>
         <LearnStrategiesViewHeaderStyled className="flex align-items-center">
           <Typography variant="title"></Typography>
-          <Link href="/learnstrategies/create">
-            <a rel="nofollow noindex">Создать стратегию развития</a>
-          </Link>
+          {/* <Link href="/learnstrategies/create" rel="nofollow noindex">
+            Создать стратегию развития
+          </Link> */}
           <div className="flex-1" />
         </LearnStrategiesViewHeaderStyled>
 

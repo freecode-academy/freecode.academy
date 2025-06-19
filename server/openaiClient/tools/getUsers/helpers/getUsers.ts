@@ -21,7 +21,6 @@ export async function getUsers({ args, ctx }: getUsersProps) {
 
     intro
     content
-    about
     rating
 
     UserTechnologies @include(if: $withSkills) {

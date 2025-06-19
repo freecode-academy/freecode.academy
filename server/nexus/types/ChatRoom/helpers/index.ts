@@ -30,15 +30,15 @@ export function getChatRoomsConditions(
           {
             CreatedBy: currentUser.id,
           },
-          {
-            User_ChatRoomsMembers: {
-              some: {
-                User: {
-                  id: currentUser.id,
-                },
-              },
-            },
-          },
+          // {
+          //   User_ChatRoomsMembers: {
+          //     some: {
+          //       User: {
+          //         id: currentUser.id,
+          //       },
+          //     },
+          //   },
+          // },
         ],
       })
     }

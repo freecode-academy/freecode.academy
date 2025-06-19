@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client'
-import { enumType, extendType, nonNull, objectType } from 'nexus'
-import { deleteResource } from './resolvers/deleteResource'
+import { enumType, extendType, objectType } from 'nexus'
+// import { deleteResource } from './resolvers/deleteResource'
 
 export * from './Blog'
 export * from './Comment'
@@ -62,27 +62,27 @@ export const Resource = objectType({
       },
     })
 
-    // TODO Перепроверить логику
-    t.list.nonNull.field('Comments', {
-      type: 'Resource',
-      description: 'Комментарии',
-      args: {
-        orderBy: 'ResourceOrderByWithRelationInput',
-      },
-      // @ts-expect-error types
-      resolve({ id }, args, ctx) {
-        const orderBy = args.orderBy as Prisma.ResourceOrderByWithRelationInput
+    // // TODO Перепроверить логику
+    // t.list.nonNull.field('Comments', {
+    //   type: 'Resource',
+    //   description: 'Комментарии',
+    //   args: {
+    //     orderBy: 'ResourceOrderByWithRelationInput',
+    //   },
+    //   // @ts-expect-error types
+    //   resolve({ id }, args, ctx) {
+    //     const orderBy = args.orderBy as Prisma.ResourceOrderByWithRelationInput
 
-        return id
-          ? ctx.prisma.resource.findMany({
-              where: {
-                Topic: id,
-              },
-              orderBy: orderBy ? [orderBy] : undefined,
-            })
-          : []
-      },
-    })
+    //     return id
+    //       ? ctx.prisma.resource.findMany({
+    //           where: {
+    //             Topic: id,
+    //           },
+    //           orderBy: orderBy ? [orderBy] : undefined,
+    //         })
+    //       : []
+    //   },
+    // })
 
     t.field('Topic', {
       type: 'Resource',
@@ -147,44 +147,6 @@ export const Resource = objectType({
   },
 })
 
-export const ResourceExtendQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.resource({})
-    t.crud.resources({
-      filtering: true,
-      ordering: true,
-    })
-
-    t.nonNull.int('resourcesCount', {
-      args: {
-        where: 'ResourceWhereInput',
-      },
-      resolve(_, args, ctx) {
-        const where = args.where as Prisma.ResourceWhereInput
-
-        return ctx.prisma.resource.count({
-          where,
-        })
-      },
-    })
-  },
-})
-
-export const ResourceExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('deleteResource', {
-      type: 'Resource',
-      description: 'Удаление ресурса',
-      args: {
-        where: nonNull('ResourceWhereUniqueInput'),
-      },
-      resolve: deleteResource,
-    })
-  },
-})
-
 export const ResourceType = enumType({
   name: 'ResourceType',
   members: [
@@ -212,3 +174,41 @@ export const ResourceResponse = objectType({
     })
   },
 })
+
+export const ResourceExtendQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.resource({})
+    t.crud.resources({
+      filtering: true,
+      ordering: true,
+    })
+
+    t.nonNull.int('resourcesCount', {
+      args: {
+        where: 'ResourceWhereInput',
+      },
+      resolve(_, args, ctx) {
+        const where = args.where as Prisma.ResourceWhereInput
+
+        return ctx.prisma.resource.count({
+          where,
+        })
+      },
+    })
+  },
+})
+
+// export const ResourceExtendMutation = extendType({
+//   type: 'Mutation',
+//   definition(t) {
+//     t.nonNull.field('deleteResource', {
+//       type: 'Resource',
+//       description: 'Удаление ресурса',
+//       args: {
+//         where: nonNull('ResourceWhereUniqueInput'),
+//       },
+//       resolve: deleteResource,
+//     })
+//   },
+// })

@@ -3,10 +3,10 @@ import {
   enumType,
   extendType,
   inputObjectType,
-  nonNull,
+  // nonNull,
   objectType,
 } from 'nexus'
-import { createProjectProcessor } from './resolvers/createProjectProcessor'
+// import { createProjectProcessor } from './resolvers/createProjectProcessor'
 
 export const Project = objectType({
   name: 'Project',
@@ -34,49 +34,49 @@ export const Project = objectType({
     t.boolean('public')
     t.int('oldID')
 
-    t.field('CreatedBy', {
-      type: 'User',
-      // @ts-expect-error types
-      resolve({ CreatedBy }, _, ctx) {
-        return CreatedBy
-          ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
-          : null
-      },
-    })
-    t.field('Resource', {
-      type: 'Resource',
-      // @ts-expect-error types
-      resolve({ Resource }, _, ctx) {
-        return Resource
-          ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
-          : null
-      },
-    })
+    // t.field('CreatedBy', {
+    //   type: 'User',
+    //   // @ts-expect-error types
+    //   resolve({ CreatedBy }, _, ctx) {
+    //     return CreatedBy
+    //       ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
+    //       : null
+    //   },
+    // })
+    // t.field('Resource', {
+    //   type: 'Resource',
+    //   // @ts-expect-error types
+    //   resolve({ Resource }, _, ctx) {
+    //     return Resource
+    //       ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
+    //       : null
+    //   },
+    // })
 
-    // TODO Restore logic
-    t.list.nonNull.field('Members', {
-      type: 'ProjectMember',
-    })
+    // // TODO Restore logic
+    // t.list.nonNull.field('Members', {
+    //   type: 'ProjectMember',
+    // })
 
-    // TODO Restore logic
-    t.list.nonNull.field('ProjectTasks', {
-      type: 'ProjectTask',
-      args: {
-        orderBy: 'ProjectTaskOrderByWithRelationInput',
-      },
-      resolve({ id }, args, ctx) {
-        const orderBy = args.orderBy as
-          | Prisma.ProjectTaskOrderByWithRelationInput
-          | undefined
+    // // TODO Restore logic
+    // t.list.nonNull.field('ProjectTasks', {
+    //   type: 'ProjectTask',
+    //   args: {
+    //     orderBy: 'ProjectTaskOrderByWithRelationInput',
+    //   },
+    //   resolve({ id }, args, ctx) {
+    //     const orderBy = args.orderBy as
+    //       | Prisma.ProjectTaskOrderByWithRelationInput
+    //       | undefined
 
-        return ctx.prisma.projectTask.findMany({
-          orderBy,
-          where: {
-            Project: id,
-          },
-        })
-      },
-    })
+    //     return ctx.prisma.projectTask.findMany({
+    //       orderBy,
+    //       where: {
+    //         Project: id,
+    //       },
+    //     })
+    //   },
+    // })
   },
 })
 
@@ -104,35 +104,35 @@ export const ProjectExtendQuery = extendType({
   },
 })
 
-export const ProjectExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('createProjectProcessor', {
-      type: 'ProjectResponse',
-      args: {
-        data: nonNull('ProjectCreateInput'),
-      },
-      resolve: createProjectProcessor,
-    })
-    t.nonNull.field('updateProjectProcessor', {
-      type: 'ProjectResponse',
-      args: {
-        data: nonNull('ProjectUpdateInput'),
-        where: nonNull('ProjectWhereUniqueInput'),
-      },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
+// export const ProjectExtendMutation = extendType({
+//   type: 'Mutation',
+//   definition(t) {
+//     t.nonNull.field('createProjectProcessor', {
+//       type: 'ProjectResponse',
+//       args: {
+//         data: nonNull('ProjectCreateInput'),
+//       },
+//       resolve: createProjectProcessor,
+//     })
+//     t.nonNull.field('updateProjectProcessor', {
+//       type: 'ProjectResponse',
+//       args: {
+//         data: nonNull('ProjectUpdateInput'),
+//         where: nonNull('ProjectWhereUniqueInput'),
+//       },
+//       // TODO Restore logic
+//       resolve(_, _args, _ctx) {
+//         throw new Error('Not implemented')
 
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
-    })
-  },
-})
+//         // return {
+//         //   success: false,
+//         //   message: 'Not implemented',
+//         //   errors: [],
+//         // }
+//       },
+//     })
+//   },
+// })
 
 export const ProjectType = enumType({
   name: 'ProjectType',

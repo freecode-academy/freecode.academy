@@ -1,53 +1,7 @@
 import { Prisma } from '@prisma/client'
-import { extendType, objectType, nonNull, inputObjectType } from 'nexus'
-import { createLearnStrategy } from './resolvers/createLearnStrategy'
-import { updateLearnStrategy } from './resolvers/updateLearnStrategy'
-
-export const LearnStrategyExtendQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.learnStrategy()
-
-    t.crud.learnStrategies({
-      filtering: true,
-      ordering: true,
-    })
-
-    t.nonNull.int('learnStrategiesCount', {
-      args: {
-        where: 'LearnStrategyWhereInput',
-      },
-      resolve(_, args, ctx) {
-        const where = args.where as Prisma.LearnStrategyWhereInput
-
-        return ctx.prisma.learnStrategy.count({
-          where,
-        })
-      },
-    })
-  },
-})
-
-export const LearnStrategyExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('createLearnStrategy', {
-      type: 'LearnStrategy',
-      args: {
-        data: nonNull('LearnStrategyCreateInput'),
-      },
-      resolve: createLearnStrategy,
-    })
-    t.nonNull.field('updateLearnStrategy', {
-      type: 'LearnStrategy',
-      args: {
-        data: nonNull('LearnStrategyUpdateInput'),
-        where: nonNull('LearnStrategyWhereUniqueInput'),
-      },
-      resolve: updateLearnStrategy,
-    })
-  },
-})
+import { extendType, objectType } from 'nexus'
+// import { createLearnStrategy } from './resolvers/createLearnStrategy'
+// import { updateLearnStrategy } from './resolvers/updateLearnStrategy'
 
 export const LearnStrategy = objectType({
   name: 'LearnStrategy',
@@ -93,24 +47,70 @@ export const LearnStrategy = objectType({
   },
 })
 
-export const LearnStrategyCreateInput = inputObjectType({
-  name: 'LearnStrategyCreateInput',
+export const LearnStrategyExtendQuery = extendType({
+  type: 'Query',
   definition(t) {
-    t.nonNull.string('name')
-    t.string('description')
-    t.nonNull.field('level', {
-      type: 'UserTechnologyLevel',
+    t.crud.learnStrategy()
+
+    t.crud.learnStrategies({
+      filtering: true,
+      ordering: true,
+    })
+
+    t.nonNull.int('learnStrategiesCount', {
+      args: {
+        where: 'LearnStrategyWhereInput',
+      },
+      resolve(_, args, ctx) {
+        const where = args.where as Prisma.LearnStrategyWhereInput
+
+        return ctx.prisma.learnStrategy.count({
+          where,
+        })
+      },
     })
   },
 })
 
-export const LearnStrategyUpdateInput = inputObjectType({
-  name: 'LearnStrategyUpdateInput',
-  definition(t) {
-    t.string('name')
-    t.string('description')
-    // t.field('level', {
-    //   type: 'UserTechnologyLevel',
-    // })
-  },
-})
+// export const LearnStrategyExtendMutation = extendType({
+//   type: 'Mutation',
+//   definition(t) {
+//     t.nonNull.field('createLearnStrategy', {
+//       type: 'LearnStrategy',
+//       args: {
+//         data: nonNull('LearnStrategyCreateInput'),
+//       },
+//       resolve: createLearnStrategy,
+//     })
+//     t.nonNull.field('updateLearnStrategy', {
+//       type: 'LearnStrategy',
+//       args: {
+//         data: nonNull('LearnStrategyUpdateInput'),
+//         where: nonNull('LearnStrategyWhereUniqueInput'),
+//       },
+//       resolve: updateLearnStrategy,
+//     })
+//   },
+// })
+
+// export const LearnStrategyCreateInput = inputObjectType({
+//   name: 'LearnStrategyCreateInput',
+//   definition(t) {
+//     t.nonNull.string('name')
+//     t.string('description')
+//     t.nonNull.field('level', {
+//       type: 'UserTechnologyLevel',
+//     })
+//   },
+// })
+
+// export const LearnStrategyUpdateInput = inputObjectType({
+//   name: 'LearnStrategyUpdateInput',
+//   definition(t) {
+//     t.string('name')
+//     t.string('description')
+//     // t.field('level', {
+//     //   type: 'UserTechnologyLevel',
+//     // })
+//   },
+// })

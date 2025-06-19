@@ -1,57 +1,9 @@
 import { Prisma } from '@prisma/client'
-import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
+import { extendType, objectType } from 'nexus'
 import { getChatMessageOldsConditions } from './helpers'
 import { chatMessageOldsResolver } from './resolvers/chatMessages'
 import { chatMessageOldResolver } from './resolvers/chatMessage'
-import { chatMessageOldsDialogResolver } from './resolvers/chatMessagesDialog'
-
-// TODO Проработать доступы
-export const ChatMessageOldQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.chatMessageOld({
-      resolve: chatMessageOldResolver,
-    })
-
-    t.crud.chatMessageOlds({
-      filtering: true,
-      ordering: true,
-      resolve: chatMessageOldsResolver,
-    })
-
-    t.nonNull.int('chatMessageOldsCount', {
-      args: {
-        where: 'ChatMessageOldWhereInput',
-      },
-      resolve(_, args, ctx) {
-        return ctx.prisma.chatMessageOld.count({
-          where: getChatMessageOldsConditions(
-            args.where as Prisma.ChatMessageOldWhereInput | undefined,
-            ctx
-          ),
-        })
-      },
-    })
-
-    t.nonNull.list.nonNull.field('chatMessageOldsDialog', {
-      type: 'ChatMessageOld',
-      resolve: chatMessageOldsDialogResolver,
-    })
-  },
-})
-
-export const ChatMessageOldExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.field('createChatMessageOldProcessor', {
-      deprecation: 'legacy',
-      type: 'ChatMessageOldResponse',
-      args: {
-        data: nonNull('ChatMessageOldCreateInput'),
-      },
-    })
-  },
-})
+// import { chatMessageOldsDialogResolver } from './resolvers/chatMessagesDialog'
 
 export const ChatMessageOld = objectType({
   name: 'ChatMessageOld',
@@ -97,46 +49,94 @@ export const ChatMessageOld = objectType({
   },
 })
 
-export const ChatMessageOldCreateInput = inputObjectType({
-  name: 'ChatMessageOldCreateInput',
+// TODO Проработать доступы
+export const ChatMessageOldQuery = extendType({
+  type: 'Query',
   definition(t) {
-    t.nonNull.string('content')
-    t.nonNull.field('toUser', {
-      type: 'UserWhereUniqueInput',
+    t.crud.chatMessageOld({
+      resolve: chatMessageOldResolver,
     })
-    // t.field('Room', {
-    //   type: 'ChatRoomCreateOneWithoutMessagesInput',
+
+    t.crud.chatMessageOlds({
+      filtering: true,
+      ordering: true,
+      resolve: chatMessageOldsResolver,
+    })
+
+    t.nonNull.int('chatMessageOldsCount', {
+      args: {
+        where: 'ChatMessageOldWhereInput',
+      },
+      resolve(_, args, ctx) {
+        return ctx.prisma.chatMessageOld.count({
+          where: getChatMessageOldsConditions(
+            args.where as Prisma.ChatMessageOldWhereInput | undefined,
+            ctx
+          ),
+        })
+      },
+    })
+
+    // t.nonNull.list.nonNull.field('chatMessageOldsDialog', {
+    //   type: 'ChatMessageOld',
+    //   resolve: chatMessageOldsDialogResolver,
     // })
   },
 })
 
-export const ChatRoomCreateOneWithoutMessagesInput = inputObjectType({
-  name: 'ChatRoomCreateOneWithoutMessagesInput',
-  definition(t) {
-    t.id('to')
-    t.field('connect', {
-      type: 'ChatRoomWhereUniqueInput',
-    })
-  },
-})
+// export const ChatMessageOldExtendMutation = extendType({
+//   type: 'Mutation',
+//   definition(t) {
+//     t.field('createChatMessageOldProcessor', {
+//       deprecation: 'legacy',
+//       type: 'ChatMessageOldResponse',
+//       args: {
+//         data: nonNull('ChatMessageOldCreateInput'),
+//       },
+//     })
+//   },
+// })
 
-export const ChatMessageOldResponse = objectType({
-  name: 'ChatMessageOldResponse',
-  definition(t) {
-    t.nonNull.boolean('success')
-    t.nonNull.string('message')
-    t.nonNull.list.nonNull.field('errors', {
-      type: 'RequestError',
-    })
-    t.field('data', {
-      type: 'ChatMessageOld',
-    })
-    t.field('reply', {
-      type: 'ChatMessageOld',
-    })
-    t.field('createdUser', {
-      type: 'AuthPayload',
-      description: 'Created user for dialog, if user not authorized',
-    })
-  },
-})
+// export const ChatMessageOldCreateInput = inputObjectType({
+//   name: 'ChatMessageOldCreateInput',
+//   definition(t) {
+//     t.nonNull.string('content')
+//     t.nonNull.field('toUser', {
+//       type: 'UserWhereUniqueInput',
+//     })
+//     // t.field('Room', {
+//     //   type: 'ChatRoomCreateOneWithoutMessagesInput',
+//     // })
+//   },
+// })
+
+// export const ChatRoomCreateOneWithoutMessagesInput = inputObjectType({
+//   name: 'ChatRoomCreateOneWithoutMessagesInput',
+//   definition(t) {
+//     t.id('to')
+//     t.field('connect', {
+//       type: 'ChatRoomWhereUniqueInput',
+//     })
+//   },
+// })
+
+// export const ChatMessageOldResponse = objectType({
+//   name: 'ChatMessageOldResponse',
+//   definition(t) {
+//     t.nonNull.boolean('success')
+//     t.nonNull.string('message')
+//     t.nonNull.list.nonNull.field('errors', {
+//       type: 'RequestError',
+//     })
+//     t.field('data', {
+//       type: 'ChatMessageOld',
+//     })
+//     t.field('reply', {
+//       type: 'ChatMessageOld',
+//     })
+//     t.field('createdUser', {
+//       type: 'AuthPayload',
+//       description: 'Created user for dialog, if user not authorized',
+//     })
+//   },
+// })

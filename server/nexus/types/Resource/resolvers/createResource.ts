@@ -2,7 +2,6 @@ import { Prisma, Resource } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
 
 import { uid } from 'uid'
-import { createNotifications } from './helpers/createNotifications'
 import { prepareContent } from './helpers/prepareContent'
 import { prepareName, prepareUri } from './helpers/prepareUri'
 
@@ -73,11 +72,6 @@ export const createResource = async (
   const result = await ctx.prisma.resource.create({
     data: createData,
   })
-
-  /**
-   * Отправляем уведомления
-   */
-  createNotifications(result, ctx)
 
   return result
 }

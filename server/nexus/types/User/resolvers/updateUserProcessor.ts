@@ -3,7 +3,6 @@ import { FieldResolver } from 'nexus'
 import { createPassword } from './helpers'
 import { sanitizeTelegram } from './helpers/sanitizeTelegram'
 
-// @ts-expect-error types
 export const updateUserProcessor: FieldResolver<
   'Mutation',
   'updateUserProcessor'
@@ -17,37 +16,37 @@ export const updateUserProcessor: FieldResolver<
   const {
     data: {
       password,
-      acceptChatMessageOldAnonymous,
-      acceptNewChatRoom,
-      acceptNewChatRoomAnonymous,
+      // acceptChatMessageOldAnonymous,
+      // acceptNewChatRoom,
+      // acceptNewChatRoomAnonymous,
       address,
       email,
       fullname,
       image,
       phone,
       username,
-      NotificationTypes,
+      // NotificationTypes,
       technologyLevel,
       isMentor,
-      about,
+      // about,
       telegram,
     },
   } = args
 
   const passwordUpdate = password ? await createPassword(password) : undefined
 
-  const NotificationTypes_UserNotificationTypes = NotificationTypes as
-    | Pick<
-        Prisma.NotificationTypeUpdateManyWithoutUser_UserNotificationTypesNestedInput,
-        'connect' | 'disconnect'
-      >
-    | undefined
+  // const NotificationTypes_UserNotificationTypes = NotificationTypes as
+  //   | Pick<
+  //       Prisma.NotificationTypeUpdateManyWithoutUser_UserNotificationTypesNestedInput,
+  //       'connect' | 'disconnect'
+  //     >
+  //   | undefined
 
   const data: Prisma.UserUpdateInput = {
     password: passwordUpdate,
-    acceptChatMessageOldAnonymous,
-    acceptNewChatRoom,
-    acceptNewChatRoomAnonymous,
+    // acceptChatMessageOldAnonymous,
+    // acceptNewChatRoom,
+    // acceptNewChatRoomAnonymous,
     address,
     email,
     fullname,
@@ -55,9 +54,9 @@ export const updateUserProcessor: FieldResolver<
     phone,
     username,
     technologyLevel,
-    NotificationTypes_UserNotificationTypes,
+    // NotificationTypes_UserNotificationTypes,
     isMentor: isMentor !== null ? isMentor : undefined,
-    about: about as Prisma.UserUpdateInput['about'],
+    // about: about as Prisma.UserUpdateInput['about'],
     telegram: sanitizeTelegram(telegram),
   }
 

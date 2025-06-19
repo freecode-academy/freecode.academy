@@ -1,7 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
 
-// @ts-expect-error types
 export const updateOneUser: FieldResolver<'Mutation', 'updateOneUser'> = async (
   _,
   args,

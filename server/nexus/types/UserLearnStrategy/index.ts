@@ -1,44 +1,6 @@
 import { Prisma } from '@prisma/client'
-import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
-import { createUserLearnStrategy } from './resolvers/createUserLearnStrategy'
-
-export const UserLearnStrategyExtendQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.userLearnStrategy()
-
-    t.crud.userLearnStrategies({
-      filtering: true,
-      ordering: true,
-    })
-
-    t.nonNull.int('userLearnStrategiesCount', {
-      args: {
-        where: 'UserLearnStrategyWhereInput',
-      },
-      resolve(_, args, ctx) {
-        const where = args.where as Prisma.UserLearnStrategyWhereInput
-
-        return ctx.prisma.userLearnStrategy.count({
-          where,
-        })
-      },
-    })
-  },
-})
-
-export const UserLearnStrategyExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('createUserLearnStrategy', {
-      type: 'UserLearnStrategy',
-      args: {
-        data: nonNull('UserLearnStrategyCreateInput'),
-      },
-      resolve: createUserLearnStrategy,
-    })
-  },
-})
+import { extendType, objectType } from 'nexus'
+// import { createUserLearnStrategy } from './resolvers/createUserLearnStrategy'
 
 export const UserLearnStrategy = objectType({
   name: 'UserLearnStrategy',
@@ -74,11 +36,49 @@ export const UserLearnStrategy = objectType({
   },
 })
 
-export const UserLearnStrategyCreateInput = inputObjectType({
-  name: 'UserLearnStrategyCreateInput',
+export const UserLearnStrategyExtendQuery = extendType({
+  type: 'Query',
   definition(t) {
-    t.nonNull.field('LearnStrategy', {
-      type: 'LearnStrategyWhereUniqueInput',
+    t.crud.userLearnStrategy()
+
+    t.crud.userLearnStrategies({
+      filtering: true,
+      ordering: true,
+    })
+
+    t.nonNull.int('userLearnStrategiesCount', {
+      args: {
+        where: 'UserLearnStrategyWhereInput',
+      },
+      resolve(_, args, ctx) {
+        const where = args.where as Prisma.UserLearnStrategyWhereInput
+
+        return ctx.prisma.userLearnStrategy.count({
+          where,
+        })
+      },
     })
   },
 })
+
+// export const UserLearnStrategyExtendMutation = extendType({
+//   type: 'Mutation',
+//   definition(t) {
+//     t.nonNull.field('createUserLearnStrategy', {
+//       type: 'UserLearnStrategy',
+//       args: {
+//         data: nonNull('UserLearnStrategyCreateInput'),
+//       },
+//       resolve: createUserLearnStrategy,
+//     })
+//   },
+// })
+
+// export const UserLearnStrategyCreateInput = inputObjectType({
+//   name: 'UserLearnStrategyCreateInput',
+//   definition(t) {
+//     t.nonNull.field('LearnStrategy', {
+//       type: 'LearnStrategyWhereUniqueInput',
+//     })
+//   },
+// })

@@ -2,38 +2,6 @@ import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
 import { createCodeChallengeCompletionProcessor } from './resolvers/createCodeChallengeCompletionProcessor'
 import { updateCodeChallengeCompletionProcessor } from './resolvers/updateCodeChallengeCompletionProcessor'
 
-export const CodeChallengeCompletionExtendQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.codeChallengeCompletion({})
-    t.crud.codeChallengeCompletions({
-      ordering: true,
-      filtering: true,
-    })
-  },
-})
-
-export const CodeChallengeCompletionExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('createCodeChallengeCompletionProcessor', {
-      type: 'CodeChallengeCompletionResponse',
-      args: {
-        data: nonNull('CodeChallengeCompletionCreateInput'),
-      },
-      resolve: createCodeChallengeCompletionProcessor,
-    })
-    t.nonNull.field('updateCodeChallengeCompletionProcessor', {
-      type: 'CodeChallengeCompletionResponse',
-      args: {
-        data: nonNull('CodeChallengeCompletionUpdateInput'),
-        where: nonNull('CodeChallengeCompletionWhereUniqueInput'),
-      },
-      resolve: updateCodeChallengeCompletionProcessor,
-    })
-  },
-})
-
 export const CodeChallengeCompletion = objectType({
   name: 'CodeChallengeCompletion',
   definition(t) {
@@ -68,6 +36,38 @@ export const CodeChallengeCompletion = objectType({
             })
           : null
       },
+    })
+  },
+})
+
+export const CodeChallengeCompletionExtendQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.codeChallengeCompletion({})
+    t.crud.codeChallengeCompletions({
+      ordering: true,
+      filtering: true,
+    })
+  },
+})
+
+export const CodeChallengeCompletionExtendMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createCodeChallengeCompletionProcessor', {
+      type: 'CodeChallengeCompletionResponse',
+      args: {
+        data: nonNull('CodeChallengeCompletionCreateInput'),
+      },
+      resolve: createCodeChallengeCompletionProcessor,
+    })
+    t.nonNull.field('updateCodeChallengeCompletionProcessor', {
+      type: 'CodeChallengeCompletionResponse',
+      args: {
+        data: nonNull('CodeChallengeCompletionUpdateInput'),
+        where: nonNull('CodeChallengeCompletionWhereUniqueInput'),
+      },
+      resolve: updateCodeChallengeCompletionProcessor,
     })
   },
 })

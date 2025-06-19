@@ -26,14 +26,14 @@ export async function createUser(
   /**
    * Подключаем сразу все настройки уведомлений
    */
-  const NotificationType_UserNotificationTypesConnect: Prisma.NotificationTypeCreateNestedManyWithoutUser_UserNotificationTypesInput['connect'] =
-    await (
-      await ctx.prisma.notificationType.findMany()
-    ).map((n) => {
-      return {
-        id: n.id,
-      }
-    })
+  // const NotificationType_UserNotificationTypesConnect: Prisma.NotificationTypeCreateNestedManyWithoutUser_UserNotificationTypesInput['connect'] =
+  //   await (
+  //     await ctx.prisma.notificationType.findMany()
+  //   ).map((n) => {
+  //     return {
+  //       id: n.id,
+  //     }
+  //   })
 
   const createData: Prisma.UserCreateInput = {
     ...data,
@@ -44,9 +44,9 @@ export async function createUser(
     // fullname,
     // phone,
     // username,
-    NotificationTypes_UserNotificationTypes: {
-      connect: NotificationType_UserNotificationTypesConnect,
-    },
+    // NotificationTypes_UserNotificationTypes: {
+    //   connect: NotificationType_UserNotificationTypesConnect,
+    // },
   }
 
   const user = await ctx.prisma.user.create({

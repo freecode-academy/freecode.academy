@@ -2,6 +2,14 @@ import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
 import { createResetPasswordProcessor } from './resolvers/createResetPasswordProcessor'
 import { resetPasswordProcessor } from './resolvers/resetPasswordProcessor'
 
+export const ResetPassword = objectType({
+  name: 'ResetPassword',
+  definition(t) {
+    t.nonNull.id('id')
+    t.string('foo')
+  },
+})
+
 export const ResetPasswordExtendMutation = extendType({
   type: 'Mutation',
   definition(t) {
@@ -19,14 +27,6 @@ export const ResetPasswordExtendMutation = extendType({
       },
       resolve: resetPasswordProcessor,
     })
-  },
-})
-
-export const ResetPassword = objectType({
-  name: 'ResetPassword',
-  definition(t) {
-    t.nonNull.id('id')
-    t.string('foo')
   },
 })
 

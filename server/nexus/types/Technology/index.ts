@@ -1,8 +1,8 @@
 import { Prisma } from '@prisma/client'
-import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
+import { extendType, inputObjectType, objectType } from 'nexus'
 import { NexusGenScalars } from 'server/nexus/generated/nexus'
-import { createTechnology } from './resolvers/createTechnology'
-import { updateTechnology } from './resolvers/updateTechnology'
+// import { createTechnology } from './resolvers/createTechnology'
+// import { updateTechnology } from './resolvers/updateTechnology'
 
 export const Technology = objectType({
   name: 'Technology',
@@ -114,26 +114,26 @@ export const TechnologyExtendQuery = extendType({
   },
 })
 
-export const TechnologyExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('createTechnology', {
-      type: 'Technology',
-      args: {
-        data: nonNull('TechnologyCreateInput'),
-      },
-      resolve: createTechnology,
-    })
-    t.nonNull.field('updateTechnology', {
-      type: 'Technology',
-      args: {
-        data: nonNull('TechnologyUpdateInput'),
-        where: nonNull('TechnologyWhereUniqueInput'),
-      },
-      resolve: updateTechnology,
-    })
-  },
-})
+// export const TechnologyExtendMutation = extendType({
+//   type: 'Mutation',
+//   definition(t) {
+//     t.nonNull.field('createTechnology', {
+//       type: 'Technology',
+//       args: {
+//         data: nonNull('TechnologyCreateInput'),
+//       },
+//       resolve: createTechnology,
+//     })
+//     t.nonNull.field('updateTechnology', {
+//       type: 'Technology',
+//       args: {
+//         data: nonNull('TechnologyUpdateInput'),
+//         where: nonNull('TechnologyWhereUniqueInput'),
+//       },
+//       resolve: updateTechnology,
+//     })
+//   },
+// })
 
 export const TechnologyCreateInput = inputObjectType({
   name: 'TechnologyCreateInput',

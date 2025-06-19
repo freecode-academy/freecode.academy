@@ -9,31 +9,6 @@ import {
 } from 'nexus'
 import { updateCodeChallenge } from './resolvers/updateCodeChallenge'
 
-export const CodeChallengeExtendQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.crud.codeChallenge({})
-    t.crud.codeChallenges({
-      filtering: true,
-      ordering: true,
-    })
-  },
-})
-
-export const CodeChallengeExtendMutation = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('updateCodeChallenge', {
-      type: 'CodeChallenge',
-      args: {
-        where: nonNull('CodeChallengeWhereUniqueInput'),
-        data: nonNull('CodeChallengeUpdateInput'),
-      },
-      resolve: updateCodeChallenge,
-    })
-  },
-})
-
 export const CodeChallenge = objectType({
   name: 'CodeChallenge',
   definition(t) {
@@ -66,6 +41,7 @@ export const CodeChallenge = objectType({
     t.boolean('isRequired')
     t.boolean('isPrivate')
     t.boolean('isBeta')
+    t.id('Block')
 
     t.field('CreatedBy', {
       type: 'User',
@@ -87,7 +63,6 @@ export const CodeChallenge = objectType({
       },
     })
 
-    t.id('Block')
     t.field('CodeChallengeBlock', {
       type: 'CodeChallengeBlock',
       resolve({ Block }, _, ctx) {
@@ -129,6 +104,31 @@ export const CodeChallenge = objectType({
           skip: args.skip || undefined,
         })
       },
+    })
+  },
+})
+
+export const CodeChallengeExtendQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.codeChallenge({})
+    t.crud.codeChallenges({
+      filtering: true,
+      ordering: true,
+    })
+  },
+})
+
+export const CodeChallengeExtendMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('updateCodeChallenge', {
+      type: 'CodeChallenge',
+      args: {
+        where: nonNull('CodeChallengeWhereUniqueInput'),
+        data: nonNull('CodeChallengeUpdateInput'),
+      },
+      resolve: updateCodeChallenge,
     })
   },
 })

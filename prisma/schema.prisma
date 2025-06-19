@@ -13,37 +13,37 @@ enum userType {
 }
 
 model User {
-  id                            String   @id @default(cuid()) @db.VarChar(32)
-  createdAt                     DateTime @default(now()) @db.DateTime(0)
-  updatedAt                     DateTime @default(now()) @updatedAt @db.DateTime(0)
-  username                      String?
-  email                         String?
-  phone                         String?
-  showEmail                     Boolean  @default(false)
-  showPhone                     Boolean  @default(false)
-  showFullname                  Boolean  @default(true)
-  password                      String?
-  fullname                      String?
-  image                         String?  @db.Text
-  address                       String?  @db.Text
-  active                        Boolean?
-  blocked                       Boolean  @default(false)
-  activated                     Boolean?
-  deleted                       Boolean?
-  hidden                        Boolean?
-  sudo                          Boolean?
-  marketplaceToken              String?
-  oldID                         Int?     @unique
-  CreatedBy                     String?  @db.VarChar(32)
-  EthAccountAuthed              String?  @db.VarChar(32)
-  acceptChatMessageOldAnonymous Boolean?
-  acceptNewChatRoomAnonymous    Boolean?
-  acceptNewChatRoom             Boolean?
-  isMentor                      Boolean  @default(value: false)
-  technologyLevel               Int?     @db.UnsignedTinyInt
+  id               String   @id @default(cuid()) @db.VarChar(32)
+  createdAt        DateTime @default(now()) @db.DateTime(0)
+  updatedAt        DateTime @default(now()) @updatedAt @db.DateTime(0)
+  username         String?
+  email            String?
+  phone            String?
+  showEmail        Boolean  @default(false)
+  showPhone        Boolean  @default(false)
+  showFullname     Boolean  @default(true)
+  password         String?
+  fullname         String?
+  image            String?  @db.Text
+  address          String?  @db.Text
+  active           Boolean?
+  blocked          Boolean  @default(false)
+  activated        Boolean?
+  deleted          Boolean?
+  hidden           Boolean?
+  sudo             Boolean?
+  // marketplaceToken              String?
+  // oldID                         Int?     @unique
+  CreatedBy        String?  @db.VarChar(32)
+  EthAccountAuthed String?  @db.VarChar(32)
+  // acceptChatMessageOldAnonymous Boolean?
+  // acceptNewChatRoomAnonymous    Boolean?
+  // acceptNewChatRoom             Boolean?
+  isMentor         Boolean  @default(value: false)
+  technologyLevel  Int?     @db.UnsignedTinyInt
   // @deprecated
-  about                         Json?
-  telegram                      String?
+  // about                         Json?
+  telegram         String?
 
   type    userType @default(Human)
   data    Json?
@@ -53,82 +53,82 @@ model User {
   // Рейтинг от 0 до 1000
   rating Int @default(0)
 
-  User                                                   User?                     @relation("UserToUser_CreatedBy", fields: [CreatedBy], references: [id])
-  EthAccount_EthAccountToUser_EthAccountAuthed           EthAccount?               @relation("EthAccountToUser_EthAccountAuthed", fields: [EthAccountAuthed], references: [id])
-  CallRequests_CallRequest_CalledToUser                  CallRequest[]             @relation("CallRequest_CalledToUser")
-  CallRequests_CallRequest_CallerToUser                  CallRequest[]             @relation("CallRequest_CallerToUser")
-  Careers                                                Career[]
-  ChatMessageOlds                                        ChatMessageOld[]          @relation("UserChatMessageOlds")
-  ChatMessageOldsIncoming                                ChatMessageOld[]          @relation("UserChatMessageOldsIncoming")
-  ChatMessageOldsReaded                                  ChatMessageOldReaded[]
-  ChatRooms_ChatRoomToUser                               ChatRoom[]
-  ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser ChatRoomInvitation[]      @relation("ChatRoomInvitation_CreatedByToUser")
-  ChatRoomInvitations_ChatRoomInvitation_UserToUser      ChatRoomInvitation[]      @relation("ChatRoomInvitation_UserToUser")
-  CodeChallenges                                         CodeChallenge[]
-  CodeChallengeBlocks                                    CodeChallengeBlock[]
-  CodeChallengeCompletions                               CodeChallengeCompletion[]
-  Comments                                               Comment[]
-  EthAccounts_EthAccount_CreatedByToUser                 EthAccount[]              @relation("EthAccount_CreatedByToUser")
-  EthContractSources                                     EthContractSource[]
-  Files                                                  File[]
-  Galleries                                              Gallery[]
+  // User                                                   User?                     @relation("UserToUser_CreatedBy", fields: [CreatedBy], references: [id])
+  // EthAccount_EthAccountToUser_EthAccountAuthed           EthAccount?               @relation("EthAccountToUser_EthAccountAuthed", fields: [EthAccountAuthed], references: [id])
+  // CallRequests_CallRequest_CalledToUser                  CallRequest[]             @relation("CallRequest_CalledToUser")
+  // CallRequests_CallRequest_CallerToUser                  CallRequest[]             @relation("CallRequest_CallerToUser")
+  Careers                                      Career[]
+  // ChatMessageOlds                              ChatMessageOld[]          @relation("UserChatMessageOlds")
+  // ChatMessageOldsIncoming                      ChatMessageOld[]          @relation("UserChatMessageOldsIncoming")
+  // ChatMessageOldsReaded                                  ChatMessageOldReaded[]
+  // ChatRooms_ChatRoomToUser                     ChatRoom[]
+  // ChatRoomInvitations_ChatRoomInvitation_CreatedByToUser ChatRoomInvitation[]      @relation("ChatRoomInvitation_CreatedByToUser")
+  // ChatRoomInvitations_ChatRoomInvitation_UserToUser      ChatRoomInvitation[]      @relation("ChatRoomInvitation_UserToUser")
+  CodeChallenges                               CodeChallenge[]
+  CodeChallengeBlocks                          CodeChallengeBlock[]
+  CodeChallengeCompletions                     CodeChallengeCompletion[]
+  // Comments                                     Comment[]
+  // EthAccounts_EthAccount_CreatedByToUser                 EthAccount[]              @relation("EthAccount_CreatedByToUser")
+  // EthContractSources                                     EthContractSource[]
+  Files                                        File[]
+  // Galleries                                              Gallery[]
   // Games_GameToUser                                       Game[]
   // GameResults_GameResult_CreatedByToUser                 GameResult[]              @relation("GameResult_CreatedByToUser")
   // GameResults_GameResult_UserToUser                      GameResult[]              @relation("GameResult_UserToUser")
   // Imports                                                Import[]
   // Letters                                                Letter[]
-  LogedIns                                               LogedIn[]
-  Notices_Notice_CreatedByToUser                         Notice[]                  @relation("Notice_CreatedByToUser")
-  Notices_Notice_UserToUser                              Notice[]                  @relation("Notice_UserToUser")
-  NotificationTypes_NotificationTypeToUser               NotificationType[]
+  // LogedIns                                               LogedIn[]
+  // Notices_Notice_CreatedByToUser                         Notice[]                  @relation("Notice_CreatedByToUser")
+  // Notices_Notice_UserToUser                              Notice[]                  @relation("Notice_UserToUser")
+  // NotificationTypes_NotificationTypeToUser               NotificationType[]
   // Players                                                Player[]
-  Positions_PositionToUser                               Position[]
-  Projects_ProjectToUser                                 Project[]
-  ProjectMembers_ProjectMember_CreatedByToUser           ProjectMember[]           @relation("ProjectMember_CreatedByToUser")
-  ProjectMembers_ProjectMember_UserToUser                ProjectMember[]           @relation("ProjectMember_UserToUser")
-  ProjectTasks                                           ProjectTask[]
-  ResetPasswords                                         ResetPassword[]
-  Resources                                              Resource[]
-  ResourceTags                                           ResourceTag[]
+  Positions_PositionToUser                     Position[]
+  Projects_ProjectToUser                       Project[]
+  ProjectMembers_ProjectMember_CreatedByToUser ProjectMember[]           @relation("ProjectMember_CreatedByToUser")
+  ProjectMembers_ProjectMember_UserToUser      ProjectMember[]           @relation("ProjectMember_UserToUser")
+  ProjectTasks                                 ProjectTask[]
+  ResetPasswords                               ResetPassword[]
+  Resources                                    Resource[]
+  ResourceTags                                 ResourceTag[]
   // Routes                                                 Route[]
-  Services                                               Service[]
-  ServiceCategories                                      ServiceCategory[]
+  // Services                                               Service[]
+  // ServiceCategories                                      ServiceCategory[]
   // Settings                                               Settings[]
   // SmsMessages                                            SmsMessage[]
   // SmsProviders                                           SmsProvider[]
-  Tags                                                   Tag[]
-  Tasks                                                  Task[]
-  TaskMembers_TaskMember_CreatedByToUser                 TaskMember[]              @relation("TaskMember_CreatedByToUser")
-  TaskMembers_TaskMember_UserToUser                      TaskMember[]              @relation("TaskMember_UserToUser")
-  TaskReactions                                          TaskReaction[]
-  TaskTechnologies                                       TaskTechnology[]
-  Teams                                                  Team[]
-  TeamMembers_TeamMember_CreatedByToUser                 TeamMember[]              @relation("TeamMember_CreatedByToUser")
-  TeamMembers_TeamMember_UserToUser                      TeamMember[]              @relation("TeamMember_UserToUser")
-  Technologies                                           Technology[]
-  TechnologyLessons                                      TechnologyLesson[]
-  TechnologyLessonUsers                                  TechnologyLessonUser[]
+  // Tags                                                   Tag[]
+  Tasks                                        Task[]
+  TaskMembers_TaskMember_CreatedByToUser       TaskMember[]              @relation("TaskMember_CreatedByToUser")
+  TaskMembers_TaskMember_UserToUser            TaskMember[]              @relation("TaskMember_UserToUser")
+  TaskReactions                                TaskReaction[]
+  TaskTechnologies                             TaskTechnology[]
+  Teams                                        Team[]
+  TeamMembers_TeamMember_CreatedByToUser       TeamMember[]              @relation("TeamMember_CreatedByToUser")
+  TeamMembers_TeamMember_UserToUser            TeamMember[]              @relation("TeamMember_UserToUser")
+  Technologies                                 Technology[]
+  TechnologyLessons                            TechnologyLesson[]
+  TechnologyLessonUsers                        TechnologyLessonUser[]
   // Templates                                              Template[]
-  Timers                                                 Timer[]
+  Timers                                       Timer[]
   // Tournaments                                            Tournament[]
   // TournamentGroups                                       TournamentGroup[]
   // Tourneys                                               Tourney[]
   // TourneyPlayers                                         TourneyPlayer[]
-  other_Users                                            User[]                    @relation("UserToUser_CreatedBy")
-  UserTechnologies                                       UserTechnology[]
-  Votes                                                  Vote[]
+  // other_Users                                            User[]                    @relation("UserToUser_CreatedBy")
+  UserTechnologies                             UserTechnology[]
+  // Votes                                                  Vote[]
   // Worlds                                                 World[]
-  ChatRooms_ChatRoomsMembers                             ChatRoom[]                @relation("ChatRoomsMembers")
+  // ChatRooms_ChatRoomsMembers                             ChatRoom[]                @relation("ChatRoomsMembers")
   // Games_GameUsers                                        Game[]                    @relation("GameUsers")
-  Positions_PositionUsers                                Position[]                @relation("PositionUsers")
-  Projects_PrismaProjectUsers                            Project[]                 @relation("PrismaProjectUsers")
-  UserGroups                                             UserGroup[]               @relation("UserGroups")
-  NotificationTypes_UserNotificationTypes                NotificationType[]        @relation("UserNotificationTypes")
-  Tokens                                                 Token[]
+  Positions_PositionUsers                      Position[]                @relation("PositionUsers")
+  Projects_PrismaProjectUsers                  Project[]                 @relation("PrismaProjectUsers")
+  // UserGroups                                             UserGroup[]               @relation("UserGroups")
+  // NotificationTypes_UserNotificationTypes      NotificationType[]        @relation("UserNotificationTypes")
+  Tokens                                       Token[]
   // Созданные пользователем стратегии развития
-  LearnStrategies                                        LearnStrategy[]
+  LearnStrategies                              LearnStrategy[]
   // Выбранные пользователем стратегии развития
-  UserLearnStrategies                                    UserLearnStrategy[]
+  UserLearnStrategies                          UserLearnStrategy[]
 
   // Где является ментором
   MentorMenteeMentors MentorMentee[] @relation("MentorMenteeMentor")
@@ -136,7 +136,7 @@ model User {
   // Где является менти
   MentorMenteeMentees MentorMentee[] @relation("MentorMenteeMentee")
 
-  Donates Donate[]
+  // Donates Donate[]
   // AiAgent AiAgent[]
 
   ChatMessages       ChatMessage[] @relation(name: "ChatMessageCreatedBy")
@@ -163,24 +163,24 @@ model Token {
 }
 
 model File {
-  id                    String    @id @default(cuid()) @db.VarChar(32)
-  path                  String    @db.MediumText
-  name                  String?   @db.MediumText
-  filename              String?   @db.MediumText
-  mimetype              String    @db.MediumText
-  encoding              String    @db.MediumText
-  hash                  String?   @db.MediumText
-  size                  Decimal?
-  ImageResource         String?   @db.VarChar(32)
-  CreatedBy             String?   @db.VarChar(32)
-  rank                  Int?
-  Gallery               String?   @db.VarChar(32)
-  createdAt             DateTime  @default(now()) @db.DateTime(0)
-  updatedAt             DateTime  @default(now()) @updatedAt @db.DateTime(0)
-  User                  User?     @relation(fields: [CreatedBy], references: [id])
-  Gallery_FileToGallery Gallery?  @relation(fields: [Gallery], references: [id])
-  Resource              Resource? @relation(fields: [ImageResource], references: [id])
-  Projects              Project[]
+  id            String    @id @default(cuid()) @db.VarChar(32)
+  path          String    @db.MediumText
+  name          String?   @db.MediumText
+  filename      String?   @db.MediumText
+  mimetype      String    @db.MediumText
+  encoding      String    @db.MediumText
+  hash          String?   @db.MediumText
+  size          Decimal?
+  ImageResource String?   @db.VarChar(32)
+  CreatedBy     String?   @db.VarChar(32)
+  rank          Int?
+  Gallery       String?   @db.VarChar(32)
+  createdAt     DateTime  @default(now()) @db.DateTime(0)
+  updatedAt     DateTime  @default(now()) @updatedAt @db.DateTime(0)
+  User          User?     @relation(fields: [CreatedBy], references: [id])
+  // Gallery_FileToGallery Gallery?  @relation(fields: [Gallery], references: [id])
+  Resource      Resource? @relation(fields: [ImageResource], references: [id])
+  Projects      Project[]
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Gallery], name: "Gallery")
@@ -200,38 +200,38 @@ model File {
 //   @@index([world], name: "world")
 // }
 
-model CallRequest {
-  id                            String            @id @default(cuid()) @db.VarChar(32)
-  called_descriptions           Json
-  caller_descriptions           Json
-  status                        CallRequestStatus @default(value: Created)
-  startedAt                     DateTime?
-  endedAt                       DateTime?
-  Room                          String?           @db.VarChar(32)
-  Called                        String?           @db.VarChar(32)
-  Caller                        String?           @db.VarChar(32)
-  createdAt                     DateTime          @default(now()) @db.DateTime(0)
-  updatedAt                     DateTime          @default(now()) @updatedAt @db.DateTime(0)
-  User_CallRequest_CalledToUser User?             @relation("CallRequest_CalledToUser", fields: [Called], references: [id])
-  User_CallRequest_CallerToUser User?             @relation("CallRequest_CallerToUser", fields: [Caller], references: [id])
-  ChatRoom                      ChatRoom?         @relation(fields: [Room], references: [id])
+// model CallRequest {
+//   id                            String            @id @default(cuid()) @db.VarChar(32)
+//   called_descriptions           Json
+//   caller_descriptions           Json
+//   status                        CallRequestStatus @default(value: Created)
+//   startedAt                     DateTime?
+//   endedAt                       DateTime?
+//   Room                          String?           @db.VarChar(32)
+//   Called                        String?           @db.VarChar(32)
+//   Caller                        String?           @db.VarChar(32)
+//   createdAt                     DateTime          @default(now()) @db.DateTime(0)
+//   updatedAt                     DateTime          @default(now()) @updatedAt @db.DateTime(0)
+//   User_CallRequest_CalledToUser User?             @relation("CallRequest_CalledToUser", fields: [Called], references: [id])
+//   User_CallRequest_CallerToUser User?             @relation("CallRequest_CallerToUser", fields: [Caller], references: [id])
+//   ChatRoom                      ChatRoom?         @relation(fields: [Room], references: [id])
 
-  @@index([Called], name: "Called")
-  @@index([Caller], name: "Caller")
-  @@index([Room], name: "Room")
-}
+//   @@index([Called], name: "Called")
+//   @@index([Caller], name: "Caller")
+//   @@index([Room], name: "Room")
+// }
 
-enum CallRequestStatus {
-  Created
-  Rejected
-  Accepted
-  Started
-  Canceled
-  Missed
-  Ended
-  Error
-  Billed
-}
+// enum CallRequestStatus {
+//   Created
+//   Rejected
+//   Accepted
+//   Started
+//   Canceled
+//   Missed
+//   Ended
+//   Error
+//   Billed
+// }
 
 model Career {
   id          String    @id @default(cuid()) @db.VarChar(32)
@@ -247,78 +247,78 @@ model Career {
 }
 
 model ChatMessageOld {
-  id                    String                 @id @default(cuid()) @db.VarChar(32)
-  createdAt             DateTime               @default(now()) @db.DateTime(0)
-  updatedAt             DateTime               @default(now()) @updatedAt @db.DateTime(0)
-  content               Json?
-  contentText           String?                @db.MediumText
-  CreatedBy             String?                @db.VarChar(32)
-  Room                  String?                @db.VarChar(32)
-  User                  User?                  @relation("UserChatMessageOlds", fields: [CreatedBy], references: [id])
-  ChatRoom              ChatRoom?              @relation(fields: [Room], references: [id])
-  ChatMessageOldsReaded ChatMessageOldReaded[]
-  Notices               Notice[]
-  toUser                String?                @db.VarChar(32)
-  ToUser                User?                  @relation("UserChatMessageOldsIncoming", fields: [toUser], references: [id])
+  id          String    @id @default(cuid()) @db.VarChar(32)
+  createdAt   DateTime  @default(now()) @db.DateTime(0)
+  updatedAt   DateTime  @default(now()) @updatedAt @db.DateTime(0)
+  content     Json?
+  contentText String?   @db.MediumText
+  CreatedBy   String?   @db.VarChar(32)
+  Room        String?   @db.VarChar(32)
+  // User        User?     @relation("UserChatMessageOlds", fields: [CreatedBy], references: [id])
+  ChatRoom    ChatRoom? @relation(fields: [Room], references: [id])
+  // ChatMessageOldsReaded ChatMessageOldReaded[]
+  // Notices     Notice[]
+  toUser      String?   @db.VarChar(32)
+  // ToUser      User?     @relation("UserChatMessageOldsIncoming", fields: [toUser], references: [id])
 
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Room], name: "Room")
 }
 
-model ChatMessageOldReaded {
-  id                              String          @id @default(cuid()) @db.VarChar(32)
-  createdAt                       DateTime        @default(now()) @db.DateTime(0)
-  updatedAt                       DateTime        @default(now()) @updatedAt @db.DateTime(0)
-  Message                         String?         @db.VarChar(32)
-  User                            String?         @db.VarChar(32)
-  ChatMessageOld                  ChatMessageOld? @relation(fields: [Message], references: [id])
-  User_ChatMessageOldReadedToUser User?           @relation(fields: [User], references: [id])
+// model ChatMessageOldReaded {
+//   id                              String          @id @default(cuid()) @db.VarChar(32)
+//   createdAt                       DateTime        @default(now()) @db.DateTime(0)
+//   updatedAt                       DateTime        @default(now()) @updatedAt @db.DateTime(0)
+//   Message                         String?         @db.VarChar(32)
+//   User                            String?         @db.VarChar(32)
+//   ChatMessageOld                  ChatMessageOld? @relation(fields: [Message], references: [id])
+//   User_ChatMessageOldReadedToUser User?           @relation(fields: [User], references: [id])
 
-  @@index([Message], name: "Message")
-  @@index([User], name: "User")
-}
+//   @@index([Message], name: "Message")
+//   @@index([User], name: "User")
+// }
 
 model ChatRoom {
-  id                    String               @id @default(cuid()) @db.VarChar(32)
-  createdAt             DateTime             @default(now()) @db.DateTime(0)
-  updatedAt             DateTime             @default(now()) @updatedAt @db.DateTime(0)
-  name                  String               @db.MediumText
-  description           String?              @db.MediumText
-  image                 String?              @db.MediumText
-  code                  String?              @unique @db.VarChar(32)
-  isPublic              Boolean?
-  CreatedBy             String?              @db.VarChar(32)
-  allowAnonymous        Boolean?
-  sandbox               Boolean?
-  User_ChatRoomToUser   User?                @relation(fields: [CreatedBy], references: [id])
-  CallRequests          CallRequest[]
-  ChatMessageOlds       ChatMessageOld[]
-  ChatRoomInvitations   ChatRoomInvitation[]
-  Projects              Project[]
-  Tasks                 Task[]
-  User_ChatRoomsMembers User[]               @relation("ChatRoomsMembers")
+  id              String           @id @default(cuid()) @db.VarChar(32)
+  createdAt       DateTime         @default(now()) @db.DateTime(0)
+  updatedAt       DateTime         @default(now()) @updatedAt @db.DateTime(0)
+  name            String           @db.MediumText
+  description     String?          @db.MediumText
+  image           String?          @db.MediumText
+  code            String?          @unique @db.VarChar(32)
+  isPublic        Boolean?
+  CreatedBy       String?          @db.VarChar(32)
+  // allowAnonymous      Boolean?
+  // sandbox             Boolean?
+  // User_ChatRoomToUser User?                @relation(fields: [CreatedBy], references: [id])
+  // CallRequests          CallRequest[]
+  ChatMessageOlds ChatMessageOld[]
+  // ChatRoomInvitations ChatRoomInvitation[]
+  // Projects        Project[]
+  Tasks           Task[]
+  // User_ChatRoomsMembers User[]               @relation("ChatRoomsMembers")
 
   @@index([CreatedBy], name: "CreatedBy")
 }
 
-model ChatRoomInvitation {
-  id                                      String    @id @default(cuid()) @db.VarChar(32)
-  createdAt                               DateTime  @default(now()) @db.DateTime(0)
-  updatedAt                               DateTime  @default(now()) @updatedAt @db.DateTime(0)
-  User                                    String?   @db.VarChar(32)
-  CreatedBy                               String?   @db.VarChar(32)
-  ChatRoom                                String?   @db.VarChar(32)
-  Notice                                  String?   @db.VarChar(32)
-  ChatRoom_ChatRoomToChatRoomInvitation   ChatRoom? @relation(fields: [ChatRoom], references: [id])
-  User_ChatRoomInvitation_CreatedByToUser User?     @relation("ChatRoomInvitation_CreatedByToUser", fields: [CreatedBy], references: [id])
-  Notice_ChatRoomInvitationToNotice       Notice?   @relation(fields: [Notice], references: [id])
-  User_ChatRoomInvitation_UserToUser      User?     @relation("ChatRoomInvitation_UserToUser", fields: [User], references: [id])
+// model ChatRoomInvitation {
+//   id                                    String    @id @default(cuid()) @db.VarChar(32)
+//   createdAt                             DateTime  @default(now()) @db.DateTime(0)
+//   updatedAt                             DateTime  @default(now()) @updatedAt @db.DateTime(0)
+//   User                                  String?   @db.VarChar(32)
+//   CreatedBy                             String?   @db.VarChar(32)
+//   ChatRoom                              String?   @db.VarChar(32)
+//   Notice                                String?   @db.VarChar(32)
+//   ChatRoom_ChatRoomToChatRoomInvitation ChatRoom? @relation(fields: [ChatRoom], references: [id])
+//   // User_ChatRoomInvitation_CreatedByToUser User?     @relation("ChatRoomInvitation_CreatedByToUser", fields: [CreatedBy], references: [id])
+//   Notice_ChatRoomInvitationToNotice     Notice?   @relation(fields: [Notice], references: [id])
+//   // User_ChatRoomInvitation_UserToUser      User?     @relation("ChatRoomInvitation_UserToUser", fields: [User], references: [id])
 
-  @@index([ChatRoom], name: "ChatRoom")
-  @@index([CreatedBy], name: "CreatedBy")
-  @@index([Notice], name: "Notice")
-  @@index([User], name: "User")
-}
+//   @@index([ChatRoom], name: "ChatRoom")
+//   @@index([CreatedBy], name: "CreatedBy")
+//   @@index([Notice], name: "Notice")
+//   @@index([User], name: "User")
+// }
 
 model CodeChallenge {
   id                       String                    @id @default(cuid()) @db.VarChar(32)
@@ -396,149 +396,149 @@ model CodeChallengeCompletion {
   @@index([Task], name: "Task")
 }
 
-model Comment {
-  id                                         String            @id @default(cuid()) @db.VarChar(32)
-  createdAt                                  DateTime          @default(now()) @db.DateTime(0)
-  updatedAt                                  DateTime          @default(now()) @updatedAt @db.DateTime(0)
-  components                                 String?           @db.MediumText
-  contentText                                String?           @db.MediumText
-  CreatedBy                                  String?           @db.VarChar(32)
-  TechnologyLesson                           String?           @db.VarChar(32)
-  User                                       User?             @relation(fields: [CreatedBy], references: [id])
-  TechnologyLesson_CommentToTechnologyLesson TechnologyLesson? @relation(fields: [TechnologyLesson], references: [id])
+// model Comment {
+//   id                                         String            @id @default(cuid()) @db.VarChar(32)
+//   createdAt                                  DateTime          @default(now()) @db.DateTime(0)
+//   updatedAt                                  DateTime          @default(now()) @updatedAt @db.DateTime(0)
+//   components                                 String?           @db.MediumText
+//   contentText                                String?           @db.MediumText
+//   CreatedBy                                  String?           @db.VarChar(32)
+//   TechnologyLesson                           String?           @db.VarChar(32)
+//   User                                       User?             @relation(fields: [CreatedBy], references: [id])
+//   TechnologyLesson_CommentToTechnologyLesson TechnologyLesson? @relation(fields: [TechnologyLesson], references: [id])
 
-  @@index([CreatedBy], name: "CreatedBy")
-  @@index([TechnologyLesson], name: "TechnologyLesson")
-}
+//   @@index([CreatedBy], name: "CreatedBy")
+//   @@index([TechnologyLesson], name: "TechnologyLesson")
+// }
 
-model EthAccount {
-  id                                                 String             @id @default(cuid()) @db.VarChar(32)
-  createdAt                                          DateTime           @default(now()) @db.DateTime(0)
-  updatedAt                                          DateTime           @default(now()) @updatedAt @db.DateTime(0)
-  name                                               String?            @db.MediumText
-  description                                        Json?
-  address                                            String             @db.MediumText
-  type                                               EthAccountType     @default(value: Account)
-  source                                             String?            @db.MediumText
-  bytecode                                           String?            @db.MediumText
-  abi                                                Json?
-  ContractSource                                     String?            @db.VarChar(32)
-  Project                                            String?            @db.VarChar(32)
-  CreatedBy                                          String?            @db.VarChar(32)
-  EthContractSource                                  EthContractSource? @relation(fields: [ContractSource], references: [id])
-  User_EthAccount_CreatedByToUser                    User?              @relation("EthAccount_CreatedByToUser", fields: [CreatedBy], references: [id])
-  Project_EthAccountToProject                        Project?           @relation(fields: [Project], references: [id])
-  EthBlock                                           EthBlock[]
-  EthTransaction_EthAccountToEthTransaction_Account  EthTransaction[]   @relation("EthAccountToEthTransaction_Account")
-  EthTransaction_EthAccountToEthTransaction_Receiver EthTransaction[]   @relation("EthAccountToEthTransaction_Receiver")
-  EthTransaction_EthAccountToEthTransaction_Sender   EthTransaction[]   @relation("EthAccountToEthTransaction_Sender")
-  Resource                                           Resource[]
-  User_EthAccountToUser_EthAccountAuthed             User[]             @relation("EthAccountToUser_EthAccountAuthed")
+// model EthAccount {
+//   id                          String             @id @default(cuid()) @db.VarChar(32)
+//   createdAt                   DateTime           @default(now()) @db.DateTime(0)
+//   updatedAt                   DateTime           @default(now()) @updatedAt @db.DateTime(0)
+//   name                        String?            @db.MediumText
+//   description                 Json?
+//   address                     String             @db.MediumText
+//   type                        EthAccountType     @default(value: Account)
+//   source                      String?            @db.MediumText
+//   bytecode                    String?            @db.MediumText
+//   abi                         Json?
+//   ContractSource              String?            @db.VarChar(32)
+//   Project                     String?            @db.VarChar(32)
+//   CreatedBy                   String?            @db.VarChar(32)
+//   EthContractSource           EthContractSource? @relation(fields: [ContractSource], references: [id])
+//   // User_EthAccount_CreatedByToUser                    User?              @relation("EthAccount_CreatedByToUser", fields: [CreatedBy], references: [id])
+//   Project_EthAccountToProject Project?           @relation(fields: [Project], references: [id])
+//   EthBlock                    EthBlock[]
+//   // EthTransaction_EthAccountToEthTransaction_Account  EthTransaction[]   @relation("EthAccountToEthTransaction_Account")
+//   // EthTransaction_EthAccountToEthTransaction_Receiver EthTransaction[]   @relation("EthAccountToEthTransaction_Receiver")
+//   // EthTransaction_EthAccountToEthTransaction_Sender   EthTransaction[]   @relation("EthAccountToEthTransaction_Sender")
+//   Resource                    Resource[]
+//   // User_EthAccountToUser_EthAccountAuthed             User[]             @relation("EthAccountToUser_EthAccountAuthed")
 
-  @@index([ContractSource], name: "ContractSource")
-  @@index([CreatedBy], name: "CreatedBy")
-  @@index([Project], name: "Project")
-}
+//   @@index([ContractSource], name: "ContractSource")
+//   @@index([CreatedBy], name: "CreatedBy")
+//   @@index([Project], name: "Project")
+// }
 
-enum EthAccountType {
-  Account
-  Contract
-}
+// enum EthAccountType {
+//   Account
+//   Contract
+// }
 
-model EthBlock {
-  id                 String           @id @default(cuid()) @db.VarChar(32)
-  createdAt          DateTime         @default(now()) @db.DateTime(0)
-  updatedAt          DateTime         @default(now()) @updatedAt @db.DateTime(0)
-  hash               String           @db.MediumText
-  number             Int              @unique
-  difficulty         Decimal?
-  totalDifficulty    Decimal?
-  extraData          String?          @db.MediumText
-  gasLimit           Decimal?
-  gasUsed            Decimal?
-  mixHash            String?          @db.MediumText
-  nonce              String?          @db.MediumText
-  parentHash         String?          @db.MediumText
-  receiptsRoot       String?          @db.MediumText
-  sha3Uncles         String?          @db.MediumText
-  size               Int?
-  stateRoot          String?          @db.MediumText
-  date               DateTime?
-  transactionsRoot   String?          @db.MediumText
-  transactions_count Int?
-  Miner              String?          @db.VarChar(32)
-  EthAccount         EthAccount?      @relation(fields: [Miner], references: [id])
-  EthTransaction     EthTransaction[]
-  EthBlock_B         EthBlock[]       @relation("EthBlockToEthBlock")
-  EthBlock_A         EthBlock[]       @relation("EthBlockToEthBlock")
+// model EthBlock {
+//   id                 String           @id @default(cuid()) @db.VarChar(32)
+//   createdAt          DateTime         @default(now()) @db.DateTime(0)
+//   updatedAt          DateTime         @default(now()) @updatedAt @db.DateTime(0)
+//   hash               String           @db.MediumText
+//   number             Int              @unique
+//   difficulty         Decimal?
+//   totalDifficulty    Decimal?
+//   extraData          String?          @db.MediumText
+//   gasLimit           Decimal?
+//   gasUsed            Decimal?
+//   mixHash            String?          @db.MediumText
+//   nonce              String?          @db.MediumText
+//   parentHash         String?          @db.MediumText
+//   receiptsRoot       String?          @db.MediumText
+//   sha3Uncles         String?          @db.MediumText
+//   size               Int?
+//   stateRoot          String?          @db.MediumText
+//   date               DateTime?
+//   transactionsRoot   String?          @db.MediumText
+//   transactions_count Int?
+//   Miner              String?          @db.VarChar(32)
+//   EthAccount         EthAccount?      @relation(fields: [Miner], references: [id])
+//   EthTransaction     EthTransaction[]
+//   EthBlock_B         EthBlock[]       @relation("EthBlockToEthBlock")
+//   EthBlock_A         EthBlock[]       @relation("EthBlockToEthBlock")
 
-  @@index([Miner], name: "Miner")
-}
+//   @@index([Miner], name: "Miner")
+// }
 
-model EthContractSource {
-  id          String       @id @default(cuid()) @db.VarChar(32)
-  createdAt   DateTime     @default(now()) @db.DateTime(0)
-  updatedAt   DateTime     @default(now()) @updatedAt @db.DateTime(0)
-  name        String       @db.MediumText
-  description Json?
-  source      String?      @db.MediumText
-  CreatedBy   String?      @db.VarChar(32)
-  User        User?        @relation(fields: [CreatedBy], references: [id])
-  EthAccount  EthAccount[]
+// model EthContractSource {
+//   id          String       @id @default(cuid()) @db.VarChar(32)
+//   createdAt   DateTime     @default(now()) @db.DateTime(0)
+//   updatedAt   DateTime     @default(now()) @updatedAt @db.DateTime(0)
+//   name        String       @db.MediumText
+//   description Json?
+//   source      String?      @db.MediumText
+//   CreatedBy   String?      @db.VarChar(32)
+//   // User        User?        @relation(fields: [CreatedBy], references: [id])
+//   EthAccount  EthAccount[]
 
-  @@index([CreatedBy], name: "CreatedBy")
-}
+//   @@index([CreatedBy], name: "CreatedBy")
+// }
 
-model EthTransaction {
-  id                                             String              @id @default(cuid()) @db.VarChar(32)
-  createdAt                                      DateTime            @default(now()) @db.DateTime(0)
-  updatedAt                                      DateTime            @default(now()) @updatedAt @db.DateTime(0)
-  chainId                                        Int
-  amount                                         Decimal?
-  input                                          String?             @db.MediumText
-  index                                          Int?
-  address                                        String              @db.MediumText
-  type                                           EthTransactionType?
-  v                                              String?             @db.MediumText
-  r                                              String?             @db.MediumText
-  s                                              String?             @db.MediumText
-  Sender                                         String?             @db.VarChar(32)
-  Block                                          String?             @db.VarChar(32)
-  Receiver                                       String?             @db.VarChar(32)
-  Account                                        String?             @db.VarChar(32)
-  EthAccount_EthAccountToEthTransaction_Account  EthAccount?         @relation("EthAccountToEthTransaction_Account", fields: [Account], references: [id])
-  EthBlock                                       EthBlock?           @relation(fields: [Block], references: [id])
-  EthAccount_EthAccountToEthTransaction_Receiver EthAccount?         @relation("EthAccountToEthTransaction_Receiver", fields: [Receiver], references: [id])
-  EthAccount_EthAccountToEthTransaction_Sender   EthAccount?         @relation("EthAccountToEthTransaction_Sender", fields: [Sender], references: [id])
+// model EthTransaction {
+//   id        String              @id @default(cuid()) @db.VarChar(32)
+//   createdAt DateTime            @default(now()) @db.DateTime(0)
+//   updatedAt DateTime            @default(now()) @updatedAt @db.DateTime(0)
+//   chainId   Int
+//   amount    Decimal?
+//   input     String?             @db.MediumText
+//   index     Int?
+//   address   String              @db.MediumText
+//   type      EthTransactionType?
+//   v         String?             @db.MediumText
+//   r         String?             @db.MediumText
+//   s         String?             @db.MediumText
+//   Sender    String?             @db.VarChar(32)
+//   Block     String?             @db.VarChar(32)
+//   Receiver  String?             @db.VarChar(32)
+//   Account   String?             @db.VarChar(32)
+//   // EthAccount_EthAccountToEthTransaction_Account  EthAccount?         @relation("EthAccountToEthTransaction_Account", fields: [Account], references: [id])
+//   EthBlock  EthBlock?           @relation(fields: [Block], references: [id])
+//   // EthAccount_EthAccountToEthTransaction_Receiver EthAccount?         @relation("EthAccountToEthTransaction_Receiver", fields: [Receiver], references: [id])
+//   // EthAccount_EthAccountToEthTransaction_Sender   EthAccount?         @relation("EthAccountToEthTransaction_Sender", fields: [Sender], references: [id])
 
-  @@index([Account], name: "Account")
-  @@index([Block], name: "Block")
-  @@index([Receiver], name: "Receiver")
-  @@index([Sender], name: "Sender")
-}
+//   @@index([Account], name: "Account")
+//   @@index([Block], name: "Block")
+//   @@index([Receiver], name: "Receiver")
+//   @@index([Sender], name: "Sender")
+// }
 
-enum EthTransactionType {
-  ContractCreate
-  ContractRead
-  ContractCall
-  SendEth
-  SendToken
-}
+// enum EthTransactionType {
+//   ContractCreate
+//   ContractRead
+//   ContractCall
+//   SendEth
+//   SendToken
+// }
 
-model Gallery {
-  id                         String    @id @default(cuid()) @db.VarChar(32)
-  name                       String?   @db.MediumText
-  CreatedBy                  String    @db.VarChar(32)
-  Resource                   String?   @db.VarChar(32)
-  createdAt                  DateTime  @default(now()) @db.DateTime(0)
-  updatedAt                  DateTime  @default(now()) @updatedAt @db.DateTime(0)
-  User                       User      @relation(fields: [CreatedBy], references: [id])
-  Resource_GalleryToResource Resource? @relation(fields: [Resource], references: [id])
-  Files                      File[]
+// model Gallery {
+//   id                         String    @id @default(cuid()) @db.VarChar(32)
+//   name                       String?   @db.MediumText
+//   CreatedBy                  String    @db.VarChar(32)
+//   Resource                   String?   @db.VarChar(32)
+//   createdAt                  DateTime  @default(now()) @db.DateTime(0)
+//   updatedAt                  DateTime  @default(now()) @updatedAt @db.DateTime(0)
+//   // User                       User      @relation(fields: [CreatedBy], references: [id])
+//   Resource_GalleryToResource Resource? @relation(fields: [Resource], references: [id])
+//   Files                      File[]
 
-  @@index([CreatedBy], name: "CreatedBy")
-  @@index([Resource], name: "Resource")
-}
+//   @@index([CreatedBy], name: "CreatedBy")
+//   @@index([Resource], name: "Resource")
+// }
 
 // model Game {
 //   id                    String       @id @default(cuid()) @db.VarChar(32)
@@ -621,12 +621,12 @@ model Gallery {
 //   SPECTATOR
 // }
 
-enum MessageType {
-  ERROR
-  PLAYER
-  SERVER
-  INFO
-}
+// enum MessageType {
+//   ERROR
+//   PLAYER
+//   SERVER
+//   INFO
+// }
 
 // enum WorldType {
 //   DEFAULT
@@ -676,64 +676,64 @@ enum MessageType {
 //   @@index([Status], name: "Status")
 // }
 
-model LogedIn {
-  id                 String   @id @default(cuid()) @db.VarChar(32)
-  createdAt          DateTime @default(now()) @db.DateTime(0)
-  fake               Boolean?
-  updatedAt          DateTime @default(now()) @updatedAt @db.DateTime(0)
-  User               String?  @db.VarChar(32)
-  User_LogedInToUser User?    @relation(fields: [User], references: [id])
+// model LogedIn {
+//   id        String   @id @default(cuid()) @db.VarChar(32)
+//   createdAt DateTime @default(now()) @db.DateTime(0)
+//   fake      Boolean?
+//   updatedAt DateTime @default(now()) @updatedAt @db.DateTime(0)
+//   User      String?  @db.VarChar(32)
+//   // User_LogedInToUser User?    @relation(fields: [User], references: [id])
 
-  @@index([User], name: "User")
-}
+//   @@index([User], name: "User")
+// }
 
-model Message {
-  id     String      @id @default(cuid()) @db.VarChar(32)
-  type   MessageType
-  sender String?     @db.MediumText
-  body   String      @db.MediumText
-  world  String?     @db.VarChar(32)
-  // World  World?      @relation(fields: [world], references: [id])
+// model Message {
+//   id     String      @id @default(cuid()) @db.VarChar(32)
+//   type   MessageType
+//   sender String?     @db.MediumText
+//   body   String      @db.MediumText
+//   world  String?     @db.VarChar(32)
+//   // World  World?      @relation(fields: [world], references: [id])
 
-  @@index([world], name: "world")
-}
+//   @@index([world], name: "world")
+// }
 
-model Notice {
-  id                                    String               @id @default(cuid()) @db.VarChar(32)
-  createdAt                             DateTime             @default(now()) @db.DateTime(0)
-  type                                  NoticeType
-  updatedAt                             DateTime             @default(now()) @updatedAt @db.DateTime(0)
-  ChatMessageOld                        String?              @db.VarChar(32)
-  User                                  String?              @db.VarChar(32)
-  CreatedBy                             String?              @db.VarChar(32)
-  ChatMessageOld_ChatMessageOldToNotice ChatMessageOld?      @relation(fields: [ChatMessageOld], references: [id])
-  User_Notice_CreatedByToUser           User?                @relation("Notice_CreatedByToUser", fields: [CreatedBy], references: [id])
-  User_Notice_UserToUser                User?                @relation("Notice_UserToUser", fields: [User], references: [id])
-  ChatRoomInvitations                   ChatRoomInvitation[]
+// model Notice {
+//   id                                    String               @id @default(cuid()) @db.VarChar(32)
+//   createdAt                             DateTime             @default(now()) @db.DateTime(0)
+//   type                                  NoticeType
+//   updatedAt                             DateTime             @default(now()) @updatedAt @db.DateTime(0)
+//   ChatMessageOld                        String?              @db.VarChar(32)
+//   User                                  String?              @db.VarChar(32)
+//   CreatedBy                             String?              @db.VarChar(32)
+//   ChatMessageOld_ChatMessageOldToNotice ChatMessageOld?      @relation(fields: [ChatMessageOld], references: [id])
+//   // User_Notice_CreatedByToUser           User?                @relation("Notice_CreatedByToUser", fields: [CreatedBy], references: [id])
+//   // User_Notice_UserToUser                User?                @relation("Notice_UserToUser", fields: [User], references: [id])
+//   // ChatRoomInvitations                   ChatRoomInvitation[]
 
-  @@index([ChatMessageOld], name: "ChatMessageOld")
-  @@index([CreatedBy], name: "CreatedBy")
-  @@index([User], name: "User")
-}
+//   @@index([ChatMessageOld], name: "ChatMessageOld")
+//   @@index([CreatedBy], name: "CreatedBy")
+//   @@index([User], name: "User")
+// }
 
-enum NoticeType {
-  ChatMessageOld
-  Call
-  CallRequest
-  ChatRoomInvitation
-}
+// enum NoticeType {
+//   ChatMessageOld
+//   Call
+//   CallRequest
+//   ChatRoomInvitation
+// }
 
 model NotificationType {
-  id                          String   @id @default(cuid()) @db.VarChar(32)
-  createdAt                   DateTime @default(now()) @db.DateTime(0)
-  updatedAt                   DateTime @default(now()) @updatedAt @db.DateTime(0)
-  name                        String   @db.MediumText
-  code                        String?  @unique @db.VarChar(32)
-  comment                     String?  @db.MediumText
-  oldID                       Int?     @unique
-  CreatedBy                   String?  @db.VarChar(32)
-  User_NotificationTypeToUser User?    @relation(fields: [CreatedBy], references: [id])
-  User_UserNotificationTypes  User[]   @relation("UserNotificationTypes")
+  id        String   @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.DateTime(0)
+  name      String   @db.MediumText
+  code      String?  @unique @db.VarChar(32)
+  comment   String?  @db.MediumText
+  // oldID                      Int?     @unique
+  CreatedBy String?  @db.VarChar(32)
+  // User_NotificationTypeToUser User?    @relation(fields: [CreatedBy], references: [id])
+  // User_UserNotificationTypes User[]   @relation("UserNotificationTypes")
 
   @@index([CreatedBy], name: "CreatedBy")
 }
@@ -783,24 +783,24 @@ model Project {
   updatedAt                                 DateTime        @default(now()) @updatedAt @db.DateTime(0)
   description                               String?         @db.MediumText
   url                                       String?         @db.MediumText
-  sequence                                  Int?            @unique
+  // sequence                                  Int?            @unique
   content                                   Json?
   contentText                               String?         @db.MediumText
   status                                    ProjectStatus?  @default(value: New)
   public                                    Boolean?
-  oldID                                     Int?            @unique
+  // oldID                                     Int?            @unique
   CreatedBy                                 String?         @db.VarChar(32)
   Image                                     String?         @db.VarChar(32)
-  ChatRoom                                  String?         @db.VarChar(32)
+  // ChatRoom                                  String?         @db.VarChar(32)
   Team                                      String?         @db.VarChar(32)
   Resource                                  String?         @db.VarChar(32)
   type                                      ProjectType?
-  ChatRoom_ChatRoomToProject                ChatRoom?       @relation(fields: [ChatRoom], references: [id])
+  // ChatRoom_ChatRoomToProject                ChatRoom?       @relation(fields: [ChatRoom], references: [id])
   User_ProjectToUser                        User?           @relation(fields: [CreatedBy], references: [id])
   File                                      File?           @relation(fields: [Image], references: [id])
   Resource_Project_ResourceToResource       Resource?       @relation("Project_ResourceToResource", fields: [Resource], references: [id])
   Team_ProjectToTeam                        Team?           @relation(fields: [Team], references: [id])
-  EthAccounts                               EthAccount[]
+  // EthAccounts                               EthAccount[]
   ProjectMembers                            ProjectMember[]
   ProjectTasks                              ProjectTask[]
   Resources_ProjectToResource_PrismaProject Resource[]      @relation("ProjectToResource_PrismaProject")
@@ -809,7 +809,7 @@ model Project {
   User_PrismaProjectUsers                   User[]          @relation("PrismaProjectUsers")
   Team_ProjectCustomers                     Team[]          @relation("ProjectCustomers")
 
-  @@index([ChatRoom], name: "ChatRoom")
+  // @@index([ChatRoom], name: "ChatRoom")
   @@index([CreatedBy], name: "CreatedBy")
   @@index([Image], name: "Image")
   @@index([Resource], name: "Resource")
@@ -920,7 +920,7 @@ model Resource {
   Task                                      String?         @db.VarChar(32)
   Resource_ResourceToResource_Blog          Resource?       @relation("ResourceToResource_Blog", fields: [Blog], references: [id])
   User                                      User?           @relation(fields: [CreatedBy], references: [id])
-  EthAccount_EthAccountToResource           EthAccount?     @relation(fields: [EthAccount], references: [id])
+  // EthAccount_EthAccountToResource           EthAccount?     @relation(fields: [EthAccount], references: [id])
   Resource_ResourceToResource_Parent        Resource?       @relation("ResourceToResource_Parent", fields: [Parent], references: [id])
   Project_ProjectToResource_PrismaProject   Project?        @relation("ProjectToResource_PrismaProject", fields: [PrismaProject], references: [id])
   Service_ResourceToService                 Service?        @relation(fields: [Service], references: [id])
@@ -929,7 +929,7 @@ model Resource {
   Resource_ResourceToResource_Topic         Resource?       @relation("ResourceToResource_Topic", fields: [Topic], references: [id])
   CodeChallenges                            CodeChallenge[]
   Files                                     File[]
-  Galleries                                 Gallery[]
+  // Galleries                                 Gallery[]
   Projects_Project_ResourceToResource       Project[]       @relation("Project_ResourceToResource")
   other_Resource_ResourceToResource_Blogs   Resource[]      @relation("ResourceToResource_Blog")
   other_Resource_ResourceToResource_Parents Resource[]      @relation("ResourceToResource_Parent")
@@ -1006,7 +1006,7 @@ model Service {
   createdAt       DateTime         @default(now()) @db.DateTime(0)
   updatedAt       DateTime         @default(now()) @updatedAt @db.DateTime(0)
   ServiceCategory ServiceCategory? @relation(fields: [Category], references: [id])
-  User            User?            @relation(fields: [CreatedBy], references: [id])
+  // User            User?            @relation(fields: [CreatedBy], references: [id])
   Service         Service?         @relation("ServiceToService_Parent", fields: [Parent], references: [id])
   Resources       Resource[]
   other_Services  Service[]        @relation("ServiceToService_Parent")
@@ -1026,7 +1026,7 @@ model ServiceCategory {
   CreatedBy               String?           @db.VarChar(32)
   createdAt               DateTime          @default(now()) @db.DateTime(0)
   updatedAt               DateTime          @default(now()) @updatedAt @db.DateTime(0)
-  User                    User?             @relation(fields: [CreatedBy], references: [id])
+  // User                    User?             @relation(fields: [CreatedBy], references: [id])
   ServiceCategory         ServiceCategory?  @relation("ServiceCategoryToServiceCategory_Parent", fields: [Parent], references: [id])
   Services                Service[]
   other_ServiceCategories ServiceCategory[] @relation("ServiceCategoryToServiceCategory_Parent")
@@ -1093,7 +1093,7 @@ model Tag {
   name         String        @unique
   status       TagStatus     @default(value: Active)
   CreatedBy    String?       @db.VarChar(32)
-  User         User?         @relation(fields: [CreatedBy], references: [id])
+  // User         User?         @relation(fields: [CreatedBy], references: [id])
   ResourceTags ResourceTag[]
 
   @@index([CreatedBy], name: "CreatedBy")
@@ -1304,7 +1304,7 @@ model TechnologyLesson {
   User                                    User                   @relation(fields: [CreatedBy], references: [id])
   Technology                              String                 @db.VarChar(32)
   Technology_TechnologyToTechnologyLesson Technology             @relation(fields: [Technology], references: [id])
-  Comments                                Comment[]
+  // Comments                                Comment[]
   TechnologyLessonUsers                   TechnologyLessonUser[]
 
   @@index([CreatedBy], name: "CreatedBy")
@@ -1432,13 +1432,13 @@ model Timer {
 //   @@index([User], name: "User")
 // }
 
-model UserGroup {
-  id        String   @id @default(cuid()) @db.VarChar(32)
-  name      String   @db.MediumText
-  createdAt DateTime @default(now()) @db.DateTime(0)
-  updatedAt DateTime @default(now()) @updatedAt @db.DateTime(0)
-  Users     User[]   @relation("UserGroups")
-}
+// model UserGroup {
+//   id        String   @id @default(cuid()) @db.VarChar(32)
+//   name      String   @db.MediumText
+//   createdAt DateTime @default(now()) @db.DateTime(0)
+//   updatedAt DateTime @default(now()) @updatedAt @db.DateTime(0)
+//   Users     User[]   @relation("UserGroups")
+// }
 
 model UserTechnology {
   id                                    String                      @id @default(cuid()) @db.VarChar(32)
@@ -1487,7 +1487,7 @@ model Vote {
   value                   Decimal
   Resource                String?   @db.VarChar(32)
   User                    String    @db.VarChar(32)
-  User_UserToVote         User      @relation(fields: [User], references: [id])
+  // User_UserToVote         User      @relation(fields: [User], references: [id])
   Resource_ResourceToVote Resource? @relation(fields: [Resource], references: [id])
 
   @@index([Resource], name: "Resource")
@@ -1650,16 +1650,16 @@ enum MentorMenteeStatus {
   Rejected
 }
 
-model Donate {
-  id        String   @id @default(cuid()) @db.VarChar(32)
-  createdAt DateTime @default(now()) @db.DateTime(0)
-  updatedAt DateTime @default(now()) @updatedAt @db.DateTime(0)
-  date      DateTime
-  sum       Float
-  title     String?
-  donatorId String?  @db.VarChar(32)
-  Donator   User?    @relation(fields: [donatorId], references: [id])
-}
+// model Donate {
+//   id        String   @id @default(cuid()) @db.VarChar(32)
+//   createdAt DateTime @default(now()) @db.DateTime(0)
+//   updatedAt DateTime @default(now()) @updatedAt @db.DateTime(0)
+//   date      DateTime
+//   sum       Float
+//   title     String?
+//   donatorId String?  @db.VarChar(32)
+//   Donator   User?    @relation(fields: [donatorId], references: [id])
+// }
 
 // model AiAgent {
 //   id        String   @id @default(cuid()) @db.VarChar(32)

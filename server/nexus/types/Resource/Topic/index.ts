@@ -23,15 +23,6 @@ export const TopicExtendMutation = extendType({
   },
 })
 
-export const TaskCreateOneWithoutCommentsInput = inputObjectType({
-  name: 'TaskCreateOneWithoutCommentsInput',
-  definition(t) {
-    t.field('connect', {
-      type: 'TaskWhereUniqueInput',
-    })
-  },
-})
-
 export const TopicCreateInput = inputObjectType({
   name: 'TopicCreateInput',
   definition(t) {

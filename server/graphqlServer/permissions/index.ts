@@ -23,34 +23,25 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
     mindLogs: isSudo,
   },
   Mutation: {
-    updateUserProcessor: isAuthenticated,
-
+    // updateUserProcessor: isAuthenticated,
     createCommentProcessor: isAuthenticated,
     updateCommentProcessor: isAuthenticated,
-
     createBlogProcessor: isAuthenticated,
     updateBlogProcessor: isAuthenticated,
-
     createTopicProcessor: isAuthenticated,
     updateTopicProcessor: isAuthenticated,
-    deleteResource: isSudo,
-
-    createTechnology: isSudo,
+    // deleteResource: isSudo,
+    // createTechnology: isSudo,
     // updateTechnology: isSudo,
-
     updateCodeChallenge: isSudo,
-
-    blockUser: isSudo,
-    unblockUser: isSudo,
-    updateOneUser: isSudo,
+    // blockUser: isSudo,
+    // unblockUser: isSudo,
+    // updateOneUser: isSudo,
     // updateCurrentUser: isAuthenticated,
-    updateCurrentUser: isSudo,
-
-    createOneDonate: isSudo,
-
+    // updateCurrentUser: isSudo,
+    // createOneDonate: isSudo,
     // createAiAgentUser: isSudo,
     // createChatMessageProcessor: isSudo,
-
     singleUpload: isAuthenticated,
     sendAiMessage: isAuthenticated,
     sendMessage: isSudo,

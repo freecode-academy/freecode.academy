@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useChat } from 'src/Chat/hooks/useChat'
 import styled from 'styled-components'
 
-const Hero = styled.section`
+export const PromoStyled = styled.section`
   padding: 3rem 1.5rem;
   text-align: center;
   color: #212529;
@@ -87,7 +87,7 @@ export function HeroSection() {
   )
 
   return (
-    <Hero>
+    <PromoStyled>
       <Title>
         Привет! Начни чат с нашим AI-ботом прямо сейчас{' '}
         <span style={{ fontSize: '1.1em' }}>🚀</span>
@@ -106,6 +106,6 @@ export function HeroSection() {
         </svg>
         Начать чат
       </ChatButton>
-    </Hero>
+    </PromoStyled>
   )
 }

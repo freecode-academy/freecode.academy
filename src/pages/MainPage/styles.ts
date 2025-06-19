@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import {
   LayoutContentStyled,
   LayoutStyled,
@@ -24,3 +24,5 @@ export const MainPageGlobalStyled = createGlobalStyle`
     }
   }
 `
+
+export const MainPageStyled = styled.div``

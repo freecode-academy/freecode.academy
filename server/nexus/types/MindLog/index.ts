@@ -1,5 +1,5 @@
-import { Prisma } from '@prisma/client'
 import { extendType, objectType } from 'nexus'
+import { myMindLogsResolver } from './resolvers/myMindLogs'
 // import { PUBSUB_MINDLOG_ADDED } from '../Message/interfaces'
 // import { NexusGenObjects } from 'server/nexus/generated/nexus'
 
@@ -37,17 +37,17 @@ export const MindLogExtendsQuery = extendType({
   type: 'Query',
   definition(t) {
     t.crud.mindLogs({
+      description: 'Доступно только админу',
       filtering: true,
       ordering: true,
-      // @ts-expect-error types
-      resolve(_, args, ctx) {
-        return ctx.prisma.mindLog.findMany({
-          ...(args as Prisma.MindLogFindManyArgs),
-          include: {
-            CreatedBy: true,
-          },
-        })
-      },
+    })
+
+    t.crud.mindLogs({
+      alias: 'myMindLogs',
+      description: 'Возвращает свои данные',
+      filtering: true,
+      ordering: true,
+      resolve: myMindLogsResolver,
     })
   },
 })

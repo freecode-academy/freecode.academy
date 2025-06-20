@@ -19,30 +19,15 @@ export interface ToolCall {
   function: ToolCallFunction
 }
 
-export enum AiAgentUsername {
-  // Основной агент, общающийся со всеми пользователями
-  // Main = 'ai-main',
-  Main = 'ai-main--gpt-4.1-2025-04-14',
-  // Админский агент, обрабатывающий большие объемы данных. Сейчас пока будет использоваться и партнерами, и админами
-  // AdminAssistent = 'ai-admin-assistent',
-  AdminAssistent = 'ai-admin--gpt-4.1-2025-04-14',
-}
-
-type AiAgentData<U extends AiAgentUsername> = {
+type AiAgentData = {
+  username: string
   model: string
-  username: U
-}
-
-// 🔐 Жёсткая типизация: ключ === username
-type AiAgentMap = {
-  [U in AiAgentUsername]: AiAgentData<U>
 }
 
 // ✅ Правильно типизированный объект
-export const AiAgents: AiAgentMap = {
-  [AiAgentUsername.Main]: {
-    username: AiAgentUsername.Main,
-
+export const AiAgents: AiAgentData[] = [
+  {
+    username: 'ai-admin--gpt-4.1-2025-04-14',
     /**
      * Эта тупит, задваивает сообщения
      */
@@ -50,20 +35,4 @@ export const AiAgents: AiAgentMap = {
 
     model: 'gpt-4.1-2025-04-14',
   },
-  [AiAgentUsername.AdminAssistent]: {
-    username: AiAgentUsername.AdminAssistent,
-
-    /**
-     * Глупая. JSON режет
-     */
-    // model: 'gpt-4-0125-preview',
-
-    model: 'gpt-4.1-2025-04-14',
-    /**
-     * Слишком маленький контекст.
-     * Работает медленно, много думает, много телзов вызывает,
-     * быстро выдыхается. Но если бы коннекст был больше, то можно было бы поработать.
-     */
-    // model: 'gpt-4-0613',
-  },
-}
+]

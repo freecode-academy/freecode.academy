@@ -95,7 +95,7 @@ export const ActivitiesView: React.FC = () => {
           return (
             <GridRow key={n.id}>
               <GridCell>
-                <ActivityUser userId={n.userId} />
+                <ActivityUser userId={n.userId} /> <span>{n.userId}</span>
               </GridCell>
               <GridCell>{title}</GridCell>
               <GridCell>{n.createdAt.toString()}</GridCell>

@@ -1,6 +1,6 @@
 import { User } from '@prisma/client'
 import { PrismaContext } from '../../nexus/context'
-import { AiAgents, AiAgentUserData, AiAgentUsername } from '../interfaces'
+import { AiAgents, AiAgentUserData } from '../interfaces'
 
 const OPENAI_API_BASE_URL =
   process.env.OPENAI_API_BASE_URL || 'https://api.openai.com/v1'
@@ -12,17 +12,19 @@ type getAiUserProps = {
 }
 
 export async function getAiUser({ ctx }: getAiUserProps): Promise<User> {
-  const { prisma, currentUser } = ctx
+  const { prisma } = ctx
 
-  const aiUserUsername = currentUser?.sudo
-    ? AiAgentUsername.AdminAssistent
-    : AiAgentUsername.Main
+  const aiAgent = AiAgents.at(0)
+
+  if (!aiAgent) {
+    throw new Error('Can not get aiAgent')
+  }
 
   let aiUser = await prisma.user.findFirst({
     where: {
       active: true,
       type: 'AI',
-      username: aiUserUsername,
+      username: aiAgent.username,
     },
     orderBy: {
       createdAt: 'desc',
@@ -30,7 +32,7 @@ export async function getAiUser({ ctx }: getAiUserProps): Promise<User> {
   })
 
   if (!aiUser) {
-    const { model } = AiAgents[aiUserUsername]
+    const { model } = aiAgent
 
     const aiAgentData: AiAgentUserData = {
       model: model || OPENAI_DEFAULT_MODEL,
@@ -41,10 +43,9 @@ export async function getAiUser({ ctx }: getAiUserProps): Promise<User> {
       .create({
         data: {
           type: 'AI',
-          username: aiUserUsername,
+          username: aiAgent.username,
           data: aiAgentData,
           active: true,
-          createdAt: new Date(),
         },
       })
       .catch((error) => {

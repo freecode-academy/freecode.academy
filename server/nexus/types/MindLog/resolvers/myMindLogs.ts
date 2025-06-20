@@ -1,22 +1,41 @@
-// import { Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
 
 export const myMindLogsResolver: FieldResolver<'Query', 'myMindLogs'> = async (
   _,
-  _args,
+  args,
   ctx
 ) => {
-  const { currentUser } = ctx
+  const { currentUser, prisma } = ctx
 
   if (!currentUser) {
     throw new Error('Now authorized')
   }
 
-  // const whereProps = args.where
+  const whereProps = args.where as Prisma.MindLogWhereInput | null | undefined
+
+  const AND: Prisma.MindLogWhereInput['AND'] = [
+    {
+      createdById: currentUser.id,
+    },
+  ]
 
   // const where: Prisma.MindLogWhereInput = {
-  //   AND: [],
+  //   AND: [
+  //     {
+  //       createdById: currentUser.id,
+  //     }
+  //   ],
   // }
 
-  return []
+  if (whereProps) {
+    AND.push(whereProps)
+  }
+
+  return prisma.mindLog.findMany({
+    ...(args as Prisma.MindLogFindManyArgs),
+    where: {
+      AND,
+    },
+  })
 }

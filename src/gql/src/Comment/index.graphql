@@ -41,20 +41,20 @@ mutation updateCommentProcessor(
   }
 }
 
-fragment CommentNoNesting on Resource {
-  id
-  createdAt
-  updatedAt
-  type
-  content
-  components
-  uri
-}
+# fragment CommentNoNesting on Resource {
+#   id
+#   createdAt
+#   updatedAt
+#   type
+#   content
+#   components
+#   uri
+# }
 
 fragment commentsConnectionComment on Resource {
-  ...CommentNoNesting
+  ...ResourceNoNesting
   CreatedBy {
-    ...commentsConnectionCommentUser
+    ...UserNoNesting
   }
   Topic {
     id
@@ -65,11 +65,4 @@ fragment commentsConnectionComment on Resource {
   Task {
     ...TaskNoNesting
   }
-}
-
-fragment commentsConnectionCommentUser on User {
-  id
-  username
-  fullname
-  image
 }

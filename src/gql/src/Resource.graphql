@@ -1,15 +1,16 @@
+query resource($where: ResourceWhereUniqueInput!) {
+  object: resource(where: $where) {
+    ...resource_
+  }
+}
+
 fragment resource_ on Resource {
   ...ResourceNoNesting
   CreatedBy {
     ...UserNoNesting
   }
   Comments(orderBy: { createdAt: asc }) {
-    id
-    uri
-    createdAt
-    updatedAt
-    content
-    components
+    ...ResourceNoNesting
     CreatedBy {
       ...UserNoNesting
     }
@@ -52,7 +53,7 @@ fragment ResourceNoNesting on Resource {
   longtitle
   content
   components
-  # contentText
+  contentText
   published
   deleted
   hidemenu

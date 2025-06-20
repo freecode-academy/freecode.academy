@@ -1,26 +1,25 @@
 import React from 'react'
 
-import FrontEditor, {
-  FrontEditorProps,
-  registerComponents,
-} from '@prisma-cms/front-editor'
-import FrontEditorComponents from '@prisma-cms/front-editor/dist/preset/all'
+// import FrontEditor, {
+//   FrontEditorProps,
+//   registerComponents,
+// } from '@prisma-cms/front-editor'
+// import FrontEditorComponents from '@prisma-cms/front-editor/dist/preset/all'
 
 // // import OldPageHeader from './components/OldPageHeader'
 // // import OldPages from './components/pages/OldPages'
 // // import SwitchTemplateLink from './components/Link/SwitchTemplate';
 // // import PdfView from './components/PdfView';
 // import Topic from './components/Resource/Topic'
-import Resource from './components/Resource'
-import ResourceFields from './components/Resource/Fields'
-import ResourceContent, {
-  RichTextCustom,
-} from './components/Resource/Fields/Field/ResourceContent'
+// import Resource from './components/Resource'
+// import ResourceFields from './components/Resource/Fields'
+// import ResourceContent, {
+//   RichTextCustom,
+// } from './components/Resource/Fields/Field/ResourceContent'
 // import Comments from './components/Resource/Comments'
 // import TopicBlog from './components/Resource/Topic/TopicBlog'
-import Youtube from './components/Resource/Fields/Field/Youtube'
-import { SiteFrontEditorProps } from './interfaces'
-import Image from './components/Image'
+// import Youtube from './components/Resource/Fields/Field/Youtube'
+// import Image from './components/Image'
 // import JoinUserTechnologyButton from './components/JoinUserTechnologyButton'
 // import ViewIcon from './components/ViewIcon'
 // import AcceptTechnologyLesson from './components/society/technologies/AcceptTechnologyLesson'
@@ -29,53 +28,70 @@ import Image from './components/Image'
 // // import CodeChallenge from './components/FreeCodeCamp/CodeChallenge'
 // import CallRequestButtons from './components/webrtc/CallRequestButtons'
 
-export const CustomComponents = [
-  // UserPage,
-  // OldPageHeader,
-  // OldPages,
-  // SwitchTemplateLink,
-  // CreateUserPage,
-  // TopicsPage,
-  // PdfView,
-  // Topic,
-  // Comments,
-  // TopicBlog,
-  Resource,
-  ResourceFields,
-  ResourceContent,
-  RichTextCustom,
-  Youtube,
-  // ChatRooms,
-  // ChatRoom,
-  // JoinUserTechnologyButton,
-  // ViewIcon,
-  // AcceptTechnologyLesson,
-  // TechnologyLessonUser,
-  // FreeCodeCamp,
-  // CodeChallenge,
-  // CallRequestButtons,
-  Image,
-] as FrontEditorProps['Components']
+// export const CustomComponents = [
+//   // UserPage,
+//   // OldPageHeader,
+//   // OldPages,
+//   // SwitchTemplateLink,
+//   // CreateUserPage,
+//   // TopicsPage,
+//   // PdfView,
+//   // Topic,
+//   // Comments,
+//   // TopicBlog,
+//   Resource,
+//   ResourceFields,
+//   ResourceContent,
+//   RichTextCustom,
+//   Youtube,
+//   // ChatRooms,
+//   // ChatRoom,
+//   // JoinUserTechnologyButton,
+//   // ViewIcon,
+//   // AcceptTechnologyLesson,
+//   // TechnologyLessonUser,
+//   // FreeCodeCamp,
+//   // CodeChallenge,
+//   // CallRequestButtons,
+//   Image,
+// ] as FrontEditorProps['Components']
 
-const Components = CustomComponents.reduce((curr, next) => {
-  const index = curr.findIndex((n) => n.Name === next.Name)
+// const Components = CustomComponents.reduce((curr, next) => {
+//   const index = curr.findIndex((n) => n.Name === next.Name)
 
-  if (index !== -1) {
-    curr[index] = next
-  } else {
-    curr.push(next)
-  }
+//   if (index !== -1) {
+//     curr[index] = next
+//   } else {
+//     curr.push(next)
+//   }
 
-  return curr
-}, FrontEditorComponents)
+//   return curr
+// }, FrontEditorComponents)
 
 /**
  * Хелпер для инициализации JSON объекта для редактора
  */
-export const initEditorObject = registerComponents(Components)
+// export const initEditorObject = registerComponents(Components)
 
-const SiteFrontEditor: React.FC<SiteFrontEditorProps> = (props) => {
-  return <FrontEditor Components={Components} {...props} />
+import { ResourceNoNestingFragment } from 'src/gql/generated'
+import { MarkdownField } from '../MarkdownField'
+
+export type SiteFrontEditorProps = {
+  object: ResourceNoNestingFragment
+  inEditMode?: boolean
+  itemsOnly?: boolean
+  className?: string
 }
 
-export default SiteFrontEditor
+export const SiteFrontEditor: React.FC<SiteFrontEditorProps> = (props) => {
+  // return <FrontEditor Components={Components} {...props} />
+
+  // eslint-disable-next-line no-console
+  console.log('SiteFrontEditor props', props)
+
+  const { contentText } = props.object
+
+  return <MarkdownField>{contentText}</MarkdownField>
+}
+
+export const FrontEditor = SiteFrontEditor

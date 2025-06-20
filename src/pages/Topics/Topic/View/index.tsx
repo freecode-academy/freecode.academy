@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react'
 
 import EditableView from 'apollo-cms/dist/DataView/Object/Editable'
@@ -14,13 +15,12 @@ import Typography from 'material-ui/Typography'
 import Grid from 'src/uikit/Grid'
 import { TopicViewProps } from './interfaces'
 import { TopicViewStyled } from './styles'
-import { PrismaCmsEditorRawContent } from '@prisma-cms/editor'
+// import { PrismaCmsEditorRawContent } from '@prisma-cms/editor'
 
 import CommentsView from './Comments'
 import Blog from './Blog'
 
-import { EditorComponentProps } from '@prisma-cms/front-editor/dist/EditorComponent'
-import SiteFrontEditor from 'src/components/SiteFrontEditor'
+import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 
 // const styles = {
 //   root: {
@@ -158,16 +158,16 @@ class TopicView extends EditableView<TopicViewProps> {
     )
   }
 
-  onEditorChange = (rawContent: PrismaCmsEditorRawContent) => {
-    this.updateObject({
-      content: rawContent,
-    })
-  }
+  // onEditorChange = (rawContent: PrismaCmsEditorRawContent) => {
+  //   this.updateObject({
+  //     content: rawContent,
+  //   })
+  // }
 
-  onChangeState = (data: EditorComponentProps['_dirty']) => {
-    this.updateObject(data)
-    return data
-  }
+  // onChangeState = (data: EditorComponentProps['_dirty']) => {
+  //   this.updateObject(data)
+  //   return data
+  // }
 
   renderDefaultView() {
     const object = this.getObject()
@@ -177,7 +177,9 @@ class TopicView extends EditableView<TopicViewProps> {
       return null
     }
 
-    const { content, components } = objectMutated
+    const { content } = objectMutated
+
+    console.log('objectMutated', objectMutated)
 
     const inEditMode = this.inEditMode()
 
@@ -193,7 +195,7 @@ class TopicView extends EditableView<TopicViewProps> {
           readOnly={inEditMode ? false : true}
           // fullView={true}
           // allow_edit={allow_edit}
-          onChange={this.onEditorChange}
+          // onChange={this.onEditorChange}
         />
       )
     } else {
@@ -202,14 +204,15 @@ class TopicView extends EditableView<TopicViewProps> {
           // object={undefined}
           inEditMode={inEditMode}
           itemsOnly
-          onChangeState={this.onChangeState}
-          object={{
-            name: 'Section',
-            component: 'Section',
-            components:
-              components && Array.isArray(components) ? components : [],
-            props: {},
-          }}
+          object={objectMutated}
+          // onChangeState={this.onChangeState}
+          // object={{
+          //   name: 'Section',
+          //   component: 'Section',
+          //   components:
+          //     components && Array.isArray(components) ? components : [],
+          //   props: {},
+          // }}
         />
       )
     }

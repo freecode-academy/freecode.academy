@@ -1,3 +1,5 @@
+// @ts-check
+
 const webpack = (config, options) => {
   // Note: we provide webpack above so you should not `require` it
   // Perform customizations to webpack config
@@ -82,46 +84,140 @@ const webpack = (config, options) => {
   // }
 }
 
-module.exports = (phase, defaultConfig) => {
-  // Базовая конфигурация для runtime
-  const publicRuntimeConfig = {}
+// module.exports = (phase, defaultConfig) => {
+//   // Базовая конфигурация для runtime
+//   const publicRuntimeConfig = {}
+
+//   if (phase !== 'phase-production-server') {
+//     const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//       enabled: process.env.ANALYZE === 'true',
+//     })
+
+//     const withPWA = require('next-pwa')
+
+//     const withTM = require('next-transpile-modules')(['monaco-editor'])
+
+//     const config = withBundleAnalyzer(
+//       withTM(
+//         withPWA({
+//           pwa: {
+//             dest: `.next/public`,
+//             // TODO Пока не работает как хотелось бы
+//             // fallbacks: {
+//             //   // image: '/static/images/fallback.png',
+//             //   // document: '/offline',  // if you want to fallback to a custom    page other than /_offline
+//             //   // font: '/static/font/fallback.woff2',
+//             //   // audio: ...,
+//             //   // video: ...,
+//             // },
+
+//             disable:
+//               process.env.PWA !== 'true' ||
+//               process.env.NODE_ENV === 'development',
+//           },
+//           webpack,
+//           publicRuntimeConfig,
+//           // https://github.com/shadowwalker/next-pwa/issues/198#issuecomment-817205700
+//           future: {
+//             webpack5: true,
+//           },
+//         })
+//       )
+//     )
+//     return config
+//   }
+
+//   // else
+//   // return defaultConfig
+
+//   return {
+//     ...defaultConfig,
+//     webpack,
+//     generateEtags: false,
+//     publicRuntimeConfig,
+//   }
+// }
+
+/**
+ *
+ * @param {string} phase
+ * @param {{defaultConfig: import('next').NextConfig}} context
+ * @returns {import('next').NextConfig}
+ */
+module.exports = (phase, { defaultConfig }) => {
+  const ignoreErrors = process.env.BUILD_IGNORE_ERRORS === 'true'
+
+  defaultConfig = {
+    ...defaultConfig,
+    compiler: {
+      styledComponents: {
+        displayName: true,
+      },
+    },
+    generateEtags: false,
+
+    typescript: {
+      ignoreBuildErrors: ignoreErrors,
+    },
+    eslint: {
+      ignoreDuringBuilds: ignoreErrors,
+    },
+    env: {
+      ...defaultConfig.env,
+      TILE_SERVER_URL: process.env.TILE_SERVER_URL,
+    },
+  }
 
   if (phase !== 'phase-production-server') {
     const withBundleAnalyzer = require('@next/bundle-analyzer')({
       enabled: process.env.ANALYZE === 'true',
     })
 
-    const withPWA = require('next-pwa')
-
     const withTM = require('next-transpile-modules')(['monaco-editor'])
 
-    const config = withBundleAnalyzer(
+    const withPWA = require('next-pwa')
+
+    /**
+     * @type {import('next').NextConfig}
+     */
+    let config = withBundleAnalyzer(
       withTM(
         withPWA({
-          pwa: {
-            dest: `.next/public`,
-            // TODO Пока не работает как хотелось бы
-            // fallbacks: {
-            //   // image: '/static/images/fallback.png',
-            //   // document: '/offline',  // if you want to fallback to a custom    page other than /_offline
-            //   // font: '/static/font/fallback.woff2',
-            //   // audio: ...,
-            //   // video: ...,
-            // },
+          dest: `.next/public`,
+          // TODO Пока не работает как хотелось бы
+          // fallbacks: {
+          //   // image: '/static/images/fallback.png',
+          //   // document: '/offline',  // if you want to fallback to a custom    page other than /_offline
+          //   // font: '/static/font/fallback.woff2',
+          //   // audio: ...,
+          //   // video: ...,
+          // },
 
-            disable:
-              process.env.PWA !== 'true' ||
-              process.env.NODE_ENV === 'development',
-          },
-          webpack,
-          publicRuntimeConfig,
-          // https://github.com/shadowwalker/next-pwa/issues/198#issuecomment-817205700
-          future: {
-            webpack5: true,
-          },
+          disable:
+            process.env.PWA !== 'true' ||
+            process.env.NODE_ENV === 'development',
         })
       )
     )
+
+    /**
+     * Github pages
+     */
+    if (
+      process.env.GITHUB_REPOSITORY &&
+      ['phase-production-build', 'phase-export'].includes(phase)
+    ) {
+      const repositoryName = process.env.GITHUB_REPOSITORY.split('/')[1]
+
+      config = {
+        ...config,
+        assetPrefix: `/${repositoryName}/`,
+        basePath: `/${repositoryName}`,
+      }
+    }
+
+    config = { ...defaultConfig, ...config }
+
     return config
   }
 
@@ -132,6 +228,5 @@ module.exports = (phase, defaultConfig) => {
     ...defaultConfig,
     webpack,
     generateEtags: false,
-    publicRuntimeConfig,
   }
 }

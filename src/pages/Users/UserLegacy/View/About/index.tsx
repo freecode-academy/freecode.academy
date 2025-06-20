@@ -5,7 +5,7 @@ import {
   EditorComponentObject,
   EditorComponentProps,
 } from '@prisma-cms/front-editor'
-import SiteFrontEditor from 'src/components/SiteFrontEditor'
+import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 import { UserAboutProps } from './interfaces'
 import { Typography } from 'material-ui'
 

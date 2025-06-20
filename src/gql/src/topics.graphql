@@ -20,8 +20,7 @@ fragment topicsConnectionTopic on Resource {
     ...topicsConnectionUser
   }
   Comments(orderBy: { createdAt: asc }) {
-    id
-    updatedAt
+    ...ResourceNoNesting
     CreatedBy {
       ...topicsConnectionUser
     }

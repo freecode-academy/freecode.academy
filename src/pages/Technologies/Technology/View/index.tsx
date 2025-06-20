@@ -14,7 +14,7 @@ import {
   GridTableAttributesContainerStyled,
 } from 'src/components/GridTable/styles'
 import UserTechnologyRow from './UserTechnologyRow'
-import SiteFrontEditor from 'src/components/SiteFrontEditor'
+import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 import Link from 'src/uikit/Link'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
 import Button from 'src/components/ui/Button'

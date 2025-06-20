@@ -73,7 +73,8 @@ const ResourcePage: Page = (props) => {
       return <TeamPage {...props} />
 
     default:
-      throw new Error('Unknown Resource type')
+      console.error('Unknown Resource type')
+      return null
   }
 }
 

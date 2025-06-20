@@ -86,8 +86,7 @@ fragment projectsConnectionUser on User {
 
 query projects(
   $where: ProjectWhereInput
-  $first: Int
-  $timersWhere: TimerWhereInput
+  $first: Int # $timersWhere: TimerWhereInput
 ) {
   projects(where: $where, take: $first) {
     ...project_

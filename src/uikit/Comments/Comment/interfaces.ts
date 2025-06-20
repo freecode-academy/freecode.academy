@@ -1,14 +1,19 @@
 import { EditableObjectProps } from 'apollo-cms/dist/DataView/Object/Editable'
 import {
   CommentCreateInput,
+  CommentsConnectionCommentFragment,
   CommentUpdateInput,
-  Maybe,
-  Resource,
-  TaskNoNestingFragment,
+  // Maybe,
+  // Resource,
+  // ResourceFragment,
+  ResourceNoNestingFragment,
+  // ResourceNoNestingFragment,
+  // TaskNoNestingFragment,
   User,
+  UserNoNestingFragment,
 } from 'src/gql/generated'
 import {
-  UikitCommentLinkObject,
+  // UikitCommentLinkObject,
   UikitCommentLinkProps,
 } from 'src/uikit/Link/Comment/interfaces'
 
@@ -17,22 +22,29 @@ export interface UikitCommentObjectUser {
   id?: User['id']
 }
 
-export interface UikitCommentObject extends UikitCommentLinkObject {
-  id: Resource['id'] | undefined
+// export interface UikitCommentObject extends UikitCommentLinkObject {
+//   id: Resource['id'] | undefined
 
-  uri: Resource['uri'] | undefined
+//   uri: Resource['uri'] | undefined
 
-  // content: RawDraftContentState | null | undefined
-  content?: Resource['content']
-  components?: Resource['components']
+//   // content: RawDraftContentState | null | undefined
+//   resource: Resource
+//   content?: Resource['content']
+//   components?: Resource['components']
 
-  CreatedBy?: UikitCommentObjectUser | null
+//   CreatedBy?: UikitCommentObjectUser | null
 
-  Task?: Maybe<TaskNoNestingFragment>
-}
+//   Task?: Maybe<TaskNoNestingFragment>
+// }
 
 export interface UikitCommentProps extends EditableObjectProps {
-  object: UikitCommentObject | null | undefined
+  // object: UikitCommentObject | null | undefined
+  object:
+    | ((CommentsConnectionCommentFragment | ResourceNoNestingFragment) & {
+        CreatedBy?: UserNoNestingFragment | null
+      })
+    | null
+    | undefined
 
   linkType?: UikitCommentLinkProps['linkType']
 

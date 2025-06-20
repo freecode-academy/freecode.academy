@@ -15,7 +15,7 @@ import {
 import TextField from 'src/components/ui/form/TextField'
 import Button from 'src/components/ui/Button'
 import { TechnologyUpdateFormProps } from './interfaces'
-import SiteFrontEditor from 'src/components/SiteFrontEditor'
+import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 import {
   EditorComponentObject,
   EditorComponentProps,

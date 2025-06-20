@@ -19,8 +19,7 @@ import {
   CreateCommentProcessorDocument,
   UpdateCommentProcessorDocument,
 } from 'src/gql/generated'
-import SiteFrontEditor from 'src/components/SiteFrontEditor'
-import { EditorComponentProps } from '@prisma-cms/front-editor/dist'
+import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 // import moment from 'moment';
 
 export * from './interfaces'
@@ -146,10 +145,10 @@ class UikitComment extends EditableView<UikitCommentProps> {
     })
   }
 
-  onChangeState = (data: EditorComponentProps['_dirty']) => {
-    this.updateObject(data)
-    return data
-  }
+  // onChangeState = (data: EditorComponentProps['_dirty']) => {
+  //   this.updateObject(data)
+  //   return data
+  // }
 
   getButtons() {
     const originButtons = super.getButtons()
@@ -186,14 +185,15 @@ class UikitComment extends EditableView<UikitCommentProps> {
           // object={undefined}
           inEditMode={inEditMode}
           itemsOnly
-          onChangeState={this.onChangeState}
-          object={{
-            name: 'Section',
-            component: 'Section',
-            components:
-              components && Array.isArray(components) ? components : [],
-            props: {},
-          }}
+          // onChangeState={this.onChangeState}
+          // object={{
+          //   name: 'Section',
+          //   component: 'Section',
+          //   components:
+          //     components && Array.isArray(components) ? components : [],
+          //   props: {},
+          // }}
+          object={comment}
         />
       )
     } else {

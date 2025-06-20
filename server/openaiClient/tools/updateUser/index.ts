@@ -13,6 +13,9 @@ export type updateUserTool = BaseAiTool<
   updateUserArgs
 >
 
+/**
+ * @deprecated
+ */
 export const updateUserTool: updateUserTool = {
   name: toolName.updateUser,
   definition: {

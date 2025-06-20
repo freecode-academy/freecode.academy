@@ -28,11 +28,13 @@ export const apolloServer = new ApolloServer<PrismaContext>({
 export async function createApolloContext({
   req,
   type,
+  currentUser = null,
 }: {
   req?: PrismaContext['req']
-  type: 'ws' | 'other'
+  type: 'ws' | 'other' | 'ai'
+  currentUser?: PrismaContext['currentUser']
 }): Promise<PrismaContext> {
-  let currentUser: PrismaContext['currentUser'] = null
+  // let currentUser: PrismaContext['currentUser'] = null
   let ContextToken: PrismaContext['Token'] = null
 
   if (process.env.NODE_ENV === 'development') {

@@ -1,10 +1,18 @@
 import { BaseAiTool, toolName } from '../interfaces'
 import { execute, parse } from 'graphql'
 import { schema } from '../../../nexus'
+import { PrismaContext } from '../../../nexus/context'
+import { createApolloContext } from '../../../graphqlServer'
+
+enum execGrahpqlQueryExecutor {
+  CurrentUser = 'CurrentUser',
+  AiAgent = 'AiAgent',
+}
 
 export interface GetUsersArgs {
   query: string
   variables?: Record<string, unknown>
+  executor: execGrahpqlQueryExecutor
 }
 
 export type execGrahpqlQuery = BaseAiTool<
@@ -31,19 +39,39 @@ export const execGrahpqlQueryTool: execGrahpqlQuery = {
             description: 'Объект параметров запроса',
             type: 'object',
           },
+          executor: {
+            description: `От чьего имени выполняется запрос. По-умолчанию запросы должны выполняться от имени самого агента.
+- ${execGrahpqlQueryExecutor.CurrentUser} - Текущий пользователь, взаимодействующий с агентом.
+- ${execGrahpqlQueryExecutor.AiAgent} - сам ИИ-Агент.
+            `,
+            type: 'string',
+            enum: Object.values(execGrahpqlQueryExecutor),
+          },
         },
-        required: ['query'],
+        required: ['query', 'executor'],
       },
     },
   },
-  handler: async (args, ctx) => {
-    const { query, variables } = args
+  handler: async (args, ctx, user) => {
+    const { query, variables, executor } = args
+
+    let contextValue: PrismaContext
+
+    if (executor === execGrahpqlQueryExecutor.AiAgent) {
+      contextValue = await createApolloContext({
+        type: 'ai',
+        currentUser: user,
+        req: undefined,
+      })
+    } else {
+      contextValue = ctx
+    }
 
     let result = execute({
       schema: schema,
       document: parse(query),
-      contextValue: ctx,
       variableValues: variables,
+      contextValue,
     })
 
     if (result instanceof Promise) {

@@ -15,7 +15,7 @@ export const getGrahpQlSchemaTool: getGrahpQlSchema = {
     function: {
       name: toolName.getGrahpQlSchema,
       description:
-        'Получает схему для локального апи. Поможет тебе составить нужные запросы к АПИ. Пользуйся на здоровье :-)',
+        'Получает схему для локального апи. Использователь можно только по прямому указанию суперпользователя',
       parameters: {
         type: 'object',
         properties: {},

@@ -1,13 +1,16 @@
 import express from 'express'
 import { createServer } from 'http'
-import { apolloServer, createApolloContext } from '../graphqlServer'
+import { ApolloServer } from '@apollo/server'
 import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs'
 import { expressMiddleware } from '@apollo/server/express4'
 import { WebSocketServer } from 'ws'
 import { useServer } from 'graphql-ws/lib/use/ws'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import cors from 'cors'
+
 import { schema } from '../nexus'
+import { createApolloContext } from '../nexus/createApolloContext'
+import { PrismaContext } from '../nexus/context'
 
 /**
  * Поднимаем граф-сервер на отдельном порту с вебсокетом.
@@ -15,6 +18,22 @@ import { schema } from '../nexus'
  * один вебсокетный сервер, ломается и его hmr, и наш веб-сокет
  */
 export async function setupGraphqlServer(): Promise<{ port: number }> {
+  const apolloServer = new ApolloServer<PrismaContext>({
+    // schema: applyMiddleware(schema, permissions),
+    schema,
+    introspection: true,
+    includeStacktraceInErrorResponses: process.env.NODE_ENV === 'development',
+    plugins: [],
+    formatError: (error) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('GraphQL Error', error)
+        // return new Error('Internal server error')
+      }
+
+      return error
+    },
+  })
+
   // Запускаем отдельный сервер для подписок GraphQL
   const port = parseInt(process.env.GRAPHQL_WS_PORT || '4000', 10)
 

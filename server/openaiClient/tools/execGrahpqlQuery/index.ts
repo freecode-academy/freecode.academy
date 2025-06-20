@@ -2,7 +2,7 @@ import { BaseAiTool, toolName } from '../interfaces'
 import { execute, parse } from 'graphql'
 import { schema } from '../../../nexus'
 import { PrismaContext } from '../../../nexus/context'
-import { createApolloContext } from '../../../graphqlServer'
+import { createApolloContext } from '../../../nexus/createApolloContext'
 
 enum execGrahpqlQueryExecutor {
   CurrentUser = 'CurrentUser',

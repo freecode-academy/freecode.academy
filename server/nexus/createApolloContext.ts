@@ -1,28 +1,9 @@
-import { schema } from '../nexus'
-
-import { ApolloServer } from '@apollo/server'
 import jwt from 'jsonwebtoken'
 import { context, PrismaContext } from '../nexus/context'
-import { AuthTokenData } from 'server/nexus/types/User/resolvers/helpers'
+import { AuthTokenData } from './types/User/resolvers/helpers'
 // import { applyMiddleware } from 'graphql-middleware'
 // import { permissions } from './permissions'
 import { pubsub } from '../PubSub'
-
-export const apolloServer = new ApolloServer<PrismaContext>({
-  // schema: applyMiddleware(schema, permissions),
-  schema,
-  introspection: true,
-  includeStacktraceInErrorResponses: process.env.NODE_ENV === 'development',
-  plugins: [],
-  formatError: (error) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.error('GraphQL Error', error)
-      // return new Error('Internal server error')
-    }
-
-    return error
-  },
-})
 
 // Функция для получения контекста запроса
 export async function createApolloContext({

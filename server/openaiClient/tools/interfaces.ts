@@ -15,6 +15,8 @@ export enum toolName {
   getUserMessages = 'getUserMessages',
   summarizeContext = 'summarizeContext',
   updateSystemPrompt = 'updateSystemPrompt',
+  getGrahpQlSchema = 'getGrahpQlSchema',
+  execGrahpqlQuery = 'execGrahpqlQuery',
 }
 
 /**

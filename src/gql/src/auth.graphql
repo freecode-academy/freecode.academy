@@ -20,7 +20,7 @@ fragment FragmentAuthPayload on AuthPayload {
 fragment AuthUser on User {
   id
   username
-  email: userEmail
+  # email: userEmail
   phone
   showEmail
   showPhone

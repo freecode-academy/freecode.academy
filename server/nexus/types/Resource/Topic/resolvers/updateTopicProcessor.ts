@@ -2,7 +2,6 @@ import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
 import { updateResource } from '../../resolvers/updateResource'
 
-// @ts-expect-error types
 export const updateTopicProcessor: FieldResolver<
   'Mutation',
   'updateTopicProcessor'

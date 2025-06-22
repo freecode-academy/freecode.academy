@@ -44,7 +44,7 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
     // createChatMessageProcessor: isSudo,
     singleUpload: isAuthenticated,
     sendAiMessage: isAuthenticated,
-    sendMessage: isSudo,
+    // sendMessage: isSudo,
   },
 }
 

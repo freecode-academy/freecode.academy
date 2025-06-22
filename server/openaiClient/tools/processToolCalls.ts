@@ -5,33 +5,19 @@ import {
 import { handleToolCall } from './handleToolCall'
 import { PrismaContext } from '../../nexus/context'
 import { ToolCall, User } from '../interfaces'
-// import { ToolCall } from '../../../nexus/types/MindLog/helpers/interfaces'
-// import { User } from 'server/interfaces'
-
-/**
- * Асинхронная обработка вызовов инструментов OpenAI
- */
 
 type processToolCallsProps = {
   context: PrismaContext
-  // agentId: string
   toolCalls: ToolCall[]
   messages: ChatCompletionMessageParam[]
-  // userMessagesHistory: ChatCompletionMessageParam[]
 
-  /**
-   * Объект пользователя, от имени которого вызывается тулза.
-   * По сути это будет пользователь внешнего ИИ-агента
-   */
   user: User
 }
 
 export async function processToolCalls({
-  // agentId,
   user,
   context,
   messages,
-  // userMessagesHistory,
   toolCalls,
 }: processToolCallsProps) {
   for (const toolCall of toolCalls) {
@@ -69,6 +55,5 @@ export async function processToolCalls({
       })
 
     messages.push(result)
-    // userMessagesHistory.push(result)
   }
 }

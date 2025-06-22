@@ -10,9 +10,10 @@ export const CodeChallengeBlock = objectType({
     t.string('name')
     t.int('rank')
 
-    t.field('Parent', {
+    t.id('Parent')
+    t.field('CodeChallengeBlockParent', {
       type: 'CodeChallengeBlock',
-      // @ts-expect-error types
+
       resolve({ Parent }, _, ctx) {
         return Parent
           ? ctx.prisma.codeChallengeBlock.findUnique({ where: { id: Parent } })

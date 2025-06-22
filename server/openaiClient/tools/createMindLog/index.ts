@@ -1,6 +1,7 @@
 import { MindLogType } from '@prisma/client'
 import { BaseAiTool, toolName } from '../interfaces'
 import { createActivity } from '../../../nexus/types/Activity/helpers/createActivity'
+import { ActivityType } from '../../../nexus/types/Activity/interfaces'
 
 export interface CreateMindLogArgs {
   type: MindLogType
@@ -59,7 +60,7 @@ export const createMindLogTool: CreateMindLogTool = {
           ctx,
           userId: user.id,
           payload: {
-            type: 'MindLog',
+            type: ActivityType.MindLog,
             MindLog: mindLog,
           },
         })

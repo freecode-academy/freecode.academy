@@ -1,5 +1,3 @@
-// Создаем экземпляр универсального клиента OpenAI
-
 import OpenAI from 'openai'
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY

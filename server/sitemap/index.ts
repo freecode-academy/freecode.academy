@@ -65,8 +65,7 @@ export class SitemapBuilder extends Sitemap {
   }
 
   async renderRootSitemap(_req: Request, res: Response, uri: URI) {
-    // @ts-expect-error types
-    const cleanUri = uri.clone().query(null)
+    const cleanUri = uri.clone().query(true)
 
     const xml = new XMLWriter()
 

@@ -11,9 +11,9 @@ export const Timer = objectType({
     t.nonNull.date('updatedAt')
     t.date('stopedAt')
     t.id('CreatedBy')
-    t.field('TimerCreatedBy', {
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })

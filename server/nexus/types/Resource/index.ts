@@ -43,7 +43,9 @@ export const Resource = objectType({
     t.nonNull.boolean('isfolder')
     t.nonNull.string('uri')
     t.string('class_key')
-    t.float('rating')
+    t.field('rating', {
+      type: 'Decimal',
+    })
     t.int('positiveVotesCount')
     t.int('negativeVotesCount')
     t.int('neutralVotesCount')
@@ -69,7 +71,6 @@ export const Resource = objectType({
       args: {
         orderBy: 'ResourceOrderByWithRelationInput',
       },
-      // @ts-expect-error types
       resolve({ id }, args, ctx) {
         const orderBy = args.orderBy as Prisma.ResourceOrderByWithRelationInput
 
@@ -112,7 +113,6 @@ export const Resource = objectType({
     })
     t.field('Image', {
       type: 'File',
-      // @ts-expect-error types
       resolve({ id }, _, ctx) {
         return id
           ? ctx.prisma.file.findFirst({ where: { ImageResource: id } })
@@ -133,7 +133,6 @@ export const Resource = objectType({
       type: 'ResourceTag',
       // args: {
       // },
-      // @ts-expect-error types
       resolve({ id }, _args, ctx) {
         return id
           ? ctx.prisma.resourceTag.findMany({

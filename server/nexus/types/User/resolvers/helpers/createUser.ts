@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
 import { createPassword, createToken } from '../helpers'
 import { createActivity } from '../../../Activity/helpers/createActivity'
+import { ActivityType } from '../../../Activity/interfaces'
 
 export async function createUser(
   data: Prisma.UserCreateInput,
@@ -62,7 +63,7 @@ export async function createUser(
       ctx,
       userId: user.id,
       payload: {
-        type: 'UserCreated',
+        type: ActivityType.UserCreated,
         user,
       },
     })

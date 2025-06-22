@@ -32,9 +32,10 @@ export const Tag = objectType({
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
     t.nonNull.string('name')
-    t.field('CreatedBy', {
+    t.id('CreatedBy')
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -43,7 +44,7 @@ export const Tag = objectType({
     })
     t.list.nonNull.field('Resources', {
       type: 'ResourceTag',
-      // @ts-expect-error types
+
       resolve({ id }, _, ctx) {
         return ctx.prisma.resourceTag.findMany({
           where: {

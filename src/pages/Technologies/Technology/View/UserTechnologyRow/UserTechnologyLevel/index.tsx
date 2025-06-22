@@ -2,7 +2,6 @@ import React, { useMemo, useCallback } from 'react'
 import { UserTechnologyLevelProps } from './interfaces'
 import TextField from 'material-ui/TextField'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
-import { Scalars } from 'src/gql/generated'
 
 const UserTechnologyLevel: React.FC<UserTechnologyLevelProps> = ({
   inEditMode,
@@ -14,7 +13,7 @@ const UserTechnologyLevel: React.FC<UserTechnologyLevelProps> = ({
 }) => {
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      let newValue: Scalars['UserTechnologyLevel'] | null | undefined
+      let newValue: number | null | undefined
 
       if (event.target.value) {
         const value = parseInt(event.target.value)
@@ -23,8 +22,7 @@ const UserTechnologyLevel: React.FC<UserTechnologyLevelProps> = ({
           return
         }
 
-        // @ts-expect-error types
-        newValue = value as Scalars['UserTechnologyLevel']
+        newValue = value
       } else {
         newValue = null
       }

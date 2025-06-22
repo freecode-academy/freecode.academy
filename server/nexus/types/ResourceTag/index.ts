@@ -1,4 +1,4 @@
-import { enumType, objectType } from 'nexus'
+import { objectType } from 'nexus'
 
 export const ResourceTag = objectType({
   name: 'ResourceTag',
@@ -6,31 +6,33 @@ export const ResourceTag = objectType({
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
-    t.nonNull.field('status', {
-      type: 'TagStatus',
+    t.nonNull.string('status', {
+      // type: 'TagStatus',
     })
-
-    t.field('CreatedBy', {
+    t.id('CreatedBy')
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
           : null
       },
     })
-    t.field('Resource', {
+    t.id('Resource')
+    t.field('ResourceTagResource', {
       type: 'Resource',
-      // @ts-expect-error types
+
       resolve({ Resource }, _, ctx) {
         return Resource
           ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
           : null
       },
     })
-    t.field('Tag', {
+    t.id('Tag')
+    t.field('ResourceTagTag', {
       type: 'Tag',
-      // @ts-expect-error types
+
       resolve({ Tag }, _, ctx) {
         return Tag ? ctx.prisma.tag.findUnique({ where: { id: Tag } }) : null
       },
@@ -38,7 +40,7 @@ export const ResourceTag = objectType({
   },
 })
 
-export const TagStatus = enumType({
-  name: 'TagStatus',
-  members: ['Active', 'Moderated', 'Blocked'],
-})
+// export const TagStatus = enumType({
+//   name: 'TagStatus',
+//   members: ['Active', 'Moderated', 'Blocked'],
+// })

@@ -1,4 +1,3 @@
-import { getUsersTool } from '../getUsers'
 import { BaseAiTool, toolName } from '../interfaces'
 
 /** Тип аргументов для GetCurrentUser */
@@ -27,7 +26,7 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
       },
     },
   },
-  handler: async (_args, ctx, user, messages) => {
+  handler: async (_args, ctx) => {
     const { currentUser } = ctx
 
     if (!currentUser) {
@@ -42,14 +41,7 @@ export const GetCurrentUserTool: GetCurrentUserTool = {
       )
     }
 
-    let extendedData = await getUsersTool.handler(
-      {
-        ids: [currentUser.id],
-      },
-      ctx,
-      user,
-      messages
-    )
+    let extendedData = JSON.stringify(currentUser, null, 2)
 
     if (permissions.length) {
       extendedData =

@@ -25,16 +25,26 @@ query projectsConnection(
 }
 
 fragment projectsConnectionProject on Project {
-  ...ProjectNoNesting
-  CreatedBy {
-    ...projectsConnectionUser
-  }
-  Members {
-    id
-    User {
-      ...projectsConnectionUser
-    }
-  }
+  ...project_
+
+  # ...ProjectNoNesting
+  # CreatedBy {
+  #   ...projectsConnectionUser
+  # }
+  # Members {
+  #   id
+  #   User {
+  #     ...projectsConnectionUser
+  #   }
+  # }
+  # Resource {
+  #   id
+  #   uri
+  #   Image {
+  #     id
+  #     path
+  #   }
+  # }
   # ProjectTasks {
   #   id
   #   createdAt
@@ -55,14 +65,6 @@ fragment projectsConnectionProject on Project {
   #     }
   #   }
   # }
-  Resource {
-    id
-    uri
-    Image {
-      id
-      path
-    }
-  }
 }
 
 fragment projectsConnectionUser on User {
@@ -93,15 +95,39 @@ query projects(
   }
 }
 
+query officeProjects($where: ProjectWhereInput) {
+  # Все проекты, к которым я имею отношение
+  projectsCount(where: $where)
+  projects(orderBy: { updatedAt: desc }, where: $where) {
+    ...officeProject
+  }
+}
+
+fragment officeProject on Project {
+  id
+  name
+  url
+}
+
 fragment project_ on Project {
   ...ProjectNoNesting
-  CreatedBy {
+  CreatedBy: CreatedByUser {
     ...UserNoNesting
   }
   Members {
     id
-    User {
+    User: ProjectMemberUser {
       ...UserNoNesting
+    }
+  }
+  Resource: ProjectResource {
+    id
+    uri
+    name
+    type
+    Image {
+      id
+      path
     }
   }
   # ProjectTasks(orderBy: { createdAt: desc }) {
@@ -133,14 +159,21 @@ fragment project_ on Project {
   #     ...task_
   #   }
   # }
-  Resource {
-    id
-    uri
-    name
-    type
-    Image {
-      id
-      path
-    }
-  }
+}
+
+fragment ProjectNoNesting on Project {
+  id
+  name
+  domain
+  createdAt
+  updatedAt
+  description
+  url
+  sequence
+  content
+  # contentText
+  status
+  public
+  oldID
+  type
 }

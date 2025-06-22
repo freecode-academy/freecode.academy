@@ -3,7 +3,6 @@ import { FieldResolver } from 'nexus'
 import { createPassword } from './helpers'
 import { sanitizeTelegram } from './helpers/sanitizeTelegram'
 
-// @ts-expect-error types
 export const updateUserProcessor: FieldResolver<
   'Mutation',
   'updateUserProcessor'

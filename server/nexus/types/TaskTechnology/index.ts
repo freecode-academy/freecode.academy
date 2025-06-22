@@ -8,19 +8,23 @@ export const TaskTechnology = objectType({
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
-    t.technologyLevel('level')
+    t.int('level')
 
-    t.field('CreatedBy', {
+    t.nonNull.id('CreatedBy')
+
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
       },
     })
 
-    t.field('Technology', {
+    t.id('Technology')
+
+    t.field('TaskTechnologyTechnology', {
       type: 'Technology',
-      // @ts-expect-error types
+
       resolve({ Technology }, _, ctx) {
         return Technology
           ? ctx.prisma.technology.findUnique({ where: { id: Technology } })
@@ -28,9 +32,11 @@ export const TaskTechnology = objectType({
       },
     })
 
-    t.field('Task', {
+    t.id('Task')
+
+    t.field('TaskTechnologyTask', {
       type: 'Task',
-      // @ts-expect-error types
+
       resolve({ Task }, _, ctx) {
         return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
       },

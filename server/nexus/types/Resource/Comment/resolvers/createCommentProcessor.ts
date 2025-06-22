@@ -4,7 +4,6 @@ import { uid } from 'uid'
 import { createResource } from '../../resolvers/createResource'
 import { prepareContent } from '../../resolvers/helpers/prepareContent'
 
-// @ts-expect-error types
 export const createCommentProcessor: FieldResolver<
   'Mutation',
   'createCommentProcessor'

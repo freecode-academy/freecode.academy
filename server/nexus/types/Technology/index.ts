@@ -15,7 +15,8 @@ export const Technology = objectType({
     // t.field('components', { type: 'JSON' })
     t.field('components', {
       type: 'JSON',
-      // @ts-expect-error types
+
+      // @ts-expect-error need to remove
       resolve({ components }) {
         const value = components
           ? Array.isArray(components)
@@ -43,9 +44,11 @@ export const Technology = objectType({
     t.int('level5hours', {
       description: 'Примерное количество часов на освоение уровня',
     })
-    t.field('CreatedBy', {
+    t.nonNull.id('CreatedBy')
+
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -57,7 +60,7 @@ export const Technology = objectType({
       args: {
         orderBy: 'UserTechnologyOrderByWithRelationInput',
       },
-      // @ts-expect-error types
+
       resolve({ id }, args, ctx) {
         const orderBy =
           args.orderBy as Prisma.UserTechnologyOrderByWithRelationInput

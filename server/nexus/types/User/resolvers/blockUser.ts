@@ -4,7 +4,7 @@ import { FieldResolver } from 'nexus'
 /**
  * Блокировка пользователя
  */
-// @ts-expect-error types
+
 export const blockUser: FieldResolver<'Mutation', 'blockUser'> = async (
   _,
   args,

@@ -58,8 +58,7 @@ export class Sitemap {
   }
 
   renderRootSitemap(_req: Request, res: Response, uri: URI) {
-    // @ts-expect-error types
-    const cleanUri: URI = uri.clone().query(null)
+    const cleanUri = uri.clone().query(true)
 
     if (!cleanUri) {
       throw new Error('cleanUri is empty')

@@ -29,30 +29,29 @@ export const UserTechnology = objectType({
     t.field('hiring_status', {
       type: 'UserTechnologyHiringStatus',
     })
-    t.technologyLevel('level')
+    t.int('level')
     t.boolean('isMentor', {
       description: 'Готов быть ментором',
     })
     t.id('CreatedBy')
     t.field('UserTechnologyCreatedBy', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
           : null
       },
     })
-    // t.nonNull.id('Technology')
+    t.nonNull.id('Technology')
     t.nonNull.string('technologyId', {
-      // @ts-expect-error types
       resolve({ Technology }) {
         return Technology
       },
     })
     t.field('UserTechnologyTechnology', {
       type: 'Technology',
-      // @ts-expect-error types
+
       resolve({ Technology }, _, ctx) {
         return Technology
           ? ctx.prisma.technology.findUnique({ where: { id: Technology } })

@@ -24,14 +24,9 @@ type AiAgentData = {
   model: string
 }
 
-// ✅ Правильно типизированный объект
 export const AiAgents: AiAgentData[] = [
   {
-    username: 'ai-admin--gpt-4.1-2025-04-14',
-    /**
-     * Эта тупит, задваивает сообщения
-     */
-    // model: 'gpt-4.1-mini-2025-04-14',
+    username: 'ai-main--gpt-4.1-2025-04-14',
 
     model: 'gpt-4.1-2025-04-14',
   },

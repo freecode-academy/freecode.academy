@@ -142,7 +142,6 @@ model User {
   ChatMessages       ChatMessage[] @relation(name: "ChatMessageCreatedBy")
   IncomeChatMessages ChatMessage[] @relation(name: "ChatMessageUserTo")
   MindLogs           MindLog[]
-  Activities         Activity[]
 
   @@unique([email])
   @@unique([username])
@@ -1671,26 +1670,29 @@ enum MentorMenteeStatus {
 // }
 
 enum MindLogType {
-  Stimulus // Раздражитель
-  Reaction // Реакция
-  Reasoning // Рассуждение
-  Intention // Намерение
-  Action // Действие
-  Progress // Ход выполнения
-  Conclusion // Вывод
-  Result // Результат
-  Confirmation // Подтверждение
-  Refutation // Опровержение
-  Correction // Коррекция
-  Evaluation // Оценка
-  Suggestion // Предложение
-  OptimizedMemory // Оптимизированное знание
-  ForgottenMemory // Забытая или неактуальная память
-  ChunkedKnowledge // Сгруппированное знание
-  ReinforcedAction // Усиленное действие (после положительного отклика)
-  Mentoring // Передача знаний от опытного агента
-  Guidance // Направление по решению будущих задач
-  ProcessSummary // Краткое резюме всего процесса с выделением ключевых точек
+  // Первая реакция на раздражитель – ассоциации, эмоции, спонтанные гипотезы и внутренний отклик.
+  Stimulus
+
+  // Внутренняя или аналитическая реакция на стимул, осознанная первая оценка.
+  Reaction
+
+  // Выбранное действие или стратегия в ответ на реакцию (конкретный шаг, решение).
+  Action
+
+  // Объективная фиксация результата совершённых действий (что фактически получилось).
+  Result
+
+  // Главный вывод – интеграция полученного опыта, формулировка урока или правила для будущих случаев.
+  Conclusion
+
+  // Внешняя оценка – обратная связь или рецензия от пользователя/эксперта по поводу результата и применённого решения.
+  Evaluation
+
+  // Коррекция – запись об изменении/подкреплении веса знания или стратегии на основе внешней оценки.
+  Correction
+
+  // Запись о знании или паттерне: описание, полезность, история применения и коррекции.
+  Knowledge
 }
 
 model MindLog {
@@ -1722,28 +1724,12 @@ model ChatMessage {
   // Список тегов просто через запятую
   tags String?
 
+  // Статистика использования токенов
+  usage Json?
+
   createdBy String @db.VarChar(36)
   CreatedBy User   @relation(fields: [createdBy], references: [id], onDelete: Cascade, name: "ChatMessageCreatedBy")
 
   toUserId String? @db.VarChar(36)
   ToUser   User?   @relation(fields: [toUserId], references: [id], onDelete: Cascade, name: "ChatMessageUserTo")
-}
-
-enum ActivityType {
-  UserCreated
-  UrlChanged
-  SendMessaged
-  MindLog
-  ToolCall
-}
-
-model Activity {
-  id        String       @id @default(cuid()) @db.VarChar(36)
-  createdAt DateTime     @default(now())
-  type      ActivityType
-  userId    String       @db.VarChar(36)
-  User      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  data      String?      @db.Text
-
-  @@index([type])
 }

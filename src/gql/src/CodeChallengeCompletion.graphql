@@ -65,14 +65,25 @@ fragment codeChallengeCompletionNoNesting on CodeChallengeCompletion {
 
 fragment codeChallengeCompletion_ on CodeChallengeCompletion {
   ...codeChallengeCompletionNoNesting
-  Task {
+  # Task {
+  #   id
+  #   status
+  # }
+  # CodeChallenge {
+  #   id
+  # }
+  # CreatedBy {
+  #   ...UserNoNesting
+  # }
+}
+
+fragment MeUserCodeChallengeCompletion on CodeChallengeCompletion {
+  id
+  Task: CodeChallengeCompletionTask {
     id
     status
   }
-  CodeChallenge {
+  CodeChallenge: CodeChallengeCompletionCodeChallenge {
     id
-  }
-  CreatedBy {
-    ...UserNoNesting
   }
 }

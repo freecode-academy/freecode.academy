@@ -1,16 +1,12 @@
-import {
-  ActivityType,
-  ChatMessage,
-  MindLog,
-  Prisma,
-  User,
-} from '@prisma/client'
+import { ChatMessage, MindLog, User } from '@prisma/client'
 import { PrismaContext } from '../../../context'
 import { PUBSUB_TYPE } from '../../../../PubSub/interfaces'
 import {
   NexusGenInterfaces,
   NexusGenRootTypes,
 } from 'server/nexus/generated/nexus'
+import { ActivityType } from '../interfaces'
+import { generateId } from '../../../../helpers/generateId'
 
 type createActivityProps = {
   ctx: PrismaContext
@@ -35,6 +31,10 @@ type createActivityProps = {
     | ({
         type: typeof ActivityType.ToolCall
       } & Pick<NexusGenRootTypes['ActivityToolCall'], 'name' | 'args'>)
+    | {
+        type: typeof ActivityType.StdOut
+        StdOut: string
+      }
 }
 
 export function createActivity({
@@ -42,66 +42,64 @@ export function createActivity({
   userId,
   payload,
 }: createActivityProps): void {
-  const activityData: Prisma.ActivityCreateInput = {
-    User: {
-      connect: {
-        id: userId,
-      },
-    },
+  let activity: NexusGenInterfaces['Activity']
+
+  const commonFields = {
     type: payload.type,
+    id: generateId(),
+    userId,
+    createdAt: new Date(),
   }
 
-  ctx.prisma.activity
-    .create({
-      data: activityData,
-    })
-    .then((activity) => {
-      let activityInterface: NexusGenInterfaces['Activity']
-
-      switch (payload.type) {
-        case 'UrlChanged':
-          activityInterface = {
-            ...activity,
-            url: '/???',
-          }
-
-          break
-
-        case 'SendMessaged':
-          activityInterface = {
-            ...activity,
-            ChatMessage: payload.message,
-          }
-
-          break
-
-        case 'UserCreated':
-          activityInterface = {
-            ...activity,
-            // @ts-expect-error types
-            User: payload.user,
-          }
-
-          break
-
-        case 'MindLog':
-          activityInterface = {
-            ...activity,
-            MindLog: payload.MindLog,
-          }
-
-          break
-
-        case 'ToolCall':
-          activityInterface = {
-            ...activity,
-            ...payload,
-          }
-
-          break
+  switch (payload.type) {
+    case ActivityType.UrlChanged:
+      activity = {
+        ...commonFields,
+        url: '/???',
       }
 
-      ctx.pubsub.publish(PUBSUB_TYPE.ACTIVITY_ADDED, activityInterface)
-    })
-    .catch(console.error)
+      break
+
+    case ActivityType.SendMessaged:
+      activity = {
+        ...commonFields,
+        ChatMessage: payload.message,
+      }
+
+      break
+
+    case ActivityType.UserCreated:
+      activity = {
+        ...commonFields,
+        User: payload.user,
+      }
+
+      break
+
+    case ActivityType.MindLog:
+      activity = {
+        ...commonFields,
+        MindLog: payload.MindLog,
+      }
+
+      break
+
+    case ActivityType.ToolCall:
+      activity = {
+        ...commonFields,
+        ...payload,
+      }
+
+      break
+
+    case ActivityType.StdOut:
+      activity = {
+        ...commonFields,
+        ...payload,
+      }
+
+      break
+  }
+
+  ctx.pubsub.publish(PUBSUB_TYPE.ACTIVITY_ADDED, activity)
 }

@@ -41,7 +41,7 @@ export const signin: FieldResolver<'Mutation', 'signin'> = async (
     message = 'Неправильный пароль'
   } else {
     success = true
-    // @ts-expect-error types
+
     result = user
 
     token = await createToken(user, ctx)

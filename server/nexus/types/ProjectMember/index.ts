@@ -6,9 +6,10 @@ export const ProjectMember = objectType({
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
-    t.field('User', {
+    t.id('User')
+    t.field('ProjectMemberUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ User }, _, ctx) {
         return User ? ctx.prisma.user.findUnique({ where: { id: User } }) : null
       },
@@ -16,9 +17,10 @@ export const ProjectMember = objectType({
     t.field('status', {
       type: 'ProjectMemberStatus',
     })
-    t.field('Project', {
+    t.id('Project')
+    t.field('ProjectMemberProject', {
       type: 'Project',
-      // @ts-expect-error types
+
       resolve({ Project }, _, ctx) {
         return Project
           ? ctx.prisma.project.findUnique({ where: { id: Project } })

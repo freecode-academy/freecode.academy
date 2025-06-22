@@ -14,7 +14,7 @@ export const UserLearnStrategy = objectType({
     t.string('createdById')
     t.field('CreatedBy', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ createdById }, _, ctx) {
         return createdById
           ? ctx.prisma.user.findUnique({ where: { id: createdById } })
@@ -24,7 +24,7 @@ export const UserLearnStrategy = objectType({
     t.string('learnStrategyId')
     t.field('LearnStrategy', {
       type: 'LearnStrategy',
-      // @ts-expect-error types
+
       resolve({ learnStrategyId }, _, ctx) {
         return learnStrategyId
           ? ctx.prisma.learnStrategy.findUnique({

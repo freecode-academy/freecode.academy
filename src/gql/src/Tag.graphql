@@ -1,3 +1,9 @@
+query tag($where: TagWhereUniqueInput!) {
+  object: tag(where: $where) {
+    ...tag_
+  }
+}
+
 query tagsConnection(
   $first: Int!
   $skip: Int
@@ -15,14 +21,14 @@ fragment tag_ on Tag {
   name
   Resources {
     id
-    Resource {
+    Resource: ResourceTagResource {
       id
       type
       name
       uri
     }
   }
-  CreatedBy {
+  CreatedBy: CreatedByUser {
     ...UserNoNesting
   }
 }

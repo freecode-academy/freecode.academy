@@ -43,9 +43,10 @@ export const CodeChallenge = objectType({
     t.boolean('isBeta')
     t.id('Block')
 
-    t.field('CreatedBy', {
+    t.id('CreatedBy')
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
@@ -53,9 +54,10 @@ export const CodeChallenge = objectType({
       },
     })
 
-    t.field('Topic', {
+    t.id('Topic')
+    t.field('CodeChallengeTopic', {
       type: 'Resource',
-      // @ts-expect-error types
+
       resolve({ Topic }, _, ctx) {
         return Topic
           ? ctx.prisma.resource.findUnique({ where: { id: Topic } })

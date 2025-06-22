@@ -19,16 +19,15 @@ export const User = objectType({
     t.nonNull.date('updatedAt', {
       description: 'Когда обновлен',
     })
-    t.string('userEmail', {
-      resolve(parent, _args, ctx) {
-        return parent.showEmail === true ||
-          ctx.currentUser?.sudo === true ||
-          ctx.currentUser?.id === parent.id
-          ? // @ts-expect-error types
-            parent.email
-          : null
-      },
-    })
+    // t.string('userEmail', {
+    //   resolve(parent, _args, ctx) {
+    //     return parent.showEmail === true ||
+    //       ctx.currentUser?.sudo === true ||
+    //       ctx.currentUser?.id === parent.id
+    //       ? parent.email
+    //       : null
+    //   },
+    // })
     // TODO Restore showFullname logic
     // t.string('fullname', {
     //   resolve(parent, _args, ctx) {
@@ -80,7 +79,7 @@ export const User = objectType({
     t.string('telegram', {
       description: 'Аккаунт в телеграм',
     })
-    t.technologyLevel('technologyLevel')
+    t.int('technologyLevel')
 
     t.list.nonNull.field('CodeChallengeCompletions', {
       type: 'CodeChallengeCompletion',
@@ -144,7 +143,7 @@ export const User = objectType({
 
     t.list.nonNull.field('UserTechnologies', {
       type: 'UserTechnology',
-      // @ts-expect-error types
+
       resolve({ id }, _, ctx) {
         return ctx.prisma.userTechnology.findMany({
           where: {
@@ -239,7 +238,7 @@ export const UserQuery = extendType({
 
     t.field('me', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve(_, _args, ctx) {
         return ctx.currentUser
       },
@@ -378,7 +377,7 @@ export const UserUpdateInput = inputObjectType({
     t.string('image')
     t.string('address')
     t.string('password')
-    t.technologyLevel('technologyLevel')
+    t.int('technologyLevel')
     t.boolean('isMentor', {
       description: 'Готов быть ментором',
     })

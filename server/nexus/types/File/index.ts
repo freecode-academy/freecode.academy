@@ -2,6 +2,42 @@ import { Prisma } from '@prisma/client'
 import { objectType, extendType, inputObjectType, arg } from 'nexus'
 import { singleUploadResolver } from './resolvers/singleUpload'
 
+export const File = objectType({
+  name: 'File',
+  description: 'Файл',
+  definition(t) {
+    t.nonNull.string('id')
+    t.nonNull.date('createdAt', {
+      description: 'Когда создан',
+    })
+    t.nonNull.date('updatedAt', {
+      description: 'Когда обновлен',
+    })
+    t.nonNull.string('path', {
+      description: 'Путь к файлу',
+    })
+    t.string('filename', {
+      description: 'Имя файла',
+    })
+    t.string('name', {
+      description: 'Пользовательское имя файла',
+    })
+    t.nonNull.string('mimetype', {
+      description: 'Миме-тип',
+    })
+    t.nonNull.string('encoding', {
+      description: 'Кодировка',
+    })
+    t.field('size', {
+      description: 'Размер в байтах',
+      type: 'Decimal',
+    })
+    t.int('rank', {
+      description: 'Очередность',
+    })
+  },
+})
+
 export const FileQuery = extendType({
   type: 'Query',
   definition(t) {
@@ -67,38 +103,3 @@ export const SingleUploadInput = inputObjectType({
 //   name: String
 //   directory: String
 // }
-
-export const File = objectType({
-  name: 'File',
-  description: 'Файл',
-  definition(t) {
-    t.nonNull.string('id')
-    t.nonNull.date('createdAt', {
-      description: 'Когда создан',
-    })
-    t.nonNull.date('updatedAt', {
-      description: 'Когда обновлен',
-    })
-    t.nonNull.string('path', {
-      description: 'Путь к файлу',
-    })
-    t.string('filename', {
-      description: 'Имя файла',
-    })
-    t.string('name', {
-      description: 'Пользовательское имя файла',
-    })
-    t.nonNull.string('mimetype', {
-      description: 'Миме-тип',
-    })
-    t.nonNull.string('encoding', {
-      description: 'Кодировка',
-    })
-    t.float('size', {
-      description: 'Размер в байтах',
-    })
-    t.int('rank', {
-      description: 'Очередность',
-    })
-  },
-})

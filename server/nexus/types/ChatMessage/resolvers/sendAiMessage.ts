@@ -3,6 +3,7 @@ import { ChatCompletionMessageParam } from 'openai/resources/index'
 import { getAiUser } from '../../../../openaiClient/helpers/getAiUser'
 import { sendAiMessage } from '../helpers/sendAiMessage'
 import { createMessage } from '../helpers/createMessage'
+import { createToken } from '../../User/resolvers/helpers'
 
 export const sendAiMessageResolver: FieldResolver<
   'Mutation',
@@ -10,21 +11,33 @@ export const sendAiMessageResolver: FieldResolver<
 > = async (_, args, ctx) => {
   const { id, text, withHistory } = args.data
 
-  const { currentUser } = ctx
+  const { currentUser, prisma } = ctx
 
-  if (!currentUser) {
-    throw new Error('Not authorized')
+  let fromUser = currentUser
+
+  let token: string | undefined = undefined
+
+  if (!fromUser) {
+    const count = await prisma.user.count({
+      where: {
+        type: 'Human',
+      },
+    })
+
+    let sudo = false
+
+    if (count === 0) {
+      sudo = true
+    }
+
+    fromUser = await prisma.user.create({
+      data: {
+        sudo,
+      },
+    })
+
+    token = await createToken(fromUser, ctx)
   }
-
-  const fromUser = currentUser
-
-  // const message = coords
-  //   ? `${text}
-
-  // ------------
-  // Мои координаты: ${JSON.stringify(coords)}
-  // `
-  //   : text
 
   const toUser = await getAiUser({ ctx })
 
@@ -34,6 +47,7 @@ export const sendAiMessageResolver: FieldResolver<
     toUser,
     text,
     id: id ?? undefined,
+    usage: undefined,
   })
 
   const messages: ChatCompletionMessageParam[] = []
@@ -41,10 +55,6 @@ export const sendAiMessageResolver: FieldResolver<
   const aiMessage: ChatCompletionMessageParam = {
     role: 'user',
     content: message.text,
-    /**
-     * Нельзя передавать кириллицу, ошибка позникает
-     */
-    // name: fromUser.fullname ?? undefined,
   }
 
   messages.push({
@@ -58,11 +68,16 @@ export const sendAiMessageResolver: FieldResolver<
    * Отправляем параллельно, чтобы не ждать ответа агента.
    * То отправит параллельно через веб-сокет
    */
-  return await sendAiMessage({
+  const chatMessage = await sendAiMessage({
     ctx,
-    fromUser: currentUser,
+    fromUser,
     withHistory,
     messages,
     toUser,
   })
+
+  return {
+    ChatMessage: chatMessage ?? undefined,
+    token: token ?? undefined,
+  }
 }

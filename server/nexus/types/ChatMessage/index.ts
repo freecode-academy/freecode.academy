@@ -1,6 +1,5 @@
 import { Prisma } from '@prisma/client'
 import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
-import { sendMessageResolver } from './resolvers/sendMessage'
 import { sendAiMessageResolver } from './resolvers/sendAiMessage'
 
 export const ChatMessage = objectType({
@@ -8,8 +7,15 @@ export const ChatMessage = objectType({
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.string('text')
-    t.nonNull.date('createdAt')
-    t.nonNull.id('createdBy')
+    t.nonNull.field('createdAt', {
+      type: 'DateTime',
+    })
+
+    /**
+     * Делаем это поле необязательным, так как с фронта возможна отправка
+     * от анонима
+     */
+    t.id('createdBy')
     t.id('toUserId')
 
     t.nonNull.float('mood')
@@ -17,7 +23,9 @@ export const ChatMessage = objectType({
     t.nonNull.float('intentTone')
     t.string('socialGoal')
 
-    t.id('companyId')
+    t.field('usage', {
+      type: 'Json',
+    })
 
     t.field('CreatedBy', {
       type: 'User',
@@ -36,7 +44,6 @@ export const ChatMessageExtendsQuery = extendType({
     t.crud.chatMessages({
       filtering: true,
       ordering: true,
-      // @ts-expect-error types
       resolve(_, argsProps, ctx) {
         const args = argsProps as Prisma.ChatMessageFindManyArgs
 
@@ -49,38 +56,29 @@ export const ChatMessageExtendsQuery = extendType({
         })
       },
     })
-    // t.crud.chatMessages({
-    //   type: 'ChatMessage',
-    // })
-    // t.nonNull.list.nonNull.field('chatMessages', {
-    //   type: 'AiChatMessage',
-    //   args: {
-    //     where: 'ChatMessageWhereInput',
-    //   },
-    // })
   },
 })
 
 export const ChatMessageExtendsMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.field('sendMessage', {
-      type: 'ChatMessage',
+    t.nonNull.field('sendAiMessage', {
+      type: 'ChatMessageResponse',
       args: {
-        data: nonNull('ChatMessageCreateInput'),
-      },
-      resolve: sendMessageResolver,
-    })
-    t.field('sendAiMessage', {
-      type: 'ChatMessage',
-      args: {
-        // text: nonNull('String'),
-        // withHistory: nonNull('Boolean'),
-        // coords: 'CoordsInput',
         data: nonNull('SendAiMessageInput'),
       },
       resolve: sendAiMessageResolver,
     })
+  },
+})
+
+export const ChatMessageResponse = objectType({
+  name: 'ChatMessageResponse',
+  definition(t) {
+    t.field('ChatMessage', {
+      type: 'ChatMessage',
+    })
+    t.string('token')
   },
 })
 

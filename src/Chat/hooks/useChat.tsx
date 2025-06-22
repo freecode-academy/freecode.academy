@@ -3,6 +3,7 @@ import { SendAiMessageInput, useSendAiMessageMutation } from 'src/gql/generated'
 import { AppActions } from 'src/AppContext/reducer/interfaces'
 import { useAppContext } from 'src/AppContext'
 import { createId } from 'src/helpers/createId'
+import { useApolloClient } from '@apollo/client'
 
 export function useChat() {
   const { user: currentUser, appState, appDispatch } = useAppContext()
@@ -13,14 +14,9 @@ export function useChat() {
 
   const [sendMessageMutation, { loading }] = useSendAiMessageMutation()
 
+  const client = useApolloClient()
+
   const sendChatMessage = useCallback(() => {
-    // const text = chatText
-
-    if (!currentUser) {
-      console.error('Не был получен пользователь')
-      return
-    }
-
     textSetter((text) => {
       // Проверяем, что текст не пустой
       if (text) {
@@ -37,7 +33,7 @@ export function useChat() {
           message: {
             ...data,
             id: messageId,
-            createdBy: currentUser.id,
+            createdBy: currentUser?.id,
             createdAt: new Date(),
           },
         })
@@ -53,27 +49,31 @@ export function useChat() {
             data,
           },
         })
-          .then((r) => {
+          .then(async (r) => {
             const { sendAiMessage } = r.data || {}
 
             if (sendAiMessage) {
-              // Когда получаем ответ, обновляем сообщения
-              // appDispatch({
-              //   type: AppActions.ReceiveChatResponse,
-              //   response: sendAiMessage,
-              // })
+              const { token, ChatMessage } = sendAiMessage
 
-              // Отправляем сообщение (пока без ответа)
-              appDispatch({
-                type: AppActions.ChatAddMessage,
-                message: sendAiMessage,
-              })
+              if (token) {
+                localStorage?.setItem('token', token)
+
+                await client.resetStore().catch(console.error)
+              }
+
+              if (ChatMessage) {
+                // Отправляем сообщение (пока без ответа)
+                appDispatch({
+                  type: AppActions.ChatAddMessage,
+                  message: ChatMessage,
+                })
+              }
             }
           })
           .catch((error) => {
             console.error('Error sending message:', error)
             // TODO Fix alert
-            alert('Ошибка отправки сообщения')
+            alert((error as Error)?.message || 'Unknown error')
           })
           .finally(() => {
             appDispatch({
@@ -85,7 +85,7 @@ export function useChat() {
 
       return ''
     })
-  }, [appDispatch, sendMessageMutation, currentUser])
+  }, [appDispatch, sendMessageMutation, currentUser, client])
 
   return {
     messages: chatMessages,

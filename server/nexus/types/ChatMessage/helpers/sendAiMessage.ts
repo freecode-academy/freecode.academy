@@ -3,7 +3,6 @@ import { PrismaContext } from 'server/nexus/context'
 import { sendOpenAiRequest } from '../../../../openaiClient/processOpenAIRequest'
 
 import { ChatCompletionMessageParam } from 'openai/resources/chat'
-import { getSystemPrompt } from '../../../../openaiClient/prompts/systemPrompt'
 import { ChatMessage, User } from '@prisma/client'
 import { AiAgentUserData } from '../../../../openaiClient/interfaces'
 
@@ -29,13 +28,6 @@ export const sendAiMessage = async ({
 }: sendAiMessageProps): Promise<ChatMessage | null> => {
   const historyKey = [fromUser.id, toUser.id].join(',')
 
-  // const userMessagesHistory =
-  //   (withHistory && messagesHistory.get(historyKey)) || []
-
-  // if (!messagesHistory.has(historyKey) && withHistory) {
-  //   messagesHistory.set(historyKey, userMessagesHistory)
-  // }
-
   const aiUserData = toUser.data as AiAgentUserData | undefined
 
   const messages = (withHistory && messagesHistory.get(historyKey)) || []
@@ -54,9 +46,7 @@ export const sendAiMessage = async ({
     console.log('sendMessage userMessagesHistory.length', messages.length)
   }
 
-  // let messages: ChatCompletionMessageParam[] = []
-
-  const systemPrompt = aiUserData?.systemPrompt || getSystemPrompt()
+  const systemPrompt = aiUserData?.systemPrompt
 
   if (systemPrompt) {
     const firstMessage = messages.at(0)
@@ -73,21 +63,13 @@ export const sendAiMessage = async ({
     content: `ID пользователя (userId): ${fromUser.id}`,
   })
 
-  // if (userMessagesHistory.length) {
-  //   messages = [...messages, ...userMessagesHistory]
-  // }
-
   messages.push(...messagesProps)
-
-  // userMessagesHistory.push(...messagesProps)
 
   const aiAgentResponse = await sendOpenAiRequest({
     ctx,
     fromUser,
     toUser,
     messages,
-    // userMessagesHistory,
-    // model,
   })
 
   if (process.env.NODE_ENV === 'development') {
@@ -95,6 +77,5 @@ export const sendAiMessage = async ({
     console.log('messages', messages)
   }
 
-  // return response.sendMessage.reply?.text ?? null
   return aiAgentResponse ?? null
 }

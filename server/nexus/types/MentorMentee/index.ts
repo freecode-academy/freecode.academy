@@ -61,7 +61,7 @@ export const MentorMentee = objectType({
     t.field('Mentor', {
       description: 'Ментор',
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ mentorId }, _args, ctx) {
         return ctx.prisma.user.findUnique({
           where: {
@@ -74,7 +74,7 @@ export const MentorMentee = objectType({
     t.field('Mentee', {
       description: 'Менти',
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ menteeId }, _args, ctx) {
         return ctx.prisma.user.findUnique({
           where: {

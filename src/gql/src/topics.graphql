@@ -32,7 +32,7 @@ fragment topicsConnectionTopic on Resource {
     uri
   }
   Tags {
-    Tag {
+    Tag: ResourceTagTag {
       id
       name
     }

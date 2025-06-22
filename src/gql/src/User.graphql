@@ -101,19 +101,19 @@ mutation signup($data: UserSignupDataInput) {
 
 # mutation blockUser($where: UserWhereUniqueInput!) {
 #   blockUser(where: $where) {
-#     ...user_
+#     ...User_
 #   }
 # }
 
 # mutation unblockUser($where: UserWhereUniqueInput!) {
 #   unblockUser(where: $where) {
-#     ...user_
+#     ...User_
 #   }
 # }
 
 # mutation updateCurrentUser($data: CurrentUserUpdateInput!) {
 #   updateCurrentUser(data: $data) {
-#     ...user_
+#     ...User_
 #   }
 # }
 
@@ -129,7 +129,7 @@ fragment meUser on User {
   }
 }
 
-fragment user_ on User {
+fragment User_ on User {
   ...UserNoNesting
   # EthAccounts {
   #   ...EthAccountNoNesting
@@ -190,7 +190,7 @@ fragment userProfile on User {
     type
   }
 
-  ...user_
+  ...User_
 }
 
 # fragment EthAccountNoNesting on EthAccount {
@@ -214,23 +214,12 @@ fragment ProjectMemberNoNesting on ProjectMember {
   status
 }
 
-fragment MeUserCodeChallengeCompletion on CodeChallengeCompletion {
-  id
-  Task {
-    id
-    status
-  }
-  CodeChallenge {
-    id
-  }
-}
-
 fragment usersConnectionUser on User {
   id
   createdAt
   updatedAt
   username
-  email: userEmail
+  # email: userEmail
   phone
   showEmail
   showPhone
@@ -365,7 +354,6 @@ fragment UserNoNesting on User {
   createdAt
   updatedAt
   username
-  email: userEmail
   phone
   showEmail
   showPhone

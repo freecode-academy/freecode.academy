@@ -74,7 +74,7 @@ mutation updateTimerProcessor(
 fragment Timer_ on Timer {
   ...TimerNoNesting
 
-  CreatedBy: TimerCreatedBy {
+  CreatedBy: CreatedByUser {
     ...UserNoNesting
   }
   Task: TimerTask {
@@ -83,12 +83,12 @@ fragment Timer_ on Timer {
       id
       createdAt
       updatedAt
-      Project {
+      Project: ProjectTaskProject {
         ...ProjectNoNesting
-        CreatedBy {
+        CreatedBy: CreatedByUser {
           ...UserNoNesting
         }
-        Resource {
+        Resource: ProjectResource {
           id
           name
           uri

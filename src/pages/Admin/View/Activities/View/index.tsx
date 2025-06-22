@@ -38,6 +38,7 @@ export const ActivitiesView: React.FC = () => {
         {activities.map((n) => {
           let title: string
           let dataContent: React.ReactNode = null
+          let additionalData: React.ReactNode = null
 
           switch (n.__typename) {
             case 'ActivityUser':
@@ -52,6 +53,10 @@ export const ActivitiesView: React.FC = () => {
               title = 'Сообщение'
 
               dataContent = <ActivityMessage message={n.ChatMessage} />
+
+              additionalData = n.ChatMessage.usage ? (
+                <pre>{JSON.stringify(n.ChatMessage.usage, null, 2)}</pre>
+              ) : null
 
               break
             }
@@ -87,6 +92,13 @@ export const ActivitiesView: React.FC = () => {
 
               break
 
+            case 'ActivityStdOut':
+              title = 'StdOut'
+
+              dataContent = <pre>{n.StdOut}</pre>
+
+              break
+
             default:
               title = 'Unknown'
               console.error('unknown type', n.__typename)
@@ -100,6 +112,7 @@ export const ActivitiesView: React.FC = () => {
               <GridCell>{title}</GridCell>
               <GridCell>{n.createdAt.toString()}</GridCell>
               <GridCell>{dataContent}</GridCell>
+              <GridCell>{additionalData}</GridCell>
             </GridRow>
           )
         })}

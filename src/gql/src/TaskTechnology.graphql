@@ -33,13 +33,13 @@ fragment taskTechnology_ on TaskTechnology {
   id
   createdAt
   level
-  Task {
+  Task: TaskTechnologyTask {
     ...TaskNoNesting
   }
-  Technology {
+  Technology: TaskTechnologyTechnology {
     ...TechnologyNoNesting
   }
-  CreatedBy {
+  CreatedBy: CreatedByUser {
     ...UserNoNesting
   }
 }

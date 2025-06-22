@@ -45,7 +45,7 @@ fragment CodeChallengePage on CodeChallenge {
 
 fragment CodeChallengePageChallengeCompletion on CodeChallengeCompletion {
   ...codeChallengeCompletionNoNesting
-  CreatedBy {
+  CreatedBy: CreatedByUser {
     ...UserNoNesting
   }
 }
@@ -61,9 +61,6 @@ mutation updateCodeChallenge(
 
 fragment codeChallenge_ on CodeChallenge {
   id
-  CreatedBy {
-    ...UserNoNesting
-  }
   externalKey
   createdAt
   updatedAt
@@ -89,7 +86,10 @@ fragment codeChallenge_ on CodeChallenge {
   template
   rank
   Block
-  Topic {
+  CreatedBy: CreatedByUser {
+    ...UserNoNesting
+  }
+  Topic: CodeChallengeTopic {
     ...resource_
   }
 }
@@ -101,7 +101,7 @@ fragment codeChallengeWithBlocks_ on CodeChallenge {
   CodeChallengeBlock {
     id
     name
-    Parent {
+    Parent: CodeChallengeBlockParent {
       id
       name
     }

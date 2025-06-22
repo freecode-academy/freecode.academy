@@ -1,11 +1,11 @@
 import { PrismaCmsComponentError } from '@prisma-cms/component'
-import { Scalars, UserTechnology } from 'src/gql/generated'
+import { UserTechnology } from 'src/gql/generated'
 
 export type UserTechnologyLevelProps = {
   inEditMode?: boolean
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
-    value: Scalars['UserTechnologyLevel'] | null
+    value: number | null
   ) => void
   value?: UserTechnology['level'] | undefined
   error?: PrismaCmsComponentError | undefined

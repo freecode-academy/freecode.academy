@@ -8,21 +8,16 @@ import { User } from '../interfaces'
 export enum toolName {
   createMindLog = 'createMindLog',
   sendMessage = 'sendMessage',
-  getUsers = 'getUsers',
-  getUser = 'getUser',
-  updateUser = 'updateUser',
   GetCurrentUser = 'GetCurrentUser',
   getUserMessages = 'getUserMessages',
   summarizeContext = 'summarizeContext',
   updateSystemPrompt = 'updateSystemPrompt',
   getGrahpQlSchema = 'getGrahpQlSchema',
   execGrahpqlQuery = 'execGrahpqlQuery',
+  execCommand = 'execCommand',
+  getSystemInfo = 'getSystemInfo',
 }
 
-/**
- * Универсальный тип для обработчика инструмента
- * @template T Тип аргументов инструмента
- */
 export type ToolHandler<T> = (
   args: T,
   ctx: PrismaContext,
@@ -30,15 +25,8 @@ export type ToolHandler<T> = (
   messages: ChatCompletionMessageParam[]
 ) => Promise<string | undefined>
 
-/**
- * Базовый интерфейс для всех инструментов
- * @template N Имя инструмента из перечисления toolName
- * @template A Тип аргументов инструмента
- */
 export interface BaseAiTool<N extends keyof typeof toolName, A = unknown> {
-  /** Имя инструмента из перечисления toolName */
   name: N
-  /** Описание инструмента в формате OpenAI ChatCompletionTool */
   definition: ChatCompletionTool & {
     function: ChatCompletionTool['function'] & {
       name: N
@@ -50,6 +38,5 @@ export interface BaseAiTool<N extends keyof typeof toolName, A = unknown> {
       }
     }
   }
-  /** Функция-обработчик вызова инструмента */
   handler: ToolHandler<A>
 }

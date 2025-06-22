@@ -1,12 +1,15 @@
-import { extendType, interfaceType, nonNull, objectType } from 'nexus'
+import { enumType, extendType, interfaceType, nonNull, objectType } from 'nexus'
 import { PUBSUB_TYPE } from '../../../PubSub/interfaces'
 import { NexusGenInterfaces } from 'server/nexus/generated/nexus'
+import { ActivityType } from './interfaces'
 
 export const Activity = interfaceType({
   name: 'Activity',
   definition(t) {
     t.nonNull.id('id')
-    t.nonNull.date('createdAt')
+    t.nonNull.field('createdAt', {
+      type: 'DateTime',
+    })
     t.nonNull.id('userId')
     t.string('data')
     t.nonNull.field('type', {
@@ -25,8 +28,15 @@ export const Activity = interfaceType({
         return 'ActivityUrl'
       case 'UserCreated':
         return 'ActivityUser'
+      case 'StdOut':
+        return 'ActivityStdOut'
     }
   },
+})
+
+export const ActivityTypeEnum = enumType({
+  name: 'ActivityType',
+  members: Object.values(ActivityType),
 })
 
 export const ActivityMessage = objectType({
@@ -75,6 +85,14 @@ export const ActivityToolCall = objectType({
     t.field('args', {
       type: 'Json',
     })
+  },
+})
+
+export const ActivityStdOut = objectType({
+  name: 'ActivityStdOut',
+  definition(t) {
+    t.implements('Activity')
+    t.nonNull.string('StdOut')
   },
 })
 

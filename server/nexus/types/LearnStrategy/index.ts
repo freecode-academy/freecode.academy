@@ -11,13 +11,11 @@ export const LearnStrategy = objectType({
     t.nonNull.date('updatedAt')
     t.nonNull.string('name')
     t.string('description')
-    t.nonNull.field('level', {
-      type: 'UserTechnologyLevel',
-    })
+    t.nonNull.int('level')
     t.nonNull.string('createdById')
     t.field('CreatedBy', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ createdById }, _, ctx) {
         return createdById
           ? ctx.prisma.user.findUnique({ where: { id: createdById } })

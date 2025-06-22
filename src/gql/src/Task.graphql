@@ -25,12 +25,12 @@ query tasksConnection(
 query task($where: TaskWhereUniqueInput!, $timersWhere: TimerWhereInput) {
   object: task(where: $where) {
     ...task_
-    Timers(orderBy: { createdAt: desc }, where: $timersWhere) {
-      ...timersConnectionTimer
-    }
+    # Timers(orderBy: { createdAt: desc }, where: $timersWhere) {
+    #   ...timersConnectionTimer
+    # }
     CodeChallengeCompletion {
       id
-      CodeChallenge {
+      CodeChallenge: CodeChallengeCompletionCodeChallenge {
         ...codeChallengeWithBlocks_
       }
     }
@@ -41,6 +41,41 @@ query task($where: TaskWhereUniqueInput!, $timersWhere: TimerWhereInput) {
         ...UserNoNesting
       }
     }
+  }
+}
+
+query officeTasks(
+  $orderBy: [TaskOrderByWithRelationInput!]
+  $where: TaskWhereInput
+) {
+  tasksCount(where: $where)
+  tasks(orderBy: $orderBy, where: $where) {
+    ...officeTask
+  }
+}
+
+fragment officeTask on Task {
+  id
+  name
+  # content
+  createdAt
+  startDatePlaning
+  endDatePlaning
+  startDate
+  endDate
+  status
+  TaskProjects {
+    id
+    Project: ProjectTaskProject {
+      id
+      name
+    }
+  }
+  CreatedBy: CreatedByUser {
+    id
+    username
+    fullname
+    image
   }
 }
 
@@ -74,3 +109,113 @@ query task($where: TaskWhereUniqueInput!, $timersWhere: TimerWhereInput) {
 #     }
 #   }
 # }
+
+fragment task_ on Task {
+  ...TaskNoNesting
+  CreatedBy: CreatedByUser {
+    ...UserNoNesting
+  }
+  Timers(orderBy: { createdAt: desc }, where: $timersWhere) {
+    ...timersConnectionTimer
+  }
+  # Timers(orderBy: createdAt_DESC) {
+  #   ...TimerNoNesting
+  #   CreatedBy: CreatedByUser {
+  #     ...UserNoNesting
+  #   }
+  # }
+  # Timers(orderBy: { createdAt: desc }, where: $timersWhere) {
+  #   ...TimerNoNesting
+  #   # CreatedBy: CreatedByUser {
+  #   #   ...UserNoNesting
+  #   # }
+  #   ...Timer_
+  # }
+  TaskProjects {
+    id
+    createdAt
+    updatedAt
+    Project: ProjectTaskProject {
+      ...ProjectNoNesting
+      CreatedBy: CreatedByUser {
+        ...UserNoNesting
+      }
+      Resource: ProjectResource {
+        id
+        name
+        uri
+      }
+    }
+  }
+  # RelatedTo {
+  #   ...TaskNoNesting
+  # }
+  # Reactions {
+  #   ...TaskReactionNoNesting
+  #   CreatedBy {
+  #     ...UserNoNesting
+  #   }
+  # }
+  Parent: ParentTask {
+    id
+  }
+}
+
+fragment TaskNoNesting on Task {
+  id
+  createdAt
+  updatedAt
+  name
+  description
+  content
+  status
+  startDatePlaning
+  endDatePlaning
+  startDate
+  endDate
+  needHelp
+}
+
+fragment TaskReactionNoNesting on TaskReaction {
+  id
+  createdAt
+  updatedAt
+  type
+}
+
+fragment tasksConnectionTask on Task {
+  ...task_
+  ...taskTaskTechnologies
+
+  # Timers(orderBy: { createdAt: desc }) {
+  #   ...TimerNoNesting
+  #   CreatedBy: CreatedByUser {
+  #     ...UserNoNesting
+  #   }
+  # }
+  # Timers(orderBy: { createdAt: desc }, where: $timersWhere) {
+  #   ...TimerNoNesting
+  #   # CreatedBy: CreatedByUser {
+  #   #   ...UserNoNesting
+  #   # }
+  #   ...Timer_
+  # }
+}
+
+fragment taskTaskTechnologies on Task {
+  ...TaskNoNesting
+  CreatedBy: CreatedByUser {
+    ...UserNoNesting
+  }
+  TaskTechnologies {
+    ...taskTaskTechnology_
+  }
+}
+
+fragment taskTaskTechnology_ on TaskTechnology {
+  id
+  level
+  Technology: TaskTechnologyTechnology {
+    ...TechnologyNoNesting
+  }
+}

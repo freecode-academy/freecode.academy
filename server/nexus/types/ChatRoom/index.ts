@@ -31,7 +31,7 @@ export const ChatRoom = objectType({
     })
     t.field('CreatedBy', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })

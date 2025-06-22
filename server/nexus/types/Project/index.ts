@@ -3,10 +3,11 @@ import {
   enumType,
   extendType,
   inputObjectType,
-  // nonNull,
+  nonNull,
   objectType,
 } from 'nexus'
-// import { createProjectProcessor } from './resolvers/createProjectProcessor'
+
+import { createProjectProcessor } from './resolvers/createProjectProcessor'
 
 export const Project = objectType({
   name: 'Project',
@@ -34,18 +35,20 @@ export const Project = objectType({
     t.boolean('public')
     t.int('oldID')
 
-    t.field('CreatedBy', {
+    t.id('CreatedBy')
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
           : null
       },
     })
-    t.field('Resource', {
+    t.id('Resource')
+    t.field('ProjectResource', {
       type: 'Resource',
-      // @ts-expect-error types
+
       resolve({ Resource }, _, ctx) {
         return Resource
           ? ctx.prisma.resource.findUnique({ where: { id: Resource } })
@@ -104,35 +107,35 @@ export const ProjectExtendQuery = extendType({
   },
 })
 
-// export const ProjectExtendMutation = extendType({
-//   type: 'Mutation',
-//   definition(t) {
-//     t.nonNull.field('createProjectProcessor', {
-//       type: 'ProjectResponse',
-//       args: {
-//         data: nonNull('ProjectCreateInput'),
-//       },
-//       resolve: createProjectProcessor,
-//     })
-//     t.nonNull.field('updateProjectProcessor', {
-//       type: 'ProjectResponse',
-//       args: {
-//         data: nonNull('ProjectUpdateInput'),
-//         where: nonNull('ProjectWhereUniqueInput'),
-//       },
-//       // TODO Restore logic
-//       resolve(_, _args, _ctx) {
-//         throw new Error('Not implemented')
+export const ProjectExtendMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createProjectProcessor', {
+      type: 'ProjectResponse',
+      args: {
+        data: nonNull('ProjectCreateInput'),
+      },
+      resolve: createProjectProcessor,
+    })
+    t.nonNull.field('updateProjectProcessor', {
+      type: 'ProjectResponse',
+      args: {
+        data: nonNull('ProjectUpdateInput'),
+        where: nonNull('ProjectWhereUniqueInput'),
+      },
+      // TODO Restore logic
+      resolve(_, _args, _ctx) {
+        throw new Error('Not implemented')
 
-//         // return {
-//         //   success: false,
-//         //   message: 'Not implemented',
-//         //   errors: [],
-//         // }
-//       },
-//     })
-//   },
-// })
+        // return {
+        //   success: false,
+        //   message: 'Not implemented',
+        //   errors: [],
+        // }
+      },
+    })
+  },
+})
 
 export const ProjectType = enumType({
   name: 'ProjectType',

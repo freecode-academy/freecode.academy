@@ -51,7 +51,7 @@ query technologiesConnection(
 
 fragment technologiesConnectionTechnology on Technology {
   ...TechnologyNoNesting
-  CreatedBy {
+  CreatedBy: CreatedByUser {
     ...technologiesConnectionUser
   }
   UserTechnologies {
@@ -78,7 +78,7 @@ fragment technologiesConnectionUserTechnology on UserTechnology {
 
 fragment technology_ on Technology {
   ...TechnologyNoNesting
-  CreatedBy {
+  CreatedBy: CreatedByUser {
     ...UserNoNesting
   }
   UserTechnologies(orderBy: { createdAt: desc }) {

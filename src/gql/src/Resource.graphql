@@ -30,7 +30,7 @@ fragment resource_ on Resource {
   }
   Tags {
     id
-    Tag {
+    Tag: ResourceTagTag {
       id
       name
     }

@@ -10,25 +10,28 @@ export const CodeChallengeCompletion = objectType({
     t.nonNull.date('updatedAt')
     t.boolean('success')
     t.string('content')
-    t.field('CreatedBy', {
+    t.id('CreatedBy')
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
           : null
       },
     })
-    t.field('Task', {
+    t.id('Task')
+    t.field('CodeChallengeCompletionTask', {
       type: 'Task',
-      // @ts-expect-error types
+
       resolve({ Task }, _, ctx) {
         return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
       },
     })
-    t.field('CodeChallenge', {
+    t.id('CodeChallenge')
+    t.field('CodeChallengeCompletionCodeChallenge', {
       type: 'CodeChallenge',
-      // @ts-expect-error types
+
       resolve({ CodeChallenge }, _, ctx) {
         return CodeChallenge
           ? ctx.prisma.codeChallenge.findUnique({

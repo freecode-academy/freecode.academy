@@ -33,12 +33,6 @@ export const summarizeContextTool: summarizeContextTool = {
   handler: async (args, _ctx, _user, messages) => {
     const { summary } = args
 
-    const message = messages.at(-1)
-
-    if (message?.role === 'tool') {
-      // throw new Error ("")
-    }
-
     /**
      * Важно! Не удаляем последнее сообщение, потому что в нем указано какая тулза
      * выполняется и важно его оставлять, иначе все сломается.

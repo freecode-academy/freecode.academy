@@ -1,8 +1,8 @@
-import { GridCell, GridTable } from 'src/components/Grid/styles'
 import styled from 'styled-components'
+import { GridCell, GridTable } from 'src/components/Grid/styles'
 
 export const ActivitiesViewTable = styled(GridTable)`
-  grid-template-columns: max-content max-content min-content auto;
+  grid-template-columns: min-content max-content min-content auto auto;
 
   ${GridCell} {
     max-height: 300px;

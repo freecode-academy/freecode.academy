@@ -8,7 +8,6 @@ import UserAvatar from 'src/uikit/Avatar'
 // import { UserNotifications } from './Notifications'
 import Grid from 'src/uikit/Grid'
 import {
-  Scalars,
   UserUpdateInput,
   useUpdateUserProcessorMutation,
 } from 'src/gql/generated'
@@ -75,7 +74,7 @@ export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const name = event.target.name as keyof UserUpdateInput
-      let value: string | Scalars['UserTechnologyLevel'] = event.target.value
+      let value: string | number = event.target.value
 
       if (!name) {
         return
@@ -83,9 +82,7 @@ export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
 
       switch (name) {
         case 'technologyLevel':
-          // @ts-expect-error types
-
-          value = parseInt(value) as Scalars['UserTechnologyLevel']
+          value = parseInt(value)
           break
 
         default:
@@ -275,22 +272,22 @@ export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
     )
   }, [data, onCheckBoxChange, userEdited.isMentor])
 
-  const emailField = useMemo(() => {
-    if (!data) {
-      return null
-    }
+  // const emailField = useMemo(() => {
+  //   if (!data) {
+  //     return null
+  //   }
 
-    return (
-      <TextField
-        name="email"
-        value={userEdited?.email || ''}
-        onChange={onChange}
-        label="Емейл"
-        type="email"
-        fullWidth
-      />
-    )
-  }, [data, onChange, userEdited?.email])
+  //   return (
+  //     <TextField
+  //       name="email"
+  //       value={userEdited?.email || ''}
+  //       onChange={onChange}
+  //       label="Емейл"
+  //       type="email"
+  //       fullWidth
+  //     />
+  //   )
+  // }, [data, onChange, userEdited?.email])
 
   const telegramField = useMemo(() => {
     if (!data) {
@@ -408,11 +405,11 @@ export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
               </Grid>
             ) : null}
 
-            {emailField ? (
+            {/* {emailField ? (
               <Grid item xs={12} md={6} lg={4}>
                 {emailField}
               </Grid>
-            ) : null}
+            ) : null} */}
 
             {telegramField ? (
               <Grid item xs={12} md={6} lg={4}>
@@ -457,7 +454,6 @@ export const UserPageLegacyView: React.FC<UserPageViewProps> = ({ user }) => {
     avatar,
     buttons,
     chatSettings,
-    emailField,
     fullname,
     isMentor,
     password,

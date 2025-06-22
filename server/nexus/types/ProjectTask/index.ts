@@ -16,27 +16,30 @@ export const ProjectTask = objectType({
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
     t.nonNull.date('updatedAt')
-    t.field('CreatedBy', {
+    t.id('CreatedBy')
+    t.field('CreatedByUser', {
       type: 'User',
-      // @ts-expect-error types
+
       resolve({ CreatedBy }, _, ctx) {
         return CreatedBy
           ? ctx.prisma.user.findUnique({ where: { id: CreatedBy } })
           : null
       },
     })
-    t.field('Project', {
+    t.id('Project')
+    t.field('ProjectTaskProject', {
       type: 'Project',
-      // @ts-expect-error types
+
       resolve({ Project }, _, ctx) {
         return Project
           ? ctx.prisma.project.findUnique({ where: { id: Project } })
           : null
       },
     })
-    t.field('Task', {
+    t.id('Task')
+    t.field('ProjectTaskTask', {
       type: 'Task',
-      // @ts-expect-error types
+
       resolve({ Task }, _, ctx) {
         return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
       },

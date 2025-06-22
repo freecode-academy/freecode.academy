@@ -1,15 +1,11 @@
 import { PrismaContext } from '../../nexus/context'
-// import { MindLogType } from '../../nexus/types/MindLog/interfaces'
 import { toolName } from './interfaces'
 import { tools } from '.'
 import { ToolCall, User } from '../interfaces'
 import { MindLogType } from '@prisma/client'
 import { createActivity } from '../../nexus/types/Activity/helpers/createActivity'
 import { ChatCompletionMessageParam } from 'openai/resources'
-
-/**
- * Обработчик вызовов инструментов
- */
+import { ActivityType } from '../../nexus/types/Activity/interfaces'
 
 type handleToolCallProps = {
   ctx: PrismaContext
@@ -19,7 +15,6 @@ type handleToolCallProps = {
 }
 
 export async function handleToolCall({
-  // agentId,
   user,
   ctx,
   toolCall,
@@ -32,7 +27,7 @@ export async function handleToolCall({
     ctx,
     userId: user.id,
     payload: {
-      type: 'ToolCall',
+      type: ActivityType.ToolCall,
       name,
       args,
     },

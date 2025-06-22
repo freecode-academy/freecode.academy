@@ -59,7 +59,7 @@ export const LearnStrategyStage = objectType({
     t.nonNull.string('learnStrategyId')
     t.field('LearnStrategy', {
       type: 'LearnStrategy',
-      // @ts-expect-error types
+
       resolve({ learnStrategyId }, _, ctx) {
         return learnStrategyId
           ? ctx.prisma.learnStrategy.findUnique({
@@ -71,7 +71,7 @@ export const LearnStrategyStage = objectType({
     t.string('learnStrategyTargetId')
     t.field('LearnStrategyTarget', {
       type: 'LearnStrategy',
-      // @ts-expect-error types
+
       resolve({ learnStrategyTargetId }, _, ctx) {
         return learnStrategyTargetId
           ? ctx.prisma.learnStrategy.findUnique({
@@ -128,9 +128,7 @@ export const LearnStrategyStageCreateTechnologyInput = inputObjectType({
   description: 'Технология',
   definition(t) {
     t.nonNull.id('id')
-    t.nonNull.field('level', {
-      type: 'UserTechnologyLevel',
-    })
+    t.nonNull.int('level')
   },
 })
 

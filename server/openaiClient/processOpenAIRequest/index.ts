@@ -10,9 +10,6 @@ import { ChatMessage } from '@prisma/client'
 
 const openAiTools = Object.values(tools).map((n) => n.definition)
 
-/**
- * Интерфейс для результата запроса к OpenAI
- */
 export interface OpenAIRequestResponse {
   message: string
   quality: number
@@ -25,8 +22,6 @@ type sendOpenAiRequestProps = {
 
   fromUser: User
   toUser: User
-
-  // userMessagesHistory: ChatCompletionMessageParam[]
 }
 
 export async function sendOpenAiRequest({
@@ -34,8 +29,7 @@ export async function sendOpenAiRequest({
   fromUser,
   toUser,
   messages,
-}: // userMessagesHistory,
-sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
+}: sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
   let model: string | undefined = undefined
 
   if (
@@ -61,10 +55,6 @@ sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
     const completion = await openaiClient.chat.completions.create({
       model,
       messages,
-      // temperature: 1,
-      /**
-       * Здесь можно сделать динамический набор тулзов
-       */
       tools: openAiTools,
       tool_choice: 'auto',
       parallel_tool_calls: true,
@@ -73,28 +63,16 @@ sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
 
     const responseMessage = completion.choices[0].message
 
-    /**
-     * Перенес сохранение ответа в историю сюда.
-     * При чем судя по всему была бага и в текущую цепочку не передавался
-     * этот ответ перед вызовом тулзов
-     */
+    const usage = completion.usage
+
     messages.push(responseMessage)
 
-    // Обрабатываем инструменты, если они есть
     if (responseMessage.tool_calls && responseMessage.tool_calls.length > 0) {
-      /**
-       * Перед вызовом тулзов надо добавить ответ ИИхи в историю сообщений
-       */
-      // userMessagesHistory.push(responseMessage)
-
-      // TODO Возможно тут вообзе надо убрать await,
-      // так как вероятнее всего выполнение будет последовательное
       await processToolCalls({
         context: ctx,
         user: toUser,
         toolCalls: responseMessage.tool_calls,
         messages,
-        // userMessagesHistory,
       })
 
       return sendOpenAiRequest({
@@ -102,19 +80,10 @@ sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
         messages,
         fromUser,
         toUser,
-        // userMessagesHistory,
       })
     }
 
     const content = responseMessage.content || undefined
-
-    /**
-     * Записываем именно здесь, пропуская тулзы, потому что история с тулзами требует ответов
-     * по всем тулзам. Отсутствие приводит к ошибкам
-     */
-    // if (responseMessage.content) {
-    //   userMessagesHistory.push(responseMessage)
-    // }
 
     if (content) {
       return await createMessage({
@@ -125,6 +94,7 @@ sendOpenAiRequestProps): Promise<ChatMessage | undefined> {
          */
         fromUser: toUser,
         toUser: fromUser,
+        usage,
       })
     }
 

@@ -4,8 +4,7 @@ import { OfficeLayoutSideBarStyled } from './styles'
 /**
  * Боковая панель
  */
-const OfficeLayoutSideBar: React.FC = ({
-  // @ts-expect-error types
+const OfficeLayoutSideBar: React.FC<React.PropsWithChildren> = ({
   children,
   ...other
 }) => {

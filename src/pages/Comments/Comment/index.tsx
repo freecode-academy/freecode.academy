@@ -4,7 +4,7 @@ import React, { useMemo } from 'react'
 import { useResourceQuery } from 'src/gql/generated'
 import { getResourceVariables } from 'src/pages/Resource'
 import { Page } from 'src/pages/_App/interfaces'
-import Comment from 'src/uikit/Comments/Comment'
+import { Comment } from 'src/uikit/Comments/Comment'
 
 /**
  * Страница комментария

@@ -10,12 +10,7 @@ const styles = {}
 
 export class TaskLink extends Component<TaskLinkProps> {
   render() {
-    const {
-      object,
-      // @ts-expect-error types
-      children,
-      ...other
-    } = this.props
+    const { object, children, ...other } = this.props
 
     if (!object) {
       return null

@@ -1,80 +1,75 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
 // import Typography from 'material-ui/Typography'
 
-import Context, { PrismaCmsContext } from '@prisma-cms/context'
-
 import ProjectsList from './List'
 
-import { ProjectsViewProps } from './interfaces'
+import {
+  ProjectsConnectionProjectFragment,
+  ProjectsConnectionQueryVariables,
+} from 'src/gql/generated'
+
 import Pagination from 'src/components/Pagination'
 import Grid from 'src/uikit/Grid'
 // import Link from 'next/link'
 // import { ProjectsConnectionProjectFragment } from 'src/gql/generated'
 
-class ProjectsView extends Component<ProjectsViewProps> {
-  static propTypes = {
-    filters: PropTypes.object,
-    setFilters: PropTypes.func,
-  }
+export type ProjectsViewProps = {
+  objects: ProjectsConnectionProjectFragment[]
+  variables?: ProjectsConnectionQueryVariables
+  page?: number
+  count?: number
+  loading: boolean
+}
 
-  static contextType = Context
+export const ProjectsView: React.FC<ProjectsViewProps> = ({
+  page,
+  objects: projects,
+  variables,
+  count = 0,
+  ...other
+}) => {
+  const limit = variables?.first ?? 0
 
-  declare context: PrismaCmsContext
+  // const objectsConnection = data?.objectsConnection
 
-  // renderFilters() {
-  //   const { filters, setFilters } = this.props
+  // const { edges, aggregate } = objectsConnection || {}
 
-  //   return filters && setFilters ? (
-  //     <Filters queryName="projects" filters={filters} setFilters={setFilters} />
-  //   ) : null
-  // }
+  // const { count = 0 } = aggregate || {}
 
-  render() {
-    const { page, objects: projects, variables, count = 0 } = this.props
+  // const projects =
+  //   edges
+  //     ?.map((n) => n?.node)
+  //     .reduce<ProjectsConnectionProjectFragment[]>((current, next) => {
+  //       if (next) {
+  //         current.push(next)
+  //       }
 
-    const limit = variables?.first ?? 0
+  //       return current
+  //     }, []) ?? []
 
-    // const objectsConnection = data?.objectsConnection
+  const output = (
+    <Grid item xs={12}>
+      <ProjectsList projects={projects} />
 
-    // const { edges, aggregate } = objectsConnection || {}
+      <Pagination
+        limit={limit}
+        total={count}
+        page={page || 1}
+        style={{
+          marginTop: 20,
+        }}
+      />
+    </Grid>
+  )
 
-    // const { count = 0 } = aggregate || {}
-
-    // const projects =
-    //   edges
-    //     ?.map((n) => n?.node)
-    //     .reduce<ProjectsConnectionProjectFragment[]>((current, next) => {
-    //       if (next) {
-    //         current.push(next)
-    //       }
-
-    //       return current
-    //     }, []) ?? []
-
-    const output = (
+  const content = (
+    <Grid container spacing={8} {...other}>
       <Grid item xs={12}>
-        <ProjectsList projects={projects} />
-
-        <Pagination
-          limit={limit}
-          total={count}
-          page={page || 1}
-          style={{
-            marginTop: 20,
-          }}
-        />
+        {/* {this.renderFilters()} */}
       </Grid>
-    )
 
-    const content = (
-      <Grid container spacing={8}>
-        <Grid item xs={12}>
-          {/* {this.renderFilters()} */}
-        </Grid>
-
-        {/* <Grid item xs={12}>
+      {/* <Grid item xs={12}>
           <Link href="/office/projects/create">
             <a>
               <Typography>Добавить проект</Typography>
@@ -82,12 +77,9 @@ class ProjectsView extends Component<ProjectsViewProps> {
           </Link>
         </Grid> */}
 
-        {output}
-      </Grid>
-    )
+      {output}
+    </Grid>
+  )
 
-    return content
-  }
+  return content
 }
-
-export default ProjectsView

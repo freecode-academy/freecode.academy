@@ -77,10 +77,11 @@ import { ResourceNoNestingFragment } from 'src/gql/generated'
 import { MarkdownField } from '../MarkdownField'
 
 export type SiteFrontEditorProps = {
-  object: ResourceNoNestingFragment
+  object?: ResourceNoNestingFragment
   inEditMode?: boolean
   itemsOnly?: boolean
   className?: string
+  value?: string | any
 }
 
 export const SiteFrontEditor: React.FC<SiteFrontEditorProps> = (props) => {
@@ -89,9 +90,25 @@ export const SiteFrontEditor: React.FC<SiteFrontEditorProps> = (props) => {
   // eslint-disable-next-line no-console
   console.log('SiteFrontEditor props', props)
 
-  const { contentText } = props.object
+  let content: string | null | undefined
 
-  return <MarkdownField>{contentText}</MarkdownField>
+  const { value } = props
+
+  if (value) {
+    if (typeof value === 'string') {
+      content = value
+    } else {
+      content = JSON.stringify(content, null, 2)
+    }
+  } else {
+    const { contentText } = props.object || {}
+
+    content = contentText
+  }
+
+  return <MarkdownField>{content}</MarkdownField>
 }
 
 export const FrontEditor = SiteFrontEditor
+
+export const Editor = SiteFrontEditor

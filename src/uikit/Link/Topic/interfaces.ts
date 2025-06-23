@@ -1,6 +1,6 @@
 import { Maybe, Resource } from 'src/gql/generated'
 
-export interface TopicLinkProps {
+export interface TopicLinkProps extends React.PropsWithChildren {
   object?: {
     __typename?: 'Resource'
     id: string

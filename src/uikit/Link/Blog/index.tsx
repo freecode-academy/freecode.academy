@@ -58,14 +58,7 @@ export class BlogLink extends Component<BlogLinkProps> {
   static defaultProps = {}
 
   render() {
-    const {
-      object,
-      // @ts-expect-error types
-      children,
-      classes,
-      variant,
-      ...other
-    } = this.props
+    const { object, children, classes, variant, ...other } = this.props
 
     if (!object) {
       return null

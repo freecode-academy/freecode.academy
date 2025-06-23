@@ -6,12 +6,7 @@ import { TopicLinkProps } from './interfaces'
 
 export class TopicLink extends Component<TopicLinkProps> {
   render() {
-    const {
-      object,
-      // @ts-expect-error types
-      children,
-      ...other
-    } = this.props
+    const { object, children, ...other } = this.props
 
     if (!object) {
       return null

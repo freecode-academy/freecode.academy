@@ -1,6 +1,6 @@
 import { Maybe } from 'src/gql/generated'
 
-export interface ProjectLinkProps {
+export interface ProjectLinkProps extends React.PropsWithChildren {
   object?: Maybe<{
     __typename?: 'Project'
     id: string

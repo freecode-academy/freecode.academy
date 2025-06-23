@@ -35,7 +35,6 @@ import Head from 'next/head'
 import UserLink from '../../uikit/Link/User'
 import ProjectLink from '../../uikit/Link/Project'
 import Link from '../../uikit/Link'
-// import Editor from '../../uikit/Editor'
 
 // TODO: Проработать локализацию
 moment.locale('ru')

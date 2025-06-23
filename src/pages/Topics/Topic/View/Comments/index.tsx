@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react'
-import UikitComment from 'src/uikit/Comments/Comment'
+import React, { useMemo } from 'react'
+import { Comment as UikitComment } from 'src/uikit/Comments/Comment'
 import { TopicCommentsProps } from './interfaces'
 
 const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
@@ -20,9 +20,9 @@ const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
 
   // render() {
 
-  const [newCommentKey, setNewCommentKey] = useState(new Date().toISOString())
+  // const [newCommentKey, setNewCommentKey] = useState(new Date().toISOString())
 
-  const { id: topicId, Comments } = topic
+  const { Comments } = topic
 
   /**
    * Current comments
@@ -39,44 +39,44 @@ const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
     )
   }, [Comments])
 
-  const onCommentSave = useCallback(() => {
-    setNewCommentKey(new Date().toISOString())
-  }, [])
+  // const onCommentSave = useCallback(() => {
+  //   setNewCommentKey(new Date().toISOString())
+  // }, [])
 
   /**
    * New comment
    */
-  const newComment = useMemo(() => {
-    return topicId ? (
-      <UikitComment
-        key={newCommentKey}
-        cacheKey={`${topicId}_comment_new`}
-        object={undefined}
-        _dirty={{
-          topicID: topicId,
-          components: [
-            {
-              name: 'RichText',
-              component: 'RichText',
-              components: [],
-              props: {},
-            },
-          ],
-        }}
-        onSave={onCommentSave}
-      />
-    ) : null
-  }, [newCommentKey, onCommentSave, topicId])
+  // const newComment = useMemo(() => {
+  //   return topicId ? (
+  //     <UikitComment
+  //       key={newCommentKey}
+  //       cacheKey={`${topicId}_comment_new`}
+  //       object={undefined}
+  //       _dirty={{
+  //         topicID: topicId,
+  //         components: [
+  //           {
+  //             name: 'RichText',
+  //             component: 'RichText',
+  //             components: [],
+  //             props: {},
+  //           },
+  //         ],
+  //       }}
+  //       onSave={onCommentSave}
+  //     />
+  //   ) : null
+  // }, [newCommentKey, onCommentSave, topicId])
 
   return useMemo(() => {
     return (
       <div>
         {comments}
 
-        {newComment}
+        {/* {newComment} */}
       </div>
     )
-  }, [comments, newComment])
+  }, [comments])
   // }
 }
 

@@ -1,7 +1,7 @@
 import { Maybe, Resource } from 'src/gql/generated'
 import { UiLinkProps } from '../interfaces'
 
-export interface BlogLinkProps {
+export interface BlogLinkProps extends React.PropsWithChildren {
   object: {
     __typename?: 'Resource'
     id: string

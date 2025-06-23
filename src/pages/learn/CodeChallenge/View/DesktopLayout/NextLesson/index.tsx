@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import Button from 'src/components/ui/Button'
+import { Button } from 'src/components/Button'
 import { CodeChallengeStatus } from 'src/hooks/useCodeChallengStatus'
 import {
   CodeChallengeFragment,

@@ -6,12 +6,7 @@ import { ProjectLinkProps } from './interfaces'
 
 export class ProjectLink extends Component<ProjectLinkProps> {
   render() {
-    const {
-      object,
-      // @ts-expect-error types
-      children,
-      ...other
-    } = this.props
+    const { object, children, ...other } = this.props
 
     if (!object) {
       return null

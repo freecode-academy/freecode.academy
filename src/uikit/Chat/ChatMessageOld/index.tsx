@@ -1,12 +1,12 @@
 import React from 'react'
 import moment from 'moment'
-import Editor from 'src/uikit/Editor'
 import Grid from 'src/uikit/Grid'
 // import ChatRoomLink from 'src/uikit/Link/ChatRoom'
 import UikitUserLink from 'src/uikit/Link/User'
 import { UiChatMessageOldProps } from './interfaces'
 import { UiChatMessageOldStyled } from './styles'
 import Link from 'next/link'
+import { Editor } from 'src/components/SiteFrontEditor'
 
 export * from './interfaces'
 
@@ -45,7 +45,7 @@ const UiChatMessageOld: React.FC<UiChatMessageOldProps> = (props) => {
             {/* <Grid item>{Room ? <ChatRoomLink object={Room} /> : null}</Grid> */}
           </Grid>
 
-          <Editor editorKey="chat-message-editor" value={content} />
+          <Editor value={content} />
         </Grid>
       </Grid>
     </UiChatMessageOldStyled>

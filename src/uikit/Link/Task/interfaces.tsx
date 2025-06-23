@@ -1,6 +1,6 @@
 // import { UiLinkProps } from "../interfaces";
 
-export interface TaskLinkProps {
+export interface TaskLinkProps extends React.PropsWithChildren {
   object:
     | {
         __typename?: 'Task'

@@ -6,8 +6,6 @@ import { ChallengeTitleProps } from './interfaces'
 import { ChallengeTitleStyled } from './styles'
 
 const ChallengeTitle: React.FC<ChallengeTitleProps> = ({
-  // @ts-expect-error types
-
   children,
   // isCompleted,
   codeChallengeCompletion,

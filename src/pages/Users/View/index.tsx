@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import dynamic from 'next/dynamic'
 import {
   GridTableAttributeStyled,
   GridTableItemStyled,
@@ -8,10 +7,6 @@ import Pagination from 'src/components/Pagination'
 import { UsersViewProps } from './interfaces'
 import { UsersViewTableStyled } from './styles'
 import { UsersViewUser } from './User'
-
-const UsersFilters = dynamic(import('./Filters'), {
-  ssr: false,
-})
 
 export const UsersView: React.FC<UsersViewProps> = ({
   users,
@@ -44,7 +39,6 @@ export const UsersView: React.FC<UsersViewProps> = ({
 
   return (
     <>
-      <UsersFilters />
       <UsersViewTableStyled>
         {header}
         {items}

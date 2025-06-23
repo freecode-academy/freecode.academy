@@ -61,9 +61,7 @@ export const CodeChallengePageInitial: React.FC<
    * Готовим файл, добавляя данные из сессии
    */
   const prepareFile = useCallback(
-    // @ts-expect-error types
-
-    (file) => {
+    (file: TestFile) => {
       if (cacheKey) {
         const contents = global.localStorage?.getItem(cacheKey)
 

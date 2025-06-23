@@ -1,12 +1,9 @@
 import React, { useMemo } from 'react'
-import {
-  useResourceQuery,
-  useUpdateTopicProcessorMutation,
-} from 'src/gql/generated'
+import { useResourceQuery } from 'src/gql/generated'
 
 import { getResourceVariables } from 'src/pages/Resource'
 
-import View from './View'
+import { TopicView as View } from './View'
 
 import { Page } from '../../_App/interfaces'
 import { NextSeo } from 'next-seo'
@@ -14,8 +11,6 @@ import { useRouter } from 'next/router'
 
 export const TopicPage: Page = () => {
   const router = useRouter()
-
-  const [mutate] = useUpdateTopicProcessorMutation()
 
   const variables = useMemo(() => getResourceVariables(router), [router])
 
@@ -36,9 +31,7 @@ export const TopicPage: Page = () => {
         description={`Публикация "${longtitle || name}"`}
       />
 
-      {object ? (
-        <View object={object} mutate={mutate} canChangeBlog={false} />
-      ) : null}
+      {object ? <View object={object} canChangeBlog={false} /> : null}
     </>
   )
 }

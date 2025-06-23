@@ -106,7 +106,6 @@ const SidePanel: React.FC<SidePanelProps> = ({
         role="complementary"
         tabIndex={-1}
       >
-        {/* @ts-expect-error types */}
         <ChallengeTitle
           codeChallengeCompletion={codeChallengeCompletion}
           executeChallenge={executeChallenge}

@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react'
-import UikitComment from 'src/uikit/Comments/Comment'
+import React, { useMemo } from 'react'
+import { Comment as UikitComment } from 'src/uikit/Comments/Comment'
 import { TaskCommentsProps } from './interfaces'
 
 const TaskComments: React.FC<TaskCommentsProps> = ({ task }) => {
-  const [newCommentKey, setNewCommentKey] = useState(new Date().toISOString())
+  // const [newCommentKey, setNewCommentKey] = useState(new Date().toISOString())
 
-  const { id: taskId, Comments } = task
+  const { Comments } = task
 
   /**
    * Current comments
@@ -22,48 +22,48 @@ const TaskComments: React.FC<TaskCommentsProps> = ({ task }) => {
     )
   }, [Comments])
 
-  const onCommentSave = useCallback(() => {
-    setNewCommentKey(new Date().toISOString())
-  }, [])
+  // const onCommentSave = useCallback(() => {
+  //   setNewCommentKey(new Date().toISOString())
+  // }, [])
 
   /**
    * New comment
    */
-  const newComment = useMemo(() => {
-    return taskId ? (
-      <UikitComment
-        key={newCommentKey}
-        cacheKey={`${taskId}_comment_new`}
-        object={undefined}
-        _dirty={{
-          Task: {
-            connect: {
-              id: taskId,
-            },
-          },
-          components: [
-            {
-              name: 'RichText',
-              component: 'RichText',
-              components: [],
-              props: {},
-            },
-          ],
-        }}
-        onSave={onCommentSave}
-      />
-    ) : null
-  }, [newCommentKey, onCommentSave, taskId])
+  // const newComment = useMemo(() => {
+  //   return taskId ? (
+  //     <UikitComment
+  //       key={newCommentKey}
+  //       cacheKey={`${taskId}_comment_new`}
+  //       object={undefined}
+  //       _dirty={{
+  //         Task: {
+  //           connect: {
+  //             id: taskId,
+  //           },
+  //         },
+  //         components: [
+  //           {
+  //             name: 'RichText',
+  //             component: 'RichText',
+  //             components: [],
+  //             props: {},
+  //           },
+  //         ],
+  //       }}
+  //       onSave={onCommentSave}
+  //     />
+  //   ) : null
+  // }, [newCommentKey, onCommentSave, taskId])
 
   return useMemo(() => {
     return (
       <div>
         {comments}
 
-        {newComment}
+        {/* {newComment} */}
       </div>
     )
-  }, [comments, newComment])
+  }, [comments])
   // }
 }
 

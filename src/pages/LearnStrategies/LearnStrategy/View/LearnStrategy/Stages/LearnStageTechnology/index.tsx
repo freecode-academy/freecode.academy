@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import Button from 'src/components/ui/Button'
+import { Button } from 'src/components/Button'
 import { getUserTechnologyHiringStatusText } from 'src/helpers/getUserTechnologyHiringStatusText'
 import { getUserTechnologyStatusText } from 'src/helpers/getUserTechnologyStatusText'
 import {
@@ -179,7 +179,7 @@ export const LearnStageTechnology: React.FC<LearnStageTechnologyProps> = ({
     return (
       <LearnStageTechnologyStyled>
         <div className="flex align-items-center">
-          Требуемая технология: {/* @ts-expect-error types */}
+          Требуемая технология:
           <TechnologyLink object={technology}>
             {technology.name}
           </TechnologyLink>{' '}

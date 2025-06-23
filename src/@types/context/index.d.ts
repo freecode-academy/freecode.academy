@@ -1,6 +1,5 @@
 import '@prisma-cms/context'
 import URI from 'urijs'
-// import Editor from '@prisma-cms/editor'
 import { NextRouter } from 'next/dist/client/router'
 import { ApolloClientNormolized } from 'src/pages/_App/interfaces'
 import { muiTheme } from 'src/pages/_App/MUI/theme'

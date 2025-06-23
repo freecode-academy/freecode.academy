@@ -10,7 +10,7 @@ export type UikitUserLinkObject = {
   fullname?: User['fullname']
 }
 
-export interface UikitUserLinkProps {
+export interface UikitUserLinkProps extends React.PropsWithChildren {
   user: UikitUserLinkObject
 
   variant?: TypographyProps['variant']

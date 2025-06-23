@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Project from './Project'
+import { ProjectListProject as Project } from './Project'
 import Grid from 'src/uikit/Grid'
 import { ProjectsListProps } from './interfaces'
 

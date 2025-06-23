@@ -65,7 +65,6 @@ export const CodeChallengeBlocksPageBlockView: React.FC<
         const challenges = n.Challenges || []
 
         return (
-          // @ts-expect-error types
           <CodeChallengeBlocksPageBlockView key={n.id} object={n}>
             {challenges.map((challenge) => {
               const codeChallengeCompletion =

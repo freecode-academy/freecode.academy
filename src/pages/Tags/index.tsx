@@ -7,7 +7,7 @@ import {
   useTagsConnectionQuery,
 } from 'src/gql/generated'
 
-import View from './View'
+import { TagsView as View } from './View'
 
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'

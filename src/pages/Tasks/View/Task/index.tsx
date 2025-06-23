@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import Editor from '@prisma-cms/editor'
 import moment from 'moment'
 import UserLink from 'src/uikit/Link/User'
 
@@ -17,6 +16,7 @@ import ProjectLink from 'src/uikit/Link/Project'
 import TaskButtons from './TaskButtons'
 import TechnologyLink from 'src/uikit/Link/Technology'
 import Typography from 'material-ui/Typography'
+import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 
 const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
   // const context = useContext(PrismaContext) as PrismaCmsContext
@@ -109,10 +109,10 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
 
             {projects}
 
-            <Editor
+            <SiteFrontEditor
               // readOnly={!inEditMode}
               // onChange={this.onEditorChange}
-              editorKey={`task-${object.id}`}
+              // editorKey={`task-${object.id}`}
               value={object.content}
             />
 

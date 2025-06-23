@@ -5,8 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { SchemaOf } from 'yup'
 import { SigninMutationVariables, useSigninMutation } from 'src/gql/generated'
-import TextField from 'src/components/ui/form/TextField'
-import Button from 'src/components/ui/Button'
+import { TextField } from 'src/components/TextField'
+import { Button } from 'src/components/Button'
 // import { FormStyled } from "src/components/ui/form/styles";
 
 import { SigninFormStyled } from './styles'
@@ -89,7 +89,7 @@ const SigninForm: React.FC = () => {
         <TextField
           type="text"
           title="Логин"
-          error={formState.errors[field.name]}
+          error={formState.errors[field.name]?.message}
           {...field}
           value={field.value || ''}
           fullWidth
@@ -105,7 +105,7 @@ const SigninForm: React.FC = () => {
           title="Пароль"
           {...field}
           value={field.value || ''}
-          error={formState.errors[field.name]}
+          error={formState.errors[field.name]?.message}
           fullWidth
         />
       )
@@ -114,7 +114,7 @@ const SigninForm: React.FC = () => {
   return useMemo(() => {
     return (
       <>
-        <SigninFormStyled role="signin" onSubmit={onSubmit} layout="column">
+        <SigninFormStyled role="signin" onSubmit={onSubmit}>
           <h2>Авторизоваться</h2>
 
           <Controller

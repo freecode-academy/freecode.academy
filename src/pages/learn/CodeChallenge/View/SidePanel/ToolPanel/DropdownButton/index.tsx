@@ -4,8 +4,7 @@ import { ButtonStyled } from '../styles'
 
 import { DropdownButtonStyled } from './styles'
 
-// @ts-expect-error types
-const DropdownButton: React.FC = ({ children }) => {
+const DropdownButton: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [opened, setOpened] = useState(false)
 
   /**

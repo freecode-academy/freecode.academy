@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React, { useCallback, useMemo, useState } from 'react'
-import Button from 'src/components/ui/Button'
+import { Button } from 'src/components/Button'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
 import { useLearnStrategyQuery } from 'src/gql/generated'
 import { LearnStrategyViewProps } from './interfaces'

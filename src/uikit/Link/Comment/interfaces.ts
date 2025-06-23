@@ -22,7 +22,7 @@ export interface UikitCommentLinkObject extends UikitCommentLinkObjectResource {
   Task?: TaskNoNestingFragment | null
 }
 
-export interface UikitCommentLinkProps {
+export interface UikitCommentLinkProps extends React.PropsWithChildren {
   // object: Resource & {
   //   type: ResourceType.COMMENT;
   // }

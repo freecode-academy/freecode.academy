@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 //   updateTimerProcessor,
 // } from '../../query'
 
-import Timer from '../Timer'
+import { Timer } from '../Timer'
 import { TimersListViewProps } from './interfaces'
 
 // const NewTimer = graphql(createTimerProcessor)(Timer);
@@ -46,7 +46,7 @@ class TimersListView extends Component<TimersListViewProps> {
           //   object: n,
           // }}
           object={n}
-          mutate={this.mutate}
+          // mutate={this.mutate}
         />
       )
     })

@@ -1,8 +1,13 @@
 import React from 'react'
 import Typography from 'material-ui/Typography'
 import CodeChallengeBlocksPageBlockView from './CodeChallengeBlocksPageBlockView'
-import { CodeChallengeBlocksViewProps } from './interfaces'
 import { CodeChallengeBlocksPageStyled } from './styles'
+import { CodeChallengeBlocksBlockFragment } from 'src/gql/generated'
+
+export type CodeChallengeBlocksViewProps = {
+  objects: CodeChallengeBlocksBlockFragment[]
+  count: number
+}
 
 const CodeChallengeBlocksPageView: React.FC<CodeChallengeBlocksViewProps> = ({
   objects,

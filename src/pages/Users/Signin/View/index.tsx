@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import Button from 'src/components/ui/Button'
+import { Button } from 'src/components/Button'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
 
 import SigninForm from './Form'

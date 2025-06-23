@@ -88,8 +88,6 @@ const ToolPanel: React.FC<ToolPanelProps> = ({
         </ButtonStyled>
 
         {items.length ? (
-          // @ts-expect-error types
-
           <DropdownButton>
             {/* <MenuItem
         onClick={openHelpModal}

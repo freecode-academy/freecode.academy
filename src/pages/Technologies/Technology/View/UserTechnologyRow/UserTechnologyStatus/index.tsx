@@ -1,43 +1,46 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { getUserTechnologyStatusText } from 'src/helpers/getUserTechnologyStatusText'
-import { UserTechnologyStatus } from 'src/gql/generated'
-import { Autocomplete } from 'src/uikit/Autocomplete'
+// import { UserTechnologyStatus } from 'src/gql/generated'
+// import { Autocomplete } from 'src/uikit/Autocomplete'
 import { UserTechnologyStatusViewProps } from './interfaces'
 
-const UserTechnologyStatusView: React.FC<UserTechnologyStatusViewProps> = ({
+export const UserTechnologyStatusView: React.FC<
+  UserTechnologyStatusViewProps
+> = ({
   value,
-  inEditMode,
-  error,
+  // inEditMode,
+  // error,
 }) => {
-  return useMemo(() => {
-    if (inEditMode) {
-      const keys = Object.keys(UserTechnologyStatus) as Array<
-        keyof typeof UserTechnologyStatus
-      >
-      const items = keys.map((key) => ({
-        value: key,
-        label: getUserTechnologyStatusText(UserTechnologyStatus[key]),
-      }))
+  // return useMemo(() => {
+  //   if (inEditMode) {
+  //     const keys = Object.keys(UserTechnologyStatus) as Array<
+  //       keyof typeof UserTechnologyStatus
+  //     >
+  //     const items = keys.map((key) => ({
+  //       value: key,
+  //       label: getUserTechnologyStatusText(UserTechnologyStatus[key]),
+  //     }))
 
-      return (
-        <Autocomplete
-          items={items}
-          value={value || ''}
-          inputProps={{
-            label: 'Статус',
-            fullWidth: true,
-            error: !!error,
-            helperText: error?.message,
-          }}
-          wrapperStyle={{
-            width: '100%',
-          }}
-        />
-      )
-    }
+  //     return (
+  //       <Autocomplete
+  //         items={items}
+  //         value={value || ''}
+  //         inputProps={{
+  //           label: 'Статус',
+  //           fullWidth: true,
+  //           error: !!error,
+  //           helperText: error?.message,
+  //         }}
+  //         wrapperStyle={{
+  //           width: '100%',
+  //         }}
+  //       />
+  //     )
+  //   }
 
-    return <>{value ? getUserTechnologyStatusText(value) : null}</>
-  }, [error, inEditMode, value])
+  // }, [error, inEditMode, value])
+
+  return <>{value ? getUserTechnologyStatusText(value) : null}</>
 }
 
-export default UserTechnologyStatusView
+// export default UserTechnologyStatusView

@@ -187,7 +187,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
 
           <MainMenuItemsDesktopStyled>
             <Grid item>
-              <Link href="/learnstrategies/">
+              <Link href="/learnstrategies">
                 <Typography>{this.lexicon('LearnStrategies')}</Typography>
               </Link>
             </Grid>
@@ -199,7 +199,7 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
             </Grid>
 
             <Grid item>
-              <Link href="/technologies/">
+              <Link href="/technologies">
                 <Typography>{this.lexicon('Technologies')}</Typography>
               </Link>
             </Grid>
@@ -214,18 +214,22 @@ export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
             </Grid> */}
 
             <Grid item>
-              <Link href="/people/">
+              <Link href="/people">
                 <Typography>{this.lexicon('Users')}</Typography>
               </Link>
             </Grid>
 
             <Grid item>
-              <Link href="/projects/">
+              <Link href="/projects">
                 <Typography>{this.lexicon('Projects')}</Typography>
               </Link>
             </Grid>
 
-            {/* {this.renderTasksLink()} */}
+            <Grid item>
+              <Link href="/tasks">
+                <Typography>{this.lexicon('Tasks')}</Typography>
+              </Link>
+            </Grid>
 
             {/* <Grid item>
               <Link href="/timers/">

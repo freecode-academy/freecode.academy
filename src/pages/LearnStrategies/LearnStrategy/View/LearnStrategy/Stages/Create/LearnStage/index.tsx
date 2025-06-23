@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import Button from 'src/components/ui/Button'
+import { Button } from 'src/components/Button'
 
 import {
   LearnStrategyNoNestingFragment,

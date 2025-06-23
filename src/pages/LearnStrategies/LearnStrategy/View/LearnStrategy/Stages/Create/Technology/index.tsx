@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
-import Button from 'src/components/ui/Button'
-import TextField from 'src/components/ui/form/TextField'
+import { Button } from 'src/components/Button'
+import { TextField } from 'src/components/TextField'
 
 import {
   LearnStrategyStageCreateTechnologyInput,

@@ -6,8 +6,7 @@ import { OfficeLayoutContentStyled } from './styles'
 /**
  * Боковая панель
  */
-const OfficeLayoutContent: React.FC = ({
-  // @ts-expect-error types
+const OfficeLayoutContent: React.FC<React.PropsWithChildren> = ({
   children,
   ...other
 }) => {

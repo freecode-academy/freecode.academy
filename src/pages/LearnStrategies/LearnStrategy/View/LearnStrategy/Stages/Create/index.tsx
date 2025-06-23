@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { TabProps, Tabs } from 'src/components/Tabs'
-import Button from 'src/components/ui/Button'
+import { Button } from 'src/components/Button'
 import {
   CreateLearnStrategyStageMutationVariables,
   useCreateLearnStrategyStageMutation,
@@ -58,13 +58,9 @@ export const CreateLearnStrategyStage: React.FC<
     variablesSetter(defaultVariables)
   }, [defaultVariables, opened, stageType])
 
-  const onChangeTabIndex = useCallback(
-    // @ts-expect-error types
-    (index) => {
-      stageTypeSetter(index)
-    },
-    []
-  )
+  const onChangeTabIndex = useCallback((index: number) => {
+    stageTypeSetter(index)
+  }, [])
 
   const submit = useCallback(() => {
     if (inRequest) {

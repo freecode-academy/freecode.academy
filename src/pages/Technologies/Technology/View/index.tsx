@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react'
-import ReactDecliner from 'react-decliner'
+// import ReactDecliner from 'react-decliner'
 import { TechnologyViewProps } from './interfaces'
 import { TechnologyGridTableStyled, TechnologyViewStyled } from './styles'
 // import Link from 'next/link'
@@ -17,7 +17,7 @@ import UserTechnologyRow from './UserTechnologyRow'
 import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 import Link from 'src/uikit/Link'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
-import Button from 'src/components/ui/Button'
+import { Button } from 'src/components/Button'
 // import { TechnologyUpdateForm } from './UpdateForm'
 import { TechnologyLearnStrategyStages } from './LearnStrategyStages'
 
@@ -125,7 +125,8 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
         items.push(
           <Grid key={level} item xs={12}>
             Уровень {level}: {time}{' '}
-            <ReactDecliner num={time} one="час" two="часа" many="часов" />
+            {/* <ReactDecliner num={time} one="час" two="часа" many="часов" /> */}
+            {time} час
           </Grid>
         )
       }

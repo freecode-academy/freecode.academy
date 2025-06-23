@@ -5,11 +5,11 @@ import { TaskViewStyled } from './styles'
 import Typography from 'material-ui/Typography'
 
 import ProjectLink from 'src/uikit/Link/Project'
-import TimersView from 'src/pages/Timers/View'
+import { TimersView } from 'src/pages/Timers/View'
 import Grid from 'src/uikit/Grid'
 import TaskStatus from '../../TaskStatus'
 import TaskButtons from '../../View/Task/TaskButtons'
-import Editor from 'src/uikit/Editor'
+
 // import UpdateTaskForm from './form/UpdateTask'
 import IconButton from 'material-ui/IconButton'
 import EditModeIcon from 'material-ui-icons/ModeEdit'
@@ -18,6 +18,7 @@ import Link from 'next/link'
 import TaskTaskTechnologies from './TaskTaskTechnologies'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import Comments from './Comments'
+import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 
 const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
@@ -201,7 +202,7 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
         {object.content ? (
           <>
             <Typography variant="subheading">Описание задачи</Typography>
-            <Editor editorKey="object-editor" value={object.content} />
+            <SiteFrontEditor value={object.content} />
           </>
         ) : null}
 

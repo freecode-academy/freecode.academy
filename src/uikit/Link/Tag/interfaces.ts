@@ -1,7 +1,7 @@
 import { TypographyProps } from 'material-ui/Typography'
 import { UiLinkProps } from '../interfaces'
 
-export interface TagLinkProps {
+export interface TagLinkProps extends React.PropsWithChildren {
   object: {
     __typename?: 'Tag'
     id: string

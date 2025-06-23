@@ -7,7 +7,7 @@ import React from 'react'
 //   useCreateTopicProcessorMutation,
 //   useUpdateTopicProcessorMutation,
 // } from 'src/gql/generated'
-import TopicView from 'src/pages/Topics/Topic/View'
+import { TopicView } from 'src/pages/Topics/Topic/View'
 import { CodeChallengeDiscussProps } from './interfacse'
 
 /**

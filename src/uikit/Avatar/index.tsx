@@ -61,9 +61,7 @@ export class UserAvatar extends Component<UserAvatarProps> {
       return null
     }
 
-    // @ts-expect-error types
-
-    const { assetsBaseUrl } = this.context
+    const assetsBaseUrl = undefined
 
     const {
       // id,

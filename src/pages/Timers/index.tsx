@@ -6,7 +6,7 @@ import {
   useTimersConnectionQuery,
 } from 'src/gql/generated'
 
-import View from './View'
+import { TimersView as View } from './View'
 
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'

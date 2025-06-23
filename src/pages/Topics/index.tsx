@@ -76,10 +76,10 @@ const TopicsPage: Page = () => {
         <meta name="description" content="Все публикации" />
       </Head>
 
-      {inited && (
+      {inited && response.data?.resources.length && (
         <TopicsView
           // loading={loading}
-          objects={response.data?.resources || []}
+          objects={response.data?.resources}
           count={response.data?.resourcesCount || 0}
           limit={variables?.first}
           page={page}

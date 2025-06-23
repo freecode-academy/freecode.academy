@@ -41,7 +41,6 @@ const OfficeLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           <OfficeLayoutStyled>
             <OfficeLayoutNavBar></OfficeLayoutNavBar>
 
-            {/* @ts-expect-error types */}
             <OfficeLayoutContent>{children}</OfficeLayoutContent>
 
             {/* 

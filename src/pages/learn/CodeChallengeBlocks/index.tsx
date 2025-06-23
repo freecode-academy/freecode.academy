@@ -37,11 +37,7 @@ const CodeChallengeBlocksPage: Page = () => {
         description="Бесплатные тестовые практически задания по HTML, CSS, Javascript онлайн"
       />
 
-      <View
-        objects={objects}
-        count={objects.length}
-        loading={response.loading}
-      />
+      <View objects={objects} count={objects.length} />
     </>
   )
 }

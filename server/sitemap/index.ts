@@ -65,7 +65,7 @@ export class SitemapBuilder extends Sitemap {
   }
 
   async renderRootSitemap(_req: Request, res: Response, uri: URI) {
-    const cleanUri = uri.clone().query(true)
+    const cleanUri = uri.clone().query(false)
 
     const xml = new XMLWriter()
 

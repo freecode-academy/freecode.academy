@@ -9,8 +9,12 @@ import { PaginationProps } from './interfaces'
 export * from './interfaces'
 
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
+import styled from 'styled-components'
 
 const styles = {
+  wrapper: {
+    padding: 5,
+  },
   row: {
     display: 'flex',
     flexDirection: 'row' as const,
@@ -81,6 +85,7 @@ class Pagination extends Component<PaginationProps> {
       total,
       rowProps,
       // pagevariable,
+      className,
       ...other
     } = this.props
 
@@ -171,7 +176,10 @@ class Pagination extends Component<PaginationProps> {
     }
 
     return (
-      <div className={[wrapperClass, 'Pagination--root'].join(' ')} {...other}>
+      <div
+        className={[wrapperClass, 'Pagination--root', className].join(' ')}
+        {...other}
+      >
         <ul className={rowClass} {...rowProps}>
           {rows}
         </ul>
@@ -180,8 +188,8 @@ class Pagination extends Component<PaginationProps> {
   }
 }
 
-export const PaginationWithStyles = withStyles<any>(styles)(
-  (props: PaginationProps) => <Pagination {...props} />
-)
+export const PaginationWithStyles = styled(
+  withStyles<any>(styles)((props: PaginationProps) => <Pagination {...props} />)
+)``
 
 export default PaginationWithStyles

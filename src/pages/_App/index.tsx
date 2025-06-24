@@ -33,7 +33,7 @@ import { NextSeo, NextSeoProps } from 'next-seo'
 import Head from 'next/head'
 // import Pagination from '../../components/Pagination'
 import UserLink from '../../uikit/Link/User'
-import ProjectLink from '../../uikit/Link/Project'
+import { ProjectLink } from '../../uikit/Link/Project'
 import Link from '../../uikit/Link'
 
 // TODO: Проработать локализацию

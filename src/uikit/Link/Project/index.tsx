@@ -1,31 +1,35 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import Link from '..'
 
 import { ProjectLinkProps } from './interfaces'
 
-export class ProjectLink extends Component<ProjectLinkProps> {
-  render() {
-    const { object, children, ...other } = this.props
+export function makeProjectLink(
+  project: NonNullable<ProjectLinkProps['object']>
+) {
+  const { id, Resource } = project
 
-    if (!object) {
-      return null
-    }
+  const { uri: resourceUri } = Resource || {}
 
-    const { id, name, Resource } = object
-
-    if (!id) {
-      return null
-    }
-
-    const resourceUri = Resource?.uri
-
-    return (
-      <Link href={resourceUri || `/projects/id/${id}`} title={name} {...other}>
-        {children ?? name}
-      </Link>
-    )
-  }
+  return resourceUri || `/projects/id/${id}`
 }
 
-export default ProjectLink
+export const ProjectLink: React.FC<ProjectLinkProps> = ({
+  object,
+  children,
+  ...other
+}) => {
+  if (!object) {
+    return null
+  }
+
+  const { name } = object
+
+  const href = makeProjectLink(object)
+
+  return (
+    <Link href={href} title={name} {...other}>
+      {children ?? name}
+    </Link>
+  )
+}

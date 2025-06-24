@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import { styles, ProjectView as BaseProjectView } from '../../Project'
+// import { styles, ProjectView as BaseProjectView } from '../../Project'
 
 import withStyles from 'material-ui/styles/withStyles'
 

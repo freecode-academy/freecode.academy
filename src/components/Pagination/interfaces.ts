@@ -12,6 +12,8 @@ export type PaginationProps = {
   style?: any
 
   classes?: any
+
+  className?: string
 }
 
 // export type PaginationWithStylesProps = PaginationProps & {

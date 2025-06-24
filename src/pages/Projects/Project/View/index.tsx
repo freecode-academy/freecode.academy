@@ -1,5 +1,4 @@
 import React from 'react'
-import { ProjectViewProps } from './interfaces'
 import { ProjectViewStyled } from './styles'
 // import Link from 'next/link'
 import Typography from 'material-ui/Typography'
@@ -8,39 +7,22 @@ import { NextSeo } from 'next-seo'
 // import CreateTaskForm from 'src/pages/Tasks/Task/View/form/CreateTask'
 // import { CreateTaskProcessorMutation } from 'src/gql/generated'
 // import { Button } from 'material-ui'
-// import { TasksViewProps } from 'src/pages/Tasks/View/interfaces'
+import TasksView from 'src/pages/Tasks/View'
+import {
+  ProjectFragment,
+  SortOrder,
+  useTasksConnectionQuery,
+} from 'src/gql/generated'
+import { makeProjectLink } from 'src/uikit/Link/Project'
 
-const ProjectView: React.FC<ProjectViewProps> = (props) => {
-  const project = props.object
+type ProjectViewProps = {
+  project: ProjectFragment
+}
 
-  /**
-   * Список задач
-   */
-  // const tasksList = useMemo(() => {
-  //   const tasks: TasksViewProps['objects'] = []
-
-  //   project.ProjectTasks?.forEach((n) => {
-  //     n.Task && tasks.push(n.Task)
-  //   })
-
-  //   if (!tasks.length) {
-  //     return null
-  //   }
-
-  //   return (
-  //     <TasksView
-  //       objects={tasks}
-  //       page={0}
-  //       limit={tasks.length}
-  //       total={tasks.length}
-  //     />
-  //   )
-  // }, [project.ProjectTasks])
-
-  /**
-   * Создание новой задачи
-   */
-
+export const ProjectView: React.FC<ProjectViewProps> = ({
+  project,
+  ...other
+}) => {
   // const [opened, setOpened] = useState(false)
 
   // const toggleOpened = useCallback(() => {
@@ -93,27 +75,41 @@ const ProjectView: React.FC<ProjectViewProps> = (props) => {
 
   const name = project.Resource?.name || project.name || ''
 
+  const tasksResponse = useTasksConnectionQuery({
+    variables: {
+      orderBy: {
+        updatedAt: SortOrder.DESC,
+      },
+      where: {
+        ProjectTasks: {},
+      },
+      first: 10,
+    },
+  })
+
+  const tasks = tasksResponse.data?.tasks ?? []
+
   return (
     <>
       <NextSeo
         title={name}
         description={name ? `Проект "${name}"` : ''}
-        canonical={
-          project.Resource?.uri
-            ? project.Resource?.uri
-            : project.id
-            ? `/projects/id/${project.id}`
-            : undefined
-        }
+        canonical={makeProjectLink(project)}
       />
-      <ProjectViewStyled>
+      <ProjectViewStyled {...other}>
         <Typography variant="title">{name}</Typography>
 
         {/* {createTaskForm} */}
-        {/* {tasksList} */}
+
+        {tasks.length > 0 ? (
+          <TasksView
+            objects={tasks}
+            page={0}
+            limit={tasks.length}
+            total={tasks.length}
+          />
+        ) : null}
       </ProjectViewStyled>
     </>
   )
 }
-
-export default ProjectView

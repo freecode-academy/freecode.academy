@@ -7,8 +7,6 @@ import styled from 'styled-components'
 export const UsersViewTableStyled = styled(GridTableStyled)`
   display: grid;
   grid-template-columns: 1fr;
-  /* border-top: 1px solid #ddd;
-  border-left: 1px solid #ddd; */
   border-top: 1px solid gray;
 
   ${GridTableItemStyled} {
@@ -19,10 +17,6 @@ export const UsersViewTableStyled = styled(GridTableStyled)`
 
     > * {
       background-color: transparent;
-      /* border-top: none;
-      border-left: none; */
-      /* border-right: 1px solid #ddd;
-      border-bottom: 1px solid #ddd; */
 
       padding: 2px 5px;
 

@@ -4,7 +4,7 @@ import { TaskViewStyled } from './styles'
 // import Link from 'next/link'
 import Typography from 'material-ui/Typography'
 
-import ProjectLink from 'src/uikit/Link/Project'
+import { ProjectLink } from 'src/uikit/Link/Project'
 import { TimersView } from 'src/pages/Timers/View'
 import Grid from 'src/uikit/Grid'
 import TaskStatus from '../../TaskStatus'

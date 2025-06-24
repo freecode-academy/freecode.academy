@@ -3,9 +3,12 @@ import { TabSwitcherStyled } from 'src/TabSwitcher/styles'
 import { css } from 'styled-components'
 import { AiChatStyled } from 'src/Chat/styles'
 import { TabType } from 'src/TabSwitcher/interfaces'
+import PaginationWithStyles from 'src/components/Pagination'
 
 export const LayoutContentStyled = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
 `
 
 export const LayoutContentWrappeStyled = styled.div`
@@ -137,6 +140,10 @@ export const LayoutStyled = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  ${PaginationWithStyles} {
+    margin: 10px auto;
+  }
 
   @media (orientation: landscape) {
     ${TabSwitcherStyled} {

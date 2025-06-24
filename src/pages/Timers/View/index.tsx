@@ -13,6 +13,7 @@ type TimersViewProps = {
   variables?: TimersConnectionQueryVariables
 }
 
+// TODO Restore
 export const TimersView: React.FC<TimersViewProps> = () => {
-  return <>TimersView</>
+  return <></>
 }

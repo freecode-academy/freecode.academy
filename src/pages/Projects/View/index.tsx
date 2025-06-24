@@ -2,7 +2,7 @@ import React from 'react'
 
 // import Typography from 'material-ui/Typography'
 
-import ProjectsList from './List'
+import { ProjectsList } from './List'
 
 import {
   ProjectsConnectionProjectFragment,
@@ -10,7 +10,7 @@ import {
 } from 'src/gql/generated'
 
 import Pagination from 'src/components/Pagination'
-import Grid from 'src/uikit/Grid'
+import { ProjectsViewStyled } from './styles'
 // import Link from 'next/link'
 // import { ProjectsConnectionProjectFragment } from 'src/gql/generated'
 
@@ -31,55 +31,11 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
 }) => {
   const limit = variables?.first ?? 0
 
-  // const objectsConnection = data?.objectsConnection
-
-  // const { edges, aggregate } = objectsConnection || {}
-
-  // const { count = 0 } = aggregate || {}
-
-  // const projects =
-  //   edges
-  //     ?.map((n) => n?.node)
-  //     .reduce<ProjectsConnectionProjectFragment[]>((current, next) => {
-  //       if (next) {
-  //         current.push(next)
-  //       }
-
-  //       return current
-  //     }, []) ?? []
-
-  const output = (
-    <Grid item xs={12}>
+  return (
+    <ProjectsViewStyled {...other}>
       <ProjectsList projects={projects} />
 
-      <Pagination
-        limit={limit}
-        total={count}
-        page={page || 1}
-        style={{
-          marginTop: 20,
-        }}
-      />
-    </Grid>
+      <Pagination limit={limit} total={count} page={page || 1} />
+    </ProjectsViewStyled>
   )
-
-  const content = (
-    <Grid container spacing={8} {...other}>
-      <Grid item xs={12}>
-        {/* {this.renderFilters()} */}
-      </Grid>
-
-      {/* <Grid item xs={12}>
-          <Link href="/office/projects/create">
-            <a>
-              <Typography>Добавить проект</Typography>
-            </a>
-          </Link>
-        </Grid> */}
-
-      {output}
-    </Grid>
-  )
-
-  return content
 }

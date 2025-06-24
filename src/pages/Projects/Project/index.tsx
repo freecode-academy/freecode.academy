@@ -6,7 +6,7 @@ import {
   ProjectsQueryVariables,
 } from 'src/gql/generated'
 
-import View from './View'
+import { ProjectView as View } from './View'
 
 import { Page, NextPageContextCustom } from '../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
@@ -86,7 +86,7 @@ const ProjectPage: Page = () => {
 
   return (
     <>
-      <View object={Project} />
+      <View project={Project} />
     </>
   )
 }

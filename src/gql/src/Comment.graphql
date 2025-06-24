@@ -53,16 +53,16 @@ mutation updateCommentProcessor(
 
 fragment commentsConnectionComment on Resource {
   ...ResourceNoNesting
-  # CreatedBy {
-  #   ...UserNoNesting
-  # }
-  # Topic {
-  #   id
-  #   name
-  #   uri
-  #   type
-  # }
-  # Task {
-  #   ...TaskNoNesting
-  # }
+  CreatedBy {
+    ...UserNoNesting
+  }
+  Topic {
+    id
+    name
+    uri
+    type
+  }
+  Task {
+    ...TaskNoNesting
+  }
 }

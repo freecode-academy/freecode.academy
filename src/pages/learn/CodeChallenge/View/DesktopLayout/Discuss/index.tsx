@@ -33,7 +33,8 @@ const CodeChallengeDiscuss: React.FC<CodeChallengeDiscussProps> = (props) => {
   if (Topic) {
     topic = (
       <TopicView
-        object={Topic}
+        topic={Topic}
+        variant="full"
         // mutate={updateTopicMutation}
         canChangeBlog={false}
       />

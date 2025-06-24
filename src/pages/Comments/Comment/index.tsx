@@ -4,7 +4,7 @@ import React, { useMemo } from 'react'
 import { useResourceQuery } from 'src/gql/generated'
 import { getResourceVariables } from 'src/pages/Resource'
 import { Page } from 'src/pages/_App/interfaces'
-import { Comment } from 'src/uikit/Comments/Comment'
+import { Comment } from 'src/components/Comments/Comment'
 
 /**
  * Страница комментария
@@ -39,7 +39,7 @@ const CommentPage: Page = () => {
     <>
       <NextSeo title={object.name || ''} description={description} />
 
-      <Comment linkType="target" object={object} />
+      <Comment linkType="target" object={object} variant="list" />
     </>
   )
 }

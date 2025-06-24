@@ -73,34 +73,41 @@ import React from 'react'
  */
 // export const initEditorObject = registerComponents(Components)
 
-import { ResourceNoNestingFragment } from 'src/gql/generated'
+import {
+  ResourceFragment,
+  ResourceNoNestingFragment,
+  TopicsConnectionTopicFragment,
+} from 'src/gql/generated'
 import { MarkdownField } from '../MarkdownField'
 
 export type SiteFrontEditorProps = {
-  object?: ResourceNoNestingFragment
+  object?:
+    | ResourceNoNestingFragment
+    | ResourceFragment
+    | TopicsConnectionTopicFragment
   inEditMode?: boolean
   itemsOnly?: boolean
   className?: string
   value?: string | Record<string, unknown> | Record<string, unknown>[] | null
 }
 
-export const SiteFrontEditor: React.FC<SiteFrontEditorProps> = (props) => {
-  // return <FrontEditor Components={Components} {...props} />
-
+export const SiteFrontEditor: React.FC<SiteFrontEditorProps> = ({
+  value,
+  object,
+}) => {
   let content: string | null | undefined
 
-  const { value } = props
+  const contentText =
+    object && 'contentText' in object ? object.contentText : undefined
 
-  if (value) {
+  if (contentText) {
+    content = contentText
+  } else if (value) {
     if (typeof value === 'string') {
       content = value
     } else {
-      content = JSON.stringify(content, null, 2)
+      content = JSON.stringify(value, null, 2)
     }
-  } else {
-    const { contentText } = props.object || {}
-
-    content = contentText
   }
 
   return <MarkdownField>{content}</MarkdownField>

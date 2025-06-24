@@ -2,17 +2,33 @@ import React, { Component } from 'react'
 import Typography from 'material-ui/Typography'
 
 import Link from '..'
-import { TopicLinkProps } from './interfaces'
+import { Maybe, Resource } from 'src/gql/generated'
+import { makeTopicLink } from '../Resource'
+
+export interface TopicLinkProps extends React.PropsWithChildren {
+  topic:
+    | {
+        __typename?: 'Resource'
+        id: string
+        name?: Resource['name']
+        longtitle?: Maybe<string>
+        uri: string
+      }
+    | null
+    | undefined
+}
 
 export class TopicLink extends Component<TopicLinkProps> {
   render() {
-    const { object, children, ...other } = this.props
+    const { topic, children, ...other } = this.props
 
-    if (!object) {
+    if (!topic) {
       return null
     }
 
-    const { name, longtitle, uri } = object
+    const { name, longtitle } = topic
+
+    const uri = makeTopicLink(topic)
 
     if (!name || !uri) {
       return null
@@ -25,5 +41,3 @@ export class TopicLink extends Component<TopicLinkProps> {
     )
   }
 }
-
-export default TopicLink

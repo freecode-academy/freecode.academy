@@ -1,8 +1,12 @@
 import React, { useMemo } from 'react'
-import { Comment as UikitComment } from 'src/uikit/Comments/Comment'
-import { TopicCommentsProps } from './interfaces'
+import { ResourceFragment } from 'src/gql/generated'
+import { Comment } from 'src/components/Comments/Comment'
 
-const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
+export interface TopicCommentsProps {
+  topic: ResourceFragment
+}
+
+export const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
   // constructor(props: TopicCommentsProps) {
   //   super(props)
 
@@ -33,7 +37,7 @@ const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
         Comments.map((n) => {
           const { id } = n
 
-          return <UikitComment key={id} object={n} />
+          return <Comment key={id} object={n} variant="full" />
         })) ||
       null
     )
@@ -79,5 +83,3 @@ const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
   }, [comments])
   // }
 }
-
-export default TopicComments

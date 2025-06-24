@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Comment as UikitComment } from 'src/uikit/Comments/Comment'
+import { Comment as UikitComment } from 'src/components/Comments/Comment'
 import { TaskCommentsProps } from './interfaces'
 
 const TaskComments: React.FC<TaskCommentsProps> = ({ task }) => {
@@ -16,7 +16,7 @@ const TaskComments: React.FC<TaskCommentsProps> = ({ task }) => {
         Comments.map((n) => {
           const { id } = n
 
-          return <UikitComment key={id} object={n} />
+          return <UikitComment key={id} object={n} variant="full" />
         })) ||
       null
     )

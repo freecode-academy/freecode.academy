@@ -32,6 +32,14 @@ export const GlobalStyle = createGlobalStyle`
     white-space: pre-wrap;
   }
 
+  h2 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
   a {
     text-decoration: none;
 

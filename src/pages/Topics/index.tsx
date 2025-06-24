@@ -51,7 +51,7 @@ export const getTopicsVariables = (
   }
 }
 
-const TopicsPage: Page = () => {
+export const TopicsPage: Page = () => {
   const router = useRouter()
 
   const { page, ...queryVariables } = useMemo(() => {
@@ -104,5 +104,3 @@ TopicsPage.getInitialProps = async (context) => {
 
   return {}
 }
-
-export default TopicsPage

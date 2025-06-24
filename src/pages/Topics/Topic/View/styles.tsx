@@ -1,15 +1,5 @@
 import styled from 'styled-components'
 
-export const TopicViewStyled = styled.section`
-  .root: {
-    margintop: 15;
-    marginbottom: 30;
-    & pre: {
-      whitespace: pre-line;
-    }
-  }
+export const TopicViewTitleStyled = styled.h1``
 
-  .header: {
-    marginbottom: 30;
-  }
-`
+export const TopicViewStyled = styled.section``

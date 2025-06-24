@@ -31,7 +31,9 @@ export const TopicPage: Page = () => {
         description={`Публикация "${longtitle || name}"`}
       />
 
-      {object ? <View object={object} canChangeBlog={false} /> : null}
+      {object ? (
+        <View topic={object} canChangeBlog={false} variant="full" />
+      ) : null}
     </>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Pagination from 'src/components/Pagination'
-import { Comment } from 'src/uikit/Comments/Comment'
+import { Comment } from 'src/components/Comments/Comment'
 import { CommentsViewProps } from './interfaces'
 
 const CommentsView: React.FC<CommentsViewProps> = (props) => {
@@ -9,7 +9,14 @@ const CommentsView: React.FC<CommentsViewProps> = (props) => {
   return (
     <>
       {objects.map((comment) => {
-        return <Comment key={comment.id} object={comment} linkType="target" />
+        return (
+          <Comment
+            key={comment.id}
+            object={comment}
+            linkType="target"
+            variant="list"
+          />
+        )
       })}
 
       <Pagination limit={limit} page={page} total={total} />

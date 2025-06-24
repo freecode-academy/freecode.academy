@@ -25,7 +25,7 @@ query projectsConnection(
 }
 
 fragment projectsConnectionProject on Project {
-  ...project_
+  ...Project_
 
   # ...ProjectNoNesting
   # CreatedBy {
@@ -71,17 +71,11 @@ fragment projectsConnectionUser on User {
   ...UserNoNesting
 }
 
-# query project($where: ResourceWhereUniqueInput!) {
-#   object: resource(where: $where) {
-#     id
-#     name
-#     uri
-#     type
-#     Project {
-#       ...project_
-#     }
-#   }
-# }
+query project($where: ProjectWhereUniqueInput!) {
+  project(where: $where) {
+    ...Project_
+  }
+}
 
 # Так как проекты дергаются в том числе через ресурс,
 # придется искать не по уникальному ключу
@@ -91,7 +85,7 @@ query projects(
   $first: Int # $timersWhere: TimerWhereInput
 ) {
   projects(where: $where, take: $first) {
-    ...project_
+    ...Project_
   }
 }
 
@@ -109,7 +103,7 @@ fragment officeProject on Project {
   url
 }
 
-fragment project_ on Project {
+fragment Project_ on Project {
   ...ProjectNoNesting
   CreatedBy: CreatedByUser {
     ...UserNoNesting

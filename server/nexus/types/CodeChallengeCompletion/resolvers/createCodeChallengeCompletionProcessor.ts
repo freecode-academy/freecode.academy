@@ -128,18 +128,18 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
     }
   }
 
-  const TaskProject: Prisma.ProjectTaskUncheckedCreateNestedManyWithoutTask_ProjectTaskToTaskInput =
-    {
-      create: {
-        // CreatedBy: currentUserId,
-        User: {
-          connect: {
-            id: currentUserId,
-          },
-        },
-        Project_ProjectToProjectTask: Project,
-      },
-    }
+  // const TaskProject: Prisma.ProjectTaskUncheckedCreateNestedManyWithoutTask_ProjectTaskToTaskInput =
+  //   {
+  //     create: {
+  //       // CreatedBy: currentUserId,
+  //       User: {
+  //         connect: {
+  //           id: currentUserId,
+  //         },
+  //       },
+  //       Project_ProjectToProjectTask: Project,
+  //     },
+  //   }
 
   const createData: Prisma.CodeChallengeCompletionCreateInput = {
     User: {
@@ -161,13 +161,21 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
       create: {
         name: `Выполнение задания "${codeChallenge.name}"`,
         status: 'Progress',
-        ProjectTasks: TaskProject,
+        // ProjectTasks: TaskProject,
+        Project,
         Timers: {
           create: {
             CreatedBy: currentUserId,
           },
         },
-        CreatedBy: currentUserId,
+        // CreatedBy: currentUserId,
+        User: currentUserId
+          ? {
+              connect: {
+                id: currentUserId,
+              },
+            }
+          : undefined,
         // TaskProjects,
         // ProjectTask: TaskProject,
       },

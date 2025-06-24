@@ -2,7 +2,7 @@ import Head from 'next/head'
 import React, { useMemo } from 'react'
 import { useTaskQuery, TaskDocument, TaskQuery } from 'src/gql/generated'
 
-import View from './View'
+import { TaskView as View } from './View'
 
 import { Page, NextPageContextCustom } from '../../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'

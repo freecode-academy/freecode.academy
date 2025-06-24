@@ -807,6 +807,7 @@ model Project {
   // Templates_ProjectToTemplate_Project       Template[]      @relation("ProjectToTemplate_Project")
   User_PrismaProjectUsers                   User[]          @relation("PrismaProjectUsers")
   Team_ProjectCustomers                     Team[]          @relation("ProjectCustomers")
+  Tasks                                     Task[]
 
   // @@index([ChatRoom], name: "ChatRoom")
   @@index([CreatedBy], name: "CreatedBy")
@@ -1110,7 +1111,7 @@ model Task {
   updatedAt                DateTime                  @default(now()) @updatedAt @db.DateTime(0)
   name                     String                    @db.MediumText
   description              String?                   @db.MediumText
-  content                  Json?
+  content                  String?                   @db.MediumText
   status                   TaskStatus                @default(value: New)
   startDatePlaning         DateTime?
   endDatePlaning           DateTime?
@@ -1123,16 +1124,16 @@ model Task {
   ChatRoom_ChatRoomToTask  ChatRoom?                 @relation(fields: [ChatRoom], references: [id])
   User                     User?                     @relation(fields: [CreatedBy], references: [id])
   Task                     Task?                     @relation("TaskToTask_Parent", fields: [Parent], references: [id])
+  Children                 Task[]                    @relation("TaskToTask_Parent")
   CodeChallengeCompletions CodeChallengeCompletion[]
+  projectId                String?                   @db.VarChar(32)
+  Project                  Project?                  @relation(fields: [projectId], references: [id])
   ProjectTasks             ProjectTask[]
   Resources                Resource[]
-  other_Tasks              Task[]                    @relation("TaskToTask_Parent")
   TaskMembers              TaskMember[]
   TaskReactions            TaskReaction[]
   TaskTechnologies         TaskTechnology[]
   Timers                   Timer[]
-  Tasks_B                  Task[]                    @relation("RelatedTasks")
-  Tasks_A                  Task[]                    @relation("RelatedTasks")
 
   @@index([ChatRoom], name: "ChatRoom")
   @@index([CreatedBy], name: "CreatedBy")

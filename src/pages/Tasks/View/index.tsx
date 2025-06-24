@@ -9,7 +9,7 @@ import {
 import TasksViewTask from './Task'
 import Pagination from 'src/components/Pagination'
 
-const TasksView: React.FC<TasksViewProps> = ({
+export const TasksView: React.FC<TasksViewProps> = ({
   objects,
   limit,
   page,
@@ -68,5 +68,3 @@ const TasksView: React.FC<TasksViewProps> = ({
     )
   }, [header, items, limit, other, page, total])
 }
-
-export default TasksView

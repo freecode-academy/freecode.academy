@@ -50,45 +50,54 @@ export const createTaskProcessor: FieldResolver<
         id: currentUserId,
       },
     },
+    Project: Project?.connect?.id
+      ? {
+          connect: {
+            id: Project.connect.id,
+          },
+        }
+      : undefined,
   }
 
-  if (Parent?.connect) {
-    const connect = Parent?.connect as Prisma.TaskWhereUniqueInput
+  if (Parent?.connect?.id) {
+    // const connect = Parent?.connect as Prisma.TaskWhereUniqueInput
 
     createData.Task = {
-      connect,
-    }
-  }
-
-  if (Project?.connect) {
-    // Object.assign(data, {
-    //   TaskProjects: {
-    //     create: {
-    //       Project,
-    //       CreatedBy: {
-    //         connect: {
-    //           id: currentUserId,
-    //         },
-    //       },
-    //     },
-    //   },
-    // });
-
-    const ProjectConnect = Project.connect as Prisma.ProjectWhereUniqueInput
-
-    createData.ProjectTasks = {
-      create: {
-        Project_ProjectToProjectTask: {
-          connect: ProjectConnect,
-        },
-        User: {
-          connect: {
-            id: currentUserId,
-          },
-        },
+      connect: {
+        id: Parent.connect.id,
       },
     }
   }
+
+  // if (Project?.connect) {
+  //   // Object.assign(data, {
+  //   //   TaskProjects: {
+  //   //     create: {
+  //   //       Project,
+  //   //       CreatedBy: {
+  //   //         connect: {
+  //   //           id: currentUserId,
+  //   //         },
+  //   //       },
+  //   //     },
+  //   //   },
+  //   // });
+
+  //   const ProjectConnect = Project.connect as Prisma.ProjectWhereUniqueInput
+
+  //   createData.ProjectTasks = {
+  //     create: {
+  //       Project_ProjectToProjectTask: {
+  //         connect: ProjectConnect,
+  //       },
+  //       User: {
+  //         connect: {
+  //           id: currentUserId,
+  //         },
+  //       },
+  //     },
+  //   }
+  // }
 
   // Object.assign(data, {
   //   ...this.getCreatedBy(),

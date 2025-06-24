@@ -7,7 +7,7 @@ import { NextSeo } from 'next-seo'
 // import CreateTaskForm from 'src/pages/Tasks/Task/View/form/CreateTask'
 // import { CreateTaskProcessorMutation } from 'src/gql/generated'
 // import { Button } from 'material-ui'
-import TasksView from 'src/pages/Tasks/View'
+import { TasksView } from 'src/pages/Tasks/View'
 import {
   ProjectFragment,
   SortOrder,

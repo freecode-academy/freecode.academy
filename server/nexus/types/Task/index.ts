@@ -20,9 +20,7 @@ export const Task = objectType({
     t.nonNull.field('status', {
       type: 'TaskStatus',
     })
-    t.field('content', {
-      type: 'JSON',
-    })
+    t.string('content')
     t.date('startDatePlaning')
     t.date('endDatePlaning')
     t.date('startDate')
@@ -37,6 +35,7 @@ export const Task = objectType({
           : null
       },
     })
+    t.id('projectId')
     t.list.nonNull.field('TaskProjects', {
       type: 'ProjectTask',
       resolve({ id }, _, ctx) {
@@ -217,9 +216,7 @@ export const TaskCreateInput = inputObjectType({
     t.id('id')
     t.nonNull.string('name')
     t.string('description')
-    t.field('content', {
-      type: 'JSON',
-    })
+    t.string('content')
     t.field('status', {
       type: 'TaskStatus',
     })
@@ -242,9 +239,7 @@ export const TaskUpdateInput = inputObjectType({
   definition(t) {
     t.string('name')
     t.string('description')
-    t.field('content', {
-      type: 'JSON',
-    })
+    t.string('content')
     t.field('status', {
       type: 'TaskStatus',
     })

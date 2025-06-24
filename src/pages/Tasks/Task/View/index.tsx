@@ -1,10 +1,9 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react'
-import { TaskViewProps } from './interfaces'
 import { TaskViewStyled } from './styles'
 // import Link from 'next/link'
 import Typography from 'material-ui/Typography'
 
-import { ProjectLink } from 'src/uikit/Link/Project'
+// import { ProjectLink } from 'src/uikit/Link/Project'
 import { TimersView } from 'src/pages/Timers/View'
 import Grid from 'src/uikit/Grid'
 import TaskStatus from '../../TaskStatus'
@@ -19,8 +18,19 @@ import TaskTaskTechnologies from './TaskTaskTechnologies'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import Comments from './Comments'
 import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
+import { TaskQuery } from 'src/gql/generated'
 
-const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
+export type TaskViewProps = {
+  object: NonNullable<TaskQuery['object']>
+
+  loading: boolean
+}
+
+export const TaskView: React.FC<TaskViewProps> = ({
+  object,
+  loading,
+  ...other
+}) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
   const user = context.user
 
@@ -139,100 +149,80 @@ const TaskView: React.FC<TaskViewProps> = ({ object, loading, ...other }) => {
     return <Comments task={object} />
   }, [object])
 
-  return useMemo(() => {
-    return (
-      <TaskViewStyled {...other}>
-        <Grid container spacing={8} alignItems="center">
-          <Grid item xs>
-            <Typography variant="title">{object.name}</Typography>
-          </Grid>
-
-          <Grid item>
-            <TaskStatus value={object.status} />
-          </Grid>
-          <Grid item>{buttons}</Grid>
-          <Grid item>
-            {opened ? null : (
-              <IconButton title="Редактировать" onClick={startEdit}>
-                <EditModeIcon />
-              </IconButton>
-            )}
-          </Grid>
+  return (
+    <TaskViewStyled {...other}>
+      <Grid container spacing={8} alignItems="center">
+        <Grid item xs>
+          <Typography variant="title">{object.name}</Typography>
         </Grid>
 
-        {object.TaskProjects?.map((n) => {
-          const project = n.Project
-          return project ? (
-            <div key={project.id}>
-              <p>
-                Проект: <ProjectLink object={project} />
-              </p>
-            </div>
-          ) : null
-        })}
-        <table>
-          <tbody>
-            <tr>
-              <td>Планируемый запуск: </td>
-              <td>
-                {object.startDatePlaning
-                  ? moment(object.startDatePlaning).format('L')
-                  : null}
-              </td>
-              <td>Дата начала: </td>
-              <td>
-                {object.startDate ? moment(object.startDate).format('L') : null}
-              </td>
-              <td>Планируемое завершение: </td>
-              <td>
-                {object.endDatePlaning
-                  ? moment(object.endDatePlaning).format('L')
-                  : null}
-              </td>
-              <td>Дата завершения: </td>
-              <td>
-                {object.endDate ? moment(object.endDate).format('L') : null}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <Grid item>
+          <TaskStatus value={object.status} />
+        </Grid>
+        <Grid item>{buttons}</Grid>
+        <Grid item>
+          {opened ? null : (
+            <IconButton title="Редактировать" onClick={startEdit}>
+              <EditModeIcon />
+            </IconButton>
+          )}
+        </Grid>
+      </Grid>
 
-        {lesson}
+      {/* {object.projectId  ?.map((n) => {
+        const project = n.Project
+        return project ? (
+          <div key={project.id}>
+            <p>
+              Проект: <ProjectLink object={project} />
+            </p>
+          </div>
+        ) : null
+      })} */}
 
-        {object.content ? (
-          <>
-            <Typography variant="subheading">Описание задачи</Typography>
-            <SiteFrontEditor value={object.content} />
-          </>
-        ) : null}
+      <table>
+        <tbody>
+          <tr>
+            <td>Планируемый запуск: </td>
+            <td>
+              {object.startDatePlaning
+                ? moment(object.startDatePlaning).format('L')
+                : null}
+            </td>
+            <td>Дата начала: </td>
+            <td>
+              {object.startDate ? moment(object.startDate).format('L') : null}
+            </td>
+            <td>Планируемое завершение: </td>
+            <td>
+              {object.endDatePlaning
+                ? moment(object.endDatePlaning).format('L')
+                : null}
+            </td>
+            <td>Дата завершения: </td>
+            <td>
+              {object.endDate ? moment(object.endDate).format('L') : null}
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-        {/* {form} */}
+      {lesson}
 
-        {taskTechnologies}
+      {object.content ? (
+        <>
+          <Typography variant="subheading">Описание задачи</Typography>
+          <SiteFrontEditor value={object.content} />
+        </>
+      ) : null}
 
-        {timersList}
+      {/* {form} */}
 
-        {comments}
-      </TaskViewStyled>
-    )
-  }, [
-    buttons,
-    comments,
-    lesson,
-    object.TaskProjects,
-    object.content,
-    object.endDate,
-    object.endDatePlaning,
-    object.name,
-    object.startDate,
-    object.startDatePlaning,
-    object.status,
-    opened,
-    other,
-    startEdit,
-    taskTechnologies,
-    timersList,
-  ])
+      {taskTechnologies}
+
+      {timersList}
+
+      {comments}
+    </TaskViewStyled>
+  )
 }
-
-export default TaskView

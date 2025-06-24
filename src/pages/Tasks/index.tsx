@@ -1,14 +1,15 @@
+/* eslint-disable no-console */
 import Head from 'next/head'
 import React, { useCallback, useMemo } from 'react'
 import {
-  TasksConnectionDocument,
+  // TasksConnectionDocument,
   TasksConnectionQueryVariables,
   useTasksConnectionQuery,
   TaskWhereInput,
   EnumTaskStatusFilter,
 } from 'src/gql/generated'
 
-import View from './View'
+import { TasksView as View } from './View'
 
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
@@ -72,7 +73,7 @@ function getQueryParams(query: ParsedUrlQuery) {
   }
 }
 
-const TasksPage: Page = () => {
+export const TasksPage: Page = () => {
   const router = useRouter()
 
   const { query } = router
@@ -90,6 +91,8 @@ const TasksPage: Page = () => {
     variables: queryVariables,
     onError: console.error,
   })
+
+  console.log('response', response)
 
   const { variables } = response
 
@@ -122,27 +125,27 @@ const TasksPage: Page = () => {
   ])
 }
 
-TasksPage.getInitialProps = async (context) => {
-  const { apolloClient } = context
+// TasksPage.getInitialProps = async (context) => {
+//   const { apolloClient } = context
 
-  await apolloClient.query({
-    query: TasksConnectionDocument,
+//   await apolloClient.query({
+//     query: TasksConnectionDocument,
 
-    /**
-     * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
-     * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
-     */
-    variables: {
-      ...defaultVariables,
-      ...getQueryParams(context.query),
-    },
-  })
+//     /**
+//      * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
+//      * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
+//      */
+//     variables: {
+//       ...defaultVariables,
+//       ...getQueryParams(context.query),
+//     },
+//   })
 
-  return {
-    // layout: {
-    //   variant: 'fullwidth',
-    // },
-  }
-}
+//   return {
+//     // layout: {
+//     //   variant: 'fullwidth',
+//     // },
+//   }
+// }
 
-export default TasksPage
+// export default TasksPage

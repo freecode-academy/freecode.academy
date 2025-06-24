@@ -81,14 +81,11 @@ export type SiteFrontEditorProps = {
   inEditMode?: boolean
   itemsOnly?: boolean
   className?: string
-  value?: string | any
+  value?: string | Record<string, unknown> | Record<string, unknown>[] | null
 }
 
 export const SiteFrontEditor: React.FC<SiteFrontEditorProps> = (props) => {
   // return <FrontEditor Components={Components} {...props} />
-
-  // eslint-disable-next-line no-console
-  console.log('SiteFrontEditor props', props)
 
   let content: string | null | undefined
 

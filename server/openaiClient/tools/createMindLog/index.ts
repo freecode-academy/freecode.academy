@@ -1,12 +1,12 @@
 import { MindLogType } from '@prisma/client'
 import { BaseAiTool, toolName } from '../interfaces'
-import { createActivity } from '../../../nexus/types/Activity/helpers/createActivity'
-import { ActivityType } from '../../../nexus/types/Activity/interfaces'
+import { createMindLog } from './helpers/createMindLog'
 
 export interface CreateMindLogArgs {
   type: MindLogType
   data: string
   quality: number
+  relatedToUserId?: string
 }
 
 export type CreateMindLogTool = BaseAiTool<
@@ -38,34 +38,30 @@ export const createMindLogTool: CreateMindLogTool = {
             type: 'number',
             description: 'Оценка качества мысли/действия/результата от 0 до 1',
           },
+          relatedToUserId: {
+            type: 'string',
+            description:
+              'ID пользователя, в отношении которого создается майндлог. Если не указан, то знание считается глобальным и касается всех пользователей. Если знание индивидуальное',
+          },
         },
         required: ['type', 'data'],
       },
     },
   },
   handler: async (args, ctx, user) => {
-    const { data, type, quality } = args
+    const { data, type, quality, relatedToUserId } = args
 
-    return ctx.prisma.mindLog
-      .create({
-        data: {
-          data,
-          type,
-          quality,
-          createdById: user.id,
-        },
-      })
-      .then((mindLog) => {
-        createActivity({
-          ctx,
-          userId: user.id,
-          payload: {
-            type: ActivityType.MindLog,
-            MindLog: mindLog,
-          },
-        })
-
-        return `Сделана запись с id "${mindLog.id}"`
-      })
+    return createMindLog({
+      data: {
+        data,
+        type,
+        quality,
+        relatedToUserId,
+      },
+      ctx,
+      user,
+    }).then((mindLog) => {
+      return `Сделана запись с id "${mindLog.id}"`
+    })
   },
 }

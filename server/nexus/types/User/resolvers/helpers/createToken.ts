@@ -1,19 +1,7 @@
-import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { User } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
-import { generateId } from '../../../../../helpers/generateId'
-
-export type AuthTokenData = {
-  tokenId: string
-}
-
-/**
- * Создание пароля
- */
-export const createPassword = async (password: string | null | undefined) => {
-  return await bcrypt.hash(password ?? generateId(), 10)
-}
+import { AuthTokenData } from '../../interfaces'
 
 /**
  * Записываем токен доступа в базу

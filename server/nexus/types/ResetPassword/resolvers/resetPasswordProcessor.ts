@@ -4,7 +4,7 @@ import moment from 'moment'
 import { FieldResolver } from 'nexus'
 import { PrismaContext } from 'server/nexus/context'
 import { NexusGenArgTypes } from 'server/nexus/generated/nexus'
-import { createPassword } from '../../User/resolvers/helpers'
+import { createPassword } from '../../User/resolvers/helpers/createPassword'
 import { signin } from '../../User/resolvers/signin'
 
 // TODO Надо переделать на свойства самого объекта ResetPassword

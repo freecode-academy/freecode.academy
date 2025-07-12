@@ -3,7 +3,7 @@ import { FieldResolver } from 'nexus'
 import bcrypt from 'bcryptjs'
 
 import { NexusGenObjects } from 'server/nexus/generated/nexus'
-import { createToken } from './helpers'
+import { createToken } from './helpers/createToken'
 
 /**
  * Авторизация

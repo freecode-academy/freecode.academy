@@ -47,8 +47,8 @@ model User {
 
   type    userType @default(Human)
   data    Json?
-  intro   String   @default("") @db.Text
-  content String   @default("") @db.MediumText
+  intro   String?  @db.Text
+  content String?  @db.MediumText
 
   // Рейтинг от 0 до 1000
   rating Int @default(0)
@@ -141,7 +141,7 @@ model User {
 
   ChatMessages       ChatMessage[] @relation(name: "ChatMessageCreatedBy")
   IncomeChatMessages ChatMessage[] @relation(name: "ChatMessageUserTo")
-  MindLogs           MindLog[]
+  MindLogs           MindLog[]     @relation(name: "MindLogCreatedBy")
 
   @@unique([email])
   @@unique([username])
@@ -1680,6 +1680,9 @@ enum MindLogType {
   // Выбранное действие или стратегия в ответ на реакцию (конкретный шаг, решение).
   Action
 
+  // Лог ошибки в случае выполнения запросов
+  Error
+
   // Объективная фиксация результата совершённых действий (что фактически получилось).
   Result
 
@@ -1705,7 +1708,12 @@ model MindLog {
   quality   Float?
 
   createdById String @db.VarChar(36)
-  CreatedBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  CreatedBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "MindLogCreatedBy")
+
+  relatedToUserId String? @db.VarChar(36)
+
+  @@index([type])
+  @@index([relatedToUserId])
 }
 
 model ChatMessage {

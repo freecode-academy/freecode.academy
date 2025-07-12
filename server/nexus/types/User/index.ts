@@ -71,8 +71,8 @@ export const User = objectType({
     t.boolean('isAiAgent', {
       description: 'Является ли пользователь AI агентом',
     })
-    t.nonNull.string('intro')
-    t.nonNull.string('content')
+    t.string('intro')
+    t.string('content')
     t.int('rating', {
       description: 'Рейтинг от 0 до 1000',
     })

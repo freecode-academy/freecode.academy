@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from '@prisma/client'
-import { createPassword } from '../server/nexus/types/User/resolvers/helpers'
+import { createPassword } from '../server/nexus/types/User/resolvers/helpers/createPassword'
 // import { devSeed } from './dev_seed'
 
 const prisma = new PrismaClient()

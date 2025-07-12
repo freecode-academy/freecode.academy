@@ -2,6 +2,7 @@ import { ChatMessage, MindLog, User } from '@prisma/client'
 import { PrismaContext } from '../../../context'
 import { PUBSUB_TYPE } from '../../../../PubSub/interfaces'
 import {
+  NexusGenFieldTypes,
   NexusGenInterfaces,
   NexusGenRootTypes,
 } from 'server/nexus/generated/nexus'
@@ -11,7 +12,9 @@ import { generateId } from '../../../../helpers/generateId'
 type createActivityProps = {
   ctx: PrismaContext
   userId: string
-  payload:
+  payload: {
+    toUserId: string | null
+  } & (
     | {
         type: typeof ActivityType.UrlChanged
         url: string
@@ -21,7 +24,7 @@ type createActivityProps = {
         user: User
       }
     | {
-        type: typeof ActivityType.SendMessaged
+        type: typeof ActivityType.SendMessage
         message: ChatMessage
       }
     | {
@@ -35,6 +38,11 @@ type createActivityProps = {
         type: typeof ActivityType.StdOut
         StdOut: string
       }
+    | {
+        type: typeof ActivityType.SuggestUrl
+        url: string
+      }
+  )
 }
 
 export function createActivity({
@@ -44,23 +52,32 @@ export function createActivity({
 }: createActivityProps): void {
   let activity: NexusGenInterfaces['Activity']
 
-  const commonFields = {
+  const commonFields: Omit<NexusGenFieldTypes['Activity'], 'data'> = {
     type: payload.type,
     id: generateId(),
     userId,
     createdAt: new Date(),
+    toUserId: payload.toUserId,
   }
 
   switch (payload.type) {
     case ActivityType.UrlChanged:
       activity = {
         ...commonFields,
-        url: '/???',
+        url: payload.url,
       }
 
       break
 
-    case ActivityType.SendMessaged:
+    case ActivityType.SuggestUrl:
+      activity = {
+        ...commonFields,
+        url: payload.url,
+      }
+
+      break
+
+    case ActivityType.SendMessage:
       activity = {
         ...commonFields,
         ChatMessage: payload.message,

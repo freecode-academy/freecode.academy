@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { context, PrismaContext } from '../nexus/context'
-import { AuthTokenData } from './types/User/resolvers/helpers'
+import { AuthTokenData } from './types/User/interfaces'
 // import { applyMiddleware } from 'graphql-middleware'
 // import { permissions } from './permissions'
 import { pubsub } from '../PubSub'

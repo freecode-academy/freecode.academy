@@ -38,8 +38,9 @@ export async function createMessage({
     ctx,
     userId: fromUser.id,
     payload: {
-      type: ActivityType.SendMessaged,
+      type: ActivityType.SendMessage,
       message,
+      toUserId: ctx.currentUser?.id ?? null,
     },
   })
 

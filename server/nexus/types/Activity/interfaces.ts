@@ -1,8 +1,11 @@
 export enum ActivityType {
   UserCreated = 'UserCreated',
   UrlChanged = 'UrlChanged',
-  SendMessaged = 'SendMessaged',
+  SendMessage = 'SendMessage',
   MindLog = 'MindLog',
   ToolCall = 'ToolCall',
   StdOut = 'StdOut',
+
+  // Предложенный УРЛ для автоматического перехода
+  SuggestUrl = 'SuggestUrl',
 }

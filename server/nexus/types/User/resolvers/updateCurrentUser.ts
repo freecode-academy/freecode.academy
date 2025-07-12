@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
-import { createPassword } from './helpers'
+import { createPassword } from './helpers/createPassword'
 
 export const updateCurrentUser: FieldResolver<
   'Mutation',

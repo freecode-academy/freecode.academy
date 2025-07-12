@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { PrismaContext } from 'server/nexus/context'
-import { createPassword, createToken } from '../helpers'
+import { createToken } from '../helpers/createToken'
+import { createPassword } from '../helpers/createPassword'
 import { createActivity } from '../../../Activity/helpers/createActivity'
 import { ActivityType } from '../../../Activity/interfaces'
 
@@ -65,6 +66,7 @@ export async function createUser(
       payload: {
         type: ActivityType.UserCreated,
         user,
+        toUserId: null,
       },
     })
   }

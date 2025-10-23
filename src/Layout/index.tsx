@@ -13,8 +13,9 @@ import { useAppTabSwitcher } from 'src/TabSwitcher/hooks/useAppTabSwitcher'
 import dynamic from 'next/dynamic'
 import { useAppContext } from 'src/AppContext'
 import { AppActions } from 'src/AppContext/reducer/interfaces'
-import { MainMenuWithStyles as MainMenu } from 'src/components/MainMenu'
+// import { MainMenuWithStyles as MainMenu } from 'src/components/MainMenu'
 import { usePolicies } from 'src/Policies/hooks/usePolicies'
+import { Header } from './Header'
 
 const AiChat = dynamic(() => import('src/Chat').then((r) => r.AiChat), {
   ssr: false,
@@ -27,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...other }) => {
 
   const { policies } = usePolicies()
 
-  const { user, appState, appDispatch } = useAppContext()
+  const { appState, appDispatch } = useAppContext()
 
   const { slidePosition } = appState
 
@@ -50,7 +51,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...other }) => {
   return (
     <>
       <LayoutStyled {...other}>
-        <MainMenu user={user} />
+        <Header />
 
         <LayoutContentWrappeStyled>
           <LayoutContentContainerStyled

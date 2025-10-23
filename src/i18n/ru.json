@@ -1,0 +1,30 @@
+{
+  "home": {
+    "description": "",
+    "title": "Цифровые помощники"
+  },
+  "mainMenu": {
+    "title": "Меню",
+    "admin": {
+      "title": "Admin"
+    }
+  },
+  "footer": {
+    "about": "About",
+    "aboutText": "",
+    "quickLinks": "Быстрые ссылки",
+    "contact": "Контакты",
+    "followUs": "Подписывайтесь",
+    "rights": "Все права защищены."
+  },
+  "map": {
+    "expandMap": "Исследовать карту"
+  },
+  "system": {
+    "dataSaved": "Данные успешно сохранены",
+    "noDataReceived": "Не были получены данные",
+    "requestError": "Ошибка выполнения запроса",
+    "validationError": "Ошибка валидации формы",
+    "unexpectedError": "Произошла непредвиденная ошибка"
+  }
+}

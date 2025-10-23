@@ -36,11 +36,13 @@ import UserLink from '../../uikit/Link/User'
 import { ProjectLink } from '../../uikit/Link/Project'
 import Link from '../../uikit/Link'
 
-// TODO: Проработать локализацию
-moment.locale('ru')
 import { GlobalStyle } from 'src/theme/GlobalStyle'
 import OfficeLayout from './layouts/OfficeLayout'
 import { Layout } from 'src/Layout'
+import { I18NProvider } from './tolgee'
+
+// TODO: Проработать локализацию
+moment.locale('ru')
 
 const withWs = true
 
@@ -224,20 +226,22 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <ApolloProvider client={apolloClient}>
-            <Context.Provider value={contextValue}>
-              <WithUser context={contextValue} loginComplete={loginComplete}>
-                <Auth
-                  open={authOpen}
-                  // TODO Restore metamask
-                  useMetamask={false}
-                  loginComplete={loginComplete}
-                  loginCanceled={loginCanceled}
-                  showRegForm={true}
-                />
+            <I18NProvider>
+              <Context.Provider value={contextValue}>
+                <WithUser context={contextValue} loginComplete={loginComplete}>
+                  <Auth
+                    open={authOpen}
+                    // TODO Restore metamask
+                    useMetamask={false}
+                    loginComplete={loginComplete}
+                    loginCanceled={loginCanceled}
+                    showRegForm={true}
+                  />
 
-                {contentWithLayout}
-              </WithUser>
-            </Context.Provider>
+                  {contentWithLayout}
+                </WithUser>
+              </Context.Provider>
+            </I18NProvider>
           </ApolloProvider>
         </ThemeProvider>
       </MuiThemeProvider>

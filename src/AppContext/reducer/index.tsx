@@ -2,6 +2,14 @@ import { useReducer } from 'react'
 import { AppActions, AppReducer, AppState } from './interfaces'
 import { MainLayoutTabs } from 'src/TabSwitcher/interfaces'
 
+const initialState: AppState = {
+  chatMessages: [],
+  chatInRequest: false,
+  activeTab: 'site',
+  chatTabOpened: false,
+  slidePosition: MainLayoutTabs.site.position,
+}
+
 const reducer: AppReducer = (state, action) => {
   switch (action.type) {
     case AppActions.ChatAddMessage:
@@ -54,14 +62,6 @@ const reducer: AppReducer = (state, action) => {
   }
 
   return state
-}
-
-const initialState: AppState = {
-  chatMessages: [],
-  chatInRequest: false,
-  activeTab: 'site',
-  chatTabOpened: true,
-  slidePosition: MainLayoutTabs.site.position,
 }
 
 export function useAppReducer() {

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   TolgeeProvider,
   DevTools,
@@ -8,8 +9,8 @@ import {
 } from '@tolgee/react'
 import { useRouter } from 'next/router'
 
-import enLocale from '../../../i18n/en.json'
 import ruLocale from '../../../i18n/ru.json'
+// import enLocale from '../../../i18n/en.json'
 // import viLocale from '../../../i18n/vi.json'
 // import zhLocale from '../../../i18n/zh.json'
 // import deLocale from '../../../i18n/de.json'
@@ -23,8 +24,8 @@ import ruLocale from '../../../i18n/ru.json'
 
 const tolgeeOptions: TolgeeOptions = {
   availableLanguages: [
-    'en',
     'ru',
+    // 'en',
     // 'vi',
     // 'zh',
     // 'de',
@@ -38,7 +39,7 @@ const tolgeeOptions: TolgeeOptions = {
   ],
   staticData: {
     ru: ruLocale,
-    en: enLocale,
+    // en: enLocale,
     // vi: viLocale,
     // zh: zhLocale,
     // de: deLocale,
@@ -78,9 +79,13 @@ export const I18NProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const router = useRouter()
 
+  console.log('router.locale', router.locale)
+
   // sync tolgee with router.locale
   // make sure first render matches the server one
   const ssrTolgee = useTolgeeSSR(tolgee, router.locale)
+
+  console.log('ssrTolgee', ssrTolgee)
 
   return <TolgeeProvider tolgee={ssrTolgee}>{children}</TolgeeProvider>
 }

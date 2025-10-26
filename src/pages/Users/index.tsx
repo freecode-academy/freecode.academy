@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useMemo } from 'react'
 import {
   SortOrder,
@@ -86,6 +87,8 @@ export const UsersPage: Page = () => {
     onError: console.error,
   })
 
+  console.log('response.data?.users', response.data?.users)
+
   const {
     variables,
     // loading
@@ -124,7 +127,7 @@ export const UsersPage: Page = () => {
 UsersPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
-  await apolloClient.query({
+  const users = await apolloClient.query({
     query: UsersConnectionDocument,
 
     /**
@@ -133,6 +136,8 @@ UsersPage.getInitialProps = async (context) => {
      */
     variables: getVariables(context.query),
   })
+
+  console.log('getInitialProps users', users)
 
   return {}
 }

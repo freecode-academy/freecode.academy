@@ -1,5 +1,8 @@
 // @ts-check
 
+// @ts-expect-error types
+const { i18n } = require('./server/next-i18next.config').nextI18nextConfig
+
 const webpack = (config, options) => {
   // Note: we provide webpack above so you should not `require` it
   // Perform customizations to webpack config
@@ -166,6 +169,7 @@ module.exports = (phase, { defaultConfig }) => {
       ...defaultConfig.env,
       TILE_SERVER_URL: process.env.TILE_SERVER_URL,
     },
+    i18n,
   }
 
   if (phase !== 'phase-production-server') {

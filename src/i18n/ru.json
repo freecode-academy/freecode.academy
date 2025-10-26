@@ -7,6 +7,27 @@
     "title": "Меню",
     "admin": {
       "title": "Admin"
+    },
+    "learn": {
+      "title": "Уроки"
+    },
+    "learnstrategies": {
+      "title": "Стратегии развития"
+    },
+    "people": {
+      "title": "Участники"
+    },
+    "start": {
+      "title": "С чего начать"
+    },
+    "technologies": {
+      "title": "Технологии"
+    },
+    "topics": {
+      "title": "Топики"
+    },
+    "about": {
+      "title": "О проекте"
     }
   },
   "footer": {

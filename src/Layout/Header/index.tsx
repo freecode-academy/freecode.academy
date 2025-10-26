@@ -32,11 +32,13 @@ const navItems: {
   sudo?: boolean
 }[] = [
   { key: 'mainMenu.admin.title', href: '/admin', sudo: true },
-  // { key: 'mainMenu.map.title', href: '/map' },
-  // { key: 'mainMenu.explore.title', href: '/geo-objects' },
-  // { key: 'mainMenu.glossary.title', href: '/nodes' },
-  // { key: 'nav.excursions', href: '#excursions' },
-  // { key: 'nav.contact', href: '#contact' },
+  { key: 'mainMenu.learn.title', href: '/learn/sections' },
+  { key: 'mainMenu.learnstrategies.title', href: '/learnstrategies' },
+  { key: 'mainMenu.people.title', href: '/people' },
+  { key: 'mainMenu.technologies.title', href: '/technologies' },
+  { key: 'mainMenu.topics.title', href: '/topics' },
+  { key: 'mainMenu.start.title', href: '/start/developers' },
+  { key: 'mainMenu.about.title', href: '/about' },
 ] as const
 
 export const Header: React.FC = () => {

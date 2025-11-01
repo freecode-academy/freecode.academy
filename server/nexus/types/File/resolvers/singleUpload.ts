@@ -4,7 +4,7 @@ import fs from 'fs'
 import mkdirp from 'mkdirp'
 import { PrismaContext } from 'server/nexus/context'
 import { NexusGenArgTypes, NexusGenObjects } from 'server/nexus/generated/nexus'
-import { Prisma } from '.prisma/client'
+import { Prisma } from '@prisma/client'
 
 const { createWriteStream, unlink } = fs
 
@@ -27,42 +27,21 @@ const storeFS = async ({
 
   const baseDirAbsolute = path.resolve(baseDir)
 
-  // console.log("baseDirAbsolute", baseDirAbsolute);
-
   const uploadDir = path.join(baseDir, directory || '')
 
-  // console.log("uploadDir", uploadDir);
-
   mkdirp.sync(uploadDir)
-
-  // await mkdirp(uploadDir);
-
-  // const id = shortid.generate()
-
-  // const file = `${uploadDir}/${id}-${filename}`;
 
   const filenameUnique = `${new Date().getTime()}-${filename}`
 
   const filePath = path.join(uploadDir, filenameUnique)
 
-  // console.log("baseDir", baseDir);
-
-  // console.log("file path", filePath);
-
   const resolved = path.resolve(filePath)
 
   const normalized = path.normalize(resolved)
 
-  // console.log("file path.resolve()", resolved);
-  // console.log("file normalized", normalized);
-
-  // console.log("file .relative()", path.relative(baseDir, normalized));
-
   if (!normalized.startsWith(baseDirAbsolute)) {
     throw new Error('Wrong directory')
   }
-
-  // return;
 
   return new Promise((resolve, reject) => {
     // const storedFileUrl = new URL(storedFileName, UPLOAD_DIRECTORY_URL);
@@ -78,21 +57,12 @@ const storeFS = async ({
         path: filePath,
       })
     })
-    // .on('close', () => {
-    //   console.log("writeStream close");
-    // })
-
-    // If there's an error writing the file, remove the partially written file
-    // and reject the promise.
     writeStream.on('error', (error) => {
       unlink(storedFileUrl, () => {
         reject(error)
       })
     })
 
-    // In Node.js <= v13, errors are not automatically propagated between piped
-    // streams. If there is an error receiving the upload, destroy the write
-    // stream with the corresponding error.
     stream
       .on('error', (error) => {
         writeStream.destroy(error)
@@ -128,9 +98,12 @@ export const processUpload = async (
   const writeResult = await storeFS({
     stream,
     filename,
-    directory,
+    directory: [`images/u/${currentUser.id}`, directory]
+      .filter((n) => !!n)
+      .join('/'),
   }).catch((error) => {
     console.error('writeResult error', error)
+    throw error
   })
 
   const { path } = writeResult || {}
@@ -154,16 +127,14 @@ export const processUpload = async (
       },
     }
 
-    // return ctx.db.mutation.createFile({
-    //   data: uploaded,
-    // }, info)
-    //   .catch(error => {
-    //     throw error;
-    //   });
-
-    return await ctx.prisma.file.create({
+    const createdFile = await ctx.prisma.file.create({
       data: uploaded,
     })
+
+    return {
+      ...createdFile,
+      size: createdFile.size as number | null,
+    }
   } else {
     throw new Error(`Can not upload file ${filename}`)
   }

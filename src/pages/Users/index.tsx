@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useMemo } from 'react'
 import {
   SortOrder,
@@ -16,14 +15,6 @@ import { PaginationProps } from 'src/components/Pagination'
 import { NextSeo } from 'next-seo'
 
 const first = 10
-
-// const defaultVariables: UsersConnectionQueryVariables = {
-//   where: {},
-//   first,
-//   orderBy: {
-//     updatedAt: SortOrder.DESC,
-//   },
-// }
 
 function getVariables(
   query: ParsedUrlQuery
@@ -87,12 +78,7 @@ export const UsersPage: Page = () => {
     onError: console.error,
   })
 
-  console.log('response.data?.users', response.data?.users)
-
-  const {
-    variables,
-    // loading
-  } = response
+  const { variables } = response
 
   const pagination = useMemo<PaginationProps>(() => {
     return {
@@ -110,16 +96,7 @@ export const UsersPage: Page = () => {
         canonical="/users"
       />
 
-      <UsersView
-        // {...queryResult}
-        // data={response}
-        users={response.data?.users || []}
-        // count={response.data?.usersCount || 0}
-        // variables={variables}
-        // page={page}
-        // loading={loading}
-        pagination={pagination}
-      />
+      <UsersView users={response.data?.users || []} pagination={pagination} />
     </>
   )
 }
@@ -127,7 +104,7 @@ export const UsersPage: Page = () => {
 UsersPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
-  const users = await apolloClient.query({
+  await apolloClient.query({
     query: UsersConnectionDocument,
 
     /**
@@ -136,8 +113,6 @@ UsersPage.getInitialProps = async (context) => {
      */
     variables: getVariables(context.query),
   })
-
-  console.log('getInitialProps users', users)
 
   return {}
 }

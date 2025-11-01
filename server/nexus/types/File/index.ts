@@ -1,10 +1,25 @@
-import { Prisma } from '@prisma/client'
-import { objectType, extendType, inputObjectType, arg } from 'nexus'
+// import { Prisma } from '@prisma/client'
+// import { objectType, extendType, inputObjectType, arg } from 'nexus'
+// import { singleUploadResolver } from './resolvers/singleUpload'
+
+import {
+  arg,
+  extendType,
+  inputObjectType,
+  list,
+  nonNull,
+  objectType,
+} from 'nexus'
 import { singleUploadResolver } from './resolvers/singleUpload'
+import { multipleUploadResolver } from './resolvers/multipleUpload'
 
 export const File = objectType({
   name: 'File',
   description: 'Файл',
+  // sourceType: {
+  //   module: '@prisma/client',
+  //   export: 'File',
+  // },
   definition(t) {
     t.nonNull.string('id')
     t.nonNull.date('createdAt', {
@@ -38,39 +53,52 @@ export const File = objectType({
   },
 })
 
-export const FileQuery = extendType({
+export const FileExtendsQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.files({
-      description: 'Список файлов',
-      filtering: true,
-      ordering: true,
+    t.nonNull.list.nonNull.field('files', {
+      type: 'File',
+      resolve(_, __, { prisma }) {
+        return prisma.file.findMany({})
+      },
     })
 
-    t.nonNull.int('filesCount', {
-      description: 'Количество файлов',
+    // t.nonNull.int('filesCount', {
+    //   description: 'Количество файлов',
+    //   args: {
+    //     where: 'FileWhereInput',
+    //   },
+    //   resolve(_, args, ctx) {
+    //     return ctx.prisma.file.count({
+    //       where: args.where as Prisma.FileCountArgs['where'],
+    //     })
+    //   },
+    // })
+
+    t.field('file', {
+      type: 'File',
       args: {
-        where: 'FileWhereInput',
+        where: nonNull('FileWhereUniqueInput'),
       },
-      resolve(_, args, ctx) {
-        return ctx.prisma.file.count({
-          where: args.where as Prisma.FileCountArgs['where'],
+      resolve(_, { where }, { prisma }) {
+        const { id } = where
+
+        return prisma.file.findUnique({
+          where: {
+            id: id ?? undefined,
+          },
         })
       },
-    })
-
-    t.crud.file({
-      description: 'Файл',
     })
   },
 })
 
-export const FileMutation = extendType({
+export const FileExtendsMutation = extendType({
   type: 'Mutation',
   definition: (t) => {
     t.field('singleUpload', {
-      type: 'File',
       description: 'Загрузка файла',
+      type: 'File',
       args: {
         file: arg({
           type: 'Upload',
@@ -80,6 +108,27 @@ export const FileMutation = extendType({
       },
       resolve: singleUploadResolver,
     })
+    t.list.nonNull.field('multipleUpload', {
+      description: 'Загрузка файла',
+      type: 'File',
+      args: {
+        files: list(
+          arg({
+            type: 'Upload',
+            description: 'Устаревший параметр',
+          })
+        ),
+        data: 'SingleUploadInput',
+      },
+      resolve: multipleUploadResolver,
+    })
+  },
+})
+
+export const FileWhereUniqueInput = inputObjectType({
+  name: 'FileWhereUniqueInput',
+  definition(t) {
+    t.string('id')
   },
 })
 
@@ -97,9 +146,3 @@ export const SingleUploadInput = inputObjectType({
     })
   },
 })
-
-// input SingleUploadInput {
-//   file: Upload
-//   name: String
-//   directory: String
-// }

@@ -46,6 +46,9 @@ type MarkdownFieldProps = {
   children: string | null | undefined
 }
 
+/**
+ * @deprecated use src/components/Markdown instead
+ */
 export const MarkdownField: React.FC<MarkdownFieldProps> = ({ children }) => {
   return children ? (
     <MarkdownFieldStyled>

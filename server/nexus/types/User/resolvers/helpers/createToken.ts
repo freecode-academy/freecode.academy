@@ -19,6 +19,7 @@ export const createToken = async (user: User, ctx: PrismaContext) => {
 
   const tokenData: AuthTokenData = {
     tokenId: Token.id,
+    userId: Token.userId,
   }
 
   const token = jwt.sign(tokenData, ctx.APP_SECRET)

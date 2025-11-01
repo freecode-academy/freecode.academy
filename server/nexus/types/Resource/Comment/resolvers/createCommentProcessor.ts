@@ -2,23 +2,27 @@ import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
 import { uid } from 'uid'
 import { createResource } from '../../resolvers/createResource'
-import { prepareContent } from '../../resolvers/helpers/prepareContent'
+// import { prepareContent } from '../../resolvers/helpers/prepareContent'
 
 export const createCommentProcessor: FieldResolver<
   'Mutation',
   'createCommentProcessor'
 > = async (_, args, ctx) => {
   const {
-    data: { Task: agrsTask, components, content, topicID },
+    data: { Task: agrsTask, components, content: contentV2, topicID },
   } = args
 
   // const { id: newResourceId = uid(25),  } = data
+
+  if (!contentV2) {
+    throw new Error('Комментарий не заполнен')
+  }
 
   const newResourceId = uid(25)
 
   const data: Prisma.ResourceCreateInput = {
     components,
-    content,
+    contentV2,
     // УРИ создаваемого комментария по-умолчанию (может быть переопределен ниже)
     uri: `/comments/${newResourceId}`,
     isfolder: false,
@@ -26,13 +30,14 @@ export const createCommentProcessor: FieldResolver<
     type: 'Comment',
   }
 
-  const { contentText } = prepareContent(data, data) || {}
+  // const { contentText } = prepareContent(data, data) || {}
 
-  let name =
-    (contentText &&
-      typeof contentText === 'string' &&
-      contentText.substr(0, 50)) ||
-    undefined
+  // TODO Добавить заголовок к коментарию
+  let name: string | undefined
+  //   (contentText &&
+  //     typeof contentText === 'string' &&
+  //     contentText.substr(0, 50)) ||
+  //   undefined
 
   if (topicID) {
     // Получаем топик

@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: Roboto, sans-serif, Tahoma, Helvetica;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   #__next {
@@ -32,29 +32,121 @@ export const GlobalStyle = createGlobalStyle`
     white-space: pre-wrap;
   }
 
-  h2 {
-    font-size: 20px;
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
   }
 
   h2 {
-    font-size: 16px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
   }
 
   a {
+    color: inherit;
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
       text-decoration: underline;
     }
   }
 
+  button {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
   p {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul, ol {
+    margin: 0 0 1rem 0;
+    padding-left: 2rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  blockquote {
+    margin: 0 0 1rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid #ccc;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   pre, code {
     white-space: pre-line !important;
+  }
+
+  pre {
+    margin: 0 0 1rem 0;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow-x: auto;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  code {
+    padding: 0.2rem 0.4rem;
+    background: #f5f5f5;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
   }
 
   .flex {

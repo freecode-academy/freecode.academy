@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const MarkdownFieldStyled = styled.div`
-  p {
+  /* p {
     margin: 0;
     padding: 0;
     line-height: 1.3rem;
@@ -14,5 +14,5 @@ export const MarkdownFieldStyled = styled.div`
   ul,
   ol {
     margin-left: 20px;
-  }
+  } */
 `

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   ResourceFragment,
   TopicsConnectionTopicFragment,
@@ -7,6 +6,10 @@ import { TopicViewStyled, TopicViewTitleStyled } from './styles'
 import { TopicLink } from 'src/uikit/Link/Topic'
 import { Editor } from 'src/components/SiteFrontEditor'
 import { TopicComments } from './Comments'
+import { useAppContext } from 'src/AppContext'
+import { useBoolean } from 'src/hooks/useBoolean'
+import { TopicEditForm } from '../Form'
+import { Button } from 'src/components/Button'
 
 type TopicViewProps = {
   canChangeBlog?: boolean
@@ -24,13 +27,7 @@ type TopicViewProps = {
 export const TopicView: React.FC<TopicViewProps> = ({ topic, variant }) => {
   const { name } = topic
 
-  console.log('TopicView topic', topic)
-
   const content = 'content' in topic ? topic.content : undefined
-  const contentText = 'contentText' in topic ? topic.contentText : undefined
-
-  console.log('TopicView content', content)
-  console.log('TopicView contentText', contentText)
 
   let title: JSX.Element | string | null | undefined
 
@@ -45,21 +42,37 @@ export const TopicView: React.FC<TopicViewProps> = ({ topic, variant }) => {
       break
   }
 
-  return (
-    <TopicViewStyled>
-      {title && (
-        <TopicLink topic={topic}>
-          <TopicViewTitleStyled as={variant === 'full' ? 'h1' : 'h2'}>
-            {title}
-          </TopicViewTitleStyled>
-        </TopicLink>
-      )}
+  const { user } = useAppContext()
 
-      {variant === 'full' && (
-        <Editor itemsOnly object={topic} value={content} />
-      )}
+  const [inEditMode, startEditing, stopEditing] = useBoolean()
 
-      {variant === 'full' && <TopicComments topic={topic} />}
-    </TopicViewStyled>
-  )
+  let viewContent: React.ReactNode
+
+  if (inEditMode) {
+    viewContent = <TopicEditForm topic={topic} cancelHandler={stopEditing} />
+  } else {
+    viewContent = (
+      <>
+        <div>
+          {title && (
+            <TopicLink topic={topic}>
+              <TopicViewTitleStyled as={variant === 'full' ? 'h1' : 'h2'}>
+                {title}
+              </TopicViewTitleStyled>
+            </TopicLink>
+          )}
+
+          {user?.sudo && <Button onClick={startEditing}>Редактировать</Button>}
+        </div>
+
+        {variant === 'full' && (
+          <Editor itemsOnly object={topic} value={content} />
+        )}
+
+        {variant === 'full' && <TopicComments topic={topic} />}
+      </>
+    )
+  }
+
+  return <TopicViewStyled>{viewContent}</TopicViewStyled>
 }

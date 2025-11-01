@@ -7,7 +7,7 @@ export const updateCommentProcessor: FieldResolver<
   'updateCommentProcessor'
 > = async (_, args, ctx) => {
   const {
-    data: { content, components },
+    data: { content: contentV2, components },
   } = args
 
   const where = args.where as Prisma.UserWhereUniqueInput
@@ -15,7 +15,7 @@ export const updateCommentProcessor: FieldResolver<
   const resource = await updateResource(
     {
       data: {
-        content,
+        contentV2,
         components,
       },
       where,

@@ -34,3 +34,5 @@ export * from './UserTechnology'
 // export * from './ChatRoomInvitation'
 // export * from './Notice'
 // export * from './NotificationType'
+
+// export * from './n8n'

@@ -76,6 +76,16 @@ const colors = {
     800: '#1f2937',
     900: '#111827',
   },
+  text: {
+    primary: '#333',
+    secondary: '#757575',
+    disabled: '#9e9e9e',
+    light: '#ffffff',
+  },
+  success: '#4caf50',
+  error: '#f44336',
+  warning: '#ff9800',
+  info: '#2196f3',
 }
 
 /**

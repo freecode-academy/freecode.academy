@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Head from 'next/head'
 import React, { useCallback, useMemo } from 'react'
 import {
@@ -91,8 +90,6 @@ export const TasksPage: Page = () => {
     variables: queryVariables,
     onError: console.error,
   })
-
-  console.log('response', response)
 
   const { variables } = response
 

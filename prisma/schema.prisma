@@ -387,15 +387,17 @@ model ResetPassword {
 }
 
 model Resource {
-  id                                        String          @id @default(cuid()) @db.VarChar(32)
-  code                                      String?         @unique @db.VarChar(32)
-  createdAt                                 DateTime        @default(now()) @db.Timestamp(3)
-  updatedAt                                 DateTime        @default(now()) @updatedAt @db.Timestamp(3)
-  type                                      ResourceType    @default(value: Resource)
-  name                                      String?         @db.Text
-  longtitle                                 String?         @db.Text
-  content                                   Json?
-  contentText                               String?         @db.Text
+  id          String       @id @default(cuid()) @db.VarChar(32)
+  code        String?      @unique @db.VarChar(32)
+  createdAt   DateTime     @default(now()) @db.Timestamp(3)
+  updatedAt   DateTime     @default(now()) @updatedAt @db.Timestamp(3)
+  type        ResourceType @default(value: Resource)
+  name        String?      @db.Text
+  longtitle   String?      @db.Text
+  content     Json?
+  contentText String?      @db.Text
+
+  contentV2                                 String?         @db.Text
   published                                 Boolean         @default(true)
   deleted                                   Boolean         @default(false)
   hidemenu                                  Boolean         @default(false)

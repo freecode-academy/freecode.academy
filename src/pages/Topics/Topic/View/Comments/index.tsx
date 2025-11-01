@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import { ResourceFragment } from 'src/gql/generated'
 import { Comment } from 'src/components/Comments/Comment'
+import { CommentCreateForm } from './Create'
 
 export interface TopicCommentsProps {
   topic: ResourceFragment
@@ -72,14 +73,11 @@ export const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {
   //   ) : null
   // }, [newCommentKey, onCommentSave, topicId])
 
-  return useMemo(() => {
-    return (
-      <div>
-        {comments}
+  return (
+    <div>
+      {comments}
 
-        {/* {newComment} */}
-      </div>
-    )
-  }, [comments])
-  // }
+      <CommentCreateForm topicID={topic.id} />
+    </div>
+  )
 }

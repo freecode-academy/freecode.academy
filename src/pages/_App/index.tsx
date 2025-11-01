@@ -40,6 +40,7 @@ import { GlobalStyle } from 'src/theme/GlobalStyle'
 import OfficeLayout from './layouts/OfficeLayout'
 import { Layout } from 'src/Layout'
 import { I18NProvider } from './tolgee'
+import { Snackbar, SnackbarProvider } from 'src/components/Snackbar'
 
 // TODO: Проработать локализацию
 moment.locale('ru')
@@ -227,20 +228,26 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
           <GlobalStyle />
           <ApolloProvider client={apolloClient}>
             <I18NProvider>
-              <Context.Provider value={contextValue}>
-                <WithUser context={contextValue} loginComplete={loginComplete}>
-                  <Auth
-                    open={authOpen}
-                    // TODO Restore metamask
-                    useMetamask={false}
+              <SnackbarProvider>
+                <Context.Provider value={contextValue}>
+                  <WithUser
+                    context={contextValue}
                     loginComplete={loginComplete}
-                    loginCanceled={loginCanceled}
-                    showRegForm={true}
-                  />
+                  >
+                    <Auth
+                      open={authOpen}
+                      // TODO Restore metamask
+                      useMetamask={false}
+                      loginComplete={loginComplete}
+                      loginCanceled={loginCanceled}
+                      showRegForm={true}
+                    />
 
-                  {contentWithLayout}
-                </WithUser>
-              </Context.Provider>
+                    {contentWithLayout}
+                  </WithUser>
+                  <Snackbar />
+                </Context.Provider>
+              </SnackbarProvider>
             </I18NProvider>
           </ApolloProvider>
         </ThemeProvider>

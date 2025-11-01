@@ -36,6 +36,7 @@ export const Resource = objectType({
       type: 'JSON',
     })
     t.string('contentText')
+    t.string('contentV2')
     t.nonNull.boolean('published')
     t.nonNull.boolean('deleted')
     t.nonNull.boolean('hidemenu')

@@ -79,6 +79,7 @@ import {
   TopicsConnectionTopicFragment,
 } from 'src/gql/generated'
 import { MarkdownField } from '../MarkdownField'
+import { Markdown } from '../Markdown'
 
 export type SiteFrontEditorProps = {
   object?:
@@ -97,20 +98,37 @@ export const SiteFrontEditor: React.FC<SiteFrontEditorProps> = ({
 }) => {
   let content: string | null | undefined
 
-  const contentText =
-    object && 'contentText' in object ? object.contentText : undefined
+  // TODO Привести все к единому Markdown
+  /**
+   * Сейчас проблема в том, что старый контект в Markdown некоторые комментарии и топики
+   * кидают ошибку.
+   * Скорее всего какой-то блок кода неизвестный или типа того.
+   */
+  let Renderer: typeof MarkdownField | typeof Markdown = MarkdownField
 
-  if (contentText) {
-    content = contentText
-  } else if (value) {
-    if (typeof value === 'string') {
-      content = value
-    } else {
-      content = JSON.stringify(value, null, 2)
+  // const contentText =
+  //   object && 'contentText' in object ? object.contentText : undefined
+
+  if (object) {
+    if ('contentV2' in object && object.contentV2) {
+      content = object.contentV2
+      Renderer = Markdown
+    } else if ('contentText' in object && object.contentText) {
+      content = object.contentText
+    } else if (value) {
+      if (typeof value === 'string') {
+        content = value
+      } else {
+        try {
+          content = JSON.stringify(value, null, 2)
+        } catch (error) {
+          content = null
+        }
+      }
     }
   }
 
-  return <MarkdownField>{content}</MarkdownField>
+  return <Renderer>{content}</Renderer>
 }
 
 export const FrontEditor = SiteFrontEditor

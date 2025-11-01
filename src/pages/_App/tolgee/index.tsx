@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   TolgeeProvider,
   DevTools,
@@ -79,13 +78,9 @@ export const I18NProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const router = useRouter()
 
-  console.log('router.locale', router.locale)
-
   // sync tolgee with router.locale
   // make sure first render matches the server one
   const ssrTolgee = useTolgeeSSR(tolgee, router.locale)
-
-  console.log('ssrTolgee', ssrTolgee)
 
   return <TolgeeProvider tolgee={ssrTolgee}>{children}</TolgeeProvider>
 }

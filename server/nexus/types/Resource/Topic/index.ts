@@ -44,6 +44,7 @@ export const TopicCreateInput = inputObjectType({
       type: 'CodeChallengeCreateOneWithoutTopicInput',
     })
     t.string('uri')
+    t.string('contentV2')
   },
 })
 
@@ -60,6 +61,7 @@ export const TopicUpdateInput = inputObjectType({
     })
     // t.boolean('published')
     // t.id('blogID')
+    t.string('contentV2')
   },
 })
 

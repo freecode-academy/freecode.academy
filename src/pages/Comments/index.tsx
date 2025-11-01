@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import {
   CommentsConnectionDocument,
   CommentsConnectionQueryVariables,
+  ResourceType,
   useCommentsConnectionQuery,
 } from 'src/gql/generated'
 
@@ -16,6 +17,11 @@ const first = 10
 
 const defaultVariables: CommentsConnectionQueryVariables = {
   first,
+  where: {
+    type: {
+      equals: ResourceType.COMMENT,
+    },
+  },
 }
 
 function getQueryParams(query: ParsedUrlQuery) {

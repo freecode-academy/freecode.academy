@@ -52,6 +52,7 @@ fragment ResourceNoNesting on Resource {
   name
   longtitle
   content
+  contentV2
   components
   contentText
   published

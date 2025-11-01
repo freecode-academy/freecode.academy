@@ -13,6 +13,7 @@ export const createTopicProcessor: FieldResolver<
     // uri,
     blogID,
     // CodeChallenge,
+    contentV2,
   } = args.data
 
   const CodeChallenges = args.data.CodeChallenge as
@@ -34,6 +35,7 @@ export const createTopicProcessor: FieldResolver<
 
     // TODO Надо из createResource вынести метод создания УРЛа
     uri,
+    contentV2: contentV2 ?? undefined,
   }
 
   if (uri) {

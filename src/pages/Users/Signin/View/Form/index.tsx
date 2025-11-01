@@ -3,7 +3,6 @@ import React, { useCallback, useContext, useMemo } from 'react'
 import { Controller, ControllerProps, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { SchemaOf } from 'yup'
 import { SigninMutationVariables, useSigninMutation } from 'src/gql/generated'
 import { TextField } from 'src/components/TextField'
 import { Button } from 'src/components/Button'
@@ -26,7 +25,7 @@ const SigninForm: React.FC = () => {
    * Описываем структуру формы в соответствии с типизацией
    */
   const schema = useMemo(() => {
-    const schema: SchemaOf<FormData> = yup
+    const schema: yup.ObjectSchema<FormData> = yup
       .object({
         username: yup.string().required(),
         password: yup.string().required(),
@@ -137,7 +136,7 @@ const SigninForm: React.FC = () => {
             }}
           >
             <Link href="/signup">
-              <Button size="small" type="button" variant="default">
+              <Button size="small" type="button">
                 Зарегистрироваться
               </Button>
             </Link>

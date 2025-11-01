@@ -1,6 +1,24 @@
+query files {
+  files {
+    ...File_
+  }
+}
+
+query file($where: FileWhereUniqueInput!) {
+  file(where: $where) {
+    ...File_
+  }
+}
+
 mutation singleUpload($file: Upload, $data: SingleUploadInput) {
   singleUpload(file: $file, data: $data) {
-    ...file
+    ...File_
+  }
+}
+
+mutation multipleUpload($files: [Upload!]!) {
+  multipleUpload(files: $files) {
+    ...File_
   }
 }
 
@@ -14,9 +32,8 @@ fragment FileNoNesting on File {
   mimetype
   encoding
   size
-  rank
 }
 
-fragment file on File {
+fragment File_ on File {
   ...FileNoNesting
 }

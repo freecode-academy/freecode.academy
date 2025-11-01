@@ -30,7 +30,7 @@ export const CommentCreateInput = inputObjectType({
     //   type: 'JSON',
     // })
     t.field('content', {
-      type: 'JSON',
+      type: 'String',
     })
     t.field('components', {
       type: 'JSON',
@@ -46,7 +46,7 @@ export const CommentUpdateInput = inputObjectType({
   name: 'CommentUpdateInput',
   definition(t) {
     t.field('content', {
-      type: 'JSON',
+      type: 'String',
     })
     t.field('components', {
       type: 'JSON',

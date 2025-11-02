@@ -53,6 +53,9 @@ export async function createUser(
 
   const user = await ctx.prisma.user.create({
     data: createData,
+    include: {
+      TelegramAccount: true,
+    },
   })
 
   let token: string | undefined

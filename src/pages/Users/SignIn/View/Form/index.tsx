@@ -8,7 +8,7 @@ import { TextField } from 'src/components/TextField'
 import { Button } from 'src/components/Button'
 // import { FormStyled } from "src/components/ui/form/styles";
 
-import { SigninFormStyled } from './styles'
+import { SigninFormFooterStyled, SigninFormStyled } from './styles'
 import { Context } from 'src/AppContext'
 import Link from 'next/link'
 
@@ -130,11 +130,7 @@ const SigninForm: React.FC = () => {
             render={passwordFieldRender}
           />
 
-          <div
-            style={{
-              display: 'flex',
-            }}
-          >
+          <SigninFormFooterStyled>
             <Link href="/signup">
               <Button size="small" type="button">
                 Зарегистрироваться
@@ -148,7 +144,7 @@ const SigninForm: React.FC = () => {
             >
               Авторизоваться
             </Button>
-          </div>
+          </SigninFormFooterStyled>
         </SigninFormStyled>
       </>
     )

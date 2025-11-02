@@ -20,6 +20,9 @@ type PoliciesBannerProps = {
   loginComplete: AppContextValue['loginComplete']
 }
 
+/**
+ * @deprecated
+ */
 export const PoliciesBanner: React.FC<PoliciesBannerProps> = ({
   loginComplete,
   user,

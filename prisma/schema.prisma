@@ -92,6 +92,8 @@ model User {
   IncomeChatMessages ChatMessage[] @relation(name: "ChatMessageUserTo")
   MindLogs           MindLog[]     @relation(name: "MindLogCreatedBy")
 
+  TelegramAccount TelegramAccount?
+
   @@unique([email])
   @@unique([username])
   @@index([CreatedBy], map: "User_CreatedBy")
@@ -1037,4 +1039,20 @@ model ChatMessage {
 
   toUserId String? @db.VarChar(36)
   ToUser   User?   @relation(fields: [toUserId], references: [id], onDelete: Cascade, name: "ChatMessageUserTo")
+}
+
+model TelegramAccount {
+  id        String   @id @default(cuid()) @db.VarChar(32)
+  createdAt DateTime @default(now()) @db.Timestamp(3)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(3)
+
+  externalKey Int       @unique
+  first_name  String?
+  last_name   String?
+  username    String?
+  photo_url   String?
+  auth_date   DateTime? @db.Timestamp(0)
+
+  userId String @unique @db.VarChar(32)
+  User   User   @relation(fields: [userId], references: [id])
 }

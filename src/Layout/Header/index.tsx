@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useLanguage } from 'src/hooks/i18n/useLanguage'
 import { XIcon } from '../icons/Icons'
 import { MenuIcon } from '../icons/Icons'
@@ -23,6 +23,7 @@ import {
   V1HeaderMenuCheckboxStyled,
   V1HeaderMobileMenuHeaderLabelStyled,
 } from './styles'
+import Link from 'next/link'
 
 // import { LanguagesSelect } from './Languages'
 
@@ -56,7 +57,17 @@ export const Header: React.FC = () => {
     }
   }, [])
 
-  const userProfileLink = user && <UserLink user={user} showName={false} />
+  const userProfileLink = useMemo(() => {
+    if (user) {
+      return <UserLink user={user} showName={false} />
+    } else {
+      return (
+        <Link href="/signin" title="Войти">
+          Войти
+        </Link>
+      )
+    }
+  }, [user])
 
   return (
     <>
@@ -105,10 +116,8 @@ export const Header: React.FC = () => {
         </V1HeaderMobileMenuHeaderStyled>
 
         <V1HeaderMobileNavStyled>
-          {user && (
-            <div style={{ marginBottom: '8px' }}>
-              <UserLink user={user} />
-            </div>
+          {userProfileLink && (
+            <div style={{ marginBottom: '8px' }}>{userProfileLink}</div>
           )}
 
           {navItems.map((item) => {

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useCallback, useRef, useState } from 'react'
 import {
   CommentCreateFormFooterStyled,
@@ -42,8 +41,6 @@ export const CommentCreateForm: React.FC<CommentCreateFormProps> = ({
   const onSubmit = useCallback<React.FormEventHandler>(
     async (event) => {
       event.preventDefault()
-
-      console.log('onSubmit')
 
       try {
         await createCommentMutation({

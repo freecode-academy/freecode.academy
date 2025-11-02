@@ -127,6 +127,9 @@ fragment meUser on User {
   Timers(first: 1, where: { stopedAt: null }) {
     ...Timer_
   }
+  TelegramAccount {
+    ...TelegramAccountNoNesting
+  }
 }
 
 fragment User_ on User {

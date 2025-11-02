@@ -9,6 +9,7 @@ import {
   TopicCreateInput,
   TopicsConnectionTopicFragment,
   useCreateTopicProcessorMutation,
+  useUpdateTopicProcessorMutation,
 } from 'src/gql/generated'
 import {
   Controller,
@@ -65,6 +66,7 @@ export const TopicEditForm: React.FC<TopicEditFormProps> = ({
   const router = useRouter()
 
   const [createTopicMutation] = useCreateTopicProcessorMutation()
+  const [updateTopicMutation] = useUpdateTopicProcessorMutation()
 
   const form = useForm<FormData>({
     defaultValues: getDefaultValues(topic),
@@ -84,14 +86,26 @@ export const TopicEditForm: React.FC<TopicEditFormProps> = ({
           if (reason === true) {
             const { ...other } = form.getValues()
 
-            const request = createTopicMutation({
-              variables: {
-                // lang: language,
-                data: {
-                  ...other,
-                },
-              },
-            })
+            const request = topic
+              ? updateTopicMutation({
+                  variables: {
+                    // lang: language,
+                    data: {
+                      ...other,
+                    },
+                    where: {
+                      id: topic.id,
+                    },
+                  },
+                })
+              : createTopicMutation({
+                  variables: {
+                    // lang: language,
+                    data: {
+                      ...other,
+                    },
+                  },
+                })
 
             request
               .then((r) => {
@@ -127,7 +141,15 @@ export const TopicEditForm: React.FC<TopicEditFormProps> = ({
           })
         })
     },
-    [addMessage, createTopicMutation, form, router, t]
+    [
+      addMessage,
+      createTopicMutation,
+      form,
+      router,
+      t,
+      topic,
+      updateTopicMutation,
+    ]
   )
 
   const fieldRenderer = useCallback<

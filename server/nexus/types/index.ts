@@ -36,3 +36,4 @@ export * from './UserTechnology'
 // export * from './NotificationType'
 
 // export * from './n8n'
+export * from './telegram'

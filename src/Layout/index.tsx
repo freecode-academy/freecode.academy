@@ -14,7 +14,7 @@ import dynamic from 'next/dynamic'
 import { useAppContext } from 'src/AppContext'
 import { AppActions } from 'src/AppContext/reducer/interfaces'
 // import { MainMenuWithStyles as MainMenu } from 'src/components/MainMenu'
-import { usePolicies } from 'src/Policies/hooks/usePolicies'
+// import { usePolicies } from 'src/Policies/hooks/usePolicies'
 import { Header } from './Header'
 
 const AiChat = dynamic(() => import('src/Chat').then((r) => r.AiChat), {
@@ -26,7 +26,7 @@ type LayoutProps = React.PropsWithChildren
 export const Layout: React.FC<LayoutProps> = ({ children, ...other }) => {
   const { activeTab } = useAppTabSwitcher()
 
-  const { policies } = usePolicies()
+  // const { policies } = usePolicies()
 
   const { appState, appDispatch } = useAppContext()
 
@@ -91,7 +91,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...other }) => {
         {/* <Footer /> */}
       </LayoutStyled>
 
-      {policies}
+      {/* {policies} */}
     </>
   )
 }

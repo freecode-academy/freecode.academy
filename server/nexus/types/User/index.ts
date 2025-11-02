@@ -7,6 +7,7 @@ import { unblockUser } from './resolvers/unblockUser'
 import { updateUserProcessor } from './resolvers/updateUserProcessor'
 import { updateCurrentUser } from './resolvers/updateCurrentUser'
 import { updateOneUser } from './resolvers/updateOneUser'
+import { authViaTelegramResolver } from './resolvers/authViaTelegram'
 
 export const User = objectType({
   name: 'User',
@@ -208,6 +209,17 @@ export const User = objectType({
         })
       },
     })
+
+    t.field('TelegramAccount', {
+      type: 'TelegramAccount',
+      resolve({ id }, _, { prisma }) {
+        return prisma.telegramAccount.findUnique({
+          where: {
+            userId: id,
+          },
+        })
+      },
+    })
   },
 })
 
@@ -266,6 +278,15 @@ export const UserExtendMutation = extendType({
         data: nonNull('UserSigninDataInput'),
       },
       resolve: signin,
+    })
+
+    t.nonNull.field('authViaTelegram', {
+      description: '',
+      type: 'AuthPayload',
+      args: {
+        tgAuthData: nonNull('TelegramAuthDataInput'),
+      },
+      resolve: authViaTelegramResolver,
     })
 
     // TODO Move to updateCurrentUser
@@ -423,3 +444,16 @@ export const UserCreateOneInput = inputObjectType({
 //       })
 //     },
 //   })
+
+export const TelegramAuthDataInput = inputObjectType({
+  name: 'TelegramAuthDataInput',
+  definition(t) {
+    t.nonNull.int('id')
+    t.string('first_name')
+    t.string('last_name')
+    t.string('username')
+    t.string('photo_url')
+    t.int('auth_date')
+    t.string('hash')
+  },
+})

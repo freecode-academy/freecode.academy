@@ -64,6 +64,7 @@ export const WithUser: React.FC<WithUserProps> = ({
       <AppContextProvider
         user={contextWithUser.user}
         loginComplete={loginComplete}
+        openLoginForm={contextWithUser.openLoginForm}
       >
         {children}
       </AppContextProvider>

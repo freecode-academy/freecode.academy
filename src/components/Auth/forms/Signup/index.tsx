@@ -16,6 +16,7 @@ import {
   SignupMutationResult,
   SignupMutationVariables,
 } from 'src/gql/generated'
+import { TelegramAuthForm } from 'src/pages/Users/SignUp/Form/TelegramAuthForm'
 
 class SignupForm extends AuthForm<SignupFormProps, SignupFormState> {
   // static propTypes = {
@@ -232,14 +233,11 @@ class SignupForm extends AuthForm<SignupFormProps, SignupFormState> {
     }
 
     actions.push(
-      <Button
-        key="cancel"
-        // color="primary"
-        onClick={this.closeForm}
-        size="small"
-      >
-        {this.lexicon('Cancel')}
-      </Button>
+      <TelegramAuthForm
+        key="tg_auth"
+        buttonSize="small"
+        onAuthSuccessHandler={this.closeForm}
+      />
     )
 
     if (values.length) {
@@ -249,7 +247,7 @@ class SignupForm extends AuthForm<SignupFormProps, SignupFormState> {
         </Button>
       )
     } else {
-      actions.unshift(
+      actions.push(
         <Button
           key="switchForm"
           // color="primary"
@@ -260,6 +258,17 @@ class SignupForm extends AuthForm<SignupFormProps, SignupFormState> {
           size="small"
         >
           {this.lexicon('Signin')}
+        </Button>
+      )
+
+      actions.push(
+        <Button
+          key="cancel"
+          // color="primary"
+          onClick={this.closeForm}
+          size="small"
+        >
+          {this.lexicon('Cancel')}
         </Button>
       )
     }

@@ -23,6 +23,7 @@ import {
   SigninMutationResult,
 } from 'src/gql/generated'
 import UsersList from './UsersList'
+import { TelegramAuthForm } from 'src/pages/Users/SignUp/Form/TelegramAuthForm'
 
 class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
   // props: AuthUsersProps
@@ -282,6 +283,14 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
           </Button>
         )
       }
+
+      actions.push(
+        <TelegramAuthForm
+          key="tg_auth"
+          buttonSize="small"
+          onAuthSuccessHandler={this.closeForm}
+        />
+      )
 
       if (showRegForm) {
         actions.push(

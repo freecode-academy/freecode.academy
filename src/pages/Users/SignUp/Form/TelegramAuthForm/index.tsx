@@ -4,12 +4,20 @@ import { useAppContext } from 'src/AppContext'
 import { useSnackbar } from 'src/components/Snackbar'
 import { AuthPayload, useAuthViaTelegramMutation } from 'src/gql/generated'
 
+type TelegramButtonProps = {
+  botName: string
+  buttonSize: 'large' | 'medium' | 'small'
+  cornerRadius: number
+}
+
 export type TelegramAuthFormProps = {
   onAuthSuccessHandler?: (data: AuthPayload) => void
+  buttonSize?: TelegramButtonProps['buttonSize']
 }
 
 export const TelegramAuthForm: React.FC<TelegramAuthFormProps> = ({
   onAuthSuccessHandler,
+  buttonSize = 'large',
 }) => {
   const [container, containerSetter] = useState<HTMLDivElement | null>(null)
 
@@ -18,14 +26,10 @@ export const TelegramAuthForm: React.FC<TelegramAuthFormProps> = ({
       return
     }
 
-    const telegramAuthProps: {
-      botName: string
-      buttonSize: 'large' | 'medium' | 'small'
-      cornerRadius: number
-    } = {
+    const telegramAuthProps: TelegramButtonProps = {
       botName: process.env.NEXT_PUBLIC_TELEGRAM_BOT_NAME || '',
-      buttonSize: 'large',
       cornerRadius: 5,
+      buttonSize,
     }
 
     // Подключаем скрипт Telegram login
@@ -44,7 +48,7 @@ export const TelegramAuthForm: React.FC<TelegramAuthFormProps> = ({
     return () => {
       delete (window as any).onTelegramAuth
     }
-  }, [container])
+  }, [container, buttonSize])
 
   const { addMessage } = useSnackbar() || {}
 
@@ -80,7 +84,12 @@ export const TelegramAuthForm: React.FC<TelegramAuthFormProps> = ({
 
   return (
     <>
-      <div ref={containerSetter}></div>
+      <div
+        style={{
+          display: 'contents',
+        }}
+        ref={containerSetter}
+      ></div>
     </>
   )
 }

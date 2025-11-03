@@ -5,7 +5,7 @@ import PrismaCmsComponent from '@prisma-cms/component'
 
 import { AuthUsersFormProps, AuthUsersFormState } from './interfaces'
 import AuthUsersConnector from './AuthUsersConnector'
-import { UserWhereInput } from 'src/gql/generated'
+import { QueryMode, UserWhereInput } from 'src/gql/generated'
 
 type Filters = { search: string }
 
@@ -117,16 +117,19 @@ class AuthUsersForm extends PrismaCmsComponent<
             {
               username: {
                 startsWith: search,
+                mode: QueryMode.INSENSITIVE,
               },
             },
             {
               email: {
                 startsWith: search,
+                mode: QueryMode.INSENSITIVE,
               },
             },
             {
               fullname: {
                 contains: search,
+                mode: QueryMode.INSENSITIVE,
               },
             },
           ],

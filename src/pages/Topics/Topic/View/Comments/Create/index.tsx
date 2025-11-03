@@ -34,9 +34,10 @@ export const CommentCreateForm: React.FC<CommentCreateFormProps> = ({
 
   const { addMessage } = useSnackbar() || {}
 
-  const [createCommentMutation] = useCreateCommentProcessorMutation({
-    refetchQueries: [ResourceDocument],
-  })
+  const [createCommentMutation, { loading: inRequest }] =
+    useCreateCommentProcessorMutation({
+      refetchQueries: [ResourceDocument],
+    })
 
   const onSubmit = useCallback<React.FormEventHandler>(
     async (event) => {
@@ -76,7 +77,9 @@ export const CommentCreateForm: React.FC<CommentCreateFormProps> = ({
       <MarkdownEditor key={editorKey} value={value} onChange={valueSetter} />
 
       <CommentCreateFormFooterStyled>
-        <Button type="submit">Опубликовать</Button>
+        <Button type="submit" disabled={inRequest}>
+          Опубликовать
+        </Button>
       </CommentCreateFormFooterStyled>
     </CommentCreateFormStyled>
   )

@@ -4,7 +4,7 @@ import { ChatMessageFragment, UserFragment } from 'src/gql/generated'
 
 type AiMessageProps = {
   message: ChatMessageFragment
-  currentUser: UserFragment
+  currentUser: UserFragment | null | undefined
 }
 
 export const AiMessageItem: React.FC<AiMessageProps> = ({
@@ -14,7 +14,9 @@ export const AiMessageItem: React.FC<AiMessageProps> = ({
 }) => {
   return (
     <AiMessageItemStyled
-      direction={message.createdBy === currentUser.id ? 'out' : 'in'}
+      direction={
+        currentUser && message.createdBy === currentUser.id ? 'out' : 'in'
+      }
       {...other}
     >
       <MarkdownField>{message.text}</MarkdownField>

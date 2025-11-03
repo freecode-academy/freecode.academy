@@ -23,7 +23,7 @@ import {
   V1HeaderMenuCheckboxStyled,
   V1HeaderMobileMenuHeaderLabelStyled,
 } from './styles'
-import Link from 'next/link'
+import { Button } from 'src/components/Button'
 
 // import { LanguagesSelect } from './Languages'
 
@@ -43,7 +43,7 @@ const navItems: {
 ] as const
 
 export const Header: React.FC = () => {
-  const { user } = useAppContext()
+  const { user, openLoginForm } = useAppContext()
 
   const { t } = useLanguage()
 
@@ -61,13 +61,9 @@ export const Header: React.FC = () => {
     if (user) {
       return <UserLink user={user} showName={false} />
     } else {
-      return (
-        <Link href="/signin" title="Войти">
-          Войти
-        </Link>
-      )
+      return <Button onClick={openLoginForm}>Войти</Button>
     }
-  }, [user])
+  }, [user, openLoginForm])
 
   return (
     <>

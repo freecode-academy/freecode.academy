@@ -32,7 +32,7 @@ export const AiChat: React.FC<AiChatProps> = ({ ...other }) => {
     }, 100) // Небольшая задержка, чтобы дождаться отрисовки сообщения
   }, [messages])
 
-  return !user ? null : (
+  return (
     <AiChatStyled {...other}>
       <AiChatContentWrapperStyled ref={messagesContainerRef}>
         {messages.map((n) => (

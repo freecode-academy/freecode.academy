@@ -6,7 +6,12 @@ import { createId } from 'src/helpers/createId'
 import { useApolloClient } from '@apollo/client'
 
 export function useChat() {
-  const { user: currentUser, appState, appDispatch } = useAppContext()
+  const {
+    user: currentUser,
+    appState,
+    appDispatch,
+    openLoginForm,
+  } = useAppContext()
 
   const { chatMessages } = appState
 
@@ -17,6 +22,11 @@ export function useChat() {
   const client = useApolloClient()
 
   const sendChatMessage = useCallback(() => {
+    if (!currentUser) {
+      openLoginForm()
+      return
+    }
+
     textSetter((text) => {
       // Проверяем, что текст не пустой
       if (text) {
@@ -85,7 +95,7 @@ export function useChat() {
 
       return ''
     })
-  }, [appDispatch, sendMessageMutation, currentUser, client])
+  }, [appDispatch, sendMessageMutation, currentUser, client, openLoginForm])
 
   return {
     messages: chatMessages,

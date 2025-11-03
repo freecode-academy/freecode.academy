@@ -15,11 +15,13 @@ import {
   useActivitiesSubscriptionProps,
 } from './hooks/useActivitiesSubscription'
 import { ApolloClientNormolized } from 'src/pages/_App/interfaces'
+import { PrismaCmsContext } from '@prisma-cms/context'
 
 export type AppContextValue = {
   user: MeQuery['me']
   loginComplete: (data: AuthFormResponse) => Promise<void>
 
+  openLoginForm: PrismaCmsContext['openLoginForm']
   onAuthSuccess: (
     data:
       | SignupMutation['response']
@@ -36,15 +38,17 @@ export const Context = React.createContext<AppContextValue | null>(null)
 type AppContextProviderProps = React.PropsWithChildren<{
   user: AppContextValue['user']
   loginComplete: AppContextValue['loginComplete']
+  openLoginForm: AppContextValue['openLoginForm']
 }>
 
 /**
  * Вообще есть более глобальный контекст, но этот мне тоже нужен
  */
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({
+  children,
   user,
   loginComplete,
-  children,
+  openLoginForm,
 }) => {
   const apolloClient = useApolloClient()
 
@@ -97,8 +101,9 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
       loginComplete,
       appDispatch,
       appState,
+      openLoginForm,
     }
-  }, [onAuthSuccess, user, loginComplete, appDispatch, appState])
+  }, [onAuthSuccess, user, loginComplete, appDispatch, appState, openLoginForm])
 
   return <Context.Provider value={context}>{children}</Context.Provider>
 }

@@ -36,19 +36,21 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
   }
 
   h2 {
     font-size: 1.5rem;
     font-weight: 600;
     line-height: 1.3;
+    margin: 0.9rem 0;
   }
 
   h3 {
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 1.4;
+    margin: 0.8rem 0;
   }
 
   h4 {
@@ -58,9 +60,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: inherit;
+    color: #335295;
     text-decoration: none;
     cursor: pointer;
+    font-weight: 500;
 
     &:hover {
       text-decoration: underline;
@@ -86,8 +89,12 @@ export const GlobalStyle = createGlobalStyle`
     font-size: inherit;
   }
 
+  hr {
+    margin: 0.5rem 0; 
+  }
+
   p {
-    margin: 0 0 1rem 0;
+    margin: 0.5rem 0;
 
     &:last-child {
       margin-bottom: 0;
@@ -95,7 +102,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ul, ol {
-    margin: 0 0 1rem 0;
+    margin: 0 0.5rem;
     padding-left: 2rem;
 
     &:last-child {
@@ -112,7 +119,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   blockquote {
-    margin: 0 0 1rem 0;
+    margin: 0 0.5rem;
     padding-left: 1rem;
     border-left: 3px solid #ccc;
 
@@ -126,7 +133,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   pre {
-    margin: 0 0 1rem 0;
+    margin: 0 0.5rem;
     padding: 1rem;
     background: #f5f5f5;
     border-radius: 4px;

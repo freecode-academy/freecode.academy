@@ -5,6 +5,7 @@ import { MenuIcon } from '../icons/Icons'
 import { i18nTranslationKey } from 'src/i18n/interfaces'
 import { useAppContext } from 'src/AppContext'
 import { UserLink } from 'src/uikit/Link/User'
+import { TelegramIconSvg } from 'src/uikit/icons/telegram'
 import {
   V1HeaderDesktopNavStyled,
   V1HeaderHeaderContainerStyled,
@@ -65,6 +66,18 @@ export const Header: React.FC = () => {
     }
   }, [user, openLoginForm])
 
+  const tgLink = (
+    <a
+      key="tgLink"
+      href="https://t.me/freecode_academy"
+      title="Freecode.Academy в Телеграме"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <TelegramIconSvg />
+    </a>
+  )
+
   return (
     <>
       <V1HeaderHeaderContainerStyled>
@@ -90,6 +103,8 @@ export const Header: React.FC = () => {
 
           <V1HeaderRightSectionStyled>
             {/* <LanguagesSelect /> */}
+
+            {tgLink}
 
             {userProfileLink}
 

@@ -51,16 +51,23 @@ export const TopicCreateInput = inputObjectType({
 export const TopicUpdateInput = inputObjectType({
   name: 'TopicUpdateInput',
   definition(t) {
-    t.string('name')
+    t.string('name', {
+      default: '',
+    })
     t.string('longtitle')
-    t.field('content', {
-      type: 'JSON',
-    })
-    t.field('components', {
-      type: 'JSON',
-    })
+    // t.field('content', {
+    //   type: 'JSON',
+    // })
+    // t.field('components', {
+    //   type: 'JSON',
+    // })
     // t.boolean('published')
-    // t.id('blogID')
+    // t.list.nonNull.string('topic_tags')
+    t.id('blogID')
+    // t.field('CodeChallenge', {
+    //   type: 'CodeChallengeCreateOneWithoutTopicInput',
+    // })
+    t.string('uri')
     t.string('contentV2')
   },
 })

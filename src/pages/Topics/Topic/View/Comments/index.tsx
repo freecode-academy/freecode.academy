@@ -1,10 +1,20 @@
 import React, { useMemo } from 'react'
-import { ResourceFragment } from 'src/gql/generated'
+import {
+  ResourceFragment,
+  TopicsConnectionTopicFragment,
+} from 'src/gql/generated'
 import { Comment } from 'src/components/Comments/Comment'
-import { CommentCreateForm } from './Create'
+import dynamic from 'next/dynamic'
+
+const CommentCreateForm = dynamic(
+  () => import('./Create').then((r) => r.CommentCreateForm),
+  {
+    ssr: false,
+  }
+)
 
 export interface TopicCommentsProps {
-  topic: ResourceFragment
+  topic: ResourceFragment | TopicsConnectionTopicFragment
 }
 
 export const TopicComments: React.FC<TopicCommentsProps> = ({ topic }) => {

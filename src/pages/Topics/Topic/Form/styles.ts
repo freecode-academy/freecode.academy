@@ -8,4 +8,7 @@ export const TopicEditFormToolbarStyled = styled.div`
 
 export const TopicEditFormStyled = styled.form`
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `

@@ -20,7 +20,7 @@ type TopicViewProps = {
     }
   | {
       variant: 'full'
-      topic: ResourceFragment
+      topic: ResourceFragment | TopicsConnectionTopicFragment
     }
 )
 

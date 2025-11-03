@@ -5,6 +5,7 @@ import {
 } from './styles'
 import {
   ResourceDocument,
+  TopicsConnectionDocument,
   useCreateCommentProcessorMutation,
 } from 'src/gql/generated'
 import { useSnackbar } from 'src/components/Snackbar'
@@ -26,7 +27,7 @@ export const CommentCreateForm: React.FC<CommentCreateFormProps> = ({
   topicID,
   ...other
 }) => {
-  const [editorKey, editorKeySetter] = useState(Math.random())
+  const [editorKey, editorKeySetter] = useState<number | undefined>()
 
   const [value, valueSetter] = useState('')
   const valueRef = useRef(value)
@@ -36,7 +37,7 @@ export const CommentCreateForm: React.FC<CommentCreateFormProps> = ({
 
   const [createCommentMutation, { loading: inRequest }] =
     useCreateCommentProcessorMutation({
-      refetchQueries: [ResourceDocument],
+      refetchQueries: [ResourceDocument, TopicsConnectionDocument],
     })
 
   const onSubmit = useCallback<React.FormEventHandler>(

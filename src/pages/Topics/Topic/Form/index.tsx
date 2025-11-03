@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 
 import * as yup from 'yup'
@@ -6,8 +6,10 @@ import * as yup from 'yup'
 import { TopicEditFormStyled, TopicEditFormToolbarStyled } from './styles'
 import {
   ResourceFragment,
+  ResourceType,
   TopicCreateInput,
   TopicsConnectionTopicFragment,
+  useBlogsConnectionQuery,
   useCreateTopicProcessorMutation,
   useUpdateTopicProcessorMutation,
 } from 'src/gql/generated'
@@ -34,19 +36,21 @@ const MarkdownEditor = dynamic(
 
 type FormData = Omit<
   TopicCreateInput,
-  'CodeChallenge' | 'blogID' | 'components' | 'id' | 'uri'
+  'CodeChallenge' | 'components' | 'id' | 'uri'
 >
 
 function getDefaultValues(topic: TopicEditFormProps['topic']): FormData {
   return {
     name: topic?.name ?? '',
     contentV2: (topic && 'contentV2' in topic && topic.contentV2) || '',
+    blogID: topic?.Blog?.id,
   }
 }
 
 export const schema: yup.ObjectSchema<FormData> = yup.object().shape({
   name: yup.string().required(),
   contentV2: yup.string().required(),
+  blogID: yup.string(),
 })
 
 type TopicEditFormProps = {
@@ -152,44 +156,86 @@ export const TopicEditForm: React.FC<TopicEditFormProps> = ({
     ]
   )
 
-  const fieldRenderer = useCallback<
-    ControllerProps<FormData, 'name' | 'contentV2'>['render']
-  >(({ field: { name, value, onChange, onBlur }, fieldState: { error } }) => {
-    let label: string
-    const helperText = undefined
-    let EditorComponent: typeof TextField | typeof MarkdownEditor = TextField
+  const blogsResponse = useBlogsConnectionQuery({
+    variables: {
+      where: {
+        type: {
+          equals: ResourceType.BLOG,
+        },
+      },
+      first: null,
+    },
+  })
 
-    switch (name) {
-      case 'name':
-        label = 'Name'
-        break
-      case 'contentV2':
-        label = 'Content'
-        EditorComponent = MarkdownEditor
-        break
-    }
-
-    return (
-      <FormControl
-        label={label}
-        helperText={error ? error.message : helperText}
-        error={!!error}
-      >
-        <EditorComponent
-          value={value || ''}
-          onChange={onChange}
-          onBlur={onBlur}
-        />
-      </FormControl>
+  const blogs = useMemo(() => {
+    return [...(blogsResponse.data?.resources ?? [])].sort(
+      (a, b) => (a.name || '').charCodeAt(0) - (b.name || '').charCodeAt(0)
     )
-  }, [])
+  }, [blogsResponse.data?.resources])
+
+  const fieldRenderer = useCallback<
+    ControllerProps<FormData, 'name' | 'contentV2' | 'blogID'>['render']
+  >(
+    ({ field: { name, value, onChange, onBlur }, fieldState: { error } }) => {
+      let label: string
+      const helperText = undefined
+      let EditorComponent:
+        | typeof TextField
+        | typeof MarkdownEditor
+        | React.FC<React.HtmlHTMLAttributes<HTMLSelectElement>> = TextField
+
+      switch (name) {
+        case 'name':
+          label = 'Name'
+          break
+        case 'blogID':
+          label = 'Blog'
+
+          EditorComponent = (
+            props: React.HtmlHTMLAttributes<HTMLSelectElement>
+          ) => {
+            return (
+              <select {...props}>
+                <option value="">Select blog</option>
+                {blogs.map((n) => {
+                  return (
+                    <option key={n.id} value={n.id}>
+                      {n.name}
+                    </option>
+                  )
+                })}
+              </select>
+            )
+          }
+          break
+        case 'contentV2':
+          label = 'Content'
+          EditorComponent = MarkdownEditor
+          break
+      }
+
+      return (
+        <FormControl
+          label={label}
+          helperText={error ? error.message : helperText}
+          error={!!error}
+        >
+          <EditorComponent
+            value={value || ''}
+            onChange={onChange}
+            onBlur={onBlur}
+          />
+        </FormControl>
+      )
+    },
+    [blogs]
+  )
 
   return (
     <FormProvider {...form}>
       <TopicEditFormStyled onSubmit={onSubmit}>
-        {/* <MarkdownEditor value={value} onChange={onChange} /> */}
-
         <Controller name="name" render={fieldRenderer} />
+        <Controller name="blogID" render={fieldRenderer} />
         <Controller name="contentV2" render={fieldRenderer} />
 
         <TopicEditFormToolbarStyled>

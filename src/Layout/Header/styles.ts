@@ -63,7 +63,7 @@ export const V1HeaderLogoTextStyled = styled.span`
 export const V1HeaderDesktopNavStyled = styled.nav`
   display: none;
   align-items: center;
-  gap: ${theme.spacing[6]};
+  gap: ${theme.spacing[4]};
 
   @media (min-width: ${theme.breakpoints.md}px) {
     display: flex;

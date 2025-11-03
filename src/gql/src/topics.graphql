@@ -3,6 +3,7 @@ query topicsConnection(
   $skip: Int
   $where: ResourceWhereInput
   $orderBy: [ResourceOrderByWithRelationInput!] = { createdAt: desc }
+  $withContent: Boolean = false
 ) {
   resourcesCount(where: $where)
   resources(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {
@@ -16,6 +17,7 @@ fragment topicsConnectionTopic on Resource {
   name
   uri
   longtitle
+  contentV2 @include(if: $withContent)
   CreatedBy {
     ...topicsConnectionUser
   }

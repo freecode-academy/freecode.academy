@@ -149,19 +149,21 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = ({
         <DesktopLayoutToolbarStyled>
           <Tabs value={tabIndex} onChange={onChangeTabs} className="tabs">
             <Tab label="Задание" value={DesktopLayoutTabIndex.Root} />
-            <Tab
-              label={
-                <span
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  Обсудить &nbsp;{challenge.Topic ? <DiscussIcon /> : null}
-                </span>
-              }
-              value={DesktopLayoutTabIndex.Discuss}
-            />
+            {challenge.Topic && (
+              <Tab
+                label={
+                  <span
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    Обсудить &nbsp;{challenge.Topic ? <DiscussIcon /> : null}
+                  </span>
+                }
+                value={DesktopLayoutTabIndex.Discuss}
+              />
+            )}
           </Tabs>
 
           {status === CodeChallengeStatus.Done ? (

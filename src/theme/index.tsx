@@ -143,7 +143,7 @@ const theme = {
    * Тема для личного кабинета
    */
   officeTheme,
-}
+} as const
 
 export type Theme = typeof theme
 

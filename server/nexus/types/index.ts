@@ -37,3 +37,4 @@ export * from './UserTechnology'
 
 // export * from './n8n'
 export * from './telegram'
+export * from './open-webui'

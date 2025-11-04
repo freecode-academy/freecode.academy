@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useAppContext } from 'src/AppContext'
 
 import { useSnackbar } from 'src/components/Snackbar'
-import { AuthPayload, useAuthViaTelegramMutation } from 'src/gql/generated'
+import {
+  AuthPayloadFragment,
+  useAuthViaTelegramMutation,
+} from 'src/gql/generated'
 
 type TelegramButtonProps = {
   botName: string
@@ -11,7 +14,7 @@ type TelegramButtonProps = {
 }
 
 export type TelegramAuthFormProps = {
-  onAuthSuccessHandler?: (data: AuthPayload) => void
+  onAuthSuccessHandler?: (data: AuthPayloadFragment) => void
   buttonSize?: TelegramButtonProps['buttonSize']
 }
 

@@ -70,7 +70,7 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
         helperText={this.lexicon('Login, email, phone or user ID')}
         fullWidth
         name={name}
-        value={search || ''}
+        defaultValue={search || ''}
         onChange={this.onLoginChange}
       />
     )
@@ -325,7 +325,7 @@ class AuthUsers extends AuthForm<AuthUsersProps, AuthUsersState> {
           <TextField
             fullWidth
             name="code"
-            value={resetPasswordCode || ''}
+            defaultValue={resetPasswordCode || ''}
             label={this.lexicon('Code')}
             helperText={this.lexicon('Type confirm code')}
             // type="password"

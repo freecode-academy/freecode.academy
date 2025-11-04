@@ -4,7 +4,13 @@ fragment TelegramAccountNoNesting on TelegramAccount {
   photo_url
 }
 
-mutation authViaTelegram($tgAuthData: TelegramAuthDataInput!) {
+mutation authViaTelegram(
+  $tgAuthData: TelegramAuthDataInput!
+  $withMentorMentee: Boolean = false
+  $withUserTechnologies: Boolean = false
+  $withCodeChallengeCompletions: Boolean = false
+  $withEducationProjects: Boolean = false
+) {
   authViaTelegram(tgAuthData: $tgAuthData) {
     success
     message
@@ -14,7 +20,7 @@ mutation authViaTelegram($tgAuthData: TelegramAuthDataInput!) {
     }
     token
     data {
-      ...UserNoNesting
+      ...meUser
     }
   }
 }

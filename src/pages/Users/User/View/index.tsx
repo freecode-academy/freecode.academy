@@ -1,11 +1,19 @@
 import React from 'react'
 import { Typography } from 'material-ui'
-import { MarkdownField } from 'src/components/MarkdownField'
+import { Markdown } from 'src/components/Markdown'
 import { UserFragment } from 'src/gql/generated'
 import { UserAvatar } from 'src/uikit/Avatar'
 import { UserPageViewRowStyled, UserPageViewStyled } from './styles'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
 import { ConnectTelegram } from './ConnectTelegram'
+import dynamic from 'next/dynamic'
+
+const OpenWebUi = dynamic(
+  () => import('./OpenWebUi').then((r) => r.OpenWebUi),
+  {
+    ssr: false,
+  }
+)
 
 type UserPageViewProps = {
   user: UserFragment
@@ -24,11 +32,15 @@ export const UserPageView: React.FC<UserPageViewProps> = ({ user }) => {
         <Typography variant="title">{fullname || username}</Typography>
       </UserPageViewRowStyled>
 
-      {currentUser?.id === user.id && !currentUser.TelegramAccount && (
-        <ConnectTelegram />
+      {currentUser?.id === user.id && (
+        <>
+          {!currentUser.TelegramAccount && <ConnectTelegram />}
+
+          <OpenWebUi currentUser={currentUser} />
+        </>
       )}
 
-      <MarkdownField>{content}</MarkdownField>
+      <Markdown>{content}</Markdown>
     </UserPageViewStyled>
   )
 }

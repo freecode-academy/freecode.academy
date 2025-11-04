@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { FieldResolver } from 'nexus'
 
 export const n8nSendAiMessage: FieldResolver<
@@ -12,8 +11,6 @@ export const n8nSendAiMessage: FieldResolver<
   }
 
   const { req } = ctx
-
-  console.log('req?.headers', req?.headers)
 
   const token = req?.headers.authorization ?? ''
 
@@ -29,8 +26,6 @@ export const n8nSendAiMessage: FieldResolver<
       body: JSON.stringify({ text }),
     }
   ).then((response) => {
-    console.log('response', response)
-
     if (!response.ok) {
       throw new Error(response.statusText)
     }

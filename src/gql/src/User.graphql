@@ -78,6 +78,18 @@ mutation signup($data: UserSignupDataInput) {
   }
 }
 
+mutation createOpenWebUiUser(
+  $data: OpenWebUiUserCreateInput!
+  $withMentorMentee: Boolean = false
+  $withUserTechnologies: Boolean = false
+  $withCodeChallengeCompletions: Boolean = false
+  $withEducationProjects: Boolean = false
+) {
+  createOpenWebUiUser(data: $data) {
+    ...meUser
+  }
+}
+
 # fragment MeUserTimer on Timer {
 #   id
 #   createdAt
@@ -119,6 +131,8 @@ mutation signup($data: UserSignupDataInput) {
 
 fragment meUser on User {
   ...userProfile
+  email
+  hasWebUiProfile
   # EthAccounts {
   #   id
   #   address

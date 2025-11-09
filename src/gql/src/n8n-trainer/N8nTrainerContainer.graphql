@@ -1,0 +1,31 @@
+query n8nTrainerContainers {
+  n8nTrainerContainers {
+    ...N8nTrainerContainer_
+  }
+}
+
+mutation n8nTrainerCreateContainer($lesson: String!) {
+  n8nTrainerCreateContainer(lesson: $lesson) {
+    ...N8nTrainerContainer_
+  }
+}
+
+mutation n8nTrainerContainerCreateAuth($data: N8nTrainerCreateContainerInput!) {
+  n8nTrainerContainerCreateAuth(data: $data) {
+    browserId
+  }
+}
+
+query n8nTrainerContainerGetAuthToken($browserId: String!) {
+  n8nTrainerContainerGetAuthToken(browserId: $browserId)
+}
+
+fragment N8nTrainerContainerNoNesting on N8nTrainerContainer {
+  name
+  lesson
+  status
+}
+
+fragment N8nTrainerContainer_ on N8nTrainerContainer {
+  ...N8nTrainerContainerNoNesting
+}

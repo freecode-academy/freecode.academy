@@ -21,6 +21,9 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
     chatMessage: isSudo,
     chatMessages: isSudo,
     mindLogs: isSudo,
+
+    // n8n-trainer
+    // n8nTrainerContainers: isSudo,
   },
   Mutation: {
     // updateUserProcessor: isAuthenticated,
@@ -45,6 +48,8 @@ const ruleTree: RuleTree<NexusGenFieldTypes> = {
     singleUpload: isAuthenticated,
     sendAiMessage: isAuthenticated,
     // sendMessage: isSudo,
+    blockUser: isSudo,
+    unblockUser: isSudo,
   },
 }
 

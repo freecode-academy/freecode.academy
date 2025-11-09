@@ -1,0 +1,16 @@
+query n8nWorkflows {
+  n8nWorkflows {
+    ...N8nWorkflow_
+  }
+}
+
+fragment N8nWorkflowNonesting on N8nWorkflow {
+  key
+  name
+  description
+  content
+}
+
+fragment N8nWorkflow_ on N8nWorkflow {
+  ...N8nWorkflowNonesting
+}

@@ -34,6 +34,7 @@ const navItems: {
   sudo?: boolean
 }[] = [
   { key: 'mainMenu.admin.title', href: '/admin', sudo: true },
+  { key: 'mainMenu.n8n.title', href: '/n8n/workflows' },
   { key: 'mainMenu.learn.title', href: '/learn/sections' },
   { key: 'mainMenu.learnstrategies.title', href: '/learnstrategies' },
   { key: 'mainMenu.people.title', href: '/people' },

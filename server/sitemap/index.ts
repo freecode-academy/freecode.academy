@@ -118,6 +118,11 @@ export class SitemapBuilder extends Sitemap {
     })
 
     this.addSitemapDocument(xml, uri, {
+      url: `/n8n/workflows`,
+      priority: 0.8,
+    })
+
+    this.addSitemapDocument(xml, uri, {
       url: `/comments`,
       priority: 0.6,
     })

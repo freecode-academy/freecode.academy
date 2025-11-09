@@ -94,6 +94,9 @@ model User {
 
   TelegramAccount TelegramAccount?
 
+  // N8nWorkflowsCreated       N8nWorkflow[]
+  // N8nDockerInstancesCreated N8nDockerInstance[]
+
   @@unique([email])
   @@unique([username])
   @@index([CreatedBy], map: "User_CreatedBy")
@@ -1056,3 +1059,32 @@ model TelegramAccount {
   userId String @unique @db.VarChar(32)
   User   User   @relation(fields: [userId], references: [id])
 }
+
+// model N8nWorkflow {
+//   id        String   @id @default(cuid()) @db.VarChar(32)
+//   createdAt DateTime @default(now()) @db.Timestamp(3)
+//   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(3)
+
+//   key         String  @unique
+//   name        String
+//   description String?
+
+//   content String
+//   code    Json
+
+//   createdById String @unique @db.VarChar(32)
+//   CreatedBy   User   @relation(fields: [createdById], references: [id])
+
+//   n8NdockerInstances N8nDockerInstance[]
+// }
+
+// model N8nDockerInstance {
+//   id        String   @id @default(cuid()) @db.VarChar(32)
+//   createdAt DateTime @default(now()) @db.Timestamp(3)
+//   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(3)
+
+//   N8nWorkflows N8nWorkflow[]
+
+//   createdById String @unique @db.VarChar(32)
+//   CreatedBy   User   @relation(fields: [createdById], references: [id])
+// }

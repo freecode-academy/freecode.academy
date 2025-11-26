@@ -21,6 +21,26 @@ query user(
   }
 }
 
+query users(
+  $where: UserWhereInput
+  $orderBy: [UserOrderByWithRelationInput!] = { createdAt: asc }
+  $skip: Int
+  $first: Int = 10
+  $withMentorMentee: Boolean = false
+  $withUserTechnologies: Boolean = false
+  $withCodeChallengeCompletions: Boolean = false
+  $withEducationProjects: Boolean = false
+) {
+  users(
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    take: $first # last: $last
+  ) {
+    ...userProfile
+  }
+}
+
 query usersConnection(
   $where: UserWhereInput
   $orderBy: [UserOrderByWithRelationInput!] = { createdAt: asc }

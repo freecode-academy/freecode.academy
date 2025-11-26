@@ -13,10 +13,10 @@ export async function createUser(
     password: passwordProps,
     // showEmail,
     // showFullname,
-    // email,
-    // fullname,
+    email,
+    fullname,
+    username,
     // phone,
-    // username,
   } = data
 
   // if (!passwordProps) {
@@ -42,10 +42,10 @@ export async function createUser(
     password,
     // showEmail,
     // showFullname,
-    // email,
-    // fullname,
+    email: email ? email.trim() : undefined,
+    fullname: fullname ? fullname.trim() : undefined,
+    username: username ? username.trim() : undefined,
     // phone,
-    // username,
     // NotificationTypes_UserNotificationTypes: {
     //   connect: NotificationType_UserNotificationTypesConnect,
     // },

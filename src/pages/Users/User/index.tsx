@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react'
 import {
-  useUserQuery,
-  UserDocument,
-  UserQuery,
-  UserQueryVariables,
+  UsersQueryVariables,
+  QueryMode,
+  useUsersQuery,
+  UsersDocument,
+  UsersQuery,
 } from 'src/gql/generated'
 
 import { UserPageView } from './View'
@@ -18,8 +19,8 @@ import { createUserLink } from 'src/uikit/Link/User'
  */
 function getVariables(
   router: NextRouter | NextPageContextCustom
-): UserQueryVariables {
-  let where: UserQueryVariables['where']
+): UsersQueryVariables {
+  let where: UsersQueryVariables['where']
 
   const id =
     router.query.id && typeof router.query.id === 'string'
@@ -32,17 +33,23 @@ function getVariables(
 
   if (id) {
     where = {
-      id,
+      id: {
+        equals: id,
+      },
     }
   } else {
     where = {
-      username,
+      username: {
+        equals: username,
+        mode: QueryMode['INSENSITIVE'],
+      },
     }
   }
 
   return {
     where,
     withEducationProjects: true,
+    first: 1,
   }
 }
 
@@ -53,12 +60,12 @@ export const UserPage: Page = () => {
     return getVariables(router)
   }, [router])
 
-  const response = useUserQuery({
+  const response = useUsersQuery({
     variables,
     onError: console.error,
   })
 
-  const user = response.data?.object
+  const user = response.data?.users[0]
 
   if (!user) {
     return null
@@ -81,8 +88,8 @@ UserPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
   // TODO Fix private rooms access
-  const result = await apolloClient.query<UserQuery>({
-    query: UserDocument,
+  const result = await apolloClient.query<UsersQuery>({
+    query: UsersDocument,
 
     /**
      * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
@@ -91,6 +98,6 @@ UserPage.getInitialProps = async (context) => {
     variables: getVariables(context),
   })
   return {
-    statusCode: !result.data.object ? 404 : undefined,
+    statusCode: !result.data.users[0] ? 404 : undefined,
   }
 }

@@ -9,6 +9,26 @@ LAST_NAME=$4
 # Читаем пароль из stdin для безопасности
 read -r PASSWORD
 
+# 0. Проверяем, запущен ли контейнер
+CONTAINER_STATUS=$(docker inspect -f '{{.State.Running}}' "$CONTAINER_NAME" 2>/dev/null || echo "false")
+if [ "$CONTAINER_STATUS" != "true" ]; then
+  echo "Container is not running, starting..."
+  docker start "$CONTAINER_NAME"
+  
+  # Ждем пока контейнер запустится и n8n будет готов
+  echo "Waiting for n8n to start..."
+  sleep 10
+  
+  # Проверяем готовность n8n (пробуем до 30 секунд)
+  for i in {1..30}; do
+    if docker exec "$CONTAINER_NAME" wget -q -O- http://localhost:5678/healthz 2>/dev/null | grep -q "ok"; then
+      echo "n8n is ready"
+      break
+    fi
+    sleep 1
+  done
+fi
+
 # 1. Проверяем статус owner setup
 OWNER_SETUP=$(docker exec "$CONTAINER_NAME" sqlite3 /home/node/.n8n/database.sqlite \
   "SELECT value FROM settings WHERE key = 'userManagement.isInstanceOwnerSetUp';" 2>/dev/null || echo "")
@@ -29,7 +49,7 @@ if [ "$OWNER_SETUP" = "true" ]; then
   
   # Ждем пока контейнер запустится и n8n будет готов
   echo "Waiting for n8n to start..."
-  sleep 5
+  sleep 10
   
   # Проверяем готовность n8n (пробуем до 30 секунд)
   for i in {1..30}; do

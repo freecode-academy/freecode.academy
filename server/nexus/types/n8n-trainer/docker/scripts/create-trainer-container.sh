@@ -68,6 +68,7 @@ echo "   Container: $CONTAINER_NAME"
 docker run -d \
     --name "$CONTAINER_NAME" \
     --network "$NETWORK_NAME" \
+    --restart always \
     --label "app.type=n8n-trainer" \
     --label "app.lesson=${LESSON}" \
     --label "app.user_id=${USER_ID}" \

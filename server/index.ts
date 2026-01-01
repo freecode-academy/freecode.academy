@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express'
 import next from 'next'
 
@@ -45,6 +46,16 @@ app.prepare().then(() => {
       }
     )
   })
+
+  // Proxy to n8n (webhook, webhook-test, mcp)
+  const n8nUrl = process.env.N8N_URL || 'http://localhost:5678'
+  const n8nProxy = createProxyMiddleware({
+    target: n8nUrl,
+    changeOrigin: true,
+  })
+  server.use('/webhook', n8nProxy)
+  server.use('/webhook-test', n8nProxy)
+  server.use('/mcp', n8nProxy)
 
   /**
    * PWA and other public generated files

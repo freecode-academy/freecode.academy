@@ -40,6 +40,7 @@ import OfficeLayout from './layouts/OfficeLayout'
 import { Layout } from 'src/Layout'
 import { I18NProvider } from './tolgee'
 import { Snackbar, SnackbarProvider } from 'src/components/Snackbar'
+import { useChatWidget } from 'src/components/ChatWidget/hooks/useChatWidget'
 
 const withWs = true
 
@@ -205,6 +206,8 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
     return context
   }, [apolloClient, logout, muiTheme, openLoginForm, router])
 
+  const { chatWidget } = useChatWidget()
+
   const template = (
     <>
       <Head>
@@ -240,6 +243,8 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
                     />
 
                     {contentWithLayout}
+
+                    {chatWidget}
                   </WithUser>
                   <Snackbar />
                 </Context.Provider>

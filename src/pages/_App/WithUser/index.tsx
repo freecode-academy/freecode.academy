@@ -6,6 +6,7 @@ import { useMeQuery } from 'src/gql/generated'
 
 import { WithUserProps } from './interfaces'
 import { AppContextProvider } from 'src/AppContext'
+import { useHeapIo } from 'src/hooks/heap.io/useHeapIo'
 
 export const WithUser: React.FC<WithUserProps> = ({
   children,
@@ -54,6 +55,11 @@ export const WithUser: React.FC<WithUserProps> = ({
     // else
     return context
   }, [context, user])
+
+  useHeapIo({
+    user,
+    heapId: '3566298199',
+  })
 
   return (
     <Context.Provider value={contextWithUser}>

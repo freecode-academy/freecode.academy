@@ -9,6 +9,7 @@ interface TabSwitcherProps {
 
 /**
  * Компонент для переключения между чатом и сайтом на мобильных устройствах
+ * @deprecated
  */
 const TabSwitcher: React.FC<TabSwitcherProps> = ({
   // TODO Надо будет доработать. Стили есть, надо только пробростиь флаг

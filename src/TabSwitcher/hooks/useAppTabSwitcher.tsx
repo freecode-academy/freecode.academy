@@ -5,6 +5,9 @@ import { useAppContext } from 'src/AppContext'
 import { AppActions } from 'src/AppContext/reducer/interfaces'
 // import { useAppSwiper } from './useAppSwiper'
 
+/**
+ * @deprecated
+ */
 export function useAppTabSwitcher() {
   const router = useRouter()
   const { appState, appDispatch } = useAppContext()

@@ -32,10 +32,25 @@ export type AppAction =
     }
 
 export type AppState = {
+  /**
+   * @deprecated
+   */
   chatMessages: ChatMessageFragment[]
+  /**
+   * @deprecated
+   */
   chatInRequest: boolean
+  /**
+   * @deprecated
+   */
   activeTab: TabType
+  /**
+   * @deprecated
+   */
   chatTabOpened: boolean
+  /**
+   * @deprecated
+   */
   slidePosition: number
 }
 

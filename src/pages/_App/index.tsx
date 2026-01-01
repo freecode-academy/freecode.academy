@@ -25,7 +25,6 @@ import Auth from 'src/components/Auth'
 import { WithUser } from './WithUser'
 import { AuthFormResponse } from '../../components/Auth/forms/interfaces'
 
-import moment from 'moment'
 import { Page401 } from '../_Error/401'
 import { Page404 } from '../_Error/404'
 import { ErrorPage } from '../_Error'
@@ -41,9 +40,6 @@ import OfficeLayout from './layouts/OfficeLayout'
 import { Layout } from 'src/Layout'
 import { I18NProvider } from './tolgee'
 import { Snackbar, SnackbarProvider } from 'src/components/Snackbar'
-
-// TODO: Проработать локализацию
-moment.locale('ru')
 
 const withWs = true
 
@@ -183,7 +179,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
       router,
       logout,
       openLoginForm,
-      lang: 'ru',
+      lang: 'en',
       theme: muiTheme,
       localStorage: global.localStorage,
       apiClientResetStore: async function () {

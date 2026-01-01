@@ -33,14 +33,14 @@ const navItems: {
   href: string
   sudo?: boolean
 }[] = [
-  { key: 'mainMenu.admin.title', href: '/admin', sudo: true },
-  { key: 'mainMenu.learn.title', href: '/learn/sections' },
+  // { key: 'mainMenu.admin.title', href: '/admin', sudo: true },
+  // { key: 'mainMenu.learn.title', href: '/learn/sections' },
   { key: 'mainMenu.learnstrategies.title', href: '/learnstrategies' },
   { key: 'mainMenu.people.title', href: '/people' },
   { key: 'mainMenu.technologies.title', href: '/technologies' },
   { key: 'mainMenu.topics.title', href: '/topics' },
-  { key: 'mainMenu.start.title', href: '/start/developers' },
-  { key: 'mainMenu.about.title', href: '/about' },
+  // { key: 'mainMenu.start.title', href: '/start/developers' },
+  // { key: 'mainMenu.about.title', href: '/about' },
 ] as const
 
 export const Header: React.FC = () => {

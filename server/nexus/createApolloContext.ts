@@ -8,7 +8,11 @@ import { pubsub } from '../PubSub'
 // Функция для получения контекста запроса
 export async function createApolloContext({
   req,
-  type,
+  // TODO Remove
+  /**
+   * @deprecated
+   */
+  type: _type,
   currentUser = null,
 }: {
   req?: PrismaContext['req']
@@ -17,13 +21,6 @@ export async function createApolloContext({
 }): Promise<PrismaContext> {
   // let currentUser: PrismaContext['currentUser'] = null
   let ContextToken: PrismaContext['Token'] = null
-
-  if (process.env.NODE_ENV === 'development') {
-    if (type === 'ws') {
-      // eslint-disable-next-line no-console
-      console.log('req?.headers.authorization', req?.headers.authorization)
-    }
-  }
 
   /**
    * Если есть токен, пытаемся получить текущего пользователя
@@ -77,13 +74,6 @@ export async function createApolloContext({
       }
     } catch (error) {
       console.error(error)
-    }
-  }
-
-  if (process.env.NODE_ENV === 'development') {
-    if (type === 'ws') {
-      // eslint-disable-next-line no-console
-      console.log('createApolloContext currentUser', type, currentUser)
     }
   }
 

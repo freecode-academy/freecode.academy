@@ -1,5 +1,5 @@
 // Исходный тип JSON (вытянутый через Tolgee CLI)
-type TranslationsType = typeof import('src/i18n/ru.json')
+type TranslationsType = typeof import('src/i18n/en.json')
 
 // Утилита для формирования dot-нотации ключей
 type DotNotationEntries<T> = T extends Record<string, unknown>

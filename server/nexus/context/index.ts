@@ -87,7 +87,7 @@ export const context: PrismaContext = {
   prisma: prismaClient,
   // knex: knexClient,
   sendmail,
-  mailSender: process.env.SendmailSender || 'no-reply@gorodskie-bani.ru',
+  mailSender: process.env.SendmailSender || 'no-reply@freecode.academy',
   APP_SECRET,
   currentUser: null,
   Token: null,

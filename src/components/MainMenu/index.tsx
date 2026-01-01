@@ -117,6 +117,9 @@ export const locales = {
   },
 }
 
+/**
+ * @deprecated
+ */
 export class MainMenu extends PrismaCmsComponent<MainMenuProps, MainMenuState> {
   static defaultProps = {
     ...PrismaCmsComponent.defaultProps,

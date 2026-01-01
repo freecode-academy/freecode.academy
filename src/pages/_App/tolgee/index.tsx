@@ -9,7 +9,7 @@ import {
 import { useRouter } from 'next/router'
 
 import ruLocale from '../../../i18n/ru.json'
-// import enLocale from '../../../i18n/en.json'
+import enLocale from '../../../i18n/en.json'
 // import viLocale from '../../../i18n/vi.json'
 // import zhLocale from '../../../i18n/zh.json'
 // import deLocale from '../../../i18n/de.json'
@@ -24,7 +24,7 @@ import ruLocale from '../../../i18n/ru.json'
 const tolgeeOptions: TolgeeOptions = {
   availableLanguages: [
     'ru',
-    // 'en',
+    'en',
     // 'vi',
     // 'zh',
     // 'de',
@@ -38,7 +38,7 @@ const tolgeeOptions: TolgeeOptions = {
   ],
   staticData: {
     ru: ruLocale,
-    // en: enLocale,
+    en: enLocale,
     // vi: viLocale,
     // zh: zhLocale,
     // de: deLocale,
@@ -50,7 +50,7 @@ const tolgeeOptions: TolgeeOptions = {
     // sv: svLocale,
     // th: thLocale,
   },
-  defaultLanguage: 'ru',
+  defaultLanguage: 'en',
   apiKey: process.env.NEXT_PUBLIC_TOLGEE_API_KEY,
   apiUrl: process.env.NEXT_PUBLIC_TOLGEE_API_URL,
 }

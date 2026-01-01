@@ -1,0 +1,51 @@
+{
+  "home": {
+    "description": "",
+    "title": "Digital Assistants"
+  },
+  "mainMenu": {
+    "title": "Menu",
+    "admin": {
+      "title": "Admin"
+    },
+    "learn": {
+      "title": "Lessons"
+    },
+    "learnstrategies": {
+      "title": "Growth Strategies"
+    },
+    "people": {
+      "title": "Members"
+    },
+    "start": {
+      "title": "Getting Started"
+    },
+    "technologies": {
+      "title": "Technologies"
+    },
+    "topics": {
+      "title": "Topics"
+    },
+    "about": {
+      "title": "About"
+    }
+  },
+  "footer": {
+    "about": "About",
+    "aboutText": "",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved."
+  },
+  "map": {
+    "expandMap": "Explore Map"
+  },
+  "system": {
+    "dataSaved": "Data saved successfully",
+    "noDataReceived": "No data received",
+    "requestError": "Request error",
+    "validationError": "Form validation error",
+    "unexpectedError": "An unexpected error occurred"
+  }
+}

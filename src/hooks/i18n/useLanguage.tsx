@@ -9,6 +9,6 @@ export const useLanguage = () => {
 
   return {
     t,
-    language: (router.locale ?? 'ru') as LanguageEnum,
+    language: (router.locale ?? 'en') as LanguageEnum,
   }
 }

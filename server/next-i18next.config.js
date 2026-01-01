@@ -11,9 +11,9 @@ const nextI18nextConfig = {
   // https://www.i18next.com/overview/configuration-options#logging
   debug: process.env.NODE_ENV === 'development',
   i18n: {
-    defaultLocale: 'ru',
+    defaultLocale: 'en',
     locales: [
-      // 'en',
+      'en',
       'ru',
       // 'vi',
       // 'zh',

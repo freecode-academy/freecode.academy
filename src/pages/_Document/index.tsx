@@ -22,10 +22,12 @@ import { createGenerateClassName } from 'material-ui/styles'
 
 import { SheetsRegistry } from 'react-jss'
 
-export default class MyDocument extends Document {
+export default class MyDocument extends Document<{ locale: string }> {
   render() {
+    const { locale } = this.props
+
     return (
-      <Html lang="ru">
+      <Html lang={locale || 'en'}>
         <Head>
           <meta charSet="utf-8" />
           <meta name="theme-color" content="#000000" />
@@ -134,6 +136,7 @@ export default class MyDocument extends Document {
 
       const result = {
         ...initialProps,
+        locale: ctx.locale || 'en',
 
         // Styles fragment is rendered after the app and page rendering finish.
         styles: [

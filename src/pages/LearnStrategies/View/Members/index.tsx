@@ -1,5 +1,5 @@
 import React from 'react'
-import UikitUserLink from 'src/uikit/Link/User'
+import { UserLink as UikitUserLink } from 'src/uikit/Link/User'
 import { LearnStrategiesViewMembersProps } from './interfaces'
 import { LearnStrategiesViewMembersStyled } from './styles'
 

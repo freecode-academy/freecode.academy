@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import moment from 'moment'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 
 import {
   GridTableAttributeStyled,
@@ -9,7 +9,6 @@ import {
 } from 'src/components/GridTable/styles'
 import TaskStatus from '../../TaskStatus'
 import { TasksViewTaskProps } from './interfaces'
-import UikitUserLink from 'src/uikit/Link/User'
 // import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import TaskLink from 'src/uikit/Link/Task'
 // import { ProjectLink } from 'src/uikit/Link/Project'
@@ -154,7 +153,7 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
 
         {object.CreatedBy ? (
           <GridTableAttributeStyled data-label="Постановщик">
-            <UikitUserLink user={object.CreatedBy} />
+            <UserLink user={object.CreatedBy} />
           </GridTableAttributeStyled>
         ) : null}
 

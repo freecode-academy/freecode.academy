@@ -75,8 +75,11 @@ const ProjectsPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Проекты</title>
-        <meta name="description" content="Все проекты" />
+        <title>Projects — Real-World Development Work</title>
+        <meta
+          name="description"
+          content="Explore projects built by our community. Find open-source work, case studies, and collaboration opportunities."
+        />
       </Head>
 
       <View

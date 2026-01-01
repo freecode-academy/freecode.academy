@@ -13,22 +13,12 @@ import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import { NextSeo } from 'next-seo'
 
-// const take = 10
-
 function getQueryParams(
   _query: ParsedUrlQuery
 ): LearnStrategiesConnectionQueryVariables {
   let skip: number | undefined
 
-  // const page =
-  //   (query.page && typeof query.page === 'string' && parseInt(query.page)) || 0
-
-  // if (page > 1) {
-  //   skip = (page - 1) * first
-  // }
-
   return {
-    // page,
     where: {},
     orderBy: [
       {
@@ -38,7 +28,6 @@ function getQueryParams(
         name: SortOrder.ASC,
       },
     ],
-    // take,
     skip,
   }
 }
@@ -57,23 +46,15 @@ export const LearnStrategiesPage: Page = () => {
     onError: console.error,
   })
 
-  // const { variables, loading } = response
-
   return (
     <>
       <NextSeo
-        title="Стратегии развития"
-        description="Готовые стратегии развития позволяют спланировать обучение программированию"
+        title="Learning Strategies — Your Path to Tech Expertise"
+        description="Structured learning roadmaps for web development. Master HTML, CSS, JavaScript, React, and more with proven strategies."
       />
 
       <LearnStrategiesView
-        // {...queryResult}
-        // loading={loading}
-        // data={response || null}
         learnStrategies={response.data?.learnStrategies || []}
-        // count={response.data?.learnStrategiesCount}
-        // variables={variables}
-        // page={page}
       />
     </>
   )

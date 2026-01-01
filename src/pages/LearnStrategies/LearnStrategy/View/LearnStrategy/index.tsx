@@ -8,7 +8,11 @@ import { LearnStrategyViewStages } from './Stages'
 import {
   LearnStrategyViewStyled,
   LearnStrategyViewToolbarStyled,
+  LearnStrategyTitle,
+  LearnStrategyLevel,
+  LearnStrategyChildrenContainer,
 } from './styles'
+import { LevelIcon } from 'src/uikit/LevelIcon'
 
 /**
  * Рекурсивный вывод стратегии развития с дочерними подстратегиями
@@ -87,34 +91,32 @@ export const LearnStrategyView: React.FC<LearnStrategyViewProps> = ({
 
     return (
       <LearnStrategyViewStyled>
-        <LearnStrategyViewToolbarStyled className="flex align-items-center">
-          <>
-            <span>Стратегия развития: </span>
+        <LearnStrategyViewToolbarStyled>
+          {learnStrategy.level ? (
+            <LearnStrategyLevel
+              title={getUserTechnologyLevelText(learnStrategy.level)}
+            >
+              <LevelIcon level={learnStrategy.level} />
+            </LearnStrategyLevel>
+          ) : null}
+          <LearnStrategyTitle>
             <Link href={`/learnstrategies/${learnStrategy.id}`}>
               {learnStrategy.name}
-            </Link>{' '}
-            {learnStrategy.level
-              ? ` (Уровень: ${getUserTechnologyLevelText(learnStrategy.level)})`
-              : null}
-          </>
+            </Link>
+          </LearnStrategyTitle>
           <div className="flex-1" />
           {buttons}
-
-          {/* <ConnectLearnStrategyButton
-            currentUser={currentUser}
-            learnStrategy={learnStrategy}
-            canConnect={isRoot}
-          /> */}
         </LearnStrategyViewToolbarStyled>
-        <div>{!inEditMode ? learnStrategy.description : null}</div>
 
         {showChilds ? (
-          <LearnStrategyViewStages
-            learnStrategy={learnStrategy}
-            loadedIDsWithCurrent={loadedIDsWithCurrent}
-            inEditMode={inEditMode}
-            currentUser={currentUser}
-          />
+          <LearnStrategyChildrenContainer>
+            <LearnStrategyViewStages
+              learnStrategy={learnStrategy}
+              loadedIDsWithCurrent={loadedIDsWithCurrent}
+              inEditMode={inEditMode}
+              currentUser={currentUser}
+            />
+          </LearnStrategyChildrenContainer>
         ) : null}
       </LearnStrategyViewStyled>
     )

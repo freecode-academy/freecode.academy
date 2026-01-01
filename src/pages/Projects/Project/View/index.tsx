@@ -93,7 +93,11 @@ export const ProjectView: React.FC<ProjectViewProps> = ({
     <>
       <NextSeo
         title={name}
-        description={name ? `Проект "${name}"` : ''}
+        description={
+          name
+            ? `Project "${name}" — tasks, progress, and collaboration details.`
+            : ''
+        }
         canonical={makeProjectLink(project)}
       />
       <ProjectViewStyled {...other}>

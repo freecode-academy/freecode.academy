@@ -3,7 +3,7 @@ import {
   ProjectListProjectStyled,
   ProjectListProjectTitleStyled,
 } from './styles'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 
 type ProjectViewProps = {
   project: ProjectsConnectionProjectFragment

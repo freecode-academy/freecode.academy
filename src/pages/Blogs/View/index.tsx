@@ -1,6 +1,6 @@
 import React from 'react'
 import { BlogsConnectionResourceFragment } from 'src/gql/generated'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 import BlogLink from 'src/uikit/Link/Blog'
 import styled from 'styled-components'
 import {

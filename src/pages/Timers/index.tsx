@@ -58,10 +58,10 @@ const TimersPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Таймеры</title>
+        <title>Time Logs — Task Tracking & Progress</title>
         <meta
           name="description"
-          content="Журналы выполнения задач по времени"
+          content="Track time spent on tasks and projects. View work logs and productivity insights."
         />
       </Head>
 

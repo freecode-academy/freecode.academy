@@ -71,8 +71,8 @@ const StudentsPage: Page = () => {
   return (
     <>
       <NextSeo
-        title="Ученики"
-        description="Все пользователи, выполняющие учебные задания"
+        title="Students — Active Learners & Rising Developers"
+        description="Meet developers actively completing coding challenges. Track progress and discover emerging talent in web development."
       />
 
       <UsersView

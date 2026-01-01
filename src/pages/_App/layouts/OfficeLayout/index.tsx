@@ -30,7 +30,7 @@ const OfficeLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (
       <>
         <NextSeo
-          title="Личный кабинет"
+          title="Dashboard"
           /**
            * Этот раздел не должен индексироваться
            */

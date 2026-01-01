@@ -36,10 +36,10 @@ export const BlogPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Блог "{blog?.name}"</title>
+        <title>Blog "{blog?.name}"</title>
         <meta
           name="description"
-          content={`Все топики в блоге "${blog.name}"`}
+          content={`All publications in blog "${blog.name}" — insights, tutorials, and discussions.`}
         />
       </Head>
 

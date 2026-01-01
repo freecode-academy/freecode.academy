@@ -9,8 +9,8 @@ const VisitorsPage: Page = () => {
     <>
       <NextSeo
         noindex
-        title="Статистика по страницам"
-        description="Просмотр страниц с ошибками"
+        title="Page Analytics"
+        description="View page statistics and error tracking."
       />
     </>
   )

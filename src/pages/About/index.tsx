@@ -10,8 +10,8 @@ export const AboutPage: Page = () => {
   return (
     <>
       <NextSeo
-        title="О проекте / Контакты"
-        description="О проекте FreeCode.Academy"
+        title="About Us — FreeCode.Academy Expert Network"
+        description="Discover how FreeCode.Academy connects clients with verified tech experts through AI-powered agents. Join our community of developers and mentors."
       />
 
       <div>

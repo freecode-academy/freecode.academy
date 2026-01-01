@@ -5,7 +5,7 @@ import { Page } from '../_App/interfaces'
 export const DonatesPage: Page = () => {
   return (
     <>
-      <NextSeo title="Список донатов" noindex nofollow />
+      <NextSeo title="Donations" noindex nofollow />
     </>
   )
 }

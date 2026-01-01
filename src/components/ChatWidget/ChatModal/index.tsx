@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import {
   ChatWindow,
@@ -7,73 +7,21 @@ import {
   HeaderButtons,
   ExpandButton,
   CloseButton,
-  ChatMessages,
-  Message,
-  ChatInputContainer,
-  ChatInputWrapper,
-  ChatTextarea,
-  SendButton,
-  TypingIndicator,
-  WelcomeMessage,
 } from '../styles'
-import { ChatMessage } from '../interfaces'
-import { Markdown } from 'src/components/Markdown'
 
 export type ChatModalProps = {
+  children: React.ReactNode
   isExpanded: boolean
-  messages: ChatMessage[]
-  inputValue: string
-  isLoading: boolean
-  welcomeTitle: string
-  welcomeText: string
-  placeholder: string
   onClose: () => void
   onExpand: () => void
-  onInputChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  onKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void
-  onSubmit: (e: React.FormEvent) => void
 }
 
 export const ChatModal: React.FC<ChatModalProps> = ({
+  children,
   isExpanded,
-  messages,
-  inputValue,
-  isLoading,
-  welcomeTitle,
-  welcomeText,
-  placeholder,
   onClose,
   onExpand,
-  onInputChange,
-  onKeyDown,
-  onSubmit,
 }) => {
-  const messagesEndRef = useRef<HTMLDivElement>(null)
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
-
-  const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [])
-
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages, scrollToBottom])
-
-  const adjustTextareaHeight = useCallback(() => {
-    const textarea = textareaRef.current
-    if (textarea) {
-      textarea.style.height = 'auto'
-      textarea.style.height = `${Math.min(
-        textarea.scrollHeight,
-        window.innerHeight * 0.35
-      )}px`
-    }
-  }, [])
-
-  useEffect(() => {
-    adjustTextareaHeight()
-  }, [inputValue, adjustTextareaHeight])
-
   const stopPropagation = useCallback((e: React.SyntheticEvent) => {
     e.stopPropagation()
   }, [])
@@ -124,46 +72,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({
         </HeaderButtons>
       </ChatHeader>
 
-      <ChatMessages>
-        {messages.length === 0 && (
-          <WelcomeMessage>
-            <h4>{welcomeTitle}</h4>
-            <p>{welcomeText}</p>
-          </WelcomeMessage>
-        )}
-        {messages.map((msg) => (
-          <Message key={msg.id} $isUser={msg.isUser}>
-            <Markdown>{msg.text}</Markdown>
-          </Message>
-        ))}
-        {isLoading && (
-          <TypingIndicator>
-            <span />
-            <span />
-            <span />
-          </TypingIndicator>
-        )}
-        <div ref={messagesEndRef} />
-      </ChatMessages>
-
-      <ChatInputContainer>
-        <ChatInputWrapper onSubmit={onSubmit}>
-          <ChatTextarea
-            ref={textareaRef}
-            value={inputValue}
-            onChange={onInputChange}
-            onKeyDown={onKeyDown}
-            placeholder={`${placeholder} (Ctrl+Enter to send)`}
-            disabled={isLoading}
-            rows={1}
-          />
-          <SendButton type="submit" disabled={!inputValue.trim() || isLoading}>
-            <svg viewBox="0 0 24 24">
-              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-            </svg>
-          </SendButton>
-        </ChatInputWrapper>
-      </ChatInputContainer>
+      {children}
     </ChatWindow>
   )
 

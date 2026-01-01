@@ -59,8 +59,11 @@ const TagsPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Теги</title>
-        <meta name="description" content="Все теги сайта" />
+        <title>Tags — Browse Topics by Category</title>
+        <meta
+          name="description"
+          content="Explore content by tags. Find articles, tutorials, and discussions organized by technology and topic."
+        />
       </Head>
 
       <View

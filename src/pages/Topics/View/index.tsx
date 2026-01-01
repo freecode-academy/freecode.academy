@@ -1,9 +1,17 @@
-import { TopicsConnectionTopicFragment } from 'src/gql/generated'
-import { TopicsViewListStyled, TopicsViewStyled } from './styles'
-import PaginationWithStyles from 'src/components/Pagination'
-import { TopicView } from '../Topic/View'
-import { useAppContext } from 'src/AppContext'
 import Link from 'next/link'
+import { TopicsConnectionTopicFragment } from 'src/gql/generated'
+import { UserLink } from 'src/uikit/Link/User'
+import { TopicLink } from 'src/uikit/Link/Topic'
+import PaginationWithStyles from 'src/components/Pagination'
+import { useAppContext } from 'src/AppContext'
+import {
+  TopicsViewStyled,
+  TopicsViewListStyled,
+  TopicCard,
+  TopicCardTitle,
+  TopicCardAuthor,
+  TopicCardIntro,
+} from './styles'
 
 type TopicsViewProps = {
   objects: TopicsConnectionTopicFragment[]
@@ -30,7 +38,19 @@ export const TopicsView: React.FC<TopicsViewProps> = ({
 
       <TopicsViewListStyled>
         {objects.map((n) => (
-          <TopicView key={n.id} topic={n} variant="list" />
+          <TopicCard key={n.id}>
+            <TopicCardTitle>
+              <TopicLink topic={n}>{n.name}</TopicLink>
+            </TopicCardTitle>
+
+            {n.CreatedBy && (
+              <TopicCardAuthor>
+                <UserLink user={n.CreatedBy} size="small" />
+              </TopicCardAuthor>
+            )}
+
+            {n.longtitle && <TopicCardIntro>{n.longtitle}</TopicCardIntro>}
+          </TopicCard>
         ))}
       </TopicsViewListStyled>
 

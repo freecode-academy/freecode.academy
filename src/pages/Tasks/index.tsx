@@ -101,8 +101,11 @@ export const TasksPage: Page = () => {
     return (
       <>
         <Head>
-          <title>Задачи</title>
-          <meta name="description" content="Все задачи" />
+          <title>Tasks — Project Work & Collaboration</title>
+          <meta
+            name="description"
+            content="Browse tasks from real projects. Find opportunities to contribute, learn, and collaborate with experts."
+          />
         </Head>
         <View
           objects={response.data?.tasks || []}

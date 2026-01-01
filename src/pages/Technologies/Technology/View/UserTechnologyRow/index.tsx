@@ -4,7 +4,7 @@ import {
   GridTableItemStyled,
   GridTableAttributesContainerStyled,
 } from 'src/components/GridTable/styles'
-import UikitUserLink from 'src/uikit/Link/User'
+import { UserLink as UikitUserLink } from 'src/uikit/Link/User'
 import { UserTechnologyRowProps } from './interfaces'
 import moment from 'moment'
 // import {

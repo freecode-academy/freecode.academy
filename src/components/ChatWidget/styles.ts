@@ -18,29 +18,31 @@ export const ChatWidgetContainer = styled.div`
   z-index: 1000;
 `
 
-export const ChatButton = styled.button<{ $isOpen?: boolean }>`
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #ff6d5a;
-  border: none;
-  cursor: pointer;
-  display: ${({ $isOpen }) => ($isOpen ? 'none' : 'flex')};
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(255, 109, 90, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
+type ChatContentContainerProps = {
+  $hasMessages?: boolean
+}
 
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(255, 109, 90, 0.5);
-  }
+export const ChatContentContainer = styled.div<ChatContentContainerProps>`
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  width: 100%;
+  max-width: 100%;
 
-  svg {
-    width: 24px;
-    height: 24px;
-    fill: #fff;
-    display: block;
+  ${({ $hasMessages }) =>
+    $hasMessages
+      ? css`
+          grid-template-rows: 1fr auto;
+          align-content: start;
+        `
+      : css`
+          grid-template-rows: 1fr auto 1fr;
+        `}
+
+  @media (max-width: 768px) {
+    grid-template-rows: ${({ $hasMessages }) =>
+      $hasMessages ? '1fr auto' : '1fr auto auto'};
   }
 `
 
@@ -53,9 +55,9 @@ export const ChatWindow = styled.div<{ $isExpanded?: boolean }>`
   height: ${({ $isExpanded }) =>
     $isExpanded ? '100%' : 'min(500px, calc(100vh - 80px))'};
   max-height: calc(100vh - 80px);
-  background: #1a1a2e;
+  background: #ffffff;
   border-radius: ${({ $isExpanded }) => ($isExpanded ? '0' : '16px')};
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -87,18 +89,18 @@ export const ChatWindow = styled.div<{ $isExpanded?: boolean }>`
 
 export const ChatHeader = styled.div`
   padding: 16px 20px;
-  background: #252540;
+  background: #f9fafb;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #e5e7eb;
 `
 
 export const ChatTitle = styled.h3`
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
+  color: #1f2937;
 `
 
 export const HeaderButtons = styled.div`
@@ -115,11 +117,11 @@ export const HeaderButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #a0a0a0;
+  color: #6b7280;
   transition: color 0.2s;
 
   &:hover {
-    color: #fff;
+    color: #1f2937;
   }
 
   svg {
@@ -139,13 +141,16 @@ export const CloseButton = styled(HeaderButton)``
 export const ChatMessages = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: 16px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
 
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
   }
 
   &::-webkit-scrollbar-track {
@@ -153,107 +158,115 @@ export const ChatMessages = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.2);
   }
 `
 
 export const Message = styled.div<{ $isUser?: boolean }>`
   max-width: 85%;
-  padding: 12px 16px;
-  border-radius: 16px;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  padding: 14px 18px;
+  border-radius: 20px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
   align-self: ${({ $isUser }) => ($isUser ? 'flex-end' : 'flex-start')};
-  background: ${({ $isUser }) => ($isUser ? '#ff6d5a' : '#252540')};
-  color: ${({ $isUser }) => ($isUser ? '#fff' : '#e0e0e0')};
-  border-bottom-right-radius: ${({ $isUser }) => ($isUser ? '4px' : '16px')};
-  border-bottom-left-radius: ${({ $isUser }) => ($isUser ? '16px' : '4px')};
+  background: ${({ $isUser }) => ($isUser ? '#3b82f6' : '#ffffff')};
+  color: ${({ $isUser }) => ($isUser ? '#fff' : '#1f2937')};
+  border-bottom-right-radius: ${({ $isUser }) => ($isUser ? '6px' : '20px')};
+  border-bottom-left-radius: ${({ $isUser }) => ($isUser ? '20px' : '6px')};
+  box-shadow: ${({ $isUser }) =>
+    $isUser
+      ? '0 2px 8px rgba(59, 130, 246, 0.25)'
+      : '0 1px 3px rgba(0, 0, 0, 0.08)'};
 `
 
 export const ChatInputContainer = styled.div`
-  padding: 12px;
-  background: #252540;
-  border-top: 1px solid #333;
+  padding: 16px 24px 24px;
+  background: transparent;
+  grid-row: 2;
 `
 
-export const ChatInputWrapper = styled.form`
+export const ChatForm = styled.form`
   display: flex;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 8px 8px 8px 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 `
 
 export const ChatTextarea = styled.textarea`
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #333;
-  border-radius: 12px;
-  background: #1a1a2e;
-  color: #fff;
-  font-size: 0.875rem;
+  padding: 12px 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #1f2937;
+  font-size: 1rem;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.2s;
   resize: none;
-  min-height: 66px;
-  max-height: 35vh;
-  line-height: 1.4;
-
-  &:focus {
-    border-color: #ff6d5a;
-  }
+  min-height: 24px;
+  max-height: 200px;
+  line-height: 1.5;
 
   &::placeholder {
-    color: #666;
+    color: #9ca3af;
   }
 `
 
-export const SendButton = styled.button`
-  width: 40px;
-  height: 40px;
+type SendButtonProps = {
+  $hasText?: boolean
+}
+
+export const SendButton = styled.button<SendButtonProps>`
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: #ff6d5a;
+  background: ${({ $hasText }) => ($hasText ? '#1f2937' : '#9ca3af')};
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: all 0.2s;
 
-  &:hover:not(:disabled) {
-    background: #ff5a45;
-  }
-
-  &:disabled {
-    background: #444;
-    cursor: not-allowed;
+  &:hover {
+    background: ${({ $hasText }) => ($hasText ? '#374151' : '#6b7280')};
+    transform: scale(1.05);
   }
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     fill: #fff;
+    margin-left: 2px;
   }
 `
 
 export const TypingIndicator = styled.div`
   display: flex;
-  gap: 4px;
-  padding: 12px 16px;
+  gap: 5px;
+  padding: 14px 18px;
   align-self: flex-start;
-  background: #252540;
-  border-radius: 16px;
-  border-bottom-left-radius: 4px;
+  background: #ffffff;
+  border-radius: 20px;
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 
   span {
     width: 8px;
     height: 8px;
-    background: #666;
+    background: #9ca3af;
     border-radius: 50%;
     animation: bounce 1.4s infinite ease-in-out both;
 
@@ -279,14 +292,50 @@ export const TypingIndicator = styled.div`
 
 export const WelcomeMessage = styled.div`
   text-align: center;
-  padding: 24px;
-  color: #a0a0a0;
-  font-size: 0.875rem;
+  padding: 48px 24px;
+  color: #6b7280;
+  font-size: 1rem;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  grid-row: 1;
 
   h4 {
-    color: #fff;
-    margin: 0 0 8px;
-    font-size: 1rem;
+    color: #1f2937;
+    margin: 0 0 12px;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  p {
+    max-width: 400px;
+  }
+`
+
+export const ChatButton = styled.button<{ $isOpen?: boolean }>`
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: none;
+  cursor: pointer;
+  display: ${({ $isOpen }) => ($isOpen ? 'none' : 'flex')};
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    display: block;
   }
 `

@@ -2,7 +2,7 @@ import React from 'react'
 
 import Grid from 'src/uikit/Grid'
 import Pagination from 'src/components/Pagination'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 import Typography from 'material-ui/Typography'
 
 import { UsersListProps } from './interfaces'

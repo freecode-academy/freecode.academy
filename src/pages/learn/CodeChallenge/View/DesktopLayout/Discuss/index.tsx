@@ -18,7 +18,7 @@ const CodeChallengeDiscuss: React.FC<CodeChallengeDiscussProps> = (props) => {
 
   const { name, Topic } = challenge
 
-  const title = Topic?.name || `Обсуждение задания "${name}"`
+  const title = Topic?.name || `Discussion: "${name}"`
 
   // const [createTopicMutation] = useCreateTopicProcessorMutation({
   //   // onCompleted: onSave,

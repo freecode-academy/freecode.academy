@@ -4,7 +4,7 @@ import {
   TopicsConnectionTopicFragment,
 } from 'src/gql/generated'
 import { CommentStyled } from './styles'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 import { TopicLink } from 'src/uikit/Link/Topic'
 import { TaskLink } from 'src/uikit/Link/Task'
 

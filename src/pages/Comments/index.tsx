@@ -63,8 +63,11 @@ const CommentsPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Комментарии</title>
-        <meta name="description" content="Все комментарии" />
+        <title>Comments — Community Discussions</title>
+        <meta
+          name="description"
+          content="Browse comments and discussions from the community. Join conversations on tech topics."
+        />
       </Head>
 
       <View

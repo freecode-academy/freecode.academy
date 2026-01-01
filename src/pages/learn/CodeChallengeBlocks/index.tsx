@@ -33,8 +33,8 @@ const CodeChallengeBlocksPage: Page = () => {
   return (
     <>
       <NextSeo
-        title="Тестовые задания по HTML, CSS, Javascript онлайн"
-        description="Бесплатные тестовые практически задания по HTML, CSS, Javascript онлайн"
+        title="Interactive Coding Challenges — HTML, CSS, JavaScript"
+        description="Practice web development with free interactive exercises. Master HTML, CSS, and JavaScript through hands-on coding challenges."
       />
 
       <View objects={objects} count={objects.length} />

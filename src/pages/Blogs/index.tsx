@@ -68,8 +68,11 @@ const BlogsPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Блоги</title>
-        <meta name="description" content="Все блоги" />
+        <title>Blogs — Expert Publications & Tech Insights</title>
+        <meta
+          name="description"
+          content="Explore blogs from tech experts. Find tutorials, case studies, and insights on web development, AI, and more."
+        />
       </Head>
 
       {inited && (

@@ -154,7 +154,8 @@ const TechnologyView: React.FC<TechnologyViewProps> = ({ technology }) => {
         <NextSeo
           title={technology.name || ''}
           description={
-            technology.description || `Технология "${technology.name}"`
+            technology.description ||
+            `${technology.name} — find experts, learning resources, and community insights.`
           }
         />
 

@@ -91,8 +91,8 @@ export const UsersPage: Page = () => {
   return (
     <>
       <NextSeo
-        title="Пользователи"
-        description="Все пользователи"
+        title="Tech Experts Directory — Find Developers & Mentors"
+        description="Browse verified tech professionals. Filter by skills, experience level, and availability. Connect with the right expert for your project."
         canonical="/users"
       />
 

@@ -22,10 +22,14 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: Roboto, sans-serif, Tahoma, Helvetica;
     font-size: 16px;
+    height: auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   #__next {
-    height: 100%;
+    display: contents;
   }
 
   .DraftEditor-root pre {

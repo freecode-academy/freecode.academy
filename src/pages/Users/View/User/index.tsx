@@ -9,7 +9,7 @@ import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelTe
 import { UsersConnectionUserFragment } from 'src/gql/generated'
 // import Link from 'src/uikit/Link'
 // import ProjectLink from 'src/uikit/Link/Project'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 import { MarkdownField } from 'src/components/MarkdownField'
 
 type UsersViewUserProps = {

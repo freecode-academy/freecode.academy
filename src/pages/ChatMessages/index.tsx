@@ -59,8 +59,11 @@ const ChatMessageOldsPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Чат-сообщения</title>
-        <meta name="description" content="Все чат-сообщения" />
+        <title>Chat Messages</title>
+        <meta
+          name="description"
+          content="Browse chat conversations and discussions."
+        />
       </Head>
 
       <ChatMessageOldsView

@@ -41,7 +41,10 @@ export const DevelopersStartPage: Page = () => {
 
   return (
     <>
-      <NextSeo title="С чего начать программистам" />
+      <NextSeo
+        title="Getting Started — Your Web Development Journey Begins Here"
+        description="Step-by-step guide for aspiring developers. Learn HTML, CSS, JavaScript, React, and join a community of mentors and experts."
+      />
 
       <DevelopersStartPageStyled>
         <Typography

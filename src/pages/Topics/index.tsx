@@ -72,8 +72,11 @@ export const TopicsPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Публикации</title>
-        <meta name="description" content="Все публикации" />
+        <title>Publications — Articles & Tutorials</title>
+        <meta
+          name="description"
+          content="Read articles, tutorials, and insights from tech experts. Learn web development, AI, and modern technologies."
+        />
       </Head>
 
       {inited && response.data?.resources.length && (

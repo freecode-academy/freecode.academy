@@ -31,7 +31,7 @@ import { ErrorPage } from '../_Error'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import Head from 'next/head'
 // import Pagination from '../../components/Pagination'
-import UserLink from '../../uikit/Link/User'
+import { UserLink } from '../../uikit/Link/User'
 import { ProjectLink } from '../../uikit/Link/Project'
 import Link from '../../uikit/Link'
 
@@ -40,7 +40,7 @@ import OfficeLayout from './layouts/OfficeLayout'
 import { Layout } from 'src/Layout'
 import { I18NProvider } from './tolgee'
 import { Snackbar, SnackbarProvider } from 'src/components/Snackbar'
-import { useChatWidget } from 'src/components/ChatWidget/hooks/useChatWidget'
+import { ChatProvider } from 'src/components/ChatWidget/context'
 
 const withWs = true
 
@@ -206,7 +206,14 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
     return context
   }, [apolloClient, logout, muiTheme, openLoginForm, router])
 
-  const { chatWidget } = useChatWidget()
+  const sendChatMessage = useCallback(
+    async (message: string): Promise<string> => {
+      const { getMcpClient } = await import('src/lib/mcp/client')
+      const client = getMcpClient()
+      return client.sendMessage(message)
+    },
+    []
+  )
 
   const template = (
     <>
@@ -242,9 +249,14 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
                       showRegForm={true}
                     />
 
-                    {contentWithLayout}
-
-                    {chatWidget}
+                    <ChatProvider
+                      onSendMessage={sendChatMessage}
+                      welcomeTitle="Hi! How can I help?"
+                      welcomeText="Ask me anything about n8n-selfhost.dev project setup and usage."
+                      placeholder="Type your question..."
+                    >
+                      {contentWithLayout}
+                    </ChatProvider>
                   </WithUser>
                   <Snackbar />
                 </Context.Provider>

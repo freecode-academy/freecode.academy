@@ -41,7 +41,7 @@ const TaskPage: Page = () => {
           <title>{response.data?.object?.name}</title>
           <meta
             name="description"
-            content={`Задача ${response.data?.object?.name}`}
+            content={`Task: ${response.data?.object?.name} — view details, progress, and collaborate.`}
           />
         </Head>
 

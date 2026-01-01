@@ -42,7 +42,7 @@ const ChatMessageOldPage: Page = () => {
     <>
       <Head>
         <title>
-          Сообщение. {(response.data?.object?.contentText || '').substr(0, 100)}
+          Message: {(response.data?.object?.contentText || '').substr(0, 100)}
         </title>
         <meta
           name="description"

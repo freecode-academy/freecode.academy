@@ -43,7 +43,10 @@ const CodeChallengeBlockPage: Page = () => {
     <>
       <Head>
         <title>{object.name}</title>
-        <meta name="description" content={`Задача "${object.name}"`} />
+        <meta
+          name="description"
+          content={`${object.name} — coding exercises and challenges to improve your skills.`}
+        />
       </Head>
 
       <CodeChallengeBlocksPageBlockView object={object} opened={true} />

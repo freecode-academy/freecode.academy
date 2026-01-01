@@ -68,7 +68,9 @@ export const UserPage: Page = () => {
     <>
       <NextSeo
         title={user.fullname || user.username || ''}
-        description={`Страница пользователя ${user.fullname || user.username}`}
+        description={`Expert profile of ${
+          user.fullname || user.username
+        }. View skills, projects, and availability.`}
         canonical={createUserLink(user)}
       />
 

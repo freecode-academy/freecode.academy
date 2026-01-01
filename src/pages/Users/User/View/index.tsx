@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from 'material-ui'
 import { MarkdownField } from 'src/components/MarkdownField'
 import { UserFragment } from 'src/gql/generated'
-import { UserAvatar } from 'src/uikit/Avatar'
+import { Avatar } from 'src/uikit/Avatar'
 import { UserPageViewRowStyled, UserPageViewStyled } from './styles'
 import { useCurrentUser } from 'src/hooks/useCurrentUser'
 import { ConnectTelegram } from './ConnectTelegram'
@@ -19,7 +19,7 @@ export const UserPageView: React.FC<UserPageViewProps> = ({ user }) => {
   return (
     <UserPageViewStyled>
       <UserPageViewRowStyled>
-        <UserAvatar size="big" user={user} />
+        <Avatar size="big" user={user} />
 
         <Typography variant="title">{fullname || username}</Typography>
       </UserPageViewRowStyled>

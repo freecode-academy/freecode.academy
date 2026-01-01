@@ -4,7 +4,7 @@ import { SortOrder, useUsersConnectionQuery } from 'src/gql/generated'
 import { usePage, usePagination } from 'src/hooks/usePagination'
 import { AsminUsersViewTable } from './styles'
 import { GridCell, GridRow } from 'src/components/Grid/styles'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 import { MarkdownField } from 'src/components/MarkdownField'
 
 export const AsminUsersView: React.FC = () => {
@@ -38,7 +38,7 @@ export const AsminUsersView: React.FC = () => {
 
   return (
     <>
-      <NextSeo title="Пользователи" />
+      <NextSeo title="Users Management" />
 
       <AsminUsersViewTable>
         {response.data?.users.map((n) => (

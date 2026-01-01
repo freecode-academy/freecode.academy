@@ -4,7 +4,7 @@ import OfficeContext from '../Context'
 import SideBarProject from './Projects'
 import { OfficeLayoutNavBarStyled } from './styles'
 
-import UikitUserLink from 'src/uikit/Link/User'
+import { UserLink as UikitUserLink } from 'src/uikit/Link/User'
 
 import IconButton from 'material-ui/IconButton'
 import HomeIcon from 'material-ui-icons/Home'

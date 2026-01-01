@@ -28,9 +28,9 @@ const CommentPage: Page = () => {
   let description: string | undefined = undefined
 
   if (object.Topic) {
-    description = `Комментарий к топику "${object.Topic.name}"`
+    description = `Comment on "${object.Topic.name}" — join the discussion.`
   } else if (object.Task) {
-    description = `Комментарий к задаче "${object.Task.name}"`
+    description = `Comment on task "${object.Task.name}" — view context and replies.`
   } else {
     description = object.name || undefined
   }

@@ -13,7 +13,7 @@ import Grid from 'src/uikit/Grid'
 // import { styles as defaultStyles } from '@prisma-cms/front/lib/components/App/Renderer/MainMenu'
 // import Language from '@prisma-cms/front/lib/components/Language'
 // import UserItem from './User'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 
 import Link from 'next/link'
 

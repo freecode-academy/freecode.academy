@@ -1,37 +1,19 @@
 import React from 'react'
-// import { ObjectsListView, styles } from 'src/components/view/List'
-
-// import withStyles from 'material-ui/styles/withStyles'
-// import { TechnologiesViewProps } from './interfaces'
-// import { ColumnConfig } from 'apollo-cms/dist/DataView/List/Table'
+import Link from 'next/link'
 import { TechnologiesConnectionTechnologyFragment } from 'src/gql/generated'
-import UserLink from 'src/uikit/Link/User'
-import Grid from 'src/uikit/Grid'
-import TechnologyLink from 'src/uikit/Link/Technology'
-import styled from 'styled-components'
-import {
-  GridCell,
-  GridCellHeader,
-  GridRow,
-  GridTable,
-} from 'src/components/Grid/styles'
+import { UserLink } from 'src/uikit/Link/User'
 import PaginationWithStyles from 'src/components/Pagination'
-
-const TechnologiesViewMembersStyled = styled(GridCell)`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`
-
-const TechnologiesViewGridStyled = styled(GridTable)`
-  grid-template-columns: min-content max-content auto;
-`
-
-const TechnologiesViewStyled = styled.div``
+import {
+  TechnologiesViewStyled,
+  TechnologiesGrid,
+  TechnologyCard,
+  TechnologyCardTitle,
+  TechnologyCardAuthor,
+  TechnologyCardMembers,
+} from './styles'
 
 type TechnologiesViewProps = {
   objects: TechnologiesConnectionTechnologyFragment[]
-  // loading: boolean
   count: number | undefined
   page: number
   limit: number | undefined | null
@@ -40,43 +22,47 @@ type TechnologiesViewProps = {
 export const TechnologiesView: React.FC<TechnologiesViewProps> = ({
   objects,
   count,
-  // loading,
   page,
   limit,
 }) => {
   return (
     <TechnologiesViewStyled>
-      <TechnologiesViewGridStyled>
-        <GridRow>
-          <GridCellHeader>Технология</GridCellHeader>
-          <GridCellHeader>Кем добавлена</GridCellHeader>
-          <GridCellHeader>Кто использует</GridCellHeader>
-        </GridRow>
-
+      <TechnologiesGrid>
         {objects.map((n) => {
-          const items =
-            n.UserTechnologies?.map((nn) => (
-              <Grid key={nn.id} item>
-                {nn.CreatedBy ? <UserLink user={nn.CreatedBy} /> : null}
-              </Grid>
-            )) ?? []
+          const membersCount = n.UserTechnologies?.length || 0
 
           return (
-            <GridRow key={n.id}>
-              <GridCell>
-                <TechnologyLink object={n} />
-              </GridCell>
-              <GridCell>
-                {n.CreatedBy && <UserLink user={n.CreatedBy} />}
-              </GridCell>
-              <TechnologiesViewMembersStyled>
-                {' '}
-                {items}
-              </TechnologiesViewMembersStyled>
-            </GridRow>
+            <TechnologyCard key={n.id}>
+              <TechnologyCardTitle>
+                <Link href={`/technologies/${n.id}`}>{n.name}</Link>
+              </TechnologyCardTitle>
+
+              {n.CreatedBy && (
+                <TechnologyCardAuthor>
+                  <UserLink user={n.CreatedBy} size="small" />
+                </TechnologyCardAuthor>
+              )}
+
+              {membersCount > 0 && (
+                <TechnologyCardMembers>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  {membersCount}
+                </TechnologyCardMembers>
+              )}
+            </TechnologyCard>
           )
         })}
-      </TechnologiesViewGridStyled>
+      </TechnologiesGrid>
 
       <PaginationWithStyles total={count ?? 0} page={page} limit={limit} />
     </TechnologiesViewStyled>

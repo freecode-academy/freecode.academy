@@ -1,87 +1,72 @@
-import { Typography } from 'material-ui'
 import Link from 'next/link'
-import React, { useContext } from 'react'
-import Context, { PrismaCmsContext } from '@prisma-cms/context'
+import React from 'react'
 import { getUserTechnologyLevelText } from 'src/helpers/getUserTechnologyLevelText'
-import UikitUserLink from 'src/uikit/Link/User'
-import {
-  GridTableStyled,
-  GridTableAttributeStyled,
-  GridTableItemStyled,
-  // GridTableAttributesContainerStyled,
-} from 'src/components/GridTable/styles'
+import { UserLink as UikitUserLink } from 'src/uikit/Link/User'
 
 import { LearnStrategiesViewProps } from './interfaces'
-import { LearnStrategiesViewMembers } from './Members'
 import {
-  LearnStrategiesViewHeaderStyled,
   LearnStrategiesViewStyled,
-  // LearnStrategiesViewTableStyled,
+  StrategiesGrid,
+  StrategyCard,
+  StrategyCardTitle,
+  StrategyCardDescription,
+  StrategyCardLevel,
+  StrategyCardAuthor,
+  StrategyCardMembers,
 } from './styles'
+import { LevelIcon } from 'src/uikit/LevelIcon'
 
 export const LearnStrategiesView: React.FC<LearnStrategiesViewProps> = ({
   learnStrategies,
 }) => {
-  const context = useContext(Context) as PrismaCmsContext
-  const currentUser = context.user
-
   return (
-    <>
-      <LearnStrategiesViewStyled>
-        <LearnStrategiesViewHeaderStyled className="flex align-items-center">
-          <Typography variant="title"></Typography>
-          {/* <Link href="/learnstrategies/create" rel="nofollow noindex">
-            Создать стратегию развития
-          </Link> */}
-          <div className="flex-1" />
-        </LearnStrategiesViewHeaderStyled>
+    <LearnStrategiesViewStyled>
+      <StrategiesGrid>
+        {learnStrategies.map((n) => {
+          const membersCount = n.UserLearnStrategies?.length || 0
 
-        <GridTableStyled>
-          <GridTableItemStyled>
-            <GridTableAttributeStyled>
-              Название стратегии
-            </GridTableAttributeStyled>
+          return (
+            <StrategyCard key={n.id}>
+              <StrategyCardLevel title={getUserTechnologyLevelText(n.level)}>
+                <LevelIcon level={n.level} />
+              </StrategyCardLevel>
 
-            <GridTableAttributeStyled>
-              Технологический уровень
-            </GridTableAttributeStyled>
+              <StrategyCardTitle>
+                <Link href={`/learnstrategies/${n.id}`}>{n.name}</Link>
+              </StrategyCardTitle>
 
-            <GridTableAttributeStyled>Кто создал</GridTableAttributeStyled>
+              {n.description && (
+                <StrategyCardDescription>
+                  {n.description}
+                </StrategyCardDescription>
+              )}
 
-            <GridTableAttributeStyled>Участники</GridTableAttributeStyled>
-          </GridTableItemStyled>
+              {n.CreatedBy && (
+                <StrategyCardAuthor>
+                  <UikitUserLink user={n.CreatedBy} size="small" />
+                </StrategyCardAuthor>
+              )}
 
-          {learnStrategies.map((n) => {
-            return (
-              <GridTableItemStyled key={n.id}>
-                <GridTableAttributeStyled>
-                  <Link href={`/learnstrategies/${n.id}`}>{n.name}</Link>
-
-                  <div>{n.description}</div>
-                </GridTableAttributeStyled>
-
-                <GridTableAttributeStyled>
-                  {getUserTechnologyLevelText(n.level)}
-                </GridTableAttributeStyled>
-                {n.CreatedBy ? (
-                  <GridTableAttributeStyled>
-                    {' '}
-                    <UikitUserLink user={n.CreatedBy} />
-                  </GridTableAttributeStyled>
-                ) : null}
-
-                <GridTableAttributeStyled>
-                  {' '}
-                  <LearnStrategiesViewMembers
-                    learnStrategy={n}
-                    currentUser={currentUser}
-                  />
-                </GridTableAttributeStyled>
-              </GridTableItemStyled>
-            )
-          })}
-        </GridTableStyled>
-      </LearnStrategiesViewStyled>
-    </>
+              {membersCount > 0 && (
+                <StrategyCardMembers>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  {membersCount}
+                </StrategyCardMembers>
+              )}
+            </StrategyCard>
+          )
+        })}
+      </StrategiesGrid>
+    </LearnStrategiesViewStyled>
   )
 }

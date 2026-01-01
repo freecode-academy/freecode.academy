@@ -77,7 +77,7 @@ const TagPage: Page = () => {
         <title>{object.name}</title>
         <meta
           name="description"
-          content={`Все топики с тегом "${object.name}"`}
+          content={`Browse all articles tagged with "${object.name}" — tutorials, discussions, and insights.`}
         />
       </Head>
 

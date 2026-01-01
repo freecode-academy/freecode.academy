@@ -1,7 +1,7 @@
 import React from 'react'
 import { MainPageUsersStyled, MainPageUserStyled } from './styles'
 import { SortOrder, useUsersConnectionQuery } from 'src/gql/generated'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 import { MarkdownField } from 'src/components/MarkdownField'
 
 export const MainPageUsers: React.FC = () => {

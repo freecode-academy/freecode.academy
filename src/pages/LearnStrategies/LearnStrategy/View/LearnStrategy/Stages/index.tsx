@@ -16,15 +16,14 @@ export const LearnStrategyViewStages: React.FC<
     learnStrategy?.LearnStrategyStages?.forEach((learnStrategyStage) => {
       if (learnStrategyStage.Technology) {
         items.push(
-          <li key={learnStrategyStage.id}>
-            <LearnStageTechnology
-              learnStrategyStage={learnStrategyStage}
-              technology={learnStrategyStage.Technology}
-              currentUser={currentUser}
-              inEditMode={inEditMode}
-              learnStrategy={learnStrategy}
-            />
-          </li>
+          <LearnStageTechnology
+            key={learnStrategyStage.id}
+            learnStrategyStage={learnStrategyStage}
+            technology={learnStrategyStage.Technology}
+            currentUser={currentUser}
+            inEditMode={inEditMode}
+            learnStrategy={learnStrategy}
+          />
         )
       }
     })
@@ -41,16 +40,15 @@ export const LearnStrategyViewStages: React.FC<
     learnStrategy?.LearnStrategyStages?.forEach((n) => {
       if (n.learnStrategyTargetId) {
         subStrategies.push(
-          <li key={n.id}>
-            <LearnStrategyView
-              isRoot={false}
-              id={n.learnStrategyTargetId}
-              loadedIDs={loadedIDsWithCurrent}
-              currentUser={currentUser}
-              showChilds={!inEditMode}
-              editable={false}
-            />
-          </li>
+          <LearnStrategyView
+            key={n.id}
+            isRoot={false}
+            id={n.learnStrategyTargetId}
+            loadedIDs={loadedIDsWithCurrent}
+            currentUser={currentUser}
+            showChilds={!inEditMode}
+            editable={false}
+          />
         )
       }
     })
@@ -77,10 +75,8 @@ export const LearnStrategyViewStages: React.FC<
   return useMemo(() => {
     return (
       <>
-        <ul>
-          {technologies}
-          {subStrategies}
-        </ul>
+        {technologies}
+        {subStrategies}
         {createForm}
       </>
     )

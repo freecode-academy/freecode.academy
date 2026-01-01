@@ -1,125 +1,34 @@
-import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
-
-import Context from '@prisma-cms/context'
-
-import Avatar from 'material-ui/Avatar'
-
-import { withStyles } from 'material-ui/styles'
+import React from 'react'
 import { UserAvatarProps } from './interfaces'
+import { AvatarStyled } from './styles'
 
 export * from './interfaces'
 
-const styles = {
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  avatar: {
-    margin: 10,
-    textDecoration: 'none',
-    // maxWidth: "100%",
-    // height: "auto",
-  },
-  smallAvatar: {
-    width: 25,
-    height: 25,
-  },
-  normalAvatar: {
-    width: 40,
-    height: 40,
-  },
-  bigAvatar: {
-    width: 120,
-    height: 120,
-  },
-  editable: {
-    cursor: 'pointer',
-  },
-}
-
-export class UserAvatar extends Component<UserAvatarProps> {
-  // static propTypes = {
-  //   classes: PropTypes.object.isRequired,
-  //   user: PropTypes.object.isRequired,
-  //   size: PropTypes.string.isRequired,
-  //   editable: PropTypes.bool.isRequired,
-  // }
-
-  static defaultProps = {
-    size: 'normal',
-    // size: "big",
-    editable: false,
+export const Avatar: React.FC<UserAvatarProps> = ({
+  user,
+  size = 'normal',
+  editable = false,
+  className,
+}) => {
+  if (!user) {
+    return null
   }
 
-  static contextType = Context
+  const { image, username, fullname } = user
+  const name = fullname || username || ''
 
-  render() {
-    const { user, classes, size, editable, className, ...other } = this.props
-
-    if (!user) {
-      return null
-    }
-
-    const assetsBaseUrl = undefined
-
-    const {
-      // id,
-      image,
-      username,
-      fullname,
-      // firstname,
-      // lastname,
-    } = user
-
-    // const name = [firstname, lastname].filter(n => n).reduce((prev, next) => [prev, " ", next]) || username;
-    // const name = fullname || [firstname, lastname].filter(n => n).join(" ") || username;
-    const name = fullname || username || ''
-
-    const classNames = [classes?.avatar]
-
-    let url
-
-    if (image) {
-      // url = `/images/avatar/${image}`;
-      // url = `/images/resized/thumb/uploads/${image}`;
-      url = `${
-        assetsBaseUrl !== undefined ? assetsBaseUrl : '/'
-      }images/resized/thumb/${image}`
-    }
-
-    switch (size) {
-      case 'small':
-        classNames.push(classes?.smallAvatar)
-        break
-
-      case 'normal':
-        classNames.push(classes?.normalAvatar)
-        break
-
-      case 'big':
-        classNames.push(classes?.bigAvatar)
-
-        break
-    }
-
-    if (editable) {
-      classNames.push(classes?.editable)
-    }
-
-    return (
-      <Avatar
-        alt={name}
-        src={url || undefined}
-        className={[className].concat(classNames).join(' ')}
-        {...other}
-      >
-        {url ? '' : (name && name.substr(0, 1).toLocaleUpperCase()) || 'A'}
-      </Avatar>
-    )
+  let url
+  if (image) {
+    url = `/images/resized/thumb/${image}`
   }
-}
 
-export default withStyles<any>(styles)((props: UserAvatarProps) => (
-  <UserAvatar {...props} />
-))
+  return (
+    <AvatarStyled $size={size} $editable={editable} className={className}>
+      {url ? (
+        <img src={url} alt={name} />
+      ) : (
+        (name && name.substring(0, 1).toUpperCase()) || 'A'
+      )}
+    </AvatarStyled>
+  )
+}

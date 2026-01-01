@@ -301,8 +301,11 @@ export const CodeChallengePageInitial: React.FC<
   return (
     <>
       <Head>
-        <title>Задание "{object.name}".</title>
-        <meta name="description" content={object.name || ''} />
+        <title>Challenge: {object.name}</title>
+        <meta
+          name="description"
+          content={`Practice coding with "${object.name}" — interactive exercise with instant feedback.`}
+        />
       </Head>
 
       <Context.Provider value={context}>

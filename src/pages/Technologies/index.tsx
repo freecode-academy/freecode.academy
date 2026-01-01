@@ -81,10 +81,10 @@ const TechnologiesPage: Page = () => {
   return (
     <>
       <Head>
-        <title>Технологии</title>
+        <title>Technologies — Skills & Expert Directory</title>
         <meta
           name="description"
-          content="Все технологии, используемые программистами"
+          content="Explore technologies used by our experts. Find specialists in React, Node.js, TypeScript, Python, and more."
         />
       </Head>
 

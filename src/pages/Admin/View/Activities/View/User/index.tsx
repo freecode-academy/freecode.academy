@@ -1,6 +1,6 @@
 import React from 'react'
 import { useUserQuery } from 'src/gql/generated'
-import UserLink from 'src/uikit/Link/User'
+import { UserLink } from 'src/uikit/Link/User'
 
 export type ActivityMessageProps = {
   userId: string

@@ -6,7 +6,7 @@ import { SigninPageView } from './View'
 export const SignInPage: Page = () => {
   return (
     <>
-      <NextSeo title="Авторизация" noindex nofollow />
+      <NextSeo title="Sign In" noindex nofollow />
 
       <SigninPageView />
     </>

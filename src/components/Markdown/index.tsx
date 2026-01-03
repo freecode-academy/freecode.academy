@@ -4,14 +4,8 @@ import ReactMarkdown, {
   UrlTransform,
 } from 'react-markdown'
 
-import { visit } from 'unist-util-visit'
-import { Node } from 'unist'
-
 import { MarkdownStyled } from './styles'
 import React from 'react'
-import { FileRenderer, FileRendererProps } from './components/FileRenderer'
-import remarkMdx from 'remark-mdx'
-import { MdxJsxAttribute } from 'mdast-util-mdx-jsx'
 import Link from 'next/link'
 import remarkGfm from 'remark-gfm'
 
@@ -29,34 +23,7 @@ const urlTransform: UrlTransform = (url, _name, _node) => {
   return fixed
 }
 
-type Tree = Node & {
-  tagName?: string
-  attributes?: MdxJsxAttribute[]
-}
-
-function myRemarkPlugin() {
-  return function (tree: Tree) {
-    visit(tree, function (node) {
-      if ('name' in node && node.name === 'File') {
-        node.type = 'element'
-        node.tagName = 'File'
-
-        node.data = {
-          hName: 'File',
-          hProperties: Object.fromEntries(
-            node.attributes?.map((attr: any) => [attr.name, attr.value]) ?? []
-          ),
-        }
-      }
-    })
-  }
-}
-
-interface CustomComponents extends Components {
-  File: React.FC<FileRendererProps>
-}
-
-const components: CustomComponents = {
+const components: Components = {
   a: ({ node: _node, href: hrefProps, ...props }) => {
     const href: string | undefined = hrefProps
 
@@ -74,12 +41,6 @@ const components: CustomComponents = {
       </>
     )
   },
-  // File: (props: any) => {
-  //   const id: string | undefined = props.id
-
-  //   return id ? <FileRenderer {...props} id={id} /> : null
-  // },
-  File: FileRenderer,
 }
 
 type MarkdownProps = {
@@ -91,7 +52,7 @@ export const Markdown: React.FC<MarkdownProps> = ({ children }) => {
     <MarkdownStyled>
       <ReactMarkdown
         urlTransform={urlTransform}
-        remarkPlugins={[remarkGfm, remarkMdx, myRemarkPlugin]}
+        remarkPlugins={[remarkGfm]}
         components={components}
       >
         {children}

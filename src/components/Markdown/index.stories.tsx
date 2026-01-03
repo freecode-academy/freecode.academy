@@ -7,7 +7,6 @@ const meta = {
   parameters: {
     // layout: 'centered',
   },
-  tags: ['autodocs'],
   args: {
     children: '',
   },
@@ -117,6 +116,8 @@ export const ComplexExample: Story = {
 | Мария | 27 | Казань |
 
 ## Код
+
+NPS >40
 
 \`\`\`javascript
 function hello() {

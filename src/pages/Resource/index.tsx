@@ -33,9 +33,11 @@ export const getResourceVariables = (
     global.location?.origin || 'http://localhost'
   )
 
+  const pathname = decodeURI(uri.pathname).replace(/^\/ru(?=\/|$)/, '')
+
   const variables: ResourceQueryVariables = {
     where: {
-      uri: decodeURI(uri.pathname),
+      uri: pathname || '/',
     },
   }
 

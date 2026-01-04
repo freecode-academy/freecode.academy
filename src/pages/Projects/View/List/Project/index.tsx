@@ -2,6 +2,11 @@ import { ProjectsConnectionProjectFragment } from 'src/gql/generated'
 import {
   ProjectListProjectStyled,
   ProjectListProjectTitleStyled,
+  ProjectTitleWrapper,
+  ProjectStatusWrapper,
+  ProjectAuthorWrapper,
+  ProjectDescriptionWrapper,
+  ProjectStatusBadge,
 } from './styles'
 import { UserLink } from 'src/uikit/Link/User'
 
@@ -13,13 +18,27 @@ export const ProjectListProject: React.FC<ProjectViewProps> = ({
   project,
   ...other
 }) => {
-  const { CreatedBy } = project
+  const { CreatedBy, description, status } = project
 
   return (
     <ProjectListProjectStyled {...other}>
-      <ProjectListProjectTitleStyled object={project} />
+      <ProjectTitleWrapper>
+        <ProjectListProjectTitleStyled object={project} />
+      </ProjectTitleWrapper>
 
-      {CreatedBy && <UserLink user={CreatedBy} />}
+      <ProjectStatusWrapper>
+        {status && (
+          <ProjectStatusBadge $status={status}>{status}</ProjectStatusBadge>
+        )}
+      </ProjectStatusWrapper>
+
+      <ProjectAuthorWrapper>
+        {CreatedBy && <UserLink user={CreatedBy} size="small" />}
+      </ProjectAuthorWrapper>
+
+      {description && (
+        <ProjectDescriptionWrapper>{description}</ProjectDescriptionWrapper>
+      )}
     </ProjectListProjectStyled>
   )
 }

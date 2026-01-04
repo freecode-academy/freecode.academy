@@ -46,7 +46,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
   children,
   onSendMessage,
   welcomeTitle = 'Hi! How can I help?',
-  welcomeText = 'Ask me anything about n8n-selfhost.dev project.',
+  welcomeText = 'Ask me anything about Freecode Academy',
   placeholder = 'Type your message...',
 }) => {
   const snackbar = useSnackbar()

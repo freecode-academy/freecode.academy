@@ -9,7 +9,7 @@ export const createUserTechnologyProcessor: FieldResolver<
   const { id: currentUserId } = ctx.currentUser || {}
 
   if (!currentUserId) {
-    throw new Error('Необходимо авторизоваться')
+    throw new Error('Please sign in to continue')
   }
 
   const {

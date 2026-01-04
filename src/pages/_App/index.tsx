@@ -252,7 +252,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
                     <ChatProvider
                       onSendMessage={sendChatMessage}
                       welcomeTitle="Hi! How can I help?"
-                      welcomeText="Ask me anything about n8n-selfhost.dev project setup and usage."
+                      welcomeText="Ask me anything about Freecode Academy"
                       placeholder="Type your question..."
                     >
                       {contentWithLayout}

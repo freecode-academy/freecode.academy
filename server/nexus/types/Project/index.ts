@@ -8,6 +8,7 @@ import {
 } from 'nexus'
 
 import { createProjectProcessor } from './resolvers/createProjectProcessor'
+import { updateProjectProcessor } from './resolvers/updateProjectProcessor'
 
 export const Project = objectType({
   name: 'Project',
@@ -123,16 +124,7 @@ export const ProjectExtendMutation = extendType({
         data: nonNull('ProjectUpdateInput'),
         where: nonNull('ProjectWhereUniqueInput'),
       },
-      // TODO Restore logic
-      resolve(_, _args, _ctx) {
-        throw new Error('Not implemented')
-
-        // return {
-        //   success: false,
-        //   message: 'Not implemented',
-        //   errors: [],
-        // }
-      },
+      resolve: updateProjectProcessor,
     })
   },
 })
@@ -180,5 +172,14 @@ export const ProjectUpdateInput = inputObjectType({
   name: 'ProjectUpdateInput',
   definition(t) {
     t.string('name')
+    t.string('description')
+    t.string('url')
+    t.field('status', {
+      type: 'ProjectStatus',
+    })
+    t.field('content', {
+      type: 'JSON',
+    })
+    t.string('contentText')
   },
 })

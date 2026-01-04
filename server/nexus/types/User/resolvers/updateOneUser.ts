@@ -12,7 +12,7 @@ export const updateOneUser: FieldResolver<'Mutation', 'updateOneUser'> = async (
   const where = args.where as Prisma.UserUpdateArgs['where']
 
   if (!currentUser) {
-    throw new Error('Необходимо авторизоваться')
+    throw new Error('Please sign in to continue')
   }
 
   if (!currentUser.sudo) {

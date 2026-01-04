@@ -8,7 +8,7 @@ export const updateTaskProcessor: FieldResolver<
   const { id: currentUserId } = ctx.currentUser || {}
 
   if (!currentUserId) {
-    throw new Error('Необходимо авторизоваться')
+    throw new Error('Please sign in to continue')
   }
 
   const where = args.where as Prisma.TaskWhereUniqueInput

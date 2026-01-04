@@ -1,101 +1,51 @@
 import Head from 'next/head'
-import React, { useCallback, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import {
-  // TasksConnectionDocument,
+  TasksConnectionDocument,
   TasksConnectionQueryVariables,
   useTasksConnectionQuery,
-  TaskWhereInput,
-  EnumTaskStatusFilter,
 } from 'src/gql/generated'
+import { ParsedUrlQuery } from 'querystring'
 
 import { TasksView as View } from './View'
 
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring'
+import { parseFiltersFromUrl } from 'src/hooks/useTasksFilter'
 
 const first = 12
 
-const defaultVariables: TasksConnectionQueryVariables = {
-  where: {},
-  first,
-  timersWhere: { stopedAt: null },
-}
-
-function getQueryParams(query: ParsedUrlQuery) {
-  const { page: queryPage, needHelp, where: queryWhere, status_in } = query
-
-  let skip: number | undefined
-
-  const where: TaskWhereInput = {}
-
-  /**
-   * Берем условия фильтрации из УРЛа
-   */
-  if (queryWhere && typeof queryWhere === 'string') {
-    try {
-      const filter: TaskWhereInput = JSON.parse(decodeURIComponent(queryWhere))
-
-      Object.assign(where, filter)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-  // Старое условие фильтрации
-  // TODO Надо будет убрать
-  else if (status_in && Array.isArray(status_in)) {
-    const taskStatuses = status_in as EnumTaskStatusFilter['in']
-
-    where.status = {
-      in: taskStatuses,
-    }
-  }
-
+const getVariables = (query: ParsedUrlQuery): TasksConnectionQueryVariables => {
+  const where = parseFiltersFromUrl(query.where)
+  const queryPage = query.page
   const page =
-    (queryPage && typeof queryPage === 'string' && parseInt(queryPage)) || 0
-
-  if (page > 1) {
-    skip = (page - 1) * first
-  }
-
-  if (needHelp && needHelp === 'true') {
-    where.needHelp = {
-      equals: true,
-    }
-  }
+    (queryPage && typeof queryPage === 'string' && parseInt(queryPage)) || 1
+  const skip = page > 1 ? (page - 1) * first : undefined
 
   return {
-    page,
-    skip,
-    first,
     where,
+    first,
+    skip,
+    timersWhere: { stopedAt: null },
   }
 }
 
 export const TasksPage: Page = () => {
   const router = useRouter()
 
-  const { query } = router
+  const variables = useMemo(() => getVariables(router.query), [router.query])
 
-  const { page, ...queryVariables } = useMemo(() => {
-    const variables = {
-      ...defaultVariables,
-      ...getQueryParams(query),
-    }
-
-    return variables
-  }, [query])
+  const page = useMemo(() => {
+    const queryPage = router.query.page
+    return (
+      (queryPage && typeof queryPage === 'string' && parseInt(queryPage)) || 1
+    )
+  }, [router.query.page])
 
   const response = useTasksConnectionQuery({
-    variables: queryVariables,
+    variables,
     onError: console.error,
   })
-
-  const { variables } = response
-
-  const setFilters = useCallback((filters: any) => {
-    console.error('setFilters impementation required', filters)
-  }, [])
 
   return useMemo(() => {
     return (
@@ -112,40 +62,19 @@ export const TasksPage: Page = () => {
           total={response.data?.tasksCount || 0}
           limit={variables?.first}
           page={page}
-          setFilters={setFilters}
         />
       </>
     )
-  }, [
-    page,
-    response.data?.tasks,
-    response.data?.tasksCount,
-    setFilters,
-    variables?.first,
-  ])
+  }, [page, response.data?.tasks, response.data?.tasksCount, variables?.first])
 }
 
-// TasksPage.getInitialProps = async (context) => {
-//   const { apolloClient } = context
+TasksPage.getInitialProps = async (context) => {
+  const { apolloClient, query } = context
 
-//   await apolloClient.query({
-//     query: TasksConnectionDocument,
+  await apolloClient.query({
+    query: TasksConnectionDocument,
+    variables: getVariables(query),
+  })
 
-//     /**
-//      * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
-//      * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
-//      */
-//     variables: {
-//       ...defaultVariables,
-//       ...getQueryParams(context.query),
-//     },
-//   })
-
-//   return {
-//     // layout: {
-//     //   variant: 'fullwidth',
-//     // },
-//   }
-// }
-
-// export default TasksPage
+  return {}
+}

@@ -11,7 +11,7 @@ export const updateCurrentUser: FieldResolver<
   const { password: passwordProps, ...data } = args.data
 
   if (!currentUser) {
-    throw new Error('Необходимо авторизоваться')
+    throw new Error('Please sign in to continue')
   }
 
   const updateData: Prisma.UserUpdateArgs['data'] = data

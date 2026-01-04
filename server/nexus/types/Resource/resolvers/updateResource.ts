@@ -13,7 +13,7 @@ export const updateResource = async (
   } = args
 
   if (!ctx.currentUser) {
-    throw new Error('Необходимо авторизоваться')
+    throw new Error('Please sign in to continue')
   }
 
   const resource = await ctx.prisma.resource.findUnique({

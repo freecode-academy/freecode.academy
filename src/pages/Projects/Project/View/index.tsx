@@ -1,12 +1,7 @@
 import React from 'react'
 import { ProjectViewStyled } from './styles'
-// import Link from 'next/link'
 import Typography from 'material-ui/Typography'
 import { NextSeo } from 'next-seo'
-// import TasksView from 'src/pages/Tasks/View'
-// import CreateTaskForm from 'src/pages/Tasks/Task/View/form/CreateTask'
-// import { CreateTaskProcessorMutation } from 'src/gql/generated'
-// import { Button } from 'material-ui'
 import { TasksView } from 'src/pages/Tasks/View'
 import {
   ProjectFragment,
@@ -14,80 +9,46 @@ import {
   useTasksConnectionQuery,
 } from 'src/gql/generated'
 import { makeProjectLink } from 'src/uikit/Link/Project'
+import { useRouter } from 'next/router'
+import { useTasksFilter } from 'src/hooks/useTasksFilter'
 
 type ProjectViewProps = {
   project: ProjectFragment
 }
 
+const TASKS_PER_PAGE = 10
+
 export const ProjectView: React.FC<ProjectViewProps> = ({
   project,
   ...other
 }) => {
-  // const [opened, setOpened] = useState(false)
-
-  // const toggleOpened = useCallback(() => {
-  //   setOpened(!opened)
-  // }, [opened])
-
-  // const cancel = useCallback(() => {
-  //   setOpened(false)
-  // }, [])
-
-  // const onCreateTask = useCallback(
-  //   (data: CreateTaskProcessorMutation) => {
-  //     if (data.response.data?.id) {
-  //       // router.push(`/tasks/${data.response.data?.id}`);
-
-  //       cancel()
-  //     }
-  //   },
-  //   [cancel]
-  // )
-
-  // const createTaskForm = useMemo(() => {
-  //   return (
-  //     <>
-  //       {!opened ? (
-  //         <Button onClick={toggleOpened} variant="raised" size="small">
-  //           Добавить задачу
-  //         </Button>
-  //       ) : null}
-  //       <CreateTaskForm
-  //         opened={opened}
-  //         onSuccess={onCreateTask}
-  //         cancel={cancel}
-  //         options={{
-  //           variables: {
-  //             data: {
-  //               name: '',
-  //               Project: {
-  //                 connect: {
-  //                   id: project.id,
-  //                 },
-  //               },
-  //             },
-  //           },
-  //         }}
-  //       />
-  //     </>
-  //   )
-  // }, [opened, toggleOpened, onCreateTask, cancel, project.id])
+  const router = useRouter()
+  const page = Number(router.query.page) || 1
+  const skip = (page - 1) * TASKS_PER_PAGE
 
   const name = project.Resource?.name || project.name || ''
+
+  const { where } = useTasksFilter({
+    baseWhere: {
+      projectId: {
+        equals: project.id,
+      },
+    },
+  })
 
   const tasksResponse = useTasksConnectionQuery({
     variables: {
       orderBy: {
         updatedAt: SortOrder.DESC,
       },
-      where: {
-        ProjectTasks: {},
-      },
-      first: 10,
+      where,
+      first: TASKS_PER_PAGE,
+      skip,
     },
   })
 
   const tasks = tasksResponse.data?.tasks ?? []
+  const total = tasksResponse.data?.tasksCount ?? 0
 
   return (
     <>
@@ -103,16 +64,12 @@ export const ProjectView: React.FC<ProjectViewProps> = ({
       <ProjectViewStyled {...other}>
         <Typography variant="title">{name}</Typography>
 
-        {/* {createTaskForm} */}
-
-        {tasks.length > 0 ? (
-          <TasksView
-            objects={tasks}
-            page={0}
-            limit={tasks.length}
-            total={tasks.length}
-          />
-        ) : null}
+        <TasksView
+          objects={tasks}
+          page={page}
+          limit={TASKS_PER_PAGE}
+          total={total}
+        />
       </ProjectViewStyled>
     </>
   )

@@ -22,7 +22,7 @@ export const createResource = async (
   const { id: currentUserId } = currentUser || {}
 
   if (!currentUserId) {
-    throw new Error('Необходимо авторизоваться')
+    throw new Error('Please sign in to continue')
   }
 
   const { data } = args

@@ -8,7 +8,7 @@ export const createUserLearnStrategy: FieldResolver<
   const { id: currentUserId, technologyLevel } = ctx.currentUser || {}
 
   if (!currentUserId) {
-    throw new Error('Необходимо авторизоваться')
+    throw new Error('Please sign in to continue')
   }
 
   const LearnStrategyWhere = args.data

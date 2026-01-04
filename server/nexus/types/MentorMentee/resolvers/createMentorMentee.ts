@@ -6,7 +6,7 @@ export const createMentorMentee: FieldResolver<
   'createMentorMentee'
 > = async (_, args, ctx) => {
   if (!ctx.currentUser) {
-    throw new Error('Необходимо авторизоваться')
+    throw new Error('Please sign in to continue')
   }
 
   const currentUserId = ctx.currentUser.id

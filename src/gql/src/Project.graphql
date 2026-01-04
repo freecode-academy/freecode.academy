@@ -1,16 +1,33 @@
-# mutation createProjectProcessor($data: ProjectCreateInput!) {
-#   response: createProjectProcessor(data: $data) {
-#     success
-#     message
-#     errors {
-#       key
-#       message
-#     }
-#     data {
-#       id
-#     }
-#   }
-# }
+mutation createProjectProcessor($data: ProjectCreateInput!) {
+  response: createProjectProcessor(data: $data) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...ProjectNoNesting
+    }
+  }
+}
+
+mutation updateProjectProcessor(
+  $data: ProjectUpdateInput!
+  $where: ProjectWhereUniqueInput!
+) {
+  response: updateProjectProcessor(data: $data, where: $where) {
+    success
+    message
+    errors {
+      key
+      message
+    }
+    data {
+      ...ProjectNoNesting
+    }
+  }
+}
 
 query projectsConnection(
   $first: Int = 12

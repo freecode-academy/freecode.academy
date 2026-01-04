@@ -213,6 +213,8 @@ export class McpClient {
     const result = await this.callTool('Send_Message', {
       message,
       sessionId: this.sessionId,
+      // TODO refactor
+      token: localStorage.getItem('token') || '',
     })
 
     const content = (

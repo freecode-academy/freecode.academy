@@ -7,7 +7,7 @@ export const updateTopicProcessor: FieldResolver<
   'updateTopicProcessor'
 > = async (_, args, ctx) => {
   const {
-    data: { name, contentV2, blogID, uri },
+    data: { name, longtitle, intro, contentV2, blogID, uri },
   } = args
 
   const where = args.where as Prisma.ResourceWhereUniqueInput
@@ -16,6 +16,8 @@ export const updateTopicProcessor: FieldResolver<
     name,
     contentV2: contentV2 ?? undefined,
     uri: uri ?? undefined,
+    longtitle,
+    intro,
   }
 
   if (blogID) {

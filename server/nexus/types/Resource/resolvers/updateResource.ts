@@ -24,7 +24,10 @@ export const updateResource = async (
     throw new Error('Не был получен объект')
   }
 
-  if (resource.CreatedBy !== ctx.currentUser.id) {
+  if (
+    ctx.currentUser.sudo !== true &&
+    resource.CreatedBy !== ctx.currentUser.id
+  ) {
     throw new Error('Нельзя редактировать чужой объект')
   }
 

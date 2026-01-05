@@ -34,14 +34,13 @@ const MarkdownEditor = dynamic(
   }
 )
 
-type FormData = Omit<
-  TopicCreateInput,
-  'CodeChallenge' | 'components' | 'id' | 'uri'
->
+type FormData = Omit<TopicCreateInput, 'CodeChallenge' | 'id' | 'uri'>
 
 function getDefaultValues(topic: TopicEditFormProps['topic']): FormData {
   return {
     name: topic?.name ?? '',
+    longtitle: topic?.longtitle ?? '',
+    intro: (topic && 'intro' in topic && topic.intro) || '',
     contentV2: (topic && 'contentV2' in topic && topic.contentV2) || '',
     blogID: topic?.Blog?.id,
   }
@@ -49,6 +48,8 @@ function getDefaultValues(topic: TopicEditFormProps['topic']): FormData {
 
 export const schema: yup.ObjectSchema<FormData> = yup.object().shape({
   name: yup.string().required(),
+  longtitle: yup.string(),
+  intro: yup.string(),
   contentV2: yup.string().required(),
   blogID: yup.string(),
 })
@@ -174,7 +175,10 @@ export const TopicEditForm: React.FC<TopicEditFormProps> = ({
   }, [blogsResponse.data?.resources])
 
   const fieldRenderer = useCallback<
-    ControllerProps<FormData, 'name' | 'contentV2' | 'blogID'>['render']
+    ControllerProps<
+      FormData,
+      'name' | 'longtitle' | 'intro' | 'contentV2' | 'blogID'
+    >['render']
   >(
     ({ field: { name, value, onChange, onBlur }, fieldState: { error } }) => {
       let label: string
@@ -187,6 +191,13 @@ export const TopicEditForm: React.FC<TopicEditFormProps> = ({
       switch (name) {
         case 'name':
           label = 'Name'
+          break
+        case 'longtitle':
+          label = 'Long title'
+          break
+        case 'intro':
+          label = 'Intro'
+          EditorComponent = MarkdownEditor
           break
         case 'blogID':
           label = 'Blog'
@@ -235,7 +246,9 @@ export const TopicEditForm: React.FC<TopicEditFormProps> = ({
     <FormProvider {...form}>
       <TopicEditFormStyled onSubmit={onSubmit}>
         <Controller name="name" render={fieldRenderer} />
+        <Controller name="longtitle" render={fieldRenderer} />
         <Controller name="blogID" render={fieldRenderer} />
+        <Controller name="intro" render={fieldRenderer} />
         <Controller name="contentV2" render={fieldRenderer} />
 
         <TopicEditFormToolbarStyled>

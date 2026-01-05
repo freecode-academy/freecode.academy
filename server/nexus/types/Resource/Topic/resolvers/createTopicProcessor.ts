@@ -9,10 +9,12 @@ export const createTopicProcessor: FieldResolver<
   const {
     id,
     name,
-    components,
+    longtitle,
+    // components,
     // uri,
     blogID,
     // CodeChallenge,
+    intro,
     contentV2,
   } = args.data
 
@@ -27,7 +29,8 @@ export const createTopicProcessor: FieldResolver<
     isfolder: false,
     id: id === null ? undefined : id,
     name,
-    components,
+    longtitle,
+    // components,
     CodeChallenges,
     Resource_ResourceToResource_Blog: blogID
       ? { connect: { id: blogID } }
@@ -35,6 +38,7 @@ export const createTopicProcessor: FieldResolver<
 
     // TODO Надо из createResource вынести метод создания УРЛа
     uri,
+    intro: intro ?? undefined,
     contentV2: contentV2 ?? undefined,
   }
 

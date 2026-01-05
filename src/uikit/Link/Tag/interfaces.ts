@@ -18,6 +18,4 @@ export interface TagLinkProps extends React.PropsWithChildren {
   color?: TypographyProps['color']
 
   className?: UiLinkProps['className']
-
-  textClassName?: UiLinkProps['textClassName']
 }

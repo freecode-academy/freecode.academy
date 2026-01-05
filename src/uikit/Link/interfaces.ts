@@ -10,8 +10,6 @@ export type UiLinkProps = LinkProps & {
 
   className?: string
 
-  textClassName?: string
-
   style?: any
 
   title?: string

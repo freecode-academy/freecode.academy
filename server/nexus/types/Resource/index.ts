@@ -31,11 +31,16 @@ export const Resource = objectType({
 
         return components ? null : content
       },
+      deprecation: 'Use contentV2 with markdown content instead',
     })
     t.field('components', {
       type: 'JSON',
+      deprecation: 'Use contentV2 with markdown content instead',
     })
-    t.string('contentText')
+    t.string('contentText', {
+      deprecation: 'Use contentV2 with markdown content instead',
+    })
+    t.string('intro')
     t.string('contentV2')
     t.nonNull.boolean('published')
     t.nonNull.boolean('deleted')

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 import Link from '..'
 
@@ -51,14 +50,10 @@ const styles = (theme: any) => {
 }
 
 export class BlogLink extends Component<BlogLinkProps> {
-  static propTypes = {
-    variant: PropTypes.string,
-  }
-
   static defaultProps = {}
 
   render() {
-    const { object, children, classes, variant, ...other } = this.props
+    const { object, children, classes, ...other } = this.props
 
     if (!object) {
       return null
@@ -79,9 +74,6 @@ export class BlogLink extends Component<BlogLinkProps> {
         href={uri}
         title={longtitle || name_str}
         classes={classes}
-        textClassName={[variant, name_str.length < 25 ? 'nowrap' : ''].join(
-          ' '
-        )}
         {...other}
       >
         {text}

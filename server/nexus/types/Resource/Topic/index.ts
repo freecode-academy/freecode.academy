@@ -30,20 +30,22 @@ export const TopicCreateInput = inputObjectType({
     t.string('name', {
       default: '',
     })
-    // t.string('longtitle')
+    t.string('longtitle')
     // t.field('content', {
     //   type: 'JSON',
     // })
-    t.field('components', {
-      type: 'JSON',
-    })
+    // t.field('components', {
+    //   type: 'JSON',
+    // })
     // t.boolean('published')
     // t.list.nonNull.string('topic_tags')
     t.id('blogID')
     t.field('CodeChallenge', {
       type: 'CodeChallengeCreateOneWithoutTopicInput',
+      deprecation: 'Will be removed in neares feature',
     })
     t.string('uri')
+    t.string('intro')
     t.string('contentV2')
   },
 })
@@ -68,6 +70,7 @@ export const TopicUpdateInput = inputObjectType({
     //   type: 'CodeChallengeCreateOneWithoutTopicInput',
     // })
     t.string('uri')
+    t.string('intro')
     t.string('contentV2')
   },
 })

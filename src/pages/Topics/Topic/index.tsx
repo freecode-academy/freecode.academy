@@ -28,9 +28,7 @@ export const TopicPage: Page = () => {
     <>
       <NextSeo
         title={name || ''}
-        description={`${
-          longtitle || name
-        } — read, discuss, and share insights with the community.`}
+        description={longtitle || name || undefined}
       />
 
       {object ? (

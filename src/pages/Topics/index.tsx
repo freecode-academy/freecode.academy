@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import {
   ResourceType,
   TopicsConnectionDocument,
@@ -10,7 +10,6 @@ import {
 import { Page, NextPageContextCustom } from '../_App/interfaces'
 import { useRouter, NextRouter } from 'next/router'
 import { TopicsView } from './View'
-import { useBoolean } from 'src/hooks/useBoolean'
 
 const first = 10
 
@@ -65,10 +64,6 @@ export const TopicsPage: Page = () => {
 
   const { variables } = response
 
-  const [inited, initedOn] = useBoolean(false)
-
-  useEffect(() => initedOn(), [initedOn])
-
   return (
     <>
       <Head>
@@ -79,7 +74,7 @@ export const TopicsPage: Page = () => {
         />
       </Head>
 
-      {inited && response.data?.resources.length && (
+      {response.data?.resources && response.data?.resources.length > 0 && (
         <TopicsView
           // loading={loading}
           objects={response.data?.resources}

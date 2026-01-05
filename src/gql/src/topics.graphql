@@ -13,10 +13,11 @@ query topicsConnection(
 
 fragment topicsConnectionTopic on Resource {
   id
-  updatedAt
+  createdAt
   name
   uri
   longtitle
+  intro
   contentV2 @include(if: $withContent)
   CreatedBy {
     ...topicsConnectionUser

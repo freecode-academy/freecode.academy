@@ -67,6 +67,7 @@ const ProjectsPage: Page = () => {
 
   const response = useProjectsConnectionQuery({
     variables: queryVariables,
+    fetchPolicy: 'cache-and-network',
     onError: console.error,
   })
 

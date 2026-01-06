@@ -27,6 +27,7 @@ export const TaskPage: Page = () => {
 
   const response = useTaskQuery({
     variables,
+    fetchPolicy: 'cache-and-network',
     onError: console.error,
   })
 

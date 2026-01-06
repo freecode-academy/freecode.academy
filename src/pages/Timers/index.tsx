@@ -49,6 +49,7 @@ export const TimersPage: Page = () => {
 
   const response = useTimersConnectionQuery({
     variables: queryVariables,
+    fetchPolicy: 'cache-and-network',
     onError: console.error,
   })
 

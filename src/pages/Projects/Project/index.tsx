@@ -75,6 +75,7 @@ const ProjectPage: Page = () => {
   const response = useProjectsQuery({
     skip: !variables?.where,
     variables,
+    fetchPolicy: 'cache-and-network',
     onError: console.error,
   })
 

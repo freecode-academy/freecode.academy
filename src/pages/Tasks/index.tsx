@@ -44,6 +44,7 @@ export const TasksPage: Page = () => {
 
   const response = useTasksConnectionQuery({
     variables,
+    fetchPolicy: 'cache-and-network',
     onError: console.error,
   })
 

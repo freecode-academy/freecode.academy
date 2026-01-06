@@ -1,14 +1,13 @@
-import { extendType, objectType } from 'nexus'
+import { extendType, inputObjectType, nonNull, objectType } from 'nexus'
 import { myMindLogsResolver } from './resolvers/myMindLogs'
-// import { PUBSUB_MINDLOG_ADDED } from '../Message/interfaces'
-// import { NexusGenObjects } from 'server/nexus/generated/nexus'
+import { myMindLogsCountResolver } from './resolvers/myMindLogsCount'
+import { mindLogResolver } from './resolvers/mindLog'
+import { createMindLogResolver } from './resolvers/createMindLog'
+import { updateMindLogResolver } from './resolvers/updateMindLog'
+import { deleteMindLogResolver } from './resolvers/deleteMindLog'
 
-/**
- * Модель лога мышления агента
- */
 export const MindLog = objectType({
   name: 'MindLog',
-  description: 'Запись в логе мышления агента',
   definition(t) {
     t.nonNull.id('id')
     t.nonNull.date('createdAt')
@@ -18,18 +17,37 @@ export const MindLog = objectType({
     t.float('quality')
     t.nonNull.id('createdById')
     t.field('CreatedBy', { type: 'User' })
+  },
+})
 
-    // Связь с агентом
-    // t.field('Agent', {
-    //   type: 'AiAgent',
-    //   resolve: (parent, _, ctx) => {
-    //     return parent.agentId
-    //       ? ctx.prisma.aiAgent.findUnique({
-    //           where: { id: parent.agentId },
-    //         })
-    //       : null
-    //   },
-    // })
+export const MindLogResponse = objectType({
+  name: 'MindLogResponse',
+  definition(t) {
+    t.nonNull.boolean('success')
+    t.nonNull.string('message')
+    t.nonNull.list.nonNull.field('errors', {
+      type: 'RequestError',
+    })
+    t.field('data', {
+      type: 'MindLog',
+    })
+  },
+})
+
+export const MindLogCreateInput = inputObjectType({
+  name: 'MindLogCreateInput',
+  definition(t) {
+    t.nonNull.field('type', { type: 'MindLogType' })
+    t.nonNull.string('data')
+    t.float('quality')
+  },
+})
+
+export const MindLogUpdateInput = inputObjectType({
+  name: 'MindLogUpdateInput',
+  definition(t) {
+    t.string('data')
+    t.float('quality')
   },
 })
 
@@ -37,36 +55,60 @@ export const MindLogExtendsQuery = extendType({
   type: 'Query',
   definition(t) {
     t.crud.mindLogs({
-      description: 'Доступно только админу',
       filtering: true,
       ordering: true,
     })
 
     t.crud.mindLogs({
       alias: 'myMindLogs',
-      description: 'Возвращает свои данные',
       filtering: true,
       ordering: true,
       resolve: myMindLogsResolver,
     })
+
+    t.nonNull.int('myMindLogsCount', {
+      args: {
+        where: 'MindLogWhereInput',
+      },
+      resolve: myMindLogsCountResolver,
+    })
+
+    t.field('mindLog', {
+      type: 'MindLog',
+      args: {
+        where: nonNull('MindLogWhereUniqueInput'),
+      },
+      resolve: mindLogResolver,
+    })
   },
 })
 
-/**
- * Подписка на создание новых записей в MindLog
- */
-// export const mindLogCreatedSubscription = subscriptionField<
-//   'mindLogCreated',
-//   {
-//     mindLogCreated: NexusGenObjects['MindLog']
-//   }
-// >('mindLogCreated', {
-//   type: 'MindLog',
-//   description: 'Подписка на создание новых записей в MindLog',
-//   subscribe: (_root, _args, ctx) => {
-//     return ctx.pubsub.asyncIterator([PUBSUB_MINDLOG_ADDED])
-//   },
-//   resolve: (payload) => {
-//     return payload.mindLogCreated
-//   },
-// })
+export const MindLogExtendsMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createMindLog', {
+      type: 'MindLogResponse',
+      args: {
+        data: nonNull('MindLogCreateInput'),
+      },
+      resolve: createMindLogResolver,
+    })
+
+    t.nonNull.field('updateMindLog', {
+      type: 'MindLogResponse',
+      args: {
+        where: nonNull('MindLogWhereUniqueInput'),
+        data: nonNull('MindLogUpdateInput'),
+      },
+      resolve: updateMindLogResolver,
+    })
+
+    t.nonNull.field('deleteMindLog', {
+      type: 'MindLogResponse',
+      args: {
+        where: nonNull('MindLogWhereUniqueInput'),
+      },
+      resolve: deleteMindLogResolver,
+    })
+  },
+})

@@ -1,5 +1,5 @@
 // import Typography from 'material-ui/Typography'
-// import moment from 'moment'
+
 import {
   // GridTableAttributesContainerStyled,
   GridTableAttributeStyled,
@@ -111,32 +111,6 @@ export const UsersViewUser: React.FC<UsersViewUserProps> = ({ user }) => {
         <GridTableAttributeStyled data-label="О себе">
           {user.intro && <MarkdownField>{user.intro}</MarkdownField>}
         </GridTableAttributeStyled>
-
-        {/* <GridTableAttributeStyled data-label="Участвует в проектах">
-            {projectsMember}
-          </GridTableAttributeStyled> */}
-
-        {/* <GridTableAttributesContainerStyled>
-          <GridTableAttributeStyled>
-            <span
-              style={{
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss')}
-            </span>
-          </GridTableAttributeStyled>
-
-          <GridTableAttributeStyled>
-            <span
-              style={{
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {moment(user.updatedAt).format('YYYY-MM-DD HH:mm:ss')}
-            </span>
-          </GridTableAttributeStyled>
-        </GridTableAttributesContainerStyled> */}
       </GridTableItemStyled>
     </>
   )

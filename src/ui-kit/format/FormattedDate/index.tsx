@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react'
 
 type LocaleLike = string | string[]
@@ -69,7 +70,11 @@ function formatDateIntl({
     return ''
   }
 
+  console.log('formatDateIntl value', value)
+
   const date = typeof value === 'string' ? new Date(value) : value
+
+  console.log('formatDateIntl date', date)
 
   const options: Intl.DateTimeFormatOptions = {
     timeZone,
@@ -77,7 +82,11 @@ function formatDateIntl({
     ...other,
   }
 
-  return new Intl.DateTimeFormat(locale, options).format(date)
+  const result = new Intl.DateTimeFormat(locale, options).format(date)
+
+  console.log('formatDateIntl result', result)
+
+  return result
 }
 
 export const FormattedDate: React.FC<FormattedDateProps> = ({
@@ -85,26 +94,26 @@ export const FormattedDate: React.FC<FormattedDateProps> = ({
   locale = 'en-US',
   format = 'datePadded',
   fallback = null,
+  timeZone,
   ...other
 }) => {
-  const [isClient, setIsClient] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
+    setIsHydrated(true)
   }, [])
+
+  console.log('FormattedDate value', value)
 
   if (!value) {
     return <>{fallback ?? null}</>
-  }
-
-  if (!isClient) {
-    return <>{typeof value === 'string' ? value : value.toISOString()}</>
   }
 
   const content = formatDateIntl({
     value,
     locale,
     format,
+    timeZone: isHydrated ? timeZone : 'UTC',
     ...other,
   })
 

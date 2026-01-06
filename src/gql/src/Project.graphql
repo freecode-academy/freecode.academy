@@ -30,10 +30,10 @@ mutation updateProjectProcessor(
 }
 
 query projectsConnection(
-  $first: Int = 12
+  $first: Int = 10
   $skip: Int
   $where: ProjectWhereInput
-  $orderBy: [ProjectOrderByWithRelationInput!] = { updatedAt: desc }
+  $orderBy: [ProjectOrderByWithRelationInput!] = { createdAt: desc }
 ) {
   projectsCount(where: $where)
   projects(orderBy: $orderBy, take: $first, skip: $skip, where: $where) {

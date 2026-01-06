@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import moment from 'moment'
+import { FormattedDate } from 'src/ui-kit/format/FormattedDate'
 
 import Link from '..'
 
@@ -36,7 +36,7 @@ export class UikitCommentLink extends Component<UikitCommentLinkProps> {
         url = uri
 
         if (createdAt) {
-          content = moment(createdAt).format('lll')
+          content = <FormattedDate value={createdAt} format="dateTimeMedium" />
         }
 
         break

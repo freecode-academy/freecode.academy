@@ -27,6 +27,7 @@ export const Timer = objectType({
         return Task ? ctx.prisma.task.findUnique({ where: { id: Task } }) : null
       },
     })
+    t.string('content')
   },
 })
 
@@ -94,6 +95,7 @@ export const TimerCreateInput = inputObjectType({
   definition(t) {
     // t.id('id')
     t.date('stopedAt')
+    t.string('content')
     // t.field("CreatedBy", {
     //   type: "UserCreateOneWithoutTimersInput",
     // })
@@ -107,6 +109,7 @@ export const TimerUpdateInput = inputObjectType({
   name: 'TimerUpdateInput',
   definition(t) {
     t.date('stopedAt')
+    t.string('content')
     // t.field("CreatedBy", {
     //   type: "UserCreateOneWithoutTimersInput",
     // })

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import moment from 'moment'
+import { FormattedDate } from 'src/ui-kit/format/FormattedDate'
 import { UserLink } from 'src/uikit/Link/User'
 
 import {
@@ -127,27 +127,29 @@ const TasksViewTask: React.FC<TasksViewTaskProps> = ({ object, ...other }) => {
 
         <GridTableAttributesContainerStyled>
           <GridTableAttributeStyled>
-            {object.createdAt ? moment(object.createdAt).format('lll') : null}
+            <FormattedDate value={object.createdAt} format="dateTimeMedium" />
           </GridTableAttributeStyled>
 
           <GridTableAttributeStyled>
-            {object.startDatePlaning
-              ? moment(object.startDatePlaning).format('lll')
-              : null}
+            <FormattedDate
+              value={object.startDatePlaning}
+              format="dateTimeMedium"
+            />
           </GridTableAttributeStyled>
 
           <GridTableAttributeStyled>
-            {object.endDatePlaning
-              ? moment(object.endDatePlaning).format('lll')
-              : null}
+            <FormattedDate
+              value={object.endDatePlaning}
+              format="dateTimeMedium"
+            />
           </GridTableAttributeStyled>
 
           <GridTableAttributeStyled>
-            {object.startDate ? moment(object.startDate).format('lll') : null}
+            <FormattedDate value={object.startDate} format="dateTimeMedium" />
           </GridTableAttributeStyled>
 
           <GridTableAttributeStyled>
-            {object.endDate ? moment(object.endDate).format('lll') : null}
+            <FormattedDate value={object.endDate} format="dateTimeMedium" />
           </GridTableAttributeStyled>
         </GridTableAttributesContainerStyled>
 

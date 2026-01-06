@@ -1,4 +1,3 @@
-import moment from 'moment'
 import TaskLink from 'src/uikit/Link/Task'
 import { UserLink } from 'src/uikit/Link/User'
 import { ProjectLink } from 'src/uikit/Link/Project'
@@ -15,9 +14,16 @@ import {
   TaskNeedHelpBadge,
   TaskActiveTimers,
 } from '../styles'
+import { FormattedDate } from 'src/ui-kit/format/FormattedDate'
 
-export const TaskCardItem: React.FC<{ task: TasksConnectionTaskFragment }> = ({
+type TaskCardItemProps = {
+  task: TasksConnectionTaskFragment
+  children?: React.ReactNode
+}
+
+export const TaskCardItem: React.FC<TaskCardItemProps> = ({
   task,
+  children,
 }) => {
   const project = useProject(task.projectId)
   const activeTimers = task.Timers?.filter((n) => n.stopedAt === null) || []
@@ -83,7 +89,7 @@ export const TaskCardItem: React.FC<{ task: TasksConnectionTaskFragment }> = ({
               <line x1="8" y1="2" x2="8" y2="6" />
               <line x1="3" y1="10" x2="21" y2="10" />
             </svg>
-            {moment(task.createdAt).format('ll')}
+            <FormattedDate value={task.createdAt} />
           </TaskMetaItem>
         )}
 
@@ -117,6 +123,8 @@ export const TaskCardItem: React.FC<{ task: TasksConnectionTaskFragment }> = ({
       {task.description && (
         <TaskCardDescription>{task.description}</TaskCardDescription>
       )}
+
+      {children}
     </TaskCard>
   )
 }

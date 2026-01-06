@@ -1,115 +1,63 @@
-import React, { useCallback, useContext, useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import IconButton from 'material-ui/IconButton'
 import StartIcon from 'material-ui-icons/PlayArrow'
-import StopIcon from 'material-ui-icons/Stop'
-import { useUpdateTimerProcessorMutation } from 'src/gql/generated'
-import useProcessorMutation from 'src/hooks/useProcessorMutation'
 import { TaskButtonsProps } from './interfaces'
 import useStartTimer from './hooks/useStartTimer'
 
 const TaskButtons: React.FC<TaskButtonsProps> = ({ object }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
 
-  /**
-   * Обновление таймера
-   */
-  const updateTimerMutationTuple = useUpdateTimerProcessorMutation()
-
   const {
     mutation: onClickCreateTimer,
     snakbar: createMutationSnakbar,
-    loading: createLoading,
+    loading,
   } = useStartTimer({
     taskId: object.id,
   })
 
-  const {
-    mutation: updateMutation,
-    snakbar: updateMutationSnakbar,
-    loading: updateLoading,
-  } = useProcessorMutation(updateTimerMutationTuple)
-
-  const loading = createLoading || updateLoading
-
-  const onClickUpdateTimer = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      const timerId = event.currentTarget.value
-
-      updateMutation({
-        variables: {
-          data: {
-            stopedAt: new Date(),
-          },
-          where: {
-            id: timerId,
-          },
-        },
-      })
-    },
-    [updateMutation]
-  )
-
   return useMemo(() => {
-    const buttons: JSX.Element[] = []
+    if (!object) {
+      return null
+    }
 
-    if (object) {
-      const { id: taskId, Timers } = object
+    const { id: taskId, Timers } = object
+    const { user: currentUser } = context
 
-      const { user: currentUser } = context
+    const activeTimers = Timers ? Timers.filter((n) => n.stopedAt === null) : []
+    const hasActiveTimer =
+      currentUser &&
+      activeTimers.some((n) => n.CreatedBy?.id === currentUser.id)
 
-      const activeTimers = Timers
-        ? Timers.filter((n) => n.stopedAt === null)
-        : []
-
-      const activeTimer =
-        currentUser &&
-        activeTimers.find((n) => n.CreatedBy?.id === currentUser.id)
-
-      if (activeTimer) {
-        const { id: timerId } = activeTimer
-
-        buttons.push(
-          <IconButton
-            key="stop"
-            value={timerId}
-            onClick={onClickUpdateTimer}
-            disabled={loading}
-          >
-            <StopIcon />
-          </IconButton>
-        )
-      } else {
-        buttons.push(
-          <IconButton
-            key="start"
-            value={taskId}
-            onClick={onClickCreateTimer}
-            disabled={loading}
-          >
-            <StartIcon />
-          </IconButton>
-        )
-      }
+    if (hasActiveTimer) {
+      return null
     }
 
     return (
       <>
-        {buttons}
-
+        <span
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            flexWrap: 'wrap',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          <IconButton
+            value={taskId}
+            onClick={onClickCreateTimer}
+            disabled={loading}
+            title="Start task"
+          >
+            <StartIcon />
+          </IconButton>
+          <span style={{ fontSize: 14, color: '#6b7280' }}>Start task</span>
+        </span>
         {createMutationSnakbar}
-        {updateMutationSnakbar}
       </>
     )
-  }, [
-    context,
-    createMutationSnakbar,
-    loading,
-    object,
-    onClickCreateTimer,
-    onClickUpdateTimer,
-    updateMutationSnakbar,
-  ])
+  }, [context, createMutationSnakbar, loading, object, onClickCreateTimer])
 }
 
 export default TaskButtons

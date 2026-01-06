@@ -10,7 +10,7 @@ import withStyles from 'material-ui/styles/withStyles'
 import IconButton from 'material-ui/IconButton'
 import StopIcon from 'material-ui-icons/Stop'
 
-import moment from 'moment'
+import { FormattedDate } from 'src/ui-kit/format/FormattedDate'
 
 // import { UserLink, ProjectLink, TaskLink } from '@modxclub/ui'
 import Grid from 'src/uikit/Grid'
@@ -186,13 +186,15 @@ class TimerView extends EditableView<TimerViewProps> {
 
               {createdAt ? (
                 <Grid item xs={12}>
-                  Начало: {moment(createdAt).format('lll')}
+                  Начало:{' '}
+                  <FormattedDate value={createdAt} format="dateTimeMedium" />
                 </Grid>
               ) : null}
 
               {stopedAt ? (
                 <Grid item xs={12}>
-                  Конец: {moment(stopedAt).format('lll')}
+                  Конец:{' '}
+                  <FormattedDate value={stopedAt} format="dateTimeMedium" />
                 </Grid>
               ) : null}
             </Grid>

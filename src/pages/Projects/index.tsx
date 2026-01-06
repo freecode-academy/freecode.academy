@@ -13,7 +13,7 @@ import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 
-const first = 12
+const first = 10
 
 const defaultVariables: ProjectsConnectionQueryVariables = {
   where: {

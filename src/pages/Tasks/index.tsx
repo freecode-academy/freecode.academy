@@ -13,7 +13,7 @@ import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
 import { parseFiltersFromUrl } from 'src/hooks/useTasksFilter'
 
-const first = 12
+const first = 10
 
 const getVariables = (query: ParsedUrlQuery): TasksConnectionQueryVariables => {
   const where = parseFiltersFromUrl(query.where)

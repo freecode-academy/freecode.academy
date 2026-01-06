@@ -289,10 +289,6 @@ App.getInitialProps = async (appContext: AppContext) => {
 
   // const lang = req.acceptsLanguages('ru', 'en');
 
-  // if (lang) {
-  //   moment.locale(lang);
-  // }
-
   /**
    * Для того, чтобы в итоге можно было собрать общий аполло-стейт
    * с приложения и далее выполняемый страниц и документа,

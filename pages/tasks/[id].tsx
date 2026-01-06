@@ -1,1 +1,1 @@
-export { default } from 'src/pages/Tasks/Task'
+export { TaskPage as default } from 'src/pages/Tasks/Task'

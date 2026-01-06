@@ -1,36 +1,21 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
-import { TaskViewStyled } from './styles'
-// import Link from 'next/link'
-import Typography from 'material-ui/Typography'
-
-// import { ProjectLink } from 'src/uikit/Link/Project'
+import React, { useContext, useMemo } from 'react'
+import { TaskViewStyled, TaskViewDetails } from './styles'
 import { TimersView } from 'src/pages/Timers/View'
-import Grid from 'src/uikit/Grid'
-import TaskStatus from '../../TaskStatus'
-import TaskButtons from '../../View/Task/TaskButtons'
-
-// import UpdateTaskForm from './form/UpdateTask'
-import IconButton from 'material-ui/IconButton'
-import EditModeIcon from 'material-ui-icons/ModeEdit'
-import moment from 'moment'
 import Link from 'next/link'
 import TaskTaskTechnologies from './TaskTaskTechnologies'
 import PrismaContext, { PrismaCmsContext } from '@prisma-cms/context'
 import Comments from './Comments'
 import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
 import { TaskQuery } from 'src/gql/generated'
+import { TaskCardItem } from '../../View/TaskCardItem'
+import TaskButtons from '../../View/Task/TaskButtons'
 
 export type TaskViewProps = {
   object: NonNullable<TaskQuery['object']>
-
   loading: boolean
 }
 
-export const TaskView: React.FC<TaskViewProps> = ({
-  object,
-  loading,
-  ...other
-}) => {
+export const TaskView: React.FC<TaskViewProps> = ({ object, loading }) => {
   const context = useContext(PrismaContext) as PrismaCmsContext
   const user = context.user
 
@@ -45,44 +30,6 @@ export const TaskView: React.FC<TaskViewProps> = ({
       <TimersView count={timers.length} objects={timers} loading={loading} />
     )
   }, [object.Timers, loading])
-
-  const buttons = useMemo(() => {
-    return <TaskButtons object={object} />
-  }, [object])
-
-  const [opened, setOpened] = useState(false)
-
-  const inEditMode = opened
-
-  const startEdit = useCallback(() => {
-    setOpened(true)
-  }, [])
-
-  // const onCancel = useCallback(() => {
-  //   setOpened(false)
-  // }, [])
-
-  // const form = useMemo(() => {
-  //   if (!opened) {
-  //     return null
-  //   }
-
-  //   return (
-  //     <UpdateTaskForm
-  //       task={object}
-  //       options={{
-  //         variables: {
-  //           where: {
-  //             id: object.id,
-  //           },
-  //           data: {},
-  //         },
-  //       }}
-  //       cancel={onCancel}
-  //       onSuccess={onCancel}
-  //     />
-  //   )
-  // }, [onCancel, opened, object])
 
   const lesson = useMemo(() => {
     if (object.CodeChallengeCompletion) {
@@ -129,100 +76,33 @@ export const TaskView: React.FC<TaskViewProps> = ({
     }
   }, [object.CodeChallengeCompletion])
 
-  /**
-   * Список технологий, необходимых для выполнения задачи
-   */
   const taskTechnologies = useMemo(() => {
     return (
-      <TaskTaskTechnologies
-        object={object}
-        user={user}
-        inEditMode={inEditMode}
-      />
+      <TaskTaskTechnologies object={object} user={user} inEditMode={false} />
     )
-  }, [inEditMode, object, user])
+  }, [object, user])
 
-  /**
-   * Комментарии
-   */
   const comments = useMemo(() => {
     return <Comments task={object} />
   }, [object])
 
   return (
-    <TaskViewStyled {...other}>
-      <Grid container spacing={8} alignItems="center">
-        <Grid item xs>
-          <Typography variant="title">{object.name}</Typography>
-        </Grid>
+    <TaskViewStyled>
+      <TaskCardItem task={object}>
+        <TaskViewDetails>
+          <TaskButtons object={object} />
 
-        <Grid item>
-          <TaskStatus value={object.status} />
-        </Grid>
-        <Grid item>{buttons}</Grid>
-        <Grid item>
-          {opened ? null : (
-            <IconButton title="Редактировать" onClick={startEdit}>
-              <EditModeIcon />
-            </IconButton>
-          )}
-        </Grid>
-      </Grid>
+          {lesson}
 
-      {/* {object.projectId  ?.map((n) => {
-        const project = n.Project
-        return project ? (
-          <div key={project.id}>
-            <p>
-              Проект: <ProjectLink object={project} />
-            </p>
-          </div>
-        ) : null
-      })} */}
+          {object.content && <SiteFrontEditor value={object.content} />}
 
-      <table>
-        <tbody>
-          <tr>
-            <td>Планируемый запуск: </td>
-            <td>
-              {object.startDatePlaning
-                ? moment(object.startDatePlaning).format('L')
-                : null}
-            </td>
-            <td>Дата начала: </td>
-            <td>
-              {object.startDate ? moment(object.startDate).format('L') : null}
-            </td>
-            <td>Планируемое завершение: </td>
-            <td>
-              {object.endDatePlaning
-                ? moment(object.endDatePlaning).format('L')
-                : null}
-            </td>
-            <td>Дата завершения: </td>
-            <td>
-              {object.endDate ? moment(object.endDate).format('L') : null}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          {taskTechnologies}
 
-      {lesson}
+          {timersList}
 
-      {object.content ? (
-        <>
-          <Typography variant="subheading">Описание задачи</Typography>
-          <SiteFrontEditor value={object.content} />
-        </>
-      ) : null}
-
-      {/* {form} */}
-
-      {taskTechnologies}
-
-      {timersList}
-
-      {comments}
+          {comments}
+        </TaskViewDetails>
+      </TaskCardItem>
     </TaskViewStyled>
   )
 }

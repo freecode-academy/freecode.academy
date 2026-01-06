@@ -6,7 +6,7 @@ import {
 } from 'src/components/GridTable/styles'
 import { UserLink as UikitUserLink } from 'src/uikit/Link/User'
 import { UserTechnologyRowProps } from './interfaces'
-import moment from 'moment'
+import { FormattedDate } from 'src/ui-kit/format/FormattedDate'
 // import {
 //   Scalars,
 //   // UserTechnologyUpdateInput,
@@ -240,7 +240,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     const fieldName: Name = 'date_from'
     const value = getValue(fieldName) || ''
 
-    return value && moment(value).format('YYYY-MM-DD')
+    return value ? <FormattedDate value={value} format="datePadded" /> : ''
   }, [getValue])
 
   /**
@@ -250,7 +250,7 @@ const UserTechnologyRow: React.FC<UserTechnologyRowProps> = ({
     const fieldName: Name = 'date_till'
     const value = getValue(fieldName) || ''
 
-    return value && moment(value).format('YYYY-MM-DD')
+    return value ? <FormattedDate value={value} format="datePadded" /> : ''
   }, [getValue])
 
   /**

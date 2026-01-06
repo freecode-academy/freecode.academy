@@ -10,3 +10,13 @@ export const TaskViewStyled = styled.section`
     padding: 10px;
   }
 `
+
+export const TaskViewDetails = styled.div`
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+`

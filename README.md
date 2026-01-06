@@ -1,156 +1,90 @@
-# @prisma-cms/nextjs Typescript Boilerplate
+# freecode.academy
 
-### Based on
+Prisma + Next.js + Nexus GraphQL fullstack application.
 
-- https://github.com/vercel/next.js/tree/canary/examples/with-apollo
-- https://github.com/vercel/next.js/tree/canary/examples/custom-server-typescript
+## Project Structure
 
-Bootstrap a developer-friendly NextJS app configured with:
+```
+prisma/                    # Prisma schema and migrations
+├── schema.prisma          # Database schema (source of truth)
+├── migrations/            # Database migrations
+└── seed.ts                # Database seeding
 
-- TypeScript CRUD API with [prisma-2](https://www.prisma.io/) and [nexus-js](https://nexusjs.org/)
-- Frontend GraphQL API schema and types generation.
-- [styled-components](https://styled-components.com/) AND [SASS/SCSS](https://sass-lang.com/).
-- [Typescript](https://www.typescriptlang.org/) and [server](https://github.com/TypeStrong/ts-node)
-- Linting with [ESLint](https://eslint.org/)
-- [Storybook](https://storybook.js.org/)
-- Formatting with [Prettier](https://prettier.io/)
-- Linting, typechecking and formatting on by default using [`husky`](https://github.com/typicode/husky) for commit hooks
-- Testing with [Jest](https://jestjs.io/) and [`react-testing-library`](https://testing-library.com/docs/react-testing-library/intro)
+server/nexus/types/        # Nexus GraphQL types (generated from Prisma)
 
-## Deploy your own
+src/gql/                   # Frontend GraphQL
+├── src/                   # GraphQL queries/mutations (.graphql files)
+├── cli/generateTypes/     # Type generation scripts
+└── generated/             # Generated TypeScript types
 
-Deploy the example using [Vercel](https://vercel.com):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/prisma-cms/nextjs)
-
-## How to use
-
-```bash
-# Clone project
-git clone https://github.com/prisma-cms/nextjs-nexus.git
-
-# Install dependencies
-yarn install
-
-# Clone and edit .env file
-cp .env.sample .env
-
-# Deploy database migrations (set MySQL connection credentioals in .env file)
-yarn prisma:deploy
-
-# Build bundles
-yarn build
-
-# Start bundled project
-yarn start
+pages/                     # Next.js pages (routing)
+src/pages/                 # Page components implementation
 ```
 
-## Development
+## Development Workflow
 
-1. Edit prisma shema in prisma/schema.prisma
-
-2. Push change to database
+### 1. Schema Changes (Prisma)
 
 ```bash
 yarn prisma:db:push
-```
-
-3. Create migration
-
-```bash
 yarn prisma:migrate:create --name migration_name
 ```
 
-5. Generate front GraphQL schema and types
+### 2. Generate Nexus Types
+
+```bash
+yarn generate:nexus
+```
+
+### 3. Add Frontend GraphQL Queries
+
+Edit files in `src/gql/src/*.graphql`
+
+### 4. Generate Frontend Types
 
 ```bash
 yarn generate:types
 ```
 
-6. Start server in development mode
-
-```bash
-yarn dev
-```
-
-## Tests
-
-### Eslint
-
-```bash
-yarn lint
-```
-
-### Typescript types checking
-
-```bash
-yarn types
-```
-
-### Jest unit tests
-
-```bash
-yarn test
-```
-
-### Test code coverage
-
-```bash
-yarn test --coverage
-```
-
-### Jest unit tests real API
-
-**Attension!** For unit tests with real API started server required.
-
-## Build
-
-1. Generate schemas if changed
+### 5. Full Generation Pipeline
 
 ```bash
 yarn generate
 ```
 
-2. Build bundles
+### 6. Development Server
 
 ```bash
-# Build bundles
-yarn build
+yarn dev
+```
 
-# Start bundled project
+## Quick Start
+
+```bash
+cp .env.sample .env
+yarn install
+yarn prisma:deploy
+yarn generate
+yarn build
 yarn start
 ```
 
-After this open yet another terminal and run tests
+## Tests
 
 ```bash
-yarn test:api
+yarn lint
+yarn types
 ```
 
-### Run all test
+## Build
 
 ```bash
-yarn test:all
+yarn build
+yarn start
 ```
 
-### Analyze bundles
-
-```bash
-yarn build:analyze
-```
-
-### Storybook
-
-#### dev
+## Storybook
 
 ```bash
 yarn storybook
 ```
-
-#### build storybook
-
-```bash
-yarn build:storybook
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).

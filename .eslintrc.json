@@ -29,6 +29,8 @@
               */
               "@fullcalendar/*",
               "packages/*",
+              "moment",
+              "moment-timezone",
               // TODO Сейчас этот компонент вызывает ошибку styled-components
               // Prop `className` did not match. Server: "..." Client: "..."
               "@prisma-cms/ui/dist/Button"

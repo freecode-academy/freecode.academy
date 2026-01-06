@@ -1,1 +1,1 @@
-export { default } from 'src/pages/Timers'
+export { TimersPage as default } from 'src/pages/Timers'

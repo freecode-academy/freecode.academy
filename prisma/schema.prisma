@@ -776,6 +776,7 @@ model Timer {
   createdAt        DateTime  @default(now()) @db.Timestamp(3)
   stopedAt         DateTime?
   updatedAt        DateTime  @default(now()) @updatedAt @db.Timestamp(3)
+  content          String?   @db.Text
   Task             String?   @db.VarChar(32)
   CreatedBy        String?   @db.VarChar(32)
   User             User?     @relation(fields: [CreatedBy], references: [id])

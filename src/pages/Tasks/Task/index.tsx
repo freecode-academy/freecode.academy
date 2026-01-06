@@ -18,7 +18,7 @@ function getVariables(router: NextRouter | NextPageContextCustom) {
   }
 }
 
-const TaskPage: Page = () => {
+export const TaskPage: Page = () => {
   const router = useRouter()
 
   const variables = useMemo(() => {
@@ -68,5 +68,3 @@ TaskPage.getInitialProps = async (context) => {
     statusCode: !result.data.object ? 404 : undefined,
   }
 }
-
-export default TaskPage

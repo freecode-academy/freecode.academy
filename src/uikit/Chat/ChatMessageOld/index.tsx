@@ -1,5 +1,5 @@
 import React from 'react'
-import moment from 'moment'
+import { FormattedDate } from 'src/ui-kit/format/FormattedDate'
 import Grid from 'src/uikit/Grid'
 // import ChatRoomLink from 'src/uikit/Link/ChatRoom'
 import { UserLink as UikitUserLink } from 'src/uikit/Link/User'
@@ -38,7 +38,7 @@ const UiChatMessageOld: React.FC<UiChatMessageOldProps> = (props) => {
             <Grid item xs>
               {id && createdAt ? (
                 <Link href={`/chat-messages/${id}`}>
-                  {moment(createdAt).format('lll')}
+                  <FormattedDate value={createdAt} format="dateTimeMedium" />
                 </Link>
               ) : null}
             </Grid>

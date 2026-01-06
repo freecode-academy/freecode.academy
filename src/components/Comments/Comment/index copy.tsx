@@ -22,7 +22,6 @@ import {
   UpdateCommentProcessorDocument,
 } from 'src/gql/generated'
 import { SiteFrontEditor } from 'src/components/SiteFrontEditor'
-// import moment from 'moment';
 
 export * from './interfaces'
 
@@ -123,13 +122,6 @@ class UikitComment extends EditableView<UikitCommentProps> {
               </Grid>
 
               <Grid item>
-                {/* {createdAt ? <Typography
-                  variant="caption"
-                  color="textSecondary"
-                >
-                  {moment(createdAt).format('lll')}
-                </Typography> : null} */}
-
                 {commentId ? (
                   <CommentLink object={object} linkType={linkType} />
                 ) : null}

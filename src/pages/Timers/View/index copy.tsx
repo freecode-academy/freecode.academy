@@ -4,7 +4,7 @@
 import React from 'react'
 import { ObjectsListView, styles } from 'src/components/view/List'
 
-import moment from 'moment'
+import { FormattedDate } from 'src/ui-kit/format/FormattedDate'
 import withStyles from 'material-ui/styles/withStyles'
 import { TimersViewProps } from './interfaces'
 import { ColumnConfig } from 'apollo-cms/dist/DataView/List/Table'
@@ -32,7 +32,7 @@ class TimersView<
           whiteSpace: 'nowrap',
         }}
       >
-        {moment(date).format('DD.MM.YYYY HH:mm:ss')}
+        <FormattedDate value={date} format="dateTimePadded" />
       </span>
     )
   }

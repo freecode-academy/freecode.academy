@@ -1,7 +1,6 @@
-import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 import React, { useMemo } from 'react'
 import {
-  TimersConnectionDocument,
   TimersConnectionQueryVariables,
   useTimersConnectionQuery,
 } from 'src/gql/generated'
@@ -36,7 +35,7 @@ function getQueryParams(query: ParsedUrlQuery) {
   }
 }
 
-const TimersPage: Page = () => {
+export const TimersPage: Page = () => {
   const router = useRouter()
 
   const { query } = router
@@ -57,13 +56,12 @@ const TimersPage: Page = () => {
 
   return (
     <>
-      <Head>
-        <title>Time Logs — Task Tracking & Progress</title>
-        <meta
-          name="description"
-          content="Track time spent on tasks and projects. View work logs and productivity insights."
-        />
-      </Head>
+      <NextSeo
+        title="Time Logs — Task Tracking & Progress"
+        description="Track time spent on tasks and projects. View work logs and productivity insights."
+        noindex={true}
+        nofollow={true}
+      />
 
       <View
         loading={loading}
@@ -76,23 +74,23 @@ const TimersPage: Page = () => {
   )
 }
 
-TimersPage.getInitialProps = async (context) => {
-  const { apolloClient } = context
+// TimersPage.getInitialProps = async (context) => {
+//   const { apolloClient } = context
 
-  await apolloClient.query({
-    query: TimersConnectionDocument,
+//   await apolloClient.query({
+//     query: TimersConnectionDocument,
 
-    /**
-     * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
-     * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
-     */
-    variables: {
-      ...defaultVariables,
-      ...getQueryParams(context.query),
-    },
-  })
+//     /**
+//      * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
+//      * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
+//      */
+//     variables: {
+//       ...defaultVariables,
+//       ...getQueryParams(context.query),
+//     },
+//   })
 
-  return {}
-}
+//   return {}
+// }
 
-export default TimersPage
+// export default TimersPage

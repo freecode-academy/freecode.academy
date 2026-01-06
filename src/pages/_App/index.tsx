@@ -206,15 +206,6 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
     return context
   }, [apolloClient, logout, muiTheme, openLoginForm, router])
 
-  const sendChatMessage = useCallback(
-    async (message: string): Promise<string> => {
-      const { getMcpClient } = await import('src/lib/mcp/client')
-      const client = getMcpClient()
-      return client.sendMessage(message)
-    },
-    []
-  )
-
   const template = (
     <>
       <Head>
@@ -250,7 +241,6 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
                     />
 
                     <ChatProvider
-                      onSendMessage={sendChatMessage}
                       welcomeTitle="Hi! How can I help?"
                       welcomeText="Ask me anything about Freecode Academy"
                       placeholder="Type your question..."

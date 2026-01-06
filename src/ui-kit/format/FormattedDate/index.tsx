@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react'
 
 type LocaleLike = string | string[]
@@ -70,11 +69,7 @@ function formatDateIntl({
     return ''
   }
 
-  console.log('formatDateIntl value', value)
-
   const date = typeof value === 'string' ? new Date(value) : value
-
-  console.log('formatDateIntl date', date)
 
   const options: Intl.DateTimeFormatOptions = {
     timeZone,
@@ -82,11 +77,7 @@ function formatDateIntl({
     ...other,
   }
 
-  const result = new Intl.DateTimeFormat(locale, options).format(date)
-
-  console.log('formatDateIntl result', result)
-
-  return result
+  return new Intl.DateTimeFormat(locale, options).format(date)
 }
 
 export const FormattedDate: React.FC<FormattedDateProps> = ({
@@ -102,8 +93,6 @@ export const FormattedDate: React.FC<FormattedDateProps> = ({
   useEffect(() => {
     setIsHydrated(true)
   }, [])
-
-  console.log('FormattedDate value', value)
 
   if (!value) {
     return <>{fallback ?? null}</>

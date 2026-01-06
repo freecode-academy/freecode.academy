@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
-import { ChatForm, ChatTextarea, SendButton } from '../styles'
+import { ChatForm, ChatTextarea, SendButton, StopButton } from '../styles'
 import { useChatContext } from '../context'
 
 export const ChatInputForm: React.FC = () => {
-  const { placeholder, isLoading, submitMessage } = useChatContext()
+  const { placeholder, isLoading, submitMessage, stopStreaming } =
+    useChatContext()
   const [inputValue, setInputValue] = useState('')
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -66,11 +67,19 @@ export const ChatInputForm: React.FC = () => {
         disabled={isLoading}
         rows={1}
       />
-      <SendButton type="submit" $hasText={!!inputValue.trim()}>
-        <svg viewBox="0 0 24 24">
-          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-        </svg>
-      </SendButton>
+      {isLoading ? (
+        <StopButton type="button" onClick={stopStreaming}>
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <rect x="6" y="6" width="12" height="12" rx="2" />
+          </svg>
+        </StopButton>
+      ) : (
+        <SendButton type="submit" $hasText={!!inputValue.trim()}>
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+          </svg>
+        </SendButton>
+      )}
     </ChatForm>
   )
 }

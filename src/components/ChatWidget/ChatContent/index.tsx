@@ -2,17 +2,17 @@ import React, { useRef, useEffect, useCallback } from 'react'
 import {
   ChatContentContainer,
   ChatMessages,
-  Message,
   ChatInputContainer,
-  TypingIndicator,
   WelcomeMessage,
+  TypingIndicator,
 } from '../styles'
-import { Markdown } from 'src/components/Markdown'
 import { ChatInputForm } from '../ChatInputForm'
 import { useChatContext } from '../context'
+import { ChatMessageMemo } from '../ChatMessage'
 
 export const ChatContent: React.FC = () => {
-  const { messages, isLoading, welcomeTitle, welcomeText } = useChatContext()
+  const { messages, welcomeTitle, welcomeText, showTypingIndicator } =
+    useChatContext()
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = useCallback(() => {
@@ -21,7 +21,7 @@ export const ChatContent: React.FC = () => {
 
   useEffect(() => {
     scrollToBottom()
-  }, [messages, scrollToBottom])
+  }, [messages, showTypingIndicator, scrollToBottom])
 
   const hasMessages = messages.length > 0
 
@@ -30,11 +30,14 @@ export const ChatContent: React.FC = () => {
       {hasMessages ? (
         <ChatMessages>
           {messages.map((msg) => (
-            <Message key={msg.id} $isUser={msg.isUser}>
-              <Markdown>{msg.text}</Markdown>
-            </Message>
+            <ChatMessageMemo
+              key={msg.id}
+              id={msg.id}
+              isUser={msg.isUser}
+              text={msg.text}
+            />
           ))}
-          {isLoading && (
+          {showTypingIndicator && (
             <TypingIndicator>
               <span />
               <span />

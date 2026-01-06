@@ -167,7 +167,7 @@ export const ChatMessages = styled.div`
   }
 `
 
-export const Message = styled.div<{ $isUser?: boolean }>`
+export const MessageStyled = styled.div<{ $isUser?: boolean }>`
   max-width: 85%;
   padding: 14px 18px;
   border-radius: 20px;
@@ -239,6 +239,7 @@ export const SendButton = styled.button<SendButtonProps>`
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
+  font-size: 0;
 
   &:hover {
     background: ${({ $hasText }) => ($hasText ? '#374151' : '#6b7280')};
@@ -250,6 +251,32 @@ export const SendButton = styled.button<SendButtonProps>`
     height: 20px;
     fill: #fff;
     margin-left: 2px;
+  }
+`
+
+export const StopButton = styled.button`
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #1f2937;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 0;
+
+  &:hover {
+    background: #374151;
+    transform: scale(1.05);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
   }
 `
 

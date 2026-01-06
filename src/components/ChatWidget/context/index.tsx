@@ -4,18 +4,22 @@ import React, {
   useState,
   useCallback,
   useMemo,
+  useRef,
 } from 'react'
 import { ChatMessage } from '../interfaces'
 import { useSnackbar } from 'src/ui-kit/Snackbar/context'
+import { sendMessageStream } from 'src/lib/chat/streamClient'
 
 type ChatContextValue = {
   messages: ChatMessage[]
   isLoading: boolean
+  showTypingIndicator: boolean
   isOpen: boolean
   isExpanded: boolean
   setIsOpen: (open: boolean) => void
   setIsExpanded: (expanded: boolean) => void
   submitMessage: (text: string) => Promise<void>
+  stopStreaming: () => void
   handleClose: () => void
   handleExpand: () => void
   handleToggle: (event: React.MouseEvent) => void
@@ -36,7 +40,6 @@ export const useChatContext = () => {
 
 type ChatProviderProps = {
   children: React.ReactNode
-  onSendMessage?: (message: string) => Promise<string>
   welcomeTitle?: string
   welcomeText?: string
   placeholder?: string
@@ -44,7 +47,6 @@ type ChatProviderProps = {
 
 export const ChatProvider: React.FC<ChatProviderProps> = ({
   children,
-  onSendMessage,
   welcomeTitle = 'Hi! How can I help?',
   welcomeText = 'Ask me anything about Freecode Academy',
   placeholder = 'Type your message...',
@@ -54,6 +56,42 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
   const [isExpanded, setIsExpanded] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [showTypingIndicator, setShowTypingIndicator] = useState(false)
+  const sessionIdRef = useRef<string>(
+    `chat_${Date.now()}_${Math.random().toString(36).slice(2)}`
+  )
+  const streamingMessageIdRef = useRef<string | null>(null)
+  const abortControllerRef = useRef<AbortController | null>(null)
+  const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const TYPING_INDICATOR_DELAY = 400
+
+  const startTypingTimer = useCallback(() => {
+    if (typingTimerRef.current) {
+      clearTimeout(typingTimerRef.current)
+    }
+    typingTimerRef.current = setTimeout(() => {
+      setShowTypingIndicator(true)
+    }, TYPING_INDICATOR_DELAY)
+  }, [])
+
+  const resetTypingTimer = useCallback(() => {
+    setShowTypingIndicator(false)
+    if (typingTimerRef.current) {
+      clearTimeout(typingTimerRef.current)
+    }
+    typingTimerRef.current = setTimeout(() => {
+      setShowTypingIndicator(true)
+    }, TYPING_INDICATOR_DELAY)
+  }, [])
+
+  const clearTypingTimer = useCallback(() => {
+    if (typingTimerRef.current) {
+      clearTimeout(typingTimerRef.current)
+      typingTimerRef.current = null
+    }
+    setShowTypingIndicator(false)
+  }, [])
 
   const handleClose = useCallback(() => {
     setIsOpen(false)
@@ -70,6 +108,16 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
     setIsOpen((prev) => !prev)
   }, [])
 
+  const stopStreaming = useCallback(() => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+      abortControllerRef.current = null
+      streamingMessageIdRef.current = null
+      setIsLoading(false)
+      clearTypingTimer()
+    }
+  }, [clearTypingTimer])
+
   const submitMessage = useCallback(
     async (text: string) => {
       if (!text.trim() || isLoading) {
@@ -77,6 +125,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
       }
 
       const messageText = text.trim()
+      const botMessageId = (Date.now() + 1).toString()
 
       setMessages((prev) => [
         ...prev,
@@ -85,50 +134,82 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
           text: messageText,
           isUser: true,
         },
+        {
+          id: botMessageId,
+          text: '',
+          isUser: false,
+        },
       ])
       setIsLoading(true)
+      streamingMessageIdRef.current = botMessageId
+      abortControllerRef.current = new AbortController()
+      startTypingTimer()
 
       try {
-        const response = onSendMessage
-          ? await onSendMessage(messageText)
-          : 'This is a demo response. Connect to MCP server for real responses.'
-
-        setMessages((prev) => [
-          ...prev,
+        await sendMessageStream(
+          messageText,
+          sessionIdRef.current,
           {
-            id: (Date.now() + 1).toString(),
-            text: response,
-            isUser: false,
+            onChunk: (chunk) => {
+              resetTypingTimer()
+              setMessages((prev) =>
+                prev.map((msg) =>
+                  msg.id === streamingMessageIdRef.current
+                    ? { ...msg, text: msg.text + chunk }
+                    : msg
+                )
+              )
+            },
+            onDone: () => {
+              streamingMessageIdRef.current = null
+              abortControllerRef.current = null
+              setIsLoading(false)
+              clearTypingTimer()
+            },
+            onError: (error) => {
+              if (error.name !== 'AbortError') {
+                snackbar?.addMessage(error.message, { variant: 'error' })
+                setMessages((prev) =>
+                  prev.map((msg) =>
+                    msg.id === streamingMessageIdRef.current
+                      ? {
+                          ...msg,
+                          text: 'Sorry, something went wrong. Please try again.',
+                        }
+                      : msg
+                  )
+                )
+              }
+              streamingMessageIdRef.current = null
+              abortControllerRef.current = null
+              setIsLoading(false)
+              clearTypingTimer()
+            },
           },
-        ])
+          abortControllerRef.current.signal
+        )
       } catch (error) {
         const errorMessage =
           error instanceof Error ? error.message : 'Unknown error'
         snackbar?.addMessage(errorMessage, { variant: 'error' })
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: (Date.now() + 1).toString(),
-            text: 'Sorry, something went wrong. Please try again.',
-            isUser: false,
-          },
-        ])
-      } finally {
         setIsLoading(false)
+        clearTypingTimer()
       }
     },
-    [isLoading, onSendMessage, snackbar]
+    [isLoading, snackbar, startTypingTimer, resetTypingTimer, clearTypingTimer]
   )
 
   const value = useMemo<ChatContextValue>(
     () => ({
       messages,
       isLoading,
+      showTypingIndicator,
       isOpen,
       isExpanded,
       setIsOpen,
       setIsExpanded,
       submitMessage,
+      stopStreaming,
       handleClose,
       handleExpand,
       handleToggle,
@@ -139,9 +220,11 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
     [
       messages,
       isLoading,
+      showTypingIndicator,
       isOpen,
       isExpanded,
       submitMessage,
+      stopStreaming,
       handleClose,
       handleExpand,
       handleToggle,

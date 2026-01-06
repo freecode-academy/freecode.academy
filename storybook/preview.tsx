@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react'
 import { ThemeProvider } from 'styled-components'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import theme from 'src/theme'
+import { GlobalStyle } from 'src/theme/GlobalStyle'
 
 // Создаем клиент Apollo для Storybook
 const client = new ApolloClient({
@@ -24,6 +25,7 @@ const preview: Preview = {
       return (
         <ApolloProvider client={client}>
           <ThemeProvider theme={theme}>
+            <GlobalStyle />
             <Story />
           </ThemeProvider>
         </ApolloProvider>

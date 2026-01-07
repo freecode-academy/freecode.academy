@@ -125,7 +125,6 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
       }
 
       const messageText = text.trim()
-      const botMessageId = (Date.now() + 1).toString()
 
       setMessages((prev) => [
         ...prev,
@@ -134,14 +133,8 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
           text: messageText,
           isUser: true,
         },
-        {
-          id: botMessageId,
-          text: '',
-          isUser: false,
-        },
       ])
       setIsLoading(true)
-      streamingMessageIdRef.current = botMessageId
       abortControllerRef.current = new AbortController()
       startTypingTimer()
 
@@ -152,13 +145,26 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
           {
             onChunk: (chunk) => {
               resetTypingTimer()
-              setMessages((prev) =>
-                prev.map((msg) =>
-                  msg.id === streamingMessageIdRef.current
-                    ? { ...msg, text: msg.text + chunk }
-                    : msg
+              if (!streamingMessageIdRef.current) {
+                const botMessageId = Date.now().toString()
+                streamingMessageIdRef.current = botMessageId
+                setMessages((prev) => [
+                  ...prev,
+                  {
+                    id: botMessageId,
+                    text: chunk,
+                    isUser: false,
+                  },
+                ])
+              } else {
+                setMessages((prev) =>
+                  prev.map((msg) =>
+                    msg.id === streamingMessageIdRef.current
+                      ? { ...msg, text: msg.text + chunk }
+                      : msg
+                  )
                 )
-              )
+              }
             },
             onDone: () => {
               streamingMessageIdRef.current = null
@@ -169,16 +175,27 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
             onError: (error) => {
               if (error.name !== 'AbortError') {
                 snackbar?.addMessage(error.message, { variant: 'error' })
-                setMessages((prev) =>
-                  prev.map((msg) =>
-                    msg.id === streamingMessageIdRef.current
-                      ? {
-                          ...msg,
-                          text: 'Sorry, something went wrong. Please try again.',
-                        }
-                      : msg
+                if (streamingMessageIdRef.current) {
+                  setMessages((prev) =>
+                    prev.map((msg) =>
+                      msg.id === streamingMessageIdRef.current
+                        ? {
+                            ...msg,
+                            text: 'Sorry, something went wrong. Please try again.',
+                          }
+                        : msg
+                    )
                   )
-                )
+                } else {
+                  setMessages((prev) => [
+                    ...prev,
+                    {
+                      id: Date.now().toString(),
+                      text: 'Sorry, something went wrong. Please try again.',
+                      isUser: false,
+                    },
+                  ])
+                }
               }
               streamingMessageIdRef.current = null
               abortControllerRef.current = null

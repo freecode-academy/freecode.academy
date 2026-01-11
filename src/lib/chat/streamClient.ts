@@ -51,6 +51,7 @@ export async function sendMessageStream(
       body: JSON.stringify({
         chatInput: message,
         sessionId,
+        token: localStorage.getItem('token'),
       }),
       signal: abortSignal,
     })

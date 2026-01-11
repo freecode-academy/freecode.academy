@@ -18,6 +18,7 @@ export const createMindLogResolver: FieldResolver<
       data: input.data,
       quality: input.quality,
       createdById: currentUser.id,
+      relatedToUserId: input.relatedToUserId,
     },
   })
 

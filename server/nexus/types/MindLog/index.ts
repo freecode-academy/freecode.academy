@@ -17,6 +17,7 @@ export const MindLog = objectType({
     t.float('quality')
     t.nonNull.id('createdById')
     t.field('CreatedBy', { type: 'User' })
+    t.id('relatedToUserId')
   },
 })
 
@@ -40,6 +41,7 @@ export const MindLogCreateInput = inputObjectType({
     t.nonNull.field('type', { type: 'MindLogType' })
     t.nonNull.string('data')
     t.float('quality')
+    t.id('relatedToUserId')
   },
 })
 

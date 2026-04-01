@@ -12,30 +12,37 @@ enum userType {
   AI
 }
 
+enum UserStatus {
+  newbie
+  active
+  blocked
+}
+
 model User {
-  id               String   @id @default(cuid()) @db.VarChar(32)
-  createdAt        DateTime @default(now()) @db.Timestamp(3)
-  updatedAt        DateTime @default(now()) @updatedAt @db.Timestamp(3)
+  id               String     @id @default(cuid()) @db.VarChar(36)
+  createdAt        DateTime   @default(now()) @db.Timestamp(3)
+  updatedAt        DateTime   @default(now()) @updatedAt @db.Timestamp(3)
+  status           UserStatus @default(active)
   username         String?
   email            String?
   phone            String?
-  showEmail        Boolean  @default(false)
-  showPhone        Boolean  @default(false)
-  showFullname     Boolean  @default(true)
+  showEmail        Boolean    @default(false)
+  showPhone        Boolean    @default(false)
+  showFullname     Boolean    @default(true)
   password         String?
   fullname         String?
-  image            String?  @db.Text
-  address          String?  @db.Text
+  image            String?    @db.Text
+  address          String?    @db.Text
   active           Boolean?
-  blocked          Boolean  @default(false)
+  blocked          Boolean    @default(false)
   activated        Boolean?
   deleted          Boolean?
   hidden           Boolean?
   sudo             Boolean?
-  CreatedBy        String?  @db.VarChar(32)
-  EthAccountAuthed String?  @db.VarChar(32)
-  isMentor         Boolean  @default(value: false)
-  technologyLevel  Int?     @db.SmallInt
+  CreatedBy        String?    @db.VarChar(36)
+  EthAccountAuthed String?    @db.VarChar(36)
+  isMentor         Boolean    @default(value: false)
+  technologyLevel  Int?       @db.SmallInt
   telegram         String?
 
   type    userType @default(Human)
@@ -59,7 +66,8 @@ model User {
   ResetPasswords                               ResetPassword[]
   Resources                                    Resource[]
   ResourceTags                                 ResourceTag[]
-  Tasks                                        Task[]
+  Tasks                                        Task[]                    @relation("TaskCreatedBy")
+  TasksAssigned                                Task[]                    @relation("TaskAssignee")
   TaskMembers_TaskMember_CreatedByToUser       TaskMember[]              @relation("TaskMember_CreatedByToUser")
   TaskMembers_TaskMember_UserToUser            TaskMember[]              @relation("TaskMember_UserToUser")
   TaskReactions                                TaskReaction[]
@@ -101,17 +109,17 @@ model User {
 }
 
 model Token {
-  id        String    @id @default(cuid()) @db.VarChar(32)
+  id        String    @id @default(cuid()) @db.VarChar(36)
   createdAt DateTime  @default(now()) @db.Timestamp(3)
   expiredAt DateTime? @db.Timestamp(3)
-  userId    String?   @db.VarChar(32)
+  userId    String?   @db.VarChar(36)
   User      User?     @relation(fields: [userId], references: [id])
 
   @@index(createdAt)
 }
 
 model File {
-  id            String    @id @default(cuid()) @db.VarChar(32)
+  id            String    @id @default(cuid()) @db.VarChar(36)
   path          String    @db.Text
   name          String?   @db.Text
   filename      String?   @db.Text
@@ -119,10 +127,10 @@ model File {
   encoding      String    @db.Text
   hash          String?   @db.Text
   size          Decimal?
-  ImageResource String?   @db.VarChar(32)
-  CreatedBy     String?   @db.VarChar(32)
+  ImageResource String?   @db.VarChar(36)
+  CreatedBy     String?   @db.VarChar(36)
   rank          Int?
-  Gallery       String?   @db.VarChar(32)
+  Gallery       String?   @db.VarChar(36)
   createdAt     DateTime  @default(now()) @db.Timestamp(3)
   updatedAt     DateTime  @default(now()) @updatedAt @db.Timestamp(3)
   User          User?     @relation(fields: [CreatedBy], references: [id])
@@ -135,43 +143,43 @@ model File {
 }
 
 model Career {
-  id          String    @id @default(cuid()) @db.VarChar(32)
+  id          String    @id @default(cuid()) @db.VarChar(36)
   createdAt   DateTime  @default(now()) @db.Timestamp(3)
   updatedAt   DateTime  @default(now()) @updatedAt @db.Timestamp(3)
   name        String?   @db.Text
   description String?   @db.Text
   start_date  DateTime?
-  CreatedBy   String?   @db.VarChar(32)
+  CreatedBy   String?   @db.VarChar(36)
   User        User?     @relation(fields: [CreatedBy], references: [id])
 
   @@index([CreatedBy], map: "Career_CreatedBy")
 }
 
 model ChatMessageOld {
-  id          String    @id @default(cuid()) @db.VarChar(32)
+  id          String    @id @default(cuid()) @db.VarChar(36)
   createdAt   DateTime  @default(now()) @db.Timestamp(3)
   updatedAt   DateTime  @default(now()) @updatedAt @db.Timestamp(3)
   content     Json?
   contentText String?   @db.Text
-  CreatedBy   String?   @db.VarChar(32)
-  Room        String?   @db.VarChar(32)
+  CreatedBy   String?   @db.VarChar(36)
+  Room        String?   @db.VarChar(36)
   ChatRoom    ChatRoom? @relation(fields: [Room], references: [id])
-  toUser      String?   @db.VarChar(32)
+  toUser      String?   @db.VarChar(36)
 
   @@index([CreatedBy], map: "ChatMessageOld_CreatedBy")
   @@index([Room], map: "ChatMessageOld_Room")
 }
 
 model ChatRoom {
-  id              String           @id @default(cuid()) @db.VarChar(32)
+  id              String           @id @default(cuid()) @db.VarChar(36)
   createdAt       DateTime         @default(now()) @db.Timestamp(3)
   updatedAt       DateTime         @default(now()) @updatedAt @db.Timestamp(3)
   name            String           @db.Text
   description     String?          @db.Text
   image           String?          @db.Text
-  code            String?          @unique @db.VarChar(32)
+  code            String?          @unique @db.VarChar(36)
   isPublic        Boolean?
-  CreatedBy       String?          @db.VarChar(32)
+  CreatedBy       String?          @db.VarChar(36)
   ChatMessageOlds ChatMessageOld[]
   Tasks           Task[]
 
@@ -179,8 +187,8 @@ model ChatRoom {
 }
 
 model CodeChallenge {
-  id                       String                    @id @default(cuid()) @db.VarChar(32)
-  externalKey              String?                   @unique @db.VarChar(32)
+  id                       String                    @id @default(cuid()) @db.VarChar(36)
+  externalKey              String?                   @unique @db.VarChar(36)
   createdAt                DateTime                  @default(now()) @db.Timestamp(3)
   updatedAt                DateTime                  @default(now()) @updatedAt @db.Timestamp(3)
   name                     String?                   @db.Text
@@ -205,9 +213,9 @@ model CodeChallenge {
   template                 String?                   @db.Text
   time                     String?                   @db.Text
   rank                     Int?
-  Block                    String?                   @db.VarChar(32)
-  CreatedBy                String?                   @db.VarChar(32)
-  Topic                    String?                   @db.VarChar(32)
+  Block                    String?                   @db.VarChar(36)
+  CreatedBy                String?                   @db.VarChar(36)
+  Topic                    String?                   @db.VarChar(36)
   CodeChallengeBlock       CodeChallengeBlock?       @relation(fields: [Block], references: [id])
   User                     User?                     @relation(fields: [CreatedBy], references: [id])
   Resource                 Resource?                 @relation(fields: [Topic], references: [id])
@@ -219,14 +227,14 @@ model CodeChallenge {
 }
 
 model CodeChallengeBlock {
-  id                       String               @id @default(cuid()) @db.VarChar(32)
+  id                       String               @id @default(cuid()) @db.VarChar(36)
   externalKey              String?              @db.Text
   createdAt                DateTime             @default(now()) @db.Timestamp(3)
   updatedAt                DateTime             @default(now()) @updatedAt @db.Timestamp(3)
   name                     String?              @db.Text
   rank                     Int?
-  CreatedBy                String?              @db.VarChar(32)
-  Parent                   String?              @db.VarChar(32)
+  CreatedBy                String?              @db.VarChar(36)
+  Parent                   String?              @db.VarChar(36)
   User                     User?                @relation(fields: [CreatedBy], references: [id])
   CodeChallengeBlock       CodeChallengeBlock?  @relation("CodeChallengeBlockToCodeChallengeBlock_Parent", fields: [Parent], references: [id])
   CodeChallenge            CodeChallenge[]
@@ -237,12 +245,12 @@ model CodeChallengeBlock {
 }
 
 model CodeChallengeCompletion {
-  id                                                   String         @id @default(cuid()) @db.VarChar(32)
+  id                                                   String         @id @default(cuid()) @db.VarChar(36)
   createdAt                                            DateTime       @default(now()) @db.Timestamp(3)
   updatedAt                                            DateTime       @default(now()) @updatedAt @db.Timestamp(3)
-  Task                                                 String?        @db.VarChar(32)
-  CreatedBy                                            String?        @db.VarChar(32)
-  CodeChallenge                                        String?        @db.VarChar(32)
+  Task                                                 String?        @db.VarChar(36)
+  CreatedBy                                            String?        @db.VarChar(36)
+  CodeChallenge                                        String?        @db.VarChar(36)
   content                                              String?        @db.Text
   success                                              Boolean?
   CodeChallenge_CodeChallengeToCodeChallengeCompletion CodeChallenge? @relation(fields: [CodeChallenge], references: [id])
@@ -255,22 +263,22 @@ model CodeChallengeCompletion {
 }
 
 model NotificationType {
-  id        String   @id @default(cuid()) @db.VarChar(32)
+  id        String   @id @default(cuid()) @db.VarChar(36)
   createdAt DateTime @default(now()) @db.Timestamp(3)
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(3)
   name      String   @db.Text
-  code      String?  @unique @db.VarChar(32)
+  code      String?  @unique @db.VarChar(36)
   comment   String?  @db.Text
-  CreatedBy String?  @db.VarChar(32)
+  CreatedBy String?  @db.VarChar(36)
 
   @@index([CreatedBy], map: "NotificationType_CreatedBy")
 }
 
 model Position {
-  id                  String   @id @default(cuid()) @db.VarChar(32)
-  code                String?  @unique @db.VarChar(32)
+  id                  String   @id @default(cuid()) @db.VarChar(36)
+  code                String?  @unique @db.VarChar(36)
   name                String   @db.Text
-  CreatedBy           String?  @db.VarChar(32)
+  CreatedBy           String?  @db.VarChar(36)
   createdAt           DateTime @default(now()) @db.Timestamp(3)
   updatedAt           DateTime @default(now()) @updatedAt @db.Timestamp(3)
   User_PositionToUser User?    @relation(fields: [CreatedBy], references: [id])
@@ -280,7 +288,7 @@ model Position {
 }
 
 model Project {
-  id                                        String          @id @default(cuid()) @db.VarChar(32)
+  id                                        String          @id @default(cuid()) @db.VarChar(36)
   name                                      String          @db.Text
   domain                                    String?         @db.Text
   createdAt                                 DateTime        @default(now()) @db.Timestamp(3)
@@ -293,11 +301,11 @@ model Project {
   status                                    ProjectStatus?  @default(value: New)
   public                                    Boolean?
   // oldID                                     Int?            @unique
-  CreatedBy                                 String?         @db.VarChar(32)
-  Image                                     String?         @db.VarChar(32)
-  // ChatRoom                                  String?         @db.VarChar(32)
-  Team                                      String?         @db.VarChar(32)
-  Resource                                  String?         @db.VarChar(32)
+  CreatedBy                                 String?         @db.VarChar(36)
+  Image                                     String?         @db.VarChar(36)
+  // ChatRoom                                  String?         @db.VarChar(36)
+  Team                                      String?         @db.VarChar(36)
+  Resource                                  String?         @db.VarChar(36)
   type                                      ProjectType?
   // ChatRoom_ChatRoomToProject                ChatRoom?       @relation(fields: [ChatRoom], references: [id])
   User_ProjectToUser                        User?           @relation(fields: [CreatedBy], references: [id])
@@ -335,11 +343,11 @@ enum ProjectType {
 }
 
 model ProjectMember {
-  id                                 String              @id @default(cuid()) @db.VarChar(32)
+  id                                 String              @id @default(cuid()) @db.VarChar(36)
   status                             ProjectMemberStatus @default(value: Active)
-  User                               String?             @db.VarChar(32)
-  CreatedBy                          String?             @db.VarChar(32)
-  Project                            String?             @db.VarChar(32)
+  User                               String?             @db.VarChar(36)
+  CreatedBy                          String?             @db.VarChar(36)
+  Project                            String?             @db.VarChar(36)
   createdAt                          DateTime            @default(now()) @db.Timestamp(3)
   updatedAt                          DateTime            @default(now()) @updatedAt @db.Timestamp(3)
   User_ProjectMember_CreatedByToUser User?               @relation("ProjectMember_CreatedByToUser", fields: [CreatedBy], references: [id])
@@ -360,12 +368,12 @@ enum ProjectMemberStatus {
 }
 
 model ProjectTask {
-  id                           String   @id @default(cuid()) @db.VarChar(32)
+  id                           String   @id @default(cuid()) @db.VarChar(36)
   createdAt                    DateTime @default(now()) @db.Timestamp(3)
   updatedAt                    DateTime @default(now()) @updatedAt @db.Timestamp(3)
-  Project                      String?  @db.VarChar(32)
-  Task                         String?  @db.VarChar(32)
-  CreatedBy                    String?  @db.VarChar(32)
+  Project                      String?  @db.VarChar(36)
+  Task                         String?  @db.VarChar(36)
+  CreatedBy                    String?  @db.VarChar(36)
   User                         User?    @relation(fields: [CreatedBy], references: [id])
   Project_ProjectToProjectTask Project? @relation(fields: [Project], references: [id])
   Task_ProjectTaskToTask       Task?    @relation(fields: [Task], references: [id])
@@ -376,21 +384,21 @@ model ProjectTask {
 }
 
 model ResetPassword {
-  id                       String    @id @default(cuid()) @db.VarChar(32)
+  id                       String    @id @default(cuid()) @db.VarChar(36)
   createdAt                DateTime  @default(now()) @db.Timestamp(3)
   updatedAt                DateTime  @default(now()) @updatedAt @db.Timestamp(3)
-  code                     String    @db.VarChar(32)
+  code                     String    @db.VarChar(36)
   password                 String
   validTill                DateTime?
-  User                     String    @db.VarChar(32)
+  User                     String    @db.VarChar(36)
   User_ResetPasswordToUser User      @relation(fields: [User], references: [id])
 
   @@index([User], map: "ResetPassword_User")
 }
 
 model Resource {
-  id          String       @id @default(cuid()) @db.VarChar(32)
-  code        String?      @unique @db.VarChar(32)
+  id          String       @id @default(cuid()) @db.VarChar(36)
+  code        String?      @unique @db.VarChar(36)
   createdAt   DateTime     @default(now()) @db.Timestamp(3)
   updatedAt   DateTime     @default(now()) @updatedAt @db.Timestamp(3)
   type        ResourceType @default(value: Resource)
@@ -417,15 +425,15 @@ model Resource {
   template                                  Int?
   mockUpdate                                DateTime?
   components                                Json?
-  Parent                                    String?         @db.VarChar(32)
-  Team                                      String?         @db.VarChar(32)
-  Service                                   String?         @db.VarChar(32)
-  EthAccount                                String?         @db.VarChar(32)
-  PrismaProject                             String?         @db.VarChar(32)
-  CreatedBy                                 String?         @db.VarChar(32)
-  Topic                                     String?         @db.VarChar(32)
-  Blog                                      String?         @db.VarChar(32)
-  Task                                      String?         @db.VarChar(32)
+  Parent                                    String?         @db.VarChar(36)
+  Team                                      String?         @db.VarChar(36)
+  Service                                   String?         @db.VarChar(36)
+  EthAccount                                String?         @db.VarChar(36)
+  PrismaProject                             String?         @db.VarChar(36)
+  CreatedBy                                 String?         @db.VarChar(36)
+  Topic                                     String?         @db.VarChar(36)
+  Blog                                      String?         @db.VarChar(36)
+  Task                                      String?         @db.VarChar(36)
   Resource_ResourceToResource_Blog          Resource?       @relation("ResourceToResource_Blog", fields: [Blog], references: [id])
   User                                      User?           @relation(fields: [CreatedBy], references: [id])
   Resource_ResourceToResource_Parent        Resource?       @relation("ResourceToResource_Parent", fields: [Parent], references: [id])
@@ -468,13 +476,13 @@ enum ResourceType {
 }
 
 model ResourceTag {
-  id                             String    @id @default(cuid()) @db.VarChar(32)
+  id                             String    @id @default(cuid()) @db.VarChar(36)
   createdAt                      DateTime  @default(now()) @db.Timestamp(3)
   updatedAt                      DateTime  @default(now()) @updatedAt @db.Timestamp(3)
   status                         String
-  CreatedBy                      String?   @db.VarChar(32)
-  Resource                       String?   @db.VarChar(32)
-  Tag                            String?   @db.VarChar(32)
+  CreatedBy                      String?   @db.VarChar(36)
+  Resource                       String?   @db.VarChar(36)
+  Tag                            String?   @db.VarChar(36)
   User                           User?     @relation(fields: [CreatedBy], references: [id])
   Resource_ResourceToResourceTag Resource? @relation(fields: [Resource], references: [id])
   Tag_ResourceTagToTag           Tag?      @relation(fields: [Tag], references: [id])
@@ -485,15 +493,15 @@ model ResourceTag {
 }
 
 model Service {
-  id              String           @id @default(cuid()) @db.VarChar(32)
+  id              String           @id @default(cuid()) @db.VarChar(36)
   name            String?          @db.Text
   description     String?          @db.Text
-  code            String?          @unique @db.VarChar(32)
+  code            String?          @unique @db.VarChar(36)
   rank            Int?
   oldID           Int?             @unique
-  Category        String?          @db.VarChar(32)
-  Parent          String?          @db.VarChar(32)
-  CreatedBy       String?          @db.VarChar(32)
+  Category        String?          @db.VarChar(36)
+  Parent          String?          @db.VarChar(36)
+  CreatedBy       String?          @db.VarChar(36)
   createdAt       DateTime         @default(now()) @db.Timestamp(3)
   updatedAt       DateTime         @default(now()) @updatedAt @db.Timestamp(3)
   ServiceCategory ServiceCategory? @relation(fields: [Category], references: [id])
@@ -509,12 +517,12 @@ model Service {
 }
 
 model ServiceCategory {
-  id                      String            @id @default(cuid()) @db.VarChar(32)
+  id                      String            @id @default(cuid()) @db.VarChar(36)
   name                    String            @db.Text
   description             String?           @db.Text
-  code                    String?           @unique @db.VarChar(32)
-  Parent                  String?           @db.VarChar(32)
-  CreatedBy               String?           @db.VarChar(32)
+  code                    String?           @unique @db.VarChar(36)
+  Parent                  String?           @db.VarChar(36)
+  CreatedBy               String?           @db.VarChar(36)
   createdAt               DateTime          @default(now()) @db.Timestamp(3)
   updatedAt               DateTime          @default(now()) @updatedAt @db.Timestamp(3)
   // User                    User?             @relation(fields: [CreatedBy], references: [id])
@@ -527,12 +535,12 @@ model ServiceCategory {
 }
 
 model Tag {
-  id           String        @id @default(cuid()) @db.VarChar(32)
+  id           String        @id @default(cuid()) @db.VarChar(36)
   createdAt    DateTime      @default(now()) @db.Timestamp(3)
   updatedAt    DateTime      @default(now()) @updatedAt @db.Timestamp(3)
   name         String        @unique
   status       TagStatus     @default(value: Active)
-  CreatedBy    String?       @db.VarChar(32)
+  CreatedBy    String?       @db.VarChar(36)
   // User         User?         @relation(fields: [CreatedBy], references: [id])
   ResourceTags ResourceTag[]
 
@@ -546,28 +554,37 @@ enum TagStatus {
 }
 
 model Task {
-  id                       String                    @id @default(cuid()) @db.VarChar(32)
-  createdAt                DateTime                  @default(now()) @db.Timestamp(3)
-  updatedAt                DateTime                  @default(now()) @updatedAt @db.Timestamp(3)
-  name                     String                    @db.Text
-  description              String?                   @db.Text
-  content                  String?                   @db.Text
-  status                   TaskStatus                @default(value: New)
-  startDatePlaning         DateTime?
-  endDatePlaning           DateTime?
-  startDate                DateTime?
-  endDate                  DateTime?
-  CreatedBy                String?                   @db.VarChar(32)
-  Parent                   String?                   @db.VarChar(32)
-  ChatRoom                 String?                   @db.VarChar(32)
-  needHelp                 Boolean?
-  ChatRoom_ChatRoomToTask  ChatRoom?                 @relation(fields: [ChatRoom], references: [id])
-  User                     User?                     @relation(fields: [CreatedBy], references: [id])
-  Task                     Task?                     @relation("TaskToTask_Parent", fields: [Parent], references: [id])
-  Children                 Task[]                    @relation("TaskToTask_Parent")
+  id               String     @id @default(cuid()) @db.VarChar(36)
+  createdAt        DateTime   @default(now()) @db.Timestamp(3)
+  updatedAt        DateTime   @default(now()) @updatedAt @db.Timestamp(3)
+  name             String     @db.Text
+  title            String?    @db.Text
+  description      String?    @db.Text
+  content          String?    @db.Text
+  status           TaskStatus @default(value: New)
+  startDatePlaning DateTime?
+  endDatePlaning   DateTime?
+  startDate        DateTime?
+  endDate          DateTime?
+  needHelp         Boolean?
+
+  createdById String @db.VarChar(36)
+  CreatedBy   User   @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "TaskCreatedBy")
+
+  assigneeId String? @db.VarChar(36)
+  Assignee   User?   @relation(fields: [assigneeId], references: [id], onDelete: Cascade, name: "TaskAssignee")
+
+  parentId String? @db.VarChar(36)
+  Parent   Task?   @relation(fields: [parentId], references: [id], name: "TaskChildren")
+  Children Task[]  @relation(name: "TaskChildren")
+
+  ChatRoom                String?   @db.VarChar(36)
+  ChatRoom_ChatRoomToTask ChatRoom? @relation(fields: [ChatRoom], references: [id])
+
+  projectId String?  @db.VarChar(36)
+  Project   Project? @relation(fields: [projectId], references: [id])
+
   CodeChallengeCompletions CodeChallengeCompletion[]
-  projectId                String?                   @db.VarChar(32)
-  Project                  Project?                  @relation(fields: [projectId], references: [id])
   ProjectTasks             ProjectTask[]
   Resources                Resource[]
   TaskMembers              TaskMember[]
@@ -576,8 +593,8 @@ model Task {
   Timers                   Timer[]
 
   @@index([ChatRoom], map: "Task_ChatRoom")
-  @@index([CreatedBy], map: "Task_CreatedBy")
-  @@index([Parent], map: "Task_Parent")
+  @@index([createdById], map: "Task_createdById")
+  @@index([parentId], map: "Task_parentId")
 }
 
 enum TaskStatus {
@@ -594,11 +611,11 @@ enum TaskStatus {
 }
 
 model TaskMember {
-  id                              String           @id @default(cuid()) @db.VarChar(32)
+  id                              String           @id @default(cuid()) @db.VarChar(36)
   status                          TaskMemberStatus @default(value: Active)
-  Task                            String?          @db.VarChar(32)
-  User                            String?          @db.VarChar(32)
-  CreatedBy                       String?          @db.VarChar(32)
+  Task                            String?          @db.VarChar(36)
+  User                            String?          @db.VarChar(36)
+  CreatedBy                       String?          @db.VarChar(36)
   createdAt                       DateTime         @default(now()) @db.Timestamp(3)
   updatedAt                       DateTime         @default(now()) @updatedAt @db.Timestamp(3)
   User_TaskMember_CreatedByToUser User?            @relation("TaskMember_CreatedByToUser", fields: [CreatedBy], references: [id])
@@ -618,12 +635,12 @@ enum TaskMemberStatus {
 }
 
 model TaskReaction {
-  id                      String           @id @default(cuid()) @db.VarChar(32)
+  id                      String           @id @default(cuid()) @db.VarChar(36)
   createdAt               DateTime         @default(now()) @db.Timestamp(3)
   updatedAt               DateTime         @default(now()) @updatedAt @db.Timestamp(3)
   type                    TaskReactionType
-  Task                    String?          @db.VarChar(32)
-  CreatedBy               String           @db.VarChar(32)
+  Task                    String?          @db.VarChar(36)
+  CreatedBy               String           @db.VarChar(36)
   User                    User             @relation(fields: [CreatedBy], references: [id])
   Task_TaskToTaskReaction Task?            @relation(fields: [Task], references: [id])
 
@@ -637,13 +654,13 @@ enum TaskReactionType {
 }
 
 model TaskTechnology {
-  id                                    String      @id @default(cuid()) @db.VarChar(32)
+  id                                    String      @id @default(cuid()) @db.VarChar(36)
   createdAt                             DateTime    @default(now()) @db.Timestamp(3)
   updatedAt                             DateTime    @default(now()) @updatedAt @db.Timestamp(3)
   level                                 Int?        @db.SmallInt
-  Technology                            String?     @db.VarChar(32)
-  Task                                  String?     @db.VarChar(32)
-  CreatedBy                             String      @db.VarChar(32)
+  Technology                            String?     @db.VarChar(36)
+  Task                                  String?     @db.VarChar(36)
+  CreatedBy                             String      @db.VarChar(36)
   User                                  User        @relation(fields: [CreatedBy], references: [id])
   Task_TaskToTaskTechnology             Task?       @relation(fields: [Task], references: [id])
   Technology_TaskTechnologyToTechnology Technology? @relation(fields: [Technology], references: [id])
@@ -655,7 +672,7 @@ model TaskTechnology {
 }
 
 model Team {
-  id                       String       @id @default(cuid()) @db.VarChar(32)
+  id                       String       @id @default(cuid()) @db.VarChar(36)
   name                     String       @db.Text
   status                   TeamStatus   @default(value: Active)
   oldID                    Int?         @unique
@@ -663,10 +680,10 @@ model Team {
   website                  String?      @db.Text
   email                    String?      @db.Text
   phone                    String?      @db.Text
-  Parent                   String?      @db.VarChar(32)
+  Parent                   String?      @db.VarChar(36)
   createdAt                DateTime     @default(now()) @db.Timestamp(3)
   updatedAt                DateTime     @default(now()) @updatedAt @db.Timestamp(3)
-  CreatedBy                String       @db.VarChar(32)
+  CreatedBy                String       @db.VarChar(36)
   User                     User         @relation(fields: [CreatedBy], references: [id])
   Team                     Team?        @relation("TeamToTeam_Parent", fields: [Parent], references: [id])
   // GameResults              GameResult[]
@@ -687,11 +704,11 @@ enum TeamStatus {
 }
 
 model TeamMember {
-  id                              String           @id @default(cuid()) @db.VarChar(32)
+  id                              String           @id @default(cuid()) @db.VarChar(36)
   status                          TeamMemberStatus @default(value: Active)
-  User                            String?          @db.VarChar(32)
-  Team                            String?          @db.VarChar(32)
-  CreatedBy                       String           @db.VarChar(32)
+  User                            String?          @db.VarChar(36)
+  Team                            String?          @db.VarChar(36)
+  CreatedBy                       String           @db.VarChar(36)
   createdAt                       DateTime         @default(now()) @db.Timestamp(3)
   updatedAt                       DateTime         @default(now()) @updatedAt @db.Timestamp(3)
   User_TeamMember_CreatedByToUser User             @relation("TeamMember_CreatedByToUser", fields: [CreatedBy], references: [id])
@@ -710,7 +727,7 @@ enum TeamMemberStatus {
 }
 
 model Technology {
-  id                  String               @id @default(cuid()) @db.VarChar(32)
+  id                  String               @id @default(cuid()) @db.VarChar(36)
   createdAt           DateTime             @default(now()) @db.Timestamp(3)
   updatedAt           DateTime             @default(now()) @updatedAt @db.Timestamp(3)
   name                String
@@ -724,7 +741,7 @@ model Technology {
   level3hours         Int?                 @db.Integer
   level4hours         Int?                 @db.Integer
   level5hours         Int?                 @db.Integer
-  CreatedBy           String               @db.VarChar(32)
+  CreatedBy           String               @db.VarChar(36)
   User                User                 @relation(fields: [CreatedBy], references: [id])
   TaskTechnologies    TaskTechnology[]
   TechnologyLessons   TechnologyLesson[]
@@ -736,13 +753,13 @@ model Technology {
 }
 
 model TechnologyLesson {
-  id                                      String                 @id @default(cuid()) @db.VarChar(32)
+  id                                      String                 @id @default(cuid()) @db.VarChar(36)
   name                                    String?                @db.Text
   components                              Json?
   contentText                             String?                @db.Text
-  CreatedBy                               String                 @db.VarChar(32)
+  CreatedBy                               String                 @db.VarChar(36)
   User                                    User                   @relation(fields: [CreatedBy], references: [id])
-  Technology                              String                 @db.VarChar(32)
+  Technology                              String                 @db.VarChar(36)
   Technology_TechnologyToTechnologyLesson Technology             @relation(fields: [Technology], references: [id])
   // Comments                                Comment[]
   TechnologyLessonUsers                   TechnologyLessonUser[]
@@ -752,14 +769,14 @@ model TechnologyLesson {
 }
 
 model TechnologyLessonUser {
-  id               String                     @id @default(cuid()) @db.VarChar(32)
+  id               String                     @id @default(cuid()) @db.VarChar(36)
   createdAt        DateTime                   @default(now()) @db.Timestamp(3)
   updatedAt        DateTime                   @default(now()) @updatedAt @db.Timestamp(3)
   status           TechnologyLessonUserStatus @default(value: Accepted)
   completedAt      DateTime?
-  CreatedBy        String                     @db.VarChar(32)
+  CreatedBy        String                     @db.VarChar(36)
   User             User                       @relation(fields: [CreatedBy], references: [id])
-  Lesson           String                     @db.VarChar(32)
+  Lesson           String                     @db.VarChar(36)
   TechnologyLesson TechnologyLesson           @relation(fields: [Lesson], references: [id])
 
   @@index([CreatedBy], map: "TechnologyLessonUser_CreatedBy")
@@ -772,13 +789,13 @@ enum TechnologyLessonUserStatus {
 }
 
 model Timer {
-  id               String    @id @default(cuid()) @db.VarChar(32)
+  id               String    @id @default(cuid()) @db.VarChar(36)
   createdAt        DateTime  @default(now()) @db.Timestamp(3)
   stopedAt         DateTime?
   updatedAt        DateTime  @default(now()) @updatedAt @db.Timestamp(3)
   content          String?   @db.Text
-  Task             String?   @db.VarChar(32)
-  CreatedBy        String?   @db.VarChar(32)
+  Task             String?   @db.VarChar(36)
+  CreatedBy        String?   @db.VarChar(36)
   User             User?     @relation(fields: [CreatedBy], references: [id])
   Task_TaskToTimer Task?     @relation(fields: [Task], references: [id])
 
@@ -787,7 +804,7 @@ model Timer {
 }
 
 model UserTechnology {
-  id                                    String                      @id @default(cuid()) @db.VarChar(32)
+  id                                    String                      @id @default(cuid()) @db.VarChar(36)
   createdAt                             DateTime                    @default(now()) @db.Timestamp(3)
   updatedAt                             DateTime                    @default(now()) @updatedAt @db.Timestamp(3)
   components                            Json?
@@ -797,9 +814,9 @@ model UserTechnology {
   // Готов ли принимать заказы с таким технологиями
   hiring_status                         UserTechnologyHiringStatus?
   isMentor                              Boolean                     @default(value: false)
-  CreatedBy                             String                      @db.VarChar(32)
+  CreatedBy                             String                      @db.VarChar(36)
   User                                  User                        @relation(fields: [CreatedBy], references: [id])
-  Technology                            String                      @db.VarChar(32)
+  Technology                            String                      @db.VarChar(36)
   Technology_TechnologyToUserTechnology Technology                  @relation(fields: [Technology], references: [id])
   level                                 Int?                        @db.SmallInt
 
@@ -827,12 +844,12 @@ enum UserTechnologyHiringStatus {
 }
 
 model Vote {
-  id                      String    @id @default(cuid()) @db.VarChar(32)
+  id                      String    @id @default(cuid()) @db.VarChar(36)
   createdAt               DateTime  @default(now()) @db.Timestamp(3)
   updatedAt               DateTime  @default(now()) @updatedAt @db.Timestamp(3)
   value                   Decimal
-  Resource                String?   @db.VarChar(32)
-  User                    String    @db.VarChar(32)
+  Resource                String?   @db.VarChar(36)
+  User                    String    @db.VarChar(36)
   // User_UserToVote         User      @relation(fields: [User], references: [id])
   Resource_ResourceToVote Resource? @relation(fields: [Resource], references: [id])
 
@@ -841,7 +858,7 @@ model Vote {
 }
 
 model Letter {
-  id           String       @id @default(cuid()) @db.VarChar(32)
+  id           String       @id @default(cuid()) @db.VarChar(36)
   email        String       @db.Text
   subject      String       @db.Text
   message      String       @db.Text
@@ -853,7 +870,7 @@ model Letter {
   returnTo     String?      @db.Text
   createdAt    DateTime     @default(now()) @db.Timestamp(3)
   updatedAt    DateTime     @default(now()) @updatedAt @db.Timestamp(3)
-  User         String?      @db.VarChar(32)
+  User         String?      @db.VarChar(36)
   // User_LetterToUser User?        @relation(fields: [User], references: [id])
 
   @@index([User], map: "Letter_User")
@@ -867,12 +884,12 @@ enum LetterStatus {
 }
 
 model Log {
-  id         String   @id @default(cuid()) @db.VarChar(32)
+  id         String   @id @default(cuid()) @db.VarChar(36)
   level      LogLevel @default(value: Info)
-  objectType String?  @db.VarChar(32)
+  objectType String?  @db.VarChar(36)
   message    String   @db.Text
   stack      String?  @db.Text
-  // Import             String?  @db.VarChar(32)
+  // Import             String?  @db.VarChar(36)
   createdAt  DateTime @default(now()) @db.Timestamp(3)
   updatedAt  DateTime @default(now()) @updatedAt @db.Timestamp(3)
   // Import_ImportToLog Import?  @relation(fields: [Import], references: [id])
@@ -890,13 +907,13 @@ enum LogLevel {
 
 // Стратегия развития
 model LearnStrategy {
-  id                  String               @id @default(cuid()) @db.VarChar(32)
+  id                  String               @id @default(cuid()) @db.VarChar(36)
   createdAt           DateTime             @default(now()) @db.Timestamp(3)
   updatedAt           DateTime             @default(now()) @updatedAt @db.Timestamp(3)
   name                String
   description         String?
   level               Int                  @db.SmallInt
-  createdById         String               @db.VarChar(32)
+  createdById         String               @db.VarChar(36)
   CreatedBy           User                 @relation(fields: [createdById], references: [id])
   // Этапы в рамках текущей стратегии
   LearnStrategyStages LearnStrategyStage[] @relation("LearnStrategyStages")
@@ -910,22 +927,22 @@ model LearnStrategy {
 
 // Этап стратегии развития
 model LearnStrategyStage {
-  id        String   @id @default(cuid()) @db.VarChar(32)
+  id        String   @id @default(cuid()) @db.VarChar(36)
   createdAt DateTime @default(now()) @db.Timestamp(3)
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(3)
 
   // type LearnStrategyStageType
 
   // В рамках какой стратегии выполняется этап
-  learnStrategyId String        @db.VarChar(32)
+  learnStrategyId String        @db.VarChar(36)
   LearnStrategy   LearnStrategy @relation("LearnStrategyStages", fields: [learnStrategyId], references: [id])
 
   // Какую стратегию необходимо пройти в рамках данного этапа
-  learnStrategyTargetId String?        @db.VarChar(32)
+  learnStrategyTargetId String?        @db.VarChar(36)
   LearnStrategyTarget   LearnStrategy? @relation("LearnStrategyStagesTargets", fields: [learnStrategyTargetId], references: [id])
 
   // Какую технологию надо освоить в рамках этого этапа
-  technologyId String?     @db.VarChar(32)
+  technologyId String?     @db.VarChar(36)
   Technology   Technology? @relation(fields: [technologyId], references: [id])
   // До какого уровня надо освоить
   level        Int?        @db.SmallInt
@@ -938,12 +955,12 @@ model LearnStrategyStage {
 
 // Выбранная пользователем стратегия развития
 model UserLearnStrategy {
-  id              String        @id @default(cuid()) @db.VarChar(32)
+  id              String        @id @default(cuid()) @db.VarChar(36)
   createdAt       DateTime      @default(now()) @db.Timestamp(3)
   updatedAt       DateTime      @default(now()) @updatedAt @db.Timestamp(3)
-  createdById     String        @db.VarChar(32)
+  createdById     String        @db.VarChar(36)
   CreatedBy       User          @relation(fields: [createdById], references: [id])
-  learnStrategyId String        @db.VarChar(32)
+  learnStrategyId String        @db.VarChar(36)
   LearnStrategy   LearnStrategy @relation(fields: [learnStrategyId], references: [id])
 
   @@unique([createdById, learnStrategyId], map: "uls_user_strategy_uniq")
@@ -951,13 +968,13 @@ model UserLearnStrategy {
 
 // Связка меттор-менти
 model MentorMentee {
-  id        String             @id @default(cuid()) @db.VarChar(32)
+  id        String             @id @default(cuid()) @db.VarChar(36)
   createdAt DateTime           @default(now()) @db.Timestamp(3)
   updatedAt DateTime           @default(now()) @updatedAt @db.Timestamp(3)
   status    MentorMenteeStatus
-  mentorId  String             @db.VarChar(32)
+  mentorId  String             @db.VarChar(36)
   Mentor    User               @relation("MentorMenteeMentor", fields: [mentorId], references: [id])
-  menteeId  String             @db.VarChar(32)
+  menteeId  String             @db.VarChar(36)
   Mentee    User               @relation("MentorMenteeMentee", fields: [menteeId], references: [id])
 
   @@unique([mentorId, menteeId], map: "mm_mentor_mentee_uniq")
@@ -1009,7 +1026,7 @@ enum MindLogType {
 }
 
 model MindLog {
-  id        String      @id @default(cuid()) @db.VarChar(32)
+  id        String      @id @default(cuid()) @db.VarChar(36)
   createdAt DateTime    @default(now()) @db.Timestamp(3)
   updatedAt DateTime    @default(now()) @updatedAt @db.Timestamp(3)
   type      MindLogType
@@ -1053,7 +1070,7 @@ model ChatMessage {
 }
 
 model TelegramAccount {
-  id        String   @id @default(cuid()) @db.VarChar(32)
+  id        String   @id @default(cuid()) @db.VarChar(36)
   createdAt DateTime @default(now()) @db.Timestamp(3)
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(3)
 
@@ -1064,6 +1081,6 @@ model TelegramAccount {
   photo_url   String?
   auth_date   DateTime? @db.Timestamp(0)
 
-  userId String @unique @db.VarChar(32)
+  userId String @unique @db.VarChar(36)
   User   User   @relation(fields: [userId], references: [id])
 }

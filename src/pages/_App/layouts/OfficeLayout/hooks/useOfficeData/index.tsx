@@ -61,7 +61,9 @@ const useOfficeData = (props: useOfficeDataProps) => {
                         {
                           // Созданы текущим пользователем
                           CreatedBy: {
-                            equals: currentUserId,
+                            id: {
+                              equals: currentUserId,
+                            },
                           },
                         },
                         {

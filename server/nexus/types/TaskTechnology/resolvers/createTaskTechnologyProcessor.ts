@@ -30,12 +30,9 @@ export const createTaskTechnologyProcessor: FieldResolver<
     where: {
       id: taskId,
     },
-    include: {
-      User: true,
-    },
   })
 
-  if (task?.User?.id !== currentUserId) {
+  if (task?.createdById !== currentUserId) {
     throw new Error('Нельзя редактировать чужую задачу')
   }
 

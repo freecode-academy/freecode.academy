@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
 import { createPassword } from './helpers/createPassword'
 import { sanitizeTelegram } from './helpers/sanitizeTelegram'
+import { checkUserUniqueness } from './helpers/checkUserUniqueness'
 
 export const updateUserProcessor: FieldResolver<
   'Mutation',
@@ -32,6 +33,17 @@ export const updateUserProcessor: FieldResolver<
       telegram,
     },
   } = args
+
+  const uniquenessCheck = await checkUserUniqueness({
+    prisma: ctx.prisma,
+    username: username ?? undefined,
+    email: email ?? undefined,
+    excludeUserId: currentUser.id,
+  })
+
+  if (!uniquenessCheck.isUnique) {
+    throw new Error(uniquenessCheck.error)
+  }
 
   const passwordUpdate = password ? await createPassword(password) : undefined
 

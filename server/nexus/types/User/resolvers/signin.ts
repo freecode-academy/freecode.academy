@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 
 import { NexusGenObjects } from 'server/nexus/generated/nexus'
 import { createToken } from './helpers/createToken'
+import { findUserCaseInsensitive } from './helpers/checkUserUniqueness'
 
 /**
  * Авторизация
@@ -21,8 +22,9 @@ export const signin: FieldResolver<'Mutation', 'signin'> = async (
 
   const where = args.where as Prisma.UserWhereUniqueInput
 
-  const user = await ctx.prisma.user.findUnique({
-    where,
+  const user = await findUserCaseInsensitive(ctx.prisma, {
+    username: where.username ?? undefined,
+    email: where.email ?? undefined,
   })
 
   let success = false

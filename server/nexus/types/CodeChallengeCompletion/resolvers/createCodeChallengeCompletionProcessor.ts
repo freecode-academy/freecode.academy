@@ -169,13 +169,11 @@ export const createCodeChallengeCompletionProcessor: FieldResolver<
           },
         },
         // CreatedBy: currentUserId,
-        User: currentUserId
-          ? {
-              connect: {
-                id: currentUserId,
-              },
-            }
-          : undefined,
+        CreatedBy: {
+          connect: {
+            id: currentUserId,
+          },
+        },
         // TaskProjects,
         // ProjectTask: TaskProject,
       },

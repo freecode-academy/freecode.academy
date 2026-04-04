@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { FieldResolver } from 'nexus'
+import { checkUserUniqueness } from './helpers/checkUserUniqueness'
 
 export const updateOneUser: FieldResolver<'Mutation', 'updateOneUser'> = async (
   _,
@@ -17,6 +18,21 @@ export const updateOneUser: FieldResolver<'Mutation', 'updateOneUser'> = async (
 
   if (!currentUser.sudo) {
     throw new Error('Access denied')
+  }
+
+  const username =
+    typeof data.username === 'string' ? data.username : data.username?.set
+  const email = typeof data.email === 'string' ? data.email : data.email?.set
+
+  const uniquenessCheck = await checkUserUniqueness({
+    prisma: ctx.prisma,
+    username: username ?? undefined,
+    email: email ?? undefined,
+    excludeUserId: where.id,
+  })
+
+  if (!uniquenessCheck.isUnique) {
+    throw new Error(uniquenessCheck.error)
   }
 
   const updateData: Prisma.UserUpdateArgs['data'] = data

@@ -21,7 +21,7 @@ export const updateTaskProcessor: FieldResolver<
     throw new Error('Не был получен объект')
   }
 
-  if (currentTask.CreatedBy !== currentUserId) {
+  if (currentTask.createdById !== currentUserId) {
     throw new Error('Нельзя редактировать чужой объект')
   }
 

@@ -45,7 +45,7 @@ export const createTaskProcessor: FieldResolver<
     startDate,
     startDatePlaning,
     status: status || undefined,
-    User: {
+    CreatedBy: {
       connect: {
         id: currentUserId,
       },
@@ -62,7 +62,7 @@ export const createTaskProcessor: FieldResolver<
   if (Parent?.connect?.id) {
     // const connect = Parent?.connect as Prisma.TaskWhereUniqueInput
 
-    createData.Task = {
+    createData.Parent = {
       connect: {
         id: Parent.connect.id,
       },

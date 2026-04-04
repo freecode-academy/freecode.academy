@@ -4,6 +4,7 @@ import { createToken } from '../helpers/createToken'
 import { createPassword } from '../helpers/createPassword'
 import { createActivity } from '../../../Activity/helpers/createActivity'
 import { ActivityType } from '../../../Activity/interfaces'
+import { checkUserUniqueness } from './checkUserUniqueness'
 
 export async function createUser(
   data: Prisma.UserCreateInput,
@@ -11,13 +12,24 @@ export async function createUser(
 ) {
   const {
     password: passwordProps,
+    username,
+    email,
     // showEmail,
     // showFullname,
-    // email,
     // fullname,
     // phone,
-    // username,
   } = data
+
+  const uniquenessCheck = await checkUserUniqueness({
+    prisma: ctx.prisma,
+    username,
+    email,
+    excludeUserId: undefined,
+  })
+
+  if (!uniquenessCheck.isUnique) {
+    throw new Error(uniquenessCheck.error)
+  }
 
   // if (!passwordProps) {
   //   throw new Error('Укажите пароль')
